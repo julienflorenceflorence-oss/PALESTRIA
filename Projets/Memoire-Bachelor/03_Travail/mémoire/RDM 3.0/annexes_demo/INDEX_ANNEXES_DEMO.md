@@ -12,7 +12,7 @@
 - **Lien** : [Consulter sur Google Docs](https://docs.google.com/document/d/1cODXz35hWuD4Ul_QJznqq29sbjeZZxCi9-4X7sztBBE/edit?usp=sharing)
 
 ### Annexe 3 : Analyse des 5 Forces de Porter
-- **Lien** : [Consulter sur Google Drive](https://drive.google.com/file/d/1UowekjMdE2eGR0Fd0RcvvEnT9LP2yI3X/view?usp=sharing)
+- **Lien** : [Consulter sur Google Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/RDM%203.0/HTML/RAPPORT_DE_MISSION_JULIEN_FLORENCE_2026.html#annexe-3)
 
 ---
 
@@ -45,12 +45,12 @@
 ## 🛡️ Preuves Opérationnelles & Supports (PDF/Cloud)
 
 ### Dossier de Preuves Complémentaires
-1. **Pack Communication & Branding** : [Lien Drive](https://drive.google.com/file/d/1OoDtqvV-s1TELt1J17h7HyKzHJqrdiIQ/view?usp=drive_link)
-2. **Contrats & Cadre de Confiance** : [Lien Drive](https://drive.google.com/file/d/1FAJt6nb93-iX32-AgZAJ_28MJDK2YDJ9/view?usp=drive_link)
-3. **Justificatif d'Activité n°2** : [Lien Drive](https://drive.google.com/file/d/1kE7TUcKFbJkPhW6H4-cSR-xk0HBUzmy5/view?usp=drive_link)
-4. **Livrable Mission n°1** : [Lien Drive](https://drive.google.com/file/d/1v9lRZvhTwE4CF3Dq4kPeR9IB8QzR9geY/view?usp=drive_link)
-5. **Relevés de Performance & Stats** : [Lien Drive](https://drive.google.com/file/d/1KHVaDgWzgNSpym-UeFSKzoDM5abVMJj2/view?usp=drive_link)
-6. **Archive Technique & Preuve n°3** : [Lien Drive](https://drive.google.com/file/d/1TLn9NFBdDqKu68eJ7QmzBEQg-gDPvP8L/view?usp=drive_link)
+1. **Pack Communication & Branding** : [Lien Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/annexe/Pack%20Communication%202%20HH.pdf.pdf.pdf)
+2. **Contrats & Cadre de Confiance** : [Lien Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/doc%20HH/Process%20d'int%C3%A9gration%201.1.pdf)
+3. **Justificatif d'Activité n°2** : [Lien Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/doc%20HH/PMS%20CONNECT%C3%89S.pdf)
+4. **Livrable Mission n°1** : [Lien Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/rachive/DATA_DEMONSTRATION_FORCE.html)
+5. **Relevés de Performance & Stats** : [Lien Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/annexe/Process%20Commercial%20%26%20KPIs%20-%20Happy%20House%20Edition%20Prestige.pdf)
+6. **Archive Technique & Preuve n°3** : [Lien Drive](https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/RDM%203.0/HTML/DASHBOARD_HEBERGEURS.html)
 
 ---
 

@@ -1398,7 +1398,7 @@ pages.append({
             Extraits des livrables opérationnels produits. L'intégralité des documents natifs et interactifs (tableaux de bord, contrats) est tenue à disposition du jury sur le Drive.
         </p>
         <div style="text-align: center; margin-bottom: 15px;">
-            <a href="https://drive.google.com/" target="_blank" style="display: inline-block; background: var(--gold); color: #000; padding: 6px 15px; text-decoration: none; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 8.5pt; letter-spacing: 1px; border-radius: 3px;">📥 ACCÉDER AU DOSSIER DRIVE SÉCURISÉ</a>
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA" target="_blank" style="display: inline-block; background: var(--gold); color: #000; padding: 6px 15px; text-decoration: none; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 8.5pt; letter-spacing: 1px; border-radius: 3px;">📥 ACCÉDER AU DOSSIER DRIVE SÉCURISÉ</a>
         </div>
 
         <div class="glass-card" style="padding: 12px 15px; margin-bottom: 15px; font-size: 9pt;">

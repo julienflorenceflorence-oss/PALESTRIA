@@ -785,16 +785,16 @@ pages.append({
 
         <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
             <h2 style='font-size: 11pt; color: var(--gold-light); margin-bottom: 5px; margin-top: 0;'>A. LIVRABLES & PREUVES (CLOUD)</h2>
-            <a href="https://drive.google.com/file/d/1OoDtqvV-s1TELt1J17h7HyKzHJqrdiIQ/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/annexe/Pack%20Communication%202%20HH.pdf.pdf.pdf" target="_blank" class="btn-nav" style="width: 80%;">
                 📄 1. Pack Communication & Branding
             </a>
-            <a href="https://drive.google.com/file/d/1kE7TUcKFbJkPhW6H4-cSR-xk0HBUzmy5/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/doc%20HH/PMS%20CONNECT%C3%89S.pdf" target="_blank" class="btn-nav" style="width: 80%;">
                 🏢 2. Justificatif d'Activité n°2
             </a>
-            <a href="https://drive.google.com/file/d/1v9lRZvhTwE4CF3Dq4kPeR9IB8QzR9geY/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/rachive/DATA_DEMONSTRATION_FORCE.html" target="_blank" class="btn-nav" style="width: 80%;">
                 📦 3. Livrable Mission n°1
             </a>
-            <a href="https://drive.google.com/file/d/1KHVaDgWzgNSpym-UeFSKzoDM5abVMJj2/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/super-agent-consulting/m%C3%A9moire/annexe/Process%20Commercial%20%26%20KPIs%20-%20Happy%20House%20Edition%20Prestige.pdf" target="_blank" class="btn-nav" style="width: 80%;">
                 📊 4. Relevés de Performance & Stats
             </a>
 

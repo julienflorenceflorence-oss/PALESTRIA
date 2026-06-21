@@ -10,7 +10,7 @@ c = c.replace(old_footer_css, new_footer_css)
 
 # Fix the section titles for the Annexes to be perfectly clear
 c = c.replace('"section": "EXTRAITS PIÈCES JUSTIFICATIVES"', '"section": "ANNEXE 11 : EXTRAITS PIÈCES JUSTIFICATIVES"')
-c = c.replace('"section": "DOSSIER DES PREUVES CLOUD"', '"section": "ANNEXE 12 : DOSSIER DRIVE SÉCURISÉ"')
+c = c.replace('"section": "DOSSIER DES PREUVES CLOUD"', '"section": "ANNEXE 12 : JUSTIFICATIFS GITHUB SÉCURISÉS"')
 
 # Prevent content from overlapping the footer in densely packed annexes
 old_content_css = ".content { padding: 25mm 20mm; position: relative; z-index: 10; flex-grow: 1; }"

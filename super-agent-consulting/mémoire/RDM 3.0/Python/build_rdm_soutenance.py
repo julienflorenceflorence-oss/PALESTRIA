@@ -6910,7 +6910,7 @@ html_head = """<!DOCTYPE html>
 
 
 
-        .toc-link { width: 100%; padding: 8px 0; border-bottom: 1px solid #222; color: #FFFFFF; font-size: 10pt;}
+        .toc-link { display: block; text-decoration: none; width: 100%; padding: 6px 0; border-bottom: 1px solid #222; color: #FFFFFF; font-size: 10pt; }
 
 
 

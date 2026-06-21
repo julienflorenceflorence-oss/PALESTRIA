@@ -104,7 +104,7 @@ html_head = """<!DOCTYPE html>
         a { text-decoration: none; color: #DDA83E; display: block; }
         a.inline-link { display: inline; border-bottom: 1px dotted #DDA83E; }
         
-        .toc-link { width: 100%; padding: 8px 0; border-bottom: 1px solid #222; color: #FFFFFF; font-size: 10pt;}
+        .toc-link { display: block; text-decoration: none; width: 100%; padding: 6px 0; border-bottom: 1px solid #222; color: #FFFFFF; font-size: 10pt; }
         
         .visual-block { background: #05060A; border: 1px solid var(--border-glass); border-radius: 4px; padding: 15px; font-family: 'Courier New', Courier, monospace; font-size: 8.5pt; color: #DDA83E; overflow-x: hidden; margin: 15px 0; position: relative;}
         .visual-block::before { content: '/// ROCKET SCHOOL DATA VIEW ///'; position: absolute; top: 0; right: 0; background: rgba(221, 168, 62, 0.1); padding: 2px 10px; font-size: 6pt; color: var(--gold); font-family: 'Cinzel';}

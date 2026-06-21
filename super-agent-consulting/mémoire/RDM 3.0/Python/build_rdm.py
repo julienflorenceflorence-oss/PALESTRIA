@@ -785,16 +785,16 @@ pages.append({
 
         <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
             <h2 style='font-size: 11pt; color: var(--gold-light); margin-bottom: 5px; margin-top: 0;'>A. LIVRABLES & PREUVES (CLOUD)</h2>
-            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/tree/main/Justificatifs_Preuves/tree/main/Justificatifs_Preuves/blob/main/Justificatifs_Preuves/Pack_Communication_2_HH.pdf" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/Pack_Communication_2_HH.pdf" target="_blank" class="btn-nav" style="width: 80%;">
                 📄 1. Pack Communication & Branding
             </a>
-            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/tree/main/Justificatifs_Preuves/tree/main/Justificatifs_Preuves/blob/main/Justificatifs_Preuves/PMS_CONNECTES.pdf" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/PMS_CONNECTES.pdf" target="_blank" class="btn-nav" style="width: 80%;">
                 🏢 2. Justificatif d'Activité n°2
             </a>
-            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/tree/main/Justificatifs_Preuves/tree/main/Justificatifs_Preuves/blob/main/Justificatifs_Preuves/DATA_DEMONSTRATION_FORCE.html" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://htmlpreview.github.io/?https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/Justificatifs_Preuves/DATA_DEMONSTRATION_FORCE.html" target="_blank" class="btn-nav" style="width: 80%;">
                 📦 3. Livrable Mission n°1
             </a>
-            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/tree/main/Justificatifs_Preuves/tree/main/Justificatifs_Preuves/blob/main/Justificatifs_Preuves/Process_Commercial_KPIs_Happy_House.pdf" target="_blank" class="btn-nav" style="width: 80%;">
+            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/Process_Commercial_KPIs_Happy_House.pdf" target="_blank" class="btn-nav" style="width: 80%;">
                 📊 4. Relevés de Performance & Stats
             </a>
 

@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note d'Opportunité Stratégique - Studio Singularité</title>
+    <style>
+        /* CONFIGURATION JURY : Arial 12, Page A4 */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 11pt; /* Adapté pour simuler du 12pt imprimé */
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+        }
+
+        .page {
+            background-color: #fff;
+            width: 21cm;
+            min-height: 29.7cm;
+            margin: 1cm auto;
+            padding: 2.5cm 2cm;
+            box-sizing: border-box;
+            box-shadow: 0 0 15px rgba(0,0,0,0.2);
+            position: relative;
+            page-break-after: always;
+        }
+
+        h1 {
+            font-size: 22pt;
+            text-align: center;
+            text-transform: uppercase;
+            border-bottom: 3px solid #D4AF37;
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+            color: #000;
+        }
+
+        h2 {
+            font-size: 14pt;
+            background-color: #f8f9fa;
+            color: #000;
+            padding: 10px;
+            margin-top: 30px;
+            text-transform: uppercase;
+            border-left: 8px solid #D4AF37;
+            border-bottom: 1px solid #ddd;
+        }
+
+        h3 {
+            font-size: 12pt;
+            color: #D4AF37;
+            text-transform: uppercase;
+            margin-top: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .bold { font-weight: bold; }
+        .highlight { background-color: #fafafa; border: 1px solid #eee; padding: 15px; margin: 15px 0; }
+        .problematique { background-color: #f8f9fa; border: 2px solid #000; padding: 20px; font-style: italic; margin: 20px 0; }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 10pt;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            text-transform: uppercase;
+            color: #555;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 1cm;
+            left: 2cm;
+            right: 2cm;
+            font-size: 9pt;
+            text-align: center;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            color: #888;
+        }
+
+        ul { padding-left: 25px; }
+        li { margin-bottom: 8px; }
+
+        .roi-box {
+            border: 2px dashed #D4AF37;
+            padding: 20px;
+            background-color: #fffdf5;
+            margin-top: 20px;
+        }
+
+        .references {
+            font-size: 9pt;
+            margin-top: 40px;
+            border-top: 2px solid #000;
+            padding-top: 10px;
+        }
+
+        /* Classes utilitaires pour le "Ton Exécutif" */
+        .verbe-action { color: #000; font-weight: bold; }
+        .source { font-size: 8pt; color: #777; vertical-align: super; }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 0 : PAGE DE GARDE -->
+<div class="page" style="display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border: 10px double #D4AF37; min-height: 29.7cm;">
+    <div style="margin-bottom: 50px;">
+        <img src="https://via.placeholder.com/150x150?text=Studio+Singularité" alt="Logo Studio Singularité" style="border: none;">
+    </div>
+    
+    <h1 style="border: none; font-size: 32pt; margin-bottom: 10px;">NOTE D'OPPORTUNITÉ</h1>
+    <h2 style="background: none; border: none; font-size: 18pt; color: #D4AF37; margin-top: 0;">STRATÉGIE DE CROISSANCE 2026</h2>
+    
+    <div style="width: 100px; height: 3px; background-color: #000; margin: 40px auto;"></div>
+    
+    <div style="font-size: 14pt; line-height: 2;">
+        <p><span class="bold">Projet :</span> Studio Singularité</p>
+        <p><span class="bold">Objet :</span> Pivot vers un modèle d'acquisition active & Hospitality</p>
+    </div>
+
+    <div style="margin-top: 100px; padding: 30px; border-top: 1px solid #eee; width: 60%;">
+        <p style="font-size: 12pt;"><span class="bold">PRÉSENTÉ PAR :</span></p>
+        <p style="font-size: 16pt; text-transform: uppercase; letter-spacing: 2px;"><span class="bold">Julien Florence</span></p>
+        <p style="color: #555;">Promo Apollo A 150</p>
+        <p style="color: #D4AF37; font-size: 10pt; text-transform: uppercase;">Spécialisation Business Development & DA</p>
+    </div>
+
+    <div style="position: absolute; bottom: 2cm; font-size: 10pt; color: #888;">
+        Document confidentiel à l'attention du jury Strapp
+    </div>
+</div>
+
+<!-- PAGE 1 : CONSTAT & OPPORTUNITÉ -->
+<div class="page">
+    <h1>I. CONSTAT ET PROBLÉMATIQUE</h1>
+        
+        <p><span class="bold">1.1 Situation Actuelle :</span> Studio Singularité opère sur un marché en hyper-croissance avec <span class="bold">1 111 200 nouvelles entreprises créées en 2024</span> (+6% vs 2023). Cependant, le studio plafonne à <span class="bold">25 000 € de CA annuel</span>. La trésorerie de <span class="bold">2 500 €</span> est critique, ne couvrant qu'un mois de charges de sécurité (cible : 6 000 €).</p>
+
+        <p><span class="bold">1.2 Échecs Passés & Racines du Problème :</span> Le modèle reposait jusqu'ici sur un système <span class="bold">100% Inbound passif</span> (bouche-à-oreille et réseaux sociaux personnels). 
+        <br>• <span class="bold">Échec de prévisibilité :</span> L'absence de flux de leads qualifiés génère une alternance entre "surproduction" et "périodes de creux".
+        <br>• <span class="bold">Verrou Opérationnel :</span> La fondatrice consacre 90% de son temps à l'exécution (Solo-entreprise), négligeant la <span class="bold">prospection active Outbound</span> pourtant vitale sur un marché où l'IA (Midjourney/Canva) ubérise les tâches d'exécution simple.</p>
+
+        <div class="problematique">
+            <span class="bold">PROBLÉMATIQUE SMART :</span><br>
+            Comment Studio Singularité peut-il déployer un système d'acquisition active (Outbound) et une offre en collectif pour capter <span class="bold">12 projets "Premium" par an</span>, afin d'atteindre un CA de <span class="bold">35 000 € (+40%)</span> et sécuriser une réserve de <span class="bold">6 000 € d'ici fin 2026</span> ?
+        </div>
+    </section>
+
+    <section>
+        <h2>PARTIE II : PRÉSENTATION DE L'OPPORTUNITÉ</h2>
+
+        <p><span class="bold">2.1 Levier 1 : Stratégie d'Alliance (Agences Web)</span><br>
+        <span class="verbe-action">Déployer</span> des partenariats avec des agences web n'ayant pas de pôle DA interne. 
+        <br><span class="bold">Justification :</span> Accès immédiat à des prospects déjà financés. Loi AGEC et transition numérique forcent les PME à revoir leur identité visuelle digitale.</p>
+
+        <p><span class="bold">2.2 Levier 2 : Maillage Réseau (Networking Premium)</span><br>
+        <span class="verbe-action">Capter</span> des décideurs PME via des cercles d'affaires (BNI, Clubs Business). 
+        <br><span class="bold">Justification :</span> Le besoin de "Singularité Humaine" est l'argument premium face à l'offre low-cost IA.</p>
+
+        <p><span class="bold">2.3 Levier 3 : Offensive "Hospitality Premium" (Abonnements)</span><br>
+        <span class="verbe-action">Fidéliser</span> le secteur hôtellerie/restauration via une offre récurrente de gestion d'image de marque.
+        <br><span class="bold">Justification :</span> Besoin vital de contenus visuels frais pour les réseaux sociaux (Insta/Booking) pour justifier des tarifs élevés.</p>
+    </section>
+
+    <div class="footer">Page 1/3 - Studio Singularité - Document Confidentiel</div>
+</div>
+
+<!-- PAGE 2 : OBJECTIFS & PLAN D'ACTION -->
+<div class="page">
+    <section>
+        <h2>PARTIE III : OBJECTIFS ET KPIs</h2>
+        <p>Le pilotage de la croissance repose sur un mix entre projets "Core" et revenus récurrents (MRR).</p>
+
+        <h3>Ingénierie Tarifaire (Modèle de Revenus)</h3>
+        <table>
+            <tr>
+                <th>Source de Revenu</th>
+                <th>Prix Public HT</th>
+                <th>Hypothèse Volume</th>
+                <th>Net Studio Mensuel</th>
+            </tr>
+            <tr>
+                <td class="bold">Pack Identité 360°</td>
+                <td>2 600 €</td>
+                <td>1 projet / mois</td>
+                <td><span class="bold">2 210 €</span> (Après -15% apport)</td>
+            </tr>
+            <tr>
+                <td class="bold">Abonnements LCD/Resto</td>
+                <td>200 € à 300 €</td>
+                <td>3 à 4 actifs</td>
+                <td><span class="bold">950 €</span></td>
+            </tr>
+            <tr style="background-color: #f2f2f2;">
+                <td colspan="3" class="bold" style="text-align: right;">TOTAL MENSUEL VISÉ :</td>
+                <td class="bold">3 160 €</td>
+            </tr>
+        </table>
+
+        <h3>Tableau de Bord des OKR (Objectifs Clés)</h3>
+        <table>
+            <tr>
+                <th>OKR</th>
+                <th>Levier</th>
+                <th>Baseline</th>
+                <th>Objectif 6M</th>
+                <th>Objectif 12M</th>
+            </tr>
+            <tr>
+                <td class="bold">CA Mensuel Net</td>
+                <td>L1 + L2 + L3</td>
+                <td>2 083 €</td>
+                <td>2 660 €</td>
+                <td><span class="bold">3 160 €</span></td>
+            </tr>
+            <tr>
+                <td class="bold">Abonnements Actifs</td>
+                <td>Levier 3</td>
+                <td>0</td>
+                <td>2 actifs</td>
+                <td><span class="bold">4 actifs</span></td>
+            </tr>
+            <tr>
+                <td class="bold">Leads Qualifiés</td>
+                <td>Levier 1 & 2</td>
+                <td>0</td>
+                <td>3 / mois</td>
+                <td><span class="bold">5 / mois</span></td>
+            </tr>
+        </table>
+    </section>
+
+    <section>
+        <h2>PARTIE IV : PLAN D'ACTION OPÉRATIONNEL</h2>
+        
+        <p><span class="bold">PHASE 1 : TEST & ALLIANCES (Mois 1-3)</span><br>
+        • <span class="verbe-action">Négocier</span> 3 contrats d'apport d'affaires avec des agences web locales.<br>
+        • <span class="bold">Livrable :</span> Plaquette commerciale sectorielle "Hospitality".<br>
+        • <span class="bold">Budget :</span> 0 € (Temps dédié à la vente : 1 jour/semaine).</p>
+
+        <p><span class="bold">PHASE 2 : DÉPLOIEMENT & RÉSEAU (Mois 4-8)</span><br>
+        • <span class="verbe-action">Intégrer</span> un club d'affaires (BNI) et un club de sport business (Padel).<br>
+        • <span class="verbe-action">Convertir</span> les 2 premiers abonnés récurrents.<br>
+        • <span class="bold">Budget :</span> 1 200 € (Adhésions + frais networking).</p>
+
+        <p><span class="bold">PHASE 3 : OPTIMISATION & AUTOMATISATION (Mois 9-12)</span><br>
+        • <span class="verbe-action">Systématiser</span> le suivi via un CRM simple pour gérer le Churn (désabonnement).<br>
+        • <span class="verbe-action">Recruter</span> un freelance junior ponctuel pour l'exécution IA-assistée.<br>
+        • <span class="bold">Livrable :</span> Rapport de performance trimestriel pour les clients abonnés.</p>
+    </section>
+
+    <div class="footer">Page 2/3 - Studio Singularité - Document Confidentiel</div>
+</div>
+
+<!-- PAGE 3 : RISQUES, ROI & RÉFÉRENCES -->
+<div class="page">
+    <section>
+        <h2>PARTIE V : ANALYSE DES RISQUES ET ROI PRÉVISIONNEL</h2>
+        
+        <p><span class="bold">5.1 Analyse des Risques</span></p>
+        <table>
+            <tr>
+                <th>Risque</th>
+                <th>Probabilité</th>
+                <th>Impact</th>
+                <th>Mitigation (Solution)</th>
+            </tr>
+            <tr>
+                <td>Faible apport des agences</td>
+                <td>Moyenne</td>
+                <td>Élevé</td>
+                <td>Élargir à 5 partenaires agences.</td>
+            </tr>
+            <tr>
+                <td>Churn Hospitality</td>
+                <td>Faible</td>
+                <td>Moyen</td>
+                <td>Engagement contractuel de 6 mois.</td>
+            </tr>
+            <tr>
+                <td>Saturation du temps</td>
+                <td>Élevée</td>
+                <td>Moyen</td>
+                <td>Délégation de l'exécution graphique (Freelance).</td>
+            </tr>
+        </table>
+
+        <h3>5.2 Hypothèses et Rentabilité (ROI)</h3>
+        <div class="highlight">
+            • <span class="bold">Panier Moyen (LTV) :</span> 2 600 € HT (Pack Identité).<br>
+            • <span class="bold">Marge Nette :</span> 85 % (Après frais techniques et charges).<br>
+            • <span class="bold">Taux de Conversion (Leads qualifiés) :</span> 30 %.<br>
+            • <span class="bold">Investissement Total :</span> 1 500 € (Adhésions + Outils).
+        </div>
+
+        <div class="roi-box">
+            <span class="bold">CALCUL DU RÉSULTAT (ROI) :</span><br>
+            • Gain de CA Net Annuel visé : <span class="bold">+12 920 €</span>.<br>
+            • Contribution Marge Brute (12 920 € x 85%) : <span class="bold">10 982 €</span>.<br>
+            <br>
+            <span class="bold">ROAS (Formule Juridique/Financière) :</span><br>
+            Marge Brute (10 982 €) / Investissement (1 500 €) = <span class="bold">7,32x</span>.<br>
+            Pour chaque 1 € investi dans le réseau, le studio génère <span class="bold">7,32 € de marge nette</span>.
+        </div>
+
+        <p><span class="bold">Conclusion :</span> La stratégie est jugée <span class="bold">hautement rentable</span>. Le passage d'un modèle passif à un maillage réseau actif sécurise non seulement le CA mais aussi la pérennité du studio face aux évolutions technologiques.</p>
+    </section>
+
+    <section class="references">
+        <h2>RÉFÉRENCES</h2>
+        <ul>
+            <li><span class="bold">INSEE (2025) :</span> Rapport annuel sur la création d'entreprise - Record de 1,1M d'immatriculations.</li>
+            <li><span class="bold">Loi AGEC (2020-2025) :</span> Obligations de transparence et de dématérialisation pour les TPE/PME.</li>
+            <li><span class="bold">Malt & BCG (2024) :</span> Étude sur l'impact de l'IA Générative dans les métiers du Design.</li>
+            <li><span class="bold">BNI France :</span> Statistiques de conversion par recommandation dans les services B2B.</li>
+        </ul>
+    </section>
+
+    <div class="footer">Page 3/3 - Studio Singularité - Document Confidentiel</div>
+</div>
+
+</body>
+</html>

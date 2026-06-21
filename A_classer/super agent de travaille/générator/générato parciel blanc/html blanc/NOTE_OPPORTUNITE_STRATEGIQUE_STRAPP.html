@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTE D'OPPORTUNITÉ STRATÉGIQUE - STRAPP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0F1115;
+            --gold: #D4AF37;
+            --gold-light: #F1D37E;
+            --text-color: #E0E0E0;
+            --card-bg: #1A1D23;
+            --white: #FFFFFF;
+        }
+
+        @media print {
+            body {
+                background-color: white !important;
+                color: black !important;
+            }
+            .container {
+                border: none !important;
+                box-shadow: none !important;
+                max-width: 100% !important;
+                padding: 0 !important;
+            }
+            h1, h3, h4, th, .gold-text {
+                color: black !important;
+            }
+            .highlight-box, th {
+                border: 1px solid black !important;
+                background-color: #f9f9f9 !important;
+            }
+            .no-print { display: none; }
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 210mm;
+            min-height: 297mm;
+            background-color: var(--bg-color);
+            border: 1px solid var(--gold);
+            padding: 60px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .header {
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 30px;
+            margin-bottom: 40px;
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .company-name {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2.2em;
+            letter-spacing: 4px;
+        }
+
+        .doc-type {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.8em;
+            color: var(--gold-light);
+            margin-top: 10px;
+        }
+
+        .meta-info {
+            font-size: 0.85em;
+            text-align: right;
+        }
+
+        .meta-info strong { color: var(--gold); }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.5em;
+            color: var(--white);
+            text-align: center;
+            margin: 60px 0;
+            line-height: 1.2;
+        }
+
+        h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.4em;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 10px;
+            margin-top: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--gold-light);
+            font-size: 1.1em;
+            margin-top: 30px;
+            font-weight: 700;
+        }
+
+        p { margin-bottom: 15px; }
+
+        .highlight-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--gold);
+            padding: 25px;
+            margin: 30px 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: "";
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            pointer-events: none;
+        }
+
+        .smart-goal {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2em;
+            color: var(--white);
+            font-style: italic;
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+        }
+
+        th, td {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--card-bg);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            text-transform: uppercase;
+            font-size: 0.8em;
+            letter-spacing: 1px;
+        }
+
+        .gold-text { color: var(--gold); font-weight: 700; }
+
+        ul { padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        .footer {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 0.75em;
+            color: #666;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .page-break { page-break-before: always; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <div class="header-top">
+            <div>
+                <div class="company-name">STRAPP</div>
+                <div class="doc-type">Note d'Opportunité Stratégique</div>
+            </div>
+            <div class="meta-info">
+                <strong>Auteur :</strong> Julien FLORENCE<br>
+                <strong>Unité :</strong> Apollo A 150<br>
+                <strong>Date :</strong> 17 Mars 2026<br>
+                <strong>Confidentialité :</strong> Interne CEO
+            </div>
+        </div>
+    </div>
+
+    <h1>Offensive Stratégique :<br>Reprendre le Contrôle sur l'Acquisition</h1>
+
+    <h3>1. Constat et Rupture de Modèle</h3>
+    <p>Strapp opère une transformation radicale de la téléphonie mobile en entreprise via la <strong>circularité native</strong> et l'outil <strong>Optimus</strong>. Cependant, son moteur de croissance actuel souffre d'une <span class="gold-text">inertie outbound critique</span> (0 RDV sur les dernières campagnes).</p>
+    
+    <p>Le défi n'est plus technologique, il est cognitif : Strapp doit briser la fidélité "par défaut" aux acteurs historiques en s'imposant comme l'évidence de la <strong>responsabilité numérique</strong>.</p>
+
+    <div class="highlight-box">
+        <div class="smart-goal">
+            "Comment dynamiser l'approche commerciale multicanal de Strapp pour générer un flux de 15-20 démos qualifiées par mois d'ici 6 mois, tout en divisant par 2 notre CAC actuel via l'exploitation des catalyseurs légaux de 2025 ?"
+        </div>
+    </div>
+
+    <h3>2. Diagnostic de Performance (Analyse 360°)</h3>
+    <table>
+        <tr>
+            <th>Écosystème Externe (Leviers)</th>
+            <th>Structure Interne (Forces/Lacunes)</th>
+        </tr>
+        <tr>
+            <td>
+                <ul>
+                    <li><span class="gold-text">Levier Légal AGEC/REEN :</span> L'obligation de stratégie numérique responsable en 2025 transforme l'offre de Strapp en impératif de conformité.</li>
+                    <li><span class="gold-text">Crise Économique :</span> La pression sur les coûts favorise notre modèle de division par 2 de la facture mobile.</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li><span class="gold-text">Forces :</span> Churn < 1%, maîtrise de la chaîne de valeur circulaire, outil Optimus intuitif (-90% de temps de gestion).</li>
+                    <li><span class="gold-text">Lacunes :</span> Messaging trop "gestionnaire", absence de preuve sociale sectorielle, dépendance à l'inbound organique.</li>
+                </ul>
+            </td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <h3>3. Architecture de l'Offensive (3 Axes)</h3>
+
+    <h4>AXE 1 : Capter l'Intention d'Achat (SEA High-Intent)</h4>
+    <p>Sortir de la gestion artisanale de notre visibilité pour dominer les recherches liées à la conformité et au ROI TCO.</p>
+    <table>
+        <tr>
+            <th>Action Prioritaire</th>
+            <th>Responsable</th>
+            <th>Échéance</th>
+            <th>Investissement</th>
+            <th>Indicateur d'Impact</th>
+        </tr>
+        <tr>
+            <td>Déploiement Google Ads sur segments "Loi AGEC / Audit TCO"</td>
+            <td>Marketing</td>
+            <td>S1 - S4</td>
+            <td>3 500 €</td>
+            <td>CTR > 4,5% / 30 MQLs</td>
+        </tr>
+        <tr>
+            <td>Production de 4 Business Cases sectoriels Haute Précision</td>
+            <td>CEO / Freelance</td>
+            <td>S1 - S2</td>
+            <td>1 500 €</td>
+            <td>Taux de ré-engagement</td>
+        </tr>
+    </table>
+
+    <h4>AXE 2 : Dynamiser l'Écosystème (Effet de Levier B2B)</h4>
+    <p>Contourner la barrière de la prospection froide en s'appuyant sur des prescripteurs de confiance.</p>
+    <table>
+        <tr>
+            <th>Action Prioritaire</th>
+            <th>Responsable</th>
+            <th>Échéance</th>
+            <th>Investissement</th>
+            <th>Indicateur d'Impact</th>
+        </tr>
+        <tr>
+            <td>Recrutement de 5 Partenaires Stratégiques (MDM / Cybersécurité)</td>
+            <td>CEO / BizDev</td>
+            <td>S1 - S8</td>
+            <td>Success Fee</td>
+            <td>Conversion Partenaire > 20%</td>
+        </tr>
+    </table>
+
+    <h4>AXE 3 : Prospection Chirurgicale (ABM Stratégique)</h4>
+    <p>Ré-allocation des ressources outbound sur un ciblage ultra-fin des ETI en phase de renouvellement.</p>
+    <table>
+        <tr>
+            <th>Action Prioritaire</th>
+            <th>Responsable</th>
+            <th>Échéance</th>
+            <th>Investissement</th>
+            <th>Indicateur d'Impact</th>
+        </tr>
+        <tr>
+            <td>Campagne LinkedIn ABM sur le "Top 200" Comptes Cibles</td>
+            <td>BizDev</td>
+            <td>S3 - S8</td>
+            <td>4 500 €</td>
+            <td>Taux de réponse > 12%</td>
+        </tr>
+    </table>
+
+    <h3>4. Analyse ROI et Conclusion</h3>
+    <div class="highlight-box">
+        <p><strong>Calcul de Rentabilité (Projection 6M) :</strong></p>
+        <ul>
+            <li><strong>Investissement Total :</strong> 17 500 €</li>
+            <li><strong>Objectif Business :</strong> 18 signatures (Panier moyen 8k€, Marge 35%)</li>
+            <li><strong>Marge Brute générée :</strong> 89 600 €</li>
+            <li><span class="gold-text">ROAS (Retour sur Média) : 5.1x</span></li>
+        </ul>
+    </div>
+    <p>En investissant 17 500 €, nous ne finançons pas seulement des annonces ; nous construisons une infrastructure d'acquisition capable de tripler notre volume de démos mensuelles. C'est le seul chemin viable pour imposer Strapp comme la référence absolue de la téléphonie mobile responsable d'ici 2026.</p>
+
+    <div class="footer">
+        Confidentiel — Propriété de Strapp — 2026
+    </div>
+</div>
+
+</body>
+</html>

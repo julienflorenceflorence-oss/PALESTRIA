@@ -1,0 +1,418 @@
+
+/* Theming CSS */
+
+  /* Header text color */
+  .u-org--header {
+    color: #393b3d;
+  }
+
+  button.u-org--header.appheader__button:hover,
+  button.u-org--header.appheader__button:active {
+    background-color: rgba(57, 59, 61, 0.1) !important;
+  }
+
+  button.u-org--header:not(.appnav__link):hover,
+  button.u-org--header:not(.appnav__link):active,
+  button.u-org--header:not(.appnav__link):focus {
+    color: #393b3d;
+  }
+
+  button.u-org--header.appheader__searchbutton,
+  button.u-org--header.appheader__categoriesbutton,
+  input[type="search"].u-org--header {
+    border-color: rgba(57, 59, 61, 0.3) !important;
+  }
+
+  button.u-org--header.appheader__searchbutton:hover,
+  button.u-org--header.appheader__searchbutton:active,
+  button.u-org--header.appheader__searchbutton:focus,
+  button.u-org--header.appheader__searchbutton:focus-visible,
+  button.u-org--header.appheader__categoriesbutton:hover,
+  button.u-org--header.appheader__categoriesbutton:active,
+  button.u-org--header.appheader__categoriesbutton:focus,
+  button.u-org--header.appheader__categoriesbutton:focus-visible,
+  input[type="search"].u-org--header:hover,
+  input[type="search"].u-org--header:active,
+  input[type="search"].u-org--header:focus,
+  input[type="search"].u-org--header:focus-visible {
+    border-color: rgba(57, 59, 61, 0.5) !important;
+  }
+
+  input[type="search"].u-org--header:focus {
+    border-color: transparent !important;
+  }
+
+  .u-org--header .search__input--appheader:not(:focus):-ms-input-placeholder {
+    color: #393b3d;
+  }
+
+  .u-org--header .search__input--appheader:not(:focus)::-ms-input-placeholder {
+    color: #393b3d;
+  }
+
+  .u-org--header .search__input--appheader:not(:focus)::placeholder {
+    color: #393b3d;
+  }
+
+
+  /* Organization color */
+  .u-orgcolor--color,
+  .u-orgcolor--hovercolor:hover {
+    color: #3168f6 !important;
+  }
+  .u-orgcolor--bg,
+  .u-orgcolor--hoverbg:hover {
+    background-color: #3168f6 !important;
+  }
+  .u-orgcolor--border,
+  .u-orgcolor--border:link,
+  .u-orgcolor--border:visited,
+  .u-orgcolor--border:hover,
+  .u-orgcolor--border:active,
+  .u-orgcolor--border:focus {
+    border-color: #3168f6;
+    color: #3168f6;
+  }
+  .u-orgcolor--borderonly,
+  .u-orgcolor--borderonly:link,
+  .u-orgcolor--borderonly:visited,
+  .u-orgcolor--borderonly:hover,
+  .u-orgcolor--borderonly:active,
+  .u-orgcolor--borderonly:focus {
+    border-color: #3168f6;
+  }
+  .u-orgcolor--borderhover:hover,
+  .u-orgcolor--borderhover:hover {
+    border-color: #3168f6;
+  }
+  .u-orgcolor--svgfill {
+    color: #3168f6;
+    fill: #3168f6;
+  }
+  .u-orgcolor--svgstroke {
+    color: #3168f6;
+    stroke: #3168f6;
+  }
+  .u-orgcolor--svgall {
+    color: #3168f6;
+    fill: #3168f6;
+    stroke: #3168f6;
+  }
+  .u-org--svgactive[data-active="true"],
+  .u-org--svgactive:hover {
+    color: #3168f6 !important;
+    stroke: #3168f6 !important;
+  }
+  .u-org--barchart:after {
+    background-color: #3168f6 !important;
+  }
+  .u-org--piechart {
+    color: rgba(0, 0, 0, 0.15);
+    stroke: #3168f6;
+  }
+  .u-org--tooltip {
+    background-color: #3168f6;
+  }
+  .u-org--tooltiptop:before {
+    border-top-color: #3168f6;
+  }
+  .u-org--tooltipright:before {
+    border-right-color: #3168f6;
+  }
+  .u-org--tooltipbottom:before {
+    border-bottom-color: #3168f6;
+  }
+  .u-org--tooltipleft:before {
+    border-left-color: #3168f6;
+  }
+  .updatecard__heading--new:before {
+    background-color: #3168f6;
+  }
+  .session:before {
+    background-color: #3168f6;
+  }
+  .activityprogress__value {
+    background-color: #3168f6;
+  }
+}
+  body[data-custom-ui="google"] .iconbutton,
+  body[data-custom-ui="google"] .comments__headerbutton, {
+    color: #3168f6;
+  }
+
+  .u-org--catalogflag {
+    background-image: linear-gradient(225deg, #3168f6 50%, transparent 50%);
+  }
+
+  .u-org--catalogflagsearch {
+    background-image: linear-gradient(225deg, #3168f6 50%, transparent 50%);
+  }
+
+  .u-org--catalogflag-in-progress {
+    background-image: linear-gradient(225deg, #fff 47%, #3168f6 3%, transparent 50%);
+    border-top: 1px solid #3168f6;
+    border-right: 1px solid #3168f6;
+    svg {
+      color: #3168f6;
+    }
+  }
+
+  .u-org--enrollmentmsgimage {
+    background-color: #3168f6
+  }
+
+  .u-org--catalogflagbg {
+    background-image: linear-gradient(225deg, #3168f6 50%, transparent 50%);
+  }
+  .u-org--catalogflagfill {
+    color: #3168f6;
+    fill: #3168f6;
+  }
+
+  .u-org--tabactive,
+  .u-org--tab:hover,
+  .u-org--tab:active,
+  .u-org--tab:focus {
+    border-color: #3168f6;
+  }
+  .link--primary,
+  .u-org--link,
+  .u-org--link:link,
+  .u-org--link:visited,
+  .u-org--link:hover,
+  .u-org--link:active,
+  .u-org--link:focus {
+    color: #3168f6;
+  }
+  .u-org--linkhover:hover,
+  .u-org--linkhover:active,
+  .u-org--linkhover:focus {
+    color: #3168f6;
+  }
+
+body[data-custom-ui="google"] .button--primary:not([disabled]),
+  body[data-custom-ui="google"] .button--primary:link,
+  body[data-custom-ui="google"] .button--primary:visited,
+  body[data-custom-ui="google"] .button--primary:hover,
+  body[data-custom-ui="google"] .button--primary:active,
+  body[data-custom-ui="google"] .button--primary:focus,
+  body[data-custom-ui="google"] .blankslate .button,
+  body[data-custom-ui="google"] .coursebar__btn--active,
+  body[data-custom-ui="google"] .coursebar__btn--active:hover,
+  body[data-custom-ui="google"] .coursebar__btn--active:focus,
+  body[data-custom-ui="google"] .tagbutton--selected:not(.tagbutton--taxonomy) {
+    background-color: #3168f6 !important;
+    border-color: #3168f6 !important;
+    color: #fff !important;
+  }
+
+
+  .tooltip {
+    background-color: #3168f6;
+  }
+  .tooltip--left::before {
+    border-left-color: #3168f6;
+  }
+  .tooltip--right::before {
+    border-right-color: #3168f6;
+  }
+  .tooltip--bottom::before,
+  .tooltip--bottom-left::before,
+  .tooltip--bottom-right::before {
+    border-bottom-color: #3168f6;
+  }
+  .tooltip--top::before,
+  .tooltip--top-left::before,
+  .tooltip--top-right::before {
+    border-top-color: #3168f6;
+  }
+  .checkbox--primary .checkbox__input:checked + .checkbox__ui {
+    background-color: #3168f6;
+    border: 2px solid #3168f6;
+  }
+  .question .checkbox__input:checked + .checkbox__ui {
+    background-color: #3168f6;
+    border: 1px solid #3168f6;
+  }
+  .question .radio__input:checked + .radio__ui {
+    border-color: #3168f6;
+  }
+  .question .radio__input:checked + .radio__ui::before {
+    background-color: #3168f6;
+  }
+  .assessment__completedicon, .assessment__gradingicon {
+    background-color: #3168f6;
+  }
+  .enrollmentmsg__image.enrollmentmsg__image--complete  {
+    background-color: #3168f6;
+  }
+
+  .rank__listitem .radio__input:checked + .radio__ui {
+    border-color: #3168f6;
+  }
+  .rank__listitem .radio__input:checked + .radio__ui::before {
+    background-color: #3168f6;
+  }
+  .sharelinks__link:hover,
+  .sharelinks__link:focus,
+  .sharelinks__link.button:hover,
+  .sharelinks__link.button:focus {
+    color: #3168f6;
+  }
+  .rating input[type="radio"]:not([disabled]) + label {
+    color: #3168f6;
+  }
+  .courselist__item[data-status="completed"] .courselist__marker, .courselist__item[data-status="in-progress"] .courselist__marker,
+  .pathmenu__sectionitem[data-status="completed"] .pathmenu__itemmarker, .pathmenu__sectionitem[data-status="in-progress"] .pathmenu__itemmarker {
+    color: #3168f6;
+  }
+  .courselist__item[data-status="in-progress"]:not([data-shape]) .courselist__marker {
+    border-color: #3168f6;
+  }
+
+    .u-org--catalogflag-in-progress svg {
+    color: #3168f6;
+  }
+}
+  .pageoutline__currentlink,
+  .pageoutline__currentlink:hover,
+  .pageoutline__currentlink:focus {
+    color: #3168f6;
+  }
+  .tagbutton--selected,
+  .tagbutton--selected:hover,
+  .tagbutton--selected:active,
+  .tagbutton--selected.tagbutton--taxonomy:hover,
+  .tagbutton--selected.tagbutton--taxonomy:active {
+    border-color: inherit !important;
+    background-color: #3168f6;
+  }
+  .tagbutton--selected.tagbutton--taxonomy {
+    background-color: #3168f60c !important;
+    border-color: #3168f6 !important;
+  }
+  .datepicker .pika-prev,
+  .datepicker .pika-next {
+    border: 1px solid #3168f6;
+  }
+  .datepicker .pika-prev,
+  .datepicker .is-rtl .pika-next {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2030%2025'%20version%3D'1.1'%3E%3Cpolyline%20fill%3D'none'%20stroke%3D'%233168f6'%20stroke-width%3D'2'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%20points%3D'16.7%209.4%2011.6%2012.4%2016.6%2015.3'%2F%3E%3C%2Fsvg%3E");
+  }
+  .datepicker .pika-next,
+  .datepicker .is-rtl .pika-prev {
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20version%3D'1.1'%20viewBox%3D'0%200%2030%2025'%3E%3Cpath%20d%3D'M12.6%209.5L17.7%2012.4%2012.6%2015.3'%20fill-opacity%3D'0'%20stroke%3D'%233168f6'%20stroke-width%3D'2'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%2F%3E%3C%2Fsvg%3E");
+  }
+  .datepicker .is-today .pika-button {
+    color: #3168f6;
+  }
+  .datepicker .is-selected .pika-button,
+  .datepicker .is-selected .pika-button:hover {
+    background: #3168f6;
+  }
+  .banner__icon {
+    color: #3168f6;
+    background: #3168f6;
+  }
+
+  /* Branding logo */
+  .header__titleicon.u-org--titleicon {
+    max-width: 120px;
+  }
+  @media (min-width: 370px) {
+    .header__titleicon.u-org--titleicon {
+      max-width: 160px;
+    }
+  }
+  .u-org--titleicon + .header__titletext,
+  .u-org--titleicon + .sidemenu__titletext {
+    display: none;
+  }
+  .u-org--header .header__titlelink {
+    text-overflow: clip;
+  }
+
+  /* Custom CSS */
+  exceed-remove-item.activitylistitem__drop {
+  display: none;
+}
+
+form.button_to {
+  display: none;
+}
+
+button.librarylist__dropbutton {
+  display: none;
+}
+
+.user-profile-edit.company-form h3,
+.user-profile-edit.company-form .u-headingpage {
+	font-size: 20px;
+	font-weight: 600;
+        color: #00bcd4
+}
+
+a[href="/student/catalog/list?course_type=required"] { display: none !important; }
+
+body#google-ui { background-color: #FAFAFA; }
+select, body#google-ui select { background-color: #FFF; }
+
+.button.passfail {
+    font-size: 17px; 
+    background-color: #00BCD4;
+    width: 100%;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 8px;
+}
+
+.button.custombutton {
+ text-transform: none;
+background-color: #FAFAFA;
+}
+
+passfail:hover,
+passfail:focus,
+.passfail:hover,
+.passfail:focus {
+    background-color: #0097A7; 
+}
+
+#notifications img {display: none;}
+#notification-count {display: none;}
+body.new_student #user-name.beta {right: 130px;}
+
+@media (max-width:700px) {
+  .assmntreport__details {
+    display:block;
+    float: none;
+  }
+}
+  
+  .fail_img {
+    max-width: 250px;
+  }
+
+
+  .button.passfail {
+    display:block;
+    width: 250px;
+  }
+  .assmntreport__heading  {
+font-size: 16px;
+}
+
+ 
+
+/* Temporary to hide search icon */
+.header__group--right .header__btn[data-behavior="toggle.search"] {
+  display: none !important;
+}
+@media (max-width: 1024px) {
+  .header__group--right .header__btn[data-behavior="toggle.search"] {
+    display: inline-block !important;
+  }
+}
+
+#response_section_details{display: none;}
+

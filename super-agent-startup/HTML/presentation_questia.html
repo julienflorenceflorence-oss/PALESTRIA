@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestIA - Pitch Deck Interactif</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #060214;
+            --accent-purple: #8b5cf6;
+            --accent-neon: #c084fc;
+            --text-white: #ffffff;
+            --text-dim: #94a3b8;
+            --slide-width: 1280px;
+            --slide-height: 720px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: #000;
+            color: var(--text-white);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #viewport {
+            width: var(--slide-width);
+            height: var(--slide-height);
+            background-color: var(--bg-dark);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        #viewport::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.15) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 1;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateX(100px);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 2;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .slide.prev { transform: translateX(-100px); }
+
+        h1, h2 { font-family: 'Urbanist', sans-serif; text-transform: uppercase; }
+        
+        .giant-title {
+            font-size: 140px;
+            font-weight: 900;
+            line-height: 0.9;
+            background: linear-gradient(to bottom, #fff, var(--accent-neon));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .slide-title {
+            font-size: 68px;
+            font-weight: 900;
+            color: var(--accent-neon);
+            margin-bottom: 30px;
+            letter-spacing: -2px;
+        }
+
+        .phase-tag {
+            color: var(--accent-purple);
+            letter-spacing: 5px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        .text-tile {
+            border-left: 3px solid var(--accent-purple);
+            padding-left: 30px;
+            margin-bottom: 35px;
+        }
+        .text-tile h3 { font-size: 30px; color: #fff; margin-bottom: 8px; }
+        .text-tile p { font-size: 20px; color: var(--text-dim); line-height: 1.5; }
+
+        .progress-box { width: 100%; background: rgba(255,255,255,0.05); height: 44px; border-radius: 22px; margin-top: 40px; overflow: hidden; border: 1px solid rgba(139, 92, 246, 0.2); }
+        .progress-bar { height: 100%; width: 0; background: linear-gradient(90deg, #6366f1, var(--accent-purple)); transition: width 1.5s ease-in-out; display: flex; align-items: center; justify-content: flex-end; padding-right: 20px; font-weight: 900; }
+
+        .metrics-container { display: flex; gap: 30px; margin-top: 40px; }
+        .metric-card { flex: 1; background: rgba(139, 92, 246, 0.04); border: 1px solid rgba(139, 92, 246, 0.15); border-radius: 20px; padding: 40px; text-align: center; }
+        .metric-value { font-size: 76px; font-weight: 900; color: #fff; font-family: 'Urbanist'; }
+        .metric-label { font-size: 15px; color: var(--accent-purple); text-transform: uppercase; letter-spacing: 3px; }
+
+        .comp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .comp-card { background: rgba(255,255,255,0.02); padding: 50px; border-radius: 30px; text-align: center; border: 1px solid rgba(255,255,255,0.05); }
+        .comp-card.active-comp { background: rgba(139, 92, 246, 0.08); border-color: var(--accent-purple); box-shadow: 0 0 40px rgba(139, 92, 246, 0.15); }
+        .comp-val { font-size: 110px; font-weight: 900; font-family: 'Urbanist'; margin-top: 10px; }
+
+        .nav-ui {
+            position: absolute;
+            bottom: 40px;
+            right: 40px;
+            display: flex;
+            gap: 20px;
+            z-index: 100;
+        }
+        .btn {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            width: 54px; height: 54px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            transition: 0.2s;
+        }
+        .btn:hover { background: var(--accent-purple); transform: scale(1.05); }
+
+        .slide-num {
+            position: absolute;
+            bottom: 55px;
+            left: 80px;
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+            z-index: 100;
+        }
+
+        .logo-box { text-align: center; }
+        .logo-line {
+            width: 260px;
+            height: 3px;
+            background: var(--accent-purple);
+            margin: 20px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-line::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: #fff;
+            animation: scan 1.5s infinite ease-in-out;
+        }
+        @keyframes scan { from { left: -100%; } to { left: 100%; } }
+    </style>
+</head>
+<body>
+
+    <div id="viewport">
+        <div class="grid-overlay"></div>
+
+        <!-- Slide 1 -->
+        <div class="slide active" id="s1">
+            <div class="logo-box">
+                <h1 style="font-size: 84px; letter-spacing: 18px; margin-bottom: 0; font-weight: 900;">QUESTIA</h1>
+                <div class="logo-line"></div>
+                <p style="letter-spacing: 8px; color: var(--accent-purple); font-weight: 500; font-size: 14px;">LEARN BY LIVING IT</p>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide" id="s2">
+            <span class="phase-tag">Phase 01 // Le Choc</span>
+            <h2 class="giant-title">5.000.000 £</h2>
+            <div class="text-tile">
+                <h3>L'Échec Invisible</h3>
+                <p>Londres. City. Un contrat perdu car vous avez confondu courtoisie et accord.</p>
+            </div>
+            <div class="text-tile">
+                <h3>La Vraie Barrière</h3>
+                <p>Ce n'est plus la grammaire, mais l'intelligence culturelle qui manque.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide" id="s3">
+            <span class="phase-tag">Phase 02 // Insight</span>
+            <h2 class="slide-title">LE CAS PATRICE</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px;">
+                <div class="text-tile">
+                    <h3>Le Mur du Réel</h3>
+                    <p>Directeur d'OF Privé. Ses apprenants valident les tests mais restent muets sur le terrain.</p>
+                </div>
+                <div class="text-tile">
+                    <h3>Urgence Qualiopi</h3>
+                    <p>Besoin de prouver un ROI Pédagogique tangible pour sécuriser les financements.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide" id="s4">
+            <span class="phase-tag">Phase 03 // Data</span>
+            <h2 class="slide-title">49ème RANG</h2>
+            <p style="font-size: 24px; max-width: 900px; color: var(--text-dim);">Le Paradoxe Français : Derniers d'Europe de l'Ouest. Une opportunité de marché massive pour l'innovation.</p>
+            <div class="progress-box">
+                <div class="progress-bar" id="data-bar">0%</div>
+            </div>
+            <p style="margin-top: 20px; font-weight: bold; color: var(--accent-purple); letter-spacing: 2px; font-size: 12px;">INDICE DE COMPÉTENCE APPLIQUÉ</p>
+        </div>
+
+        <!-- Slide 5 -->
+        <div class="slide" id="s5">
+            <span class="phase-tag">Phase 04 // Terrain</span>
+            <h2 class="slide-title">RÉSULTATS SPRINT</h2>
+            <div class="metrics-container">
+                <div class="metric-card"><div class="metric-value counter" data-val="51">0</div><div class="metric-label">Calls</div></div>
+                <div class="metric-card" style="border-color: var(--accent-neon);"><div class="metric-value counter" data-val="7">0</div><div class="metric-label">RDVs</div></div>
+                <div class="metric-card"><div class="metric-value counter" data-val="44">0</div><div class="metric-label">Mails</div></div>
+            </div>
+            <p style="margin-top: 40px; font-size: 26px; font-style: italic; border-left: 4px solid var(--accent-purple); padding-left: 20px;">
+                "C'est l'outil qui va enfin transformer le speaking en réflexe métier."
+            </p>
+        </div>
+
+        <!-- Slide 6 -->
+        <div class="slide" id="s6">
+            <span class="phase-tag">Phase 05 // Pivot</span>
+            <h2 class="slide-title">ENGAGEMENT +640%</h2>
+            <div class="comp-grid">
+                <div class="comp-card">
+                    <p class="metric-label">E-Learning Classique</p>
+                    <div class="comp-val" style="color: #475569;">13%</div>
+                </div>
+                <div class="comp-card active-comp">
+                    <p class="metric-label" style="color: #fff;">Immersion QuestIA</p>
+                    <div class="comp-val" style="color: var(--accent-neon);">83%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7 -->
+        <div class="slide" id="s7">
+            <span class="phase-tag">Phase 06 // Tech</span>
+            <h2 class="slide-title">SIMULATEUR DE VOL</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center;">
+                <div>
+                    <div class="text-tile">
+                        <h3>Code Switching</h3>
+                        <p>IA réactive au ton et à la posture pour décoder l'implicite culturel.</p>
+                    </div>
+                    <div class="text-tile">
+                        <h3>Scenario Builder</h3>
+                        <p>OF autonomes : création de missions métiers ultra-spécifiques en 120 sec.</p>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <i class="fa-solid fa-brain" style="font-size: 200px; color: var(--accent-purple); opacity: 0.15;"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8 -->
+        <div class="slide" id="s8">
+            <span class="phase-tag">Phase 07 // Business</span>
+            <h2 class="slide-title">SAAS B2B</h2>
+            <div style="text-align: center; margin-top: 20px;">
+                <div style="display: inline-block; padding: 50px 80px; border: 2px solid var(--accent-purple); border-radius: 40px; background: rgba(139, 92, 246, 0.03);">
+                    <p class="phase-tag" style="margin-bottom: 10px;">Offre Annuelle</p>
+                    <div style="font-size: 90px; font-weight: 900; font-family: 'Urbanist'; line-height: 1;">3 900 €</div>
+                    <p style="font-size: 20px; opacity: 0.7; max-width: 600px; margin: 20px auto 0;">Intégré comme coût de production, finançable par les OPCO.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 9 -->
+        <div class="slide" id="s9">
+            <span class="phase-tag">Phase 08 // Roadmap</span>
+            <h2 class="slide-title">STANDARD 2026</h2>
+            <div class="text-tile">
+                <h3>Onboarding &lt; 48h</h3>
+                <p>Déploiement instantané. Pilotage data précis pour les audits Qualiopi.</p>
+            </div>
+            <div class="text-tile">
+                <h3>Expansion</h3>
+                <p>Au-delà de la langue : Leadership mondial et management interculturel.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10 -->
+        <div class="slide" id="s10">
+            <div style="text-align: center;">
+                <h2 class="giant-title" style="font-size: 84px;">BEYOND WORDS</h2>
+                <p style="font-size: 32px; font-style: italic; color: var(--text-dim); margin-bottom: 50px;">"Excuse me... Tea or hands first?"</p>
+                <div style="background: var(--accent-purple); padding: 25px 50px; border-radius: 20px; display: inline-block; box-shadow: 0 0 50px rgba(139, 92, 246, 0.3);">
+                    <h3 style="font-size: 38px; font-weight: 900;">Really? Now you can with QuestIA!</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="slide-num"><span id="idx">1</span> / 10</div>
+        <div class="nav-ui">
+            <button class="btn" onclick="goPrev()"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="btn" onclick="goNext()"><i class="fa-solid fa-chevron-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+
+        function update() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active', 'prev');
+                if(i === current) s.classList.add('active');
+                if(i < current) s.classList.add('prev');
+            });
+            document.getElementById('idx').innerText = current + 1;
+
+            if(current === 3) {
+                setTimeout(() => {
+                    const bar = document.getElementById('data-bar');
+                    bar.style.width = '43.5%';
+                    bar.innerText = '43.5%';
+                }, 300);
+            }
+
+            if(current === 4) {
+                animateCounters();
+            }
+        }
+
+        function goNext() {
+            if(current < total - 1) { current++; update(); }
+        }
+
+        function goPrev() {
+            if(current > 0) { current--; update(); }
+        }
+
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(c => {
+                c.innerText = '0';
+                const target = +c.dataset.val;
+                let val = 0;
+                const step = target / 30;
+                const timer = setInterval(() => {
+                    val += step;
+                    if(val >= target) {
+                        c.innerText = target;
+                        clearInterval(timer);
+                    } else {
+                        c.innerText = Math.floor(val);
+                    }
+                }, 30);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === ' ') goNext();
+            if(e.key === 'ArrowLeft') goPrev();
+        });
+    </script>
+</body>
+</html>

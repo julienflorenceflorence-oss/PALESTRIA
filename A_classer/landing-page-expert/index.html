@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRUC.IA | Restructuration d'Entreprise & Intégration IA - Julien FLORENCE</title>
+    <meta name="description" content="Expert en restructuration d'entreprise, optimisation des processus et intégration IA. Julien Florence accompagne la montée en compétence de vos équipes avec une approche tactique héritée du sport de haut niveau.">
+    <meta name="keywords" content="restructuration entreprise, optimisation processus, intégration IA, montée en compétence, management tactique, Julien Florence, STRUC.IA">
+    
+    <!-- Open Graph / LinkedIn -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://julienflorenceflorence-oss.github.io/presentation-freelance/">
+    <meta property="og:title" content="STRUC.IA | Excellence Opérationnelle & Architecture IA">
+    <meta property="og:description" content="Développez des structures intelligentes et automatisez votre croissance avec une expertise chirurgicale.">
+    <meta property="og:image" content="https://julienflorenceflorence-oss.github.io/presentation-freelance/cerveau_3.0.png">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "STRUC.IA",
+      "image": "https://julienflorenceflorence-oss.github.io/presentation-freelance/cerveau_3.0.png",
+      "@id": "",
+      "url": "https://julienflorenceflorence-oss.github.io/presentation-freelance/",
+      "telephone": "+33661747573",
+      "address": {
+        "@type": "PostalAddress",
+        "addressCountry": "FR"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://julienflorenceflorence-oss.github.io/cv-prestige/index.html"
+      ]
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="prestige.css">
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">STRUC.IA</a>
+        <div class="burger-menu" id="burger">
+            <div></div><div></div><div></div>
+        </div>
+        <nav class="nav-links" id="nav">
+            <a href="index.html">Accueil</a>
+            <a href="services.html">Services</a>
+            <a href="methode.html">Ma Méthode</a>
+            <a href="apropos.html">À Propos</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+
+    <div class="app-container">
+        <section class="hero">
+            <div class="content-wrapper">
+                <div class="hero-text">
+                    <span style="color: var(--primary-gold); font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 5px; margin-bottom: 20px; display: block;">L'Expansion de l'Être</span>
+                    <h1 class="hero-title" style="font-size: 3rem; margin-bottom: 30px;">
+                        Libérez le potentiel de vos <span>équipes</span>
+                    </h1>
+                    <p style="font-family: 'Montserrat', sans-serif; font-style: italic; font-size: 1.1rem; color: #fff; margin-bottom: 10px; opacity: 0.9;">
+                        "Ce n'est pas ce que vous êtes qui vous retient, mais ce que vous pensez ne pas être."
+                    </p>
+                    <p style="font-family: 'Cinzel', serif; font-size: 0.8rem; color: var(--primary-gold); margin-bottom: 40px; opacity: 0.8; letter-spacing: 2px;">— Denis Waitley</p>
+                    <p class="hero-subtitle">
+                        Expert Freelance en développement de structures et architectures de systèmes intelligents.
+                    </p>
+                    <a href="services.html" class="cta-button">Explorer mes Solutions</a>
+                </div>
+                <div class="hero-image-container" style="position: relative; perspective: 1000px;">
+                    <div style="position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.9), 0 0 20px rgba(212, 175, 55, 0.2); border: 1px solid rgba(212, 175, 55, 0.3); transform: rotateY(-5deg); transition: transform 0.5s ease;">
+                        <video autoplay loop muted playsinline style="width: 100%; display: block; filter: brightness(1.1) contrast(1.1); mix-blend-mode: lighten;">
+                            <source src="cerveau_4.2.mp4" type="video/mp4">
+                            Votre navigateur ne supporte pas la lecture de vidéos.
+                        </video>
+                        <div style="position: absolute; inset: 0; background: linear-gradient(45deg, rgba(15, 17, 21, 0.4) 0%, transparent 100%); pointer-events: none;"></div>
+                    </div>
+                    <!-- Élément de décoration Gold -->
+                    <div style="position: absolute; top: -15px; right: -15px; width: 60px; height: 60px; border-top: 2px solid var(--primary-gold); border-right: 2px solid var(--primary-gold); z-index: -1; opacity: 0.5;"></div>
+                    <div style="position: absolute; bottom: -15px; left: -15px; width: 60px; height: 60px; border-bottom: 2px solid var(--primary-gold); border-left: 2px solid var(--primary-gold); z-index: -1; opacity: 0.5;"></div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        const burger = document.getElementById('burger');
+        const nav = document.getElementById('nav');
+        burger.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            burger.classList.toggle('toggle');
+        });
+    </script>
+</body>
+</html>

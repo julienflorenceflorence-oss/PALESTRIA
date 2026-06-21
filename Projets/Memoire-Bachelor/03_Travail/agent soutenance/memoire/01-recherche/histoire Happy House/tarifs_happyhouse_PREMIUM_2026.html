@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy House - Excellence & Business 2026 - Édition Prestige</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+        :root {
+            --hh-navy: #1B2A4E;
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B68D1F 100%);
+            --charcoal: rgba(255, 255, 255, 0.05);
+            --off-white: #F4F4F4;
+        }
+
+        @page { size: A4; margin: 0; }
+
+        * { 
+            box-sizing: border-box; 
+            -webkit-print-color-adjust: exact; 
+            print-color-adjust: exact;
+            border: none !important;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0F172A;
+            font-family: 'Cinzel', serif;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--hh-navy);
+            margin: 0 auto;
+            padding: 40px 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .logo-container { text-align: center; margin-bottom: 20px; }
+        .logo-image { max-width: 120px; height: auto; }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2) !important;
+        }
+
+        .header-title {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            font-size: 13px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .header-meta {
+            text-align: right;
+            font-size: 9px;
+            letter-spacing: 1px;
+            color: var(--gold);
+            opacity: 0.9;
+        }
+
+        .section-divider {
+            text-align: center;
+            margin: 15px 0 10px;
+        }
+
+        .section-divider h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 20px;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        .grid { display: grid; gap: 15px; margin-bottom: 15px; }
+        .grid-2 { grid-template-columns: 1fr 1fr; }
+        .grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+        .card {
+            background: var(--charcoal);
+            padding: 20px 15px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .card.premium {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.02));
+        }
+
+        .capacity-label {
+            font-size: 8px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .formula-name {
+            font-family: 'Cinzel', serif;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+
+        .price-tag { font-size: 28px; font-weight: 800; color: white; margin-bottom: 15px; }
+        .price-tag span { font-size: 10px; font-weight: 400; color: var(--gold); display: block; margin-top: 3px; }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 9.5px;
+            text-align: left;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .feature-list li { margin-bottom: 5px; padding-left: 15px; position: relative; }
+        .feature-list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); }
+
+        .exclusive-banner {
+            background: var(--charcoal);
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 5px;
+            border: 1px solid var(--gold) !important;
+        }
+
+        .exclusive-content h3 { font-family: 'Cinzel', serif; font-size: 16px; margin: 0 0 5px 0; color: var(--gold); }
+        .exclusive-content p { margin: 0; font-size: 12px; line-height: 1.4; color: white; }
+
+        .discount-badge {
+            text-align: center;
+            background: var(--gold-gradient);
+            color: var(--hh-navy);
+            padding: 10px;
+            min-width: 100px;
+        }
+
+        .discount-value { font-size: 32px; font-weight: 900; display: block; line-height: 1; }
+        .discount-text { font-size: 9px; text-transform: uppercase; font-weight: 700; }
+
+        footer {
+            margin-top: auto;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 10px;
+            color: var(--gold) !important;
+        }
+
+        .contact-details {
+            line-height: 1.6;
+            color: var(--gold) !important;
+        }
+
+        .contact-details strong {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 14px;
+        }
+
+        .signature-box {
+            text-align: right;
+            width: 220px;
+            color: var(--gold) !important;
+        }
+
+        .signature-text {
+            font-size: 8px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+            display: block;
+            color: var(--gold) !important;
+        }
+        .signature-line { height: 1px; background: var(--gold) !important; width: 100%; }
+
+        @media print {
+            body { background: var(--hh-navy); }
+            .a4-page { margin: 0; width: 210mm; height: 297mm; padding: 40px 60px !important; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="a4-page">
+    <div class="logo-container">
+        <img src="baniere/image Happy House.png" alt="Happy House Logo" class="logo-image">
+    </div>
+
+    <header>
+        <div class="header-title">Excellence & Business 2026</div>
+        <div class="header-meta">
+            STRATÉGIE RÉSEAU EXCLUSIVE<br>
+            DOCUMENT DE DIRECTION CONFIDENTIEL
+        </div>
+    </header>
+
+    <div class="section-divider">
+        <h2>Lieux d'Exception (- de 15 voyageurs)</h2>
+    </div>
+
+    <div class="grid grid-2">
+        <div class="card">
+            <div class="capacity-label">Capacité : 1 à 8 voyageurs</div>
+            <div class="formula-name">FORMULE WAOUH</div>
+            <div class="price-tag">216 € <span>HT / AN</span></div>
+            <ul class="feature-list">
+                <li>Labellisation Excellence Happy House</li>
+                <li>Visibilité Comités d'Entreprise</li>
+                <li>Application Mobile Premium</li>
+                <li>0% Commission sur réservations</li>
+            </ul>
+        </div>
+        <div class="card">
+            <div class="capacity-label">Capacité : 9 à 14 voyageurs</div>
+            <div class="formula-name">FORMULE WAOUH</div>
+            <div class="price-tag">360 € <span>HT / AN</span></div>
+            <ul class="feature-list">
+                <li>Labellisation Excellence Happy House</li>
+                <li>Distribution CE Multi-flux</li>
+                <li>Centrale d'Achat & Services Privilégiés</li>
+                <li>Promotion thématique Voyageurs</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="section-divider">
+        <h2>Domaines & Business (15 voyageurs et +)</h2>
+    </div>
+
+    <div class="grid grid-3">
+        <div class="card premium">
+            <div class="capacity-label">Salle < 20 pers.</div>
+            <div class="formula-name">PACK ALLIANCE</div>
+            <div class="price-tag">860 € <span>HT / AN</span></div>
+            <ul class="feature-list">
+                <li>Remplissage Semaine Business</li>
+                <li>Week-ends Label & CE</li>
+                <li>0% Commission Globale</li>
+            </ul>
+        </div>
+        <div class="card premium">
+            <div class="capacity-label">Salle 20-40 pers.</div>
+            <div class="formula-name">PACK ALLIANCE</div>
+            <div class="price-tag">1 060 € <span>HT / AN</span></div>
+            <ul class="feature-list">
+                <li>Remplissage Semaine Business</li>
+                <li>Week-ends Label & CE</li>
+                <li>Accès DATA Entreprises</li>
+            </ul>
+        </div>
+        <div class="card premium">
+            <div class="capacity-label">Salle > 40 pers.</div>
+            <div class="formula-name">PACK ALLIANCE</div>
+            <div class="price-tag">1 160 € <span>HT / AN</span></div>
+            <ul class="feature-list">
+                <li>Remplissage Semaine Business</li>
+                <li>Week-ends Label & CE</li>
+                <li>Offre Multi-gîtes (-40%)</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="exclusive-banner">
+        <div class="exclusive-content">
+            <h3>AVANTAGE PRIVILÈGE</h3>
+            <p>Pour les établissements dotés d'espaces séminaires,<br>
+            bénéficiez d'une <strong>remise immédiate de 40%</strong> sur le label Happy House.</p>
+        </div>
+        <div class="discount-badge">
+            <span class="discount-value">-40%</span>
+            <span class="discount-text">DE REMISE</span>
+        </div>
+    </div>
+
+    <footer>
+        <div class="contact-details">
+            <strong>Patrice KERMARREC</strong><br>
+            Fondateur Happy House<br>
+            www.my-happyhouse.com
+        </div>
+        <div class="signature-box">
+            <span class="signature-text">Bon pour accord (Cachet & Signature)</span>
+            <div class="signature-line"></div>
+        </div>
+    </footer>
+</div>
+
+</body>
+</html>

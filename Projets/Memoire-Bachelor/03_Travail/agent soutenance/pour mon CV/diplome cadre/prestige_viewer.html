@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualiseur de Précision - Julien FLORENCE</title>
+    <style>
+        :root {
+            --cadre-img: url('Diplomes_PDF/cadre gemini 2.png');
+            --gold-mid: #D4AF37;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            font-family: 'Cinzel', serif;
+        }
+
+        /* Le Master Container respecte le ratio 1983/1498 du cadre */
+        .master-container {
+            position: relative;
+            width: 70vw; /* Taille d'affichage à l'écran */
+            aspect-ratio: 1983 / 1498;
+            background-color: #000;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.9);
+        }
+
+        /* LE CADRE (Placé devant) */
+        .frame-layer {
+            position: absolute;
+            inset: 0;
+            background: var(--cadre-img) no-repeat center/cover;
+            z-index: 100;
+            pointer-events: none;
+        }
+
+        /* LA ZONE INTÉRIEURE (Dimensions exactes du trou du cadre) */
+        .content-area {
+            position: absolute;
+            top: 13.5%;    /* Début du trou */
+            left: 10.5%;   /* Début du trou */
+            width: 79%;    /* Largeur du trou (89.5 - 10.5) */
+            height: 73%;   /* Hauteur du trou (86.5 - 13.5) */
+            z-index: 10;
+            background-color: #fff; /* Fond papier uniforme pour tous */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* Ajustement du contenu pour qu'il soit toujours entier et centré */
+        .content-area iframe, .content-area img {
+            width: 100%;
+            height: 100%;
+            border: none;
+            object-fit: contain; /* Respecte le contenu sans le couper */
+            background-color: #fff;
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            color: var(--gold-mid);
+            text-decoration: none;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 12px 25px;
+            z-index: 200;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            transition: 0.3s;
+        }
+        .back-btn:hover { background: var(--gold-mid); color: #000; }
+        /* FOOTER ÉDITION PRESTIGE (STYLE RDM P19) */
+        .footer-prestige {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: #000;
+            border-top: 1px solid rgba(212, 175, 55, 0.4);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+            z-index: 300;
+            font-family: 'Cinzel', serif;
+        }
+
+        .footer-left {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .footer-name {
+            color: var(--gold-mid);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            color: #888;
+            font-size: 0.6rem;
+            letter-spacing: 1px;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .footer-right {
+            color: var(--gold-mid);
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0.8;
+        }
+
+        .footer-contact a {
+            color: inherit;
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-contact a:hover { color: #fff; }
+
+    </style>
+</head>
+<body>
+
+    <a href="diplomes.html" class="back-btn">← Retour Galerie</a>
+
+    <div class="master-container">
+        <div class="frame-layer"></div>
+        <div class="content-area" id="viewer"></div>
+    </div>
+
+    <footer class="footer-prestige">
+        <div class="footer-left">
+            <div class="footer-name">Julien FLORENCE</div>
+            <div class="footer-contact">
+                <a href="tel:0661747573">06 61 74 75 73</a> &bull; 
+                <a href="mailto:julien.florence@gmail.com">julien.florence@gmail.com</a>
+            </div>
+        </div>
+        <div class="footer-right">Édition Prestige 2026</div>
+    </footer>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const fileName = params.get('file');
+        const viewer = document.getElementById('viewer');
+
+        if (fileName) {
+            const lowerFile = fileName.toLowerCase();
+            if (lowerFile.endsWith('.pdf')) {
+                // Forçage du centrage PDF par le navigateur (#view=Fit)
+                viewer.innerHTML = `<iframe src="${fileName}#view=Fit&toolbar=0&navpanes=0&scrollbar=0"></iframe>`;
+            } else if (lowerFile.endsWith('.png') || lowerFile.endsWith('.jpg') || lowerFile.endsWith('.jpeg')) {
+                viewer.innerHTML = `<img src="${fileName}" alt="Diplôme">`;
+            } else {
+                viewer.innerHTML = `<iframe src="${fileName}"></iframe>`;
+            }
+        }
+    </script>
+
+</body>
+</html>

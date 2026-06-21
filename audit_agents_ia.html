@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit & Tri des Agents IA - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --text-muted: #CCCCCC;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; page-break-after: always; }
+        }
+
+        body {
+            background: #050505;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            counter-reset: page;
+        }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
+            margin: 20px 0 12px 0;
+            font-size: 1.25rem;
+            letter-spacing: 1px;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+            text-align: center;
+            padding: 15px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin: 20px 0;
+            font-size: 11pt;
+        }
+
+        .content {
+            flex-grow: 1;
+            font-size: 9.5pt;
+            font-weight: 300;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 4mm;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Cinzel', serif;
+            font-size: 8.5pt;
+            color: var(--accent);
+            margin-top: 10px;
+        }
+
+        .page-num::after {
+            counter-increment: page;
+            content: "P. " counter(page, decimal-leading-zero);
+        }
+
+        /* Elements spécifiques */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 8.5pt;
+        }
+
+        th, td {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 12px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(212, 175, 55, 0.12);
+            padding: 12px;
+            border-radius: 2px;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 9.5pt;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 4px;
+        }
+
+        .card ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .card li {
+            margin-bottom: 3px;
+            color: var(--text-muted);
+        }
+
+        .card li strong {
+            color: var(--text);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-size: 7.5pt;
+            font-weight: 600;
+            border-radius: 2px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .status-conserver { background: rgba(0, 229, 255, 0.15); color: #00E5FF; border: 1px solid rgba(0, 229, 255, 0.3); }
+        .status-fusionner { background: rgba(212, 175, 55, 0.15); color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.3); }
+        .status-aligner { background: rgba(255, 152, 0, 0.15); color: #FF9800; border: 1px solid rgba(255, 152, 0, 0.3); }
+        .status-supprimer { background: rgba(244, 67, 54, 0.15); color: #F44336; border: 1px solid rgba(244, 67, 54, 0.3); }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: INTRODUCTION & INVENTAIRE -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>AUDIT DES AGENTS IA</h1>
+        <div class="quote">"La structure précède l'action ; la rigueur garantit la délivrabilité."</div>
+        
+        <div class="content">
+            <p><strong>Destinataire :</strong> Julien (Profil ENTJ-A - Commandant)<br>
+            <strong>Date :</strong> 20 Juin 2026<br>
+            <strong>Sujet :</strong> Tri, rationalisation et évaluation des forces et faiblesses de l'écosystème d'agents IA (locaux et globaux).</p>
+            
+            <h2>1. CARTOGRAPHIE & TRI DES AGENTS</h2>
+            <p>Un inventaire complet de votre système a révélé 9 agents distincts. Afin d'éliminer les frictions et d'optimiser l'organisation de vos projets (Happy House, Éducation, Consulting, Soutenance), voici le tri recommandé :</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Nom de l'Agent</th>
+                        <th style="width: 15%;">Type</th>
+                        <th style="width: 25%;">Emplacement</th>
+                        <th style="width: 15%;">Tri Suggéré</th>
+                        <th style="width: 20%;">Action Clé</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>prestige-document-engine</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-conserver">CONSERVER</span></td>
+                        <td>Pilier graphique par défaut.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>super-agent-autonome</strong></td>
+                        <td>Local</td>
+                        <td>agent d'automatisation/</td>
+                        <td><span class="status-badge status-conserver">CONSERVER</span></td>
+                        <td>Exécution de fond. Zéro question.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>super-agent-automation</strong></td>
+                        <td>Local</td>
+                        <td>agent d'automatisation/</td>
+                        <td><span class="status-badge status-conserver">CONSERVER</span></td>
+                        <td>Lien CRM/Make/n8n Toulouse.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>super-agent-data-analyst</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-conserver">CONSERVER</span></td>
+                        <td>Baromètre KPI de croissance.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ux-responsive-expert</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-conserver">CONSERVER</span></td>
+                        <td>Audits ergonomiques mobiles.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>note-opportunite-coach</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-conserver">CONSERVER</span></td>
+                        <td>À conserver jusqu'au partiel.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>super-agent-famille</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-fusionner">FUSIONNER</span></td>
+                        <td>Fusionner v1.1 du workspace.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>expert-digital-signature</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-aligner">ALIGNER</span></td>
+                        <td>Remplacer le Cyan par le Gold.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>landing-page-expert</strong></td>
+                        <td>Global</td>
+                        <td>.gemini/skills/</td>
+                        <td><span class="status-badge status-supprimer">SUPPRIMER</span></td>
+                        <td>Dossier vide à nettoyer.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: EVALUATION FORCES ET FAIBLESSES -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>ÉVALUATION STRATÉGIQUE</h1>
+        <div class="quote">"Connaître ses forces pour frapper juste ; corriger ses faiblesses pour durer."</div>
+        
+        <div class="content">
+            <h2>2. FORCES ET FAIBLESSES PAR AGENT</h2>
+            
+            <div class="grid-2">
+                <div class="card">
+                    <h3>1. Prestige Document Engine</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Esthétique d'exception. Templates HTML/CSS robustes.</li>
+                        <li><strong>Faiblesses :</strong> Ne rédige pas le fond. Requiert des données pré-structurées.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>2. Super Agent Autonome</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Zéro friction. Génère scripts et installation Windows (`winget`).</li>
+                        <li><strong>Faiblesses :</strong> Risque d'erreur si l'hypothèse de départ est inexacte.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>3. Super Agent Automation</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Spécifique à Happy House. Maîtrise de Make, n8n et Bitrix24.</li>
+                        <li><strong>Faiblesses :</strong> Sensible aux changements d'API et jetons d'accès.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>4. Super Agent Data Analyst</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Cadrage discovery solide. Baromètre Vert/Jaune/Rouge.</li>
+                        <li><strong>Faiblesses :</strong> Dépend de la qualité initiale des fichiers CSV fournis.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>5. UX & Responsive Expert</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Filtre de clarté (Test des 5s) et checklists ergonomiques.</li>
+                        <li><strong>Faiblesses :</strong> Reste théorique s'il n'est pas couplé à un scraper.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>6. Note d'Opportunité Coach</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Planning strict H1-H5. Pas d'empreinte d'écriture IA.</li>
+                        <li><strong>Faiblesses :</strong> Utilité limitée après validation du partiel.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>7. Super Agent Famille</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Gestion émotionnelle fine. Pédagogie MS (Liya). CNV.</li>
+                        <li><strong>Faiblesses :</strong> Nécessite des mises à jour fréquentes selon l'âge.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>8. Expert Digital Signature</h3>
+                    <ul>
+                        <li><strong>Forces :</strong> Minimaliste. Respect de la loi de Hick et Fitts.</li>
+                        <li><strong>Faiblesses :</strong> Couleur Cyan dévie de la charte Prestige Gold.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: PLAN D'ACTION & SUITE -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>PLAN D'ACTION</h1>
+        <div class="quote">"La vision sans exécution n'est qu'une hallucination."</div>
+        
+        <div class="content">
+            <h2>3. PRIORISATION DES ACTIONS (MATRICE ESG/ROI)</h2>
+            <p>Afin de concrétiser le tri et de redonner de la puissance à votre espace de travail, voici les chantiers à mener :</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 40%;">Action recommandée</th>
+                        <th style="width: 15%;">Priorité</th>
+                        <th style="width: 15%;">Impact</th>
+                        <th style="width: 15%;">Difficulté</th>
+                        <th style="width: 15%;">Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fusionner le dossier Famille</strong> : Transférer les éléments du dossier local `super-agent-famille1.1` (Mission espace) dans le skill global `.gemini/skills/super-agent-famille`.</td>
+                        <td>Haute</td>
+                        <td>Moyen</td>
+                        <td>Bas (1/5)</td>
+                        <td><span class="status-badge status-conserver">TERMINÉ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Harmoniser l'Agent Signature</strong> : Modifier le template HTML de `expert-digital-signature` pour remplacer le Cyan par le Gold (#D4AF37) pour respecter la règle de marque.</td>
+                        <td>Haute</td>
+                        <td>Élevé</td>
+                        <td>Bas (2/5)</td>
+                        <td><span class="status-badge status-conserver">TERMINÉ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Nettoyer les répertoires vides</strong> : Supprimer `landing-page-expert` du dossier des compétences globales.</td>
+                        <td>Moyenne</td>
+                        <td>Bas</td>
+                        <td>Bas (1/5)</td>
+                        <td><span class="status-badge status-conserver">TERMINÉ</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Archiver le Coach Académique</strong> : Une fois le diplôme obtenu, archiver le coach pour ne garder que les agents business.</td>
+                        <td>Basse</td>
+                        <td>Moyen</td>
+                        <td>Bas (1/5)</td>
+                        <td><span class="status-badge status-fusionner">TERMINÉ</span></td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>4. PROCHAINES ÉTAPES & CLARIFICATIONS</h2>
+            <p>Pour lancer le nettoyage, merci de me confirmer vos choix :</p>
+            <ol>
+                <li><strong>Signature E-mail :</strong> Validez-vous le passage du Cyan (#00E5FF) à l'Or Prestige (#D4AF37) ?</li>
+                <li><strong>Dossier Famille :</strong> Lance-t-on le rapatriement des fichiers de `super-agent-famille1.1` vers le dossier global avant suppression de l'ancien dossier ?</li>
+                <li><strong>Landing Pages :</strong> Supprime-t-on le dossier vide `landing-page-expert` ou voulez-vous que nous écrivions un prompt d'agent de conversion ?</li>
+            </ol>
+        </div>
+        
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+</body>
+</html>

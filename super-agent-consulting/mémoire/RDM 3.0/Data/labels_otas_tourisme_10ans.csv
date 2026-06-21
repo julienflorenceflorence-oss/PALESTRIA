@@ -1,0 +1,31 @@
+annee;type;zone;indicateur;valeur;source
+2013;OTA;Europe;Part de marché OTAs distribution hôtelier;19.7%;HOTREC Study 2013
+2015;OTA;Europe;Part de marché OTAs (nuitées);22.0%;Eurostat Tourism 2015
+2016;OTA;France;Français réservant par OTA;44.0%;Baromètre du Numérique 2016
+2016;OTA;France;Français réservant sur Internet;72.0%;Baromètre du Numérique 2016
+2019;OTA;Europe;Part de marché OTAs;29.2%;HOTREC Study 2019
+2019;OTA;France;Part de marché OTAs distribution hôtelier;27.6%;Coach Omnium 2019
+2021;OTA;Europe;Part de marché OTAs;28.8%;HOTREC Study 2021
+2023;OTA;Europe;Part de marché OTAs;29.6%;HOTREC / Phocuswright 2023
+2023;OTA;Europe;Booking Holdings part de marché;71.0%;HOTREC Study 2023
+2023;OTA;Europe;Expedia part de marché;14.4%;HOTREC Study 2023
+2023;OTA;Europe;HRS part de marché;4.6%;HOTREC Study 2023
+2024;OTA;Europe;Booking.com part de marché;69.3%;HOTREC / D-EDGE 2024
+2024;OTA;Europe;Expedia part de marché;11.5%;HOTREC / D-EDGE 2024
+2024;OTA;Mondial;Marché OTA (milliards $);253.2;Statista Report 2024
+2024;OTA;Mondial;Revenus 4 grandes OTAs (milliards $);58.0%;SEC Filings 2024
+2024;OTA;Loisirs;Part OTAs revenus loisirs;18.0%;Phocuswright B2B 2024
+2022;Label;France;Clef Verte établissements;855;Teragir / Clef Verte 2022
+2023;Label;France;Clef Verte établissements;1077;Teragir / Clef Verte 2023
+2024;Label;France;Clef Verte établissements;1564;Teragir / Clef Verte 2024
+2025;Label;France;Clef Verte établissements;2428;Teragir / Clef Verte 2025
+2005;Label;France;Création Qualité Tourisme;2005;DGE Historique
+2013;Label;France;Qualité Tourisme établissements;5600;DGE Statistiques 2013
+2021;Label;France;Qualité Tourisme établissements;4000;Ministère de l'Économie 2021
+2024;Label;France;Qualité Tourisme établissements;5000;DGE Bilan 2024
+2024;Label;France;Tourisme et Handicap établissements;3500;DGE Bilan 2024
+2024;Label;France;Fin attribution Qualité Tourisme;31/08/2024;Décret Destination d'Excellence
+2024;Label;France;Destination Excellence premier labellisés;203;DGE Bilan Sept 2024
+2026;Label;France;Disparition totale Qualité Tourisme;31/12/2026;Décret Destination d'Excellence
+2024;Label;Europe/France;Écolabel européen produits/services;98977;Commission Européenne 2024
+2024;Label;Europe/France;Écolabel européen licences;2983;Commission Européenne 2024

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Stratégique France 2026 - {{DATE_EDITION}}</title>
+    <style>
+        :root {
+            --primary: #5d0f1a;
+            --secondary: #c5a059;
+            --text: #1a1a1a;
+            --bg: #f9f9f9;
+            --white: #ffffff;
+            --border: #dcdcdc;
+            --accent-blue: #2c3e50;
+        }
+
+        @media print {
+            body { background: white !important; }
+            .container { box-shadow: none; margin: 0; max-width: 100%; width: 100%; padding: 0.5cm; }
+            .page-break { page-break-before: always; }
+            @page { size: A4; margin: 1cm; }
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.4;
+            color: var(--text);
+            background-color: var(--bg);
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 50px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.05);
+            border: 1px solid var(--border);
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+        }
+
+        .brand {
+            font-size: 28px;
+            font-weight: 900;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .meta {
+            text-align: right;
+            font-size: 0.85em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #555;
+        }
+
+        h1 { font-size: 2.8em; margin: 10px 0; color: var(--primary); font-weight: 800; text-align: center; }
+        h2 { font-size: 1.8em; color: var(--primary); border-bottom: 1px solid var(--secondary); padding-bottom: 5px; margin-top: 40px; }
+        h3 { font-size: 1.3em; color: var(--accent-blue); margin-top: 25px; }
+
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .kpi-box {
+            border: 1px solid var(--border);
+            padding: 20px;
+            text-align: center;
+            background: #fffcf8;
+        }
+
+        .kpi-val { font-size: 2em; font-weight: bold; color: var(--primary); display: block; }
+        .kpi-lab { font-size: 0.7em; text-transform: uppercase; color: #888; letter-spacing: 1px; font-weight: bold; }
+
+        .region-block {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-left: 4px solid var(--secondary);
+            background: #fdfdfd;
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            font-size: 0.7em;
+            font-weight: bold;
+            border-radius: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        .tag-CRISIS { background: #fee; color: #c0392b; }
+        .tag-STABLE { background: #eef; color: #2c3e50; }
+        .tag-BOOM { background: #efe; color: #27ae60; }
+
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            color: #aaa;
+            margin-top: 60px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="brand">Cercle Origine <span style="color:var(--secondary)">National</span></div>
+            <div class="meta">
+                Ref: {{REF}}<br>
+                Édition: {{EDITION}}<br>
+                Classification: Stratégique
+            </div>
+        </header>
+
+        <h1>Observatoire National de la Viticulture</h1>
+        <p style="text-align:center; font-style:italic; color:#666;">Diagnostic chirurgical automatisé - Données au {{DATE_EDITION}}</p>
+
+        <div class="dashboard">
+            <div class="kpi-box">
+                <span class="kpi-val">{{VOL_TOTAL}}</span>
+                <span class="kpi-lab">Production Totale 2025</span>
+            </div>
+            <div class="kpi-box">
+                <span class="kpi-val">{{TREND_RED}}</span>
+                <span class="kpi-lab">Vol. Rouges (5 ans)</span>
+            </div>
+            <div class="kpi-box">
+                <span class="kpi-val">{{TREND_CREMANT}}</span>
+                <span class="kpi-lab">Demande Crémants</span>
+            </div>
+            <div class="kpi-box">
+                <span class="kpi-val">{{PRICE_MIN_BX}}</span>
+                <span class="kpi-lab">Prix Min Vrac Rouge (Bx)</span>
+            </div>
+        </div>
+
+        <h2>I. Diagnostic par Bassin Viticole</h2>
+
+        {{REGION_BLOCKS}}
+
+        <footer>
+            Généré automatiquement par le Moteur IA Viticole | © Cercle Origine 2026
+        </footer>
+    </div>
+
+</body>
+</html>

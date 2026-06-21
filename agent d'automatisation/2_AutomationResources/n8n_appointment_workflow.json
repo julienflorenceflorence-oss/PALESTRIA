@@ -1,0 +1,87 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agent-appointment",
+        "options": {}
+      },
+      "name": "Webhook Agent",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "id": "webhook-agent-id"
+    },
+    {
+      "parameters": {
+        "calendar": "primary",
+        "start": "={{ $json.startTime }}",
+        "end": "={{ $json.endTime }}",
+        "additionalFields": {
+          "summary": "=RDV Prospect : {{ $json.prospectName }}",
+          "description": "={{ $json.notes }}\n\nEmail: {{ $json.prospectEmail }}\nSession: {{ $json.sessionId }}",
+          "attendees": [
+            "={{ $json.prospectEmail }}"
+          ]
+        }
+      },
+      "name": "Google Calendar",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        500,
+        300
+      ],
+      "id": "google-calendar-id",
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "YOUR_CREDENTIAL_ID",
+          "name": "Google Calendar Account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "votre-email@domaine.com",
+        "toEmail": "={{ $json.prospectEmail }}",
+        "subject": "=Confirmation de votre rendez-vous - {{ $json.prospectName }}",
+        "html": "=<div style=\"font-family: Arial, sans-serif;\">\n  <h2>Bonjour {{ $json.prospectName }},</h2>\n  <p>Votre rendez-vous a bien été confirmé pour le <strong>{{ $json.startTime }}</strong>.</p>\n  <p>Nous avons hâte d'échanger avec vous.</p>\n  <hr />\n  <p><em>Ceci est un message automatique envoyé par mon agent d'automatisation.</em></p>\n</div>"
+      },
+      "name": "Email Confirmation",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        750,
+        300
+      ],
+      "id": "email-confirmation-id"
+    }
+  ],
+  "connections": {
+    "Webhook Agent": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "Email Confirmation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

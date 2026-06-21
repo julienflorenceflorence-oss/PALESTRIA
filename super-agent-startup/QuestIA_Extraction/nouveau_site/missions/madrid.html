@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Madrid Deal — Mission QuestIA</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/mission.css">
+</head>
+<body>
+
+    <main class="simulator-layout">
+        
+        <!-- Scene Area -->
+        <section class="stage">
+            <div class="stage-bg" style="background-image: url('https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=1200&q=70')"></div>
+            
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80" alt="Javier Morales" class="npc-portrait">
+
+            <div class="hud-overlay">
+                <div class="hud-chip">MISSION <b>MADRID DEAL</b></div>
+                <div class="hud-chip" id="q-round-progress">ROUND 1 / 3</div>
+            </div>
+        </section>
+
+        <!-- UI / Dialogue Area -->
+        <aside class="sidebar">
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <small>Score</small>
+                    <b id="q-score">0</b>
+                </div>
+                <div class="metric-card">
+                    <small>Confiance</small>
+                    <b id="q-confidence">50%</b>
+                </div>
+                <div class="metric-card">
+                    <small>Stress</small>
+                    <b id="q-stress">20%</b>
+                </div>
+            </div>
+
+            <div class="dialogue-box">
+                <div class="bubble">
+                    <span id="q-speaker">CHARGEMENT...</span>
+                    <p id="q-line">Initialisation de la simulation...</p>
+                </div>
+
+                <div id="q-choices" class="choices-container">
+                    <!-- Les boutons de choix seront injectés ici -->
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <!-- Simulation Data & Engine -->
+    <script src="../js/simulation.js"></script>
+    <script>
+        const missionData = {
+            title: "Madrid Deal",
+            start: { confidence: 50, stress: 20, fluency: 50, vocab: 50, structure: 50 },
+            rounds: [
+                {
+                    prompt: { speaker: "JAVIER MORALES", text: "Buenos días. Antes de hablar de precio, necesito entender por qué deberíamos confiar en su propuesta." },
+                    options: [
+                        {
+                            type: "good",
+                            text: "Entiendo su preocupación. Nuestra solución reduce el riesgo operativo en un 20% y ofrece acompañamiento local.",
+                            delta: { confidence: 15, stress: -5, fluency: 10, vocab: 10 },
+                            reaction: { speaker: "JAVIER MORALES", text: "Es un punto válido. El soporte local es crítico para nosotros." },
+                            coach: "Excellent — tu reconnais l'objection avant d'argumenter, c'est la base de la négociation B2B."
+                        },
+                        {
+                            type: "risky",
+                            text: "Porque tenemos la mejor tecnología del mercado y nadie puede igualar nuestra velocidad.",
+                            delta: { confidence: 5, stress: 10, fluency: 5, vocab: 5 },
+                            reaction: { speaker: "JAVIER MORALES", text: "Muchos dicen lo mismo. La tecnología no es nada sin confianza." },
+                            coach: "Un peu trop agressif. Javier valorise la preuve et la réduction de risque plus que la fanfaronnade technologique."
+                        },
+                        {
+                            type: "bad",
+                            text: "Es una cuestión de confianza y de partenariado. Debería simplemente confiar en nuestra reputación.",
+                            delta: { confidence: -10, stress: 20, fluency: 0, vocab: 0 },
+                            reaction: { speaker: "JAVIER MORALES", text: "La reputación se gana, no se asume. Vamos a los números." },
+                            coach: "Réponse creuse. Dans ce contexte, 'faire confiance' ne suffit pas, il faut des arguments tangibles."
+                        }
+                    ]
+                }
+                // ... Suite des rounds extraits ...
+            ]
+        };
+
+        // Start Simulation
+        document.addEventListener('DOMContentLoaded', () => {
+            new Simulation(missionData);
+        });
+    </script>
+</body>
+</html>

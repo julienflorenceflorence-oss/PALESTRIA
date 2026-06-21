@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarification HÔTEL 2026 - Édition Prestige - Happy House</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --hh-navy: #1B2A4E;
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B68D1F 100%);
+            --charcoal: rgba(255, 255, 255, 0.05);
+            --off-white: #F4F4F4;
+        }
+
+        @page { size: A4; margin: 0; }
+
+        * { 
+            box-sizing: border-box; 
+            -webkit-print-color-adjust: exact; 
+            print-color-adjust: exact;
+            border: none !important;
+            font-family: 'Cinzel', serif !important;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0F172A;
+            color: var(--off-white);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--hh-navy);
+            margin: 0 auto;
+            padding: 35px 50px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+
+        .header-photo {
+            width: 100%;
+            height: 140px;
+            background-image: url('barème de prix par type d\'accords/photo/hotel.jpg');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            border-bottom: 2px solid var(--gold) !important;
+        }
+
+        .header-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, rgba(27, 42, 78, 0.1), var(--hh-navy));
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+        }
+
+        .logo-image { max-width: 60px; height: auto; filter: drop-shadow(0 0 10px rgba(0,0,0,0.5)); }
+
+        .content {
+            padding: 10px 15px 15px 15px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header { text-align: center; margin-bottom: 5px; }
+        h1 { color: var(--gold); font-size: 20px; letter-spacing: 6px; margin: 0; text-transform: uppercase; font-weight: 800; }
+        .subtitle { font-size: 9px; letter-spacing: 3px; opacity: 0.8; }
+
+        .grid-formulas {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            gap: 8px;
+            margin: 8px 0;
+            align-items: stretch;
+        }
+
+        .card {
+            background: var(--charcoal);
+            padding: 10px 6px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1) !important;
+            display: flex;
+            flex-direction: column;
+            border-radius: 15px;
+        }
+
+        .card.waouh-highlight {
+            border: 2px solid var(--gold) !important;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(255,255,255,0.03));
+            transform: scale(1.01);
+            z-index: 5;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .formula-name { font-size: 10px; font-weight: 800; color: var(--gold); margin-bottom: 4px; letter-spacing: 1px; }
+        .price-val { font-size: 22px; font-weight: 900; color: white; margin-bottom: 2px; }
+        .price-val span { font-size: 9px; display: block; font-weight: 400; color: var(--gold); }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 8px 0 0 0;
+            font-size: 9px;
+            text-align: left;
+            line-height: 1.25;
+            color: rgba(255,255,255,0.95);
+        }
+
+        .feature-list li { margin-bottom: 6px; padding-left: 10px; position: relative; }
+        .feature-list li::before { content: "✦"; position: absolute; left: 0; color: var(--gold); font-size: 9px; }
+        
+        .feature-title { font-weight: 800; color: var(--gold); display: block; margin-bottom: 1px; text-transform: uppercase; font-size: 8.5px; }
+        .cumulative-item { color: var(--gold); font-weight: 900; border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important; padding-bottom: 4px; margin-bottom: 8px; font-size: 9.5px; display: block; text-align: center; text-transform: uppercase; }
+
+        .btn-pepite {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: var(--hh-navy) !important;
+            padding: 10px 30px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 5px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        footer {
+            margin-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            font-size: 9px;
+            border-top: 1px solid rgba(212, 175, 55, 0.3) !important;
+            padding-top: 10px;
+            color: var(--gold) !important;
+        }
+
+        .contact-details strong { font-size: 13px; font-weight: 800; }
+
+        @media print {
+            body { background: var(--hh-navy); }
+            .a4-page { margin: 0; width: 210mm; height: 297mm; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="a4-page">
+    <div class="header-photo">
+        <div class="header-overlay"></div>
+        <div class="logo-container">
+            <img src="baniere/image Happy House.png" alt="Logo" class="logo-image">
+        </div>
+    </div>
+
+    <div class="content">
+        <header>
+            <h1>HÔTEL</h1>
+            <div class="subtitle">Collection Excellence 2026</div>
+        </header>
+
+        <div class="grid-formulas">
+            <!-- VISIBILITÉ -->
+            <div class="card">
+                <div class="formula-name">VISIBILITÉ</div>
+                <div class="price-val">188 € <span>HT / AN</span></div>
+                <ul class="feature-list">
+                    <li><span class="feature-title">Visibilité</span>Votre annonce sur www.my-happyhouse.com</li>
+                    <li><span class="feature-title">Réservation directe</span>Vos coordonnées visibles pour des réservations en direct</li>
+                    <li><span class="feature-title">Label</span>Obtention du label Happy House Lieu Waouh Responsable + plaque + pack communication</li>
+                    <li><span class="feature-title">Application mobile</span>Votre annonce sur l'application mobile pour être visible des voyageurs du réseau</li>
+                    <li><span class="feature-title">Centrale d’achat</span>Des économies sur tous les produits / services utiles à l'exploitation</li>
+                    <li><span class="feature-title">Comité d’entreprise</span>Distribution de votre offre dans les CE</li>
+                    <li><span class="feature-title">Parrainage</span>10% de remise sur votre abonnement pour chaque filleul qui adhère 10% pour votre filleul grâce à vous</li>
+                    <li><span class="feature-title">Service HTA à 8%</span>Human Travel Agency : Des voyageurs nous contactent pour organiser leur séjour...</li>
+                </ul>
+            </div>
+
+            <!-- PREMIUM -->
+            <div class="card">
+                <div class="formula-name">PREMIUM</div>
+                <div class="price-val">300 € <span>HT / AN</span></div>
+                <ul class="feature-list">
+                    <li class="cumulative-item">INCLUS FORMULE VISIBILITÉ</li>
+                    <li><span class="feature-title">Visibilité +</span>Ajout de votre annonce sur www.cosy-places.com</li>
+                    <li><span class="feature-title">Application mobile premium</span>Version premium pour vos voyageurs : relation clients, ventes additionnelles et accès à la DATA</li>
+                    <li><span class="feature-title">Service HTA à 5%</span>Human Travel Agency : commission réduite à 5% pour l'organisation des séjours</li>
+                    <li><span class="feature-title">Tarif garanti à vie</span>Tarif bloqué pour les 1000 premiers adhérents</li>
+                    <li><span class="feature-title">Exclusivité</span>Pas plus de 1,5% de l’offre d’hébergement labellisé Happy House</li>
+                    <li><span class="feature-title">Bonus</span>News conseil mensuelle : expérience client, bonnes pratiques communication…</li>
+                    <li><span class="feature-title">Fidélité</span>Accès au programme fidélité Happy House (habitants et voyageurs)</li>
+                </ul>
+            </div>
+
+            <!-- PRESTIGE -->
+            <div class="card">
+                <div class="formula-name">PRESTIGE</div>
+                <div class="price-val">450 € <span>HT / AN</span></div>
+                <ul class="feature-list">
+                    <li class="cumulative-item">INCLUS FORMULE PREMIUM</li>
+                    <li><span class="feature-title">Service HTA à 2%</span>Human Travel Agency : Des voyageurs nous contactent pour organiser leur séjour...</li>
+                    <li><span class="feature-title">Promotion boostée</span>Mise en avant de votre établissement dans notre réseau de voyageurs qualifiés sur des thématiques ciblées</li>
+                </ul>
+            </div>
+
+            <!-- WAOUH -->
+            <div class="card waouh-highlight">
+                <div class="formula-name">WAOUH !</div>
+                <div class="price-val">675 € <span>HT / AN</span></div>
+                <ul class="feature-list">
+                    <li class="cumulative-item">INCLUS FORMULE PRESTIGE</li>
+                    <li><span class="feature-title">Service HTA à 0%</span>Human Travel Agency : Des voyageurs nous contactent pour organiser leur séjour...</li>
+                    <li><span class="feature-title">Expertise personnalisée</span>Accompagnement sur un de vos enjeux annuels et mise en relation avec les bons acteurs du réseau</li>
+                    <li><span class="feature-title">Accès aux partenaires</span>Une liste de partenaires sélectionnés pour vous aider sur chaque sujet important pour vous</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin: 10px 0;">
+            <a href="https://www.my-happyhouse.com/belvedere" class="btn-pepite">Découvrir le domaine du Belvédère</a>
+        </div>
+
+        <footer>
+            <div class="contact-details">
+                <strong>Patrice KERMARREC</strong><br>
+                Fondateur Happy House<br>
+                www.my-happyhouse.com
+            </div>
+            <div style="text-align: right; font-weight: 700;">
+                RÉSEAU EXCELLENCE 2026
+            </div>
+        </footer>
+    </div>
+</div>
+
+</body>
+</html>

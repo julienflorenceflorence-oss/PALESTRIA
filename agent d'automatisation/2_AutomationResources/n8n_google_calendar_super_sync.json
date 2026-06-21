@@ -1,0 +1,137 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "calendar": "primary",
+        "eventProperty": "created",
+        "options": {
+          "filters": {
+            "search": "RDV Prospect"
+          }
+        }
+      },
+      "name": "On New Appointment",
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ],
+      "id": "trigger-id"
+    },
+    {
+      "parameters": {
+        "calendar": "primary",
+        "start": "={{ $node[\"On New Appointment\"].json[\"start\"][\"dateTime\"].split('+')[0] }}",
+        "end": "={{ $node[\"On New Appointment\"].json[\"start\"][\"dateTime\"].split('+')[0] }}",
+        "additionalFields": {
+          "summary": "=✨ Préparation Prestige : {{ $node[\"On New Appointment\"].json[\"summary\"] }}",
+          "description": "Temps réservé pour la lecture du dossier client Happy House avant le rendez-vous."
+        }
+      },
+      "name": "Add 15min Buffer",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        350,
+        300
+      ],
+      "id": "buffer-id"
+    },
+    {
+      "parameters": {
+        "resource": "task",
+        "title": "={{ $node[\"On New Appointment\"].json[\"summary\"] }}",
+        "additionalFields": {
+          "description": "={{ $node[\"On New Appointment\"].json[\"description\"] }}",
+          "deadline": "={{ $node[\"On New Appointment\"].json[\"start\"][\"dateTime\"] }}"
+        }
+      },
+      "name": "Sync to Bitrix24",
+      "type": "n8n-nodes-base.bitrix24",
+      "typeVersion": 1,
+      "position": [
+        600,
+        300
+      ],
+      "id": "bitrix-id"
+    },
+    {
+      "parameters": {
+        "triggerTimes": {
+          "item": [
+            {
+              "hour": 8
+            }
+          ]
+        }
+      },
+      "name": "Every Morning at 8AM",
+      "type": "n8n-nodes-base.cron",
+      "typeVersion": 1,
+      "position": [
+        100,
+        500
+      ],
+      "id": "cron-id"
+    },
+    {
+      "parameters": {
+        "fromEmail": "prestige@happy-house.fr",
+        "toEmail": "julien@votre-email.com",
+        "subject": "🏠 Votre Journée Happy House - Briefing",
+        "html": "=<div style=\"background:#0F1115; color:#D4AF37; padding:20px; font-family:serif;\">\n  <h1>Bonjour Julien,</h1>\n  <p>Voici vos opportunités du jour :</p>\n  <ul>\n    <li>Consultation de l'agenda en cours...</li>\n  </ul>\n  <p>Bonne chance pour vos closings !</p>\n</div>"
+      },
+      "name": "Morning Briefing Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        350,
+        500
+      ],
+      "id": "email-id"
+    }
+  ],
+  "connections": {
+    "On New Appointment": {
+      "main": [
+        [
+          {
+            "node": "Add 15min Buffer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add 15min Buffer": {
+      "main": [
+        [
+          {
+            "node": "Sync to Bitrix24",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Every Morning at 8AM": {
+      "main": [
+        [
+          {
+            "node": "Morning Briefing Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

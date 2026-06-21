@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A4 Tarification - Grand Chalet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap');
+        :root {
+            --brand-blue: #17225C;
+            --brand-gold: #DDA83E;
+            --text-color: #343a40;
+            --border-color: #dee2e6;
+        }
+
+        /* Style for the browser view */
+        body {
+            background-color: #e9ecef;
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 2rem 0;
+        }
+
+        /* The A4 Page */
+        .page {
+            background: white;
+            width: 210mm;
+            min-height: 297mm;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            position: relative;
+            height: 80mm;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('photo/phto pro.jpg');
+            background-size: cover;
+            background-position: center 30%;
+            filter: brightness(0.5);
+        }
+        .header h1 {
+            position: relative;
+            z-index: 1;
+            font-family: 'Playfair Display', serif;
+            font-size: 32pt;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .content {
+            padding: 10mm 15mm;
+            flex-grow: 1;
+        }
+
+        .plan {
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin-bottom: 10mm;
+            padding: 8mm;
+            break-inside: avoid;
+        }
+
+        .plan.highlight {
+            border-color: var(--brand-gold);
+            border-width: 2px;
+        }
+
+        .plan-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 4mm;
+            margin-bottom: 6mm;
+        }
+        .plan-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20pt;
+            color: var(--brand-blue);
+            margin: 0;
+        }
+        .plan-header .price {
+            font-size: 18pt;
+            font-weight: 700;
+            color: var(--brand-gold);
+        }
+        .plan-header .price span {
+            font-size: 10pt;
+            font-weight: 400;
+            color: #6c757d;
+        }
+        
+        .plan.highlight .plan-header h2, .plan.highlight .plan-header .price {
+             color: var(--brand-gold);
+        }
+
+        .plan-body h3 {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--brand-blue);
+            margin-top: 8mm;
+            margin-bottom: 4mm;
+        }
+
+        .plan-body ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 10pt;
+            line-height: 1.6;
+        }
+        .plan-body li {
+            margin-bottom: 2mm;
+            display: flex;
+        }
+        .plan-body li::before {
+            content: '✓';
+            color: var(--brand-gold);
+            margin-right: 3mm;
+            font-weight: 700;
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                background-color: transparent;
+                padding: 0;
+            }
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="header">
+            <h1>Tarification Grand Chalet</h1>
+        </header>
+
+        <div class="content">
+            <div class="plan">
+                <div class="plan-header">
+                    <h2>Visibilité</h2>
+                    <p class="price">188€ <span>HT/AN</span></p>
+                </div>
+                <div class="plan-body">
+                    <ul>
+                        <li>**Visibilité**: Votre annonce sur www.my-happyhouse.com</li>
+                        <li>**Réservation directe**: Vos coordonnées visibles</li>
+                        <li>**Label**: Obtention du label Happy House Lieu Waouh Responsable + plaque + pack communication</li>
+                        <li>**Application mobile**: Votre annonce sur l'application mobile</li>
+                        <li>**Centrale d'achat**: Des économies sur tous les produits / services</li>
+                        <li>**Comité d'entreprise**: Distribution de votre offre dans les CE</li>
+                        <li>**Parrainage**: 10% de remise sur votre abonnement pour chaque filleul qui adhère</li>
+                        <li>**Tarif**: Tarif garanti à vie pour les 1000 premiers adhérents</li>
+                        <li>**Exclusivité**: Pas plus de 1,5% de l'offre d'hébergement labellisé</li>
+                        <li>**Service HTA à 8%**: Human Travel Agency</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="plan">
+                 <div class="plan-header">
+                    <h2>Premium</h2>
+                    <p class="price">300€ <span>HT/AN</span></p>
+                </div>
+                 <div class="plan-body">
+                    <h3>Inclus tout de 'Visibilité', plus :</h3>
+                    <ul>
+                        <li>**Visibilité**: + annonce sur www.cosy-places.com</li>
+                        <li>**Application mobile premium**: Version premium pour vos voyageurs (relation clients, ventes additionnelles, Accès à la DATA)</li>
+                        <li>**Service HTA réduit à 5%**</li>
+                        <li>**Bonus**: News conseil mensuelle: expérience client, bonnes pratiques communication...</li>
+                        <li>**Fidélité**: Accès au programme fidélité Happy House adressant les habitants et les voyageurs</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="plan">
+                 <div class="plan-header">
+                    <h2>Prestige</h2>
+                    <p class="price">450€ <span>HT/AN</span></p>
+                </div>
+                 <div class="plan-body">
+                    <h3>Inclus tout de 'Premium', plus :</h3>
+                    <ul>
+                        <li>**Service HTA réduit à 2%**</li>
+                        <li>**Promotion boostée**: Mise en avant de votre établissement dans notre réseau de voyageurs qualifiés sur des thématiques ciblées (séminaires, retraite, fête, ...).</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="plan highlight">
+                 <div class="plan-header">
+                    <h2>Waouh</h2>
+                    <p class="price">675€ <span>HT/AN</span></p>
+                </div>
+                 <div class="plan-body">
+                    <h3>Inclus tout de 'Prestige', plus :</h3>
+                    <ul>
+                        <li>**Service HTA offert (0%)**</li>
+                        <li>**Expertise personnalisée**: Accompagnement sur un de vos enjeux annuels et mise en relation avec les bons acteurs du réseau</li>
+                        <li>**Accès aux partenaires du réseau**: Une liste de partenaires sélectionnés pour vous aider sur chaque sujet important</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

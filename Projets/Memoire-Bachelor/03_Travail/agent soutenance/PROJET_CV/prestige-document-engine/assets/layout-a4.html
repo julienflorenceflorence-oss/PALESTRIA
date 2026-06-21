@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Édition Prestige A4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 1px solid var(--accent); padding-bottom: 5px; margin-bottom: 30px; }
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin: 20px 0; font-size: 1.4rem; }
+        
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: var(--accent);
+            text-align: center; padding: 20px; border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); margin: 30px 0;
+        }
+
+        .content { flex-grow: 1; text-align: justify; font-size: 10.5pt; font-weight: 300; }
+
+        .footer {
+            border-top: 1px solid var(--accent); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 9pt;
+        }
+        .page-num::after { counter-increment: page; content: "P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>{{title}}</h1>
+        <div class="quote">"{{quote}}"</div>
+        <div class="content">
+            {{page_content}}
+        </div>
+        <div class="footer">
+            <div>{{footer_left}}</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

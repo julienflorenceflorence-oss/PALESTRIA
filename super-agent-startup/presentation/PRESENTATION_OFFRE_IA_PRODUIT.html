@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERCLE ORIGINE - L'Intelligence du Terroir</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --onyx: #0A0A0A;
+            --bordeaux: #630D16;
+            --gold: #D4AF37;
+            --white: #F2F2F2;
+            --gray: #1C1C1C;
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--onyx);
+            color: var(--white);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .document-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: radial-gradient(circle at top, #1a0f0a 0%, #0A0A0A 100%);
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px 0;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            background: var(--onyx);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9);
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        header {
+            padding: 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../photos/photo appli en tete.png');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .logo-frame {
+            max-width: 120px;
+            margin: 0 auto 20px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin: 0;
+            color: var(--gold);
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 40px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin: 30px 0 20px;
+            color: var(--gold);
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 50px;
+            height: 1px;
+            background: var(--gold);
+            margin: 10px auto 0;
+        }
+
+        /* JOURNEY / USER STORY */
+        .journey {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+        }
+
+        .journey::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+        }
+
+        .step {
+            position: relative;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .step::before {
+            content: "";
+            position: absolute;
+            left: -34px;
+            top: 5px;
+            width: 8px;
+            height: 8px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .step b { color: var(--gold); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 1px; }
+        .step p { margin: 5px 0; font-size: 0.85rem; line-height: 1.5; color: #CCC; }
+        .ia-action {
+            font-style: italic;
+            color: var(--white);
+            background: rgba(99, 13, 22, 0.3);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            border-left: 2px solid var(--bordeaux);
+        }
+
+        /* PRICING TABLE */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .price-card {
+            background: var(--gray);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 25px 15px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .price-card.featured {
+            border: 1px solid var(--gold);
+            background: linear-gradient(135deg, var(--gray) 0%, #2a1a1a 100%);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .price-card h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            margin: 0 0 10px;
+            letter-spacing: 2px;
+        }
+
+        .price-tag {
+            font-size: 1.8rem;
+            color: var(--gold);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .price-tag small { font-size: 0.7rem; color: var(--white); opacity: 0.6; }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+            text-align: left;
+            font-size: 0.75rem;
+        }
+
+        .features-list li {
+            margin-bottom: 8px;
+            padding-left: 15px;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: "✦";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        /* TECH SPECS */
+        .tech-box {
+            background: var(--bordeaux);
+            border-radius: 30px;
+            padding: 30px;
+            margin-top: 30px;
+            border: 1px solid var(--gold);
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            text-align: center;
+        }
+
+        .tech-item b { display: block; color: var(--gold); margin-bottom: 10px; font-size: 0.9rem; text-transform: uppercase; }
+        .tech-item p { font-size: 0.75rem; margin: 0; line-height: 1.4; opacity: 0.9; }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            border-top: 1px solid var(--gold);
+            padding: 20px;
+            text-align: center;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .badge-ia {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--gold);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.65rem;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .pulse {
+            width: 6px;
+            height: 6px;
+            background: var(--gold);
+            border-radius: 50%;
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @page { size: A4; margin: 0; }
+        @media print {
+            .page { margin: 0 !important; border-radius: 0 !important; width: 210mm; height: 297mm; }
+            .document-wrapper { background: var(--onyx) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-wrapper">
+        
+        <!-- PAGE 1 : L'EXPÉRIENCE AGENT IA -->
+        <div class="page">
+            <header>
+                <div class="logo-frame">
+                    <img src="../charte graphique/LOGO_CERCLE_ORIGINE_FINAL_BOUSSOLE.svg" alt="CERCLE ORIGINE" style="width: 100%;">
+                </div>
+                <h1>L'INTELLIGENCE DU TERROIR</h1>
+                <p class="subtitle">L'Alliance de l'Excellence et de la Data</p>
+            </header>
+
+            <div class="content">
+                <div style="text-align: center;">
+                    <div class="badge-ia">
+                        <div class="pulse"></div>
+                        AGENT IA ORIGINE : ACTIVÉ
+                    </div>
+                </div>
+
+                <h2>Le Parcours Voyageur "Origine"</h2>
+                
+                <div class="journey">
+                    <div class="step">
+                        <b>1. La Capture (Anti-OTA)</b>
+                        <p>Jean consulte une suite sur le site du domaine. Au moment de partir pour comparer sur Booking.com...</p>
+                        <span class="ia-action">IA : "Jean, réservez en direct et je vous offre une dégustation privée au Domaine partenaire X."</span>
+                    </div>
+
+                    <div class="step">
+                        <b>2. L'Anticipation (Conciergerie)</b>
+                        <p>48h avant l'arrivée, Sophie reçoit un message pour personnaliser son séjour.</p>
+                        <span class="ia-action">IA : "Sophie, préférez-vous un panier de bienvenue de la ferme locale Y pour votre arrivée ?"</span>
+                    </div>
+
+                    <div class="step">
+                        <b>3. L'Immersion (Vente Croisée)</b>
+                        <p>Pendant le séjour, l'IA devient le guide gastronomique et culturel.</p>
+                        <span class="ia-action">IA : "Le Chef partenaire vient de recevoir des truffes. Voulez-vous que je réserve votre table ?"</span>
+                    </div>
+
+                    <div class="step">
+                        <b>4. La Fidélisation (Souveraineté)</b>
+                        <p>Après le départ, le lien avec le terroir est maintenu pour des ventes récurrentes.</p>
+                        <span class="ia-action">IA : "Le vin que vous avez aimé est disponible en caisse exclusive. Livraison à domicile ?"</span>
+                    </div>
+                </div>
+
+                <h2>La Construction du Produit</h2>
+                <div class="tech-grid">
+                    <div class="tech-item">
+                        <b>Data Recovery</b>
+                        <p>Algorithmes de détection d'intention pour transformer les abandons en réservations directes.</p>
+                    </div>
+                    <div class="tech-item">
+                        <b>IA Générative</b>
+                        <p>LLM (Mistral/GPT4) entraîné sur le livret d'accueil et le catalogue des partenaires locaux.</p>
+                    </div>
+                    <div class="tech-item">
+                        <b>Compliance</b>
+                        <p>Automatisation de la Loi Le Meur 2026 : registres, quotas et taxes de séjour sans friction.</p>
+                    </div>
+                </div>
+            </div>
+            <footer>Document Confidentiel - CERCLE ORIGINE - 2026</footer>
+        </div>
+
+        <!-- PAGE 2 : STRATÉGIE TARIFAIRE -->
+        <div class="page">
+            <div class="content">
+                <h2>Architecture des Offres</h2>
+                <p style="text-align: center; font-style: italic; opacity: 0.7; font-size: 0.9rem; margin-bottom: 30px;">
+                    "Le luxe est une question de valeur, pas seulement de prix."
+                </p>
+
+                <div class="pricing-grid">
+                    <!-- ESSENTIEL -->
+                    <div class="price-card">
+                        <h3>ESSENTIEL</h3>
+                        <div class="price-tag">29 € <small>HT/MOIS</small></div>
+                        <ul class="features-list">
+                            <li>Label & Charte Qualité</li>
+                            <li>Livret d'Accueil Digital</li>
+                            <li>Module Check-in Mobile</li>
+                            <li>Sync Calendriers PMS</li>
+                        </ul>
+                        <div style="font-size: 0.6rem; opacity: 0.6; margin-top: 10px;">IDÉAL GÎTES & VIGNERONS</div>
+                    </div>
+
+                    <!-- PRESTIGE -->
+                    <div class="price-card featured">
+                        <div style="background: var(--gold); color: var(--onyx); font-size: 0.6rem; font-weight: bold; padding: 2px 10px; border-radius: 10px; display: inline-block; margin-bottom: 10px;">RECOMMANDÉ</div>
+                        <h3>PRESTIGE IA</h3>
+                        <div class="price-tag">59 € <small>HT/MOIS</small></div>
+                        <ul class="features-list">
+                            <li><b>Tout le pack Essentiel</b></li>
+                            <li><b>Agent IA Concierge 24/7</b></li>
+                            <li><b>Sniper Anti-OTA</b> (Data Recovery)</li>
+                            <li>Module Vente de Vin Intégré</li>
+                        </ul>
+                        <div style="font-size: 0.6rem; color: var(--gold); margin-top: 10px;">L'INTELLIGENCE AU SERVICE DU ROI</div>
+                    </div>
+
+                    <!-- ULTIME -->
+                    <div class="price-card">
+                        <h3>ULTIME</h3>
+                        <div class="price-tag">99 € <small>HT/MOIS</small></div>
+                        <ul class="features-list">
+                            <li><b>Tout le pack Prestige</b></li>
+                            <li>Storytelling Vidéo Premium</li>
+                            <li>Reporting Data Avancé</li>
+                            <li>Support Dédié Prioritaire</li>
+                        </ul>
+                        <div style="font-size: 0.6rem; opacity: 0.6; margin-top: 10px;">MULTI-PROPRIÉTÉS & DOMAINES</div>
+                    </div>
+                </div>
+
+                <div class="tech-box">
+                    <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); margin-top: 0; text-align: center; letter-spacing: 2px;">L'OPTION "IA PERFORMANCE"</h3>
+                    <p style="font-size: 0.8rem; text-align: center; margin-bottom: 20px;">
+                        Garantissez votre rentabilité avec notre modèle hybride exclusif.
+                    </p>
+                    <div style="display: flex; justify-content: space-around; text-align: center;">
+                        <div>
+                            <b style="color: var(--gold); font-size: 1.2rem;">0 %</b><br>
+                            <span style="font-size: 0.7rem;">Commission Nuitée</span>
+                        </div>
+                        <div style="border-left: 1px solid rgba(212, 175, 55, 0.3); padding-left: 20px;">
+                            <b style="color: var(--gold); font-size: 1.2rem;">5 €</b><br>
+                            <span style="font-size: 0.7rem;">Par Lead IA Converti</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 40px; text-align: center;">
+                    <h2>Vision 100 Premiers</h2>
+                    <p style="font-size: 0.85rem; line-height: 1.6; max-width: 600px; margin: 0 auto; opacity: 0.8;">
+                        Les membres "Origine 100" bénéficient d'un <b>blocage de tarif à vie</b>. 
+                        En rejoignant le réseau aujourd'hui, vous sécurisez l'accès à la technologie de demain au prix de lancement.
+                    </p>
+                    <div style="margin-top: 20px; border-top: 1px solid var(--gold); display: inline-block; padding-top: 10px;">
+                        <b style="color: var(--gold); font-family: 'Cinzel', serif; letter-spacing: 2px;">INDÉPENDANCE . EXCELLENCE . TERROIR</b>
+                    </div>
+                </div>
+            </div>
+            <footer>Stratégie Produit & Pricing - CERCLE ORIGINE - Page 2/2</footer>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Couverture RDM - Julien Florence</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        :root { --gold: #D4AF37; --dark: #0A0C10; --white: #FFFFFF; }
+        @page { margin: 0; size: auto; }
+        body { margin: 0; padding: 0; background-color: #000; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .page-garde {
+            width: 800px; height: 1130px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.85)), 
+                        url('https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover; background-position: center;
+            border: 15px solid var(--dark); position: relative;
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 60px; box-sizing: border-box; color: var(--white); font-family: 'Montserrat', sans-serif;
+        }
+        .inner-border { position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; border: 1px solid var(--gold); pointer-events: none; }
+        .header { display: flex; justify-content: space-between; z-index: 2; }
+        .logo-school { font-family: 'Cinzel', serif; font-weight: bold; font-size: 1.2rem; border-left: 3px solid var(--gold); padding-left: 15px; }
+        .main-title { text-align: center; z-index: 2; margin-top: 50px; }
+        .main-title h1 { font-family: 'Cinzel', serif; font-size: 2.8rem; color: var(--gold); margin: 0; letter-spacing: 8px; line-height: 1.2; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        .problematique { background: rgba(0,0,0,0.7); border-left: 5px solid var(--gold); padding: 30px; margin: 40px 0; z-index: 2; }
+        .problematique p { font-size: 1rem; line-height: 1.6; font-weight: 300; margin: 0; color: #E0E0E0; }
+        .footer-info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; z-index: 2; border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 30px; }
+        .student-name { font-size: 1.3rem; font-weight: bold; color: var(--white); }
+        .logos-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 40px; z-index: 2; }
+        .logos-bottom img { height: 50px; filter: grayscale(1) brightness(2); }
+    </style>
+</head>
+<body>
+    <div class="page-garde">
+        <div class="inner-border"></div>
+        <div class="header">
+            <div class="logo-school">ROCKET SCHOOL<br>TOULOUSE</div>
+            <div style="text-align:right; font-family:'Cinzel'; color:var(--gold);">RDM 2026</div>
+        </div>
+        <div class="main-title">
+            <h1>MISSION COMMANDO</h1>
+            <div style="font-family:'Playfair Display'; font-style:italic; font-size:1.8rem; margin-top:20px;">L'Industrialisation Happy House</div>
+        </div>
+        <div class="problematique">
+            <p>« Comment concilier l'industrialisation des processus d'acquisition numérique et la promesse d'exclusivité Waouh pour piloter le passage à l'échelle d'un réseau d'hébergements indépendants : le défi du passage de 160 à 1 000 adhérents. »</p>
+        </div>
+        <div class="footer-info">
+            <div>
+                <p class="student-name">JULIEN FLORENCE</p>
+                <p style="font-size:0.8rem; color:var(--gold);">ENTJ-A | ACQUISITION NUMÉRIQUE</p>
+            </div>
+            <div style="text-align: right; font-size:0.9rem;">
+                <p>Tuteurs : P. Kermarrec & T. Houcke</p>
+            </div>
+        </div>
+        <div class="logos-bottom">
+            <img src="../03-chapitres/rocket logo 2.png" alt="Rocket School">
+            <img src="../03-chapitres/image Happy House.png" alt="Happy House">
+        </div>
+    </div>
+</body>
+</html>

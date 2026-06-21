@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STRATÉGIE D'ACQUISITION — RÉSEAU PADEL BUSINESS</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent-cyan: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --border: rgba(255, 255, 255, 0.08);
+            --gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            padding: 60px 20px;
+        }
+
+        .container {
+            background: var(--surface);
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--gradient);
+            border-radius: 16px 16px 0 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 40px;
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel';
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+        }
+
+        .section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel';
+            font-size: 1.2rem;
+            color: var(--accent-purple);
+            border-left: 3px solid var(--accent-cyan);
+            padding-left: 15px;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cycle-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .card h3 {
+            font-family: 'Cinzel';
+            color: var(--accent-cyan);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+        }
+
+        .highlight-box {
+            background: linear-gradient(90deg, rgba(0, 229, 255, 0.05) 0%, transparent 100%);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 30px;
+            margin: 40px 0;
+        }
+
+        .highlight-box h2 {
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            color: var(--accent-cyan);
+            margin-bottom: 15px;
+        }
+
+        .strategy-point {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .bullet {
+            color: var(--accent-cyan);
+            font-weight: bold;
+        }
+
+        .coach-tip {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coach-tip::before {
+            content: "💡";
+        }
+
+        footer {
+            margin-top: 80px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .cycle-grid { grid-template-columns: 1fr; }
+            .container { padding: 30px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>STRATÉGIE RÉSEAU PADEL</h1>
+            <div class="subtitle">Accélération de la Confiance & Acquisition d'Élite</div>
+        </header>
+
+        <div class="section">
+            <p style="font-style: italic; color: var(--accent-cyan); text-align: center; margin-bottom: 40px;">
+                "L'adversité sur le court révèle le caractère. Le debrief à table scelle le business."
+            </p>
+            
+            <div class="section-title">Le Cycle de Conversion Mensuel</div>
+            <div class="cycle-grid">
+                <div class="card">
+                    <h3>01. Immersion (20 min)</h3>
+                    <p>Discussion stratégique par petits groupes à centres d'intérêt convergents. Identification des besoins latents.</p>
+                </div>
+                <div class="card">
+                    <h3>02. L'Épreuve (1h30)</h3>
+                    <p>Session de Padel intensive. Test de l'adversité, du leadership, du sens collectif et de la progression sous pression.</p>
+                </div>
+                <div class="card">
+                    <h3>03. Consolidation</h3>
+                    <p>Déjeuner réseau. Renforcement des liens, débrief de performance et brainstorming informel.</p>
+                </div>
+                <div class="card">
+                    <h3>04. Activation Business</h3>
+                    <p>Transition vers le groupe WhatsApp dédié. Organisation de RDV de présentation, audits ou sondages.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">L'Avantage Concurrentiel : La Recommandation</div>
+            <div class="highlight-box">
+                <h2>Éluder la Barrière de la Confiance</h2>
+                <p>Contrairement à la prospection à froid, l'écosystème Padel Business repose sur la recommandation et le vécu commun. La confiance n'est pas "générée", elle est <strong>vécue</strong> sur le terrain avant même la première discussion commerciale.</p>
+            </div>
+
+            <div class="strategy-point">
+                <span class="bullet">/</span>
+                <p><strong>Ciblage Précis :</strong> Mise en relation facilitée avec les membres hors-groupe via le réseau interne.</p>
+            </div>
+            <div class="strategy-point">
+                <span class="bullet">/</span>
+                <p><strong>Lancement de Projets :</strong> Utilisation des sondages WhatsApp pour valider de nouvelles offres auprès d'un panel d'entrepreneurs qualifiés.</p>
+            </div>
+            <div class="strategy-point">
+                <span class="bullet">/</span>
+                <p><strong>Audit Naturel :</strong> L'audit ne ressemble pas à une vente, mais à la suite logique du "debrief de performance" initié au déjeuner.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Script d'Activation WhatsApp</div>
+            <div class="card" style="border-left: 4px solid var(--accent-cyan); background: rgba(0, 229, 255, 0.05);">
+                <p style="color: var(--text); font-style: italic; margin-bottom: 15px;">"Salut à tous, j'espère que tout le monde va bien et que le business n'est pas trop complexe au vu de la conjoncture actuelle."</p>
+                <p style="color: var(--text-dim); font-size: 0.95rem; line-height: 1.8;">
+                    "De notre côté, nous sommes en train de tester les <strong>points de douleur du milieu pédagogique</strong>. Nous avons identifié une faille majeure et j'aimerais échanger rapidement (5-10 min) avec :<br><br>
+                    • Des <strong>Directeurs Pédagogiques</strong> (Enseignement Supérieur).<br>
+                    • Des <strong>Intervenants</strong> qui dispensent du contenu de formation.<br>
+                    • Des <strong>Décideurs</strong> en entreprise avec des échanges réguliers à l'étranger.<br><br>
+                    Si vous avez ça dans votre entourage ou si vous êtes directement concernés, je suis preneur d'un retour ou d'une mise en relation. Merci l'équipe !"
+                </p>
+            </div>
+            <div class="coach-tip" style="margin-top: 15px;">Ce message capitalise sur la bienveillance du club pour obtenir des introductions qualifiées sans friction.</div>
+        </div>
+
+        <footer>
+            DIRECTION STRATÉGIQUE — TRIUMVIRAT | ÉDITION PRESTIGE 2026
+        </footer>
+    </div>
+
+</body>
+</html>

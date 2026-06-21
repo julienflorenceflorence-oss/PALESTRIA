@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPPORT DE MISSION 2026 - JULIEN FLORENCE - ÉDITION EXPERT</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #DDA83E;
+            --gold-light: #BCBFD0;
+            --deep-blue: #0F163D;
+            --bg-dark: #0A0C1A;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border-glass: rgba(221, 168, 62, 0.2);
+            --text-main: rgba(255, 255, 255, 0.92);
+            --text-muted: #A9B7C6;
+        }
+
+        @page { size: A4; margin: 0; }
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: #1a1a1a;
+            color: var(--text-main);
+            font-family: 'Arial', sans-serif;
+            font-size: 11.5pt; line-height: 1.5;
+            text-align: justify;
+        }
+
+        .page {
+            width: 210mm; height: 297mm;
+            margin: 20px auto; background-color: var(--bg-dark);
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            page-break-after: always;
+        }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
+        }
+
+        .page::before {
+            content: ''; position: absolute;
+            top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid var(--border-glass);
+            pointer-events: none; z-index: 1;
+        }
+
+        .corner { position: absolute; width: 15mm; height: 15mm; border: 2px solid var(--gold); z-index: 2; }
+        .top-left { top: 8mm; left: 8mm; border-right: none; border-bottom: none; }
+        .top-right { top: 8mm; right: 8mm; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 8mm; left: 8mm; border-right: none; border-top: none; }
+        .bottom-right { bottom: 8mm; right: 8mm; border-left: none; border-top: none; }
+
+        .content { padding: 25mm 20mm; position: relative; z-index: 10; flex-grow: 1; }
+
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 20pt; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; text-align: center; font-weight: 900; border-bottom: 1px solid var(--border-glass); padding-bottom: 10px;}
+        h2 { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 14pt; border-left: 4px solid var(--gold); padding-left: 15px; margin: 25px 0 15px 0; text-transform: uppercase; letter-spacing: 2px; }
+        h3 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 12pt; margin: 15px 0 10px 0; }
+        p { margin-bottom: 12px; }
+
+        .glass-card { background: var(--glass); backdrop-filter: blur(10px); border: 1px solid var(--border-glass); padding: 15px; border-radius: 4px; margin: 15px 0; position: relative; }
+        
+        .consulting-framework { border-left: 3px solid var(--gold); padding-left: 15px; margin: 15px 0; font-size: 10.5pt; }
+        .consulting-framework strong { color: var(--gold); font-family: 'Cinzel', serif; display: inline-block; width: 140px; }
+        .consulting-framework div { margin-bottom: 6px; }
+
+        .btn-annexe { display: inline-block; background: rgba(221, 168, 62, 0.15); color: var(--gold); border: 1px solid var(--gold); padding: 2px 8px; font-size: 8pt; font-weight: bold; text-decoration: none; border-radius: 3px; font-family: 'Arial', sans-serif; letter-spacing: 1px; vertical-align: middle; margin: 0 4px;}
+        .btn-annexe:hover { background: var(--gold); color: #000; }
+
+        .footer { position: absolute; bottom: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; align-items: center; font-family: 'Cinzel', serif; font-size: 7.5pt; color: var(--gold); letter-spacing: 2px; z-index: 100; }
+        .page-number { font-weight: 700; }
+
+        .cover { justify-content: center; align-items: center; text-align: center; background-color: #0A0C1A; position: relative; }
+        .cover-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; background-image: url('charte graphique/cover_vignoble.jpg'); background-size: cover; background-position: center; opacity: 0.25; filter: grayscale(50%); }
+        .cover-content { position: relative; z-index: 10; width: 100%; height: 100%; padding: 25mm 20mm; display: flex; flex-direction: column; justify-content: space-between; }
+        .tagline { font-family: 'Cinzel', serif; font-size: 12pt; color: var(--gold); letter-spacing: 8px; margin-bottom: 10px; }
+        .main-title { font-size: 32pt; line-height: 1.1; margin: 20px 0; }
+        .author-box { margin-top: 60px; font-family: 'Cinzel', serif; }
+        .author-name { font-size: 20pt; font-weight: 900; letter-spacing: 4px; color: #FFFFFF; }
+        .author-role { color: var(--gold); font-size: 9pt; text-transform: uppercase; letter-spacing: 2px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 8.5pt; }
+        th { background: rgba(221, 168, 62, 0.1); color: var(--gold); font-family: 'Cinzel', serif; padding: 8px; border: 1px solid var(--border-glass); text-align: left; }
+        td { padding: 8px; border: 1px solid var(--border-glass); background: rgba(255,255,255,0.01); color: #fff; vertical-align: top;}
+
+        .expert-note { border-left: 4px solid var(--gold); background: rgba(221, 168, 62, 0.05); padding: 12px; margin: 12px 0; font-style: italic; color: var(--gold-light); font-size: 10pt;}
+        .expert-note strong { display: block; font-family: 'Cinzel', serif; font-style: normal; color: var(--gold); margin-bottom: 5px; font-size: 9pt; }
+
+        a { text-decoration: none; color: #DDA83E; display: block; }
+        a.inline-link { display: inline; border-bottom: 1px dotted #DDA83E; }
+        
+        .btn-nav { display: inline-block; padding: 10px 20px; border: 2px solid #DDA83E; color: #DDA83E; font-family: 'Cinzel', serif; font-size: 9pt; letter-spacing: 2px; background: #0A0C1A; cursor: pointer; text-align: center; }
+
+        .toc-link { width: 100%; padding: 8px 0; border-bottom: 1px solid #222; color: #FFFFFF; font-size: 10pt;}
+        .toc-link:hover { color: #DDA83E; }
+        
+        ul { padding-left: 20px; margin-top: 5px; margin-bottom: 10px;}
+        li { margin-bottom: 4px; }
+
+        /* Visuels in-text */
+        .visual-block { background: #05060A; border: 1px solid var(--border-glass); border-radius: 4px; padding: 12px; font-family: 'Courier New', Courier, monospace; font-size: 8pt; color: #DDA83E; overflow-x: hidden; margin: 15px 0; position: relative;}
+        .visual-block::before { content: '/// ROCKET SCHOOL DATA VIEW ///'; position: absolute; top: 0; right: 0; background: rgba(221, 168, 62, 0.1); padding: 2px 10px; font-size: 6pt; color: var(--gold); font-family: 'Cinzel';}
+        .visual-title { color: #FFFFFF; font-family: 'Cinzel', serif; font-size: 9pt; margin-bottom: 10px; border-bottom: 1px solid var(--border-glass); padding-bottom: 5px; display: inline-block; letter-spacing: 1px;}
+        .gantt-table th { font-size: 7pt; text-align: center; padding: 5px; border: 1px solid #333; }
+        .gantt-table td { font-size: 7pt; padding: 5px; border: 1px solid #333;}
+        .gantt-active { background: rgba(221, 168, 62, 0.7) !important; color: #000; text-align: center; font-weight: bold; }
+        .code-line { display: block; margin-bottom: 4px; color: #A9B7C6; }
+    </style>
+</head>
+<body>
+
+    <div class="page cover">
+        <div class="cover-bg"></div>
+        <a id="page-1"></a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content cover-content">
+            
+        <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; margin-bottom: 40px;">
+            <img src="charte graphique/image Happy House.png" alt="Logo Happy House" style="height: 60px;">
+            <img src="charte graphique/rocket logo 2.png" alt="Logo Rocket School" style="height: 50px;">
+        </div>
+
+        <div class="tagline" style="color: #DDA83E; text-align: center;">CONSULTING STRATÉGIQUE</div>
+        <h1 class="main-title" style="color: #DDA83E; text-align: center; margin-bottom: 10px;">RAPPORT DE MISSION<br>STRATÉGIQUE 2026</h1>
+        <div style="width: 100px; height: 3px; background: #DDA83E; margin: 20px auto 30px auto;"></div>
+
+        <div class="author-box" style="text-align: center; margin-top: 20px;">
+            <div class="author-name" style="color: #FFFFFF;">JULIEN FLORENCE</div>
+            <div class="author-role" style="color: #DDA83E;">Directeur du Développement Stratégique</div>
+            <div style="margin-top: 15px; font-size: 9pt; color: #888;">PROMOTION A150 — ANNÉE 2025-2026</div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <div style="color: #DDA83E;">HAPPY HOUSE & ROCKET SCHOOL</div>
+            <div class="page-number" style="color: #DDA83E;">01</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-2" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+    <h1 style="color: #DDA83E; text-align: center;">Sommaire Analytique</h1>
+    <div style="margin-top: 20px;">
+
+        <a href="#page-3" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">REMERCIEMENTS & MÉTHODOLOGIE</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">03</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-5" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">I. L'ENTREPRISE & LA PROBLÉMATIQUE STRATÉGIQUE</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">05</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-8" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">II. LE DIAGNOSTIC EXTERNE : LA FATIGUE NUMÉRIQUE</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">08</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-10" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">III. L'AUDIT INTERNE : L'ÉROSION DE LA RÉTENTION</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">10</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-12" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">IV. AUDIT D'ACQUISITION : L'IMPASSE OUTBOUND</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">12</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-15" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">V. LE PIVOT STRATÉGIQUE : DE LA DATA À L'ÉVÉNEMENT</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">15</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-18" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">VI. LA RÉTENTION : LE DASHBOARD R.O.I</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">18</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-20" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">VII. PILOTAGE OPÉRATIONNEL & GESTION DES ÉCARTS</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">20</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-23" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">VIII. CV DIGITAL & BILAN PERSONNEL</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">23</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-25" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">IX. DÉCLARATION DE CONFORMITÉ IA</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">25</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-26" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">X. ANNEXES PHYSIQUES & MATRICES</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">26</td>
+            </tr></table>
+        </a>
+    
+        <a href="#page-33" class="toc-link">
+            <table style="width: 100%; border: none; margin: 0;"><tr>
+                <td style="border: none; padding: 0; color: #FFFFFF;">XI. DOSSIER DES PREUVES CLOUD (LIENS)</td>
+                <td style="border: none; padding: 0; text-align: right; color: #DDA83E;">33</td>
+            </tr></table>
+        </a>
+    
+    </div>
+
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">SOMMAIRE</div>
+            <div class="page-number" style="color: #DDA83E;">02</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-3" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <h1>Remerciements & Cadre Analytique</h1>
+        <p>Je tiens en premier lieu à remercier l'équipe pédagogique de <strong>Rocket School</strong>. L'exigence de ce cursus m'a permis d'opérer une véritable transition intellectuelle : passer d'une logique d'exécution opérationnelle (l'hospitalité et la sommellerie) à une posture de Direction Stratégique orientée Data & Growth.</p>
+        <p>Mes remerciements s'adressent à la gouvernance de <strong>Happy House</strong>, et particulièrement à Patrice Kermarrec. Ce terrain d'entreprise a été le théâtre d'un apprentissage fondamental : devoir composer entre l'ambition technologique et les limites réelles imposées par la stratégie d'une marque.</p>
+        <p>Je salue enfin <strong>Younes</strong> (SDR), avec qui la restructuration des discours commerciaux fut aussi formatrice sur le plan managérial que vitale pour la mission.</p>
+        
+        <h2>Structure de la démonstration</h2>
+        <p>Ce rapport est conçu selon une architecture analytique stricte (de type "Consulting"). Aucune recommandation n'est avancée sans être soumise au crible suivant :</p>
+        <ul style="font-size: 9.5pt; color: var(--text-muted);">
+            <li><strong>Le Fait :</strong> L'observation brute du terrain ou du marché.</li>
+            <li><strong>La Justification :</strong> Pourquoi ce point est stratégique pour l'entreprise.</li>
+            <li><strong>La Preuve Chiffrée :</strong> L'extraction mathématique issue de nos systèmes.</li>
+            <li><strong>Le Contexte :</strong> La mise en perspective de ce chiffre.</li>
+            <li><strong>La Cause Racine (Maladie) :</strong> Le problème structurel sous-jacent.</li>
+            <li><strong>Le Plan (Remède) :</strong> La solution opérationnelle déployée.</li>
+        </ul>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">INTRODUCTION</div>
+            <div class="page-number" style="color: #DDA83E;">03</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-4" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <h1>Lexique et Écosystème</h1>
+        <h2>Sigles et Vocabulaire</h2>
+        <ul style="font-size: 9.5pt;">
+            <li><strong>CAC (Coût d'Acquisition Client) :</strong> Montant total (marketing + masse salariale) dépensé pour acquérir un adhérent.</li>
+            <li><strong>Churn (Taux d'attrition) :</strong> Proportion de clients historiques perdus. Indicateur clé de la rétention.</li>
+            <li><strong>CPA (Coût Par Acquisition) :</strong> Coût d'acquisition ramené à une action spécifique (ex: un événement local).</li>
+            <li><strong>LTV (Lifetime Value) :</strong> Revenu global généré par un membre sur la totalité de sa durée de vie au sein du réseau.</li>
+            <li><strong>Outbound vs Inbound :</strong> L'Outbound désigne la prospection active à froid (téléphone/email). L'Inbound consiste à attirer le prospect (via des événements/webinaires).</li>
+            <li><strong>OTA (Online Travel Agency) :</strong> Agences monopolistes en ligne (Booking.com, Airbnb, Expedia).</li>
+            <li><strong>n8n :</strong> Outil de développement permettant d'automatiser des flux de données complexes sans coder (Workflow Automation).</li>
+        </ul>
+        
+        <h2>Sources de Données</h2>
+        <p style="font-size: 9.5pt;">L'ensemble de l'argumentation repose sur des données empiriques opposables :</p>
+        <ul style="font-size: 9.5pt;">
+            <li><strong>Extraction CRM Happy House :</strong> Audit complet des 145 dossiers clients (2022-2025) <a href="#annexe-5" class="btn-annexe">📊 VOIR ANNEXE 5</a>.</li>
+            <li><strong>Base de Données Prospects :</strong> Fichier de scraping interne de 126 000 contacts bruts.</li>
+            <li><strong>Comptabilité Entegra :</strong> Analyse des ROI réalisés (Cas Durentie) <a href="#annexe-10" class="btn-annexe">📊 VOIR ANNEXE 10</a>.</li>
+            <li><strong>Data Externe :</strong> Rapports de la Direction Générale des Entreprises (DGE) et base de données macro-économique MKG Consulting (2024).</li>
+        </ul>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">LEXIQUE & SOURCES</div>
+            <div class="page-number" style="color: #DDA83E;">04</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-5" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-1"></a>
+        <h1>Chapitre 1 — L'Entreprise & La Problématique Stratégique</h1>
+        
+        <h2>L'Écosystème Happy House</h2>
+        <p>Fondée en 2017, la startup Happy House s'est positionnée sur un marché de niche à forte valeur ajoutée : l'accompagnement des hébergeurs indépendants sur le segment Premium et "Hébergement de charme".</p>
+        <p>L'entreprise déploie un écosystème de services (Tech & Cost-Killing) visant à professionnaliser ces indépendants :</p>
+        <ul style="font-size: 10pt;">
+            <li><strong>1. Optimisation des Achats :</strong> Accès exclusif à la centrale d'achats <em>Entegra</em> (permettant de 15% à 25% de marge additionnelle sur les postes F&B et énergétiques).</li>
+            <li><strong>2. Connectivité (Tech) :</strong> Déploiement d'un écosystème logiciel sur-mesure (Une application dédiée à l'expérience du voyageur et un CRM complet pour la gestion quotidienne de l'hébergeur).</li>
+            <li><strong>3. Visibilité Digitale :</strong> Création de sites web optimisés pour la réservation directe (contournement des OTAs) et stratégies SEO.</li>
+            <li><strong>4. Synergie Réseau :</strong> Un apport d'affaires inter-membres (recommandations croisées) et des partenariats locaux (Conciergerie, Traiteurs).</li>
+        </ul>
+        <p>La gouvernance repose sur une équipe extrêmement agile et resserrée de 4 personnes (Le CEO/Fondateur, et 3 alternants couvrant la Data/Stratégie, le Développement commercial SDR, et le volet technique). Malgré cette structure légère, le réseau gère un parc ayant atteint <strong>170 adhérents qualifiés</strong> à travers la France.</p>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 1 : L'ENTREPRISE</div>
+            <div class="page-number" style="color: #DDA83E;">05</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-6" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <h2>Le Plafond de Verre : Analyse de la Tension</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> La structure historique d'Happy House, fondée sur l'artisanat relationnel, atteint ses limites opérationnelles.</div>
+            <div><strong>Pourquoi ce choix :</strong> C'est le postulat de base. On ne peut résoudre un problème de scalabilité si l'on ne comprend pas l'asymétrie entre la taille de l'équipe et le volume d'affaires.</div>
+            <div><strong>Le Chiffre :</strong> 170 adhérents gérés par seulement 4 personnes (dont 3 profils juniors/alternants).</div>
+            <div><strong>Le Contexte :</strong> Les exigences de l'hébergement Premium réclament une disponibilité et un conseil de niveau "Senior". La structure actuelle ne peut pas absorber une croissance exponentielle sans imploser.</div>
+            <div><strong>La Maladie :</strong> L'absence de processus automatisés et de formalisation des preuves de valeur bloque la fidélisation. C'est l'effet "seau percé" : l'entreprise tente de remplir le réseau par l'acquisition, mais perd ses clients par le fond (Churn) faute de structuration.</div>
+            <div><strong>Le Remède :</strong> Formuler une problématique d'audit stricte qui lie indissociablement l'acquisition et la rétention.</div>
+        </div>
+
+        <div class="glass-card" style="border: 2px solid var(--gold); margin-top: 30px;">
+            <div class="visual-title" style="color: var(--gold);">PROBLÉMATIQUE STRATÉGIQUE</div>
+            <p style="font-size: 13pt; font-weight: 600; color: #FFF; text-align: justify; line-height: 1.5; margin:0;">
+                Comment Happy House peut-elle réduire drastiquement son taux d'attrition (Churn) tout en structurant une stratégie d'acquisition rentable, adaptée à son positionnement Premium et aux contraintes de sa gouvernance interne ?
+            </p>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 1 : LA PROBLÉMATIQUE</div>
+            <div class="page-number" style="color: #DDA83E;">06</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-7" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-2"></a>
+        <h1>Chapitre 2 — Le Diagnostic Externe : La Pression Numérique</h1>
+        
+        <p>L’analyse macro-économique <a href="#annexe-1" class="btn-annexe">VOIR PESTEL (ANNEXE 1)</a> démontre que l'hébergeur indépendant évolue dans un environnement d'une violence institutionnelle et technologique inouïe. Cette lecture est fondamentale pour comprendre la psychologie de nos prospects.</p>
+
+        <h2>La Saturation par les Monopoles et les Normes</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> L'hébergeur souffre d'une "Fatigue Numérique" systémique due au harcèlement commercial.</div>
+            <div><strong>Pourquoi ce choix :</strong> Pour prouver mathématiquement que la prospection de masse classique (Cold Call/Email) est devenue sociologiquement inefficiente sur cette cible.</div>
+            <div><strong>Les Chiffres :</strong> Booking.com détient 71% des parts de marché en Europe <a href="#annexe-9" class="btn-annexe">VOIR DATA (ANNEXE 9)</a>. Côté normatif, le label "Clef Verte" a explosé de +184% en 3 ans, tandis que le DPE expulse 20% des amateurs du marché.</div>
+            <div><strong>Le Contexte :</strong> L'hébergeur Premium est écartelé entre les OTAs qui l'asphyxient financièrement (jusqu'à 25% de commission) et l'injonction écologique gouvernementale qui l'étouffe administrativement.</div>
+            <div><strong>La Maladie :</strong> Le rejet pavlovien. Submergé par les promesses de "logiciels miracles" ou de "nouveaux labels de qualité", l'hôte considère toute sollicitation numérique entrante comme une charge mentale additionnelle, et non comme une solution.</div>
+            <div><strong>Le Remède :</strong> Un changement de paradigme d'approche. Happy House ne doit plus se présenter comme un "outil technologique de plus", mais comme un facilitateur humain (mutualisation des coûts énergétiques frappés par une inflation de +15%).</div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 2 : LE MARCHÉ</div>
+            <div class="page-number" style="color: #DDA83E;">07</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-8" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-3"></a>
+        <h1>Chapitre 3 — Audit Interne : L'Érosion de la Rétention</h1>
+        
+        <p>Si le contexte macro-économique justifie la nécessité de nos services d'optimisation <a href="#annexe-2" class="btn-annexe">VOIR SWOT (ANNEXE 2)</a>, l'audit interne révèle une incapacité historique à capitaliser sur ces forces.</p>
+
+        <h2>Le Diagnostic du Churn (Taux d'Attrition)</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> L'effondrement de la fidélisation des membres (Le Churn) annule les efforts de croissance.</div>
+            <div><strong>Pourquoi ce choix :</strong> L'acquisition coûte chère. Si nous ne bloquons pas l'hémorragie, toute stratégie d'injection de leads est une perte financière sèche (LTV détruite).</div>
+            <div><strong>Le Chiffre :</strong> Sur les 145 dossiers clients qualifiés et onboardés entre 2022 et 2025, nous avons perdu le suivi ou acté la sortie ("NO GO") d'environ 80% du parc <a href="#annexe-5" class="btn-annexe">VOIR DATA (ANNEXE 5)</a>.</div>
+            <div><strong>Le Contexte (Biais) :</strong> Ce chiffre est brut (issu du CRM). Il inclut un biais de survie fort car nous ne pouvons mathématiquement pas séparer les fermetures d'établissements (faillites, reventes liées au DPE) des désabonnements volontaires. Néanmoins, l'ampleur de la déperdition indique un dysfonctionnement interne.</div>
+            <div><strong>La Maladie :</strong> L'asymétrie de l'information. Nous possédons une arme puissante (la centrale Entegra générant de 15% à 25% d'économies réelles), mais le client ne renouvelle pas car il n'en a pas conscience. <em>La valeur créée n'est pas matérialisée en valeur perçue.</em></div>
+            <div><strong>Le Remède :</strong> La survie du réseau exige la création immédiate d'un protocole de "Preuve de Valeur" (Reporting) avant même de chercher à signer de nouveaux clients.</div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 3 : AUDIT INTERNE</div>
+            <div class="page-number" style="color: #DDA83E;">08</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-9" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-4"></a>
+        <h1>Chapitre 4 — Audit d'Acquisition : L'Impasse Outbound</h1>
+        
+        <p>Avant d'imaginer une nouvelle mécanique de croissance, il a fallu auditer la rentabilité des méthodes historiques de l'entreprise (la prospection téléphonique à froid ou "Cold Calling").</p>
+
+        <h2>Mathématiques de la Prospection Manuelle</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> Le modèle d'acquisition par démarchage téléphonique est financièrement insoutenable et statistiquement inopérant.</div>
+            <div><strong>Pourquoi ce choix :</strong> Pour justifier un pivot stratégique devant la gouvernance, il faut tuer l'ancienne méthode de manière irréfutable en calculant son Coût d'Acquisition Client (CAC) <a href="#annexe-4" class="btn-annexe">VOIR CAC (ANNEXE 4)</a>.</div>
+            <div><strong>Le Chiffre :</strong> Un CAC historique évalué à 1 823 €. Un volume de 5 850 prospects ciblés sur 11 mois par le SDR, aboutissant à 50% de Non-Réponse et 40% de refus stricts.</div>
+            <div><strong>Le Contexte :</strong> L'équipe SDR (alternant payé à 100% du SMIC, soit 1 823€/mois) effectue 300 appels par jour pour un rendement effectif de 1 signature qualifiée par mois. L'effort consenti (5850 tentatives) pour extraire nos 145 clients historiques démontre l'attrition extrême du tunnel.</div>
+            <div><strong>La Maladie :</strong> L'inadéquation de canal. La cible Premium, isolée et "harcelée" (cf. Chapitre 2), exige de la réassurance, de la confiance et du temps. Le Cold Calling est perçu comme une agression.</div>
+            <div><strong>Le Remède :</strong> Stopper l'Outbound de masse. Utiliser notre gigantesque base de données autrement.</div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 4 : AUDIT ACQUISITION</div>
+            <div class="page-number" style="color: #DDA83E;">09</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-10" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-5"></a>
+        <h1>Chapitre 5 — Le Pivot Stratégique : De la Data à l'Événement</h1>
+        
+        <p>Face à ce CAC destructeur (1823€), une première recommandation de rupture technologique a été avancée, avant d'être confrontée à la réalité politique de l'entreprise.</p>
+
+        <h2>L'Arbitrage de Gouvernance et l'Inbound</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> Le rejet d'une solution d'automatisation (n8n) au profit d'un pivot événementiel humain (Inbound).</div>
+            <div><strong>Pourquoi ce choix :</strong> Le rôle d'un stratège n'est pas d'imposer un outil, mais de fournir une solution compatible avec l'ADN et les peurs de la direction.</div>
+            <div><strong>Le Chiffre :</strong> La base de 126 000 contacts bruts (scraping) a été profilée par l'algorithme : 55% de 3★, 35% de 4★, et 10% de 5★ ou Palaces. L'enjeu n'est plus d'envoyer 126k emails, mais d'isoler 30 cibles parfaites par région.</div>
+            <div><strong>Le Contexte :</strong> J'ai initialement proposé d'automatiser le Cold Emailing via n8n pour abaisser le CAC. La gouvernance a opposé un veto formel : le risque de "Brand Damage" (être assimilé à du spam) était incompatible avec le positionnement Premium (4★ et 5★).</div>
+            <div><strong>La Maladie :</strong> Le risque d'alignement par le bas. Automatiser l'acquisition dans un marché saturé de bruit, c'est perdre son statut d'expert.</div>
+            <div><strong>Le Remède :</strong> La Stratégie d'Afterwork Régional. On utilise les 126k contacts uniquement comme <em>Data-Sourcing</em> pour qualifier chirurgicalement des listes d'invités très restreintes. L'acquisition se fait en physique, chez un membre existant (Social Proof). Le discours SDR change du tout au tout <a href="#annexe-6" class="btn-annexe">VOIR SCRIPT (ANNEXE 6)</a>.</div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 5 : LE PIVOT STRATÉGIQUE</div>
+            <div class="page-number" style="color: #DDA83E;">10</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-11" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-6"></a>
+        <h1>Chapitre 6 — La Rétention : Le Dashboard R.O.I</h1>
+        
+        <p>Le pivot vers l'événementiel règle le problème de la qualité de l'acquisition. Mais pour corriger la maladie identifiée au Chapitre 3 (la fuite du Churn), il a fallu concevoir une parade opérationnelle : Le Dashboard.</p>
+
+        <h2>Matérialiser l'invisible</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> La conception d'un Proof of Concept (POC) de Reporting Financier Trimestriel.</div>
+            <div><strong>Pourquoi ce choix :</strong> Dans le B2B Premium, la fidélité n'est pas liée à la sympathie, mais à la mathématique. Il faut objectiver les gains apportés par le réseau (Centrale d'achat Entegra).</div>
+            <div><strong>Le Chiffre :</strong> Une conception "Low-Code" nécessitant moins de 1 heure de gestion par mois et par client.</div>
+            <div><strong>Le Contexte :</strong> La gouvernance n'avait ni le budget pour un développement logiciel lourd, ni le temps humain. L'utilisation de l'infrastructure n8n a permis de relier les données de facturation (Entegra) à une interface lisible sans nécessiter de développeur.</div>
+            <div><strong>La Maladie :</strong> L'oubli. L'hébergeur paie sa cotisation Happy House mais oublie au quotidien qu'il bénéficie de tarifs préférentiels sur son énergie et ses achats. Au moment de renouveler, il ne voit qu'une charge.</div>
+            <div><strong>Le Remède :</strong> Imposer un rendez-vous trimestriel en visioconférence. Le Dashboard devient l'outil central de l'Account Manager pour asséner la preuve de valeur et rationaliser le traitement des objections au renouvellement. Cet outil servira également d'arme de réassurance lors des Afterworks d'acquisition.</div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 6 : LA RÉTENTION</div>
+            <div class="page-number" style="color: #DDA83E;">11</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-12" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-7"></a>
+        <h1>Chapitre 7 — Pilotage Opérationnel & Gestion des Écarts</h1>
+        
+        <p>L'exécution de la double stratégie (Afterworks + Dashboard) nécessite une doctrine de contrôle de gestion stricte pour garantir l'efficience financière du modèle.</p>
+
+        <h2>Objectiver le R.O.I de la cotisation</h2>
+        
+        <div class="consulting-framework">
+            <div><strong>Le Point :</strong> La validation comptable du modèle sur un Cas Pratique avéré.</div>
+            <div><strong>Pourquoi ce choix :</strong> Un plan d'action théorique n'a aucune valeur devant la gouvernance. Il faut démontrer que la promesse du Dashboard repose sur des flux réels.</div>
+            <div><strong>Le Chiffre :</strong> Cas Durentie (Investissement 360 € ➔ Économie 4120 € + CA 11 000 €). <a href="#annexe-10" class="btn-annexe">VOIR PREUVES (ANNEXE 10)</a></div>
+            <div><strong>Le Contexte :</strong> Après un cycle de prospection long, l'intégration de ce membre a généré des baisses massives sur la Blanchisserie, le F&B et l'Énergie via nos contrats cadres, tout en lui apportant un flux client via le réseau.</div>
+            <div><strong>La Maladie :</strong> Le doute du prospect lors des Afterworks. Le paiement d'une cotisation initiale est toujours un frein psychologique majeur.</div>
+            <div><strong>Le Remède :</strong> L'utilisation de ces données (anonymisées) comme socle de conviction lors des événements locaux pour rassurer les 30 invités.</div>
+        </div>
+
+        <h2>La Doctrine du COPIL (Gestion du risque financier)</h2>
+        <p>L'organisation d'un événement coûte en moyenne 500 € (Traiteur, logistique). Sans garde-fou, le pivot stratégique pourrait aggraver les finances. Un protocole strict est acté avec la direction :</p>
+        <ul style="font-size: 10pt;">
+            <li><strong>KPI Cibles :</strong> Un Taux de Présence > 50% (confirmés à J-2 pour exclure les no-shows) et un CPA (Coût Par Acquisition) plafonné à <strong>200 €</strong>.</li>
+            <li><strong>Gestion de l'Écart Initial :</strong> Si un Afterwork échoue (CPA > 200€), une analyse causale est imposée (Heure inadaptée ? Mauvais profilage DISC de l'invité ?).</li>
+            <li><strong>Gestion de l'Écart Persistant (La Réingénierie) :</strong> Au 2ème échec, l'événement n'est pas annulé (ce qui détruirait l'image de marque locale), mais "downgradé" financièrement. Il est transformé en un <em>Atelier de réflexion collective</em> (suppression des frais de bouche). L'acquisition est mise en pause au profit exclusif de la Rétention (animation du réseau existant à coût zéro).</li>
+        </ul>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 7 : PILOTAGE & ÉCARTS</div>
+            <div class="page-number" style="color: #DDA83E;">12</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-13" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-8"></a>
+        <h1>Chapitre 8 — Bilan Personnel & CV Digital</h1>
+        
+        <h2>Prise de recul sur la mission</h2>
+        <p>Ce parcours au sein de Happy House a constitué un point d'inflexion majeur dans mon évolution professionnelle. J'y ai appris que la Data et les algorithmes (mon expertise technique via le Scraping et n8n) ne sont rien s'ils se heurtent au mur de la gouvernance ou à la réalité psychologique d'un marché saturé.</p>
+        <p>La validation du pivot stratégique (l'abandon de mon propre modèle d'automatisation Outbound pour concevoir une stratégie Inbound événementielle) témoigne de l'acquisition d'une compétence fondamentale : la maturité politique. Un bon Directeur du Développement ne vend pas un outil, il pilote le risque financier (CPA, Churn) tout en s'assurant de l'adhésion de son équipe (montée en compétence du SDR Younes sur les biais cognitifs).</p>
+
+        <div class="glass-card" style="border: 1px solid var(--gold);">
+            <div class="visual-title" style="color: var(--gold);">JULIEN FLORENCE — PROFIL STRATÉGIQUE HYBRIDE</div>
+            <p style="font-size: 9.5pt; line-height: 1.6;">
+                <strong>De l'Excellence Opérationnelle à la Direction Data-Driven</strong><br>
+                Fort d'un ADN forgé dans l'exigence de l'Hospitalité de luxe et de la Sommellerie (où la rigueur du "Service Client" et de "l'Effet Waouh" est absolue), j'ai opéré une transition vers le pilotage stratégique de la croissance (Growth, Data Analysis, Workflow Automation).<br><br>
+                Ma valeur ajoutée réside dans cette hybridation : la capacité à concevoir des architectures d'acquisition digitales et chiffrées très complexes (Bases de données de 120 000 lignes, Automatisation n8n), sans jamais perdre de vue la finalité ultime qui est l'interaction humaine qualitative et la rétention Premium.<br><br>
+                <strong>Soft Skills :</strong> Leadership transversal, Résilience face à l'échec stratégique, Capacité d'arbitrage financier, Écoute terrain (DISC).<br>
+                <strong>Objectif :</strong> Direction du Développement et de la Stratégie (Secteur Hospitalité / Tech B2B).
+            </p>
+            <div style="text-align: center; margin-top: 15px;">
+                <a href="https://www.linkedin.com/in/julien-florence-2536a083" target="_blank" class="btn-nav" style="background: var(--gold); color: #000; font-weight: bold;">
+                    🔗 CONSULTER MON PROFIL LINKEDIN
+                </a>
+            </div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 8 : BILAN & PROFIL</div>
+            <div class="page-number" style="color: #DDA83E;">13</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-14" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="chapitre-9"></a>
+        <h1>Chapitre 9 — Déclaration de Conformité IA</h1>
+        
+        <h2>Cadre d'utilisation des algorithmes génératifs</h2>
+        <p>Conformément aux exigences académiques du diplôme de Rocket School, je déclare la méthodologie de conception de ce rapport :</p>
+        
+        <p>L'Intelligence Artificielle (Modèle Gemini CLI) a été sollicitée <strong>exclusivement au stade de l'ingénierie d'édition et de la mise en page logicielle</strong>. Le modèle a été utilisé pour générer la structure complexe du code source (HTML/CSS embarqué via un script Python) permettant le rendu visuel au format "Édition Expert" de ce PDF (pagination, encadrés, colorimétrie).</p>
+
+        <p><strong>L'intégrité de la réflexion reste absolue :</strong></p>
+        <ul style="font-size: 10pt;">
+            <li>Le choix du pivot stratégique (Événementiel) et l'analyse de l'échec de la prospection (CAC à 1823€) sont le fruit d'un audit de terrain strictement personnel.</li>
+            <li>Toutes les données brutes (126 000 contacts, 145 dossiers clients, cas Durentie, chiffres d'attrition) sont des extractions directes des systèmes de l'entreprise Happy House.</li>
+            <li>Les matrices stratégiques (PESTEL, SWOT, Porter) ont été conceptualisées et pondérées par moi-même avant formatage textuel.</li>
+        </ul>
+        <p>L'outil algorithmique n'a produit aucun concept métier ni aucune réflexion analytique autonome, agissant uniquement comme un assistant de structuration formelle.</p>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">CHAPITRE 9 : CONFORMITÉ IA</div>
+            <div class="page-number" style="color: #DDA83E;">14</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-15" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-1"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 1 : Matrice PESTEL</h1>
+        <table style='width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 20px;'>
+            <tr style='background: rgba(221, 168, 62, 0.2);'><th style='width: 25%;'>Dimension</th><th>Analyse et Impact sur Happy House</th></tr>
+            <tr>
+                <td><strong>Politique & Légal</strong></td>
+                <td>Loi anti-Airbnb (interdiction des DPE G en 2025 et F en 2028). Purge de 20 à 25% des acteurs non professionnels. <br><em style="color: var(--gold);">Impact : Opportunité majeure de cibler les professionnels restants (Prime à la qualité).</em></td>
+            </tr>
+            <tr>
+                <td><strong>Économique</strong></td>
+                <td>Inflation des coûts opérationnels (+15% sur l'énergie en 2024). <br><em style="color: var(--gold);">Impact : Fort levier d'acquisition via notre centrale d'achat (Entegra). Le ROI devient un argument vital.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Socioculturel</strong></td>
+                <td>Recherche d'expériences authentiques et locales par les voyageurs (Slow Tourism). <br><em style="color: var(--gold);">Impact : Validation de notre ciblage "Premium & Charme".</em></td>
+            </tr>
+            <tr>
+                <td><strong>Technologique</strong></td>
+                <td>Monopole des OTAs (Booking, Airbnb) captant 71% des nuitées. <br><em style="color: var(--gold);">Impact : Nécessité d'accompagner les indépendants vers l'indépendance numérique.</em></td>
+            </tr>
+            <tr>
+                <td><strong>Écologique</strong></td>
+                <td>Pression pour des hébergements durables (Clef Verte +184%). <br><em style="color: var(--gold);">Impact : Argument de valorisation de nos membres, mais source de fatigue administrative.</em></td>
+            </tr>
+        </table>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 1 : MATRICE PESTEL</div>
+            <div class="page-number" style="color: #DDA83E;">15</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-16" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-2"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 2 : Matrice SWOT</h1>
+        <table style='width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 20px;'>
+            <tr style='background: rgba(221, 168, 62, 0.2);'>
+                <th style='width: 50%; text-align: center;'>FORCES (Internes)</th>
+                <th style='width: 50%; text-align: center;'>FAIBLESSES (Internes)</th>
+            </tr>
+            <tr>
+                <td style='height: 120px; padding: 15px;'>- Partenariat exclusif Entegra (Gains 15-25%).<br>- Base de données qualifiée de 126 000 contacts profilés.<br>- Positionnement "Premium & Charme" validé.<br>- Équipe agile de 4 personnes (1 CEO, 3 profils Data/Sales/Tech).</td>
+                <td style='padding: 15px;'>- Taux de Churn historique sévère (~80% de perte de suivi sur 145 dossiers).<br>- Défaut de formalisation du ROI pour les membres.<br>- Prospection téléphonique manuelle trop onéreuse (CAC évalué à 1823€).</td>
+            </tr>
+            <tr style='background: rgba(221, 168, 62, 0.2);'>
+                <th style='text-align: center;'>OPPORTUNITÉS (Externes)</th>
+                <th style='text-align: center;'>MENACES (Externes)</th>
+            </tr>
+            <tr>
+                <td style='height: 120px; padding: 15px;'>- Purge des loueurs amateurs via les contraintes DPE.<br>- Besoin d'accompagnement impératif lié à l'inflation (énergie, blanchisserie).</td>
+                <td style='padding: 15px;'>- Hégémonie des OTAs (Booking contrôle 71% des parts).<br>- Fatigue numérique des prospects (rejet pavlovien du démarchage de masse ou "Brand Damage").</td>
+            </tr>
+        </table>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 2 : MATRICE SWOT</div>
+            <div class="page-number" style="color: #DDA83E;">16</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-17" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-3"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 3 : Les 5 Forces de Porter</h1>
+        <table style='width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 20px;'>
+            <tr style='background: rgba(221, 168, 62, 0.2);'><th style='width: 30%;'>Force Concurrentielle</th><th style='width: 20%;'>Intensité</th><th>Justification</th></tr>
+            <tr>
+                <td><strong>Intensité Concurrentielle</strong></td>
+                <td style="color: #E74C3C; font-weight: bold;">Forte (4/5)</td>
+                <td>Concurrence accrue sur le marché des logiciels et plateformes de distribution. Les hébergeurs sont sur-sollicités.</td>
+            </tr>
+            <tr>
+                <td><strong>Menace Nouveaux Entrants</strong></td>
+                <td style="color: #2ECC71; font-weight: bold;">Faible (2/5)</td>
+                <td>Les normes DPE et les lourds investissements requis (immo) créent de fortes barrières à l'entrée. Le marché se professionnalise par le haut.</td>
+            </tr>
+            <tr>
+                <td><strong>Pouvoir Négociation (Clients)</strong></td>
+                <td style="color: #E74C3C; font-weight: bold;">Très Fort (5/5)</td>
+                <td>Les OTAs (Booking, Airbnb) dictent les commissions (15 à 25%). Les hébergeurs sont dépendants de leur visibilité algorithmique.</td>
+            </tr>
+            <tr>
+                <td><strong>Pouvoir Négociation (Fournisseurs)</strong></td>
+                <td style="color: #F1C40F; font-weight: bold;">Moyen (3/5)</td>
+                <td>Fournisseurs d'énergie et F&B en position de force face à l'inflation globale, ce qui légitime notre modèle de massification des achats.</td>
+            </tr>
+            <tr>
+                <td><strong>Menace des Substituts</strong></td>
+                <td style="color: #F1C40F; font-weight: bold;">Moyenne (3/5)</td>
+                <td>Les hôtels de chaîne standardisés face au concept d'hébergement "de charme et d'expérience".</td>
+            </tr>
+        </table>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 3 : FORCES DE PORTER</div>
+            <div class="page-number" style="color: #DDA83E;">17</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-18" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-4"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 4 : Comparatif de Performance</h1>
+        
+        <p style="font-size: 9.5pt;">Modélisation chiffrée démontrant l'impasse financière de la stratégie Outbound initiale face à la rentabilité projetée du pivot stratégique (Inbound/Événementiel).</p>
+
+        <div class="visual-block" style="border-color: #E74C3C; padding: 20px;">
+            <div class="visual-title" style="color: #E74C3C;">1. MODÈLE HISTORIQUE : OUTBOUND (Cold Calling)</div>
+            <div class="code-line" style="margin-top: 10px;">- Charge mensuelle SDR (Alternant >26 ans) : 1 823 € (100% SMIC exonéré).</div>
+            <div class="code-line">- Volume d'appels réalisés : ~6 000 / mois.</div>
+            <div class="code-line">- Taux de conversion constaté : 1 signature qualifiée / mois.</div>
+            <div class="code-line" style="color: #E74C3C; font-weight: bold; font-size: 11pt; margin-top: 15px;">=> Coût d'Acquisition Client (CAC) : 1 823 € / membre.</div>
+            <div class="code-line" style="margin-top: 15px;"><em>Conclusion : Ce CAC détruit intégralement la rentabilité de la cotisation annuelle. Ce modèle est financièrement intenable pour une start-up.</em></div>
+        </div>
+
+        <div class="visual-block" style="border-color: #2ECC71; padding: 20px;">
+            <div class="visual-title" style="color: #2ECC71;">2. MODÈLE PIVOT : INBOUND (Afterworks Régionaux)</div>
+            <div class="code-line" style="margin-top: 10px;">- Budget organisation Afterwork (Traiteur, Logistique) : ~500 € / événement.</div>
+            <div class="code-line">- Objectif de conversion post-événement : 3 signatures (sur un panel qualifié).</div>
+            <div class="code-line" style="color: #2ECC71; font-weight: bold; font-size: 11pt; margin-top: 15px;">=> Coût Par Acquisition (CPA) Cible : 166 € / membre.</div>
+            <div class="code-line" style="margin-top: 15px;"><em>Conclusion : Un modèle d'acquisition rentable, favorisant la "Preuve Sociale" et la rétention immédiate.</em></div>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 4 : COMPARATIF D'ACQUISITION</div>
+            <div class="page-number" style="color: #DDA83E;">18</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-19" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-5"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 5 & 10 : Modélisation Churn & Rentabilité</h1>
+        
+        <h2 style='font-size: 12pt; color: #E74C3C;'>Annexe 5 : L'Hémorragie de l'Attrition (Churn)</h2>
+        <p style='font-size: 9.5pt;'>Le diagnostic d'attrition a révélé une perte de suivi de <strong>80% sur notre cohorte de 145 dossiers</strong>. Ce churn détruit l'équation économique de la <strong>Lifetime Value (LTV)</strong> du client. La mise en place du Dashboard trimestriel vise à stopper mathématiquement cette érosion en matérialisant instantanément le retour sur investissement du membre.</p>
+
+        <a id="annexe-10"></a>
+        <h2 style='font-size: 12pt; color: #2ECC71; margin-top: 30px;'>Annexe 10 : Évaluation Rentabilité (Cas Durentie)</h2>
+        <p style='font-size: 9.5pt;'>Simulation comptable extraite du dossier d'un domaine Premium suite à son adhésion (via les accords Entegra).</p>
+
+        <table style='width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 15px;'>
+            <tr style='background: rgba(221, 168, 62, 0.2);'><th style='width: 50%;'>Poste Financier</th><th>Impact Comptable (€)</th></tr>
+            <tr><td>Investissement Initial (Cotisation Adhérent)</td><td style="color: #E74C3C; font-weight: bold;">- 360,00 €</td></tr>
+            <tr><td>Économies F&B (Alimentation & Boissons)</td><td style="color: #2ECC71;">+ 2 150,00 €</td></tr>
+            <tr><td>Économies Énergie</td><td style="color: #2ECC71;">+ 1 420,00 €</td></tr>
+            <tr><td>Économies Blanchisserie</td><td style="color: #2ECC71;">+ 550,00 €</td></tr>
+            <tr style='border-top: 1px solid var(--gold); background: rgba(255,255,255,0.05);'>
+                <td><strong>BÉNÉFICE NET OPÉRATIONNEL (A)</strong></td>
+                <td style="color: var(--gold); font-weight: bold;">+ 4 120,00 €</td>
+            </tr>
+            <tr><td>Chiffre d'Affaires Généré (Apport membre à membre)</td><td style="color: #2ECC71;">+ 11 000,00 €</td></tr>
+            <tr style='background: rgba(46, 204, 113, 0.1); border-top: 2px solid #2ECC71;'>
+                <td><strong>IMPACT GLOBAL SUR L'ÉTABLISSEMENT</strong></td>
+                <td><strong style="color: #2ECC71; font-size: 11pt;">+ 15 120,00 €</strong></td>
+            </tr>
+        </table>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 5 & 10 : CHURN & DURENTIE</div>
+            <div class="page-number" style="color: #DDA83E;">19</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-20" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-6"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 6/7 : Pivot du Script de Vente</h1>
+        
+        <p style="font-size: 9.5pt;">La révision stratégique a imposé d'abandonner la "vente de service directe" (générant 50% de Non-Réponse et 20% de refus fermes) pour basculer sur une méthodologie d'invitation exclusive ("Vente Inbound").</p>
+
+        <div class='glass-card' style='font-size: 9.5pt; padding: 20px;'>
+            <p style="color: var(--gold); font-weight: bold; border-bottom: 1px solid var(--gold); padding-bottom: 5px;">TRAME DE QUALIFICATION SDR (Extrait)</p>
+            
+            <p style='margin-top: 15px;'><strong>ÉTAPE 1 : ACCROCHE (Désamorcer la friction commerciale)</strong><br>
+            <em style='color: #A9B7C6;'>« Bonjour [Prénom], c’est Younes du réseau Happy House. Je vous appelle aujourd'hui car nous organisons un événement privé pour les hébergeurs premium de [Région] le [Date]. Vu la réputation de votre domaine, votre profil a attiré notre attention. »</em></p>
+            
+            <p style='margin-top: 20px;'><strong>ÉTAPE 2 : QUALIFICATION (Analyse du besoin via méthode DISC)</strong><br>
+            - Face à un profil <strong>Dominant (D) / Rationnel</strong> : Le SDR oriente vers le Cost-Killing.<br>
+            <em style='color: #A9B7C6;'>« Nous aborderons précisément les méthodes pour contrer l'inflation et réduire les charges F&B ou énergie de 20% via notre centrale Entegra. »</em><br><br>
+            - Face à un profil <strong>Influent (I) / Relationnel</strong> : Le SDR oriente vers la solitude de l'exploitant.<br>
+            <em style='color: #A9B7C6;'>« Ce format en petit comité sera l'occasion d'échanger en toute transparence avec vos pairs de la région sur la complexité de gérer la visibilité face à Booking. »</em></p>
+            
+            <p style='margin-top: 20px;'><strong>ÉTAPE 3 : CLÔTURE (Principe d'exclusivité)</strong><br>
+            <em style='color: #A9B7C6;'>« L'accès est strictement sur invitation. Je vous fais parvenir le lien d'inscription privé. Vous pourrez y échanger directement avec [Nom d'un membre existant] qui a déjà déployé nos solutions. »</em></p>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 6 & 7 : SCRIPTS SDR</div>
+            <div class="page-number" style="color: #DDA83E;">20</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-21" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <a id="annexe-9"></a>
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 9 : Pression Commerciale (1/2)</h1>
+        
+        <p style="font-size: 9.5pt;">Extraction de la base de données sectorielle démontrant l'étouffement numérique de la cible Premium. La prolifération technologique impose une charge mentale critique aux exploitants (Données 2013-2026).</p>
+
+        <h2 style='font-size: 12pt; margin-top: 20px;'>1. L'Hégémonie des OTAs (Europe)</h2>
+        <table style='width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 15px;'>
+            <tr style='background: rgba(221, 168, 62, 0.2);'><th style='width: 15%;'>Année</th><th style='width: 60%;'>Indicateur Sectoriel</th><th style='width: 25%;'>Valeur</th></tr>
+            <tr><td>2013</td><td>Part de marché globale des OTAs</td><td>19,7 %</td></tr>
+            <tr><td>2019</td><td>Part de marché globale des OTAs</td><td>29,2 %</td></tr>
+            <tr><td>2023</td><td>Part de marché globale des OTAs</td><td><strong style="color: #E74C3C;">29,6 %</strong></td></tr>
+            <tr><td>2024</td><td>Poids du quasi-monopole : <strong>Booking.com</strong></td><td><strong style="color: #E74C3C;">69,3 %</strong> (du flux OTA)</td></tr>
+            <tr><td>2024</td><td>Challenger principal : <strong>Expedia</strong></td><td>11,5 % (du flux OTA)</td></tr>
+            <tr><td>2024</td><td>Poids économique mondial du marché OTA</td><td>253,2 Milliards $</td></tr>
+        </table>
+        <p style="font-size: 8.5pt; color: var(--text-muted); font-style: italic; margin-top: 10px;">* Sources : Relevés statistiques DGE, Rapports MKG Consulting 2024.</p>
+        
+        <div class="expert-note" style="margin-top: 30px;">
+            <strong>Analyse : Le piège de la distribution</strong><br>
+            Avec Booking captant près de 70% des flux digitalisés, l'indépendant n'a plus le contrôle de ses marges. La promesse de Happy House d'aider à ramener la réservation directe à un équilibre viable (diminuer le mix OTA) est une réponse vitale à cette donnée macro-économique.
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 9 : DATA MACRO (1/2)</div>
+            <div class="page-number" style="color: #DDA83E;">21</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-22" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>ANNEXE 9 : Pression Commerciale (2/2)</h1>
+        
+        <h2 style='font-size: 12pt; margin-top: 20px;'>2. L'Inflation des Certifications Écologiques</h2>
+        <p style="font-size: 9.5pt;">L'injonction législative provoque un foisonnement de la labellisation, ajoutant un niveau de complexité de gestion pour les indépendants.</p>
+
+        <table style='width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-top: 15px;'>
+            <tr style='background: rgba(221, 168, 62, 0.2);'><th style='width: 15%;'>Année</th><th style='width: 60%;'>Indicateur Sectoriel (France)</th><th style='width: 25%;'>Volume / État</th></tr>
+            <tr><td>2022</td><td>Nombre d'établissements labelisés "Clef Verte"</td><td>855 établissements</td></tr>
+            <tr><td>2024</td><td>Nombre d'établissements labelisés "Clef Verte"</td><td>1 564 établissements</td></tr>
+            <tr style="background: rgba(255,255,255,0.05);"><td>2025</td><td>Projection établissements "Clef Verte"</td><td><strong style="color: var(--gold);">2 428 (+184%)</strong></td></tr>
+            <tr><td>2024</td><td>Fin du Label historique "Qualité Tourisme"</td><td>5 000 établissements</td></tr>
+            <tr><td>2024</td><td>Lancement du label de remplacement ("Dest. Excellence")</td><td>203 certifiés</td></tr>
+            <tr><td>2026</td><td>Label "Qualité Tourisme"</td><td><strong style="color: #E74C3C;">Disparition Actée</strong></td></tr>
+        </table>
+        
+        <div class="expert-note" style="margin-top: 30px;">
+            <strong>Analyse : Le Mythe de l'Outil Supplémentaire</strong><br>
+            Ces tableaux objectivent le phénomène de "Fatigue Numérique". Côté distribution, l'hébergeur est écrasé par la toute-puissance d'une poignée d'algorithmes (Booking). Côté administratif, il est noyé sous la complexité des certifications mouvantes (fin de "Qualité Tourisme", pression de "Clef Verte").<br><br>
+            <strong>Conséquence :</strong> Dans un tel environnement de saturation, l'hébergeur Premium devient hermétique aux promesses d'acquisition téléphonique. Il a besoin d'un partenaire de confiance (Rencontre Physique / Afterworks) plutôt que d'un logiciel supplémentaire.
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">ANNEXE 9 : DATA MACRO (2/2)</div>
+            <div class="page-number" style="color: #DDA83E;">22</div>
+        </div>
+    </div>
+
+    <div class="page">
+        <a id="page-23" style="display: block; height: 1px; width: 1px;">&nbsp;</a>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            
+        <h1 style='color: var(--gold); text-align: center; border-bottom: 2px solid var(--gold); padding-bottom: 10px;'>DOSSIER DES PREUVES EXTERNES (CLOUD)</h1>
+        
+        <p style="font-size: 9.5pt; text-align: center; margin-bottom: 30px;">
+            Les documents opérationnels, livrables contractuels bruts et tableaux de pilotage volumineux ont été sécurisés sur une infrastructure Cloud dédiée. Vous pouvez les consulter en un clic via les accès sécurisés ci-dessous.
+        </p>
+
+        <div style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+            <h2 style='font-size: 11pt; color: var(--gold-light); margin-bottom: 5px; margin-top: 0;'>A. LIVRABLES & MATRICES COMPLÈTES</h2>
+            <a href="https://drive.google.com/file/d/1OoDtqvV-s1TELt1J17h7HyKzHJqrdiIQ/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+                📄 1. Pack Communication & Identité de Marque
+            </a>
+            <a href="https://drive.google.com/file/d/1kE7TUcKFbJkPhW6H4-cSR-xk0HBUzmy5/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+                🏢 2. Justificatif d'Activité / Extraction Fichiers
+            </a>
+            <a href="https://drive.google.com/file/d/1v9lRZvhTwE4CF3Dq4kPeR9IB8QzR9geY/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+                📦 3. Livrable Mission Analytique
+            </a>
+            <a href="https://drive.google.com/file/d/1KHVaDgWzgNSpym-UeFSKzoDM5abVMJj2/view?usp=drive_link" target="_blank" class="btn-nav" style="width: 80%;">
+                📊 4. Relevés de Performance & Stats Brutes
+            </a>
+
+            <h2 style='font-size: 11pt; color: var(--gold-light); margin-bottom: 5px; margin-top: 25px;'>B. SOCIAL SELLING & PREUVES DE RAYONNEMENT LINKEDIN</h2>
+            <a href="https://www.linkedin.com/posts/julien-florence-2536a083_oenotourisme-artdevivre-vignobles-activity-7421884268253057024-Ofgh?utm_source=share&utm_medium=member_desktop&rcm=ACoAABG4o18BLawDZS3rFCCggwVoWwgws6scy_U" target="_blank" class="btn-nav" style="width: 80%;">
+                🍇 1. Poste Analytique : Œnotourisme & Art de Vivre
+            </a>
+            <a href="https://www.linkedin.com/posts/julien-florence-2536a083_serviceclient-excellence-sommelier-activity-7418976158194552832-DbgX?utm_source=share&utm_medium=member_desktop&rcm=ACoAABG4o18BLawDZS3rFCCggwVoWwgws6scy_U" target="_blank" class="btn-nav" style="width: 80%;">
+                🍷 2. Réflexion : Excellence & Service Client (Héritage Sommelier)
+            </a>
+            <a href="https://www.linkedin.com/posts/julien-florence-2536a083_effetwaouh-hospitalitaez-happyhouse-activity-7417883359349022720-amMw?utm_source=share&utm_medium=member_desktop&rcm=ACoAABG4o18BLawDZS3rFCCggwVoWwgws6scy_U" target="_blank" class="btn-nav" style="width: 80%;">
+                ✨ 3. Marque : L'Effet Waouh en Hospitalité
+            </a>
+            <a href="https://www.linkedin.com/posts/julien-florence-2536a083_happyhouse-ecotourisme-toulouse-activity-7415346621812645890-4xin?utm_source=share&utm_medium=member_desktop&rcm=ACoAABG4o18BLawDZS3rFCCggwVoWwgws6scy_U" target="_blank" class="btn-nav" style="width: 80%;">
+                🌿 4. Réseau : Écotourisme & Engagement Happy House
+            </a>
+        </div>
+        
+        <div class="glass-card" style="margin-top: 50px; text-align: center; border: 1px solid #DDA83E;">
+            <p style="font-family: 'Cinzel', serif; font-size: 12pt; color: #DDA83E; margin: 0; font-weight: bold;">
+                FIN DU RAPPORT DE MISSION EXPERT
+            </p>
+            <p style="font-size: 9pt; color: #888; margin-top: 10px;">
+                Dossier conçu et certifié par Julien Florence (Promotion A150).
+            </p>
+        </div>
+    
+        </div>
+        <div class="footer">
+            <a href="#page-2" style="color: #DDA83E; border: 1px solid #DDA83E; padding: 5px 10px; display: inline-block; font-size: 7pt;">◈ RETOUR SOMMAIRE</a>
+            <div style="color: #DDA83E; font-size: 7.5pt; text-transform: uppercase;">DOSSIER DES PREUVES CLOUD</div>
+            <div class="page-number" style="color: #DDA83E;">23</div>
+        </div>
+    </div>
+</body></html>

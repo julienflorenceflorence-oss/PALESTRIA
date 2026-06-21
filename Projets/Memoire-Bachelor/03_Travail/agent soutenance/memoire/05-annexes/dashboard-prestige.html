@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard RDM Performance - Julien Florence</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap');
+        :root { --bg: #0F1115; --card: #1A1D23; --gold: #D4AF37; --text: #FFF; --dim: #A0A0A0; }
+        @page { margin: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); padding: 20px; display: flex; justify-content: center; }
+        .dashboard { width: 1000px; background: var(--card); border: 1px solid var(--gold); padding: 30px; position: relative; }
+        header { text-align: center; margin-bottom: 30px; border-bottom: 1px solid var(--gold); padding-bottom: 10px; }
+        h1 { font-family: 'Cinzel'; color: var(--gold); letter-spacing: 3px; font-size: 1.8rem; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .stat-card { border: 1px solid rgba(212,175,55,0.2); padding: 15px; text-align: center; }
+        .val { font-family: 'Cinzel'; font-size: 2rem; color: var(--gold); display: block; }
+        .lbl { font-size: 0.7rem; color: var(--dim); text-transform: uppercase; }
+        .sub-grid { grid-column: span 3; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .box { background: rgba(255,255,255,0.03); padding: 15px; border-left: 3px solid var(--gold); }
+        .box h3 { font-size: 0.9rem; color: var(--gold); margin-top: 0; }
+        .logos-footer { display: flex; justify-content: space-between; align-items: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(212,175,55,0.3); }
+        .logos-footer img { height: 40px; filter: grayscale(1) brightness(1.5); }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>PILOTAGE DE LA SCALABILITÉ (160 → 1000)</h1>
+            <p style="font-style:italic; color:var(--dim);">Rapport de Mission - Julien Florence</p>
+        </header>
+        <div class="grid">
+            <div class="stat-card"><span class="val">126 482</span><span class="lbl">Prospects Qualifiés</span></div>
+            <div class="stat-card"><span class="val">416</span><span class="lbl">Flux Automatisé / Jour</span></div>
+            <div class="stat-card"><span class="val">12.4x</span><span class="lbl">Ratio LTV / CAC</span></div>
+            <div class="stat-card"><span class="val">42%</span><span class="lbl">Taux d'Ouverture Email</span></div>
+            <div class="stat-card"><span class="val">-70%</span><span class="lbl">Temps de Qualification</span></div>
+            <div class="stat-card"><span class="val">15%</span><span class="lbl">Conversion RDV/Signature</span></div>
+        </div>
+        <div class="sub-grid">
+            <div class="box">
+                <h3>Ingénierie Financière</h3>
+                <p style="font-size:0.8rem; color:var(--dim);">
+                    • CAC Ancien : 450€ (Manuel)<br>
+                    • CAC Nouveau : 135€ (Industriel)<br>
+                    • Économie de Marge : +22% par adhérent.
+                </p>
+            </div>
+            <div class="box">
+                <h3>Vitesse d'Exécution (Velocity)</h3>
+                <p style="font-size:0.8rem; color:var(--dim);">
+                    • Onboarding : Réduit de 14 à 4 jours.<br>
+                    • Reach LinkedIn : 2 400 invites / mois.<br>
+                    • Lead Scoring : Précision de 88%.
+                </p>
+            </div>
+        </div>
+        <div class="logos-footer">
+            <img src="../03-chapitres/rocket logo 2.png" alt="Rocket School">
+            <img src="../03-chapitres/image Happy House.png" alt="Happy House">
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Prestige | Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --panel: #161A23;
+            --text: #ffffff;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .preview-box {
+            background: #000;
+            padding: 0;
+            border: 1px solid var(--gold);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+            margin-bottom: 40px;
+            border-radius: 4px;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-copy {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 20px 40px;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 4px;
+            width: 100%;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-copy:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+        }
+
+        #status {
+            margin-top: 15px;
+            font-size: 0.8rem;
+            color: var(--gold);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            height: 20px;
+        }
+
+        .instructions {
+            margin-top: 40px;
+            font-size: 0.8rem;
+            color: #666;
+            line-height: 1.6;
+            text-align: left;
+            background: rgba(255,255,255,0.03);
+            padding: 20px;
+            border-left: 2px solid var(--gold);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Ma Signature Prestige</h1>
+
+    <div class="preview-box" id="signature-container">
+        <!-- La signature sera injectée ici -->
+    </div>
+
+    <button class="btn-copy" onclick="copySignature()">Copier pour Gmail</button>
+    <div id="status"></div>
+
+    <div class="instructions">
+        <strong>Mode d'emploi :</strong><br>
+        1. Cliquez sur le bouton "Copier pour Gmail".<br>
+        2. Allez dans vos <strong>Paramètres Gmail</strong> > "Signature".<br>
+        3. <strong>Collez</strong> (Ctrl+V) dans la zone de texte.<br>
+        4. Enregistrez les modifications.
+    </div>
+</div>
+
+<script>
+    const signatureHTML = `
+<table cellpadding="0" cellspacing="0" border="0" width="650" style="background-color: #0F1115; width: 650px; font-family: 'Montserrat', Arial, sans-serif; border: 1px solid #D4AF37; border-collapse: collapse;">
+    <!-- 1. BANNIÈRE CERVEAU (HAUT) -->
+    <tr>
+        <td style="padding: 0; line-height: 0; background-color: #000; width: 650px;">
+            <img src="https://raw.githubusercontent.com/julienflorenceflorence-oss/cv-prestige/main/cerveau%203.0.png" width="650" style="display: block; width: 650px; height: auto; border: 0;">
+        </td>
+    </tr>
+    <!-- LIGNE D'ACCENT -->
+    <tr><td height="4" style="background-color: #D4AF37; line-height: 4px; font-size: 4px;">&nbsp;</td></tr>
+    
+    <!-- 2. ZONE DE TEXTE (CORPS DU MAIL - BLANC) -->
+    <tr>
+        <td style="background-color: #ffffff; padding: 60px 40px; color: #000000; font-size: 16px;">
+            Bonjour,<br><br>
+            [Tapez votre message ici...]<br><br><br>
+        </td>
+    </tr>
+
+    <!-- LIGNE D'ACCENT BASSE -->
+    <tr><td height="4" style="background-color: #D4AF37; line-height: 4px; font-size: 4px;">&nbsp;</td></tr>
+
+    <!-- 3. PIED DE SIGNATURE (COORDONNÉES - BAS) -->
+    <tr>
+        <td style="padding: 35px 20px; background-color: #0F1115;">
+            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                    <td width="110" align="center" style="vertical-align: top;">
+                        <div style="width: 100px; height: 100px; border: 2px solid #D4AF37; border-radius: 50%; overflow: hidden; background-color: #000;">
+                            <img src="https://raw.githubusercontent.com/julienflorenceflorence-oss/cv-prestige/main/photo/photo%20moi%20pro.jpeg" alt="Julien FLORENCE" width="100" style="display: block;">
+                        </div>
+                    </td>
+                    <td style="padding-left: 20px; vertical-align: middle;">
+                        <div style="color: #D4AF37; font-size: 22px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; font-family: 'Cinzel', serif;">Julien FLORENCE</div>
+                        <div style="line-height: 10px; font-size: 1px;">&nbsp;</div>
+                        <div style="color: #ffffff; font-size: 13px; font-weight: 300; text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.9;">Expert en Stratégie & Management et Coaching</div>
+                        
+                        <table cellpadding="0" cellspacing="0" border="0" style="margin-top: 20px;">
+                            <tr>
+                                <td style="vertical-align: middle;">
+                                    <img src="https://img.icons8.com/ios-filled/50/D4AF37/phone.png" width="13" style="display: block; width: 13px; border:0;">
+                                </td>
+                                <td style="padding-left: 6px; color: #D4AF37; font-size: 12px; font-weight: bold; letter-spacing: 0.5px; white-space: nowrap;"><a href="tel:0661747573" style="color: #D4AF37; text-decoration: none;">06 61 74 75 73</a></td>
+                                <td style="padding: 0 10px; color: rgba(212,175,55,0.3);">|</td>
+                                <td style="vertical-align: middle;">
+                                    <img src="https://img.icons8.com/ios-filled/50/D4AF37/new-post.png" width="13" style="display: block; width: 13px; border:0;">
+                                </td>
+                                <td style="padding-left: 6px; color: #ffffff; font-size: 12px; opacity: 0.8; letter-spacing: 0.5px;"><a href="mailto:julien.florence@gmail.com" style="color: #ffffff; text-decoration: none;">julien.florence@gmail.com</a></td>
+                            </tr>
+                        </table>
+
+                        <div style="margin-top: 25px;">
+                            <a href="https://calendar.app.google/iCzfE1GQrjxM3ZQ56" target="_blank" style="display: inline-block; background-color: #D4AF37; color: #000000; padding: 12px 25px; text-decoration: none; font-size: 11px; font-weight: bold; border-radius: 4px; text-transform: uppercase; letter-spacing: 2px; font-family: 'Cinzel', serif;">Prendre RDV</a>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>`;
+
+    document.getElementById('signature-container').innerHTML = signatureHTML;
+
+    function copySignature() {
+        const container = document.getElementById('signature-container');
+        const range = document.createRange();
+        range.selectNode(container);
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
+        
+        try {
+            document.execCommand('copy');
+            const s = document.getElementById('status');
+            s.innerText = "✓ SIGNATURE COPIÉE DANS LE PRESSE-PAPIER";
+            setTimeout(() => s.innerText = "", 4000);
+        } catch (err) {
+            alert("Erreur lors de la copie.");
+        }
+        window.getSelection().removeAllRanges();
+    }
+</script>
+
+</body>
+</html>

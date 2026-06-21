@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Note Stratégique — Optimisation de Traction</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D; /* Noir Sidéral Officiel */
+            --surface: #0A0E18; /* Surface Tech Officielle */
+            --accent-cyan: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .document-container {
+            background: var(--surface);
+            max-width: 1100px;
+            width: 100%;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            padding: 60px 70px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .document-container {
+                padding: 30px 15px;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+            header { margin-bottom: 30px; }
+            .logo { font-size: 1.8rem; }
+            .doc-type { font-size: 0.7rem; }
+            .praise-box { padding: 20px; }
+            .praise-box h2 { font-size: 1.2rem; }
+            .praise-text { font-size: 0.95rem; }
+            h3 { font-size: 1rem; padding-left: 15px; }
+            .survey-section { padding: 20px; }
+            .survey-title { font-size: 1rem; }
+            .cta-button-mockup { width: 100%; box-sizing: border-box; font-size: 0.8rem; padding: 12px 15px; }
+        }
+
+        .document-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--brand-gradient);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+        }
+
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .doc-type {
+            font-family: 'Cinzel';
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        .praise-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .praise-box h2 {
+            font-family: 'Cinzel';
+            color: #FFF;
+            font-size: 1.5rem;
+            margin-top: 0;
+            letter-spacing: 2px;
+        }
+
+        .praise-text {
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--text-dim);
+        }
+
+        h3 {
+            font-family: 'Cinzel';
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            margin-top: 40px;
+            border-left: 4px solid var(--accent-purple);
+            padding-left: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .survey-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .survey-section {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 30px;
+        }
+
+        .survey-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .survey-title {
+            font-family: 'Cinzel';
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #FFF;
+            letter-spacing: 1px;
+        }
+
+        .target-tag {
+            font-size: 0.7rem;
+            background: rgba(0, 229, 255, 0.1);
+            color: var(--accent-cyan);
+            border: 1px solid var(--accent-cyan);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .instruction-card {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent-purple);
+        }
+
+        .position-label {
+            font-size: 0.75rem;
+            color: var(--accent-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .question-text {
+            font-size: 1rem;
+            color: #FFF;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .strategy-why {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        .cta-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .cta-label {
+            font-family: 'Cinzel';
+            color: var(--accent-coral);
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: block;
+            letter-spacing: 2px;
+        }
+
+        .cta-button-mockup {
+            background: var(--brand-gradient);
+            color: #05070D;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 0.9rem;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.2);
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+
+        .highlight-cyan { color: var(--accent-cyan); font-weight: 700; }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        <header>
+            <div class="logo">QUESTIA</div>
+            <div class="doc-type">Direction Stratégique — Unité d'Élite</div>
+        </header>
+
+        <div class="praise-box">
+            <h2>L'Éveil de la Force Collective</h2>
+            <p class="praise-text">
+                "Le travail que vous avez accompli ensemble n'est pas qu'une simple collecte : c'est la <span class="highlight-cyan">cartographie émotionnelle</span> de notre marché. 
+                Grâce à votre intuition, QuestIA ne se contente plus de répondre à un besoin, elle vient combler un vide. 
+                Voici comment nous allons murmurer à l'oreille du jury en plaçant chaque question comme une graine de certitude."
+            </p>
+        </div>
+
+        <h3>L'Ingénierie de l'Influence</h3>
+
+        <div class="survey-grid">
+            
+            <!-- SONDAGE #1 -->
+            <div class="survey-section">
+                <div class="survey-header">
+                    <div class="survey-title">Sondage #1 — L'Éveil de l'Inefficacité</div>
+                    <div class="target-tag">Cible : Entreprises</div>
+                </div>
+
+                <div class="instruction-card">
+                    <span class="position-label">Position 03 : L'Infiltration du Doute</span>
+                    <span class="question-text">"Combien d'heures par mois un·e collaborateur·rice consacre-t-il·elle à une formation sans ressentir d'amélioration réelle ?"</span>
+                    <p class="strategy-why"><strong>L'Angle Suggestif :</strong> Ici, on ne pose pas une question, on installe un malaise silencieux sur le gaspillage. Le·la décideur·rice doit soudainement "voir" l'argent s'évaporer, rendant notre solution inévitable.</p>
+                </div>
+
+                <div class="instruction-card">
+                    <span class="position-label">Position 05 : L'Ancrage du Désir</span>
+                    <span class="question-text">"Citez UNE situation pro précise où le manque de fluidité a été un frein majeur ce mois-ci (ex: Pitch, négoc)."</span>
+                    <p class="strategy-why"><strong>L'Angle Suggestif :</strong> On force l'esprit à revivre une frustration réelle. Une fois la douleur réactivée, le cerveau est biologiquement programmé pour chercher le soulagement que nous offrons.</p>
+                </div>
+
+                <div class="cta-card">
+                    <span class="cta-label">L'Invitation (Fake Door)</span>
+                    <div class="cta-button-mockup">Débloquer mon accès privilège — 3 mois offerts (5 places restantes)</div>
+                </div>
+            </div>
+
+            <!-- SONDAGE #2 -->
+            <div class="survey-section">
+                <div class="survey-header">
+                    <div class="survey-title">Sondage #2 — Le Poids de l'Avenir</div>
+                    <div class="target-tag">Cible : Étudiant·e·s</div>
+                </div>
+
+                <div class="instruction-card">
+                    <span class="position-label">Position 02 : Le Vertige de la Perte</span>
+                    <span class="question-text">"Quel est le coût annuel estimé lié aux 're-takes' (échecs aux certifications) ?"</span>
+                    <p class="strategy-why"><strong>L'Angle Suggestif :</strong> On fait résonner le coût de l'échec avant même de parler de réussite. En quantifiant l'angoisse, on transforme QuestIA en une assurance-vie pour leur carrière.</p>
+                </div>
+
+                <div class="instruction-card">
+                    <span class="position-label">Position 04 : L'Appel de la Modernité</span>
+                    <span class="question-text">"Feriez-vous confiance à une évaluation 100% IA pour valider un niveau interne (CECRL) ?"</span>
+                    <p class="strategy-why"><strong>L'Angle Suggestif :</strong> C'est un test de vision. On suggère que l'avenir est déjà là. Celles et ceux qui répondent 'Oui' se sentent déjà membres de l'élite technologique que nous bâtissons.</p>
+                </div>
+
+                <div class="cta-card">
+                    <span class="cta-label">L'Invitation (Fake Door)</span>
+                    <div class="cta-button-mockup">Rejoindre l'élite des 20 premiers·ères testeur·rice·s (3 mois offerts)</div>
+                </div>
+            </div>
+
+            <!-- SONDAGE #3 -->
+            <div class="survey-section">
+                <div class="survey-header">
+                    <div class="survey-title">Sondage #3 — La Libération Pédagogique</div>
+                    <div class="target-tag" style="background: var(--accent-coral);">Cible : Formateur·rice·s</div>
+                </div>
+
+                <div class="instruction-card" style="border-left-color: var(--accent-coral);">
+                    <span class="position-label">Position 03 : Le Miroir de l'Épuisement</span>
+                    <span class="question-text">"Combien d'heures par semaine passez-vous à évaluer et corriger la pratique orale de vos apprenant·e·s (hors temps de cours) ?"</span>
+                    <p class="strategy-why"><strong>L'Angle Suggestif :</strong> On révèle le sacrifice invisible. Le·la formateur·rice doit sentir le poids de ses heures non payées pour que QuestIA apparaisse comme sa seule voie de libération.</p>
+                </div>
+
+                <div class="instruction-card" style="border-left-color: var(--accent-coral);">
+                    <span class="position-label">Position 04 : La Quête de l'Ubiquité</span>
+                    <span class="question-text">"Avec vos effectifs actuels, vous sentez-vous capable d'offrir un feedback vocal quotidien et personnalisé ?"</span>
+                    <p class="strategy-why"><strong>L'Angle Suggestif :</strong> On souligne la limite humaine pour introduire le super-pouvoir technologique. On ne remplace pas le·la prof, on l'augmente pour qu'il·elle soit partout à la fois.</p>
+                </div>
+
+                <div class="cta-card" style="border-color: var(--accent-coral);">
+                    <span class="cta-label" style="color: var(--accent-coral);">L'Invitation (Fake Door)</span>
+                    <div class="cta-button-mockup" style="background: var(--accent-coral); box-shadow: 0 10px 20px rgba(255, 90, 106, 0.3);">Activer mon Assistant IA — 3 mois offerts (10 places écoles)</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            UNITÉ D'ÉLITE — TRIUMVIRAT | QUESTIA 2026
+        </div>
+    </div>
+
+</body>
+</html>

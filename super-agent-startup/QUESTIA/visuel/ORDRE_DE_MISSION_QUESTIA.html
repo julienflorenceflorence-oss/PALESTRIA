@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORDRE DE MISSION - QUESTIA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-main: #05070D;
+            --bg-card: #0A0E18;
+            --accent: #00E5FF;
+            --accent-comp: #7B5CFF;
+            --accent-energy: #FF5A6A;
+            --text-main: #EEF1F7;
+            --text-sec: #8A93A8;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --gradient: linear-gradient(135deg, var(--accent), var(--accent-comp), var(--accent-energy));
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px;
+            border-radius: 20px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .intro {
+            text-align: center;
+            color: var(--text-sec);
+            font-size: 1.1rem;
+            margin-bottom: 50px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section {
+            background: var(--bg-card);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid var(--glass-border);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 229, 255, 0.3);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 15px;
+        }
+
+        .section-icon {
+            font-size: 2rem;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            color: var(--text-main);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .objective {
+            background: rgba(0, 229, 255, 0.1);
+            border-left: 3px solid var(--accent);
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .member-card {
+            margin-bottom: 20px;
+            padding-left: 15px;
+            border-left: 2px solid var(--glass-border);
+        }
+
+        .member-name {
+            color: var(--accent);
+            font-weight: 800;
+            font-size: 1rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .member-why {
+            font-style: italic;
+            color: var(--text-sec);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .member-task {
+            font-size: 0.95rem;
+            color: var(--text-main);
+        }
+
+        .footer-note {
+            text-align: center;
+            padding: 40px;
+            background: var(--glass);
+            border-radius: 20px;
+            margin-top: 50px;
+            border: 1px solid var(--glass-border);
+        }
+
+        .footer-note h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+
+        .footer-note p {
+            color: var(--text-sec);
+            font-size: 0.95rem;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: var(--gradient);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 1.8rem; }
+            .container { padding: 20px 15px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="subtitle">Mission Stratégique</div>
+            <h1>Ordre de Mission Collectif</h1>
+            <p><strong>Projet QuestIA</strong> | Date : Immédiat | Objectif : 20/20</p>
+        </header>
+
+        <p class="intro">
+            Ce document détaille la répartition des rôles pour la phase de lancement immédiat. Les choix ont été faits pour maximiser les talents de chacun et garantir une traction réelle avant l'examen du 18/05.
+        </p>
+
+        <!-- Chantier 1 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🏗️</span>
+                <h2>Chantier 1 : Data & Validation Marché</h2>
+            </div>
+            <div class="objective">Objectif : Obtenir 500+ prospects qualifiés et 30+ réponses au sondage.</div>
+            
+            <div class="member-card">
+                <span class="member-name">PRISCILLE (Lead Scraping)</span>
+                <span class="member-why">Pourquoi : Seule experte déclarée en scraping du groupe.</span>
+                <p class="member-task">Extraire les contacts (Email/LinkedIn) des Directeurs Pédagogiques et Responsables Innovation des écoles de commerce/ingénieurs.</p>
+            </div>
+
+            <div class="member-card">
+                <span class="member-name">JEANNE (Data Validation)</span>
+                <span class="member-why">Pourquoi : Profil Data Scientist.</span>
+                <p class="member-task">Valider la structure du sondage pour garantir des données exploitables et analyser les premiers retours.</p>
+            </div>
+
+            <div class="member-card">
+                <span class="member-name">NATALIA (Ciblage Business)</span>
+                <span class="member-why">Pourquoi : Maîtrise des CRM et vision business internationale.</span>
+                <p class="member-task">Définir les segments de marché prioritaires pour le scraping.</p>
+            </div>
+        </div>
+
+        <!-- Chantier 2 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📧</span>
+                <h2>Chantier 2 : Outbound & Tracking Performance</h2>
+            </div>
+            <div class="objective">Objectif : Lancer les mails et piloter les résultats à la donnée.</div>
+            
+            <div class="member-card">
+                <span class="member-name">NATALIA & MYRIAM (Duo Sales Ops)</span>
+                <span class="member-why">Pourquoi : Natalia maîtrise Lemlist. Myriam a l'expérience du closing et de la relation client.</span>
+                <p class="member-task">Rédaction du copywriting des mails et paramétrage des séquences d'envoi.</p>
+            </div>
+
+            <div class="member-card">
+                <span class="member-name">JULIEN & PRISCILLE (Duo Automation)</span>
+                <span class="member-why">Pourquoi : Expertise N8N (Julien) et Make (Priscille).</span>
+                <p class="member-task">Créer un Dashboard centralisé (stats mails) et modéliser le <b>Processus d'Intégration Client</b> automatisé (Onboarding).</p>
+            </div>
+        </div>
+
+        <!-- Chantier 3 -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🎨</span>
+                <h2>Chantier 3 : Notoriété & Storytelling Prestige</h2>
+            </div>
+            <div class="objective">Objectif : Créer une image de marque forte et engager la communauté.</div>
+            
+            <div class="member-card">
+                <span class="member-name">ALBANE (Directrice Artistique & Storytelling)</span>
+                <span class="member-why">Pourquoi : Expertise en identité visuelle et content marketing.</span>
+                <p class="member-task">Piloter la charte graphique et créer les 3 premiers posts LinkedIn/Insta de QuestIA.</p>
+            </div>
+
+            <div class="member-card">
+                <span class="member-name">WASSILA & MYRIAM (Content Squad)</span>
+                <span class="member-why">Pourquoi : Wassila est forte en organisation et rédaction. Myriam maîtrise le community management.</span>
+                <p class="member-task">Déclinaison des contenus et animation des réseaux sociaux.</p>
+            </div>
+        </div>
+
+        <!-- Coordination -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">⚖️</span>
+                <h2>Coordination & Validation Finale</h2>
+            </div>
+            <div class="member-card">
+                <span class="member-name">JULIEN & ALBANE (Capitaines)</span>
+                <p class="member-task">Pilotage de la stratégie globale, arbitrage et vision GTM.</p>
+            </div>
+            <div class="member-card">
+                <span class="member-name">LORRAINE (Vice-Capitaine)</span>
+                <p class="member-task">Supervision 360°, respect du planning et garant de la cohérence pédagogique (Note d'Opportunité).</p>
+            </div>
+        </div>
+
+        <div class="footer-note">
+            <h3>🚀 Résumé pour l'équipe</h3>
+            <p>Chacun a été placé là où sa force est maximale. Priscille automatise, Jeanne analyse, Natalia & Myriam vendent, Albane sublime, et Wassila & Lorraine sécurisent la structure.</p>
+            <div class="badge">NEXT STEP : ACTION IMMÉDIATE</div>
+            <p style="margin-top: 20px; font-size: 0.8rem; opacity: 0.7;">On ne cherche pas seulement à faire un projet, on cherche à prouver que QuestIA a déjà ses premiers fans.</p>
+        </div>
+    </div>
+</body>
+</html>

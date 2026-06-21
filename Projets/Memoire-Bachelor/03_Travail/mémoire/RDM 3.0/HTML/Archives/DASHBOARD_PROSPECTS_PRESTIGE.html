@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRM Prospects - Happy House Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --text-main: #F4F4F4;
+            --text-muted: #8E9297;
+            --card-bg: #161A23;
+            --border-color: rgba(212, 175, 55, 0.2);
+            --danger: #E05D5D;
+            --success: #27AE60;
+            --warning: #F2994A;
+            --info: #29B6F6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Premium */
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-academic {
+            background: linear-gradient(135deg, var(--accent), #AA7C11);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .kpi-card.nego::before { background: var(--success); }
+        .kpi-card.nrp::before { background: var(--text-muted); }
+        .kpi-card.refus::before { background: var(--danger); }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            margin: 10px 0;
+            font-weight: 700;
+        }
+
+        .kpi-card.nego .kpi-value { color: var(--success); }
+        .kpi-card.nrp .kpi-value { color: var(--text-muted); }
+        .kpi-card.refus .kpi-value { color: var(--danger); }
+
+        .kpi-subtext {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content Layout */
+        .dashboard-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-body {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        /* Rules & Objections Sidebar */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .panel-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .panel-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .objection-box {
+            background: rgba(212, 175, 55, 0.03);
+            border-left: 2px solid var(--accent);
+            padding: 12px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+        }
+
+        .objection-box strong {
+            color: var(--accent);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .objection-box p {
+            font-size: 0.75rem;
+            color: var(--text-main);
+        }
+
+        /* Visual Distribution Chart */
+        .distribution-chart {
+            display: flex;
+            height: 25px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .dist-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        /* Table Controls */
+        .table-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-input {
+            background: #000;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: 'Montserrat';
+            font-size: 0.85rem;
+            width: 100%;
+            max-width: 300px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .filters-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-select {
+            background: #000;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-family: 'Montserrat';
+            font-size: 0.8rem;
+            outline: none;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            border-color: var(--accent);
+        }
+
+        /* Table Design */
+        .table-wrapper {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow-x: auto;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background-color: rgba(212, 175, 55, 0.05);
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--border-color);
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .badge-status.nego {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+
+        .badge-status.nrp {
+            background-color: rgba(142, 146, 151, 0.15);
+            color: var(--text-muted);
+            border: 1px solid rgba(142, 146, 151, 0.3);
+        }
+
+        .badge-status.refus-cat {
+            background-color: rgba(224, 93, 93, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(224, 93, 93, 0.3);
+        }
+
+        .badge-status.refus-arg {
+            background-color: rgba(242, 153, 74, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(242, 153, 74, 0.3);
+        }
+
+        .badge-type {
+            font-size: 0.7rem;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .badge-type.pro { background-color: rgba(39, 174, 96, 0.1); color: var(--success); }
+        .badge-type.part { background-color: rgba(242, 153, 74, 0.1); color: var(--warning); }
+
+        .stars {
+            color: var(--accent);
+            letter-spacing: 2px;
+        }
+
+        /* Pagination style */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .pagination-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Montserrat';
+            font-size: 0.8rem;
+            transition: all 0.3s;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        .pagination-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .empty-row-msg {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-title">
+                <h1>Fichier de Prospection Stratégique</h1>
+                <p id="dashboardTitle">Chargement de la base prospects...</p>
+            </div>
+            <div class="badge-academic">
+                SDR Pilotage - Afterworks
+            </div>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Base Prospects Chargée</div>
+                <div class="kpi-value" id="kpi-total">-</div>
+                <div class="kpi-subtext">Total des leads actifs qualifiés</div>
+            </div>
+            <div class="kpi-card nego">
+                <div class="kpi-label">Opportunités (Négo)</div>
+                <div class="kpi-value" id="kpi-nego">-</div>
+                <div class="kpi-subtext" id="kpi-nego-pct">-</div>
+            </div>
+            <div class="kpi-card nrp">
+                <div class="kpi-label">Pas de Réponse (NRP)</div>
+                <div class="kpi-value" id="kpi-nrp">-</div>
+                <div class="kpi-subtext" id="kpi-nrp-pct">-</div>
+            </div>
+            <div class="kpi-card refus">
+                <div class="kpi-label">Refus (Cat. & Arg.)</div>
+                <div class="kpi-value" id="kpi-refus">-</div>
+                <div class="kpi-subtext" id="kpi-refus-pct">-</div>
+            </div>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="dashboard-body">
+            
+            <!-- Left Panel: Rules & Objections Sidebar -->
+            <div class="info-panel">
+                
+                <!-- Objections Guide -->
+                <div class="panel-card">
+                    <h2>Guide de Traitement des Refus</h2>
+                    <p style="font-size: 0.75rem; color: var(--text-muted); margin-bottom: 15px;">
+                        Arguments clés à opposer lors du contact commercial (Méthode DISC) :
+                    </p>
+                    
+                    <div class="objection-box">
+                        <strong>"Je n'ai pas le temps / Débordé"</strong>
+                        <p>"C'est l'argument exact. Notre service libère 10 à 15 heures par semaine en automatisant l'opérationnel."</p>
+                    </div>
+
+                    <div class="objection-box">
+                        <strong>"Je gère tout moi-même"</strong>
+                        <p>"Vous payez donc le tarif fort sur la blanchisserie et les commissions. La centrale Entegra augmente votre marge de 10 à 20%."</p>
+                    </div>
+
+                    <div class="objection-box">
+                        <strong>"Envoyez une plaquette (Méfiance)"</strong>
+                        <p>"Nos partenaires enregistrent 96-98% de satisfaction client. Les résultats sont validés par les chiffres."</p>
+                    </div>
+                </div>
+
+                <!-- Legal Filter Summary -->
+                <div class="panel-card">
+                    <h2>Le Filtrage Légal ALUR</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-main); margin-bottom: 10px;">
+                        <strong>Une base saine et ciblée.</strong>
+                    </p>
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">
+                        Sur un gisement initial de 126 000 contacts, cette sélection de prospects correspond exclusivement à des gîtes ou domaines de standing (3★ à 5★) conformes et soumis à la réglementation ALUR exigeant une professionnalisation immédiate.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Panel: Prospects List -->
+            <div class="data-panel">
+                
+                <!-- Controls, Search and Filters -->
+                <div class="table-controls">
+                    <input type="text" id="prospectSearch" class="search-input" placeholder="Rechercher par nom, ville..." onkeyup="onSearchOrFilter()">
+                    
+                    <div class="filters-group">
+                        <select id="typeFilter" class="filter-select" onchange="onSearchOrFilter()">
+                            <option value="all">Tous les types</option>
+                            <option value="PROFESSIONNEL">Professionnels</option>
+                            <option value="PARTICULIER">Particuliers</option>
+                        </select>
+                        <select id="statusFilter" class="filter-select" onchange="onSearchOrFilter()">
+                            <option value="all">Tous les statuts</option>
+                            <option value="SUIVI NÉGO">Suivi Négo</option>
+                            <option value="NRP">NRP</option>
+                            <option value="REFUS ARGUMENTÉ">Refus Argumenté</option>
+                            <option value="REFUS CATÉGORIQUE">Refus Catégorique</option>
+                        </select>
+                        <select id="deptFilter" class="filter-select" onchange="onSearchOrFilter()">
+                            <option value="all">Tous départements</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Main Data Table -->
+                <div class="table-wrapper">
+                    <table id="prospectTable">
+                        <thead>
+                            <tr>
+                                <th>Établissement</th>
+                                <th>Classement</th>
+                                <th>Coordonnées</th>
+                                <th>Statut Commercial</th>
+                                <th>Notes d'Échange / Objections</th>
+                            </tr>
+                        </thead>
+                        <tbody id="prospectBody">
+                            <!-- Injected dynamically from prospects.json -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination Footer -->
+                <div class="pagination">
+                    <button class="pagination-btn" id="btnPrev" onclick="changePage(-1)">Précédent</button>
+                    <span class="pagination-info" id="pageIndicator">Page 1 sur 1</span>
+                    <button class="pagination-btn" id="btnNext" onclick="changePage(1)">Suivant</button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Data Loading & Logic -->
+    <script>
+        let allProspects = [];
+        let filteredProspects = [];
+        let currentPage = 1;
+        const itemsPerPage = 10;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            fetch('prospects.json')
+                .then(response => response.json())
+                .then(data => {
+                    allProspects = data;
+                    filteredProspects = data;
+                    
+                    // Populate depts filter dynamically
+                    populateDeptsFilter(data);
+                    
+                    // Render Dashboard elements
+                    calculateKPIs(data);
+                    renderTable();
+                    updatePagination();
+                })
+                .catch(err => {
+                    console.error("Erreur de chargement des prospects:", err);
+                    document.getElementById("dashboardTitle").textContent = "Erreur de chargement du fichier JSON.";
+                });
+        });
+
+        function populateDeptsFilter(data) {
+            const depts = [...new Set(data.map(p => p.department))].sort((a,b) => parseInt(a)-parseInt(b));
+            const select = document.getElementById("deptFilter");
+            depts.forEach(d => {
+                const opt = document.createElement("option");
+                opt.value = d;
+                opt.textContent = `Dept ${d}`;
+                select.appendChild(opt);
+            });
+        }
+
+        function calculateKPIs(data) {
+            const total = data.length;
+            const nego = data.filter(p => p.status === "SUIVI NÉGO").length;
+            const nrp = data.filter(p => p.status === "NRP").length;
+            const refus = data.filter(p => p.status === "REFUS ARGUMENTÉ" || p.status === "REFUS CATÉGORIQUE").length;
+
+            document.getElementById("dashboardTitle").textContent = `Fichier Prospects : ${total} Leads Actifs`;
+            document.getElementById("kpi-total").textContent = total;
+            document.getElementById("kpi-nego").textContent = nego;
+            document.getElementById("kpi-nego-pct").textContent = `${((nego / total) * 100).toFixed(1)}% des contacts`;
+            document.getElementById("kpi-nrp").textContent = nrp;
+            document.getElementById("kpi-nrp-pct").textContent = `${((nrp / total) * 100).toFixed(1)}% des contacts`;
+            document.getElementById("kpi-refus").textContent = refus;
+            document.getElementById("kpi-refus-pct").textContent = `${((refus / total) * 100).toFixed(1)}% des contacts`;
+        }
+
+        function renderTable() {
+            const body = document.getElementById("prospectBody");
+            body.innerHTML = "";
+
+            const startIdx = (currentPage - 1) * itemsPerPage;
+            const endIdx = startIdx + itemsPerPage;
+            const pageItems = filteredProspects.slice(startIdx, endIdx);
+
+            if (pageItems.length === 0) {
+                body.innerHTML = `<tr><td colspan="5" class="empty-row-msg">Aucun prospect ne correspond à vos critères de recherche.</td></tr>`;
+                return;
+            }
+
+            pageItems.forEach(p => {
+                const tr = document.createElement("tr");
+                
+                // Stars rendering
+                let starsHTML = '';
+                for (let s = 1; s <= 5; s++) {
+                    starsHTML += s <= p.rating ? '⭐' : '';
+                }
+
+                // Badges rendering
+                const typeClass = p.type === "PROFESSIONNEL" ? "pro" : "part";
+                const typeLabel = p.type === "PROFESSIONNEL" ? "PRO" : "PARTICULIER";
+
+                let statusHTML = '';
+                switch (p.status) {
+                    case 'SUIVI NÉGO':
+                        statusHTML = `<span class="badge-status nego">Suivi Négo</span>`;
+                        break;
+                    case 'NRP':
+                        statusHTML = `<span class="badge-status nrp">NRP (Sans rép.)</span>`;
+                        break;
+                    case 'REFUS ARGUMENTÉ':
+                        statusHTML = `<span class="badge-status refus-arg">Refus Argumenté</span>`;
+                        break;
+                    case 'REFUS CATÉGORIQUE':
+                        statusHTML = `<span class="badge-status refus-cat">Refus Catégorique</span>`;
+                        break;
+                }
+
+                tr.innerHTML = `
+                    <td>
+                        <strong style="color: var(--accent); font-family: 'Cinzel', serif; font-size: 0.9rem;">${p.name}</strong><br>
+                        <span class="badge-type ${typeClass}" style="margin-top: 5px; display: inline-block;">${typeLabel}</span>
+                    </td>
+                    <td>
+                        <div class="stars">${starsHTML}</div>
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">Dept ${p.department}</span>
+                    </td>
+                    <td>
+                        <span style="font-weight: 500; font-size: 0.95rem; color: var(--accent);">${p.phone}</span><br>
+                        <span style="font-size: 0.75rem; color: var(--text-muted);">${p.zipCode} ${p.city}</span>
+                    </td>
+                    <td>${statusHTML}</td>
+                    <td style="font-size: 0.8rem; color: var(--text-main); font-style: italic;">
+                        ${p.note || 'Pas de note enregistrée.'}
+                    </td>
+                `;
+                body.appendChild(tr);
+            });
+        }
+
+        function onSearchOrFilter() {
+            const searchQuery = document.getElementById("prospectSearch").value.toLowerCase();
+            const typeVal = document.getElementById("typeFilter").value;
+            const statusVal = document.getElementById("statusFilter").value;
+            const deptVal = document.getElementById("deptFilter").value;
+
+            filteredProspects = allProspects.filter(p => {
+                const matchesSearch = p.name.toLowerCase().includes(searchQuery) || p.city.toLowerCase().includes(searchQuery);
+                const matchesType = typeVal === "all" || p.type === typeVal;
+                const matchesStatus = statusVal === "all" || p.status === statusVal;
+                const matchesDept = deptVal === "all" || p.department === deptVal;
+
+                return matchesSearch && matchesType && matchesStatus && matchesDept;
+            });
+
+            currentPage = 1;
+            renderTable();
+            updatePagination();
+            calculateKPIs(filteredProspects);
+        }
+
+        function updatePagination() {
+            const totalPages = Math.ceil(filteredProspects.length / itemsPerPage) || 1;
+            document.getElementById("pageIndicator").textContent = `Page ${currentPage} sur ${totalPages}`;
+            document.getElementById("btnPrev").disabled = currentPage === 1;
+            document.getElementById("btnNext").disabled = currentPage === totalPages;
+        }
+
+        function changePage(direction) {
+            const totalPages = Math.ceil(filteredProspects.length / itemsPerPage) || 1;
+            currentPage += direction;
+            if (currentPage < 1) currentPage = 1;
+            if (currentPage > totalPages) currentPage = totalPages;
+            renderTable();
+            updatePagination();
+        }
+    </script>
+</body>
+</html>

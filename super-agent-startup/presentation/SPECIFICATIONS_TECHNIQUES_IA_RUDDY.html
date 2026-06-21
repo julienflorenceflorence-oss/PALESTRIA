@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERCLE ORIGINE - Blueprint Technique IA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --onyx: #0A0A0A;
+            --gold: #D4AF37;
+            --bordeaux: #630D16;
+            --code-bg: #1A1A1A;
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        body { 
+            margin: 0; padding: 0; 
+            background-color: var(--onyx); 
+            color: #EEE; 
+            font-family: 'JetBrains Mono', monospace; 
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 20px auto;
+            border: 1px solid var(--gold);
+            background: var(--onyx);
+            padding: 40px;
+            position: relative;
+            page-break-after: always;
+        }
+
+        header {
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 { font-family: 'Cinzel', serif; font-size: 1.5rem; color: var(--gold); margin: 0; }
+        .version { font-size: 0.7rem; color: var(--gold); opacity: 0.6; }
+
+        h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 1.1rem; 
+            color: var(--gold); 
+            border-left: 3px solid var(--bordeaux); 
+            padding-left: 15px;
+            margin: 30px 0 15px;
+            text-transform: uppercase;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--code-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .card h3 { font-size: 0.9rem; color: var(--gold); margin-top: 0; }
+        .card ul { padding-left: 20px; font-size: 0.8rem; margin: 10px 0; }
+        .card li { margin-bottom: 5px; }
+
+        code {
+            background: #000;
+            color: #00FF41; /* Green Matrix style */
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .architecture-diagram {
+            border: 1px dashed var(--gold);
+            padding: 20px;
+            text-align: center;
+            margin: 20px 0;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .flow {
+            font-size: 0.7rem;
+            color: var(--gold);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            left: 40px;
+            right: 40px;
+            text-align: center;
+            font-size: 0.6rem;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: 10px;
+            opacity: 0.5;
+        }
+
+        @page { size: A4; margin: 0; }
+    </style>
+</head>
+<body>
+
+    <div class="page">
+        <header>
+            <div>
+                <h1>SPECIFICATIONS TECHNIQUES IA</h1>
+                <span class="version">CONFIDENTIEL - CTO OFFICE - V1.0.26</span>
+            </div>
+            <img src="../charte graphique/LOGO_CERCLE_ORIGINE_FINAL_BOUSSOLE.svg" alt="LOGO" style="width: 50px;">
+        </header>
+
+        <section>
+            <h2>1. Architecture de l'Agent (Modular System)</h2>
+            <div class="tech-grid">
+                <div class="card">
+                    <h3>A. Orchestration LLM</h3>
+                    <ul>
+                        <li><b>Framework :</b> LangGraph (pour les cycles décisionnels complexes).</li>
+                        <li><b>Model :</b> GPT-4o (Reasoning) + Mistral Large (Privacy-focus).</li>
+                        <li><b>Memory :</b> Redis pour le stockage des sessions de chat temps-réel.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>B. Vector Engine (RAG)</h3>
+                    <ul>
+                        <li><b>Database :</b> Pinecone ou Weaviate.</li>
+                        <li><b>Embeddings :</b> text-embedding-3-small.</li>
+                        <li><b>Content :</b> Livrets d'accueil (MD/PDF), Inventaire Vins, Règlementations locales.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Module Sniper (Data Recovery)</h2>
+            <div class="card">
+                <p style="font-size: 0.85rem;">C'est le module de conversion "Anti-OTA". Il doit identifier les patterns d'abandon.</p>
+                <ul>
+                    <li><b>Tracking :</b> Injection d'un script JS <code>origin-tracker.js</code> sur le site membre.</li>
+                    <li><b>Trigger :</b> Analyse du <code>Exit Intent</code> et du <code>Time on Page</code>.</li>
+                    <li><b>Logic :</b> Si <code>user_score > 0.8</code> (visiteur qualifié) ET <code>intent == 'exit'</code>, déclencher le popup d'offre directe via WebSocket.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Système de Connecteurs (PMS Integration)</h2>
+            <div class="architecture-diagram">
+                <div class="flow">
+                    [PMS API] <---> [FastAPI Webhook Handler] <---> [Cercle Core DB] <br>
+                    | <br>
+                    v <br>
+                    [IA Scheduler] ---> (Sync Calendars / Push Inventory)
+                </div>
+            </div>
+            <div class="tech-grid">
+                <div class="card">
+                    <h3>Endpoints Prioritaires</h3>
+                    <ul>
+                        <li><code>/sync/availability</code> : Real-time.</li>
+                        <li><code>/push/reservation</code> : Direct booking insertion.</li>
+                        <li><code>/fetch/guest-profile</code> : Personnalisation IA.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3>Partenaires API</h3>
+                    <ul>
+                        <li>Mews / Misterbooking (Standard).</li>
+                        <li>Stripe Connect (Flux Financier).</li>
+                        <li>Twilio (WhatsApp Interface).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            PROPRIÉTÉ EXCLUSIVE DE CERCLE ORIGINE - ARCHITECTURE DATA 2026 - RUDDY CTO
+        </footer>
+    </div>
+
+    <div class="page">
+        <header>
+            <h1>IA COMPLIANCE & OPS</h1>
+        </header>
+
+        <section>
+            <h2>4. Module "Lawyer" (Loi Le Meur 2026)</h2>
+            <div class="card">
+                <h3>Pipeline de Conformité</h3>
+                <ol style="font-size: 0.8rem;">
+                    <li><b>Ingestion :</b> Scraping hebdo des arrêtés municipaux (Zones tendues).</li>
+                    <li><b>Vérification :</b> Script Python de calcul de "Nuitées Consommées" vs "Quotas Légaux".</li>
+                    <li><b>Alerte :</b> Notification Push si l'hébergeur approche de 90% de sa limite annuelle.</li>
+                    <li><b>Reporting :</b> Génération auto du fichier <code>taxe_sejour.csv</code> pour télédéclaration.</li>
+                </ol>
+            </div>
+        </section>
+
+        <section>
+            <h2>5. Sécurité & Souveraineté Data</h2>
+            <div class="tech-grid">
+                <div class="card" style="border-left: 3px solid #00FF41;">
+                    <h3>RGPD & Privacy</h3>
+                    <p style="font-size: 0.75rem;">
+                        La data voyageur est <b>isolée par membre</b>. <br>
+                        Anonymisation des PII (Personally Identifiable Information) avant envoi aux LLM tiers.
+                    </p>
+                </div>
+                <div class="card">
+                    <h3>SLA & Monitoring</h3>
+                    <p style="font-size: 0.75rem;">
+                        Uptime requis : 99.9% (Moteur de résa).<br>
+                        Outil : Sentry + Prometheus pour le tracking des erreurs IA (hallucinations).
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>6. Roadmap Technique MVP</h2>
+            <div style="background: rgba(212, 175, 55, 0.1); padding: 20px; border: 1px solid var(--gold); border-radius: 8px;">
+                <code style="display: block; margin-bottom: 10px;">> git branch feature/agent-sniper</code>
+                <ul style="font-size: 0.8rem;">
+                    <li><b>Semaine 1-2 :</b> Setup infrastructure AWS/Serverless + DB Vectorielle.</li>
+                    <li><b>Semaine 3-4 :</b> Prototype du script <code>origin-tracker.js</code> et liaison LLM.</li>
+                    <li><b>Semaine 5-6 :</b> Intégration test avec un PMS (Bac à sable Mews).</li>
+                </ul>
+            </div>
+        </section>
+
+        <footer>
+            RUDDY - CERCLE ORIGINE - DOCUMENT DE TRAVAIL INTERNE
+        </footer>
+    </div>
+
+</body>
+</html>

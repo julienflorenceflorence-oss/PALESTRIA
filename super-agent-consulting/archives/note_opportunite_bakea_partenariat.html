@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note d'Opportunité V7 - Partenariat Élite Bakéa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #FFFFFF;
+            --cream: #FAF9F6;
+            --bordeaux: #6D071A;
+            --text: #000000;
+            --accent: #BFAF8F;
+            --border: rgba(109, 7, 26, 0.2);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: white !important; -webkit-print-color-adjust: exact; margin: 0; padding: 0; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; page-break-after: always; height: 297mm; width: 210mm; }
+        }
+
+        body { background: #E5E5E5; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; counter-reset: page; }
+        .page { width: var(--page-w); height: var(--page-h); background: var(--bg); margin: 10px auto; position: relative; padding: 10mm 15mm; box-sizing: border-box; box-shadow: 0 0 15px rgba(0,0,0,0.1); display: flex; flex-direction: column; overflow: hidden; }
+        .page-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255, 255, 255, 0.65), rgba(255, 255, 255, 0.65)), url('./Client%20La%20Maison%20BAKEA/photo%20appli%20en%20tete.png'); background-position: center; background-size: cover; z-index: 0; }
+        .content-wrapper { position: relative; z-index: 1; display: flex; flex-direction: column; height: 100%; }
+        .inner-border { position: absolute; top: 6mm; left: 6mm; right: 6mm; bottom: 6mm; border: 1px solid var(--border); pointer-events: none; }
+        
+        h1 { font-family: 'Cinzel'; color: var(--bordeaux); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 5px; margin-bottom: 12px; font-size: 1.6rem; text-transform: uppercase; letter-spacing: 2px; }
+        h2 { font-family: 'Cinzel'; color: var(--bordeaux); border-left: 4px solid var(--accent); padding-left: 12px; margin: 12px 0 6px 0; font-size: 1rem; text-transform: uppercase; }
+        h3 { font-family: 'Montserrat'; font-weight: 700; color: var(--bordeaux); margin: 10px 0 4px 0; font-size: 0.9rem; text-transform: uppercase; }
+        
+        .promise { font-family: 'Playfair Display'; font-style: italic; color: var(--bordeaux); font-size: 1.1rem; text-align: center; padding: 10px; background: rgba(250, 249, 246, 0.9); border: 1px solid var(--border); margin: 8px 0; }
+        .content { font-size: 9pt; line-height: 1.4; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 8.5pt; background: white; }
+        th, td { border: 1px solid var(--border); padding: 6px; text-align: left; }
+        th { font-family: 'Cinzel'; color: var(--bordeaux); background: var(--cream); }
+        
+        .box { background: var(--cream); border: 1px solid var(--accent); padding: 8px; margin: 8px 0; }
+        .footer { border-top: 1px solid var(--border); padding-top: 2mm; margin-top: auto; display: flex; justify-content: space-between; font-size: 7pt; color: var(--accent); text-transform: uppercase; }
+        .page-num::after { counter-increment: page; content: "V7 - Page " counter(page, decimal-leading-zero); }
+        .highlight { color: var(--bordeaux); font-weight: 700; }
+        .gold-box { border: 2px solid var(--accent); background: #fffdf5; padding: 10px; margin: 10px 0; position: relative; }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 : L'ACCÈS AUX ÉLITES -->
+    <div class="page">
+        <div class="page-bg"></div>
+        <div class="inner-border"></div>
+        <div class="content-wrapper">
+            <h1>Note d'Opportunité Stratégique</h1>
+            <div class="promise">“Ouvrez votre carnet d'adresses aux élites régionales via un dispositif d'influence sanctuarisé.”</div>
+            
+            <div class="content">
+                <h2>I. Crédibilité Réseau & Preuves d'Expertise</h2>
+                <p>Ce projet s'appuie sur une immersion active dans les <span class="highlight">Business Networks d'Élite</span> et une collaboration étroite avec les **Présidents de Clubs Privés** de la région.</p>
+                <div class="gold-box">
+                    <strong>Preuves d'Exécution :</strong>
+                    <ul style="margin: 5px 0 0 0;">
+                        <li><strong>Carnet d'Adresses :</strong> 150+ contacts qualifiés (Investisseurs, Top 500, Dirigeants LBO).</li>
+                        <li><strong>Validation Tierce :</strong> Partenariats confirmés avec des réseaux d'affaires de premier plan.</li>
+                        <li><strong>Performance :</strong> Taux de satisfaction membre > 95% | Transformation ambassadeur garantie.</li>
+                    </ul>
+                </div>
+                
+                <h2>II. Catalogue des Offres : Cadrage Élite</h2>
+                
+                <h3>1. L'Offre Essentielle — 220 € HT / pers. (Min. 2 200 € HT)</h3>
+                <p><strong>Cible :</strong> Networking Dirigeants. <em>“Zéro zone grise, chaque connexion est orchestrée.”</em></p>
+
+                <h3>2. L'Offre Signature — 650 € HT / pers. (Forfait 6 500 € HT)</h3>
+                <p><strong>Cible :</strong> Closing Stratégique & Comités de Direction. <em>“La scénographie au service de votre business.”</em></p>
+
+                <h3>3. L'Offre Prestige (24h) — Forfait 12 500 € HT (Base 10 convives)</h3>
+                <p><strong>Cible :</strong> Retraite Gouvernance & Clientèle Politique. <em>“Confidentialité totale sous protocole Secret Pro.”</em></p>
+
+                <div class="box">
+                    <p style="margin: 0; font-weight: 700; color: var(--bordeaux); text-align: center;">QUINTESSENCE DU RETOUR SUR ENGAGEMENT</p>
+                    <table style="margin-top: 5px;">
+                        <tr>
+                            <th>Pilier</th>
+                            <th>Quantification annuelle</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Connexions VIP</strong></td>
+                            <td>Accès direct à 50+ nouveaux décideurs haut de gamme par an.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Visibilité Élite</strong></td>
+                            <td>12 prises de parole & scénographies dédiées en environnement exclusif.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Business Hub</strong></td>
+                            <td>Accès à des opportunités de "off-market" via le cercle Bakéa.</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Maison Bakéa - Écosystème d'Influence</div>
+                <div class="page-num"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 : SÉCURITÉ & CLOSING DUR -->
+    <div class="page">
+        <div class="page-bg"></div>
+        <div class="inner-border"></div>
+        <div class="content-wrapper">
+            <div class="content">
+                <h2>III. Protocole Institutionnel : Sécurité & Clientèle Politique</h2>
+                <div style="background: #F2F2F2; border-left: 4px solid var(--bordeaux); padding: 12px; margin: 10px 0;">
+                    <p style="margin: 0; font-weight: 700; font-size: 8.5pt;">SÛRETÉ & DISCRÉTION GOUVERNEMENTALE</p>
+                    <p style="margin: 5px 0 0 0; font-size: 8.5pt;">Gestion des flux VIP, périmètres sécurisés et confidentialité absolue garantie. <em>“Un écrin neutre pour vos décisions les plus sensibles.”</em></p>
+                </div>
+
+                <h2>IV. Cadre de Confiance & Garanties</h2>
+                <p>Un engagement sécurisé juridiquement pour les deux parties :</p>
+                <ul>
+                    <li><strong>Succès Garanti :</strong> Modèle de commissionnement au résultat pour Bakéa.</li>
+                    <li><strong>Sérénité :</strong> Durée 12 mois | Résiliation préavis 3 mois avant date anniversaire.</li>
+                    <li><strong>Reporting :</strong> Analyse trimestrielle de la valeur réseau et de la visibilité générée.</li>
+                </ul>
+
+                <h2>V. Plan d'Activation Immédiat</h2>
+                <p><strong>S-4 :</strong> Curation des invités & Sourcing oenologique Élite. <br>
+                <strong>Jour J :</strong> Animation Masterclass & Facilitation Networking. <em>“De l'idée à l'action en 30 jours.”</em></p>
+
+                <div class="box" style="border: 2px solid var(--bordeaux); background: #fff; margin-top: 30px; padding: 20px;">
+                    <h3 style="margin-top: 0; text-align: center; letter-spacing: 3px;">DÉCISION & CLOSING</h3>
+                    <p style="text-align: center; font-size: 11pt; font-weight: 700;">
+                        L’exclusivité sectorielle est protégée contractuellement. <br>
+                        <span style="color: var(--bordeaux); text-transform: uppercase;">Quota annuel : 5 partenaires stratégiques.</span>
+                    </p>
+                    <p style="text-align: center; font-style: italic; font-size: 10pt; margin: 15px 0;">
+                        “L’offre est construite exclusivement pour ceux qui veulent entrer maintenant.”
+                    </p>
+                    <p style="text-align: center; font-weight: 700; border-top: 1px solid var(--accent); padding-top: 10px;">
+                        VALIDATION SUR DOSSIER | CLÔTURE DES CANDIDATURES : [DATE]
+                    </p>
+                </div>
+
+                <p style="font-size: 8pt; text-align: center; color: var(--accent); margin-top: 20px;">
+                    <em>Note : L'ouverture du carnet d'adresses élite est strictement limitée pour préserver la rareté.</em>
+                </p>
+            </div>
+
+            <div class="footer">
+                <div>Maison Bakéa - Closing Stratégique</div>
+                <div class="page-num"></div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

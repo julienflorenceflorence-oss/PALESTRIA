@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Performance Prospection - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --bg-deep: #0B0D11;
+            --bg-card: #16191E;
+            --accent-gold: #D4AF37;
+            --accent-gold-bright: #F0CC6B;
+            --accent-gold-dim: rgba(212, 175, 55, 0.1);
+            --text-white: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.6);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.2);
+            --shadow-lux: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboard-container {
+            max-width: 1200px;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 350px 1fr;
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        /* Sidebar - Contrôles */
+        .sidebar {
+            background: var(--bg-card);
+            border: var(--border-gold);
+            padding: 30px;
+            border-radius: 4px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        header {
+            text-align: center;
+            grid-column: span 2;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 22pt;
+            letter-spacing: 5px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--text-dim);
+            margin-top: 5px;
+        }
+
+        /* Cards & Widgets */
+        .card {
+            background: var(--bg-card);
+            border: var(--border-gold);
+            padding: 25px;
+            border-radius: 4px;
+            box-shadow: var(--shadow-lux);
+            position: relative;
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 10pt;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--accent-gold-dim);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 24pt;
+            color: var(--accent-gold);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 7pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-top: 5px;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-top: 15px;
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .progress-bar-bg {
+            height: 6px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-gold-bright));
+            width: 0%;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Form Elements */
+        label {
+            display: block;
+            font-size: 7.5pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+            margin-bottom: 8px;
+            margin-top: 15px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9pt;
+            border-radius: 2px;
+            box-sizing: border-box;
+        }
+
+        input:focus {
+            border-color: var(--accent-gold);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background: var(--accent-gold);
+            color: black;
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            letter-spacing: 2px;
+            cursor: pointer;
+            margin-top: 25px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: var(--accent-gold-bright);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .conversion-badge {
+            background: var(--accent-gold-dim);
+            color: var(--accent-gold);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 8pt;
+            font-weight: bold;
+        }
+
+        #export-area {
+            display: none;
+            background: #000;
+            color: #888;
+            font-family: monospace;
+            font-size: 8pt;
+            padding: 15px;
+            border: 1px solid var(--accent-gold-dim);
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .dashboard-container { grid-template-columns: 1fr; }
+            .sidebar { position: static; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Dashboard de Performance</h1>
+    <div class="subtitle">Analyse Strategique - Edition Prestige RDM</div>
+</header>
+
+<div class="dashboard-container">
+    <!-- Sidebar - Saisie -->
+    <div class="sidebar">
+        <div class="card-title">Saisie des Données</div>
+        <form id="dashForm">
+            <label>Leads Traités</label>
+            <input type="number" id="in-leads" value="1800" oninput="updateDash()">
+            
+            <label>Appels Effectués</label>
+            <input type="number" id="in-appels" value="900" oninput="updateDash()">
+            
+            <label>RDV Qualifiés (Cible: 45)</label>
+            <input type="number" id="in-rdv" value="25" oninput="updateDash()">
+            
+            <label>Signatures (Cible: 9)</label>
+            <input type="number" id="in-sign" value="4" oninput="updateDash()">
+            
+            <label>Type de Contrats</label>
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                <input type="number" id="in-prestige" value="3" placeholder="Prestige" oninput="updateDash()">
+                <input type="number" id="in-cse" value="1" placeholder="CSE" oninput="updateDash()">
+            </div>
+
+            <button type="button" onclick="exportData()">Exporter pour le RDM</button>
+        </form>
+        <div id="export-area"></div>
+    </div>
+
+    <!-- Dashboard Content -->
+    <div class="main-content">
+        
+        <!-- Key Numbers -->
+        <div class="stats-grid">
+            <div class="card stat-box">
+                <span class="stat-label">Transformation</span>
+                <span class="stat-value" id="val-conv-total">0%</span>
+                <span class="stat-label" style="color:var(--accent-gold)">Signatures / RDV</span>
+            </div>
+            <div class="card stat-box">
+                <span class="stat-label">Efficacité RDV</span>
+                <span class="stat-value" id="val-conv-rdv">0%</span>
+                <span class="stat-label">RDV / Appels</span>
+            </div>
+            <div class="card stat-box">
+                <span class="stat-label">Joignabilité</span>
+                <span class="stat-value" id="val-joign">20%</span>
+                <span class="stat-label">Standard</span>
+            </div>
+        </div>
+
+        <!-- Progress Trackers -->
+        <div class="card">
+            <div class="card-title">Objectifs vs Réalisé</div>
+            
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>Objectif RDV (Quinzaine)</span>
+                    <span id="txt-rdv-prog">0 / 45</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="bar-rdv" class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="progress-container" style="margin-top:25px;">
+                <div class="progress-header">
+                    <span>Objectif Signatures</span>
+                    <span id="txt-sign-prog">0 / 9</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div id="bar-sign" class="progress-bar-fill"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Detailed Analytics -->
+        <div class="grid" style="display:grid; grid-template-columns: 1fr 1fr; gap: 25px;">
+            <div class="card">
+                <div class="card-title">Répartition Portfolio</div>
+                <canvas id="typeChart" height="200"></canvas>
+            </div>
+            <div class="card">
+                <div class="card-title">Volume de Prospection</div>
+                <div style="padding: 10px;">
+                    <p style="font-size: 8pt; color: var(--text-dim); line-height: 1.6;">
+                        L'analyse des flux montre un traitement de <strong id="txt-leads-total" style="color:white">0</strong> leads sur la période, avec une intensité de <strong id="txt-appels-total" style="color:white">0</strong> appels sortants. 
+                        <br><br>
+                        Le ratio d'industrialisation actuel nécessite une optimisation de la phase de qualification pour atteindre les objectifs de fin de mois.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script>
+    let chart;
+
+    function initChart() {
+        const ctx = document.getElementById('typeChart').getContext('2d');
+        chart = new Chart(ctx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Prestige', 'CSE', 'Standard'],
+                datasets: [{
+                    data: [0, 0, 0],
+                    backgroundColor: ['#D4AF37', '#888', '#333'],
+                    borderColor: '#16191E',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: { legend: { display: true, position: 'bottom', labels: { color: '#888', font: { size: 10 } } } },
+                cutout: '70%'
+            }
+        });
+    }
+
+    function updateDash() {
+        const leads = parseFloat(document.getElementById('in-leads').value) || 0;
+        const appels = parseFloat(document.getElementById('in-appels').value) || 0;
+        const rdv = parseFloat(document.getElementById('in-rdv').value) || 0;
+        const sign = parseFloat(document.getElementById('in-sign').value) || 0;
+        const pres = parseFloat(document.getElementById('in-prestige').value) || 0;
+        const cse = parseFloat(document.getElementById('in-cse').value) || 0;
+        const stand = sign - (pres + cse);
+
+        // Calcs
+        const convTotal = rdv > 0 ? ((sign / rdv) * 100).toFixed(1) : 0;
+        const convRDV = appels > 0 ? ((rdv / appels) * 100).toFixed(1) : 0;
+        
+        // Update Stats
+        document.getElementById('val-conv-total').innerText = convTotal + '%';
+        document.getElementById('val-conv-rdv').innerText = convRDV + '%';
+        document.getElementById('txt-leads-total').innerText = leads;
+        document.getElementById('txt-appels-total').innerText = appels;
+
+        // Update Progress
+        const rdvPerc = Math.min((rdv / 45) * 100, 100);
+        const signPerc = Math.min((sign / 9) * 100, 100);
+        
+        document.getElementById('bar-rdv').style.width = rdvPerc + '%';
+        document.getElementById('bar-sign').style.width = signPerc + '%';
+        document.getElementById('txt-rdv-prog').innerText = `${rdv} / 45`;
+        document.getElementById('txt-sign-prog').innerText = `${sign} / 9`;
+
+        // Update Chart
+        chart.data.datasets[0].data = [pres, cse, Math.max(0, stand)];
+        chart.update();
+    }
+
+    function exportData() {
+        const area = document.getElementById('export-area');
+        area.style.display = 'block';
+        const data = {
+            date: new Date().toLocaleDateString(),
+            leads: document.getElementById('in-leads').value,
+            appels: document.getElementById('in-appels').value,
+            rdv: document.getElementById('in-rdv').value,
+            signatures: document.getElementById('in-sign').value,
+            repartition: {
+                prestige: document.getElementById('in-prestige').value,
+                cse: document.getElementById('in-cse').value
+            }
+        };
+        area.innerText = "### EXPORT DASHBOARD RDM ###\n" + JSON.stringify(data, null, 2);
+    }
+
+    window.onload = () => {
+        initChart();
+        updateDash();
+    };
+</script>
+
+</body>
+</html>

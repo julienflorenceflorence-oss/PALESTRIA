@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Moments Forts de l'Entretien</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --border: rgba(255, 255, 255, 0.08);
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 100%);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .chat-container {
+            width: 100%;
+            max-width: 800px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            font-size: 1.8rem;
+            margin: 0;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 5px;
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 5px;
+        }
+
+        /* --- Chat Bubbles --- */
+        .message {
+            display: flex;
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        .message.user {
+            flex-direction: row-reverse;
+        }
+
+        .avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel';
+            font-weight: 700;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin: 0 15px;
+        }
+
+        .user .avatar {
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+        }
+
+        .ai .avatar {
+            background: rgba(123, 92, 255, 0.1);
+            border: 1px solid var(--accent-purple);
+            color: var(--accent-purple);
+            box-shadow: 0 0 15px rgba(123, 92, 255, 0.2);
+        }
+
+        .bubble-content {
+            max-width: 75%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user .bubble-content {
+            align-items: flex-end;
+        }
+
+        .ai .bubble-content {
+            align-items: flex-start;
+        }
+
+        .sender-name {
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .bubble {
+            padding: 15px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .user .bubble {
+            background: rgba(0, 229, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-top-right-radius: 2px;
+            color: #EEF1F7;
+        }
+
+        .ai .bubble {
+            background: rgba(123, 92, 255, 0.05);
+            border: 1px solid rgba(123, 92, 255, 0.2);
+            border-top-left-radius: 2px;
+            color: #EEF1F7;
+        }
+
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+        
+        .highlight-purple {
+            color: var(--accent-purple);
+            font-weight: 600;
+        }
+
+        .action-tag {
+            display: inline-block;
+            background: var(--brand-gradient);
+            color: var(--bg);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="chat-container">
+        <header>
+            <h1>QUESTIA</h1>
+            <div class="subtitle">Moments Forts — Entretien Rachman</div>
+        </header>
+
+        <!-- Message 1 -->
+        <div class="message user">
+            <div class="avatar">J</div>
+            <div class="bubble-content">
+                <div class="sender-name">Julien (Questia)</div>
+                <div class="bubble">
+                    Bonjour Rachman, merci pour ton temps. Pour commencer, peux-tu te présenter et nous expliquer ton background ?
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 2 -->
+        <div class="message ai">
+            <div class="avatar">R</div>
+            <div class="bubble-content">
+                <div class="sender-name">Rachman (Expert Sénior)</div>
+                <div class="bubble">
+                    Ça fait 24 ans que je bosse, dont 10 ans en multinationales (Microsoft, Orange...). Aujourd'hui je suis consultant et formateur indépendant. J'accompagne notamment les entreprises et les étudiants sur la démystification de la <span class="highlight-purple">Tech et de l'IA</span>.
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 3 -->
+        <div class="message user">
+            <div class="avatar">J</div>
+            <div class="bubble-content">
+                <div class="sender-name">Julien</div>
+                <div class="bubble">
+                    On a identifié des points de douleur dans l'enseignement actuel. Quel est ton constat sur la manière d'apprendre aujourd'hui ?
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 4 -->
+        <div class="message ai">
+            <div class="avatar">R</div>
+            <div class="bubble-content">
+                <div class="sender-name">Rachman</div>
+                <div class="bubble">
+                    On a un vrai problème générationnel. Les jeunes ont <span class="highlight">lobotomisé leur cerveau</span> en le déléguant à l'outil. Et de l'autre côté, l'école est devenue un business qui vend des diplômes. Au final, on sort des <strong>"analphabètes trilingues"</strong> qui sont nuls en expression orale.
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 5 -->
+        <div class="message user">
+            <div class="avatar">J</div>
+            <div class="bubble-content">
+                <div class="sender-name">Julien</div>
+                <div class="bubble">
+                    Dans le milieu international, as-tu déjà vu des deals échouer à cause d'une mauvaise maîtrise de l'anglais ?
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 6 -->
+        <div class="message ai">
+            <div class="avatar">R</div>
+            <div class="bubble-content">
+                <div class="sender-name">Rachman</div>
+                <div class="bubble">
+                    <span class="highlight-purple">Jamais à cause des langues.</span> Les gens intelligents viennent te voir pour la valeur que tu vas leur apporter. La langue, c'est la forme. L'anglais ne va pas rire de tes fautes. Il n'y a qu'en France qu'on complexe sur ça !
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 7 -->
+        <div class="message user">
+            <div class="avatar">J</div>
+            <div class="bubble-content">
+                <div class="sender-name">Julien</div>
+                <div class="bubble">
+                    Et comment tu intègres les nouveaux outils comme l'IA pour palier aux manques de l'enseignement classique ?
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 8 -->
+        <div class="message ai">
+            <div class="avatar">R</div>
+            <div class="bubble-content">
+                <div class="sender-name">Rachman</div>
+                <div class="bubble">
+                    Je suis zéro papier. J'ai <strong>cloné ma manière de réfléchir</strong> sur l'IA. Elle corrige les copies selon ma matrice et ma sévérité en 4 minutes au lieu de 45. L'IA fait exactement mon travail, mais <span class="highlight">sans la fatigue et sans les états d'âme</span> qui ruinent les notes.
+                </div>
+            </div>
+        </div>
+
+        <!-- Message 9 -->
+        <div class="message user">
+            <div class="avatar">J</div>
+            <div class="bubble-content">
+                <div class="sender-name">Julien</div>
+                <div class="bubble">
+                    Pour conclure, face au e-learning traditionnel, quelle est la meilleure manière de faire progresser quelqu'un aujourd'hui ?
+                </div>
+            </div>
+        </div>
+        
+        <!-- Message 10 -->
+        <div class="message ai">
+            <div class="avatar">R</div>
+            <div class="bubble-content">
+                <div class="sender-name">Rachman</div>
+                <div class="bubble">
+                    Le e-learning actuel est catastrophique. On n'est plus à l'école primaire à attendre des bons points. La meilleure façon de nager, c'est <span class="highlight-purple">quand on te balance dans l'eau</span>. L'apprentissage doit être immersif et forcer à l'interaction.<br>
+                    <span class="action-tag">VALIDATION APPROCHE IMMERSIVE QUESTIA</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

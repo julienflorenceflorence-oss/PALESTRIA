@@ -1,0 +1,144 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "calendar": "primary",
+        "eventProperty": "start",
+        "options": {
+          "filters": {
+            "search": "RDV Prospect"
+          }
+        }
+      },
+      "name": "Check Calendar Every Minute",
+      "type": "n8n-nodes-base.googleCalendarTrigger",
+      "typeVersion": 1,
+      "position": [
+        100,
+        300
+      ],
+      "id": "trigger-id"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ Math.floor((new Date($node[\"Check Calendar Every Minute\"].json[\"start\"][\"dateTime\"]) - new Date()) / 60000) }}",
+              "operation": "equal",
+              "value2": 60
+            }
+          ]
+        }
+      },
+      "name": "Is it H-1?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        350,
+        200
+      ],
+      "id": "if-h1-id"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "number": [
+            {
+              "value1": "={{ Math.floor((new Date() - new Date($node[\"Check Calendar Every Minute\"].json[\"start\"][\"dateTime\"])) / 60000) }}",
+              "operation": "equal",
+              "value2": 10
+            }
+          ]
+        }
+      },
+      "name": "Is it 10min Late?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        350,
+        400
+      ],
+      "id": "if-late-id"
+    },
+    {
+      "parameters": {
+        "fromEmail": "prestige@happy-house.fr",
+        "toEmail": "={{ $node[\"Check Calendar Every Minute\"].json[\"description\"].match(/[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}/)[0] }}",
+        "subject": "🛎️ Rappel : Notre rendez-vous Happy House dans 1 heure",
+        "html": "=<div style=\"background:#0F1115; color:#E0E0E0; padding:30px; font-family:serif; border:1px solid #D4AF37;\">\n  <h2 style=\"color:#D4AF37; font-family:'Cinzel', serif;\">Bonjour,</h2>\n  <p>Ceci est un petit rappel pour notre échange prévu dans <strong>60 minutes</strong>.</p>\n  <p>Je me tiens prêt pour notre discussion sur vos projets Happy House.</p>\n  <p>À tout de suite,</p>\n  <p style=\"color:#D4AF37;\"><em>L'équipe Prestige Happy House</em></p>\n</div>"
+      },
+      "name": "Send H-1 Reminder",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        600,
+        150
+      ],
+      "id": "email-h1-id"
+    },
+    {
+      "parameters": {
+        "fromEmail": "prestige@happy-house.fr",
+        "toEmail": "={{ $node[\"Check Calendar Every Minute\"].json[\"description\"].match(/[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}/)[0] }}",
+        "subject": "📍 Tout va bien ? Nous vous attendons",
+        "html": "=<div style=\"background:#0F1115; color:#E0E0E0; padding:30px; font-family:serif; border:1px solid #D4AF37;\">\n  <h2 style=\"color:#D4AF37; font-family:'Cinzel', serif;\">Bonjour,</h2>\n  <p>Nous avons remarqué que vous n'aviez pas encore pu rejoindre notre appel prévu il y a 10 minutes.</p>\n  <p>Rencontrez-vous un problème de connexion ou un empêchement de dernière minute ?</p>\n  <p>Nous restons en ligne encore quelques instants pour vous accueillir.</p>\n  <hr style=\"border:0; border-top:1px solid #D4AF37; margin:20px 0;\">\n  <p style=\"font-size:0.8em; color:#888;\">Si vous souhaitez décaler, n'hésitez pas à répondre directement à ce mail.</p>\n</div>"
+      },
+      "name": "Send Lateness Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        600,
+        450
+      ],
+      "id": "email-late-id"
+    }
+  ],
+  "connections": {
+    "Check Calendar Every Minute": {
+      "main": [
+        [
+          {
+            "node": "Is it H-1?",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Is it 10min Late?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is it H-1?": {
+      "main": [
+        [
+          {
+            "node": "Send H-1 Reminder",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Is it 10min Late?": {
+      "main": [
+        [
+          {
+            "node": "Send Lateness Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

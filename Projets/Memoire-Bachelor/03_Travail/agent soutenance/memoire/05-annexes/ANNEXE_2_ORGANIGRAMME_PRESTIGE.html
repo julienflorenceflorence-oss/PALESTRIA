@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 2 - Organigramme Happy House - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --muted: #A0A0A0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 40px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 9pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 22pt; letter-spacing: 2px; }
+
+        /* ORGANIGRAMME CSS */
+        .org-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 20mm;
+        }
+
+        .node {
+            border: 1px solid var(--accent);
+            padding: 15px 20px;
+            width: 180px;
+            text-align: center;
+            background: rgba(212, 175, 55, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .node .name { font-family: 'Cinzel'; font-size: 11pt; color: var(--accent); font-weight: 700; margin-bottom: 5px; display: block; }
+        .node .role { font-size: 8pt; font-weight: 400; text-transform: uppercase; letter-spacing: 1px; color: #FFF; }
+
+        .connector-v { width: 1px; height: 30px; background: var(--accent); }
+        .connector-h { height: 1px; background: var(--accent); position: relative; }
+
+        .row { display: flex; justify-content: center; gap: 40px; position: relative; }
+        
+        .hybrid-box {
+            border: 1px dashed var(--accent);
+            padding: 10px;
+            margin-top: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            font-size: 7.5pt;
+            color: var(--muted);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .legend {
+            margin-top: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 15px;
+            font-size: 8.5pt;
+            background: rgba(0,0,0,0.3);
+        }
+        .legend strong { color: var(--accent); }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--muted);
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 2 | P. " counter(page, decimal-leading-zero); }
+        
+        /* Layout specific connectives */
+        .branch-line {
+            width: 440px;
+            height: 1px;
+            background: var(--accent);
+            margin-top: -1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        
+        <div class="header-box">
+            <div class="label">HAPPY HOUSE | STRUCTURE ORGANISATIONNELLE</div>
+            <h1>ORGANIGRAMME DU RÉSEAU</h1>
+        </div>
+
+        <div class="org-container">
+            <!-- CEO -->
+            <div style="display: flex; flex-direction: column; align-items: center;">
+                <div class="node">
+                    <span class="name">Patrice KERMARREC</span>
+                    <span class="role">Fondateur & CEO</span>
+                </div>
+                <div class="hybrid-box" style="margin-top: 5px; width: 180px;">
+                    <strong>Mission Spécifique :</strong><br>
+                    • Formation à l'Application
+                </div>
+            </div>
+            
+            <div class="connector-v"></div>
+
+            <!-- COO -->
+            <div class="node" style="border-width: 2px;">
+                <span class="name">Julien FLORENCE</span>
+                <span class="role">Directeur Opérationnel</span>
+            </div>
+
+            <div class="connector-v"></div>
+            <div class="branch-line"></div>
+            
+            <div style="display: flex; gap: 280px;">
+                <div class="connector-v"></div>
+                <div class="connector-v"></div>
+            </div>
+
+            <div class="row">
+                <!-- YOUNES -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="node">
+                        <span class="name">YOUNES</span>
+                        <span class="role">SDR / Growth</span>
+                    </div>
+                    <div class="hybrid-box">
+                        <strong>Missions Customer Success :</strong><br>
+                        • Support Relation Membres<br>
+                        • <strong>Formation à l'Application</strong><br>
+                        • Fidélisation & Rétention
+                    </div>
+                </div>
+
+                <!-- RUDDY -->
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                    <div class="node">
+                        <span class="name">RUDDY</span>
+                        <span class="role">Expert Automation</span>
+                    </div>
+                    <div class="hybrid-box">
+                        <strong>Missions Customer Success :</strong><br>
+                        • Intégration Technique Membres<br>
+                        • Configuration CRM / Agendas<br>
+                        • Monitoring de Performance
+                    </div>
+                </div>
+            </div>
+
+            <div class="legend">
+                <p><strong>Note Stratégique :</strong> L'organisation repose sur un <strong>pôle opérationnel hybride</strong>. Julien, Younes et Ruddy pilotent simultanément l'Acquisition (croissance du réseau) et le Customer Success (pérennité du réseau), garantissant l'alignement entre la promesse commerciale et l'expérience réelle "Waouh".</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

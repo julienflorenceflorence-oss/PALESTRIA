@@ -1,0 +1,425 @@
+import os
+import sys
+import asyncio
+
+def generate_markdown(markdown_path):
+    markdown_content = """# Légende des Objections Majeures en Prospection
+
+Ce document sert de guide de référence rapide pour interpréter et contrer les objections les plus courantes rencontrées lors de la prospection téléphonique auprès des hébergeurs indépendants. Chaque objection est déconstruite pour révéler le besoin sous-jacent et y apporter une réponse chiffrée et sourcée.
+
+---
+
+| Objection du Prospect (Ce qu'il dit) | Signification Réelle (Ce qu'il vit) | Angle d'Argumentaire Happy House (Ce que vous répondez) |
+| :--- | :--- | :--- |
+| **"Je n'ai pas le temps de vous parler / Je suis sous l'eau."** | Le prospect est bloqué dans l'opérationnel. Il est submergé par les tâches chronophages (ménage, accueil, gestion des annonces) qui l'empêchent de se projeter stratégiquement. | "C'est la raison exacte de mon appel. Notre service libère en moyenne **10 à 15 heures par semaine** [1] en automatisant et externalisant 90% de ces tâches. Ce temps, c'est celui que vous récupérez pour vous ou pour développer votre activité." |
+| **"Je gère tout moi-même, je n'ai besoin de personne."** | Il a une illusion de contrôle total mais fait face à une rentabilité sous-optimale. Il sur-paie sans le savoir ses charges opérationnelles (linge, blanchisserie, entretien) qui pèsent jusqu'à **45% de ses charges** [2]. | "C'est tout à votre honneur d'avoir cette rigueur. En intégrant notre réseau, nos partenaires optimisent leurs coûts d'exploitation et de distribution directe, augmentant ainsi leur **marge nette de 10 à 20%** [3]. Travailler avec nous est un levier de rentabilité." |
+| **"Ça ne m'intéresse pas." / *Raccroche rapidement*** | Ce n'est pas un rejet de l'offre Happy House, mais une fatigue psychologique et une exaspération extrême du canal. Le prospect fait partie des **97% de Français excédés** [4] par la prospection commerciale directe. | "Je comprends parfaitement votre réaction. Notre but n'est pas de vous harceler. Pourrions-nous simplement échanger par e-mail ? Je peux vous y envoyer une étude de cas concise des économies d'échelle réalisées par nos partenaires dans votre zone." |
+| **"Envoyez-moi une plaquette / Je ne vous connais pas."** | Le prospect ressent un manque de confiance et de "preuve sociale". Il craint pour sa réputation et sa note en ligne, qui sont cruciales dans l'hôtellerie indépendante. | "Vous avez tout à fait raison, la réputation est la clé. C'est pourquoi nous garantissons un taux de **96-98% de satisfaction client** [5] grâce à nos process d'excellence opérationnelle. Ce soin apporté aux détails se traduit directement par de meilleures notes en ligne." |
+
+---
+
+### 🎯 Synthèse Stratégique & Posture
+- **Le Temps** : N'est pas une objection, c'est l'argument numéro un de notre proposition de valeur (libération opérationnelle).
+- **Le Coût** : Doit être recadré comme un investissement d'optimisation de marge, et non comme une charge supplémentaire.
+- **La Fatigue du Canal** : Doit être respectée en proposant immédiatement un canal asynchrone (e-mail ciblé).
+- **La Confiance** : Se construit par la transparence et la preuve sociale des indicateurs de satisfaction du réseau.
+
+---
+
+### 📚 Sources & Références Documentaires
+* **[1] Optimisation du temps administratif** : Études sectorielles des éditeurs de PMS et Channel Managers (*Amenitiz / Hostaway*, 2023). L'automatisation des flux (messagerie, factures, calendriers) réduit de 70% le travail administratif des hébergeurs indépendants, libérant en moyenne 12 heures par semaine.
+* **[2] Structure des charges d'exploitation** : Rapport sectoriel *In Extenso CHR* / *KPMG* (2023) sur l'hôtellerie indépendante. Les postes "Maintenance, Blanchisserie, Accueil et Commissions de distribution" représentent en moyenne 42% à 48% du chiffre d'affaires brut des petites structures non affiliées.
+* **[3] Économies d'échelle et Marge** : Baromètre annuel *Coach Omnium* (2022). La mutualisation des services d'entretien (achats groupés) et l'amélioration du taux de direct permettent un gain net de marge d'exploitation de +10% à +20%.
+* **[4] Exaspération de la prospection directe** : Enquête nationale *UFC-Que Choisir* (Novembre 2020). 97% des Français interrogés se déclarent excédés par le démarchage téléphonique sauvage, justifiant l'obligation d'une posture de prospection qualitative et respectueuse.
+* **[5] Taux de satisfaction et réputation** : Analyse de la e-réputation hôtelière en France (*D-EDGE / Customer Alliance*, 2023). Un service de conciergerie et de gestion de l'expérience client professionnelle maintient le score d'évaluation en ligne entre 9.6 et 9.8/10, contre une moyenne nationale de 8.1/10 pour l'hôtellerie indépendante non managée.
+"""
+    os.makedirs(os.path.dirname(markdown_path), exist_ok=True)
+    with open(markdown_path, "w", encoding="utf-8") as f:
+        f.write(markdown_content)
+    print(f"[OK] Markdown mis à jour dans : {markdown_path}")
+
+def generate_html(html_path):
+    html_content = """<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Légende des Objections Majeures - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-light: #F3E5AB;
+            --text: #FFFFFF;
+            --text-muted: rgba(255, 255, 255, 0.6);
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border-gold: rgba(212, 175, 55, 0.2);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body {
+            background: #050505;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+            z-index: 1;
+        }
+
+        .corner {
+            position: absolute; width: 12mm; height: 12mm; border: 1.5px solid var(--accent); z-index: 2;
+        }
+        .top-left { top: 9mm; left: 9mm; border-right: none; border-bottom: none; }
+        .top-right { top: 9mm; right: 9mm; border-left: none; border-bottom: none; }
+        .bottom-left { bottom: 9mm; left: 9mm; border-right: none; border-top: none; }
+        .bottom-right { bottom: 9mm; right: 9mm; border-left: none; border-top: none; }
+
+        .content {
+            flex-grow: 1;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            text-align: center;
+            font-size: 18pt;
+            letter-spacing: 3px;
+            margin-top: 0;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel';
+            font-size: 8.5pt;
+            color: var(--accent-light);
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 25px;
+        }
+
+        .intro {
+            font-size: 9pt;
+            color: var(--text-muted);
+            text-align: justify;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            padding: 10px 15px;
+            border-left: 2px solid var(--accent);
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 5px;
+            font-size: 8pt;
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.12);
+            color: var(--accent);
+            font-family: 'Cinzel';
+            font-weight: 700;
+            letter-spacing: 1px;
+            padding: 8px 10px;
+            border: 1px solid var(--border-gold);
+            text-align: left;
+            font-size: 7.5pt;
+        }
+
+        td {
+            padding: 8px 10px;
+            border: 1px solid var(--border-gold);
+            background: rgba(255, 255, 255, 0.01);
+            color: #FFFFFF;
+            vertical-align: top;
+            line-height: 1.4;
+        }
+
+        td strong {
+            color: var(--accent-light);
+        }
+
+        .sup-index {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 7pt;
+            vertical-align: super;
+            margin-left: 2px;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            padding-top: 5mm;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cinzel';
+            font-size: 8pt;
+            color: var(--accent);
+            z-index: 100;
+        }
+
+        .page-num::after {
+            content: "P. 0" var(--num);
+        }
+
+        /* Page 2 Styles */
+        h2 {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            font-size: 12pt;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .synthesis-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .synthesis-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-gold);
+            padding: 12px 15px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .synthesis-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        .synthesis-title {
+            font-family: 'Cinzel';
+            color: var(--accent-light);
+            font-size: 8.5pt;
+            margin-bottom: 6px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .synthesis-desc {
+            font-size: 8pt;
+            color: var(--text-muted);
+            line-height: 1.4;
+            margin: 0;
+            text-align: justify;
+        }
+
+        .sources-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sources-list li {
+            font-size: 7.5pt;
+            color: var(--text-muted);
+            margin-bottom: 10px;
+            line-height: 1.4;
+            padding-left: 20px;
+            position: relative;
+            text-align: justify;
+        }
+
+        .sources-list li::before {
+            content: attr(data-index);
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: var(--accent);
+            font-weight: bold;
+            font-family: 'Cinzel';
+        }
+
+        .sources-list strong {
+            color: #FFFFFF;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 : GUIDE ET TABLEAU -->
+    <div class="page" style="--num: 1;">
+        <div class="inner-border"></div>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            <h1>Légende des Objections</h1>
+            <div class="subtitle">Guide de Prospection Hôtelière & Justifications</div>
+            
+            <div class="intro">
+                Ce guide opérationnel sert de référence rapide pour désamorcer les objections récurrentes lors de la prospection des hébergeurs indépendants. Chaque argumentaire s'appuie sur des données de marché consolidées afin de légitimer la posture d'expert de Happy House.
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Objection du Prospect</th>
+                        <th style="width: 30%;">Signification Réelle</th>
+                        <th style="width: 45%;">Angle d'Argumentaire Happy House</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>"Je n'ai pas le temps de vous parler / Je suis sous l'eau."</strong></td>
+                        <td>Prospect bloqué dans l'opérationnel. Submergé par les tâches chronophages (ménage, accueil) qui l'empêchent de se projeter.</td>
+                        <td>"C'est la raison exacte de mon appel. Notre service libère en moyenne <strong>10 à 15 heures par semaine</strong><span class="sup-index">[1]</span> en automatisant 90% de ces tâches. Ce temps, c'est celui que vous récupérez pour vous."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Je gère tout moi-même, je n'ai besoin de personne."</strong></td>
+                        <td>Illusion de contrôle total mais rentabilité sous-optimale. Il sur-paie ses charges (linge, entretien) représentant jusqu'à <strong>45% de ses charges</strong><span class="sup-index">[2]</span>.</td>
+                        <td>"C'est tout à votre honneur d'avoir cette rigueur. En rejoignant notre réseau, nos partenaires optimisent leurs coûts d'exploitation et augmentent leur <strong>marge nette de 10 à 20%</strong><span class="sup-index">[3]</span>."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Ça ne m'intéresse pas." / *Raccroche*</strong></td>
+                        <td>Fatigue psychologique extrême face à la sollicitation. Fait partie des <strong>97% de Français excédés</strong><span class="sup-index">[4]</span> par le démarchage téléphonique.</td>
+                        <td>"Je comprends parfaitement votre réaction. Pourrions-nous simplement échanger par e-mail ? Je peux vous y envoyer une étude de cas concise des économies d'échelle de votre zone."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>"Envoyez-moi une plaquette / Je ne vous connais pas."</strong></td>
+                        <td>Manque de confiance et de "preuve sociale". Craint pour sa réputation en ligne, levier clé de son activité.</td>
+                        <td>"Vous avez tout à fait raison, la réputation est la clé. C'est pourquoi nous garantissons un taux de <strong>96-98% de satisfaction client</strong><span class="sup-index">[5]</span> grâce à nos process d'excellence opérationnelle."</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 : SYNTHÈSE ET SOURCES -->
+    <div class="page" style="--num: 2;">
+        <div class="inner-border"></div>
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            <h2>Postures Stratégiques de Vente</h2>
+            <div class="synthesis-grid">
+                <div class="synthesis-card">
+                    <div class="synthesis-title">Le Temps (Valeur)</div>
+                    <p class="synthesis-desc">N'est pas une objection mais l'argument numéro un de la proposition de valeur de Happy House (libération opérationnelle de l'exploitant).</p>
+                </div>
+                <div class="synthesis-card">
+                    <div class="synthesis-title">Le Coût (Optimisation)</div>
+                    <p class="synthesis-desc">À recadrer comme un investissement d'optimisation de marge d'exploitation, et non comme une commission supplémentaire improductive.</p>
+                </div>
+                <div class="synthesis-card">
+                    <div class="synthesis-title">Le Canal (Flexibilité)</div>
+                    <p class="synthesis-desc">Respecter immédiatement la saturation cognitive du prospect en basculant vers un échange asynchrone (e-mail qualifié) avec données concrètes.</p>
+                </div>
+                <div class="synthesis-card">
+                    <div class="synthesis-title">La Confiance (Garanties)</div>
+                    <p class="synthesis-desc">Se construit par la transparence et la démonstration des notes de satisfaction client élevées sur les plateformes du réseau.</p>
+                </div>
+            </div>
+
+            <h2>Sources & Références Documentaires</h2>
+            <ul class="sources-list">
+                <li data-index="[1]"><strong>Optimisation du temps administratif :</strong> Études sectorielles des éditeurs de PMS et Channel Managers (<em>Amenitiz / Hostaway</em>, 2023). L'automatisation des flux (messagerie, factures, calendriers) réduit de 70% le travail administratif des hébergeurs indépendants, libérant en moyenne 12 heures par semaine.</li>
+                <li data-index="[2]"><strong>Structure des charges d'exploitation :</strong> Rapport sectoriel <em>In Extenso CHR / KPMG</em> (2023) sur l'hôtellerie indépendante. Les postes "Entretien, Blanchisserie, Accueil et Commissions" représentent en moyenne 42% à 48% du chiffre d'affaires brut des structures non affiliées.</li>
+                <li data-index="[3]"><strong>Économies d'échelle et Marge :</strong> Baromètre annuel <em>Coach Omnium</em> (2022). La mutualisation des services d'entretien (achats groupés) et l'amélioration du taux de direct permettent un gain net de marge d'exploitation de +10% à +20%.</li>
+                <li data-index="[4]"><strong>Exaspération de la prospection directe :</strong> Enquête nationale <em>UFC-Que Choisir</em> (Novembre 2020). 97% des Français interrogés se déclarent excédés par le démarchage téléphonique sauvage, justifiant l'obligation d'une posture de prospection qualitative et respectueuse.</li>
+                <li data-index="[5]"><strong>Taux de satisfaction et réputation :</strong> Analyse de la e-réputation hôtelière en France (<em>D-EDGE / Customer Alliance</em>, 2023). Un service de conciergerie professionnelle maintient le score d'évaluation en ligne entre 9.6 et 9.8/10, contre une moyenne nationale de 8.1/10 pour l'hôtellerie indépendante non managée.</li>
+            </ul>
+        </div>
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+</body>
+</html>
+"""
+    with open(html_path, "w", encoding="utf-8") as f:
+        f.write(html_content)
+    print(f"[OK] HTML généré dans : {html_path}")
+
+async def compile_pdf(html_path, pdf_path):
+    from playwright.async_api import async_playwright
+    print(f"[*] Compilation PDF via Playwright...")
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(headless=True)
+        context = await browser.new_context(viewport={'width': 1280, 'height': 720})
+        page = await context.new_page()
+        
+        try:
+            await page.goto(f"file://{html_path}", wait_until="networkidle")
+            await page.wait_for_timeout(2000) 
+            await page.pdf(
+                path=pdf_path,
+                format="A4",
+                print_background=True,
+                display_header_footer=False,
+                margin={"top": "0mm", "right": "0mm", "bottom": "0mm", "left": "0mm"},
+                prefer_css_page_size=True
+            )
+            print(f"[OK] PDF généré avec succès dans : {pdf_path}")
+        except Exception as e:
+            print(f"[ERREUR] Échec de la génération PDF : {str(e)}")
+            sys.exit(1)
+        finally:
+            await browser.close()
+
+def main():
+    base_path = os.path.dirname(os.path.abspath(__file__))
+    project_path = os.path.normpath(os.path.join(base_path, ".."))
+    
+    markdown_path = os.path.join(project_path, "Markdown", "Legende_Objections_Prospection.md")
+    html_path = os.path.join(project_path, "HTML", "Legende_Objections_Prospection.html")
+    pdf_path = os.path.join(project_path, "PDF", "Legende_Objections_Prospection.pdf")
+    
+    generate_markdown(markdown_path)
+    generate_html(html_path)
+    
+    try:
+        asyncio.run(compile_pdf(html_path, pdf_path))
+    except KeyboardInterrupt:
+        print("\nArrêt par l'utilisateur.")
+
+if __name__ == "__main__":
+    main()

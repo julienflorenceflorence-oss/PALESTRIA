@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Prospects Happy House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #F4F4F4;
+            --card-bg: #1A1E26;
+            --radius: 8px;
+        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); font-size: 1.6rem; margin: 0; }
+        
+        .controls { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+        .filter-box, .search-box { background: var(--card-bg); border: 1px solid var(--accent); color: white; padding: 10px; border-radius: 4px; font-family: 'Montserrat'; }
+        .search-box { flex-grow: 1; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        
+        .card { background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 20px; border-radius: var(--radius); transition: 0.3s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .badge-type { position: absolute; top: -10px; right: 10px; font-size: 0.6rem; font-weight: bold; padding: 3px 12px; border-radius: 10px; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .card-title { font-family: 'Cinzel'; color: var(--accent); font-size: 0.95rem; height: 2.5rem; overflow: hidden; }
+        .stars { color: var(--accent); margin: 10px 0; }
+        .card-content p { margin: 4px 0; font-size: 0.9rem; }
+        
+        .btn-prestige { display: block; width: 100%; padding: 12px; text-align: center; background: var(--accent); color: var(--bg); text-decoration: none; font-family: 'Cinzel'; font-size: 0.8rem; font-weight: bold; border-radius: 4px; transition: 0.3s; margin-top: 15px; }
+        .btn-prestige:hover { filter: brightness(1.2); box-shadow: 0 0 10px var(--accent); }
+        
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px; }
+        .pagination button { background: var(--card-bg); border: 1px solid var(--accent); color: var(--accent); padding: 8px 12px; border-radius: 4px; cursor: pointer; }
+        .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pagination span { font-weight: bold; }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1 id="dashboardTitle">Dashboard Prospects Happy House</h1>
+                <p style="opacity: 0.6; margin-top: 5px;">CRM interactif pour le suivi des prospects</p>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="searchBox" class="search-box" placeholder="Rechercher par nom, ville...">
+            <select id="typeFilter" class="filter-box">
+                <option value="all">Tous les types</option>
+                <option value="PROFESSIONNEL">Professionnels</option>
+                <option value="PARTICULIER">Particuliers</option>
+            </select>
+            <select id="deptFilter" class="filter-box">
+                <option value="all">Tous départements</option>
+            </select>
+             <select id="statusFilter" class="filter-box">
+                <option value="all">Tous les statuts</option>
+                <option value="SUIVI NÉGO">Suivi Négo</option>
+                <option value="NRP">NRP</option>
+                <option value="REFUS CATÉGORIQUE">Refus Catégorique</option>
+                <option value="REFUS ARGUMENTÉ">Refus Argumenté</option>
+            </select>
+        </div>
+
+        <div class="grid" id="leadsGrid">
+            <!-- Les fiches prospects seront injectées ici par JavaScript -->
+        </div>
+
+        <div class="pagination" id="pagination-container">
+            <button id="prevPage">Précédent</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage">Suivant</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const leadsGrid = document.getElementById('leadsGrid');
+            const searchBox = document.getElementById('searchBox');
+            const typeFilter = document.getElementById('typeFilter');
+            const deptFilter = document.getElementById('deptFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const dashboardTitle = document.getElementById('dashboardTitle');
+            
+            // Pagination
+            const paginationContainer = document.getElementById('pagination-container');
+            const prevPageBtn = document.getElementById('prevPage');
+            const nextPageBtn = document.getElementById('nextPage');
+            const pageInfo = document.getElementById('pageInfo');
+            const itemsPerPage = 12;
+            let currentPage = 1;
+            let allProspects = [];
+            let filteredProspects = [];
+
+            const statusColors = {
+                "SUIVI NÉGO": "#28a745",
+                "NRP": "#6c757d",
+                "REFUS CATÉGORIQUE": "#dc3545",
+                "REFUS ARGUMENTÉ": "#ffc107"
+            };
+
+            const typeColors = {
+                "PROFESSIONNEL": "#28a745",
+                "PARTICULIER": "#fd7e14"
+            }
+
+            fetch('prospects.json')
+                .then(response => response.json())
+                .then(data => {
+                    allProspects = data;
+                    filteredProspects = data;
+                    dashboardTitle.textContent = `Dashboard Prospects (${allProspects.length})`
+                    populateFilters(data);
+                    setupEventListeners();
+                    renderPage();
+                });
+
+            function populateFilters(data) {
+                const depts = [...new Set(data.map(p => p.department))].sort();
+                depts.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept;
+                    option.textContent = `Dept ${dept}`;
+                    deptFilter.appendChild(option);
+                });
+            }
+            
+            function setupEventListeners() {
+                searchBox.addEventListener('input', applyFilters);
+                typeFilter.addEventListener('change', applyFilters);
+                deptFilter.addEventListener('change', applyFilters);
+                statusFilter.addEventListener('change', applyFilters);
+                prevPageBtn.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderPage();
+                    }
+                });
+                nextPageBtn.addEventListener('click', () => {
+                     if (currentPage < Math.ceil(filteredProspects.length / itemsPerPage)) {
+                        currentPage++;
+                        renderPage();
+                    }
+                });
+            }
+
+            function applyFilters() {
+                const searchTerm = searchBox.value.toLowerCase();
+                const selectedType = typeFilter.value;
+                const selectedDept = deptFilter.value;
+                const selectedStatus = statusFilter.value;
+
+                filteredProspects = allProspects.filter(p => {
+                    const nameMatch = p.name.toLowerCase().includes(searchTerm);
+                    const cityMatch = p.city.toLowerCase().includes(searchTerm);
+                    const typeMatch = selectedType === 'all' || p.type === selectedType;
+                    const deptMatch = selectedDept === 'all' || p.department === selectedDept;
+                    const statusMatch = selectedStatus === 'all' || p.status === selectedStatus;
+                    return (nameMatch || cityMatch) && typeMatch && deptMatch && statusMatch;
+                });
+                currentPage = 1; // Reset to first page after filtering
+                renderPage();
+            }
+
+            function renderPage() {
+                leadsGrid.innerHTML = '';
+                const totalPages = Math.ceil(filteredProspects.length / itemsPerPage);
+                
+                if (filteredProspects.length === 0) {
+                    leadsGrid.innerHTML = '<p>Aucun prospect ne correspond à votre recherche.</p>';
+                    paginationContainer.classList.add('hidden');
+                    return;
+                }
+
+                paginationContainer.classList.remove('hidden');
+                
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const prospectsToShow = filteredProspects.slice(start, end);
+
+                prospectsToShow.forEach(prospect => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.style.borderLeft = `5px solid ${statusColors[prospect.status] || '#1A1E26'}`;
+                    
+                    const ratingStars = '⭐'.repeat(prospect.rating);
+
+                    card.innerHTML = `
+                        <div class="badge-type" style="background: ${typeColors[prospect.type] || '#6c757d'};">${prospect.type}</div>
+                        <div class="card-title">${prospect.name}</div>
+                        <div class="stars">${ratingStars} <span style="font-size:0.7rem; opacity:0.5;">(Dept: ${prospect.department})</span></div>
+                        <div class="card-content">
+                            <p><strong>📍 Ville :</strong> ${prospect.zipCode} ${prospect.city}</p>
+                            <p style="font-size: 1.1rem; color: var(--accent); margin: 5px 0;"><strong>📞 ${prospect.phone}</strong></p>
+                            <div style="background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; margin-top: 10px; font-size: 0.75rem;">
+                                <strong style="color: ${statusColors[prospect.status] || '#F4F4F4'};">● ${prospect.status} :</strong><br>
+                                ${prospect.note}
+                            </div>
+                        </div>
+                        <a href="tel:${prospect.phone.replace(/\s/g, '')}" class="btn-prestige">Appeler</a>
+                    `;
+                    leadsGrid.appendChild(card);
+                });
+                
+                pageInfo.textContent = `Page ${currentPage} sur ${totalPages}`;
+                prevPageBtn.disabled = currentPage === 1;
+                nextPageBtn.disabled = currentPage === totalPages;
+            }
+        });
+    </script>
+</body>
+</html>

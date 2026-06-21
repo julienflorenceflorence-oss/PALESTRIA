@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinaire Happy House - L'Art de l'Hospitalité Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bleu-principal: #0B2D5C;
+            --dore: #D4A574;
+            --blanc: #FFFFFF;
+            --gris-texte: #4A4A4A;
+            --font-titre: 'Playfair Display', serif;
+            --font-corps: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-corps);
+            background-color: var(--bleu-principal);
+            color: var(--blanc);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-titre);
+            font-weight: 700;
+            text-transform: lowercase; /* Titres en minuscules */
+        }
+        
+        h1 { font-size: 3.5rem; color: var(--dore); }
+        h1 .subtitle-italic { font-style: italic; font-weight: 400; display: block; font-size: 2.5rem; color: var(--blanc); }
+        h2 { font-size: 2.8rem; color: var(--dore); margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; color: var(--dore); margin-bottom: 1rem; }
+
+        p { max-width: 800px; margin: 0 auto 1.5rem auto; }
+        
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--dore);
+            color: var(--blanc);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+        .btn-cta:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); }
+
+        /* --- Logo --- */
+        .logo-container {
+            margin-bottom: 2rem;
+            font-family: var(--font-titre);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+        .logo-img { height: 80px; }
+        .logo-subtext {
+            font-size: 1.5rem; /* Ajusté pour être proportionnel */
+            color: var(--dore);
+            letter-spacing: 1px;
+            line-height: 1;
+        }
+
+        /* --- SLIDE 1: Cover --- */
+        #cover { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        #cover .badge { border: 1px solid var(--dore); padding: 0.5rem 1rem; border-radius: 20px; margin-top: 2rem; display: inline-block; font-size: 0.9rem; }
+        #cover .badge-icon { margin-right: 8px; }
+
+        /* --- SLIDE 2: Constat --- */
+        #constat { background-color: var(--blanc); color: var(--gris-texte); border-bottom: 1px solid rgba(0,0,0,0.1); }
+        .constat-grid { display: flex; align-items: center; gap: 3rem; text-align: left; }
+        .constat-img { flex: 0 0 40%; }
+        .constat-img img { width: 100%; height: auto; filter: grayscale(100%); border-radius: 8px; }
+        .constat-text { flex: 1; }
+        .constat-text h3 { color: var(--bleu-principal); font-family: var(--font-corps); font-weight: 700; text-transform: uppercase; }
+        .constat-conclusion { font-weight: 700; color: var(--dore); font-size: 1.2rem; margin-top: 2rem; }
+
+        /* --- SLIDE 3: Solution --- */
+        #solution { background-color: #f0f4f8; color: var(--gris-texte); border-bottom: 1px solid rgba(0,0,0,0.1); }
+        #solution h2 { color: var(--bleu-principal); }
+        .solution-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3rem; }
+        .solution-card { background: var(--blanc); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .solution-card .icon-hex { height: 50px; margin-bottom: 1rem; }
+        .solution-card .icon-hex img { height: 100%; object-fit: contain; }
+        .solution-card h3 { color: var(--bleu-principal); }
+        .solution-card ul { list-style: none; padding-left: 0; text-align: center; }
+        .solution-card ul li { margin-bottom: 0.5rem; }
+
+        /* --- SLIDE 4: Intervenants --- */
+        #intervenants { border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .intervenants-grid { display: flex; justify-content: center; gap: 4rem; margin-top: 3rem; }
+        .profil { text-align: center; max-width: 300px; }
+        .hex-photo { width: 200px; height: 230px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); overflow: hidden; margin: 0 auto 1.5rem auto; background-color: var(--dore); }
+        .hex-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .profil-nom { font-family: var(--font-corps); font-weight: 700; font-size: 1.5rem; color: var(--blanc); text-transform: uppercase;}
+        .profil-titre { color: var(--dore); font-weight: 700; margin-bottom: 0.5rem; }
+
+        /* --- SLIDE 5: Conclusion --- */
+        .timeline { border: 1px solid var(--dore); padding: 2rem; border-radius: 10px; margin: 2rem auto; max-width: 600px; }
+        .timeline-item { font-size: 1.2rem; margin-bottom: 1rem; }
+        .timeline-item span { font-weight: 700; color: var(--dore); }
+        .info-webinaire { margin: 2rem 0; }
+        .replay-mention { margin-top: 2rem; font-style: italic; font-size: 0.9rem; }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 992px) {
+            .solution-grid { grid-template-columns: 1fr; }
+            .intervenants-grid { flex-direction: column; align-items: center; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h1 .subtitle-italic { font-size: 1.8rem; }
+            h2 { font-size: 2.2rem; }
+            .constat-grid { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1 - PAGE DE COUVERTURE -->
+    <section id="cover">
+        <div class="container">
+            <div class="logo-container">
+                <img src="Photos/HH3.1.png" alt="Happy House Logo" class="logo-img">
+                <div class="logo-subtext">Le Cercle</div>
+            </div>
+            <h1>
+                l'art de l'hospitalité premium :
+                <span class="subtitle-italic">Conjuguer Rentabilité et Indépendance.</span>
+            </h1>
+            <p>Découvrez comment le Label Happy House redonne le pouvoir aux hébergeurs d'exception face à l'inflation et aux géants du web.</p>
+            <div class="badge">
+                <span class="badge-icon">🕒</span> Format Exclusif : Visio 30 min max • Sans engagement
+            </div>
+            <a href="#" class="btn-cta">[ Je réserve ma place (Gratuit) ]</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 2 - LE CONSTAT (LE PARADOXE) -->
+    <section id="constat">
+        <div class="container">
+            <h2>le paradoxe de l'hébergeur d'exception</h2>
+            <div class="constat-grid">
+                <div class="constat-img">
+                    <img src="Photos/photo land.png" alt="Homme pensif à son bureau">
+                </div>
+                <div class="constat-text">
+                    <h3>L'Investissement vs La Réalité</h3>
+                    <p>L'investissement : Des lieux sublimes pour offrir du rêve.<br>La réalité : Un cauchemar administratif et financier.</p>
+                    <h3>Les 3 Points de Pression</h3>
+                    <p><strong>Explosion des coûts :</strong> Énergie, linge, fournitures. L'inflation grignote vos marges.</p>
+                    <p><strong>Confiscation de la donnée :</strong> Les plateformes (OTA) s'interposent entre vous et vos clients directs.</p>
+                    <p><strong>Isolement :</strong> Seul face aux géants et aux évolutions du marché. Impossible de rivaliser seul.</p>
+                    <p class="constat-conclusion">"Ce n'est pas une fatalité. C'est un modèle à réinventer."</p>
+                </div>
+            </div>
+            <a href="#" class="btn-cta">Je veux la solution</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3 - LA SOLUTION "HAPPY HOUSE" -->
+    <section id="solution">
+        <div class="container">
+            <h2>la solution 'happy house'</h2>
+            <p style="color: var(--bleu-principal);">Trois leviers pour reprendre le contrôle</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="icon-hex"><img src="Photos/economi.png" alt="Icône Rentabilité"></div>
+                    <h3>rentabilité immédiate</h3>
+                    <ul>
+                        <li>Accédez à notre Centrale d'Achat Premium</li>
+                        <li>Bénéficiez de la puissance du groupe</li>
+                        <li>Obtenez 15% à 40% d'économie sur :</li>
+                        <li>Énergie, Blanchisserie, Fournitures</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="icon-hex"><img src="Photos/tel.png" alt="Icône Indépendance"></div>
+                    <h3>indépendance data</h3>
+                    <ul>
+                        <li>Reprenez le contrôle grâce à notre App Mobile</li>
+                        <li>Créée par un hébergeur POUR les hébergeurs</li>
+                        <li>Cessez de louer votre audience aux OTA</li>
+                        <li>Sécurisez vos données</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="icon-hex"><img src="Photos/bosst.png" alt="Icône Business"></div>
+                    <h3>boost business b2b</h3>
+                    <ul>
+                        <li>Ne soyez plus seul, intégrez le 'Cercle Happy House'</li>
+                        <li>Débloquez un accès exclusif aux :</li>
+                        <li>Marchés cachés, Comités d'Entreprise (CE), Plateformes de Séminaires</li>
+                    </ul>
+                </div>
+            </div>
+            <a href="#" class="btn-cta">Intégrer le Cercle</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4 - VOS INTERVENANTS -->
+    <section id="intervenants">
+        <div class="container">
+            <h2>les intervenants</h2>
+            <p>Des experts du terrain, pas des théoriciens.</p>
+            <div class="intervenants-grid">
+                <div class="profil">
+                    <div class="hex-photo"><img src="Photos/patrice.jpeg" alt="Portrait de Patrice"></div>
+                    <div class="profil-nom">Patrice</div>
+                    <div class="profil-titre">Fondateur de Happy House</div>
+                    <p>Vision stratégique pour redonner le pouvoir aux indépendants. Leader, visionnaire, expert en stratégie touristique.</p>
+                </div>
+                <div class="profil">
+                    <div class="hex-photo"><img src="Photos/Julien FLORENCE.jpeg" alt="Portrait de Julien"></div>
+                    <div class="profil-nom">Julien</div>
+                    <div class="profil-titre">Directeur des Opérations</div>
+                    <p>Expertise terrain pour déployer les leviers de rentabilité. Expert opérationnel, connaisseur des défis du quotidien.</p>
+                </div>
+            </div>
+            <a href="#" class="btn-cta">Poser mes questions aux experts</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 5 - CONCLUSION & ENGAGEMENT -->
+    <section id="conclusion">
+        <div class="container">
+            <h2>votre temps est précieux. nous le respectons.</h2>
+            <div class="timeline">
+                <div class="timeline-item"><span>20 minutes →</span> Présentation concrète et factuelle</div>
+                <div class="timeline-item"><span>10 minutes →</span> Vos questions stratégiques</div>
+            </div>
+            <div class="info-webinaire">
+                <h3>rejoignez-nous le [Date] à [Heure]</h3>
+            </div>
+            <a href="#" class="btn-cta">[ Je rejoins le live (30 min) ]</a>
+            <p class="replay-mention">*Pas disponible à cette date ? Inscrivez-vous pour recevoir le replay.</p>
+        </div>
+    </section>
+
+</body>
+</html>

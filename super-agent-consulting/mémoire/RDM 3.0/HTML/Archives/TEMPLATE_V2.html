@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPPORT DE MISSION 2026 - JULIEN FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --onyx: #0F163D;
+            --gold: #DDA83E;
+            --gold-light: #F4E4BC;
+            --text-dark: #2C3E50;
+            --text-light: #FFFFFF;
+            --border: rgba(221, 168, 62, 0.3);
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        
+        @page { size: A4; margin: 0; }
+        
+        body { margin: 0; padding: 0; background-color: #f0f2f5; font-family: 'Arial', sans-serif; }
+
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 10mm auto;
+            background: #FFF;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        /* STYLE PRESTIGE FULL PAGE */
+        .page.prestige {
+            background-color: var(--onyx) !important;
+            color: var(--text-light);
+        }
+
+        /* STYLE ACADÉMIQUE */
+        .page.academic {
+            padding: 25mm 25mm 25mm 25mm;
+            color: var(--text-dark);
+            text-align: justify;
+            line-height: 1.6;
+        }
+
+        h1 { font-family: 'Cinzel', serif; color: var(--gold); }
+        h2 { font-family: 'Montserrat', sans-serif; font-weight: 600; color: var(--onyx); }
+
+        .footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 20mm;
+            right: 20mm;
+            border-top: 0.5pt solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8pt;
+            padding-top: 3mm;
+            z-index: 100;
+        }
+        .page.prestige .footer { color: var(--gold); border-top-color: var(--gold); }
+
+        /* COUVERTURE OPTIMISÉE */
+        .logos-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            padding: 20mm 25mm;
+        }
+        .logo-rs { height: 50px; filter: brightness(0) invert(1); }
+        .logo-hh { height: 60px; }
+
+        .cover-main {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-bottom: 40mm;
+        }
+
+        /* LEXIQUE & LISTES */
+        .lexique-list { list-style: none; padding: 0; }
+        .lexique-item { margin-bottom: 15px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .lexique-term { font-weight: bold; color: var(--onyx); font-family: 'Cinzel'; font-size: 10pt; }
+
+        /* SOMMAIRE */
+        .toc-list { list-style: none; padding: 0; }
+        .toc-item { margin-bottom: 8px; }
+        .toc-link { text-decoration: none; color: inherit; display: flex; align-items: baseline; }
+        .toc-dots { flex-grow: 1; border-bottom: 1px dotted var(--onyx); margin: 0 10px; opacity: 0.3; }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <!-- CONTENU ASSEMBLÉ ICI -->
+</body>
+</html>

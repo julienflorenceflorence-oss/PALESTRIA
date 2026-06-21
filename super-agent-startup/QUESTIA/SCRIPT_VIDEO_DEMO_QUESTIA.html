@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Script Vidéo Démo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .container {
+            background: var(--surface);
+            max-width: 900px;
+            margin: 0 auto;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 40px 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--brand-gradient);
+        }
+
+        header { text-align: center; margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        .logo { font-family: 'Cinzel'; font-size: 2rem; font-weight: 700; letter-spacing: 6px; background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .doc-type { font-family: 'Cinzel'; color: var(--accent); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-top: 10px; }
+
+        .meta-info {
+            background: var(--glass); padding: 15px; border-radius: 8px; margin-bottom: 30px; border: 1px solid rgba(0, 229, 255, 0.1);
+            display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--text-dim);
+        }
+        .meta-info strong { color: var(--text); }
+
+        .scene {
+            border-left: 2px solid var(--border); padding-left: 20px; margin-bottom: 30px; position: relative;
+        }
+        .scene::before {
+            content: ""; position: absolute; left: -6px; top: 0; width: 10px; height: 10px; border-radius: 50%; background: var(--accent-purple);
+        }
+        .scene.hook::before { background: var(--accent-coral); }
+        .scene.solution::before { background: var(--accent); }
+
+        .scene-title { font-family: 'Cinzel'; font-weight: 700; color: var(--text); font-size: 1.1rem; margin-bottom: 5px; }
+        .scene-time { font-size: 0.7rem; color: var(--accent); font-weight: 600; letter-spacing: 1px; margin-bottom: 15px; display: block; }
+        
+        .script-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        
+        .visual { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 8px; border: 1px dashed var(--border); font-size: 0.9rem; }
+        .visual-label { display: block; color: var(--accent-purple); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+        
+        .audio { background: rgba(0, 229, 255, 0.05); padding: 15px; border-radius: 8px; border: 1px solid rgba(0, 229, 255, 0.1); font-size: 0.9rem; }
+        .audio-label { display: block; color: var(--accent); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; font-weight: 600; }
+        .voice { font-style: italic; color: #FFF; }
+
+        .footer { margin-top: 50px; text-align: center; font-family: 'Cinzel'; font-size: 0.75rem; color: var(--text-dim); letter-spacing: 2px; border-top: 1px solid var(--border); padding-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">QUESTIA</div>
+            <div class="doc-type">Script Vidéo Démo (B2B)</div>
+        </header>
+
+        <div class="meta-info">
+            <div><strong>Cible :</strong> Directeurs Écoles & Formateurs</div>
+            <div><strong>Durée max :</strong> 1m 30s</div>
+            <div><strong>Ton :</strong> Tech-Premium, Confiant, Rapide</div>
+            <div><strong>Lead :</strong> Albane</div>
+        </div>
+
+        <!-- SCÈNE 1 : THE HOOK -->
+        <div class="scene hook">
+            <div class="scene-title">SCÈNE 1 : LE CONSTAT (La Douleur)</div>
+            <span class="scene-time">0:00 - 0:15</span>
+            <div class="script-grid">
+                <div class="visual">
+                    <span class="visual-label">Visuel (Écran)</span>
+                    Texte cinétique dynamique sur fond sombre (Cyber-Prestige).<br><br>
+                    Mots clés qui apparaissent en rouge/corail : "TEMPS PERDU", "CORRECTIONS INTERMINABLES", "BUDGET EXTERNE".<br><br>
+                    Plan d'un étudiant frustré devant un écran de QCM classique (texte).
+                </div>
+                <div class="audio">
+                    <span class="audio-label">Voix-Off & Sound Design</span>
+                    <span class="voice">"Vos formateurs manquent de temps pour évaluer l'oral. Vos étudiants s'ennuient sur des QCM textuels. Et vos budgets de certification explosent."</span><br><br>
+                    <em>Bruitage : Son de clavier lourd, tic-tac d'horloge (stress).</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCÈNE 2 : LA SOLUTION -->
+        <div class="scene solution">
+            <div class="scene-title">SCÈNE 2 : L'ENTRÉE DE QUESTIA (L'Effet Whaou)</div>
+            <span class="scene-time">0:15 - 0:40</span>
+            <div class="script-grid">
+                <div class="visual">
+                    <span class="visual-label">Visuel (Écran)</span>
+                    Transition fluide (glitch/neon cyan). Apparition du logo QUESTIA or/cyan.<br><br>
+                    Vue interface mobile : L'étudiant parle à son téléphone. L'onde vocale (vagues cyan/violet) réagit en temps réel.<br><br>
+                    Pop-up UI : "Latence : 1.2s", "Scoring CECRL En Cours".
+                </div>
+                <div class="audio">
+                    <span class="audio-label">Voix-Off & Sound Design</span>
+                    <span class="voice">"Découvrez QuestIA. Le premier coach vocal IA qui écoute, comprend, et challenge vos étudiants en temps réel."</span><br><br>
+                    <span class="voice">"Plus besoin de taper. L'immersion est totale, directement depuis leur smartphone ou votre LMS."</span><br><br>
+                    <em>Bruitage : Sonde tech futuriste, musique 'uplifting' moderne.</em>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCÈNE 3 : LE ROI POUR LE PROF -->
+        <div class="scene">
+            <div class="scene-title">SCÈNE 3 : LE SUPER-POUVOIR DU FORMATEUR</div>
+            <span class="scene-time">0:40 - 1:05</span>
+            <div class="script-grid">
+                <div class="visual">
+                    <span class="visual-label">Visuel (Écran)</span>
+                    Passage sur l'écran "Dashboard Professeur" (Interface sombre, graphiques).<br><br>
+                    La caméra zoome sur la progression d'un élève. Une alerte verte indique : "Score B2 validé".<br><br>
+                    Texte à l'écran : "ZÉRO CORRECTION MANUELLE".
+                </div>
+                <div class="audio">
+                    <span class="audio-label">Voix-Off & Sound Design</span>
+                    <span class="voice">"Pendant qu'ils pratiquent l'oral 24h/24, vos formateurs récupèrent un temps précieux."</span><br><br>
+                    <span class="voice">"Le dashboard QuestIA évalue chaque interaction et génère une certification continue fiable. Fini les heures de correction."</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCÈNE 4 : CALL TO ACTION -->
+        <div class="scene hook">
+            <div class="scene-title">SCÈNE 4 : LA TRACTION (Le CTA)</div>
+            <span class="scene-time">1:05 - 1:20</span>
+            <div class="script-grid">
+                <div class="visual">
+                    <span class="visual-label">Visuel (Écran)</span>
+                    Logo QuestIA plein écran.<br>
+                    Apparition d'un gros bouton dégradé : "TESTEZ AVEC 3 ÉLÈVES".<br><br>
+                    Texte discret en bas : "Intégration API & LTI disponible".
+                </div>
+                <div class="audio">
+                    <span class="audio-label">Voix-Off & Sound Design</span>
+                    <span class="voice">"Devenez le standard de demain. Rejoignez les écoles d'élite qui ont déjà fait le choix de l'IA vocale."</span><br><br>
+                    <span class="voice">"Demandez votre accès pilote gratuit sur QuestIA.fr"</span><br><br>
+                    <em>Bruitage : "Swoosh" final impactant.</em>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            DIRECTION ARTISTIQUE : ALBANE | SUPERVISION : TRIUMVIRAT
+        </div>
+    </div>
+
+</body>
+</html>

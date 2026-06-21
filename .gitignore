@@ -1,0 +1,24 @@
+# Cache and environment files
+.n8n/
+.vscode/
+.cache/
+.gemini/
+.agentation/
+.antigravity/
+
+# Temporary and log files
+*.log
+*TEMP.pdf
+NTUSER*
+ntuser*
+
+# Node modules
+node_modules/
+
+# Large binaries, media and archives
+*.zip
+*.exe
+*.mp4
+*.m4a
+3dbc24ad-4abc-4572-8335-6239ea858b18.png
+

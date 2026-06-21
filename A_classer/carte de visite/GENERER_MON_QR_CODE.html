@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planche QR Codes Prestige - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Ajout de la librairie html2canvas pour générer des images JPG -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+            --onyx: #0A0A0A;
+            --bordeaux: #630D16;
+            --bleu-nuit: #0A192F;
+        }
+
+        body { 
+            background: #111; 
+            color: var(--gold); 
+            font-family: 'Montserrat', sans-serif; 
+            text-align: center; 
+            padding: 40px 20px;
+            margin: 0;
+        }
+
+        h1 { 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--white);
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .card-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .card { 
+            border: 2px solid var(--gold); 
+            border-radius: 24px; 
+            padding: 40px; 
+            width: 350px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Univers colorés */
+        .card-duo { background: var(--onyx); }
+        .card-cercle { background: var(--bordeaux); }
+        .card-happy { background: var(--bleu-nuit); }
+
+        .card h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+            margin-bottom: 5px;
+            color: var(--white);
+            text-transform: uppercase;
+        }
+
+        .card .subtitle {
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            color: var(--gold);
+            font-weight: 600;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .qr-box { 
+            background: white; 
+            padding: 15px; 
+            border-radius: 16px; 
+            display: inline-block; 
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            width: 220px;
+            height: 220px;
+        }
+
+        .qr-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .btn { 
+            display: inline-block; 
+            background: var(--gold); 
+            color: #000; 
+            padding: 12px 25px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            cursor: pointer; 
+            border: none;
+            font-size: 0.7rem;
+            width: 100%;
+            transition: 0.3s;
+        }
+
+        .btn:hover { filter: brightness(1.1); transform: translateY(-2px); }
+
+        .info { 
+            color: var(--white); 
+            opacity: 0.5; 
+            font-size: 0.7rem; 
+            margin-top: 15px; 
+            line-height: 1.4;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Vos Cartes Prestige</h1>
+    <p style="color: white; opacity: 0.7; margin-bottom: 40px;">Cliquez sur le bouton sous chaque carte pour télécharger l'image complète en JPG.</p>
+
+    <div class="cards-container">
+        
+        <!-- SECTION DUO PROFIL -->
+        <div class="card-wrapper">
+            <div class="card card-duo" id="visuel-duo">
+                <h2>Duo Profil</h2>
+                <div class="subtitle">Julien FLORENCE</div>
+                <div class="qr-box">
+                    <img id="imgDuo" src="" alt="QR Duo">
+                </div>
+                <div class="info">Noir Onyx & Or<br>Contact Complet</div>
+            </div>
+            <button class="btn" onclick="downloadCardAsJPG('visuel-duo', 'Carte_Julien_Florence_DUO')">Télécharger la Carte (JPG)</button>
+        </div>
+
+        <!-- SECTION CERCLE ORIGINE -->
+        <div class="card-wrapper">
+            <div class="card card-cercle" id="visuel-cercle">
+                <h2>Cercle Origine</h2>
+                <div class="subtitle">Co-fondateur & Président</div>
+                <div class="qr-box">
+                    <img id="imgCercle" src="" alt="QR Cercle">
+                </div>
+                <div class="info">Rouge Bordeaux & Or<br>Intelligence Viticole et Hôtelière</div>
+            </div>
+            <button class="btn" onclick="downloadCardAsJPG('visuel-cercle', 'Carte_Julien_Florence_CERCLE')">Télécharger la Carte (JPG)</button>
+        </div>
+
+        <!-- SECTION HAPPY HOUSE -->
+        <div class="card-wrapper">
+            <div class="card card-happy" id="visuel-happy">
+                <h2>Happy House</h2>
+                <div class="subtitle">Directeur du Dév. Commercial</div>
+                <div class="qr-box">
+                    <img id="imgHappy" src="" alt="QR Happy">
+                </div>
+                <div class="info">Bleu Nuit & Or<br>Expertise Réseau</div>
+            </div>
+            <button class="btn" onclick="downloadCardAsJPG('visuel-happy', 'Carte_Julien_Florence_HAPPY')">Télécharger la Carte (JPG)</button>
+        </div>
+
+    </div>
+
+<script>
+    const info = {
+        name: "Julien FLORENCE",
+        tel: "0661747573",
+        email: "julienflorence.florence@gmail.com",
+        webHappy: "https://www.my-happy.house/",
+        linkedin: "https://www.linkedin.com/in/julien-florence-2536a083/"
+    };
+
+    function generateVCard(org, title, note, webUrl) {
+        let vcard = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            `FN:${info.name}`,
+            `ORG:${org}`,
+            `TITLE:${title}`,
+            `TEL;TYPE=CELL:${info.tel}`,
+            `EMAIL:${info.email}`
+        ];
+
+        if (webUrl) {
+            vcard.push(`URL;TYPE=WORK:${webUrl}`);
+        }
+
+        vcard.push(`URL;TYPE=LinkedIn:${info.linkedin}`);
+        vcard.push(`NOTE:${note} \n\nLinkedIn : ${info.linkedin}`);
+        vcard.push("END:VCARD");
+
+        return vcard.join("\n");
+    }
+
+    // On utilise un format JPG pour le QR Code depuis l'API QRServer
+    const qrBase = "https://api.qrserver.com/v1/create-qr-code/?size=500x500&format=jpeg&data=";
+
+    // 1. Duo
+    const vcardDuo = generateVCard(
+        "CERCLE ORIGINE / Happy House", 
+        "Président & Dir. Dév. Commercial",
+        "Co-fondateur & Président de CERCLE ORIGINE / Directeur du développement commercial chez Happy House.",
+        info.webHappy
+    );
+    document.getElementById('imgDuo').src = qrBase + encodeURIComponent(vcardDuo);
+
+    // 2. Cercle
+    const vcardCercle = generateVCard(
+        "CERCLE ORIGINE", 
+        "Co-fondateur & Président",
+        "Intelligence Viticole et Hôtelière.",
+        null
+    );
+    document.getElementById('imgCercle').src = qrBase + encodeURIComponent(vcardCercle);
+
+    // 3. Happy
+    const vcardHappy = generateVCard(
+        "Happy House", 
+        "Directeur du développement commercial",
+        "Happy House - Stratégie Réseau & Développement.",
+        info.webHappy
+    );
+    document.getElementById('imgHappy').src = qrBase + encodeURIComponent(vcardHappy);
+
+    // Fonction pour capturer la carte HTML et la télécharger en JPG
+    function downloadCardAsJPG(elementId, fileName) {
+        const element = document.getElementById(elementId);
+        
+        // Options pour s'assurer que la qualité de l'image générée est haute
+        html2canvas(element, { 
+            scale: 2, // Double la résolution
+            useCORS: true, // Autorise le chargement du QR code externe
+            backgroundColor: null 
+        }).then(canvas => {
+            const imgData = canvas.toDataURL('image/jpeg', 1.0); // Qualité max
+            const link = document.createElement('a');
+            link.download = fileName + '.jpg';
+            link.href = imgData;
+            link.click();
+        }).catch(err => {
+            console.error("Erreur lors de la génération de l'image :", err);
+            alert("Une erreur est survenue lors de la création du fichier JPG.");
+        });
+    }
+
+</script>
+
+</body>
+</html>

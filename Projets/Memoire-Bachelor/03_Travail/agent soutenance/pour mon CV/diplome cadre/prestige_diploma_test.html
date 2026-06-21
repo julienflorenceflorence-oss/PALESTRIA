@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diplôme Prestige - Correction Finale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cadre-img: url('Diplomes_PDF/cadre gemini.png');
+            --navy: #182B49;
+            --paper: #f8f8fa; 
+            --margin: 7.5%;
+            --window-start: 22.5%; 
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .master-container {
+            position: relative;
+            width: 90vw;
+            max-width: 1400px;
+            aspect-ratio: 4 / 3;
+            background-color: #08090a;
+            overflow: hidden;
+            container-type: size;
+        }
+
+        /* Masque pour cacher le sigle IA (l'étoile en bas à droite) */
+        .ia-mask {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 15cqw; /* Agrandit pour être sûr */
+            height: 15cqw;
+            background-color: #08090a; 
+            z-index: 2000; /* Toujours au dessus de TOUT */
+        }
+
+        /* LE CADRE AVEC LE TROU CORRIGÉ (Winding Order inversé) */
+        .frame-layer {
+            position: absolute;
+            top: var(--margin);
+            left: var(--margin);
+            right: var(--margin);
+            bottom: var(--margin);
+            background: var(--cadre-img) no-repeat center/cover;
+            z-index: 50;
+            pointer-events: none;
+            /* 
+               Le tracé extérieur est Horaire (0,0 -> 100,0...)
+               Le tracé intérieur doit être Anti-Horaire (17,17 -> 17,82...) pour créer le trou
+            */
+            clip-path: polygon(
+                /* Extérieur (Horaire) */
+                0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 0%, 
+                /* Intérieur (Anti-Horaire) - Création du trou */
+                17.64% 17.64%, 17.64% 82.36%, 82.36% 82.36%, 82.36% 17.64%, 17.64% 17.64%
+            );
+        }
+
+        /* Fenêtre du Diplôme (Espace blanc sous le cadre) */
+        .content-layer {
+            position: absolute;
+            top: var(--window-start);
+            left: var(--window-start);
+            right: var(--window-start);
+            bottom: var(--window-start);
+            background-color: var(--paper);
+            padding: 5cqw 7cqw;
+            display: flex;
+            flex-direction: column;
+            color: var(--navy);
+            z-index: 10;
+            box-shadow: inset 0 0 2cqw rgba(0,0,0,0.1);
+        }
+
+        /* --- TYPOGRAPHIE --- */
+        .header-box {
+            background-color: var(--navy);
+            color: white;
+            padding: 1.2cqw 2.2cqw;
+            align-self: flex-start;
+            margin-bottom: 4cqw;
+        }
+        .header-box h2 { font-size: 2.8cqw; line-height: 1.1; }
+        .user-name {
+            font-size: 4.2cqw;
+            font-weight: 700;
+            margin: 4cqw 0 1cqw 0;
+            letter-spacing: -1px;
+        }
+        .sub-text { font-size: 1.4cqw; opacity: 0.9; margin-bottom: 0.5cqw; }
+        .diploma-title { font-size: 2.5cqw; font-weight: 700; margin-bottom: 6cqw; }
+        .signature-block { margin-top: auto; display: flex; flex-direction: column; }
+        .sig-name { font-weight: 700; font-size: 1.1cqw; }
+        .sig-title { font-size: 0.8cqw; opacity: 0.7; }
+        .sig-img { font-family: serif; font-style: italic; font-size: 2.8cqw; margin-top: 0.8cqw; border-bottom: 1px solid var(--navy); width: fit-content; }
+        .footer-info { position: absolute; bottom: 4cqw; left: 7cqw; font-size: 1cqw; opacity: 0.7; }
+        .logo-box { position: absolute; bottom: 4cqw; right: 7cqw; text-align: right; }
+        .logo-text { font-weight: 700; font-size: 1.6cqw; letter-spacing: 2px; }
+
+    </style>
+</head>
+<body>
+
+    <div class="master-container">
+        <!-- Masque IA (Z-index 2000) -->
+        <div class="ia-mask"></div>
+
+        <!-- Cadre (Z-index 50) avec trou transparent -->
+        <div class="frame-layer"></div>
+
+        <!-- Contenu (Z-index 10, visible à travers le trou) -->
+        <div class="content-layer">
+            <div class="header-box">
+                <h2>Certificat<br>de réussite</h2>
+            </div>
+
+            <div class="user-name">Julien Florence</div>
+            
+            <p class="sub-text">a validé et obtenu le certificat :</p>
+            <div class="diploma-title">Certification Lead Relationship Management</div>
+
+            <div class="signature-block">
+                <div class="sig-name">Mathieu Nebra</div>
+                <div class="sig-title">Co-fondateur d'OpenClassrooms</div>
+                <div class="sig-img">M. Nebra</div>
+            </div>
+
+            <div class="footer-info">
+                Certificat n° RBJTsZJisopDHanV - Délivré le 13 mai 2025
+            </div>
+
+            <div class="logo-box">
+                <div class="logo-text">OPENCLASSROOMS</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

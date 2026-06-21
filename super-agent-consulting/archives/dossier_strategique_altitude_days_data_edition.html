@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOSSIER STRATÉGIQUE — ALTITUDE DAYS 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-soft: rgba(212, 175, 55, 0.15);
+            --text: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid var(--accent-soft); pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; font-size: 2rem; letter-spacing: 5px; margin: 20px 0; }
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-bottom: 1px solid var(--accent); padding-bottom: 5px; margin: 30px 0 20px 0; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 20px; }
+        .kpi-card {
+            background: rgba(255,255,255, 0.03);
+            border: 1px solid var(--accent-soft);
+            padding: 15px;
+            text-align: center;
+            border-radius: 4px;
+        }
+        .kpi-val { font-family: 'Cinzel'; color: var(--accent); font-size: 1.8rem; font-weight: 700; display: block; }
+        .kpi-label { font-size: 0.7rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; }
+
+        .data-table { width: 100%; border-collapse: collapse; margin-bottom: 20px; font-size: 0.9rem; }
+        .data-table th { text-align: left; padding: 10px; border-bottom: 2px solid var(--accent); font-family: 'Cinzel'; color: var(--accent); font-size: 0.8rem; }
+        .data-table td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); font-weight: 300; }
+        .data-table tr:last-child td { border-bottom: none; }
+
+        .progress-bar { height: 4px; background: rgba(255,255,255,0.05); border-radius: 2px; margin-top: 5px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--accent); }
+
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: var(--accent);
+            text-align: center; padding: 30px; border-top: 1px solid var(--accent-soft);
+            border-bottom: 1px solid var(--accent-soft); margin: 40px 0; font-size: 1.3rem;
+        }
+
+        .footer {
+            border-top: 1px solid var(--accent-soft); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--text-muted);
+        }
+        .page-num::after { counter-increment: page; content: "P. " counter(page, decimal-leading-zero); }
+        
+        .section-title-aero { display: flex; align-items: center; gap: 15px; color: var(--accent); font-family: 'Cinzel'; font-size: 0.9rem; margin-bottom: 15px; }
+        .section-title-aero::before { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(90deg, transparent, var(--accent)); }
+        .section-title-aero::after { content: ""; height: 1px; flex-grow: 1; background: linear-gradient(90deg, var(--accent), transparent); }
+
+        strong { color: var(--accent); font-weight: 600; }
+
+        /* Mode Présentation Interactive */
+        html { scroll-behavior: smooth; overflow: hidden; }
+        body { overflow: hidden; margin: 0; }
+        .page { 
+            margin: 0 auto; 
+            border: none; 
+            height: 100vh; 
+            width: 100vw; 
+            box-shadow: none;
+            padding: 15mm; /* Ajustement pour écran */
+        }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 : ANALYSE DES TURBULENCES -->
+    <div class="page title-only" id="slide-0">
+        <div class="inner-border"></div>
+        <h1>01. ANALYSE STATIQUE</h1>
+        <div class="section-title-aero">DIAGNOSTIC PRÉ-VOL — IVVANDI</div>
+        
+        <div class="kpi-row">
+            <div class="kpi-card"><span class="kpi-val">3.2/10</span><span class="kpi-label">Score Global Marketing</span></div>
+            <div class="kpi-card"><span class="kpi-val">+35%</span><span class="kpi-label">Croissance CA 2025</span></div>
+            <div class="kpi-card"><span class="kpi-val">0</span><span class="kpi-label">Avis Google Clients</span></div>
+            <div class="kpi-card"><span class="kpi-val">2/10</span><span class="kpi-label">Score SEO Organique</span></div>
+        </div>
+
+        <h2>AUDIT DES ACTIFS ACTUELS</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Axe Stratégique</th><th>Statut Actuel</th><th>Potentiel</th><th>Priorité</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Notoriété B2B (LinkedIn)</td><td>1 141 abonnés</td><td>5 000+</td><td><div class="progress-bar"><div class="progress-fill" style="width: 40%"></div></div></td></tr>
+                <tr><td>Crédibilité Aéro</td><td>Vice-Champions du Monde</td><td>Niveau Mondial</td><td><div class="progress-bar"><div class="progress-fill" style="width: 90%"></div></div></td></tr>
+                <tr><td>Conversion Web</td><td>Faute "EXERTISE" / 0 Tracking</td><td>70% d'optimisation</td><td><div class="progress-bar"><div class="progress-fill" style="width: 100%"></div></div></td></tr>
+                <tr><td>Fidélisation Client</td><td>~200 clients dormants</td><td>Réactivation immédiate</td><td><div class="progress-bar"><div class="progress-fill" style="width: 65%"></div></div></td></tr>
+            </tbody>
+        </table>
+
+        <h2>MARCHÉ & OPPORTUNITÉS (OCCITANIE)</h2>
+        <div class="kpi-row">
+            <div class="kpi-card"><span class="kpi-val">30%</span><span class="kpi-label">Population "Peur Avion"</span></div>
+            <div class="kpi-card"><span class="kpi-val">x2.5</span><span class="kpi-label">Demande QVCT B2B</span></div>
+            <div class="kpi-card"><span class="kpi-val">300+</span><span class="kpi-label">Sous-traitants Aéro</span></div>
+            <div class="kpi-card"><span class="kpi-val">8%</span><span class="kpi-label">Croissance Tourisme Pro</span></div>
+        </div>
+
+        <div class="footer">
+            <div>IVVANDI — DOSSIER DATA STRATÉGIQUE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 : PROPOSITION "ALTITUDE DAYS" -->
+    <div class="page" id="slide-1">
+        <div class="inner-border"></div>
+        <h1>02. PROPOSITION : PLAN DE VOL</h1>
+        <div class="section-title-aero">ARCHITECTURE DE L'ÉVÉNEMENT — 48H</div>
+
+        <div class="kpi-row">
+            <div class="kpi-card"><span class="kpi-val">3 500</span><span class="kpi-label">Participants Total</span></div>
+            <div class="kpi-card"><span class="kpi-val">1 500</span><span class="kpi-label">Décideurs B2B</span></div>
+            <div class="kpi-card"><span class="kpi-val">2 000</span><span class="kpi-label">Public B2C</span></div>
+            <div class="kpi-card"><span class="kpi-val">35</span><span class="kpi-label">Exposants Partenaires</span></div>
+        </div>
+
+        <h2>MÉCANIQUE D'ENGAGEMENT VIRAL (KPIs)</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Canal</th><th>Action Demandée</th><th>KPI Cible (Reach)</th></tr>
+            </thead>
+            <tbody>
+                <tr><td><strong>B2B LinkedIn</strong></td><td>Tag 3 Entreprises Partenaires</td><td>45 000 Impressions</td></tr>
+                <tr><td><strong>B2C Instagram</strong></td><td>Tag 5 Amis + 1 Adjectif ULM</td><td>100 000 Impressions</td></tr>
+                <tr><td><strong>Boarding Pass</strong></td><td>Invitation Physique Dorée</td><td>95% Taux de souvenir</td></tr>
+                <tr><td><strong>Jeu Concours</strong></td><td>Escape Game (Check-in physique)</td><td>40% Taux de présence</td></tr>
+            </tbody>
+        </table>
+
+        <h2>PROGRAMMATION CHRONOMÉTRÉE</h2>
+        <div class="section-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="card" style="border: 1px solid var(--accent-soft); padding: 15px;">
+                <h3 style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--accent);">JOUR 1 : BUSINESS EXCELLENCE</h3>
+                <p style="font-size: 0.8rem;">09:00 — Masterclass Flight Control<br>11:30 — Tirage au Sort n°1 (Vol)<br>13:00 — Hangar Networking<br>15:00 — Diagnostics RH Express</p>
+            </div>
+            <div class="card" style="border: 1px solid var(--accent-soft); padding: 15px;">
+                <h3 style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--accent);">JOUR 2 : HORIZON PASSION</h3>
+                <p style="font-size: 0.8rem;">10:00 — Ouverture Portes Ouvertes<br>14:00 — Baptêmes en série<br>16:00 — Tirage au Sort n°2 (Vol)<br>17:00 — Remise Prix Escape Game</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>IVVANDI — DOSSIER DATA STRATÉGIQUE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3 : CHIFFRAGE & BUSINESS PLAN -->
+    <div class="page" id="slide-2">
+        <div class="inner-border"></div>
+        <h1>03. CHIFFRAGE ANALYTIQUE</h1>
+        <div class="section-title-aero">PILOTAGE DES COÛTS ET REVENUS</div>
+
+        <div class="kpi-row">
+            <div class="kpi-card"><span class="kpi-val">29 400€</span><span class="kpi-label">Budget Dépenses</span></div>
+            <div class="kpi-card"><span class="kpi-val">29 500€</span><span class="kpi-label">Budget Recettes</span></div>
+            <div class="kpi-card"><span class="kpi-val">+100€</span><span class="kpi-label">Marge de Sécurité</span></div>
+            <div class="kpi-card"><span class="kpi-val">100%</span><span class="kpi-label">Autofinancement</span></div>
+        </div>
+
+        <h2>DÉPENSES : INFRASTRUCTURE & OPÉRATIONS</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Poste Budgétaire</th><th>Détail Technique</th><th>Investissement HT</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Structure & Barnums</td><td>Village Exposants (35 tentes) + Conf. 400m²</td><td>8 500 €</td></tr>
+                <tr><td>Catering & Accueil</td><td>Pause café + Cocktail VIP (400 pax)</td><td>12 500 €</td></tr>
+                <tr><td>Sécurité SSIAP</td><td>6 agents habilités (48h)</td><td>3 200 €</td></tr>
+                <tr><td>Technique & Print</td><td>Sonorisation + Boarding Passes Premium</td><td>4 300 €</td></tr>
+                <tr><td>Assurances & Admin</td><td>RC Événementielle + SACEM</td><td>900 €</td></tr>
+            </tbody>
+        </table>
+
+        <h2>RECETTES : STRATÉGIE PARTENAIRES</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Type de Partenariat</th><th>Volume / Prix Unit.</th><th>Revenu Estimé HT</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Stand Standard (9m²)</td><td>30 unités @ 500 €</td><td>15 000 €</td></tr>
+                <tr><td>Stand Premium (25m²)</td><td>5 unités @ 1 500 €</td><td>7 500 €</td></tr>
+                <tr><td>Main Sponsor (Exclusivité)</td><td>1 unité @ 5 000 €</td><td>5 000 €</td></tr>
+                <tr><td>Redevance Food-court</td><td>4 trucks @ 500 € fix</td><td>2 000 €</td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div>IVVANDI — DOSSIER DATA STRATÉGIQUE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 4 : ROI & PERFORMANCE ACQUISITION -->
+    <div class="page" id="slide-3">
+        <div class="inner-border"></div>
+        <h1>04. PERFORMANCE & ROI</h1>
+        <div class="section-title-aero">PROJECTION DE LA RENTABILITÉ CLIENT</div>
+
+        <div class="kpi-row">
+            <div class="kpi-card"><span class="kpi-val">19.60€</span><span class="kpi-label">CPA B2B (Prospect)</span></div>
+            <div class="kpi-card"><span class="kpi-val">15%</span><span class="kpi-label">Conversion B2B</span></div>
+            <div class="kpi-card"><span class="kpi-val">4 500€</span><span class="kpi-label">CLV (Valeur Client)</span></div>
+            <div class="kpi-card"><span class="kpi-val">x4.2</span><span class="kpi-label">ROI Net Estimé</span></div>
+        </div>
+
+        <h2>MODÈLE D'ACQUISITION (B2B FOCUS)</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Phase du Tunnel</th><th>Objectif Quantitatif</th><th>KPI de Succès</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Inbound (Tagging)</td><td>50 000 Impressions</td><td>0,001€ par vue</td></tr>
+                <tr><td>Activation (Boarding)</td><td>1 500 Décideurs inscrits</td><td>Taux RSVP 45%</td></tr>
+                <tr><td>Diagnostic (Sur place)</td><td>150 Audits RH Flash</td><td>Taux engagement 10%</td></tr>
+                <tr><td>Closing (J+15)</td><td>22 Nouveaux Contrats OF</td><td>Panier moyen 4 500€</td></tr>
+            </tbody>
+        </table>
+
+        <div class="quote">
+            "Ce n'est pas un coût événementiel, c'est une machine d'acquisition autofinancée."
+        </div>
+
+        <h2>SÉCURITÉ FINANCIÈRE (BREAK-EVEN)</h2>
+        <table class="data-table">
+            <thead>
+                <tr><th>Seuil de Rentabilité</th><th>Volume Nécessaire</th><th>Probabilité</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>Point mort Opérationnel</td><td>25 Stands vendus</td><td>90% (Données Audit)</td></tr>
+                <tr><td>Validation Budget Publique</td><td>1 Main Partner signé</td><td>75% (Ecosystème)</td></tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div>IVVANDI — DOSSIER DATA STRATÉGIQUE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 5 : CONCLUSION & DÉCOLLAGE -->
+    <div class="page" id="slide-4" style="justify-content: center; text-align: center;">
+        <div class="inner-border"></div>
+        <h1>05. DÉCOLLAGE IMMÉDIAT</h1>
+        <div class="section-title-aero">READY FOR TAKE-OFF</div>
+
+        <div style="max-width: 600px; margin: 40px auto; font-weight: 300; line-height: 1.8;">
+            <p>Le constat est sans appel : <strong>IVVANDI</strong> possède les actifs (Expertise, Titre Mondial) mais manque de vecteur de visibilité.</p>
+            <p><strong>Altitude Days</strong> n'est pas un événement, c'est un <strong>dispositif industriel d'acquisition</strong> qui neutralise le risque financier par le partenariat.</p>
+        </div>
+
+        <div class="kpi-row" style="margin-top: 20px;">
+            <div class="kpi-card"><span class="kpi-val">4 MOIS</span><span class="kpi-label">Déploiement</span></div>
+            <div class="kpi-card"><span class="kpi-val">3 500</span><span class="kpi-label">Leads Potentiels</span></div>
+            <div class="kpi-card"><span class="kpi-val">29K€</span><span class="kpi-label">Invest. Autofinancé</span></div>
+            <div class="kpi-card"><span class="kpi-val">B2B/C</span><span class="kpi-label">Marché Total</span></div>
+        </div>
+
+        <div class="quote" style="border: none; font-size: 1.8rem; margin-top: 50px;">
+            "Prenez les commandes de votre croissance."
+        </div>
+
+        <div style="margin-top: 50px; font-family: 'Cinzel'; letter-spacing: 3px; font-weight: 700; color: var(--accent);">
+            VALIDER LE PLAN DE VOL
+        </div>
+
+        <div class="footer">
+            <div>IVVANDI — DOSSIER DATA STRATÉGIQUE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.page');
+
+        function updateSlide(index) {
+            if (index >= 0 && index < slides.length) {
+                currentSlide = index;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                updateSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                updateSlide(currentSlide - 1);
+            }
+        });
+
+        // Verrouillage du scroll manuel pour le mode présentation
+        window.onwheel = function(){ return false; }
+    </script>
+</body>
+</html>
+
+</body>
+</html>

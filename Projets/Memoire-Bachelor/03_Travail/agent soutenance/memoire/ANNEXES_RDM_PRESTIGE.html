@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ANNEXES TECHNIQUES - RDM PRESTIGE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --text-dim: #E0E0E0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: annexe-counter; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 1px solid var(--accent); padding-bottom: 10px; margin-bottom: 30px; text-transform: uppercase; font-size: 18pt; }
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin: 25px 0; font-size: 1.4rem; }
+        
+        .content { flex-grow: 1; text-align: justify; font-size: 10pt; }
+
+        .footer {
+            border-top: 1px solid var(--accent); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--accent);
+        }
+        .annexe-num::after { counter-increment: annexe-counter; content: "ANNEXE " counter(annexe-counter); }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: rgba(255,255,255,0.02); }
+        th, td { border: 1px solid var(--border-color); padding: 10px; font-size: 9pt; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--accent); font-family: 'Cinzel'; }
+
+        /* Job Description Style */
+        .job-card { background: rgba(212, 175, 55, 0.05); border: 1px solid var(--border-color); padding: 20px; border-radius: 4px; }
+        .job-title { color: var(--accent); font-weight: 700; font-size: 14pt; margin-bottom: 10px; }
+        
+        /* Funnel Scheme */
+        .funnel-container { display: flex; flex-direction: column; align-items: center; gap: 10px; margin: 30px 0; }
+        .funnel-step { width: 80%; background: linear-gradient(90deg, rgba(212, 175, 55, 0.2), rgba(15, 17, 21, 0.5)); border: 1px solid var(--accent); padding: 15px; text-align: center; border-radius: 30px 30px 5px 5px; clip-path: polygon(10% 0%, 90% 0%, 100% 100%, 0% 100%); }
+        .funnel-step:nth-child(2) { width: 70%; }
+        .funnel-step:nth-child(3) { width: 60%; }
+        .funnel-step:nth-child(4) { width: 50%; }
+    </style>
+</head>
+<body>
+
+    <!-- ANNEXE 1 : FICHE DE POSTE -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>ANNEXE 1 : FICHE DE POSTE DÉTAILLÉE</h1>
+        <div class="content">
+            <div class="job-card">
+                <div class="job-title">DIRECTEUR DU DÉVELOPPEMENT OPÉRATIONNEL (COO)</div>
+                <p><strong>Finalité du Poste :</strong> Bras droit stratégique du Fondateur, le COO pilote l'industrialisation des processus d'acquisition et de déploiement pour atteindre 1 000 adhérents.</p>
+                
+                <h2>1. MISSIONS STRATÉGIQUES</h2>
+                <ul>
+                    <li>Architecture des systèmes de croissance (CRM, Automation, Scrapping).</li>
+                    <li>Pilotage de la performance financière (CAC, LTV, EBITDA).</li>
+                    <li>Management et coaching de l'équipe commerciale (SDR/AE).</li>
+                    <li>Développement des alliances stratégiques et réseaux de prescription.</li>
+                </ul>
+
+                <h2>2. INDICATEURS DE PERFORMANCE (KPI)</h2>
+                <ul>
+                    <li>Nombre d'adhésions mensuelles signées.</li>
+                    <li>Coût d'Acquisition Client (Cible : < 200 €).</li>
+                    <li>Taux d'activation technique à J+30 (> 90%).</li>
+                    <li>ROI des campagnes Outbound.</li>
+                </ul>
+
+                <h2>3. PROFIL RECHERCHÉ</h2>
+                <p>Expertise Data-Driven, maîtrise de l'Analyse Transactionnelle (posture Adulte-Adulte), capacité à modéliser des workflows complexes.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <div>ANNEXES TECHNIQUES | RDM PRESTIGE</div>
+            <div class="annexe-num"></div>
+        </div>
+    </div>
+
+    <!-- ANNEXE 2 : SCHÉMA DU FUNNEL WAOUH -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>ANNEXE 2 : SCHÉMA DU FUNNEL D'ACQUISITION "LE CERCLE"</h1>
+        <div class="content">
+            <div class="funnel-container">
+                <div class="funnel-step">
+                    <strong>1. SOURCING (Pharow)</strong><br>
+                    Extraction Data B2B - Dirigeants & Décideurs
+                </div>
+                <div class="funnel-step">
+                    <strong>2. ENGAGEMENT (Outbound)</strong><br>
+                    Séquences AIDA personnalisées - Ouverture : 45%
+                </div>
+                <div class="funnel-step">
+                    <strong>3. CONVERSION (Closing)</strong><br>
+                    Posture Adulte-Adulte - Démonstration ROI & Fiscalité
+                </div>
+                <div class="funnel-step">
+                    <strong>4. ACTIVATION (Onboarding)</strong><br>
+                    Welcome Kit & Synchronisation Technique J+30
+                </div>
+            </div>
+
+            <h2>ANALYSE DES TAUX DE PASSAGE (PROJECTION SCALE)</h2>
+            <table>
+                <tr>
+                    <th>Étape</th>
+                    <th>Volume Initial</th>
+                    <th>Taux de Perte</th>
+                    <th>Résultat</th>
+                </tr>
+                <tr>
+                    <td>**Leads Scrapés**</td>
+                    <td>10 000</td>
+                    <td>0%</td>
+                    <td>Base Brute</td>
+                </tr>
+                <tr>
+                    <td>**Emails Délivrés**</td>
+                    <td>9 900</td>
+                    <td>1% (Cleaning)</td>
+                    <td>Base Qualifiée</td>
+                </tr>
+                <tr>
+                    <td>**RDV Fixés**</td>
+                    <td>44</td>
+                    <td>98%</td>
+                    <td>Pipe de vente</td>
+                </tr>
+                <tr>
+                    <td>**Contrats Signés**</td>
+                    <td>11</td>
+                    <td>75% (Closing)</td>
+                    <td>CA Récurrent</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <div>ANNEXES TECHNIQUES | RDM PRESTIGE</div>
+            <div class="annexe-num"></div>
+        </div>
+    </div>
+
+    <!-- ANNEXE 3 : MATRICES SWOT & PORTER -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>ANNEXE 3 : SYNTHÈSE DES MATRICES STRATÉGIQUES</h1>
+        <div class="content">
+            <h2>MATRICE SWOT DÉTAILLÉE</h2>
+            <table>
+                <tr>
+                    <th style="color: #2ECC71;">FORCES (INTERNES)</th>
+                    <th style="color: #3498DB;">OPPORTUNITÉS (EXTERNES)</th>
+                </tr>
+                <tr>
+                    <td>0% Commission (Modèle disruptif)<br>Exclusivité Patrimoniale<br>CRM Agile & Usine à leads</td>
+                    <td>Loi Le Meur (Besoin de conseil)<br>Alliances CSE (Clientèle Affaires)<br>Slow Travel (Mutation demande)</td>
+                </tr>
+                <tr>
+                    <th style="color: #E74C3C;">FAIBLESSES (INTERNES)</th>
+                    <th style="color: #F1C40F;">MENACES (EXTERNES)</th>
+                </tr>
+                <tr>
+                    <td>Notoriété limitée vs OTA<br>Pôle Customer Success léger<br>Déficit d'organisation historique</td>
+                    <td>Instabilité Fiscale permanente<br>Hégémonie Booking/Airbnb<br>Standardisation par les conciergeries</td>
+                </tr>
+            </table>
+
+            <h2>LES 5 FORCES DE PORTER (+1)</h2>
+            <table>
+                <tr>
+                    <th>Force</th>
+                    <th>Intensité</th>
+                    <th>Facteur Clé</th>
+                </tr>
+                <tr>
+                    <td>Pouvoir Fournisseurs (OTA)</td>
+                    <td>9/10</td>
+                    <td>Dictature Algorithmique</td>
+                </tr>
+                <tr>
+                    <td>Pouvoir Clients (Voyageurs)</td>
+                    <td>8/10</td>
+                    <td>Exigence CSP+ & Avis</td>
+                </tr>
+                <tr>
+                    <td>Concurrence Intra-sectorielle</td>
+                    <td>8/10</td>
+                    <td>Saturation Insolite</td>
+                </tr>
+                <tr>
+                    <td>Menace Nouveaux Entrants</td>
+                    <td>6/10</td>
+                    <td>Conciergeries Industrielles</td>
+                </tr>
+                <tr>
+                    <td>Menace Produits Substituts</td>
+                    <td>7/10</td>
+                    <td>Hôtellerie Lifestyle</td>
+                </tr>
+                <tr>
+                    <td>**Rôle de l'État (Législation)**</td>
+                    <td>9/10</td>
+                    <td>Séisme Fiscal LMNP</td>
+                </tr>
+            </table>
+        </div>
+        <div class="footer">
+            <div>ANNEXES TECHNIQUES | RDM PRESTIGE</div>
+            <div class="annexe-num"></div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rapport de Mission - Julien FLORENCE - Happy House</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@400;700&display=swap');
+
+        :root {
+            --gold: #D4AF37;
+            --black: #0F1115;
+            --white: #FFFFFF;
+            --grey: #F5F5F5;
+        }
+
+        @page {
+            size: A4;
+            margin: 2.5cm 2cm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 12pt;
+            line-height: 1.5;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            text-align: justify;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+            color: var(--black);
+            text-transform: uppercase;
+            text-align: left;
+        }
+
+        h1 { font-size: 24pt; border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-top: 50px; }
+        h2 { font-size: 18pt; color: var(--gold); margin-top: 30px; }
+        h3 { font-size: 14pt; border-left: 4px solid var(--gold); padding-left: 15px; }
+
+        .page-break { page-break-before: always; }
+
+        /* Page de Garde */
+        .cover-page {
+            height: 29.7cm;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+            background: var(--black);
+            color: var(--white);
+            padding: 2cm;
+            box-sizing: border-box;
+        }
+
+        .cover-logo { width: 150px; filter: brightness(0) invert(1); }
+        .cover-title { font-size: 32pt; margin: 20px 0; color: var(--gold); }
+        .cover-subtitle { font-size: 18pt; margin-bottom: 50px; font-style: italic; }
+        .cover-footer { font-size: 12pt; width: 100%; display: flex; justify-content: space-between; border-top: 1px solid var(--gold); padding-top: 20px; }
+
+        /* Header / Footer fixe (Simulé pour impression) */
+        .header-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 1cm; font-size: 9pt; color: #999; border-bottom: 0.5px solid #ddd; }
+        .footer-fixed { position: fixed; bottom: 0; left: 0; width: 100%; height: 1cm; font-size: 9pt; color: #999; text-align: right; }
+
+        .verbatim {
+            background: var(--grey);
+            border-left: 5px solid var(--gold);
+            padding: 15px;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .kpi-box {
+            border: 1px solid var(--gold);
+            padding: 20px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .kpi-value { font-size: 20pt; font-weight: bold; color: var(--gold); }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background-color: var(--black); color: var(--gold); }
+
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE DE GARDE -->
+    <div class="cover-page">
+        <div class="cover-logo">LOGO HAPPY HOUSE</div>
+        <div>
+            <div class="cover-title">RAPPORT DE MISSION</div>
+            <div class="cover-subtitle">Directeur du Développement Opérationnel (COO)</div>
+            <p>Accompagner le passage à l'échelle d'un réseau d'hébergements d'exception : de l'acquisition industrielle à la rétention de prestige.</p>
+        </div>
+        <div class="cover-footer">
+            <div>Julien FLORENCE<br>Promotion 2026</div>
+            <div>Tuteur : Patrice KERMARREC<br>Rocket School Toulouse</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- SOMMAIRE -->
+    <h2>Sommaire</h2>
+    <p>1. Introduction et Parcours ..................................................................... 3</p>
+    <p>2. Présentation de Happy House ............................................................. 5</p>
+    <p>3. Analyses Stratégiques (SWOT / PESTEL) ........................................ 8</p>
+    <p>4. Problématique ....................................................................................... 11</p>
+    <p>5. Diagnostic : L'Audit de l'Acquisition et du CAC ................................ 13</p>
+    <p>6. Recherche Terrain : Analyse des Interviews Clients ........................ 16</p>
+    <p>7. Plan d'Action 1 : Industrialisation de l'Acquisition ............................ 22</p>
+    <p>8. Plan d'Action 2 : Stratégie de Rétention & Animation ...................... 30</p>
+    <p>9. Conclusion et Bilan Personnel ............................................................ 45</p>
+
+    <div class="page-break"></div>
+
+    <!-- INTRODUCTION DÉTAILLÉE -->
+    <h1>1. Introduction et Parcours</h1>
+    <p>Le marché de l'hôtellerie indépendante et des hébergements de prestige traverse actuellement l'une des mutations les plus profondes de son histoire. Depuis deux décennies, l'émergence des Online Travel Agencies (OTA) comme Booking.com, Airbnb ou Expedia a radicalement transformé le parcours client. Si ces plateformes ont apporté une visibilité mondiale sans précédent, elles ont également instauré une relation de dépendance toxique pour les hébergeurs indépendants. Avec des commissions oscillant entre 17 % et 25 %, une captation totale des données clients et une uniformisation des offres, les propriétaires de domaines d'exception se retrouvent souvent dépossédés de leur propre outil de travail et de leur identité de marque.</p>
+    
+    <p>C'est dans ce contexte de "dictature de la commission" qu'est née Happy House. L'entreprise ne se positionne pas comme une énième plateforme, mais comme une alternative souveraine. L'objectif est simple mais ambitieux : redonner le pouvoir aux hébergeurs en favorisant la réservation directe, en mutualisant les forces via une centrale d'achat (Entegra) et en créant un réseau solidaire de redirection de voyageurs. Mon intégration au sein de cette structure en tant que Directeur du Développement Opérationnel (COO) répond à une nécessité vitale : structurer la croissance d'un modèle qui a prouvé sa valeur à petite échelle, mais qui doit désormais s'industrialiser pour atteindre une taille critique nationale.</p>
+    
+    <p>Mon parcours au sein de Rocket School, axé sur l'acquisition numérique et le développement commercial, a été le catalyseur de cette mission. Happy House représentait le terrain d'expérimentation idéal pour appliquer les méthodes de Growth Hacking et de Social Selling apprises en formation, tout en les adaptant aux codes très spécifiques du luxe et du "Slow Travel". Ce rapport n'est pas seulement une présentation de mes activités ; c'est une réflexion stratégique sur la manière dont une structure agile peut disrupter un marché dominé par des géants, en alliant la puissance de l'automatisation numérique à la finesse de l'accompagnement humain "Prestige".</p>
+
+    <div class="page-break"></div>
+
+    <!-- PRÉSENTATION DE L'ENTREPRISE DÉTAILLÉE -->
+    <h1>2. Présentation de Happy House : La Révolution du 0 %</h1>
+    <p>Happy House est une structure atypique dans le paysage du tourisme français. Fondée par Patrice Kermarrec, un expert reconnu du secteur hôtelier et de la formation commerciale, l'entreprise repose sur un pilier idéologique fort : l'indépendance totale. </p>
+
+    <h3>A. L'Historique et la Vision du Fondateur</h3>
+    <p>L'histoire de Happy House commence par un constat de terrain. Patrice Kermarrec, au fil de ses années d'accompagnement de propriétaires de châteaux et de gîtes de charme, a observé une souffrance croissante : celle de propriétaires passionnés par leur patrimoine, mais épuisés par la gestion digitale et financière imposée par les plateformes. Happy House a été pensée comme une "oasis" de services. Initialement centrée sur la redirection de voyageurs entre membres du réseau, la structure a rapidement évolué pour proposer une suite de services complète : centrale d'achat pour réduire les coûts fixes, outils de marketing direct, et surtout, un label de confiance.</p>
+
+    <h3>B. Un Business Model Disruptif</h3>
+    <p>Contrairement au modèle dominant de la commission à la performance, Happy House a choisi le modèle du <strong>"Cercle"</strong>. Chaque adhérent s'acquitte d'une cotisation annuelle fixe. Ce choix stratégique change radicalement la nature de la relation : Happy House ne cherche pas à capter une part de la vente du client, mais à maximiser sa rentabilité globale. Si le client économise 10 000 € de commissions Booking grâce au réseau, son abonnement est rentabilisé au décuple. Ce modèle crée une synergie d'intérêts totale entre le réseau et ses membres.</p>
+
+    <h3>C. Le Positionnement "Slow Travel" et Prestige</h3>
+    <p>Happy House ne s'adresse pas à la masse. Notre cible est le "Top 1 %" des hébergeurs français. Il s'agit de domaines où l'expérience voyageur est au cœur du projet : châteaux médiévaux, domaines viticoles en biodynamie, gîtes de luxe nichés en pleine nature. Ce positionnement exige une communication d'excellence. On ne vend pas une nuitée, on propose une immersion dans un patrimoine. Cette exigence de qualité se retrouve dans nos critères de sélection drastiques : chaque membre du réseau est coopté ou audité pour garantir l'homogénéité du label.</p>
+
+    <div class="page-break"></div>
+
+    <!-- ANALYSES STRATÉGIQUES -->
+    <h1>3. Analyses Stratégiques : Forces, Faiblesses et Opportunités</h1>
+    
+    <h3>A. Analyse PESTEL du Marché du Tourisme de Luxe</h3>
+    <ul>
+        <li><strong>Politique & Légal :</strong> La régulation croissante des meublés de tourisme (Loi Le Meur) et les nouvelles normes énergétiques imposent aux propriétaires des investissements lourds. Happy House joue ici un rôle de conseil et de veille stratégique pour ses membres.</li>
+        <li><strong>Économique :</strong> L'inflation et la hausse des coûts de l'énergie impactent directement la marge des hébergeurs. La centrale d'achat Entegra, partenaire de Happy House, devient alors un levier de survie économique en négociant des tarifs "grands comptes" pour des indépendants.</li>
+        <li><strong>Sociétal :</strong> Le passage du tourisme de masse au "Slow Travel". Les voyageurs CSP+ recherchent désormais de l'authenticité, du calme et du sens. Happy House surfe sur cette tendance de fond.</li>
+        <li><strong>Technologique :</strong> L'intelligence artificielle et l'automatisation redéfinissent la prospection B2B. C'est ici que mon rôle de COO intervient pour industrialiser ces processus.</li>
+    </ul>
+
+    <h3>B. Matrice SWOT : Le Diagnostic Interne</h3>
+    <table>
+        <tr>
+            <th>Forces</th>
+            <th>Faiblesses</th>
+        </tr>
+        <tr>
+            <td>
+                - Modèle 0 % commission unique.<br>
+                - Expertise métier de Patrice Kermarrec.<br>
+                - Agilité technique (Stack Growth).<br>
+                - Accès à la centrale d'achat Entegra.
+            </td>
+            <td>
+                - Notoriété B2C encore limitée.<br>
+                - Déficit de communication post-adhésion.<br>
+                - Absence de tracking ROI systématique.
+            </td>
+        </tr>
+        <tr>
+            <th>Opportunités</th>
+            <th>Menaces</th>
+        </tr>
+        <tr>
+            <td>
+                - 126 000 prospects identifiés en France.<br>
+                - Désintérêt croissant pour les OTAs.<br>
+                - Marché du "Luxe de proximité" en croissance.
+            </td>
+            <td>
+                - Concentration des acteurs du secteur.<br>
+                - Risque de saturation du message "Prestige".<br>
+                - Volatilité des algorithmes LinkedIn/Google.
+            </td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- ANALYSE ACQUISITION & CAC -->
+    <h1>5. Diagnostic : L'Audit de l'Acquisition et du CAC</h1>
+    <p>Pour piloter la croissance, il a été nécessaire de modéliser le coût d'acquisition client (CAC). Sans cette donnée, le scale est impossible. Le passage à l'échelle exige une réduction drastique de ce coût tout en augmentant le volume.</p>
+    
+    <div class="kpi-box">
+        <div>
+            <div class="kpi-value">450 €</div>
+            <div>CAC Artisanal (Actuel)</div>
+        </div>
+        <div>
+            <div class="kpi-value">185 €</div>
+            <div>CAC Industriel (Cible)</div>
+        </div>
+    </div>
+
+    <table>
+        <tr>
+            <th>Composante</th>
+            <th>Modèle Artisanal</th>
+            <th>Modèle Industriel</th>
+        </tr>
+        <tr>
+            <td>Sourcing Leads</td>
+            <td>Manuel (Google Maps)</td>
+            <td>Automatisé (Pharow/Ruddy)</td>
+        </tr>
+        <tr>
+            <td>Prospection</td>
+            <td>Temps SDR élevé</td>
+            <td>Cold Emailing Scale (Instantly)</td>
+        </tr>
+        <tr>
+            <td>Closing</td>
+            <td>3 Visios (Cycle 45j)</td>
+            <td>1 Visio (Cycle 28j)</td>
+        </tr>
+    </table>
+
+    <div class="page-break"></div>
+
+    <!-- RECHERCHE TERRAIN -->
+    <h1>6. Recherche Terrain : Analyse des Interviews Clients</h1>
+    <p>Pour comprendre les points de blocage du réseau, j'ai mené une série d'interviews semi-directives auprès de 6 clients représentatifs du réseau Happy House. L'objectif était de confronter notre vision interne à la réalité vécue par les adhérents.</p>
+    
+    <h3>A. Le Silence Radio Post-Adhésion</h3>
+    <p>Le sentiment le plus fort partagé par les interviewés est celui d'un abandon après la signature du contrat. La machine d'acquisition est si performante qu'elle délaisse l'onboarding.</p>
+    
+    <div class="verbatim">
+        "On a l'impression d'être un numéro. Après le paiement de la cotisation, nous n'avons plus eu aucune nouvelle de l'équipe Happy House pendant des mois."
+    </div>
+
+    <h3>B. L'Invisibilité de la Performance (ROI)</h3>
+    <p>Les clients peinent à identifier le flux de réservations généré par le réseau. En l'absence de tracking et de reporting, la cotisation annuelle est perçue comme un coût et non comme un investissement rentable.</p>
+
+    <h3>C. La Rupture de Communication</h3>
+    <p>Il existe une attente forte de "Vision Commune". Les adhérents ne veulent pas seulement un service, ils veulent appartenir à un club de prestige qui les anime et les valorise.</p>
+
+    <!-- LES PAGES SUIVANTES SERONT COMPLÉTÉES AVEC LE PLAN D'ACTION -->
+
+    <div class="page-break"></div>
+
+    <!-- PLAN D'ACTION 1 : ACQUISITION -->
+    <h1>7. Plan d'Action 1 : Industrialisation de l'Acquisition</h1>
+    <p>L'objectif de ce premier axe est de transformer notre processus de vente "artisanal" en une machine de guerre prédictive capable de soutenir la croissance vers 1 000 adhérents.</p>
+
+    <h3>A. Méthodologie : L'Usine à Leads 2.0</h3>
+    <p>Nous passons d'un sourcing manuel à une chaîne de production automatisée utilisant les meilleurs outils du marché (Stack Tech) :</p>
+    <ul>
+        <li><strong>Pharow :</strong> Ciblage granulaire des 126 000 prospects identifiés (Hôtels, Châteaux, Domaines viticoles).</li>
+        <li><strong>Instantly :</strong> Orchestration des campagnes de Cold Emailing avec 10 domaines miroirs pour garantir une délivrabilité de 98%.</li>
+        <li><strong>Ruddy (Automation) :</strong> Synchronisation en temps réel des leads chauds vers notre CRM Bitrix24.</li>
+    </ul>
+
+    <h3>B. Planning de mise en œuvre (Gantt)</h3>
+    <table>
+        <tr>
+            <th>Phase</th>
+            <th>Action</th>
+            <th>Durée</th>
+            <th>Responsable</th>
+        </tr>
+        <tr>
+            <td>Infrastructure</td>
+            <td>Setup domaines miroirs & Warm-up</td>
+            <td>45 jours</td>
+            <td>Ruddy</td>
+        </tr>
+        <tr>
+            <td>Data</td>
+            <td>Extraction & Qualification Pharow</td>
+            <td>15 jours</td>
+            <td>Julien</td>
+        </tr>
+        <tr>
+            <td>Lancement</td>
+            <td>Séquences multicanales (Email + LinkedIn)</td>
+            <td>Continu</td>
+            <td>Younes</td>
+        </tr>
+    </table>
+
+    <div class="kpi-box">
+        <div>
+            <div class="kpi-value">1 500 €</div>
+            <div>Budget Tech Annuel</div>
+        </div>
+        <div>
+            <div class="kpi-value">x3</div>
+            <div>Volume de Leads Qualifiés</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- PLAN D'ACTION 2 : RÉTENTION -->
+    <h1>8. Plan d'Action 2 : Stratégie de Rétention & Animation</h1>
+    <p>Ce deuxième axe répond directement aux failles identifiées lors de mon audit terrain. Il s'agit de "réparer le seau" pour que chaque nouvel adhérent reste fidèle au réseau sur le long terme.</p>
+
+    <h3>A. L'Animation Digitale "Le Cercle"</h3>
+    <p>Nous instaurons trois rituels majeurs pour briser le sentiment d'isolement :</p>
+    <ul>
+        <li><strong>La Newsletter "Expertise" :</strong> Envoi bi-mensuel de tips opérationnels (SEO local, gestion des avis, optimisation Entegra).</li>
+        <li><strong>Le Webinaire "Vision Commune" :</strong> Un rendez-vous mensuel en visio avec Patrice et moi-même pour partager les chiffres du réseau et recueillir les feedbacks.</li>
+        <li><strong>Le Portail Adhérent :</strong> Un espace centralisé (Notion ou Bitrix) où chaque membre retrouve ses avantages et ses KPIs.</li>
+    </ul>
+
+    <h3>B. Impact Organisationnel et Temps</h3>
+    <p>En automatisant l'acquisition, je libère 15h par semaine. Ce temps est réalloué au **Customer Success Management** :</p>
+    <ul>
+        <li>Appels de courtoisie trimestriels (Suivi NPS).</li>
+        <li>Animation des sessions collectives.</li>
+        <li>Mise en valeur des adhérents sur nos réseaux sociaux (Social Proof).</li>
+    </ul>
+
+    <div class="kpi-box">
+        <div>
+            <div class="kpi-value">-50%</div>
+            <div>Objectif de Churn</div>
+        </div>
+        <div>
+            <div class="kpi-value">> 40</div>
+            <div>Cible NPS (Satisfaction)</div>
+        </div>
+    </div>
+
+    <div class="page-break"></div>
+
+    <!-- CONCLUSION & BILAN -->
+    <h1>9. Conclusion et Bilan Personnel</h1>
+    <p>La mission menée au sein d'Happy House démontre que la technologie (IA, Automation) ne doit pas remplacer l'humain, mais le libérer pour des tâches à plus haute valeur ajoutée : l'écoute et l'accompagnement client.</p>
+
+    <h3>Bilan de mes compétences acquises</h3>
+    <p>Cette année d'immersion m'a permis de valider des compétences clés du référentiel Rocket School :</p>
+    <ul>
+        <li><strong>Savoir-Faire :</strong> Maîtrise complète de la stack d'acquisition (Growth Hacking) et pilotage par la donnée (KPIs/ROI).</li>
+        <li><strong>Savoir-Être :</strong> Posture de Directeur Opérationnel, gestion de l'autonomie et prise de décision stratégique en binôme avec le fondateur.</li>
+        <li><strong>Savoir-Devenir :</strong> Capacité à transformer une vision entrepreneuriale en une infrastructure industrielle duplicable.</li>
+    </ul>
+
+    <p style="text-align: center; margin-top: 50px; font-weight: bold; color: var(--gold);">
+        Fin du Rapport de Mission - Julien FLORENCE - Promo 2026
+    </p>
+
+</body>
+</html>
+

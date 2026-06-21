@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>CV Julien FLORENCE - Directeur Commercial - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0F1115;
+            --primary-gold: #D4AF37;
+            --text-light: #f4f4f4;
+            --text-dim: #b0b0b0;
+            --sidebar-bg: #161a23;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #000;
+            color: var(--text-light);
+            line-height: 1.4;
+            overflow-x: hidden;
+        }
+
+        /* BLOCAGE PAYSAGE UNIQUEMENT POUR APPAREILS MOBILES/TABLETTES (< 13") */
+        /* On cible les appareils sans capacité de survol (hover: none) pour épargner les laptops */
+        @media screen and (orientation: landscape) and (max-width: 1366px) and (hover: none) {
+            body::before {
+                content: "Lecture horizontale interdite sur cet appareil. \A Veuillez pivoter votre appareil en mode Portrait pour consulter ce dossier de prestige.";
+                white-space: pre-wrap; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background: var(--bg-color); color: var(--primary-gold);
+                display: flex; align-items: center; justify-content: center;
+                text-align: center; padding: 30px; font-family: 'Cinzel', serif;
+                z-index: 99999; font-size: 1.2rem; line-height: 1.5;
+            }
+            .cv-page, .footer-dock { display: none !important; }
+        }
+
+        .cv-page {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            background: var(--bg-color);
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+        }
+
+        aside {
+            width: 35%;
+            background-color: var(--sidebar-bg);
+            padding: 40px 25px;
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-img-container {
+            width: 100%;
+            margin-bottom: 30px;
+            border: 2px solid var(--primary-gold);
+            padding: 4px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .profile-img-container img { width: 100%; display: block; filter: brightness(1.05); border-radius: 6px; }
+
+        h2 { 
+            font-family: 'Cinzel', serif; 
+            font-size: 0.95rem; 
+            color: var(--primary-gold); 
+            text-transform: uppercase; 
+            border-bottom: 1px solid var(--primary-gold); 
+            padding-bottom: 5px; 
+            margin: 25px 0 15px 0; 
+            letter-spacing: 2px;
+        }
+
+        .sidebar-section { margin-bottom: 20px; }
+        .info-item { font-size: 0.85rem; margin-bottom: 8px; color: var(--text-dim); }
+        .info-item strong { color: var(--text-light); display: block; margin-bottom: 2px; }
+
+        main { width: 65%; padding: 40px 50px; z-index: 2; position: relative; display: flex; flex-direction: column; }
+        
+        h1 { font-family: 'Cinzel', serif; font-size: 2.5rem; color: var(--primary-gold); letter-spacing: 3px; margin-bottom: 5px; }
+        .job-title { font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; font-size: 1.1rem; opacity: 0.9; }
+        
+        .who-title { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--primary-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px; }
+        .summary { font-size: 1rem; color: var(--text-dim); text-align: justify; margin-bottom: 40px; padding: 25px; border: 1px solid rgba(212, 175, 55, 0.2); border-radius: 10px; background: rgba(255,255,255,0.02); }
+        .quote { font-style: italic; color: var(--primary-gold); margin-top: 15px; display: block; font-size: 0.9rem; text-align: right; opacity: 0.8; }
+        
+        .section-header { font-family: 'Cinzel', serif; font-size: 1.15rem; color: var(--primary-gold); margin: 40px 0 25px 0; display: flex; align-items: center; letter-spacing: 2px; }
+        .section-header::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--primary-gold), transparent); margin-left: 20px; }
+
+        .exp-item { 
+            margin-bottom: 25px; 
+            padding: 25px; 
+            border: 1px solid rgba(212, 175, 55, 0.1); 
+            border-radius: 10px; 
+            transition: all 0.4s ease;
+            background: rgba(255,255,255,0.01);
+        }
+        
+        .exp-item:hover { border-color: var(--primary-gold); transform: translateX(5px); background: rgba(212, 175, 55, 0.03); }
+        
+        .exp-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+        .exp-role { font-weight: 700; font-size: 1.05rem; color: var(--primary-gold); font-family: 'Cinzel', serif; }
+        .exp-date { font-size: 0.8rem; font-weight: 700; color: var(--text-dim); font-family: 'Cinzel', serif; white-space: nowrap; letter-spacing: 1px; }
+        .exp-comp { font-size: 1rem; font-weight: 700; color: var(--text-light); margin-bottom: 6px; }
+        .exp-desc { font-size: 0.9rem; color: var(--text-dim); list-style: none; padding-left: 15px; margin-top: 8px; line-height: 1.6; }
+        .exp-desc li { margin-bottom: 6px; position: relative; }
+        .exp-desc li::before { content: "•"; color: var(--primary-gold); position: absolute; left: -15px; font-weight: bold; }
+
+        /* BOUTONS PRESTIGE */
+        .drive-btn {
+            display: flex; align-items: center; justify-content: center; min-width: 280px; padding: 18px 35px; border: 2px solid var(--primary-gold); color: var(--primary-gold); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.85rem; text-transform: uppercase; font-weight: 700; transition: 0.3s; background: transparent; border-radius: 10px; letter-spacing: 2px;
+        }
+        
+        .drive-btn:hover { background-color: var(--primary-gold); color: var(--bg-color); transform: translateY(-3px); box-shadow: 0 5px 20px rgba(212, 175, 55, 0.3); }
+        
+        /* CONTACT LINKS */
+        .tel-link, .mail-link {
+            color: inherit;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .tel-link {
+            cursor: default;
+            pointer-events: none;
+        }
+
+        @media (max-width: 1024px) {
+            .tel-link {
+                cursor: pointer;
+                pointer-events: auto;
+                color: var(--primary-gold);
+            }
+        }
+        
+        .mail-link:hover {
+            color: var(--primary-gold);
+        }
+
+        /* Bouton RDV en OR plein par défaut */
+        .rdv-btn { 
+            background-color: var(--primary-gold); 
+            color: var(--bg-color); 
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        .rdv-btn:hover {
+            background-color: #fff;
+            border-color: #fff;
+            color: var(--bg-color);
+        }
+
+        /* FOOTER DOCK */
+        .footer-dock {
+            width: 100%; background: var(--bg-color); padding: 60px 0; border-top: 1px solid rgba(212, 175, 55, 0.3); display: flex; flex-direction: column; align-items: center; gap: 30px;
+        }
+
+        .footer-contact-mobile { display: none; text-align: center; color: var(--primary-gold); font-family: 'Cinzel'; font-size: 0.85rem; letter-spacing: 1px; line-height: 1.8; padding: 20px; border-top: 1px solid rgba(212, 175, 55, 0.1); border-bottom: 1px solid rgba(212, 175, 55, 0.1); width: 100%; max-width: 400px; }
+
+        .footer-btns-row { display: flex; justify-content: center; gap: 20px; width: 100%; }
+
+        @media (max-width: 1024px) {
+            .cv-page { flex-direction: column; width: 100%; max-width: 100%; display: flex; }
+            aside, main { display: contents; } 
+            
+            /* ORDRE MOBILE RIGOUREUX */
+            .profile-img-container { order: 1; width: 180px; margin: 40px auto 30px auto; }
+            .identity-header { order: 2; text-align: center; padding: 0 25px; }
+            .summary-block { order: 3; padding: 0 25px; }
+            .expertises-block { order: 4; padding: 0 25px; }
+            .psych-block { order: 5; padding: 0 25px; }
+            .path-block { order: 6; padding: 0 25px; }
+            .prestige-block { order: 7; padding: 0 25px; }
+            .edu-block { order: 8; padding: 0 25px; }
+            
+            .footer-dock { order: 9; display: flex; flex-direction: column; padding: 40px 25px; gap: 20px; }
+            .footer-contact-mobile { display: block; order: 2; }
+            .footer-btns-row { flex-direction: column; align-items: center; gap: 20px; }
+            .drive-btn.portfolio-btn { order: 1; }
+            .drive-btn.rdv-btn { order: 3; }
+            
+            h1 { font-size: 2rem !important; text-align: center; }
+            .sidebar-section.contact-block { display: none; } 
+        }
+    </style>
+</head>
+<body>
+    <div class="cv-page">
+        <!-- 1. PHOTO (SIDEBAR) -->
+        <aside>
+            <div class="profile-img-container"><img src="CV lettre de motivation/photo moi pro.jpeg" alt="Julien FLORENCE"></div>
+            
+            <!-- 3. EXPERTISES CLES -->
+            <section class="sidebar-section expertises-block">
+                <h2>Expertises Clés</h2>
+                <ul style="list-style: none;">
+                    <li style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">✓ Business Plan & Pilotage P&L</li>
+                    <li style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">✓ Management d'équipes (3-15 pers)</li>
+                    <li style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">✓ Stratégie d'Acquisition Tech</li>
+                    <li style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">✓ Négociation de contrats prestige</li>
+                    <li style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 12px;">✓ Sommelerie & Gastronomie étoilée</li>
+                </ul>
+            </section>
+
+            <!-- 4. PROFIL PSYCHOLOGIQUE -->
+            <section class="sidebar-section psych-block">
+                <h2>Profil Psychologique</h2>
+                <div class="info-item" style="color: var(--primary-gold); font-family: 'Cinzel'; font-weight: 700; margin-bottom:15px; letter-spacing: 1px;">ENTJ-A (Commandant)</div>
+                <div style="margin-bottom:15px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;"><span>Rationnel</span><span>94%</span></div>
+                    <div style="height:5px; background:rgba(255,255,255,0.1); border-radius:10px;"><div style="width:94%; height:100%; background:var(--primary-gold); border-radius:10px;"></div></div>
+                </div>
+                <div style="margin-bottom:15px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;"><span>Organisé</span><span>94%</span></div>
+                    <div style="height:5px; background:rgba(255,255,255,0.1); border-radius:10px;"><div style="width:94%; height:100%; background:var(--primary-gold); border-radius:10px;"></div></div>
+                </div>
+                <div style="margin-bottom:15px;">
+                    <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;"><span>Extraverti</span><span>88%</span></div>
+                    <div style="height:5px; background:rgba(255,255,255,0.1); border-radius:10px;"><div style="width:88%; height:100%; background:var(--primary-gold); border-radius:10px;"></div></div>
+                </div>
+            </section>
+
+            <section class="sidebar-section contact-block">
+                <h2>Contact</h2>
+                <div class="info-item"><strong>Téléphone</strong> <a href="tel:0661747573" class="tel-link">06 61 74 75 73</a></div>
+                <div class="info-item"><strong>Email</strong> <a href="mailto:julien.florence@gmail.com" class="mail-link">julien.florence@gmail.com</a></div>
+                <div class="info-item"><strong>Mobilité</strong> 31130 Quint-Fonsegrives</div>
+            </section>
+        </aside>
+
+        <!-- 2. IDENTITE ET VISION -->
+        <main>
+            <header class="identity-header">
+                <h1>Julien FLORENCE</h1>
+                <div class="job-title">Directeur Commercial</div>
+            </header>
+            
+            <div class="summary-block">
+                <div class="who-title">Vision Strategique</div>
+                <div class="summary">
+                    Plus de 15 ans d'expérience dans la création de valeur et le pilotage de centres de profit. Expert en management d'équipes pluridisciplinaires et en acquisition Tech, je déploie des stratégies commerciales rentables au service de l'excellence et du prestige. Profil ENTJ-A orienté action.
+                    <span class="quote">"Ce n'est pas ce que vous êtes qui vous retient, mais ce que vous pensez ne pas être." – Denis Waitley</span>
+                </div>
+            </div>
+
+            <!-- 5. PARCOURS PROFESSIONNEL -->
+            <section class="path-block">
+                <h3 class="section-header">Parcours Professionnel</h3>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Responsable Développement</span><span class="exp-date">2025 – Présent</span></div>
+                    <div class="exp-comp">Happy House</div>
+                    <ul class="exp-desc">
+                        <li>Pilotage et coaching d'une équipe de 3 collaborateurs.</li>
+                        <li>Élaboration, déploiement de la stratégie Go-To-Market et intégration d'outils d'acquisition Tech.</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Gestionnaire Centre de Profit</span><span class="exp-date">2022 – 2024</span></div>
+                    <div class="exp-comp">RAS Intérim - CA 2.6 M€</div>
+                    <ul class="exp-desc">
+                        <li>Management de 20 ETP par semaine et gestion de 25 comptes B2B stratégiques.</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Négociateur Immobilier Leader</span><span class="exp-date">2015 – 2021</span></div>
+                    <div class="exp-comp">Century 21 & Cabinet Bedin - CA Agence 7 M€</div>
+                    <ul class="exp-desc">
+                        <li><strong>Performance individuelle : Volume d'affaires moyen de 110 k€.</strong></li>
+                        <li>Management et responsabilité de 5 négociateurs.</li>
+                        <li>Animation de la force de vente et pilotage de la performance commerciale.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 6. RESTAURATION ET HOTELLERIE DE PRESTIGE -->
+            <section class="prestige-block">
+                <h3 class="section-header">Restauration & Hôtellerie de Prestige</h3>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Directeur de Restaurant</span><span class="exp-date">2010 – 2015</span></div>
+                    <div class="exp-comp">Ma Salle à Manger (Paris 1er)</div>
+                    <ul class="exp-desc">
+                        <li>Management complet d'une équipe de 15 salariés.</li>
+                        <li><strong>Orchestration d'une croissance de +140% : passage du CA de 250 k€ à 600 k€.</strong></li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Maître d'Hôtel & Sommelier</span><span class="exp-date">2004 – 2009</span></div>
+                    <div class="exp-comp">La Table du Sommelier (Gaillac) - CA 500k€ à 700k€</div>
+                    <ul class="exp-desc">
+                        <li>Management de 7 serveurs, gestion des caves et dégustations prestige.</li>
+                    </ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">1er Sommelier (Palace 5*)</span><span class="exp-date">2003 – 2004</span></div>
+                    <div class="exp-comp">THE WESBURY (Leading Hotel, Dublin) - CA 100M€ à 110M€</div>
+                    <ul class="exp-desc"><li>Restaurant 1 Étoile Michelin. Management de 20 personnes et gestion de cave d'exception.</li></ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Chef Barman</span><span class="exp-date">2001 – 2002</span></div>
+                    <div class="exp-comp">Le CLOS (1 Étoile Michelin, Bath, Angleterre) - CA 6M€</div>
+                    <ul class="exp-desc"><li>Management de 10 personnes et création de cartes prestige.</li></ul>
+                </div>
+                <div class="exp-item">
+                    <div class="exp-head"><span class="exp-role">Assistant Superviseur Room Service (Palace 5*)</span><span class="exp-date">2000 – 2001</span></div>
+                    <div class="exp-comp">The GUANAHANI (Leading Hotel, St-Barth) - CA 10M€ à 20M€</div>
+                    <ul class="exp-desc"><li>Restaurant 2 Étoiles Michelin. Supervision du management sur 20 personnes.</li></ul>
+                </div>
+            </section>
+
+            <!-- 7. FORMATIONS & EXCELLENCE -->
+            <section class="edu-block">
+                <h3 class="section-header">Formations & Excellence</h3>
+                <div class="exp-item" style="padding: 15px 25px;"><div class="exp-comp" style="margin-bottom: 0;">Bachelor Marketing et Commercial (2025)</div></div>
+                <div class="exp-item" style="padding: 15px 25px;"><div class="exp-comp" style="margin-bottom: 0;">HTML5 & CSS3 &bull; Google Digital Academy</div></div>
+                <p style="font-size: 0.9rem; color: var(--primary-gold); text-align: center; margin-top: 10px; font-style: italic;">
+                    Découvrez l'intégralité de mes travaux et certifications dans mon portfolio numérique en fin de page.
+                </p>
+            </section>
+        </main>
+    </div>
+
+    <!-- 8. & 9. CONTACT ET BOUTONS (FOOTER DOCK) -->
+    <div class="footer-dock">
+        <div class="footer-btns-row">
+            <a href="diplomes.html" class="drive-btn portfolio-btn">Portfolio Diplômes</a>
+            
+            <div class="footer-contact-mobile">
+                <a href="tel:0661747573" class="tel-link">06 61 74 75 73</a> &bull; <a href="mailto:julien.florence@gmail.com" class="mail-link">julien.florence@gmail.com</a><br>
+                31130 Quint-Fonsegrives
+            </div>
+
+            <a href="https://calendar.app.google/iCzfE1GQrjxM3ZQ56" target="_blank" class="drive-btn rdv-btn">Réserver un RDV</a>
+        </div>
+    </div>
+</body>
+</html>

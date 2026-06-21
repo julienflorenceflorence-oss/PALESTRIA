@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuestIA - Résultats MVP & Workflow (Page 16)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;700&family=DM+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep: #0D0B1E;
+    --bg-card: #1A1635;
+    --border: rgba(123,63,228,0.3);
+    --border-c: rgba(0,212,255,0.2);
+    --violet: #7B3FE4;
+    --cyan: #00D4FF;
+    --neon: #8AFF00;
+    --white: #F0EEF8;
+    --muted: #8A87A8;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-deep);
+    color: var(--white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .slide {
+    width: 95vw;
+    max-width: 1280px;
+    height: 53.43vw;
+    max-height: 720px;
+    background: radial-gradient(circle at 90% 10%, rgba(123,63,228,0.1) 0%, transparent 40%),
+                radial-gradient(circle at 10% 90%, rgba(0,212,255,0.08) 0%, transparent 40%),
+                var(--bg-deep);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    padding: 30px 50px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .slide::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(123,63,228,0.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(123,63,228,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, var(--violet) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .badge {
+    background: rgba(138,255,0,0.1);
+    border: 1px solid rgba(138,255,0,0.4);
+    color: var(--neon);
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    padding: 6px 14px;
+    border-radius: 99px;
+  }
+
+  .content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+    flex-grow: 1;
+  }
+
+  /* Section Gauche : Traction */
+  .traction-card {
+    background: rgba(26,22,53,0.4);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--cyan);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .kpi-box {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.05);
+    padding: 16px;
+    border-radius: 12px;
+    text-align: center;
+  }
+
+  .kpi-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 36px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+  }
+
+  .kpi-label {
+    font-size: 11px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .quote-box {
+    margin-top: 20px;
+    padding: 16px;
+    border-left: 3px solid var(--violet);
+    background: rgba(123,63,228,0.05);
+    border-radius: 0 12px 12px 0;
+    font-style: italic;
+    font-size: 13px;
+    color: var(--white);
+  }
+
+  /* Section Droite : Workflow */
+  .workflow-card {
+    background: rgba(26,22,53,0.4);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .workflow-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .step {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background: rgba(255,255,255,0.03);
+    padding: 12px 16px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--violet);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+
+  .step-info {
+    flex-grow: 1;
+  }
+
+  .step-title {
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .step-desc {
+    font-size: 11px;
+    color: var(--muted);
+  }
+
+  .tool-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 9px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    background: rgba(0,212,255,0.1);
+    color: var(--cyan);
+    border: 1px solid var(--border-c);
+  }
+
+  .workflow-arrow {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    margin: -5px 0;
+  }
+
+  .tech-stack {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+  }
+
+  .stack-item {
+    font-size: 10px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+</style>
+</head>
+<body>
+
+<div class="slide">
+  <div class="header">
+    <h1>Résultats <span class="gradient-text">MVP</span> & Workflow</h1>
+    <div class="badge">🔥 Traction Hackathon : 48h d'exécution</div>
+  </div>
+
+  <div class="content-grid">
+    <!-- GAUCHE : TRACTION -->
+    <div class="traction-card">
+      <div class="section-title">📊 Preuve de Traction (Réel)</div>
+      
+      <div class="kpi-grid">
+        <div class="kpi-box">
+          <div class="kpi-val" style="color: var(--cyan);">51</div>
+          <div class="kpi-label">Appels Sortants</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val" style="color: var(--violet);">7</div>
+          <div class="kpi-label">Rendez-vous</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val" style="color: var(--neon);">2</div>
+          <div class="kpi-label">Démos Live</div>
+        </div>
+        <div class="kpi-box">
+          <div class="kpi-val" style="color: var(--white);">104</div>
+          <div class="kpi-label">Leads Scrapés</div>
+        </div>
+      </div>
+
+      <div class="quote-box">
+        "L'outil est formidable... la possibilité de créer mes propres scénarios métier est un vrai plus."
+        <br><small style="color: var(--muted); font-style: normal;">— Patrice, Dirigeant de centre de formation</small>
+      </div>
+
+      <div style="margin-top:15px; font-size: 12px; color: var(--muted);">
+        ✅ <strong>Validation :</strong> Le besoin de pilotage et de personnalisation métier est confirmé par 100% des testeurs en démo.
+      </div>
+    </div>
+
+    <!-- DROITE : WORKFLOW -->
+    <div class="workflow-card">
+      <div class="section-title">⚙️ Workflow Automatisé</div>
+      
+      <div class="workflow-steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div class="step-info">
+            <div class="step-title">Scraping & Enrichissement</div>
+            <div class="step-desc">Extraction des CEOs/DRH sur LinkedIn Sales Navigator.</div>
+          </div>
+          <div class="tool-tag">Apollo / SalesNav</div>
+        </div>
+
+        <div class="workflow-arrow">▼</div>
+
+        <div class="step">
+          <div class="step-num" style="background: var(--cyan); color: var(--bg-deep);">2</div>
+          <div class="step-info">
+            <div class="step-title">Séquence Outbound Omni-canale</div>
+            <div class="step-desc">Demande d'ajout LinkedIn + Message personnalisé + Relance.</div>
+          </div>
+          <div class="tool-tag">Waalaxy</div>
+        </div>
+
+        <div class="workflow-arrow">▼</div>
+
+        <div class="step">
+          <div class="step-num" style="background: var(--neon); color: var(--bg-deep);">3</div>
+          <div class="step-info">
+            <div class="step-title">Conversion & Onboarding</div>
+            <div class="step-desc">Prise de RDV Calendly -> Création auto du compte démo.</div>
+          </div>
+          <div class="tool-tag">Calendly / Zapier</div>
+        </div>
+      </div>
+
+      <div class="tech-stack">
+        <div class="stack-item">🛠️ <strong>Stack :</strong></div>
+        <div class="stack-item">Waalaxy</div>
+        <div class="stack-item">Calendly</div>
+        <div class="stack-item">Notion CRM</div>
+        <div class="stack-item">Make / Zapier</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

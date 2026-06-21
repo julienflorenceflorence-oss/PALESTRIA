@@ -1,0 +1,362 @@
+/* 
+   ==========================================================================
+   CSS MASTER : ÉDITION PRESTIGE - HAPPY HOUSE
+   ==========================================================================
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap');
+
+:root {
+    --bg-deep: #0F1115;
+    --bg-card: #1A1D23;
+    --gold: #D4AF37;
+    --gold-dim: rgba(212, 175, 55, 0.2);
+    --gold-bright: #F5D76E;
+    --text-pure: #FFFFFF;
+    --text-muted: #A0A0A0;
+    --red-alert: #E74C3C;
+    --green-success: #2ECC71;
+    --blue-info: #3498DB;
+    --page-w: 210mm;
+    --page-h: 297mm;
+}
+
+@media print {
+    @page { size: A4; margin: 0; }
+    body { background: var(--bg-deep) !important; -webkit-print-color-adjust: exact; }
+    .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+}
+
+body {
+    background: #050505;
+    color: var(--text-pure);
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    counter-reset: page-counter;
+    font-size: 12pt;
+}
+
+/* Layout Page */
+.page {
+    width: var(--page-w);
+    height: var(--page-h);
+    background: var(--bg-deep);
+    margin: 40px auto;
+    position: relative;
+    padding: 20mm 20mm;
+    box-sizing: border-box;
+    box-shadow: 0 0 50px rgba(0,0,0,0.8);
+    page-break-after: always;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.inner-border {
+    position: absolute;
+    top: 8mm;
+    left: 8mm;
+    right: 8mm;
+    bottom: 8mm;
+    border: 1px solid var(--gold-dim);
+    pointer-events: none;
+    z-index: 10;
+}
+
+/* Typographie */
+h1 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    text-align: center;
+    letter-spacing: 4px;
+    margin-bottom: 25px;
+    font-size: 2.4rem;
+}
+
+h2 {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    border-left: 5px solid var(--gold);
+    padding-left: 20px;
+    margin: 35px 0 20px 0;
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+}
+
+h3 {
+    font-family: 'Arial', sans-serif;
+    color: var(--gold-bright);
+    margin: 25px 0 15px 0;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+p {
+    font-size: 12pt;
+    line-height: 1.6;
+    font-weight: normal;
+    text-align: justify;
+    margin-bottom: 18px;
+}
+
+ul, li {
+    font-size: 12pt;
+    line-height: 1.5;
+    margin-bottom: 10px;
+}
+
+.quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--gold);
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid var(--gold-dim);
+    border-bottom: 1px solid var(--gold-dim);
+    margin: 40px 0;
+    font-size: 1.2rem;
+    position: relative;
+}
+
+/* Verdict du Stratège */
+.verdict {
+    background: rgba(0,0,0,0.3);
+    border-left: 5px solid var(--gold);
+    padding: 20px;
+    margin: 30px 0;
+}
+
+.verdict-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold);
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: block;
+    font-size: 0.9rem;
+}
+
+/* Badges & Markers */
+.marker-red { color: var(--red-alert); font-weight: 600; }
+.marker-green { color: var(--green-success); font-weight: 600; }
+.marker-blue { color: var(--blue-info); font-weight: 600; }
+.marker-gold { color: var(--gold); font-weight: 600; }
+
+/* Matrices & Tables */
+.matrix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.matrix-card {
+    background: var(--bg-card);
+    border: 1px solid var(--gold-dim);
+    padding: 15px;
+}
+
+.matrix-header {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Footer */
+.footer {
+    position: absolute;
+    bottom: 25mm;
+    left: 20mm;
+    right: 20mm;
+    border-top: 1px solid var(--gold);
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Cinzel', serif;
+    font-size: 8pt;
+    color: var(--text-pure);
+}
+
+.page-num::after {
+    counter-increment: page-counter;
+    content: "P. " counter(page-counter, decimal-leading-zero);
+}
+
+/* Blocs Académiques & Rigueur */
+.methodology-box {
+    background: rgba(52, 152, 219, 0.05);
+    border-left: 5px solid var(--blue-info);
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.methodology-title {
+    font-family: 'Cinzel', serif;
+    color: var(--blue-info);
+    font-weight: bold;
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.risk-box {
+    background: rgba(231, 76, 60, 0.05);
+    border: 1px dashed var(--red-alert);
+    padding: 15px;
+    margin: 20px 0;
+}
+
+.risk-title {
+    font-family: 'Cinzel', serif;
+    color: var(--red-alert);
+    font-weight: bold;
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 5px;
+}
+
+.source-tag {
+    font-size: 8pt;
+    color: var(--text-muted);
+    font-style: italic;
+    display: block;
+    text-align: right;
+    margin-top: -10px;
+    margin-bottom: 15px;
+}
+
+.justification-badge {
+    background: var(--gold-dim);
+    color: var(--gold-bright);
+    font-size: 0.7rem;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+}
+
+/* Diagramme de Venn (Les 3 Failles) */
+.venn-container {
+    position: relative;
+    height: 300px;
+    width: 400px;
+    margin: 40px auto;
+}
+
+.venn-circle {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: rgba(212, 175, 55, 0.05);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-family: 'Cinzel';
+}
+
+.venn-1 { top: 0; left: 100px; border-color: var(--red-alert); }
+.venn-2 { bottom: 0; left: 0; border-color: var(--gold); }
+.venn-3 { bottom: 0; right: 0; border-color: var(--blue-info); }
+
+.venn-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--gold-bright);
+    font-weight: bold;
+    text-shadow: 0 0 10px black;
+    z-index: 20;
+    width: 80px;
+    text-align: center;
+}
+
+/* Entonnoir (Funnel) */
+.funnel-container {
+    width: 100%;
+    margin: 30px 0;
+}
+
+.funnel-step {
+    height: 40px;
+    margin: 5px auto;
+    background: linear-gradient(90deg, var(--bg-card), var(--gold-dim));
+    border-left: 3px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    font-size: 0.9rem;
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding: 20px 0;
+    border-left: 2px solid var(--gold-dim);
+    margin-left: 20px;
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 30px;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 0;
+    width: 12px;
+    height: 12px;
+    background: var(--gold);
+    border-radius: 50%;
+}
+
+/* Tableaux Comparatifs Prestige */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.9rem;
+}
+
+th {
+    background: var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Cinzel';
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--gold);
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.cover-subtitle {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--text-pure);
+    font-size: 1.4rem;
+    margin-bottom: 50px;
+}
+
+.signature-block {
+    position: absolute;
+    bottom: 40mm;
+    width: 100%;
+}
+
+.author-name {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    color: var(--gold);
+}

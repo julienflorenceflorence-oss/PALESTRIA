@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Rétention - Hébergeurs 2</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --text-main: #F4F4F4;
+            --text-muted: #8E9297;
+            --card-bg: #161A23;
+            --border-color: rgba(212, 175, 55, 0.2);
+            --danger: #E05D5D;
+            --success: #27AE60;
+            --warning: #F2994A;
+            --info: #29B6F6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Premium */
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-size: 2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-academic {
+            background: linear-gradient(135deg, var(--accent), #AA7C11);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .kpi-card.churn::before { background: var(--danger); }
+        .kpi-card.active::before { background: var(--success); }
+        .kpi-card.warning::before { background: var(--warning); }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-value {
+            font-size: 2rem;
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            margin: 10px 0;
+            font-weight: 700;
+        }
+
+        .kpi-card.churn .kpi-value { color: var(--danger); }
+        .kpi-card.active .kpi-value { color: var(--success); }
+        .kpi-card.warning .kpi-value { color: var(--warning); }
+
+        .kpi-subtext {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Main Content Layout */
+        .dashboard-body {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-body {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+
+        /* Rules & Charts Box */
+        .info-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .panel-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 25px;
+        }
+
+        .panel-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .rule-box {
+            background: rgba(224, 93, 93, 0.08);
+            border-left: 3px solid var(--danger);
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .rule-box h3 {
+            color: var(--danger);
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .rule-box p {
+            font-size: 0.8rem;
+            color: var(--text-main);
+        }
+
+        /* Visual Distribution Chart */
+        .distribution-chart {
+            display: flex;
+            height: 25px;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .dist-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .dist-segment.churn { background-color: var(--danger); color: white; }
+        .dist-segment.exchanged { background-color: var(--accent); }
+
+        .legend-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            padding: 8px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
+        }
+
+        .legend-color {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .color-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        /* Table Filter Controls */
+        .table-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .search-input {
+            background: #000;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-family: 'Montserrat';
+            font-size: 0.85rem;
+            width: 100%;
+            max-width: 300px;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'Montserrat';
+            font-size: 0.8rem;
+            font-weight: 500;
+            transition: all 0.3s;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .tab-btn.active {
+            background: var(--accent);
+            color: #000;
+            border-color: var(--accent);
+            font-weight: bold;
+        }
+
+        /* Table Design */
+        .table-wrapper {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow-x: auto;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.85rem;
+        }
+
+        th {
+            background-color: rgba(212, 175, 55, 0.05);
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            padding: 15px 20px;
+            border-bottom: 2px solid var(--border-color);
+            letter-spacing: 1px;
+            font-size: 0.8rem;
+        }
+
+        td {
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+        }
+
+        tr:hover td {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .badge-status.churn {
+            background-color: rgba(224, 93, 93, 0.15);
+            color: var(--danger);
+            border: 1px solid rgba(224, 93, 93, 0.3);
+        }
+
+        .badge-status.fully-engaged {
+            background-color: rgba(39, 174, 96, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+        }
+
+        .badge-status.retained-entegra {
+            background-color: rgba(41, 182, 246, 0.15);
+            color: var(--info);
+            border: 1px solid rgba(41, 182, 246, 0.3);
+        }
+
+        .badge-status.neutral {
+            background-color: rgba(242, 153, 74, 0.15);
+            color: var(--warning);
+            border: 1px solid rgba(242, 153, 74, 0.3);
+        }
+
+        .tag-rebound {
+            font-size: 0.75rem;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 8px;
+            border-radius: 4px;
+            border-left: 2px solid var(--accent);
+            display: inline-block;
+            margin-top: 5px;
+        }
+
+        .call-tracker {
+            display: flex;
+            gap: 4px;
+        }
+
+        .call-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .call-dot.active {
+            background-color: var(--danger);
+            border-color: var(--danger);
+            box-shadow: 0 0 5px var(--danger);
+        }
+
+        .call-dot.spoke {
+            background-color: var(--success);
+            border-color: var(--success);
+            box-shadow: 0 0 5px var(--success);
+        }
+
+        .empty-row-msg {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-title">
+                <h1>Hébergeurs 2 : Base de Pilotage Rétention</h1>
+                <p>Analyse de la cohorte d'Acquisition Outbound historique (146 Dossiers)</p>
+            </div>
+            <div class="badge-academic">
+                Soutenance - Promotion A150
+            </div>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Cohorte Analysée</div>
+                <div class="kpi-value">146</div>
+                <div class="kpi-subtext">Total adhésions formelles (2022-2025)</div>
+            </div>
+            <div class="kpi-card churn">
+                <div class="kpi-label">Taux d'Attrition (Churn)</div>
+                <div class="kpi-value">80%</div>
+                <div class="kpi-subtext">116 hébergeurs perdus (Silence Radio)</div>
+            </div>
+            <div class="kpi-card active">
+                <div class="kpi-label">Taux d'Échange Réel</div>
+                <div class="kpi-value">20%</div>
+                <div class="kpi-subtext">30 dossiers avec retours qualitatifs documentés</div>
+            </div>
+            <div class="kpi-card warning">
+                <div class="kpi-label">LTV Bloquée</div>
+                <div class="kpi-value">290 €</div>
+                <div class="kpi-subtext">Durée de vie moyenne : 1,3 an</div>
+            </div>
+        </div>
+
+        <!-- Main Workspace -->
+        <div class="dashboard-body">
+            
+            <!-- Left Panel: Rules & Core Insights -->
+            <div class="info-panel">
+                
+                <!-- Rule Definition -->
+                <div class="panel-card">
+                    <h2>Règle d'Impayé & Silence Radio</h2>
+                    <div class="rule-box">
+                        <h3>Règle des 3 Appels Sans Retour (NRP)</h3>
+                        <p>Tout membre n'ayant pas répondu à 3 tentatives de relances consécutives (sans aucun retour d'échange) est classé automatiquement dans le statut critique : <strong>"Silence Radio (Churn Acté)"</strong>.</p>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">
+                        Cette automatisation permet de rationaliser l'effort de l'Account Manager et de purger les comptes inactifs sans valeur de reconversion immédiate.
+                    </p>
+                </div>
+
+                <!-- Qualitative Breakdown of Exchanges -->
+                <div class="panel-card">
+                    <h2>Analyse des 30 Échanges</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 15px;">
+                        Répartition sémantique des retours d'échanges des 30 hébergeurs contactés :
+                    </p>
+                    
+                    <div class="distribution-chart">
+                        <div class="dist-segment" style="width: 10%; background-color: var(--success); color: white;" title="10% Pleinement Convaincus">10%</div>
+                        <div class="dist-segment" style="width: 5%; background-color: var(--info); color: white;" title="5% Retenus par Entegra">5%</div>
+                        <div class="dist-segment" style="width: 85%; background-color: var(--warning); color: #000;" title="85% Ne Se Prononcent Pas">85%</div>
+                    </div>
+
+                    <div class="legend-list">
+                        <div class="legend-item">
+                            <div class="legend-color">
+                                <span class="color-dot" style="background-color: var(--success);"></span>
+                                <strong>Pleinement Convaincus</strong>
+                            </div>
+                            <span>10% (3 hôtes)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color">
+                                <span class="color-dot" style="background-color: var(--info);"></span>
+                                <strong>Retenu / Transition Entegra</strong>
+                            </div>
+                            <span>5% (2 hôtes)</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color">
+                                <span class="color-dot" style="background-color: var(--warning);"></span>
+                                <strong>Ne se prononcent pas (Passifs)</strong>
+                            </div>
+                            <span>85% (25 hôtes)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Business Impact Box -->
+                <div class="panel-card">
+                    <h2>Impact Economique Entegra</h2>
+                    <p style="font-size: 0.8rem; color: var(--text-main); margin-bottom: 10px;">
+                        <strong>La centrale d'achats (Entegra)</strong> constitue le bouclier défensif ultime.
+                    </p>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">
+                        La modélisation financière démontre que la démonstration mathématique des économies réalisées (Entegra) annule l'objection de prix. C'est l'arme de rétention indispensable à généraliser sur les 85% de profils passifs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Panel: Database List -->
+            <div class="data-panel">
+                
+                <!-- Controls and Search -->
+                <div class="table-controls">
+                    <input type="text" id="dbSearch" class="search-input" placeholder="Rechercher un établissement..." onkeyup="filterDatabase()">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" onclick="switchTab('ALL', this)">Tout (146)</button>
+                        <button class="tab-btn" onclick="switchTab('EXCHANGED', this)">Échanges réels (30)</button>
+                        <button class="tab-btn" onclick="switchTab('SILENCE', this)">Silence Radio (116)</button>
+                    </div>
+                </div>
+
+                <!-- Main Data Table -->
+                <div class="table-wrapper">
+                    <table id="dbTable">
+                        <thead>
+                            <tr>
+                                <th>Établissement</th>
+                                <th>Type</th>
+                                <th>Relances</th>
+                                <th>Statut Rétention</th>
+                                <th>Compte-Rendu d'Échange</th>
+                            </tr>
+                        </thead>
+                        <tbody id="dbBody">
+                            <!-- Dynamic Content injected via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Data Logic -->
+    <script>
+        // Generating mock data for the 146 hosts
+        // 116 Silence Radio (NRP) with 3 missed calls
+        // 30 Exchanged hosts (3 conviced (10%), 2 saved by Entegra (5%), 25 undecided (85%))
+        const database = [];
+
+        // 1. Fully Convinced Exchange hosts (3)
+        database.push({
+            name: "Les Caudalies",
+            type: "PARTICULIER",
+            calls: 3,
+            hasSpoken: true,
+            status: "FULLY_ENGAGED",
+            desc: "Onboarding parfait. Utilise activement Entegra pour la blanchisserie et les commandes F&B. Très satisfait de la Guest App."
+        });
+        database.push({
+            name: "Hostellerie de la Basilique",
+            type: "PROFESSIONNEL",
+            calls: 2,
+            hasSpoken: true,
+            status: "FULLY_ENGAGED",
+            desc: "A aligné l'ensemble de ses fournisseurs sur la centrale d'achats. Amélioration de la note Booking de +0.4 points."
+        });
+        database.push({
+            name: "Château de Bellevue",
+            type: "PROFESSIONNEL",
+            calls: 1,
+            hasSpoken: true,
+            status: "FULLY_ENGAGED",
+            desc: "Prestige validé. ROI de 4 500 € prouvé dès le premier trimestre d'activation."
+        });
+
+        // 2. Saved by Entegra / Pending change hosts (2)
+        database.push({
+            name: "Chalet des Roches",
+            type: "PARTICULIER",
+            calls: 3,
+            hasSpoken: true,
+            status: "RETAINED_ENTEGRA",
+            desc: "En attente de transition de ses contrats d'énergie. Reste membre uniquement car la centrale d'achat compense largement la cotisation."
+        });
+        database.push({
+            name: "Le Clos des Vignes",
+            type: "PARTICULIER",
+            calls: 3,
+            hasSpoken: true,
+            status: "RETAINED_ENTEGRA",
+            desc: "Hésitait à résilier par manque de temps d'usage de l'App. Convaincu de rester suite au calcul des économies réalisées sur le linge."
+        });
+
+        // 3. Undecided Exchange hosts (25)
+        const passiveNames = [
+            "Le Domaine de l'Orée", "Villa Les Bleuets", "Hostellerie du Parc", "Gîte des Cascades", 
+            "La Bergerie du Moulin", "Château de la Roche", "La Villa des Pins", "Le Mas Fleuri", 
+            "Gîte de l'Ancre", "Les Terrasses du Lac", "La Maison Haute", "Le Clos d'Arbois", 
+            "Château Saint-Martin", "La Demeure du Sommelier", "Villa Les Roses", "Le Manoir des Lys",
+            "Gîte des Alpages", "Les Vignes d'Or", "La Bastide de l'Olivier", "Le Chalet du Sommet",
+            "La Grange Ronde", "Les Chênes Verts", "Le Mas des Cigales", "La Maison de Sophie", "Villa Marguerite"
+        ];
+
+        passiveNames.forEach((name, idx) => {
+            database.push({
+                name: name,
+                type: idx % 2 === 0 ? "PROFESSIONNEL" : "PARTICULIER",
+                calls: (idx % 3) + 1,
+                hasSpoken: true,
+                status: "NEUTRAL",
+                desc: "Ne se prononce pas pour le moment. Répond au téléphone mais n'a pas pris le temps d'ouvrir le Dashboard ROI."
+            });
+        });
+
+        // 4. Silence Radio / NRP hosts (116)
+        const silentPrefixes = ["Gîte", "Chambre d'hôte", "Maison", "Villa", "Le Clos", "Le Domaine", "L'Hostellerie", "Le Chalet"];
+        const silentSuffixes = ["des Landes", "du Bois", "Fleurie", "Claire", "des Rêves", "des Etoiles", "du Soleil", "Tranquille", "du Vignoble", "du Chêne"];
+
+        for (let i = 1; i <= 116; i++) {
+            const pre = silentPrefixes[i % silentPrefixes.length];
+            const suf = silentSuffixes[i % silentSuffixes.length];
+            database.push({
+                name: `${pre} ${suf} #${i}`,
+                type: i % 3 === 0 ? "PROFESSIONNEL" : "PARTICULIER",
+                calls: 3, // Regle des 3 appels manqués
+                hasSpoken: false,
+                status: "CHURN_NRP",
+                desc: "Tentative de relance à 3 reprises. Pas de réponse (Silence Radio systématique)."
+            });
+        }
+
+        // Render Table Function
+        let currentFilter = 'ALL';
+
+        function renderTable() {
+            const body = document.getElementById("dbBody");
+            body.innerHTML = "";
+            
+            const searchQuery = document.getElementById("dbSearch").value.toLowerCase();
+
+            const filteredData = database.filter(item => {
+                // Search filter
+                const matchesSearch = item.name.toLowerCase().includes(searchQuery);
+                if (!matchesSearch) return false;
+
+                // Tab Filter
+                if (currentFilter === 'EXCHANGED') {
+                    return item.hasSpoken === true;
+                } else if (currentFilter === 'SILENCE') {
+                    return item.hasSpoken === false;
+                }
+                return true;
+            });
+
+            if (filteredData.length === 0) {
+                body.innerHTML = `<tr><td colspan="5" class="empty-row-msg">Aucun établissement ne correspond aux filtres appliqués.</td></tr>`;
+                return;
+            }
+
+            filteredData.forEach(item => {
+                let badgeHTML = '';
+                let callHTML = '';
+
+                // Relance indicators
+                for (let c = 1; c <= 3; c++) {
+                    if (!item.hasSpoken && c <= item.calls) {
+                        callHTML += `<span class="call-dot active" title="Tentative ${c} sans réponse"></span>`;
+                    } else if (item.hasSpoken && c <= item.calls) {
+                        callHTML += `<span class="call-dot spoke" title="Appel ${c} constructif"></span>`;
+                    } else {
+                        callHTML += `<span class="call-dot"></span>`;
+                    }
+                }
+
+                // Status configuration
+                switch (item.status) {
+                    case 'CHURN_NRP':
+                        badgeHTML = `<span class="badge-status churn">Silence Radio</span><br><span class="tag-rebound">Risque Churn Acté</span>`;
+                        break;
+                    case 'FULLY_ENGAGED':
+                        badgeHTML = `<span class="badge-status fully-engaged">Pleinement Engagé</span>`;
+                        break;
+                    case 'RETAINED_ENTEGRA':
+                        badgeHTML = `<span class="badge-status retained-entegra">Retenu par Entegra</span>`;
+                        break;
+                    case 'NEUTRAL':
+                        badgeHTML = `<span class="badge-status neutral">Ne se prononce pas</span>`;
+                        break;
+                }
+
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td style="font-weight: 500;">${item.name}</td>
+                    <td style="font-size: 0.75rem; color: var(--text-muted);">${item.type}</td>
+                    <td>
+                        <div class="call-tracker">${callHTML}</div>
+                        <span style="font-size: 0.7rem; color: var(--text-muted); display:block; margin-top:3px;">${item.calls} relance(s)</span>
+                    </td>
+                    <td>${badgeHTML}</td>
+                    <td style="font-size: 0.8rem; color: ${item.hasSpoken ? 'var(--text-main)' : 'var(--text-muted)'};">${item.desc}</td>
+                `;
+                body.appendChild(row);
+            });
+        }
+
+        function switchTab(tab, btn) {
+            // Remove active classes
+            const buttons = document.querySelectorAll(".tab-btn");
+            buttons.forEach(b => b.classList.remove("active"));
+            
+            // Set active class
+            btn.classList.add("active");
+            currentFilter = tab;
+            renderTable();
+        }
+
+        function filterDatabase() {
+            renderTable();
+        }
+
+        // Initial render
+        renderTable();
+    </script>
+</body>
+</html>

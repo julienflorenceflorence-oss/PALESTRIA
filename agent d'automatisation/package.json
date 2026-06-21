@@ -1,0 +1,21 @@
+{
+  "name": "happy-house-automation",
+  "version": "1.0.0",
+  "description": "Système d'automatisation d'agenda Happy House",
+  "main": "3_Code/index.ts",
+  "type": "module",
+  "scripts": {
+    "start": "npx tsx 3_Code/index.ts",
+    "test-agenda": "python TEST_AGENDA.py"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0",
+    "better-sqlite3": "^11.8.1",
+    "tsx": "^4.19.3",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.13.10"
+  }
+}

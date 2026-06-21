@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuestIA — Brand Strategy & Positionnement</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-deep:    #0D0B1E;
+    --bg-card:    #131029;
+    --bg-card2:   #1A1635;
+    --border:     rgba(123,63,228,0.22);
+    --border-c:   rgba(0,212,255,0.18);
+    --violet:     #7B3FE4;
+    --violet-l:   #A57BF7;
+    --cyan:       #00D4FF;
+    --cyan-d:     #0099BB;
+    --neon:       #8AFF00;
+    --neon-d:     #5ABB00;
+    --white:      #F0EEF8;
+    --muted:      #8A87A8;
+    --dimmed:     #4A4770;
+    --tag-v-bg:   rgba(123,63,228,0.18);
+    --tag-c-bg:   rgba(0,212,255,0.12);
+    --tag-n-bg:   rgba(138,255,0,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg-deep);
+    color: var(--white);
+    font-size: 15px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+  }
+
+  /* ── GRID BACKGROUND ── */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(123,63,228,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(123,63,228,0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── LAYOUT ── */
+  .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 80px;
+  }
+
+  /* ── COVER ── */
+  .cover {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 0 64px;
+    position: relative;
+  }
+
+  .cover-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    border: 1px solid var(--border-c);
+    border-radius: 99px;
+    padding: 5px 14px;
+    margin-bottom: 40px;
+    width: fit-content;
+  }
+  .cover-tag::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--neon);
+    box-shadow: 0 0 8px var(--neon);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+  .cover-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--violet-l);
+    margin-bottom: 20px;
+  }
+
+  .cover-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(42px, 7vw, 72px);
+    line-height: 1.0;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+  .cover-title .grad {
+    background: linear-gradient(135deg, var(--violet) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .cover-sub {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(18px, 3vw, 24px);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 48px;
+    max-width: 560px;
+  }
+
+  .cover-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .cover-meta-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimmed);
+  }
+  .cover-meta-val {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--white);
+  }
+
+  .cover-orb {
+    position: absolute;
+    right: -80px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(123,63,228,0.25) 0%, rgba(0,212,255,0.08) 50%, transparent 70%);
+    pointer-events: none;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 64px 0;
+    position: relative;
+  }
+  .divider::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0;
+    width: 80px; height: 1px;
+    background: linear-gradient(90deg, var(--violet), transparent);
+  }
+
+  /* ── SECTION HEADER ── */
+  .section-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--dimmed);
+    margin-bottom: 6px;
+  }
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
+  }
+  .section-sub {
+    font-size: 14px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    max-width: 560px;
+    line-height: 1.6;
+  }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin-bottom: 16px;
+    transition: border-color .2s;
+  }
+  .card:hover { border-color: rgba(123,63,228,0.45); }
+
+  .card-accent {
+    border-color: rgba(0,212,255,0.25);
+  }
+  .card-accent:hover { border-color: rgba(0,212,255,0.5); }
+
+  .card-neon {
+    border-color: rgba(138,255,0,0.2);
+  }
+
+  .card-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card-title .icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+  .icon-v { background: var(--tag-v-bg); }
+  .icon-c { background: var(--tag-c-bg); }
+  .icon-n { background: var(--tag-n-bg); }
+
+  .card p { color: var(--muted); font-size: 14px; line-height: 1.7; }
+
+  /* ── GRID 2 ── */
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* ── STATEMENT ── */
+  .statement {
+    background: var(--bg-card);
+    border-left: 3px solid var(--cyan);
+    border-radius: 0 12px 12px 0;
+    padding: 24px 28px;
+    margin: 24px 0;
+    font-size: 18px;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.6;
+    color: var(--white);
+  }
+  .statement strong { font-style: normal; font-weight: 600; color: var(--cyan); }
+
+  .statement-v { border-left-color: var(--violet-l); }
+  .statement-v strong { color: var(--violet-l); }
+
+  .statement-n { border-left-color: var(--neon); }
+  .statement-n strong { color: var(--neon); }
+
+  /* ── TAGS ── */
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    padding: 4px 10px;
+    border-radius: 99px;
+    text-transform: uppercase;
+  }
+  .tag-v { background: var(--tag-v-bg); color: var(--violet-l); border: 1px solid rgba(123,63,228,0.3); }
+  .tag-c { background: var(--tag-c-bg); color: var(--cyan); border: 1px solid rgba(0,212,255,0.25); }
+  .tag-n { background: var(--tag-n-bg); color: var(--neon); border: 1px solid rgba(138,255,0,0.25); }
+
+  /* ── KPI ROW ── */
+  .kpi-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 28px 0; }
+  .kpi {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px;
+    text-align: center;
+  }
+  .kpi-val {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .kpi-val.v { color: var(--violet-l); }
+  .kpi-val.c { color: var(--cyan); }
+  .kpi-val.n { color: var(--neon); }
+  .kpi-label { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
+  /* ── TABLE ── */
+  table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 13px; }
+  th {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimmed);
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  td {
+    padding: 12px 14px;
+    border-bottom: 1px solid rgba(123,63,228,0.1);
+    color: var(--muted);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  td:first-child { color: var(--white); font-weight: 500; }
+  .check { color: var(--neon); font-weight: 700; }
+  .cross { color: var(--dimmed); }
+  .part  { color: var(--violet-l); }
+  tr.highlight td { background: rgba(123,63,228,0.06); }
+  tr.highlight td:first-child { color: var(--cyan); }
+
+  /* ── PERSONA CARD ── */
+  .persona {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .persona-head { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+  .persona-avatar {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    flex-shrink: 0;
+  }
+  .avatar-v { background: var(--tag-v-bg); color: var(--violet-l); border: 1px solid rgba(123,63,228,0.4); }
+  .avatar-c { background: var(--tag-c-bg); color: var(--cyan); border: 1px solid rgba(0,212,255,0.3); }
+  .avatar-n { background: var(--tag-n-bg); color: var(--neon); border: 1px solid rgba(138,255,0,0.3); }
+  .persona-name { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; }
+  .persona-role { font-size: 12px; color: var(--muted); }
+
+  .persona-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .persona-block-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimmed);
+    margin-bottom: 8px;
+  }
+  .persona-quote {
+    font-size: 13px;
+    font-style: italic;
+    color: var(--white);
+    border-left: 2px solid var(--violet-l);
+    padding-left: 12px;
+    line-height: 1.6;
+  }
+  .persona-list { list-style: none; }
+  .persona-list li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 4px 0;
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+  .persona-list li::before { content: '—'; color: var(--dimmed); flex-shrink: 0; }
+
+  /* ── TONE BARS ── */
+  .tone-item { margin-bottom: 20px; }
+  .tone-header { display: flex; justify-content: space-between; font-size: 13px; margin-bottom: 6px; }
+  .tone-from { color: var(--muted); }
+  .tone-to { color: var(--muted); }
+  .tone-track {
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    position: relative;
+  }
+  .tone-fill {
+    height: 4px;
+    border-radius: 2px;
+    background: linear-gradient(90deg, var(--violet), var(--cyan));
+    position: relative;
+  }
+  .tone-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    position: absolute;
+    right: -5px; top: -3px;
+    box-shadow: 0 0 8px var(--cyan);
+  }
+
+  /* ── ARCHETYPE GRID ── */
+  .arch-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin: 20px 0; }
+  .arch {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px 12px;
+    text-align: center;
+    transition: border-color .2s, background .2s;
+  }
+  .arch.active {
+    border-color: var(--cyan);
+    background: rgba(0,212,255,0.06);
+  }
+  .arch-icon { font-size: 22px; margin-bottom: 8px; }
+  .arch-name { font-family: 'Syne', sans-serif; font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 3px; }
+  .arch-ex { font-size: 10px; color: var(--dimmed); }
+
+  /* ── UVP BLOCK ── */
+  .uvp {
+    background: linear-gradient(135deg, rgba(123,63,228,0.12) 0%, rgba(0,212,255,0.06) 100%);
+    border: 1px solid rgba(123,63,228,0.35);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+    margin: 32px 0;
+  }
+  .uvp-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--cyan);
+    margin-bottom: 20px;
+  }
+  .uvp-text {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(20px, 3vw, 28px);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .uvp-text .hl-v { color: var(--violet-l); }
+  .uvp-text .hl-c { color: var(--cyan); }
+  .uvp-text .hl-n { color: var(--neon); }
+
+  /* ── MOAT ── */
+  .moat-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin: 24px 0; }
+  .moat-item {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .moat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--violet-l);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .moat-num.c { color: var(--cyan); }
+  .moat-num.n { color: var(--neon); }
+  .moat-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+  /* ── PRICING ── */
+  .pricing-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0; }
+  .pricing-card {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px 16px;
+  }
+  .pricing-card.featured {
+    border-color: var(--cyan);
+    background: rgba(0,212,255,0.06);
+  }
+  .pricing-tier {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--dimmed);
+    margin-bottom: 10px;
+  }
+  .pricing-tier.c { color: var(--cyan); }
+  .pricing-price {
+    font-family: 'Syne', sans-serif;
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .pricing-period { font-size: 11px; color: var(--dimmed); margin-bottom: 12px; }
+  .pricing-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ── SWOT ── */
+  .swot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 24px 0; }
+  .swot-cell {
+    background: var(--bg-card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+  }
+  .swot-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .swot-label.s { color: var(--neon); }
+  .swot-label.w { color: #FF6B6B; }
+  .swot-label.o { color: var(--cyan); }
+  .swot-label.t { color: #FFB347; }
+  .swot-list { list-style: none; }
+  .swot-list li { font-size: 13px; color: var(--muted); padding: 3px 0; display: flex; gap: 8px; }
+  .swot-list li::before { content: '·'; color: var(--dimmed); flex-shrink: 0; }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 28px 32px;
+    margin: 48px 0;
+  }
+  .toc-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dimmed);
+    margin-bottom: 16px;
+  }
+  .toc-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 32px; }
+  .toc-list li a {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 0;
+    transition: color .15s;
+  }
+  .toc-list li a:hover { color: var(--cyan); }
+  .toc-list li a .toc-n {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--dimmed);
+    min-width: 20px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .footer-brand {
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--violet) 0%, var(--cyan) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .footer-copy { font-size: 12px; color: var(--dimmed); }
+
+  /* ── SCROLL ANIMATE ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .6s ease, transform .6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  @media (max-width: 640px) {
+    .wrap { padding: 0 16px 60px; }
+    .grid2, .grid3, .kpi-row, .pricing-grid, .arch-grid, .moat-grid { grid-template-columns: 1fr; }
+    .toc-list { grid-template-columns: 1fr; }
+    .swot { grid-template-columns: 1fr; }
+    .persona-grid { grid-template-columns: 1fr; }
+    .cover-orb { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- COVER -->
+  <section class="cover" id="top">
+    <div class="cover-orb"></div>
+    <div class="cover-tag">Document vivant · Mai 2026</div>
+    <div class="cover-eyebrow">Brand Strategy & Positionnement</div>
+    <h1 class="cover-title">
+      <span class="grad">QuestIA</span><br>
+      Brand Platform
+    </h1>
+    <p class="cover-sub">Le document de référence qui gouverne toutes les décisions de marque, de communication et d'identité visuelle.</p>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Secteur</span>
+        <span class="cover-meta-val">EdTech · SaaS B2B</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Modèle</span>
+        <span class="cover-meta-val">B2B2C · Abonnement annuel</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Marché cible</span>
+        <span class="cover-meta-val">France · expansion UE M+15</span>
+      </div>
+      <div class="cover-meta-item">
+        <span class="cover-meta-label">Version</span>
+        <span class="cover-meta-val">v1.0 · Pré-hackathon</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOC -->
+  <nav class="toc reveal">
+    <div class="toc-title">Sommaire</div>
+    <ul class="toc-list">
+      <li><a href="#mission"><span class="toc-n">01</span> Mission, vision & why</a></li>
+      <li><a href="#marche"><span class="toc-n">06</span> Analyse de marché & contexte</a></li>
+      <li><a href="#positionnement"><span class="toc-n">02</span> Positionnement & UVP</a></li>
+      <li><a href="#moat"><span class="toc-n">07</span> Le moat concurrentiel</a></li>
+      <li><a href="#icp"><span class="toc-n">03</span> ICP & personas</a></li>
+      <li><a href="#personnalite"><span class="toc-n">08</span> Personnalité & archétypes</a></li>
+      <li><a href="#b2b2c"><span class="toc-n">04</span> Modèle B2B2C explicité</a></li>
+      <li><a href="#tone"><span class="toc-n">09</span> Tone of voice</a></li>
+      <li><a href="#pricing"><span class="toc-n">05</span> Pricing & tiers</a></li>
+      <li><a href="#mots"><span class="toc-n">10</span> Mots à utiliser / éviter</a></li>
+    </ul>
+  </nav>
+
+  <div class="divider"></div>
+
+  <!-- 01 MISSION -->
+  <section id="mission" class="reveal">
+    <div class="section-num">01 — Fondation</div>
+    <h2 class="section-title">Mission, vision & why</h2>
+    <p class="section-sub">Les trois énoncés fondateurs. Tout le reste — couleurs, messages, features — en découle directement.</p>
+
+    <div class="card card-accent">
+      <div class="card-title"><span class="icon icon-c">🎯</span> Mission</div>
+      <p>Donner aux organismes de formation un dashboard de pilotage pédagogique temps réel, adossé à une simulation IA qui engage les apprenants — pour qu'ils visualisent la progression, anticipent le décrochage et prouvent leur valeur à leurs financeurs.</p>
+    </div>
+
+    <div class="card">
+      <div class="card-title"><span class="icon icon-v">🔭</span> Vision</div>
+      <p>Devenir le standard européen du pilotage pédagogique basé sur la donnée — un monde où aucun apprenant ne décroche dans l'anonymat, et où chaque OF peut prouver son impact en un clic.</p>
+    </div>
+
+    <div class="card card-neon">
+      <div class="card-title"><span class="icon icon-n">⚡</span> Why — pourquoi QuestIA existe</div>
+      <p>Parce que la France est 35e sur 113 pays en anglais malgré des milliards investis en formation. Non par manque d'argent ou de motivation — mais parce que les outils d'apprentissage ont toujours ignoré les décideurs qui les financent. QuestIA corrige ça.</p>
+    </div>
+
+    <div class="statement">
+      <strong>"L'acheteur paie pour la simulation. Sa vraie valeur ajoutée : le pilotage. Son contrôle : les scénarios sur-mesure."</strong>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 02 POSITIONNEMENT -->
+  <section id="positionnement" class="reveal">
+    <div class="section-num">02 — Positionnement</div>
+    <h2 class="section-title">Positionnement & UVP</h2>
+    <p class="section-sub">QuestIA n'est pas une app d'apprentissage. C'est un outil de pilotage pédagogique. La simulation est le produit visible — le dashboard est le produit acheté.</p>
+
+    <div class="uvp">
+      <div class="uvp-label">Unique Value Proposition</div>
+      <div class="uvp-text">
+        <span class="hl-v">Pilotez</span> la progression de vos cohortes en temps réel,<br>
+        <span class="hl-c">prouvez</span> votre ROI à vos financeurs en un clic,<br>
+        grâce à une simulation IA qui <span class="hl-n">engage vraiment</span> vos apprenants —<br>
+        sans reconfigurer votre LMS.
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title"><span class="icon icon-v">🗺️</span> Ce que QuestIA N'EST PAS</div>
+        <p>Une app d'apprentissage de langues. Un LMS. Un concurrent de Babbel ou Duolingo. Un outil pour les apprenants — mais pour leurs responsables.</p>
+        <div class="tags">
+          <span class="tag tag-v">Pas un LMS</span>
+          <span class="tag tag-v">Pas une appli B2C</span>
+          <span class="tag tag-v">Pas du e-learning passif</span>
+        </div>
+      </div>
+      <div class="card card-accent">
+        <div class="card-title"><span class="icon icon-c">✓</span> Ce que QuestIA EST</div>
+        <p>Un dashboard de pilotage pédagogique B2B, alimenté par une simulation IA conversationnelle multi-joueur. La donnée d'usage produit la preuve de valeur.</p>
+        <div class="tags">
+          <span class="tag tag-c">Pilotage B2B</span>
+          <span class="tag tag-c">Simulation IA</span>
+          <span class="tag tag-c">Conformité Qualiopi</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-top:16px">
+      <div class="card-title"><span class="icon icon-n">🧭</span> Carte de positionnement</div>
+      <p style="margin-bottom:16px">Sur l'axe <strong style="color:var(--white)">pilotage décideur</strong> × <strong style="color:var(--white)">engagement apprenant</strong>, QuestIA occupe le quadrant vide : haut pilotage + haute immersion. Aucun concurrent ne combine les deux.</p>
+      <div class="grid2" style="gap:8px">
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--dimmed);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">Babbel / Duolingo</div>
+          <div style="font-size:12px;color:var(--muted)">Engagement élevé · pilotage nul · B2C</div>
+        </div>
+        <div style="background:rgba(0,212,255,0.07);border:1px solid rgba(0,212,255,0.3);border-radius:10px;padding:14px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--cyan);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">QuestIA ← ici</div>
+          <div style="font-size:12px;color:var(--white)">Engagement élevé · pilotage complet · B2B</div>
+        </div>
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--dimmed);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">LMS classique</div>
+          <div style="font-size:12px;color:var(--muted)">Engagement faible · pilotage basique</div>
+        </div>
+        <div style="background:var(--bg-card2);border:1px solid var(--border);border-radius:10px;padding:14px">
+          <div style="font-size:11px;font-family:'DM Mono',monospace;color:var(--dimmed);margin-bottom:6px;letter-spacing:.08em;text-transform:uppercase">EF Corporate / goFluent</div>
+          <div style="font-size:12px;color:var(--muted)">Engagement moyen · pilotage partiel</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 03 ICP & PERSONAS -->
+  <section id="icp" class="reveal">
+    <div class="section-num">03 — Cible</div>
+    <h2 class="section-title">ICP & personas</h2>
+    <p class="section-sub">Validés par 12 entretiens semi-directifs et 23 répondants sondage. 3 pivots Lean Startup ont conduit à la pyramide ci-dessous.</p>
+
+    <!-- ICP -->
+    <div class="card card-accent" style="margin-bottom:24px">
+      <div class="card-title"><span class="icon icon-c">🏢</span> Ideal Customer Profile — ETI internationale française</div>
+      <div class="grid2" style="gap:24px;margin-top:4px">
+        <div>
+          <div class="persona-block-title">Critères de qualification</div>
+          <ul class="persona-list">
+            <li>800 à 2 000 collaborateurs</li>
+            <li>Industrie B2B · services B2B · tech B2B</li>
+            <li>France HQ · présence ≥ 3 pays</li>
+            <li>Export > 40 % du CA</li>
+            <li>LMS déjà en place (Moodle, 360Learning…)</li>
+            <li>Budget L&D > 200 K€/an</li>
+          </ul>
+        </div>
+        <div>
+          <div class="persona-block-title">Signaux d'achat (buying signals)</div>
+          <ul class="persona-list">
+            <li>Recrutement KAM/Export Manager récent</li>
+            <li>Nouvelle filiale ou acquisition à l'étranger</li>
+            <li>Nouveau VP International / DRH Groupe</li>
+            <li>Audit Qualiopi en cours</li>
+            <li>Mise à jour AI Act août 2026</li>
+            <li>Mission internationale ratée pour cause linguistique</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- SOPHIE PRIMAIRE -->
+    <div class="persona">
+      <div class="persona-head">
+        <div class="persona-avatar avatar-c">S</div>
+        <div>
+          <div class="persona-name">Sophie M. · DRH ETI internationale <span style="color:var(--cyan);font-size:12px;font-family:'DM Mono',monospace;margin-left:8px">★ PRIMAIRE</span></div>
+          <div class="persona-role">42 ans · Lyon · ETI industrie B2B · 800 collab · 60 % export · LMS Moodle · Budget L&D 250 K€/an · Reporte au COMEX</div>
+        </div>
+      </div>
+      <div class="persona-grid">
+        <div>
+          <div class="persona-block-title">Pain points</div>
+          <ul class="persona-list">
+            <li>Cadres reviennent d'immersion fatigués sans gain mesurable</li>
+            <li>Pas de KPI à présenter en COMEX trimestriel</li>
+            <li>Babbel : 20 K€/an pour 0 connexions actives</li>
+            <li>Audit Qualiopi N+3 imminent, risque budgets OPCO</li>
+          </ul>
+        </div>
+        <div>
+          <div class="persona-block-title">Verbatim terrain (Q-07)</div>
+          <div class="persona-quote">« Mes cadres reviennent d'immersion fatigués mais sans gain mesurable. Je n'ai pas de KPI à présenter au COMEX. Je veux un outil qui me prouve la progression CECRL et qui justifie mon budget L&D. »</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);display:flex;gap:32px;flex-wrap:wrap">
+        <div>
+          <div class="persona-block-title" style="margin-bottom:4px">Objection principale</div>
+          <div style="font-size:13px;color:var(--muted)">« Combien ça coûte vraiment et c'est éligible OPCO ? »</div>
+        </div>
+        <div>
+          <div class="persona-block-title" style="margin-bottom:4px">Argument qui ferme</div>
+          <div style="font-size:13px;color:var(--neon)">« Dashboard ROI cadres, conforme AI Act, exportable en COMEX en 1 clic. »</div>
+        </div>
+        <div>
+          <div class="persona-block-title" style="margin-bottom:4px">ARR potentiel</div>
+          <div style="font-size:13px;color:var(--cyan);font-weight:600">30 000 €/an</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AUTRES PERSONAS -->
+    <div class="grid2">
+      <div class="persona" style="margin-bottom:0">
+        <div class="persona-head">
+          <div class="persona-avatar avatar-v">M</div>
+          <div>
+            <div class="persona-name">Marc D. <span style="font-size:11px;color:var(--dimmed)">secondaire</span></div>
+            <div class="persona-role">Directeur péda École AACSB · 48 ans · 450 étudiants</div>
+          </div>
+        </div>
+        <div class="persona-quote" style="margin-bottom:12px">« Audit AACSB me demande la progression cohorte, j'y passe des semaines. »</div>
+        <div style="font-size:12px;color:var(--muted)">Argument : Reporting AACSB natif + intégration LTI Canvas.</div>
+        <div style="font-size:12px;color:var(--violet-l);margin-top:8px">ARR potentiel : 15 500 €/an</div>
+      </div>
+      <div class="persona" style="margin-bottom:0">
+        <div class="persona-head">
+          <div class="persona-avatar avatar-n">K</div>
+          <div>
+            <div class="persona-name">Karim B. <span style="font-size:11px;color:var(--dimmed)">tertiaire</span></div>
+            <div class="persona-role">Resp. péda Centre Qualiopi · 35 ans · 200 stagiaires/an</div>
+          </div>
+        </div>
+        <div class="persona-quote" style="margin-bottom:12px">« Je n'ai aucune vision sur ce qu'il se passe en cours. Désastreux pour l'audit. »</div>
+        <div style="font-size:12px;color:var(--muted)">Argument : Dashboard cohorte + export Qualiopi 1 clic.</div>
+        <div style="font-size:12px;color:var(--neon);margin-top:8px">ARR potentiel : 5 900 €/an</div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px">
+      <div class="card" style="margin-bottom:0">
+        <div class="card-title" style="font-size:14px"><span class="icon icon-v">💼</span> Camille R. — DAF ETI (acheteur)</div>
+        <p>Co-signature > 30 K€ · COMEX · gardien de l'achat Sophie. « Je veux le ROI à 12 mois et la conformité Qualiopi sur le contrat. Sinon je bloque. »</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <div class="card-title" style="font-size:14px"><span class="icon icon-c">🏪</span> Brigitte L. — DG OF Qualiopi (revendeur)</div>
+        <p>OF 20-50 formateurs · CA 1-5 M€ · pilote revente B2B. « Je cherche un outil que je peux revendre sous ma marque, intégrable LMS. » (+40 % ARR expansion)</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 04 B2B2C -->
+  <section id="b2b2c" class="reveal">
+    <div class="section-num">04 — Modèle</div>
+    <h2 class="section-title">Le modèle B2B2C explicité</h2>
+    <p class="section-sub">Notre apprenant final est en B2C, mais notre client est exclusivement B2B. Tout — produit, pricing, CSM, KPIs — est calibré sur les 3 décideurs payeurs.</p>
+
+    <div class="grid2">
+      <div class="card" style="border-color:rgba(138,255,0,0.2)">
+        <div class="card-title"><span class="icon icon-n">💳</span> Le payeur · B2B</div>
+        <p style="margin-bottom:12px">Formateur indé · Resp. Qualiopi · Directeur péda École. Il signe le chèque.</p>
+        <ul class="persona-list" style="margin-top:8px">
+          <li><strong style="color:var(--white)">Sa question :</strong> <span style="color:var(--muted)">Mes apprenants progressent-ils ? Puis-je le prouver ?</span></li>
+          <li><strong style="color:var(--white)">Son outil :</strong> <span style="color:var(--muted)">Dashboard · alertes · export audit</span></li>
+          <li><strong style="color:var(--white)">Sa métrique :</strong> <span style="color:var(--muted)">Taux complétion · score CECRL · NPS apprenants</span></li>
+          <li><strong style="color:var(--white)">Son budget :</strong> <span style="color:var(--muted)">Annuel · OPEX · justifié Qualiopi/accréditation</span></li>
+        </ul>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="icon icon-v">🎮</span> L'utilisateur · B2C</div>
+        <p style="margin-bottom:12px">Stagiaire OF · étudiant École · salarié en formation. Il ne paie pas, mais doit s'engager sinon le décideur résilie.</p>
+        <ul class="persona-list" style="margin-top:8px">
+          <li><strong style="color:var(--white)">Sa question :</strong> <span style="color:var(--muted)">Est-ce différent d'un cours classique ?</span></li>
+          <li><strong style="color:var(--white)">Son outil :</strong> <span style="color:var(--muted)">Simulation IA multi-joueur en scénarios métier</span></li>
+          <li><strong style="color:var(--white)">Sa métrique :</strong> <span style="color:var(--muted)">Plaisir · progression visible · utilité pro</span></li>
+          <li><strong style="color:var(--white)">Son budget :</strong> <span style="color:var(--muted)">Aucun — l'engagement est l'unique levier</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="statement statement-n">
+      Test ultime de positionnement : sur chaque slide, feature, message — <strong>est-ce que ça aide Karim (Centre Qualiopi) à signer 490 €/mois ?</strong> Si la réponse est "non, ça aide l'apprenant à mieux apprendre", c'est mal positionné.
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 05 PRICING -->
+  <section id="pricing" class="reveal">
+    <div class="section-num">05 — Business model</div>
+    <h2 class="section-title">Pricing & tiers SaaS</h2>
+    <p class="section-sub">4 tiers d'abonnement annuel. ETI = tier #1 en ARR. 2 leviers d'expansion : marque blanche (+40 % ARR) et multi-promo (+80 % ARR).</p>
+
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-tier">Formateur indé</div>
+        <div class="pricing-price">89 €</div>
+        <div class="pricing-period">/mois · 1 068 €/an</div>
+        <div class="pricing-desc">30 apprenants max · 5 scénarios/mois · vue individuelle · self-serve + alertes auto</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">Centre Qualiopi</div>
+        <div class="pricing-price">490 €</div>
+        <div class="pricing-period">/mois · 5 880 €/an</div>
+        <div class="pricing-desc">200 apprenants · 20 scénarios/mois · multi-promo + audit · CSM dédié + QBR</div>
+      </div>
+      <div class="pricing-card">
+        <div class="pricing-tier">École supérieure</div>
+        <div class="pricing-price">1 290 €</div>
+        <div class="pricing-period">/mois · 15 480 €/an</div>
+        <div class="pricing-desc">Illimité · 50+ scénarios · multi-form. + AACSB · Concierge + EBR</div>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-tier c">★ ETI internationale</div>
+        <div class="pricing-price">2 500 €</div>
+        <div class="pricing-period">/mois · 30 000 €/an</div>
+        <div class="pricing-desc">200-400 cadres · scénarios illimités sur-mesure · vues COMEX + OPCO + RH · KAM dédié</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 06 MARCHE -->
+  <section id="marche" class="reveal">
+    <div class="section-num">06 — Marché & contexte</div>
+    <h2 class="section-title">Analyse de marché & tailwinds</h2>
+    <p class="section-sub">Un marché B2B porteur, réglementé, structuré. La réglementation favorise les acteurs B2B structurés sur les acteurs B2C génériques.</p>
+
+    <div class="kpi-row">
+      <div class="kpi">
+        <div class="kpi-val v">35 Md€</div>
+        <div class="kpi-label">Formation pro France (+25 % depuis 2022)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val c">7 Md€</div>
+        <div class="kpi-label">Langues B2B mondial (+10,5 % CAGR)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val n">42 892</div>
+        <div class="kpi-label">OF Qualiopi en France (1/1/2025)</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-val v">35e</div>
+        <div class="kpi-label">France sur 113 pays EF EPI 2024</div>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="card-title"><span class="icon icon-c">⚡</span> AI Act · août 2026</div>
+        <p>Oblige les formateurs à maîtriser les compétences IA. Les OF cherchent un outil prêt à l'emploi et conforme — pas à former leurs équipes au prompt engineering.</p>
+        <div class="tags"><span class="tag tag-c">Réglementation</span><span class="tag tag-c">Accélérateur</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="icon icon-v">🛡️</span> Qualiopi · obligatoire fonds publics</div>
+        <p>Favorise les outils traçables et auditables. QuestIA exporte un rapport CECRL natif compatible audit France Compétences.</p>
+        <div class="tags"><span class="tag tag-v">Compliance</span><span class="tag tag-v">Différenciateur</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="icon icon-n">🔒</span> RGPD · hébergement Europe</div>
+        <p>Avantage concurrentiel structurel face aux LLM US. Les DRH et directions juridiques l'exigent de plus en plus systématiquement.</p>
+        <div class="tags"><span class="tag tag-n">Souveraineté</span><span class="tag tag-n">Moat</span></div>
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="icon icon-c">🎓</span> AACSB / EQUIS</div>
+        <p>Les Écoles renforcent l'employabilité internationale. CECRL B2+ = standard recruteurs. Le reporting cohorte devient un argument d'accréditation.</p>
+        <div class="tags"><span class="tag tag-c">Accréditation</span><span class="tag tag-c">Écoles</span></div>
+      </div>
+    </div>
+
+    <!-- SWOT -->
+    <div class="swot" style="margin-top:24px">
+      <div class="swot-cell">
+        <div class="swot-label s">Forces</div>
+        <ul class="swot-list">
+          <li>Dashboard de pilotage · aucun équivalent</li>
+          <li>CECRL 4 axes · scorings auditables</li>
+          <li>Multi-joueur social immersion</li>
+          <li>RGPD-natif + pré-conforme AI Act</li>
+          <li>3 pivots terrain en 5 jours</li>
+        </ul>
+      </div>
+      <div class="swot-cell">
+        <div class="swot-label w">Faiblesses</div>
+        <ul class="swot-list">
+          <li>Marque jeune, zéro notoriété</li>
+          <li>Pas de LMS natif</li>
+          <li>Équipe à compléter (8 talents actuel)</li>
+          <li>Cycle de vente ETI 60-90 jours</li>
+        </ul>
+      </div>
+      <div class="swot-cell">
+        <div class="swot-label o">Opportunités</div>
+        <ul class="swot-list">
+          <li>AI Act août 2026 = déclencheur DRH</li>
+          <li>Échec massif e-learning passif (< 20 % complétion)</li>
+          <li>Souveraineté EU vs LLM US</li>
+          <li>Canal marque blanche via OF (Brigitte)</li>
+        </ul>
+      </div>
+      <div class="swot-cell">
+        <div class="swot-label t">Menaces</div>
+        <ul class="swot-list">
+          <li>Pivots Babbel / GlobalExam vers B2B</li>
+          <li>200+ EdTech IA en cours de développement</li>
+          <li>Fenêtre d'avance : 12-18 mois maximum</li>
+          <li>Budget acquisition limité en phase 1</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 07 MOAT -->
+  <section id="moat" class="reveal">
+    <div class="section-num">07 — Avantage concurrentiel</div>
+    <h2 class="section-title">Le moat — seul à cocher les 5 critères</h2>
+    <p class="section-sub">Benchmark sur 8 acteurs. QuestIA est le seul à combiner les 5 critères B2B structurants. Fenêtre d'avance estimée : 12-18 mois.</p>
+
+    <div class="moat-grid">
+      <div class="moat-item">
+        <div class="moat-num">01</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--white);margin-bottom:6px">Dashboard pilotage temps réel</div>
+        <div class="moat-desc">Aucun concurrent ne donne au décideur cette visibilité granulaire sur ses cohortes.</div>
+      </div>
+      <div class="moat-item">
+        <div class="moat-num c">02</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--white);margin-bottom:6px">Multi-joueur Social Immersion</div>
+        <div class="moat-desc">Unique sur les 8 acteurs benchmarkés (rapport CGE 2025). Impossible à répliquer sans refonte complète.</div>
+      </div>
+      <div class="moat-item">
+        <div class="moat-num n">03</div>
+        <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:14px;color:var(--white);margin-bottom:6px">Export audit natif Qualiopi</div>
+        <div class="moat-desc">Le reste exporte des stats d'usage. QuestIA exporte du CECRL traçable — le seul qui passe l'audit.</div>
+      </div>
+    </div>
+
+    <!-- TABLE BENCHMARK -->
+    <table>
+      <thead>
+        <tr>
+          <th>Acteur</th>
+          <th>Dashboard pilotage</th>
+          <th>Multi-joueur</th>
+          <th>CECRL 4 axes</th>
+          <th>Export Qualiopi</th>
+          <th>Cadre péda</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight">
+          <td>QuestIA</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Babbel</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>EF Corporate</td>
+          <td class="part">~</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>goFLUENT</td>
+          <td class="part">~</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="part">~</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>Talkpal · Langua</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+        </tr>
+        <tr>
+          <td>Lingoda · Berlitz</td>
+          <td class="part">~</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+        </tr>
+        <tr>
+          <td>GlobalExam</td>
+          <td class="part">~</td>
+          <td class="cross">✗</td>
+          <td class="check">✓</td>
+          <td class="part">~</td>
+          <td class="check">✓</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="font-size:11px;color:var(--dimmed);font-family:'DM Mono',monospace">✓ Oui · ~ Partiel · ✗ Non · Sources : rapport CGE 2025 · benchmark QuestIA mai 2026</div>
+
+    <div class="statement statement-v" style="margin-top:28px">
+      <strong>"Là où Babbel apprend les mots, QuestIA pilote la performance pédagogique."</strong>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 08 PERSONNALITE -->
+  <section id="personnalite" class="reveal">
+    <div class="section-num">08 — Personnalité de marque</div>
+    <h2 class="section-title">Archétypes & personnalité</h2>
+    <p class="section-sub">Archétype dominant : le Magicien. Secondaire : le Sage. Ce duo donne à QuestIA son énergie distinctive — transformation radicale + expertise rassurante.</p>
+
+    <div class="arch-grid">
+      <div class="arch active">
+        <div class="arch-icon">✨</div>
+        <div class="arch-name">Magicien</div>
+        <div class="arch-ex">Dominant · Midjourney, Runway</div>
+      </div>
+      <div class="arch active">
+        <div class="arch-icon">🧠</div>
+        <div class="arch-name">Sage</div>
+        <div class="arch-ex">Secondaire · Notion, Linear</div>
+      </div>
+      <div class="arch">
+        <div class="arch-icon">⚡</div>
+        <div class="arch-name">Héros</div>
+        <div class="arch-ex">Non retenu</div>
+      </div>
+      <div class="arch">
+        <div class="arch-icon">🔥</div>
+        <div class="arch-name">Rebelle</div>
+        <div class="arch-ex">Non retenu</div>
+      </div>
+    </div>
+
+    <div class="grid3" style="margin-top:20px">
+      <div class="card" style="margin-bottom:0">
+        <div class="card-title" style="font-size:14px"><span class="icon icon-n">⚡</span> Transformation</div>
+        <p>QuestIA promet un avant/après radical. La simulation change la façon dont on apprend — pas juste une amélioration incrémentale.</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <div class="card-title" style="font-size:14px"><span class="icon icon-c">🎯</span> Précision</div>
+        <p>Le Sage apporte la rigueur pédagogique, le scoring CECRL, la conformité Qualiopi. La magie est sérieuse.</p>
+      </div>
+      <div class="card" style="margin-bottom:0">
+        <div class="card-title" style="font-size:14px"><span class="icon icon-v">🌐</span> Audace</div>
+        <p>On revendique clairement : "On ne vend pas des cours. On vend une machine à immersion." Pas de fausse modestie.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 09 TONE OF VOICE -->
+  <section id="tone" class="reveal">
+    <div class="section-num">09 — Tone of voice</div>
+    <h2 class="section-title">Comment QuestIA parle</h2>
+    <p class="section-sub">Un ton Expert-direct teinté d'audace. On ne parle jamais à l'apprenant dans nos communications externes — on parle au décideur.</p>
+
+    <div class="grid2">
+      <div>
+        <div class="tone-item">
+          <div class="tone-header"><span class="tone-from">Formel</span><span class="tone-to">Décontracté</span></div>
+          <div class="tone-track"><div class="tone-fill" style="width:40%"><div class="tone-dot"></div></div></div>
+          <div style="font-size:11px;color:var(--dimmed);margin-top:6px">Professionnel mais pas corporate froid</div>
+        </div>
+        <div class="tone-item">
+          <div class="tone-header"><span class="tone-from">Expert</span><span class="tone-to">Accessible</span></div>
+          <div class="tone-track"><div class="tone-fill" style="width:35%"><div class="tone-dot"></div></div></div>
+          <div style="font-size:11px;color:var(--dimmed);margin-top:6px">La maîtrise pédagogique est visible</div>
+        </div>
+        <div class="tone-item">
+          <div class="tone-header"><span class="tone-from">Sobre</span><span class="tone-to">Audacieux</span></div>
+          <div class="tone-track"><div class="tone-fill" style="width:72%"><div class="tone-dot"></div></div></div>
+          <div style="font-size:11px;color:var(--dimmed);margin-top:6px">On assume nos affirmations fortes</div>
+        </div>
+        <div class="tone-item">
+          <div class="tone-header"><span class="tone-from">Chaleureux</span><span class="tone-to">Direct</span></div>
+          <div class="tone-track"><div class="tone-fill" style="width:65%"><div class="tone-dot"></div></div></div>
+          <div style="font-size:11px;color:var(--dimmed);margin-top:6px">On va droit au but, pas de circonlocutions</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:12px;padding:20px">
+          <div class="card-title" style="font-size:13px;margin-bottom:8px"><span class="icon icon-n" style="width:24px;height:24px;font-size:13px">✓</span> On écrit comme ça</div>
+          <ul class="persona-list">
+            <li>Phrases courtes. Affirmatives. Actives.</li>
+            <li>Chiffres concrets (42 892 OF, 53 % décrochage)</li>
+            <li>Ton décideur : ROI, audit, COMEX, OPCO</li>
+            <li>On nomme le problème directement</li>
+            <li>On utilise des verbatim terrain</li>
+          </ul>
+        </div>
+        <div class="card" style="border-color:rgba(255,107,107,0.2);padding:20px">
+          <div class="card-title" style="font-size:13px;margin-bottom:8px"><span class="icon" style="background:rgba(255,107,107,0.1);width:24px;height:24px;font-size:13px">✗</span> On évite absolument</div>
+          <ul class="persona-list">
+            <li>« Révolutionnaire » · « Game-changer » · « Disruption »</li>
+            <li>S'adresser à l'apprenant dans les communications B2B</li>
+            <li>Jargon pédagogique sans explication</li>
+            <li>Promesses sans données terrain</li>
+            <li>Anglicismes inutiles en contexte FR</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- 10 MOTS -->
+  <section id="mots" class="reveal">
+    <div class="section-num">10 — Lexique de marque</div>
+    <h2 class="section-title">Mots à utiliser — mots à bannir</h2>
+    <p class="section-sub">Le vocabulaire est une décision de marque. Chaque mot dans nos communications doit passer ce filtre.</p>
+
+    <div class="grid2">
+      <div class="card card-neon">
+        <div class="card-title"><span class="icon icon-n">✓</span> Vocabulaire QuestIA</div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-n">Pilotage pédagogique</span>
+            <span class="tag tag-n">Dashboard</span>
+            <span class="tag tag-n">Cohorte</span>
+            <span class="tag tag-n">Progression CECRL</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-c">Simulation IA</span>
+            <span class="tag tag-c">Scénarios métier</span>
+            <span class="tag tag-c">Multi-joueur</span>
+            <span class="tag tag-c">Social-Immersion</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-v">Export audit</span>
+            <span class="tag tag-v">Conformité Qualiopi</span>
+            <span class="tag tag-v">RGPD-natif</span>
+            <span class="tag tag-v">ROI mesurable</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span class="tag tag-n">Décideur</span>
+            <span class="tag tag-n">Anticipation décrochage</span>
+            <span class="tag tag-n">Temps réel</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="border-color:rgba(255,107,107,0.15)">
+        <div class="card-title"><span class="icon" style="background:rgba(255,107,107,0.1)">✗</span> <span style="color:#FF6B6B">Mots bannis</span></div>
+        <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Révolutionnaire</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Disruptif</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Game-changer</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">App d'apprentissage</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Cours en ligne</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Innovant</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Solution</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Plateforme innovante</span>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px">
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Apprenant heureux</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Fun</span>
+            <span style="font-family:'DM Mono',monospace;font-size:10px;padding:4px 10px;border-radius:99px;background:rgba(255,107,107,0.1);color:#FF6B6B;border:1px solid rgba(255,107,107,0.2);text-decoration:line-through">Gamification</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SYSTEME COULEURS -->
+    <div style="margin-top:32px">
+      <div class="section-num" style="margin-bottom:8px">Annexe — Système de couleurs (extrait du logo)</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#0D0B1E;border:1px solid var(--border)"></div>
+          <div><div style="font-size:12px;color:var(--white);font-weight:500">Deep Indigo</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dimmed)">#0D0B1E</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#7B3FE4"></div>
+          <div><div style="font-size:12px;color:var(--white);font-weight:500">Quest Violet</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dimmed)">#7B3FE4</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#00D4FF"></div>
+          <div><div style="font-size:12px;color:var(--white);font-weight:500">IA Cyan</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dimmed)">#00D4FF</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#8AFF00"></div>
+          <div><div style="font-size:12px;color:var(--white);font-weight:500">Progress Neon</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dimmed)">#8AFF00</div></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;background:var(--bg-card);border:1px solid var(--border);border-radius:10px;padding:12px 16px">
+          <div style="width:32px;height:32px;border-radius:8px;background:#A57BF7"></div>
+          <div><div style="font-size:12px;color:var(--white);font-weight:500">Violet Light</div><div style="font-family:'DM Mono',monospace;font-size:10px;color:var(--dimmed)">#A57BF7</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">QuestIA</div>
+    <div class="footer-copy">Brand Platform v1.0 · Hackathon Rocket School #17 · Mai 2026 · contact@questia.fr</div>
+  </footer>
+
+</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, { threshold: 0.08 });
+  reveals.forEach(r => obs.observe(r));
+</script>
+
+</body>
+</html>

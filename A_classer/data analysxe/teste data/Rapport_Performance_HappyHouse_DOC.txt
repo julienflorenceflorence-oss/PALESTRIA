@@ -1,0 +1,93 @@
+RAPPORT D’AUDIT : PERFORMANCE COMMERCIALE 2025 - HAPPY HOUSE
+
+Destinataire : Direction Générale  
+Date : 20 Février 2026  
+Objet : Analyse de l'efficacité de l'équipe BizDev et Recommandations Stratégiques  
+
+---
+
+SOMMAIRE
+1.	RÉSUMÉ EXÉCUTIF
+2.	MÉTHODOLOGIE D'ANALYSE
+3.	AUDIT DÉTAILLÉ PAR BUSINESS DEVELOPER
+4.	ANALYSE DES FLUX ET VÉLOCITÉ
+5.	PLAN D'ACTION STRATÉGIQUE
+6.	CONCLUSION ET CLÔTURE
+
+---
+
+1. RÉSUMÉ EXÉCUTIF (LE BAROMÈTRE "WAOUH !")
+
+L'année 2025 affiche une performance solide avec un Chiffre d'Affaires global de 321 485 €. L'équipe est équilibrée mais présente des disparités d'efficacité qui représentent un levier de croissance immédiat.
+
+* Top Performer : Charlie (115 694 €)
+* Championne de l'Efficacité : Alice (Taux de closing de 60,7%)
+* Potentiel de Croissance : Bob (Panier moyen le plus élevé : 1 219 €)
+
+---
+
+2. MÉTHODOLOGIE D'ANALYSE
+
+L'analyse a été réalisée à l'aide d'algorithmes de Data Mining sur les données brutes de l'exercice 2025. Les indicateurs calculés sont :
+* Taux de Conversion Global : Capacité à transformer une opportunité en signature.
+* Efficacité de Closing : Performance en phase finale du cycle de vente.
+* Vélocité : Temps moyen (en jours) pour conclure une affaire.
+* Valeur Client : Moyenne des paniers par vente.
+
+---
+
+3. AUDIT DÉTAILLÉ PAR BUSINESS DEVELOPER
+
+ALICE : "L'EFFICIENCE CHIRURGICALE"
+Alice est la référence en termes de processus. Elle gère moins de volume que Charlie mais affiche les meilleurs ratios de transformation.
+* CA Total : 99 088 €
+* Point Fort : Cycle de vente le plus court (30,5 jours).
+* Observation : Sa méthode de closing est la plus "propre", avec 60,7% de réussite sur les dossiers engagés.
+
+BOB : "LE CONSEIL HAUTE VALEUR"
+Bob s'attaque à des dossiers complexes et premium.
+* CA Total : 106 703 €
+* Point Fort : Panier moyen record de 1 219 €.
+* Observation : Son taux de conversion (26,3%) est le point faible de l'équipe. Il perd trop d'opportunités avant la phase finale.
+
+CHARLIE : "LE MOTEUR DE CROISSANCE"
+Charlie est le principal contributeur au volume de l'entreprise.
+* CA Total : 115 694 €
+* Point Fort : Meilleur taux de conversion global (33,76%).
+* Observation : Leader incontesté, malgré une baisse de régime inexpliquée au 4ème trimestre (Octobre-Novembre).
+
+---
+
+4. TABLEAU COMPARATIF DES PERFORMANCES
+
+BizDev | CA Total | Panier Moyen | Taux Conv. | Cycle Vente | Efficiency
+Alice  | 99 088 € | 1 216 €      | 33,04%     | 30,5 j      | 60,7%
+Bob    | 106 703 €| 1 219 €      | 26,34%     | 32,1 j      | 52,9%
+Charlie| 115 694 €| 1 179 €      | 33,76%     | 32,8 j      | 58,0%
+
+---
+
+5. PLAN D'ACTION STRATÉGIQUE (2026)
+
+Action Prioritaire : Standardisation Alice
+Objectif : Modéliser le script de closing d'Alice pour l'équipe.
+Impact Attendu : +15% CA Global
+Responsable : Sales Manager
+
+Action Prioritaire : Coaching Closing Bob
+Objectif : Aligner le taux de Bob (52%) sur celui d'Alice (60%).
+Impact Attendu : +20k € de CA
+Responsable : Bob
+
+Action Prioritaire : Audit Leads Q4
+Objectif : Identifier les causes de la baisse de Charlie en fin d'année.
+Impact Attendu : Stabilité CA
+Responsable : Direction
+
+---
+
+6. CONCLUSION ET CLÔTURE
+
+Le modèle "Happy House" est validé par les chiffres. La croissance future ne repose pas sur une augmentation des budgets marketing, mais sur la standardisation de l'excellence. En transférant les techniques de closing d'Alice et la force de conversion de Charlie à l'ensemble de l'équipe, l'objectif de 350k € pour l'année prochaine est largement atteignable.
+
+Fin du rapport.

@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PITCH DECK — ALTITUDE DAYS : L'ENVOL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-soft: rgba(212, 175, 55, 0.15);
+            --text: #FFFFFF;
+            --text-muted: #A0A0A0;
+            --page-w: 297mm; /* Format Paysage pour Présentation */
+            --page-h: 210mm;
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .slide {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            overflow: hidden;
+            border: 1px solid var(--accent-soft);
+        }
+
+        .inner-border {
+            position: absolute; top: 5mm; left: 5mm; right: 5mm; bottom: 5mm;
+            border: 1px solid var(--accent-soft); pointer-events: none;
+        }
+
+        .cockpit-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, transparent 30%, rgba(15, 17, 21, 0.8) 100%);
+            pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); font-size: 3.5rem; letter-spacing: 8px; margin: 0; text-align: center; }
+        h2 { font-family: 'Cinzel'; color: var(--accent); font-size: 1.8rem; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 30px; text-transform: uppercase; display: inline-block; }
+        
+        .subtitle { font-family: 'Cinzel'; color: var(--text-muted); font-size: 1.2rem; text-align: center; margin-top: 10px; letter-spacing: 4px; }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+        
+        .card {
+            background: rgba(255,255,255, 0.03);
+            border: 1px solid var(--accent-soft);
+            padding: 25px;
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .step-num { font-family: 'Cinzel'; color: var(--accent); font-size: 0.8rem; position: absolute; top: 10px; right: 15px; opacity: 0.5; }
+
+        .highlight-text { color: var(--accent); font-weight: 600; font-size: 1.4rem; font-family: 'Playfair Display'; font-style: italic; }
+
+        .nav-footer { position: absolute; bottom: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 0.7rem; color: var(--text-muted); border-top: 1px solid var(--accent-soft); padding-top: 5px; }
+
+        .tagline { color: var(--accent); font-family: 'Cinzel'; font-weight: 700; }
+
+        ul { list-style: none; padding: 0; }
+        li { margin-bottom: 15px; padding-left: 25px; position: relative; font-size: 1.1rem; }
+        li::before { content: "✈"; color: var(--accent); position: absolute; left: 0; transform: rotate(45deg); }
+
+        /* Animation simulateur */
+        .radar-line { width: 2px; height: 100%; background: var(--accent); position: absolute; top: 0; left: 0; opacity: 0.1; animation: scan 4s linear infinite; }
+        @keyframes scan { from { left: 0; } to { left: 100%; } }
+
+        /* Mode Présentation */
+        html { scroll-behavior: smooth; overflow: hidden; }
+        body { overflow: hidden; }
+        .slide { margin: 0 auto; border: none; height: 100vh; width: 100vw; }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1 : COVER -->
+    <div class="slide title-only" id="slide-0">
+        <div class="inner-border"></div>
+        <div class="radar-line"></div>
+        <div class="cockpit-overlay"></div>
+        <h1>ALTITUDE DAYS</h1>
+        <div class="subtitle">L'Événement qui Redéfinit vos Horizons RH & Business</div>
+        <div style="text-align: center; margin-top: 50px;">
+            <span class="tagline">PRÉSENTATION STRATÉGIQUE — 2026</span>
+        </div>
+        <div class="nav-footer">
+            <span>IVVANDI | EXPERTISE RH & AÉRO</span>
+            <span>COMMUNICANT : {{NOM}}</span>
+        </div>
+    </div>
+
+    <!-- SLIDE 2 : LE CONSTAT (ZONES DE TURBULENCES) -->
+    <div class="slide" id="slide-1">
+        <div class="inner-border"></div>
+        <h2>01. Le Constat : Zone de Turbulences</h2>
+        <div class="grid-2">
+            <div>
+                <p class="highlight-text">"En 2026, 70% des entreprises peinent à engager leurs talents et à se différencier dans un marché saturé."</p>
+                <p>Le marketing classique ne suffit plus. Les clients (B2B & B2C) cherchent de l'authenticité, du sens et de l'expérience mémorable.</p>
+            </div>
+            <div class="card">
+                <div class="step-num">DIAGNOSTIC</div>
+                <ul>
+                    <li><strong>Déficit d'Image</strong> : La valeur réelle d'IVVANDI est supérieure à sa visibilité actuelle.</li>
+                    <li><strong>Isolement RH</strong> : Les DRH cherchent des solutions hors des sentiers battus.</li>
+                    <li><strong>Besoin de Rêve</strong> : Le public veut toucher du doigt l'aventure aéronautique.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="nav-footer"><span>ANALYSE DU MARCHÉ</span><span>P. 01</span></div>
+    </div>
+
+    <!-- SLIDE 3 : LA SOLUTION (LE PLAN DE VOL) -->
+    <div class="slide" id="slide-2">
+        <div class="inner-border"></div>
+        <h2>02. La Solution : Un Plan de Vol en 48H</h2>
+        <div class="grid-2">
+            <div class="card">
+                <div class="step-num">MISSION</div>
+                <h3 style="color: var(--accent); font-family: 'Cinzel';">ALTITUDE DAYS</h3>
+                <p>Créer le premier Hub Régional mixant <strong>Business Performance</strong> et <strong>Passion Aérienne</strong>.</p>
+                <ul>
+                    <li>1 500 Décideurs (B2B)</li>
+                    <li>2 000 Visiteurs (B2C)</li>
+                    <li>Village de 35 Exposants</li>
+                </ul>
+            </div>
+            <div>
+                <p class="highlight-text">"Une immersion totale où le tarmac devient votre salle de conférence."</p>
+                <p>Nous utilisons l'ULM non pas comme un gadget, mais comme un levier de transformation : Prise de décision, gestion du stress, vision stratégique.</p>
+            </div>
+        </div>
+        <div class="nav-footer"><span>VECTEUR DE CROISSANCE</span><span>P. 02</span></div>
+    </div>
+
+    <!-- SLIDE 4 : LE MODÈLE (AUTOFINANCEMENT) -->
+    <div class="slide" id="slide-3">
+        <div class="inner-border"></div>
+        <h2>03. L'Ingénierie : Un Vol Sans Risque</h2>
+        <div class="grid-2">
+            <div>
+                <ul>
+                    <li><strong>Zéro Coût Net</strong> : Un budget de 30k€ entièrement autofinancé par les partenaires.</li>
+                    <li><strong>Viralité Organique</strong> : Des mécaniques de tagging qui transforment chaque participant en média.</li>
+                    <li><strong>Écosystème local</strong> : Implication des acteurs majeurs de l'Occitanie.</li>
+                </ul>
+            </div>
+            <div class="card" style="border-color: var(--accent);">
+                <div class="step-num">RENTABILITÉ</div>
+                <div style="font-size: 2.5rem; color: var(--accent); font-weight: 700; text-align: center;">100%</div>
+                <div style="text-align: center; font-family: 'Cinzel';">AUTOFINANCÉ PAR LE PARTENARIAT</div>
+            </div>
+        </div>
+        <div class="nav-footer"><span>PILOTAGE FINANCIER</span><span>P. 03</span></div>
+    </div>
+
+    <!-- SLIDE 5 : DESTINATION (L'ATTERRISSAGE) -->
+    <div class="slide" id="slide-4">
+        <div class="inner-border"></div>
+        <div class="cockpit-overlay"></div>
+        <h1>DESTINATION : SUCCÈS</h1>
+        <div class="subtitle">Prêt pour le Décollage ?</div>
+        <div style="text-align: center; margin-top: 40px;">
+            <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto;">"L'avenir appartient à ceux qui voient plus haut. Rejoignez l'équipage des Altitude Days."</p>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <span class="tagline">CONTACT : IVVANDI STRATÉGIE</span>
+        </div>
+        <div class="nav-footer"><span>IVVANDI | ÉDITION PRESTIGE</span><span>FIN DE PRÉSENTATION</span></div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+
+        function updateSlide(index) {
+            if (index >= 0 && index < slides.length) {
+                currentSlide = index;
+                slides[currentSlide].scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') {
+                updateSlide(currentSlide + 1);
+            } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                updateSlide(currentSlide - 1);
+            }
+        });
+
+        // Empêcher le scroll manuel pour garder le contrôle
+        window.onwheel = function(){ return false; }
+    </script>
+</body>
+</html>

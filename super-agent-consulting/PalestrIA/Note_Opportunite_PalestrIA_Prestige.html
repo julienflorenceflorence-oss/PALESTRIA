@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NOTE D'OPPORTUNITÉ | PALESTRIA — Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-soft: rgba(212, 175, 55, 0.15);
+            --text: #FFFFFF;
+            --muted: #A0A0A0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+            --danger: #FF5D6E;
+            --success: #3FE6A4;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; -webkit-print-color-adjust: exact; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid var(--accent-soft); pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 20px; font-size: 2rem; letter-spacing: 3px; }
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin: 30px 0 15px; font-size: 1.2rem; letter-spacing: 1px; }
+        h3 { font-family: 'Cinzel'; color: var(--accent); font-size: 1rem; margin-top: 20px; }
+
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: var(--accent);
+            text-align: center; padding: 25px; border-top: 1px solid var(--accent-soft);
+            border-bottom: 1px solid var(--accent-soft); margin: 20px 0; font-size: 1.1rem;
+        }
+
+        .content { flex-grow: 1; text-align: justify; font-size: 10.5pt; font-weight: 300; line-height: 1.6; }
+
+        .footer {
+            border-top: 1px solid var(--accent); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 9pt; color: var(--accent);
+        }
+        .page-num::after { counter-increment: page; content: "P. " counter(page, decimal-leading-zero); }
+
+        /* KPI Components */
+        .kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 20px 0; }
+        .kpi-card { background: rgba(255,255,255,0.03); border: 1px solid var(--accent-soft); padding: 15px; border-radius: 4px; text-align: center; }
+        .kpi-val { font-family: 'Cinzel'; font-size: 1.8rem; color: var(--accent); display: block; margin-bottom: 5px; }
+        .kpi-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+        
+        .loss-indicator { color: var(--danger); font-weight: 600; }
+        .gain-indicator { color: var(--success); font-weight: 600; }
+
+        ul { list-style: none; padding-left: 0; }
+        li { margin-bottom: 12px; position: relative; padding-left: 20px; }
+        li::before { content: "•"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
+
+        .source-box { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 4px; font-size: 9pt; border: 1px solid var(--accent-soft); color: var(--muted); }
+        .source-box b { color: var(--accent); }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1 -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>NOTE D'OPPORTUNITÉ</h1>
+        <div class="quote">"Le management n'est plus un coût RH, c'est le premier levier de récupération de marge nette."</div>
+        
+        <div class="content">
+            <h2>I. DIAGNOSTIC : L'HÉMORRAGIE FINANCIÈRE</h2>
+            <p>En 2024-2025, le marché français subit une crise de productivité sans précédent. Le désengagement des collaborateurs, piloté à <b>70% par la qualité du management direct</b>, constitue un gouffre financier invisible mais dévastateur pour les entreprises.</p>
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-val loss-indicator">14 840 €</span>
+                    <span class="kpi-label">Coût annuel / salarié désengagé (France)</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-val loss-indicator">-23%</span>
+                    <span class="kpi-label">Baisse de rentabilité (Management médiocre)</span>
+                </div>
+            </div>
+
+            <h3>Les chiffres du désengagement (Sources Gallup & IBET 2024)</h3>
+            <ul>
+                <li><b>Taux d'engagement critique :</b> Seuls <b>7%</b> des salariés français se déclarent engagés au travail, classant la France à la 38ème place sur 38 en Europe.</li>
+                <li><b>Pertes de productivité :</b> Un management inadapté entraîne une perte sèche de <b>20% à 40%</b> de la production réelle par collaborateur.</li>
+                <li><b>Coût du Turnover :</b> 57% des départs volontaires sont liés au manager direct. Le remplacement d'un cadre coûte entre <b>1,5 et 2 fois son salaire annuel</b>.</li>
+                <li><b>Impact National :</b> Le désengagement coûte <b>297 milliards d'euros</b> à l'économie française chaque année.</li>
+            </ul>
+
+            <div class="source-box">
+                <b>Sources :</b> Gallup "State of the Global Workplace 2024", Mozart Consulting "Indice IBET 2024", Harvard Business Review.
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>PALESTRIA — STRATEGIC OPPORTUNITY</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>PALESTRIA : LA SOLUTION</h1>
+        <div class="quote">"Transformer le silence managérial en puissance de frappe commerciale."</div>
+
+        <div class="content">
+            <h2>II. STRATÉGIE DE RÉCUPÉRATION</h2>
+            <p><b>PalestrIA</b> intervient comme un cockpit de pilotage augmentée, fusionnant l'analyse psychologique (DISC) et l'intelligence artificielle pour transformer chaque manager en garant de la performance financière.</p>
+
+            <h3>Piliers d'intervention</h3>
+            <ul>
+                <li><b>Radar Comportemental :</b> Détection prédictive du désengagement via l'analyse des micro-signaux et des profils DISC, permettant d'éviter le "Quiet Quitting".</li>
+                <li><b>Closing Arena :</b> Simulateur d'entraînement intensif à la négociation, augmentant le taux de succès des deals complexes de <b>15%</b> (Standard Gartner 2024).</li>
+                <li><b>Pilotage de la Marge :</b> Outils de décision assistée pour réduire la pression sur les remises commerciales et protéger la rentabilité nette.</li>
+            </ul>
+
+            <h2>III. ROI ET PERSPECTIVES</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <span class="kpi-val gain-indicator">+5% à 10%</span>
+                    <span class="kpi-label">Récupération de marge nette (An 1)</span>
+                </div>
+                <div class="kpi-card">
+                    <span class="kpi-val gain-indicator">2.7x</span>
+                    <span class="kpi-label">ROI moyen de la formation augmentée</span>
+                </div>
+            </div>
+
+            <h3>Engagement & Impact</h3>
+            <p>L'implémentation de PalestrIA n'est pas une dépense de formation, mais un investissement stratégique. En stabilisant les équipes et en augmentant la précision des closers, PalestrIA génère un impact immédiat sur le <b>Bas de Bilan</b>.</p>
+
+            <div class="source-box">
+                <b>Projection :</b> Pour une ETI de 500 salariés, la réduction de seulement 10% du désengagement génère une économie directe de <b>~740 000 € / an</b>.
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>PALESTRIA — EDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 4 - Parcours Client Cible : Vigneron Hébergeur - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --muted: #A0A0A0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 20px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 8pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 18pt; letter-spacing: 2px; }
+
+        .loop-container {
+            flex-grow: 1;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto auto;
+            gap: 15px;
+            padding: 10px 0;
+            position: relative;
+        }
+
+        .journey-card {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 12px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .card-num {
+            font-family: 'Cinzel';
+            font-size: 14pt;
+            font-weight: 900;
+            color: var(--accent);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .card-title {
+            font-family: 'Cinzel';
+            font-size: 10pt;
+            color: var(--accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding-bottom: 4px;
+        }
+
+        .card-body { font-size: 8.5pt; line-height: 1.4; color: #E0E0E0; }
+        .card-body strong { color: var(--accent); }
+
+        .highlight-box {
+            background: rgba(212, 175, 55, 0.05);
+            border-left: 2px solid var(--accent);
+            padding: 8px;
+            margin-top: 8px;
+            font-size: 8pt;
+            font-style: italic;
+        }
+
+        /* CONNECTOR SYSTEM */
+        .arrow-right { position: absolute; top: 50%; right: -25px; transform: translateY(-50%); color: var(--accent); font-size: 20pt; }
+        .arrow-down { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); color: var(--accent); font-size: 20pt; }
+        .arrow-left { position: absolute; top: 50%; left: -25px; transform: translateY(-50%); color: var(--accent); font-size: 20pt; }
+
+        .center-label {
+            grid-column: 1 / span 2;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 9pt;
+            color: var(--accent);
+            padding: 10px;
+            letter-spacing: 2px;
+            border: 1px dashed rgba(212, 175, 55, 0.3);
+            margin: 5px 0;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--muted);
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 4 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        
+        <div class="header-box">
+            <div class="label">HAPPY HOUSE | STRATÉGIE DE DÉPLOIEMENT VITICOLE</div>
+            <h1>PARCOURS CLIENT CIBLE : LE VIGNERON ADHÉRENT</h1>
+        </div>
+
+        <div class="loop-container">
+            <!-- 1. L'AFFRANCHISSEMENT -->
+            <div class="journey-card">
+                <span class="card-num">01</span>
+                <div class="card-title">L'Affranchissement</div>
+                <div class="card-body">
+                    L'hébergeur haut de gamme quitte l'isolement OTA. 
+                    <strong>Engagement :</strong> Contrat de 12 mois (visibilité & stabilité).
+                    <strong>Mise en ligne :</strong> Sous <strong>48H</strong> après retour contrat.
+                </div>
+                <div class="highlight-box">
+                    Objectif : Fiche épurée "Prestige" pour un effet "WAOUH !" immédiat.
+                </div>
+                <div class="arrow-right">→</div>
+            </div>
+
+            <!-- 2. LE PACK PERFORMANCE -->
+            <div class="journey-card">
+                <span class="card-num">02</span>
+                <div class="card-title">Le Pack Performance</div>
+                <div class="card-body">
+                    Digitalisation de l'expérience client.
+                    <strong>Formation :</strong> RDV personnalisé pour la prise d'autonomie (CRM & App).
+                    <strong>Déploiement :</strong> <strong>24h à 78h</strong> (selon profil digital).
+                </div>
+                <div class="highlight-box">
+                    Bénéfice : Gestion fluide (accès automatiques, livre d'accueil connecté).
+                </div>
+            </div>
+
+            <div class="center-label">ÉCONOMIE CIRCULAIRE & EFFET RÉSEAU</div>
+
+            <!-- 5. LA PUISSANCE DU CERCLE -->
+            <div class="journey-card">
+                <span class="card-num">05</span>
+                <div class="card-title">La Puissance du Cercle</div>
+                <div class="card-body">
+                    L'hébergeur bénéficie de la force collective d'un réseau solidaire. 
+                    <strong>Marchés B2B :</strong> Accès direct aux CSE et offres séminaires/groupes.
+                </div>
+                <div class="highlight-box">
+                    Synergie : Recommandation inter-hébergeurs (si complet ➔ redirection).
+                </div>
+            </div>
+
+            <!-- 3. L'ANCRAGE ÉCONOMIQUE -->
+            <div class="journey-card">
+                <span class="card-num">03</span>
+                <div class="card-title">L'Ancrage Économique</div>
+                <div class="card-body">
+                    L'hébergeur devient le "sommelier" des recommandations de son territoire. 
+                    <strong>Mécanisme :</strong> Prescription robuste des commerçants et vignerons labellisés.
+                </div>
+                <div class="highlight-box">
+                    Statistique : 90% des voyageurs suivent les conseils de leur hôte.
+                </div>
+                <div class="arrow-down">↓</div>
+            </div>
+
+            <div style="grid-column: 1 / span 2;">
+                <!-- 4. LE BOOSTER DE MARGE -->
+                <div class="journey-card" style="margin: 0 auto; width: 80%;">
+                    <span class="card-num">04</span>
+                    <div class="card-title">Le Booster de Marge</div>
+                    <div class="card-body" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div>
+                            <strong>Direct-to-Consumer :</strong> Capture des données dans son CRM exclusif (pas de partage avec les OTA).
+                        </div>
+                        <div>
+                            <strong>Optimisation :</strong> Accès à la centrale d'achats <strong>Entegra</strong> (N°1) pour réduire les coûts d'exploitation.
+                        </div>
+                    </div>
+                    <div class="highlight-box" style="text-align: center;">
+                        Carte CASH & SMILE : Fidélisation et centralisation de la valeur.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

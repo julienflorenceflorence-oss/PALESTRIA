@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signature Elite Responsive - Julien FLORENCE</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700&display=swap');
+
+        /* Reset & Base */
+        body { margin: 0; padding: 0; }
+        
+        .sig-container {
+            font-family: 'Inter', -apple-system, sans-serif;
+            max-width: 550px;
+            margin: 20px auto;
+            background-color: #ffffff;
+        }
+
+        /* Image Header */
+        .header-visual {
+            width: 100%;
+            display: block;
+            border-radius: 4px 4px 0 0;
+        }
+
+        /* Le Cadre Premium (Main Box) */
+        .premium-frame {
+            border: 1px solid #EAEAEA;
+            border-top: none; /* L'image sert de bordure haute */
+            padding: 30px;
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        }
+
+        .name-row {
+            margin-bottom: 25px;
+        }
+
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            margin: 0;
+            color: #111;
+        }
+
+        .role {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #007ADF;
+            font-weight: 700;
+            margin: 6px 0 0 0;
+        }
+
+        /* Responsive Grid for Contact Info */
+        .info-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-top: 1px solid #F2F2F2;
+            padding-top: 20px;
+            margin-bottom: 30px;
+        }
+
+        .info-item {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .info-item strong {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #999;
+            margin-bottom: 4px;
+        }
+
+        .info-item span, .info-item a {
+            font-size: 13px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Responsive CTA Group */
+        .cta-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-elite {
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            padding: 14px 10px;
+            border: 1px solid #111;
+            color: #111 !important;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-elite:hover {
+            background-color: #111;
+            color: #fff !important;
+        }
+
+        .btn-fill {
+            background-color: #F9F9F9;
+        }
+
+        /* Footer Baseline */
+        .footer-baseline {
+            margin-top: 30px;
+            font-size: 9px;
+            color: #BBB;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-align: center;
+            border-top: 1px solid #F8F8F8;
+            padding-top: 20px;
+        }
+
+        /* Mobile Adjustments */
+        @media only screen and (max-width: 480px) {
+            .cta-group {
+                flex-direction: column;
+            }
+            .info-grid {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .name {
+                font-size: 22px;
+            }
+            .premium-frame {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sig-container">
+        <!-- Header Image -->
+        <img src="https://raw.githubusercontent.com/julienflorenceflorence-oss/cv-prestige/main/cerveau%20analyse.png" alt="Expert Digital Header" class="header-visual">
+        
+        <!-- The "Premium Frame" requested -->
+        <div class="premium-frame">
+            <div class="name-row">
+                <h1 class="name">Julien Florence</h1>
+                <p class="role">Directeur Commercial | Expert Digital & IA</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Téléphone</strong>
+                    <a href="tel:+33661747573">06 61 74 75 73</a>
+                </div>
+                <div class="info-item">
+                    <strong>Email</strong>
+                    <a href="mailto:julien.florence@gmail.com">julien.florence@gmail.com</a>
+                </div>
+                <div class="info-item">
+                    <strong>Localisation</strong>
+                    <span>31130 Quint-Fonsegrives</span>
+                </div>
+            </div>
+
+            <div class="cta-group">
+                <a href="https://calendar.app.google/AyXpm7vya5yGbYcN7" target="_blank" class="btn-elite btn-fill">📅 Agenda</a>
+                <a href="https://julienflorenceflorence-oss.github.io/cv-prestige/" target="_blank" class="btn-elite">📄 Portfolio</a>
+                <a href="https://www.linkedin.com/in/julien-florence-2536a083/" target="_blank" class="btn-elite">🔗 LinkedIn</a>
+            </div>
+
+            <div class="footer-baseline">
+                Expertise • Stratégie • Performance
+            </div>
+        </div>
+    </div>
+</body>
+</html>

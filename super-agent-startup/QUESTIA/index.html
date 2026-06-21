@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>QuestIA - Pitch Deck Immersion</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --bg-dark: #020108;
+            --accent-purple: #8b5cf6;
+            --accent-neon: #00E5FF;
+            --violet: #7B5CFF;
+            --coral: #FF5A6A;
+            --text-white: #ffffff;
+            --text-dim: rgba(255, 255, 255, 0.5);
+            --slide-width: 1280px;
+            --slide-height: 720px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #particle-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            opacity: 0.3;
+        }
+
+        #viewport {
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(6, 2, 20, 0.8);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 768px) {
+            #viewport {
+                width: 95vw;
+                height: 90vh;
+                max-width: var(--slide-width);
+                max-height: var(--slide-height);
+                border: 1px solid rgba(255, 255, 255, 0.05);
+                border-radius: 8px;
+                box-shadow: 0 0 100px rgba(0, 229, 255, 0.1);
+            }
+        }
+
+        .grid-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(0, 229, 255, 0.03) 1px, transparent 1px),
+                              linear-gradient(90deg, rgba(0, 229, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            padding: clamp(20px, 5vw, 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 2;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        /* --- IMMERSIVE BACKGROUNDS --- */
+        #s1 { background-image: linear-gradient(rgba(2, 1, 8, 0.4), rgba(2, 1, 8, 0.6)), url("assets/londre.png"); }
+        #s2 { background-image: linear-gradient(rgba(2, 1, 8, 0.7), rgba(2, 1, 8, 0.9)), url("assets/london.jpg"); }
+        #s3 { background-image: linear-gradient(rgba(2, 1, 8, 0.7), rgba(2, 1, 8, 0.9)), url("assets/madrid.jpg"); }
+        #s4 { background-image: linear-gradient(rgba(2, 1, 8, 0.7), rgba(2, 1, 8, 0.9)), url("assets/berlin.jpg"); }
+        #s5 { background-image: linear-gradient(rgba(2, 1, 8, 0.7), rgba(2, 1, 8, 0.9)), url("assets/amsterdam.jpg"); }
+        #s6 { background-image: linear-gradient(rgba(2, 1, 8, 0.8), rgba(2, 1, 8, 0.95)), url("assets/lagos.jpg"); }
+        #s7 { background-image: linear-gradient(rgba(2, 1, 8, 0.7), rgba(2, 1, 8, 0.9)), url("assets/nyc.jpg"); }
+        #s8 { background-image: linear-gradient(rgba(2, 1, 8, 0.8), rgba(2, 1, 8, 0.95)), url("assets/amsterdam.jpg"); }
+        #s9 { background-image: linear-gradient(rgba(2, 1, 8, 0.8), rgba(2, 1, 8, 0.95)), url("assets/london.jpg"); }
+        #s10 { background-image: linear-gradient(rgba(2, 1, 8, 0.7), rgba(2, 1, 8, 0.9)), url("https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1280&auto=format&fit=crop"); }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Slide specific overrides */
+        #s1 { 
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            padding: 0 !important;
+        }
+
+        .giant-title {
+            font-size: clamp(42px, 10vw, 120px);
+            font-weight: 900;
+            line-height: 1;
+            background: linear-gradient(135deg, #fff, var(--accent-neon), var(--violet));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .slide-title {
+            font-size: clamp(28px, 6vw, 60px);
+            font-weight: 900;
+            color: var(--accent-neon);
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+
+        .text-tile {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--accent-neon);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 0 10px 10px 0;
+            text-align: left;
+            width: 100%;
+            max-width: 800px;
+            backdrop-filter: blur(5px);
+        }
+
+        .text-tile h3 { font-size: 20px; margin-bottom: 8px; color: var(--accent-neon); }
+        .text-tile p { font-size: 16px; line-height: 1.4; color: #fff; }
+
+        .metrics-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            flex: 1 1 200px;
+            max-width: 300px;
+            backdrop-filter: blur(5px);
+        }
+
+        .metric-value { 
+            font-size: clamp(40px, 8vw, 70px) !important; 
+            font-weight: 900; 
+            display: block;
+        }
+
+        .logo-box {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-box img {
+            max-width: 80%;
+            max-height: 60vh;
+            object-fit: contain;
+            filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.4));
+        }
+
+        .nav-ui {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+            z-index: 1000;
+        }
+
+        .btn {
+            background: rgba(0, 229, 255, 0.2);
+            border: 1px solid var(--accent-neon);
+            color: var(--accent-neon);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: 0.3s;
+        }
+
+        .btn:hover { background: var(--accent-neon); color: #000; }
+
+        .slide-num {
+            position: absolute;
+            bottom: 25px;
+            left: 20px;
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+        }
+
+        @media (max-width: 767px) {
+            .slide { 
+                padding: 60px 20px;
+                justify-content: flex-start;
+            }
+            #s1 { display: flex !important; padding: 0 !important; }
+            
+            .giant-title, .slide-title { text-align: center; width: 100%; }
+            .text-tile { margin-left: auto; margin-right: auto; }
+            
+            .metric-card { flex: 1 1 100%; max-width: none; }
+            
+            #s8 .business-card {
+                padding: 30px 15px !important;
+                width: 100% !important;
+                border-radius: 20px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div id="viewport">
+        <div class="grid-overlay"></div>
+
+        <!-- Slide 1: Welcome -->
+        <div class="slide active" id="s1">
+            <div class="logo-box">
+                <img src="assets/logo.png" alt="QuestIA Logo">
+            </div>
+        </div>
+
+        <!-- Slide 2: The Shock -->
+        <div class="slide" id="s2">
+            <h2 class="giant-title">5.000.000 £</h2>
+            <div class="text-tile">
+                <h3>L'Échec Invisible</h3>
+                <p>Londres. City. Un contrat stratégique perdu par confusion culturelle.</p>
+            </div>
+            <div class="text-tile" style="animation-delay: 0.2s;">
+                <h3>La Barrière Muette</h3>
+                <p>Ce n'est plus la grammaire, mais <strong>l'intelligence des codes</strong> qui manque.</p>
+            </div>
+        </div>
+
+        <!-- Slide 3: Patrice -->
+        <div class="slide" id="s3">
+            <h2 class="slide-title">LE CAS PATRICE</h2>
+            <div class="text-tile">
+                <h3>Le Paradoxe du Savoir</h3>
+                <p>Directeur d'OF Privé. Ses apprenants valident les tests mais <strong>restent muets</strong> sur le terrain.</p>
+            </div>
+            <div class="text-tile" style="border-color: var(--violet);">
+                <h3>Excellence Qualiopi</h3>
+                <p>Besoin de prouver un <strong>ROI Pédagogique</strong> réel pour sécuriser les financements.</p>
+            </div>
+        </div>
+
+        <!-- Slide 4: Data 49 -->
+        <div class="slide" id="s4">
+            <h2 class="slide-title">49<sup>ème</sup> RANG</h2>
+            <p style="font-size: clamp(18px, 4vw, 24px); margin-bottom: 30px; color: #fff;">Le retard français : Derniers d'Europe de l'Ouest. <br><strong>Une opportunité historique pour l'IA.</strong></p>
+            <div style="width: 100%; background: rgba(255,255,255,0.05); height: 10px; border-radius: 5px; overflow: hidden; border: 1px solid rgba(0, 229, 255, 0.2);">
+                <div id="data-bar" style="height: 100%; width: 0; background: linear-gradient(90deg, var(--violet), var(--accent-neon)); transition: width 2s ease;"></div>
+            </div>
+            <p style="margin-top: 15px; font-size: 12px; color: var(--accent-neon); letter-spacing: 2px;">INDICE DE COMPÉTENCE : 43.5%</p>
+        </div>
+
+        <!-- Slide 5: Commando -->
+        <div class="slide" id="s5">
+            <h2 class="slide-title">VALIDATION TERRAIN</h2>
+            <div class="metrics-container">
+                <div class="metric-card"><div class="metric-value counter" data-val="51">0</div><div class="metric-label">Calls</div></div>
+                <div class="metric-card" style="border-color: var(--violet);"><div class="metric-value counter" data-val="7">0</div><div class="metric-label">RDVs</div></div>
+                <div class="metric-card"><div class="metric-value counter" data-val="44">0</div><div class="metric-label">Emails</div></div>
+            </div>
+            <div class="text-tile" style="margin-top: 20px; border-left: 5px solid var(--coral);">
+                <p style="font-size: 18px; font-style: italic;">"C'est l'outil qui transforme enfin la langue en réflexe de survie."</p>
+            </div>
+        </div>
+
+        <!-- Slide 6: Engagement -->
+        <div class="slide" id="s6">
+            <h2 class="slide-title">ENGAGEMENT +640%</h2>
+            <div class="metrics-container">
+                <div class="metric-card" style="opacity: 0.8;">
+                    <span style="font-size: 10px; color: var(--text-dim);">E-LEARNING PASSIF</span>
+                    <div style="font-size: 40px; font-weight: 900;">13%</div>
+                </div>
+                <div class="metric-card" style="border-color: var(--accent-neon); background: rgba(0, 229, 255, 0.1);">
+                    <span style="font-size: 10px; color: var(--accent-neon);">IMMERSION QUESTIA</span>
+                    <div style="font-size: 50px; font-weight: 900; color: #fff;">83%</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Tech -->
+        <div class="slide" id="s7">
+            <h2 class="slide-title">SIMULATEUR DE VOL</h2>
+            <div class="text-tile">
+                <h3>Code Switching</h3>
+                <p>IA réactive au ton et à la posture pour décoder <strong>l'implicite culturel</strong>.</p>
+            </div>
+            <div class="text-tile" style="border-color: var(--violet);">
+                <h3>Scenario Builder</h3>
+                <p>OF autonomes : création de missions métiers en <strong>120 secondes</strong>.</p>
+            </div>
+        </div>
+
+        <!-- Slide 8: Business -->
+        <div class="slide" id="s8">
+            <h2 class="slide-title">MODÈLE ÉCONOMIQUE</h2>
+            <div class="business-card" style="padding: 40px 20px; border: 1px solid var(--accent-neon); border-radius: 30px; background: rgba(0, 229, 255, 0.1); width: 100%; max-width: 500px; margin: 0 auto; backdrop-filter: blur(10px);">
+                <span style="font-size: 10px; letter-spacing: 3px; color: var(--accent-neon);">LICENCE ANNUELLE</span>
+                <div style="font-size: clamp(50px, 12vw, 80px); font-weight: 900; margin: 15px 0;">3 900 €</div>
+                <p style="font-size: 14px; color: var(--text-dim);">Finançable par les budgets formation & OPCO.</p>
+            </div>
+        </div>
+
+        <!-- Slide 9: Vision -->
+        <div class="slide" id="s9">
+            <h2 class="slide-title">DÉPLOIEMENT</h2>
+            <div class="text-tile" style="border-color: var(--coral);">
+                <h3>Onboarding &lt; 48h</h3>
+                <p>Déploiement instantané. Formation des équipes pédagogiques incluse.</p>
+            </div>
+            <div class="text-tile" style="border-color: var(--violet);">
+                <h3>Standard 2026</h3>
+                <p>Imposer l'immersion comme le nouveau pilier de l'excellence EdTech.</p>
+            </div>
+        </div>
+
+        <!-- Slide 10: Conclusion -->
+        <div class="slide" id="s10">
+            <h2 class="giant-title" style="font-size: clamp(36px, 8vw, 70px);">BEYOND WORDS</h2>
+            <p style="font-size: 20px; color: var(--text-dim); margin-bottom: 30px;">"Excuse me... Tea or hands first?"</p>
+            <div style="background: linear-gradient(90deg, var(--accent-neon), var(--violet)); padding: 20px 40px; border-radius: 10px; color: #000; font-weight: 900; font-size: 20px;">
+                Really? Now you can with QuestIA!
+            </div>
+        </div>
+
+        <div class="slide-num">SLIDE [ <span id="idx">1</span> / 10 ]</div>
+        <div class="nav-ui">
+            <button class="btn" onclick="goPrev()"><i class="fa-solid fa-arrow-left"></i></button>
+            <button class="btn" onclick="goNext()"><i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const total = slides.length;
+
+        function update() {
+            slides.forEach((s, i) => {
+                s.classList.remove('active');
+                if(i === current) s.classList.add('active');
+            });
+            document.getElementById('idx').innerText = current + 1;
+
+            if(current === 3) {
+                setTimeout(() => {
+                    const bar = document.getElementById('data-bar');
+                    if(bar) bar.style.width = '43.5%';
+                }, 400);
+            }
+
+            if(current === 4) animateCounters();
+        }
+
+        function goNext() { if(current < total - 1) { current++; update(); } }
+        function goPrev() { if(current > 0) { current--; update(); } }
+
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(c => {
+                c.innerText = '0';
+                const target = +c.dataset.val;
+                let val = 0;
+                const step = target / 30;
+                const timer = setInterval(() => {
+                    val += step;
+                    if(val >= target) { c.innerText = target; clearInterval(timer); }
+                    else { c.innerText = Math.floor(val); }
+                }, 30);
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'ArrowRight' || e.key === ' ') goNext();
+            if(e.key === 'ArrowLeft') goPrev();
+        });
+
+        // --- PARTICLE ENGINE ---
+        const canvas = document.getElementById('particle-canvas');
+        if(canvas) {
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function init() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+                particles = [];
+                for(let i=0; i<50; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        size: Math.random() * 2 + 1,
+                        sx: (Math.random() - 0.5) * 0.5,
+                        sy: (Math.random() - 0.5) * 0.5
+                    });
+                }
+            }
+
+            function animate() {
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                ctx.fillStyle = '#00E5FF';
+                particles.forEach(p => {
+                    p.x += p.sx; p.y += p.sy;
+                    if(p.x<0 || p.x>canvas.width) p.sx *= -1;
+                    if(p.y<0 || p.y>canvas.height) p.sy *= -1;
+                    ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+                });
+                requestAnimationFrame(animate);
+            }
+
+            init(); animate();
+            window.addEventListener('resize', init);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>RDM FINAL - JULIEN FLORENCE - MISSION COMMANDO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+        
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #0F1115;
+            --darker-bg: #0A0C10;
+            --text-white: #FFFFFF;
+            --text-grey: #B0B0B0;
+            --accent-red: #FF4C4C;
+            --accent-green: #2ECC71;
+            --accent-blue: #3498DB;
+        }
+
+        @page { size: A4; margin: 0; }
+
+        body {
+            margin: 0; padding: 0;
+            background-color: #1a1a1a;
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+        }
+
+        .page {
+            width: 210mm; height: 297mm;
+            padding: 20mm; margin: 10mm auto;
+            background-color: var(--dark-bg);
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            position: relative; box-sizing: border-box;
+            page-break-after: always; overflow: hidden;
+            display: flex; flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute;
+            top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            pointer-events: none; z-index: 10;
+        }
+
+        h1, h2, h3 { font-family: 'Cinzel', serif; color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+        h1 { font-size: 2.2rem; text-align: center; margin-bottom: 1.5rem; line-height: 1.2; }
+        h2 { font-size: 1.5rem; border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin-top: 2rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.1rem; color: var(--text-white); border-left: 4px solid var(--gold); padding-left: 15px; margin-top: 1.5rem; margin-bottom: 0.8rem; }
+
+        p { font-size: 0.95rem; margin-bottom: 1rem; text-align: justify; }
+        
+        .gold-text { color: var(--gold); font-weight: bold; }
+        .red-text { color: var(--accent-red); font-weight: bold; }
+        .green-text { color: var(--accent-green); font-weight: bold; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; background: rgba(255,255,255,0.02); }
+        th, td { border: 1px solid rgba(212, 175, 55, 0.2); padding: 10px; text-align: left; font-size: 0.85rem; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 1px; }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic; font-size: 1.2rem;
+            text-align: center; margin: 25px auto;
+            color: var(--text-grey);
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 15px 0; max-width: 85%;
+            line-height: 1.4;
+        }
+
+        .kpi-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+        .kpi-card {
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 15px; text-align: center;
+            display: flex; flex-direction: column; justify-content: center;
+        }
+        .kpi-card .value { font-size: 1.8rem; font-weight: bold; color: var(--gold); display: block; margin-bottom: 5px; }
+        .kpi-card .label { font-size: 0.65rem; text-transform: uppercase; color: var(--text-grey); letter-spacing: 1px; }
+
+        .footer {
+            position: absolute; bottom: 12mm; left: 20mm; right: 20mm;
+            display: flex; justify-content: space-between;
+            font-size: 0.65rem; color: var(--text-grey);
+            border-top: 1px solid rgba(212, 175, 55, 0.15);
+            padding-top: 8px; z-index: 20;
+        }
+
+        .content-wrapper { flex-grow: 1; display: flex; flex-direction: column; position: relative; z-index: 5; }
+
+        .highlight-box {
+            background: rgba(52, 152, 219, 0.05);
+            border-left: 4px solid var(--accent-blue);
+            padding: 15px; margin: 15px 0; font-size: 0.9rem;
+        }
+
+        .page-break { page-break-after: always; }
+        ul { margin-top: 0; padding-left: 20px; }
+        li { font-size: 0.9rem; margin-bottom: 5px; list-style-type: square; color: var(--text-grey); }
+        li strong { color: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 01 : COUVERTURE PRESTIGE -->
+    <div class="page" style="background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.95)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80'); background-size: cover;">
+        <div class="inner-border"></div>
+        <div style="height: 100%; display: flex; flex-direction: column; justify-content: space-between; padding: 40px; text-align: center; position: relative; z-index: 20;">
+            <div style="font-family: 'Cinzel'; font-size: 1.2rem; letter-spacing: 5px;">ROCKET SCHOOL TOULOUSE</div>
+            
+            <div style="flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <h1 style="font-size: 3.5rem; margin: 0; line-height: 1.1; letter-spacing: 8px;">MISSION <span class="gold-text">COMMANDO</span></h1>
+                <div style="width: 80px; height: 2px; background: var(--gold); margin: 25px 0;"></div>
+                <p style="font-family: 'Playfair Display'; font-style: italic; font-size: 1.5rem; margin: 0; max-width: 85%; color: var(--text-white);">L'Industrialisation de l'Exclusivité Happy House</p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.6); border-left: 5px solid var(--gold); padding: 25px; text-align: left; margin: 30px auto; max-width: 90%;">
+                <p style="font-size: 1rem; line-height: 1.6; font-weight: 300; margin: 0; color: #fff;">« Comment concilier l'industrialisation des processus d'acquisition numérique et la promesse d'exclusivité Waouh pour piloter le passage à l'échelle : le défi du passage de 160 à 1 000 adhérents. »</p>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: flex-end; border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 25px;">
+                <div style="text-align: left;">
+                    <p style="font-weight: bold; font-size: 1.3rem; margin: 0;">JULIEN FLORENCE</p>
+                    <p class="gold-text" style="font-size: 0.75rem; letter-spacing: 2px; margin: 5px 0 0 0;">RESPONSABLE MARKETING & COMMERCIAL</p>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 0.8rem; margin: 0;">Spécialisation Acquisition & Growth</p>
+                    <p style="font-size: 0.8rem; margin: 5px 0 0 0;">Mars 2026</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 02 : SOMMAIRE EXÉCUTIF -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="content-wrapper">
+            <h1 style="margin-top: 50px;">Sommaire de l'Arsenal</h1>
+            <div style="margin-top: 40px; flex-grow: 1;">
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">PARTIE I : CONSTAT ET PROBLÉMATIQUE</span> <span>P. 03</span></p>
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">PARTIE II : PRÉSENTATION DE L'OPPORTUNITÉ STRATÉGIQUE</span> <span>P. 05</span></p>
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">PARTIE III : OBJECTIFS ET KPIs DE PERFORMANCE</span> <span>P. 07</span></p>
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">PARTIE IV : PLAN D'ACTION OPÉRATIONNEL</span> <span>P. 09</span></p>
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">PARTIE V : ANALYSE DES RISQUES ET ROI</span> <span>P. 12</span></p>
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">CONCLUSION ET BILAN PERSONNEL</span> <span>P. 15</span></p>
+                <p style="margin-bottom: 12px; display: flex; justify-content: space-between;"><span class="gold-text">RÉFÉRENCES ET GLOSSAIRE</span> <span>P. 18</span></p>
+            </div>
+            <div class="quote">"Une vision sans exécution n'est qu'une hallucination industrielle." — Thomas Edison</div>
+            <div style="flex-grow: 1;"></div>
+        </div>
+        <div class="footer"><span>MISSION COMMANDO : SOMMAIRE</span><span>PAGE 02</span></div>
+    </div>
+
+    <!-- PAGE 03 : PARTIE I -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="content-wrapper">
+            <h1 style="margin-top: 50px;">PARTIE I : CONSTAT ET PROBLÉMATIQUE</h1>
+            <div class="quote">"L'artisanat est le plafond de verre de l'ambition."</div>
+            
+            <h2>1.1 Situation Actuelle (Faits Chiffrés)</h2>
+            <p>À mon arrivée, Happy House opère sur un modèle <span class="gold-text">artisanal</span> limitant sa croissance. L'absence de moteur d'acquisition automatisé crée une dépendance dangereuse aux flux organiques.</p>
+            
+            <div class="kpi-box">
+                <div class="kpi-card"><span class="value">160</span><span class="label">Adhérents Actuels</span></div>
+                <div class="kpi-card"><span class="value">450€</span><span class="label">CAC Manuel</span></div>
+                <div class="kpi-card"><span class="value">22%</span><span class="label">Commissions OTA</span></div>
+            </div>
+
+            <h2>1.2 Les Racines du Problème</h2>
+            <p>L'analyse révèle une <span class="gold-text">confusion identitaire</span> majeure : l'offre voyageurs parasitait le discours B2B. L'hébergeur ne percevait plus la valeur ROIste de son adhésion.</p>
+
+            <div class="highlight-box">
+                <strong>Question Stratégique (SMART) :</strong> Comment multiplier par 6.25 le réseau en 12 mois, tout en réduisant le CAC de 70% et en garantissant un score Waouh > 4.5/5 ?
+            </div>
+            <div style="flex-grow: 1;"></div>
+        </div>
+        <div class="footer"><span>PARTIE I : DIAGNOSTIC</span><span>PAGE 03</span></div>
+    </div>
+
+    <!-- PAGE 04 : PARTIE II -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="content-wrapper">
+            <h1 style="margin-top: 50px;">PARTIE II : L'OPPORTUNITÉ STRATÉGIQUE</h1>
+            <div class="quote">"Nous ne vendons pas un label, nous vendons une souveraineté économique."</div>
+
+            <h3>2.1 L'Usine à Leads (Industrialisation)</h3>
+            <p>Le pivot repose sur le déploiement d'un protocole de <span class="gold-text">Scraping Chirurgical</span> sur 126 482 prospects. L'objectif est d'alimenter un pipeline Bitrix24 automatisé pour éliminer les tâches à faible valeur.</p>
+
+            <h3>2.2 Ingénierie Relationnelle (DISC/PCM)</h3>
+            <p>L'utilisation de la psychologie appliquée permet de <span class="gold-text">hacker le closing</span> en adoptant une posture Adulte-Adulte face aux propriétaires d'établissements de prestige.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Levier Technique</th>
+                        <th>Justification Stratégique</th>
+                        <th>Impact ROI</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Bitrix24 Automation</td>
+                        <td>Élimination des tâches de robot (90%)</td>
+                        <td class="green-text">Vélocité x5</td>
+                    </tr>
+                    <tr>
+                        <td>Marque "Le Cercle"</td>
+                        <td>Besoin d'appartenance (Maslow)</td>
+                        <td class="green-text">Churn -50%</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="flex-grow: 1;"></div>
+        </div>
+        <div class="footer"><span>PARTIE II : STRATÉGIE</span><span>PAGE 04</span></div>
+    </div>
+
+    <!-- PAGE 05 : PARTIE III & V -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="content-wrapper">
+            <h1 style="margin-top: 50px;">OBJECTIFS & BILAN ROI</h1>
+            
+            <h2>3.1 KPIs de Performance 6M</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Baseline (J0)</th>
+                        <th>Objectif 6M</th>
+                        <th>Métrique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Membres actifs</td>
+                        <td>160</td>
+                        <td class="gold-text">600</td>
+                        <td>CRM Dashboard</td>
+                    </tr>
+                    <tr>
+                        <td>CAC Moyen</td>
+                        <td>450€</td>
+                        <td class="green-text">135€</td>
+                        <td>Spend/Signs</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>5.1 Analyse du ROI Prévisionnel</h2>
+            <div class="highlight-box" style="background: rgba(46, 204, 113, 0.05); border-left: 4px solid var(--accent-green);">
+                <h3 style="margin-top: 0; color: var(--accent-green); border: none; padding: 0;">L'Équation du Succès</h3>
+                <p style="font-size: 1.1rem;">
+                    Investissement Tech : 15 000€ (Data + Outils)<br>
+                    LTV (Valeur Vie Client) : 8 000€ HT<br><br>
+                    <span class="gold-text" style="font-size: 2rem;">ROAS : 59.2x</span>
+                </p>
+            </div>
+            <p style="text-align: center; font-style: italic; margin-top: 20px;">"Chaque euro investi dans l'Arsenal génère 59€ de valeur future."</p>
+            <div style="flex-grow: 1;"></div>
+        </div>
+        <div class="footer"><span>BILAN ET ROI</span><span>PAGE 05</span></div>
+    </div>
+
+</body>
+</html>

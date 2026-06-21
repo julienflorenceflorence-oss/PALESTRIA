@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julien FLORENCE - Prestige Card</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Bibliothèques pour la capture PNG et la génération de QR Code locale -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        :root {
+            --bg: #0A0B0D;
+            --card-bg: #111418;
+            --accent: #D4AF37;
+            --text: #F4F4F4;
+            --text-dim: #999;
+            --gold-gradient: linear-gradient(135deg, #AD8A1F, #F7EF8A, #AD8A1F);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .zen-card {
+            width: 100%;
+            max-width: 380px;
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 40px;
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-section {
+            height: 200px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(0.7) contrast(1.1);
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, var(--card-bg));
+        }
+
+        .content {
+            padding: 30px 40px 50px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.8rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .tagline {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--accent);
+            margin-bottom: 40px;
+            opacity: 0.8;
+        }
+
+        .qr-wrapper {
+            background: white;
+            padding: 15px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: 0.3s;
+        }
+
+        .qr-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .qr-img {
+            width: 180px;
+            height: 180px;
+            display: block;
+        }
+
+        .btn-minimal {
+            display: inline-block;
+            padding: 15px 30px;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            transition: 0.3s;
+            cursor: pointer;
+            background: transparent;
+        }
+
+        .btn-minimal:hover {
+            background: var(--accent);
+            color: #000;
+        }
+
+        .actions {
+            margin-top: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="zen-card" id="capture">
+        <div class="hero-section">
+            <img src="cerveau 3.0.png" alt="Innovation" class="hero-img">
+            <div class="hero-overlay"></div>
+        </div>
+
+        <div class="content">
+            <h1>Julien FLORENCE</h1>
+            <div class="tagline">Stratégie & Innovation</div>
+
+            <div class="qr-wrapper">
+                <img src="site julien.png" alt="QR Code" class="qr-img">
+            </div>
+
+            <div class="actions">
+                <a href="https://julienflorenceflorence-oss.github.io/presentation-freelance/index.html" class="btn-minimal">Visiter le site</a>
+                <button onclick="downloadJPG()" class="btn-minimal" style="opacity: 0.6; font-size: 0.6rem; padding: 10px 20px;">Télécharger JPG</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function downloadJPG() {
+            const element = document.getElementById('capture');
+            const btn = document.querySelector('.actions');
+            
+            // Masquer les boutons pour la capture
+            btn.style.visibility = 'hidden';
+
+            html2canvas(element, {
+                scale: 2,
+                backgroundColor: '#111418',
+                useCORS: true,
+                allowTaint: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'Carte_Julien_FLORENCE.jpg';
+                // Conversion en JPG avec qualité 0.9
+                link.href = canvas.toDataURL('image/jpeg', 0.9);
+                link.click();
+                btn.style.visibility = 'visible';
+            }).catch(err => {
+                console.error("Erreur capture:", err);
+                btn.style.visibility = 'visible';
+                alert("Erreur lors de la génération de l'image.");
+            });
+        }
+    </script>
+</body>
+</html>

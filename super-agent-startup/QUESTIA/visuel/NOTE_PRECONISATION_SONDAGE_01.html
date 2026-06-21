@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Note de Préconisation Interne</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .document-container {
+            background: var(--surface);
+            max-width: 800px;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 40px 50px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .document-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 4px;
+            background: var(--brand-gradient);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .doc-type {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            font-size: 1.5rem;
+            color: #FFF;
+            margin-bottom: 20px;
+            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .intro-box {
+            background: var(--glass);
+            border: 1px solid rgba(0, 229, 255, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            color: #FFF;
+        }
+
+        .intro-box strong { color: var(--accent); }
+
+        h2 {
+            font-size: 1.1rem;
+            color: var(--accent-purple);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .preco-card {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .preco-card:hover {
+            border-color: var(--accent);
+            background: rgba(0, 229, 255, 0.02);
+        }
+
+        .preco-title {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 10px;
+        }
+
+        .preco-question {
+            font-style: italic;
+            color: #FFF;
+            padding: 10px;
+            border-left: 2px solid var(--accent-coral);
+            background: rgba(255, 90, 106, 0.05);
+            margin-bottom: 10px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .preco-why {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-container">
+        <header>
+            <div class="logo">QUESTIA</div>
+            <div class="doc-type">Note de Préconisation Collective #01</div>
+        </header>
+
+        <h1>Ajustement Stratégique : Sondage B2B</h1>
+
+        <div class="intro-box">
+            <p><strong>Salut Jeanne et Lorraine,</strong></p>
+            <p>Nous venons de passer en revue la V1 du sondage Tally que vous avez monté, et franchement : <strong>super boulot !</strong> L'arborescence est claire, et la section sur les frustrations des directeurs d'écoles (Section C) tape exactement là où il faut.</p>
+            <p>Pour nous assurer que nous transformons ce super travail en une "machine à 20/20" devant le jury, nous vous préconisons d'y injecter <strong>3 petites questions stratégiques</strong>. L'objectif est d'extraire de la donnée pure pour justifier notre budget et prouver notre traction.</p>
+        </div>
+
+        <h2>🎯 Les 3 Ajustements "ROI & Traction"</h2>
+
+        <!-- Recommandation 1 -->
+        <div class="preco-card">
+            <div class="preco-title">1. Le Coût de l'Inefficacité (Pour le Calcul du ROI)</div>
+            <div class="preco-question">
+                "Aujourd'hui, combien d'heures par mois un collaborateur consacre-t-il à une formation linguistique sans ressentir d'amélioration réelle sur sa fluidité orale ?"<br>
+                <span style="font-size: 0.8rem; color: var(--text-dim);">(Options : 0h / 1-3h / 4-8h / +10h)</span>
+            </div>
+            <div class="preco-why">
+                <strong>La stratégie :</strong> Nous ne pouvons pas calculer de ROI sans savoir combien de temps de travail ils "perdent" avec les méthodes actuelles. Cette data va nous permettre de prouver mathématiquement que QuestIA leur fait gagner du temps et de l'argent.
+            </div>
+        </div>
+
+        <!-- Recommandation 2 -->
+        <div class="preco-card">
+            <div class="preco-title">2. Le Cas d'Usage "Douleur" (Pour le Diagnostic SMART)</div>
+            <div class="preco-question">
+                "Citez UNE situation professionnelle précise (ex: Pitch client, négociation) où le manque de fluidité en anglais a été un frein majeur ce mois-ci :"<br>
+                <span style="font-size: 0.8rem; color: var(--text-dim);">(Champ texte libre)</span>
+            </div>
+            <div class="preco-why">
+                <strong>La stratégie :</strong> Pour le jury, notre diagnostic doit être ultra-spécifique. Avec cette question, nous pourrons argumenter : <em>"X% de nos cibles échouent spécifiquement pendant le pitch, donc notre MVP se concentre sur ce simulateur précis."</em>
+            </div>
+        </div>
+
+        <!-- Recommandation 3 -->
+        <div class="preco-card" style="border-color: rgba(255, 90, 106, 0.4);">
+            <div class="preco-title">3. Le Bouton d'Achat (La "Traction" immédiate)</div>
+            <div class="preco-question">
+                "Pour valider notre approche, seriez-vous prêt à tester gratuitement le simulateur QuestIA avec 3 de vos collaborateurs ?"<br>
+                <span style="font-size: 0.8rem; color: var(--text-dim);">(Oui / Non - À placer juste avant la demande d'email)</span>
+            </div>
+            <div class="preco-why">
+                <strong>La stratégie :</strong> C'est la statistique "Choc". Arriver devant le jury en annonçant : <em>"Sur 40 réponses, nous avons déjà 12 intentions de tester notre pilote (LOI)"</em>. C'est ce qui nous donnera les points de faisabilité commerciale !
+            </div>
+        </div>
+
+        <p style="color: var(--text-dim); font-size: 0.9rem; text-align: center; margin-top: 30px;">
+            Dès que ces 3 points sont intégrés, donnons le feu vert à Natalia pour qu'elle puisse appuyer sur le bouton "Envoi" de nos campagnes Lemlist ! 🚀
+        </p>
+
+        <div class="footer">
+            LE TRIUMVIRAT — UNITÉ D'ÉLITE | QUESTIA 2026
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Agent Data Analyst - Dashboard Performance</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --success: #22c55e;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg: #f8fafc;
+            --card-bg: #ffffff;
+            --text: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+
+        body { background-color: var(--bg); color: var(--text); line-height: 1.6; }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 2rem; }
+
+        header { 
+            display: flex; justify-content: space-between; align-items: center; 
+            margin-bottom: 2rem; border-bottom: 2px solid #e2e8f0; padding-bottom: 1rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        .badge {
+            background: var(--success); color: white; padding: 0.5rem 1rem;
+            border-radius: 20px; font-weight: bold; font-size: 0.8rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+
+        /* KPI Cards */
+        .grid-kpi {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem; margin-bottom: 2rem;
+        }
+
+        .card-kpi {
+            background: var(--card-bg); padding: 1.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease;
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        .card-kpi:hover { transform: translateY(-5px); }
+        .card-kpi i { font-size: 2rem; color: var(--primary); margin-bottom: 1rem; }
+        .card-kpi .value { font-size: 1.8rem; font-weight: 800; color: var(--primary); }
+        .card-kpi .label { color: var(--secondary); font-size: 0.9rem; text-transform: uppercase; }
+
+        /* Charts Section */
+        .grid-charts {
+            display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem;
+        }
+
+        .card-chart {
+            background: var(--card-bg); padding: 1.5rem; border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        /* Organigramme */
+        .organigramme {
+            background: var(--card-bg); padding: 2rem; border-radius: 12px; margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .tree { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+        .node { 
+            background: var(--primary); color: white; padding: 1rem 2rem; 
+            border-radius: 8px; font-weight: bold; position: relative;
+        }
+        .children { display: flex; gap: 2rem; }
+        .child-node { background: #3b82f6; color: white; padding: 0.8rem 1.5rem; border-radius: 8px; }
+
+        /* Table Styles */
+        table { width: 100%; border-collapse: collapse; background: white; border-radius: 12px; overflow: hidden; margin-top: 1rem; }
+        th { background: #f1f5f9; padding: 1rem; text-align: left; }
+        td { padding: 1rem; border-top: 1px solid #e2e8f0; }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        @media (max-width: 768px) {
+            .grid-charts { grid-template-columns: 1fr; }
+            .children { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div>
+            <h1>Rapport de Performance BizDev</h1>
+            <p style="color: var(--secondary)">Analyse de l'exercice annuel par Super Agent Data Analyst</p>
+        </div>
+        <div class="badge">
+            <i class="fas fa-check-circle"></i> STATUS : OPTIMISÉ
+        </div>
+    </header>
+
+    <!-- KPI Section -->
+    <div class="grid-kpi">
+        <div class="card-kpi delay-1">
+            <i class="fas fa-euro-sign"></i>
+            <div class="value" data-target="321485">0</div>
+            <div class="label">Chiffre d'Affaires Total</div>
+        </div>
+        <div class="card-kpi delay-2">
+            <i class="fas fa-bullseye"></i>
+            <div class="value" data-target="701">0</div>
+            <div class="label">Nouvelles Opportunités</div>
+        </div>
+        <div class="card-kpi delay-3">
+            <i class="fas fa-clock"></i>
+            <div class="value" data-target="31.8">0</div>
+            <div class="label">Cycle de Vente (Jours)</div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="grid-charts">
+        <div class="card-chart">
+            <h3>Évolution Mensuelle du CA</h3>
+            <canvas id="evolutionChart"></canvas>
+        </div>
+        <div class="card-chart">
+            <h3>Répartition par BizDev</h3>
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+
+    <!-- Organigramme -->
+    <div class="organigramme">
+        <h3>Organigramme Sales</h3>
+        <div class="tree" style="margin-top: 2rem;">
+            <div class="node">Directeur Commercial</div>
+            <div class="children">
+                <div class="child-node">Alice <br><small>36.2% Conv.</small></div>
+                <div class="child-node">Bob <br><small>29.6% Conv.</small></div>
+                <div class="child-node">Charlie <br><small>36.0% Conv.</small></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Projections -->
+    <div class="card-chart" style="margin-bottom: 2rem;">
+        <h3>Projections Q1 (N+1)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Période</th>
+                    <th>Chiffre d'Affaires Estimé</th>
+                    <th>Confiance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Janvier (Proj)</td>
+                    <td>36 919 €</td>
+                    <td><span style="color: var(--success)">Élevée</span></td>
+                </tr>
+                <tr>
+                    <td>Février (Proj)</td>
+                    <td>31 607 €</td>
+                    <td><span>Moyenne</span></td>
+                </tr>
+                <tr>
+                    <td>Mars (Proj)</td>
+                    <td>26 467 €</td>
+                    <td><span>Moyenne</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Plan d'Action -->
+    <div class="card-chart">
+        <h3>🚀 Plan d'Action Prioritaire</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>Action</th>
+                    <th>Impact</th>
+                    <th>Difficulté</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Coaching Closing Bob</td>
+                    <td><strong style="color: var(--danger)">Haut</strong></td>
+                    <td>⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Optimisation Leads Alice</td>
+                    <td><strong style="color: var(--danger)">Haut</strong></td>
+                    <td>⭐⭐⭐</td>
+                </tr>
+                <tr>
+                    <td>Standardisation Cycle < 30j</td>
+                    <td>Moyen</td>
+                    <td>⭐⭐</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+    // Animation des compteurs
+    const counters = document.querySelectorAll('.value');
+    counters.forEach(counter => {
+        const updateCount = () => {
+            const target = +counter.getAttribute('data-target');
+            const count = +counter.innerText.replace(' ', '').replace('€', '');
+            const speed = 200;
+            const inc = target / speed;
+
+            if (count < target) {
+                counter.innerText = Math.ceil(count + inc).toLocaleString() + (target > 1000 ? ' €' : '');
+                setTimeout(updateCount, 1);
+            } else {
+                counter.innerText = target.toLocaleString() + (target > 1000 ? ' €' : '');
+            }
+        };
+        updateCount();
+    });
+
+    // Evolution Chart
+    const ctxEvolution = document.getElementById('evolutionChart').getContext('2d');
+    new Chart(ctxEvolution, {
+        type: 'line',
+        data: {
+            labels: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Août', 'Sept', 'Oct', 'Nov', 'Déc'],
+            datasets: [{
+                label: 'Chiffre d\'Affaires (€)',
+                data: [35161, 30102, 25207, 27257, 18498, 32704, 27091, 23407, 31673, 19941, 20490, 29954],
+                borderColor: '#2563eb',
+                backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                fill: true,
+                tension: 0.4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+
+    // Pie Chart
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctxPie, {
+        type: 'doughnut',
+        data: {
+            labels: ['Alice', 'Bob', 'Charlie'],
+            datasets: [{
+                data: [99088, 106703, 115694],
+                backgroundColor: ['#3b82f6', '#1e293b', '#64748b'],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'bottom' }
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

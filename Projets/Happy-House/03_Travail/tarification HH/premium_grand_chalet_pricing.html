@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarification Premium - Grand Chalet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --brand-blue: #17225C;
+            --brand-gold: #DDA83E;
+            --light-grey: #f8f9fa;
+            --text-color: #343a40;
+            --border-color: #dee2e6;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-grey);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .aspect-ratio-box {
+            width: 100vw;
+            max-width: 1600px;
+            aspect-ratio: 16 / 9;
+            background-color: #fff;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .header {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            flex-shrink: 0;
+            height: 25%;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url('photo/phto pro.jpg');
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.5);
+            z-index: 1;
+        }
+
+        .header h1 {
+            position: relative;
+            z-index: 2;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(30px, 3.5vw, 52px);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+        }
+        
+        .content-body {
+            padding: 2vw 3vw;
+            overflow-y: auto;
+            flex-grow: 1;
+        }
+
+        .pricing-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .pricing-table thead th {
+            text-align: center;
+            padding: 1vw;
+            font-size: clamp(14px, 1.2vw, 18px);
+        }
+        
+        .pricing-table thead .plan-name {
+            font-weight: 700;
+            color: var(--brand-blue);
+        }
+        
+        .pricing-table thead .price {
+            font-size: clamp(12px, 1vw, 15px);
+            font-weight: 400;
+            color: #6c757d;
+        }
+
+        .pricing-table .feature-name {
+            text-align: left;
+            font-weight: 500;
+            padding: 1.2vw 1vw;
+            font-size: clamp(13px, 0.9vw, 16px);
+            width: 30%;
+        }
+
+        .pricing-table td {
+            text-align: center;
+            padding: 1.2vw 1vw;
+            font-size: clamp(16px, 1.5vw, 24px);
+            color: var(--brand-gold);
+        }
+        
+        .pricing-table tbody tr:nth-child(even) {
+            background-color: var(--light-grey);
+        }
+        
+        .pricing-table th.highlight, .pricing-table td.highlight {
+            background-color: #fffaf0;
+            border-left: 2px solid var(--brand-gold);
+            border-right: 2px solid var(--brand-gold);
+        }
+        .pricing-table thead th.highlight {
+            border-top: 2px solid var(--brand-gold);
+        }
+        .pricing-table tfoot td.highlight {
+             border-bottom: 2px solid var(--brand-gold);
+        }
+        
+        .pricing-table .cta-button {
+             background-color: var(--brand-blue);
+             color: #fff;
+             font-size: clamp(12px, 1vw, 16px);
+             font-weight: 500;
+             padding: 0.8vw 1.2vw;
+             border-radius: 8px;
+             text-decoration: none;
+        }
+        
+        .pricing-table .cta-button.highlight {
+             background-color: var(--brand-gold);
+             color: var(--brand-blue);
+             font-weight: 700;
+        }
+        
+        .section-header {
+            background-color: var(--brand-blue);
+            color: white;
+            font-weight: 700;
+            font-size: clamp(14px, 1vw, 18px) !important;
+            text-align: left !important;
+        }
+        .section-header td {
+             color: white;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="aspect-ratio-box">
+        <header class="header">
+            <h1>Tarification Grand Chalet</h1>
+        </header>
+
+        <div class="content-body">
+            <table class="pricing-table">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>
+                            <div class="plan-name">Visibilité</div>
+                            <div class="price">188€ HT/AN</div>
+                        </th>
+                        <th>
+                            <div class="plan-name">Premium</div>
+                            <div class="price">300€ HT/AN</div>
+                        </th>
+                        <th>
+                            <div class="plan-name">Prestige</div>
+                            <div class="price">450€ HT/AN</div>
+                        </th>
+                        <th class="highlight">
+                            <div class="plan-name">Waouh</div>
+                            <div class="price">675€ HT/AN</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="section-header"><td colspan="5">Visibilité & Accès</td></tr>
+                    <tr>
+                        <td class="feature-name">Annonce sur www.my-happyhouse.com</td>
+                        <td>✓</td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Annonce sur www.cosy-places.com</td>
+                        <td></td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Coordonnées visibles pour réservation directe</td>
+                        <td>✓</td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr class="section-header"><td colspan="5">Avantages & Outils</td></tr>
+                    <tr>
+                        <td class="feature-name">Obtention du label Happy House + plaque + pack communication</td>
+                        <td>✓</td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Application mobile (annonce visible)</td>
+                        <td>✓</td><td></td><td></td><td class="highlight"></td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Application mobile premium (relation client, ventes add., DATA)</td>
+                        <td></td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Centrale d'achat pour des économies</td>
+                        <td>✓</td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                     <tr>
+                        <td class="feature-name">Distribution de votre offre dans les CE</td>
+                        <td>✓</td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Programme de parrainage</td>
+                        <td>✓</td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Accès au programme de fidélité Happy House</td>
+                        <td></td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                     <tr class="section-header"><td colspan="5">Services & Support</td></tr>
+                    <tr>
+                        <td class="feature-name">Service HTA (Human Travel Agency)</td>
+                        <td>8%</td><td>5%</td><td>2%</td><td class="highlight">0% (Offert)</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">News conseil mensuelle (expérience client, communication)</td>
+                        <td></td><td>✓</td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                     <tr>
+                        <td class="feature-name">Promotion boostée (mise en avant de votre établissement)</td>
+                        <td></td><td></td><td>✓</td><td class="highlight">✓</td>
+                    </tr>
+                    <tr>
+                        <td class="feature-name">Expertise personnalisée & mise en relation</td>
+                        <td></td><td></td><td></td><td class="highlight">✓</td>
+                    </tr>
+                     <tr>
+                        <td class="feature-name">Accès aux partenaires du réseau (travaux, entretien...)</td>
+                        <td></td><td></td><td></td><td class="highlight">✓</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                     <tr>
+                        <td></td>
+                        <td><a href="#" class="cta-button">Choisir</a></td>
+                        <td><a href="#" class="cta-button">Choisir</a></td>
+                        <td><a href="#" class="cta-button">Choisir</a></td>
+                        <td class="highlight"><a href="#" class="cta-button highlight">Choisir</a></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

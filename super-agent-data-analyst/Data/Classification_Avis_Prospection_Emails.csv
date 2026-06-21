@@ -1,0 +1,21 @@
+Secteur;Sous_Secteur;Region;Nombre_Avis;Note_Moyenne;Qualite_Label;Potentiel_Commercial;Email
+Habitat;Menuiserie;GDE;154;9.2;Excellence (Blockchain);Élevé;contact@menuiserie-gde.fr
+Habitat;Chauffage;ARA;89;8.7;Qualifié (ISO 20252);Très Élevé;contact@chauffage-ara.fr
+Habitat;Isolation;BRE;120;7.5;Standard (Vérifié);Modéré;contact@isolation-bre.fr
+Habitat;Toiture;IDF;45;9.5;Excellence (Blockchain);Élevé;contact@toiture-idf.fr
+Automobile;Vente VO;PAC;210;8.9;Qualifié (ISO 20252);Élevé;contact@ventevo-pac.fr
+Automobile;Entretien;NAQ;67;6.8;Litige (Modéré);Faible;contact@entretien-naq.fr
+Services;Immobilier;OCC;340;9.1;Excellence (Blockchain);Très Élevé;contact@immobilier-occ.fr
+Services;Déménagement;BFC;56;7.2;Standard (Vérifié);Modéré;contact@demenagement-bfc.fr
+Services;Aide à la personne;PDL;112;8.5;Qualifié (ISO 20252);Élevé;contact@aideàlapersonne-pdl.fr
+Tourisme;Gîtes de Prestige;GDE;78;9.8;Excellence (Blockchain);Très Élevé;contact@gîtesdeprestige-gde.fr
+Tourisme;Hôtellerie;ARA;145;8.2;Qualifié (ISO 20252);Modéré;contact@hotellerie-ara.fr
+Tourisme;Camping;PAC;320;7.9;Standard (Vérifié);Élevé;contact@camping-pac.fr
+Habitat;Menuiserie;PDL;95;9.0;Excellence (Blockchain);Élevé;contact@menuiserie-pdl.fr
+Habitat;Rénovation;IDF;230;8.4;Qualifié (ISO 20252);Très Élevé;contact@renovation-idf.fr
+Automobile;Vente VO;GDE;180;9.3;Excellence (Blockchain);Élevé;contact@ventevo-gde.fr
+Services;Communication;IDF;34;9.7;Excellence (Blockchain);Modéré;contact@communication-idf.fr
+Habitat;Façade;NAQ;76;7.1;Standard (Vérifié);Élevé;contact@façade-naq.fr
+Tourisme;Chambres d'hôtes;BRE;54;9.6;Excellence (Blockchain);Modéré;contact@chambresd'hotes-bre.fr
+Services;Nettoyage;OCC;120;8.1;Qualifié (ISO 20252);Élevé;contact@nettoyage-occ.fr
+Habitat;Chauffage;GDE;142;8.8;Excellence (Blockchain);Très Élevé;contact@chauffage-gde.fr

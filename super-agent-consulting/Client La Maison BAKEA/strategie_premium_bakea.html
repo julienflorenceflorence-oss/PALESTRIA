@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratégie Business Network - Édition Prestige A4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Prestige Gold - Focus Corporate Chic */
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            min-height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 1px solid var(--accent); padding-bottom: 5px; margin-bottom: 30px; font-size: 2rem;}
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-left: 5px solid var(--accent); padding-left: 15px; margin: 25px 0 15px 0; font-size: 1.4rem; }
+        h3 { font-family: 'Montserrat'; font-weight: 600; color: #E0E0E0; margin-top: 15px; font-size: 1.1rem; }
+        
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: var(--accent); font-size: 1.2rem;
+            text-align: center; padding: 20px; border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); margin: 30px 0;
+        }
+
+        .content { flex-grow: 1; text-align: justify; font-size: 10.5pt; font-weight: 300; line-height: 1.6; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 10pt; }
+        th, td { border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; text-align: left; }
+        th { font-family: 'Cinzel'; color: var(--accent); font-weight: normal; }
+        td strong { color: var(--accent); font-weight: normal; font-family: 'Cinzel'; }
+
+        ul { margin-top: 5px; padding-left: 20px; }
+        li { margin-bottom: 8px; }
+
+        .footer {
+            border-top: 1px solid var(--accent); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 9pt;
+        }
+        .page-num::after { counter-increment: page; content: "P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>Les Millésimes de la Haute Époque</h1>
+        <div class="quote">"Le siège d'un cercle d'influence alliant l'excellence des vins de Gaillac et le réseautage d'affaires premium."</div>
+        
+        <div class="content">
+            <h2>I. Positionnement "Business Network"</h2>
+            <p>La Maison Bakéa transforme son patrimoine d'exception en un véritable levier d'affaires. L'objectif est d'attirer une clientèle B2B (Top Management, dirigeants locaux, partenaires) lors de soirées structurées autour de la thématique œnologique, en capitalisant sur la déconnexion et l'authenticité de la bâtisse.</p>
+            
+            <h2>II. Formats d'Événements</h2>
+            <h3>Le Cercle des Gouverneurs</h3>
+            <p>Dîner assis (12 personnes max) dans le grand salon médiéval. Présentation d'un millésime d'exception par un vigneron, suivi d'une discussion sur une thématique business. Tarif : 220 € HT / pers.</p>
+            
+            <h3>Terrasses d'Influence</h3>
+            <p>Cocktail dînatoire (25 personnes) sur les terrasses panoramiques. Networking fluide, dégustation de vins blancs de Gaillac et produits locaux bio. Tarif : 95 € HT / pers.</p>
+
+            <h2>III. Projection Financière & Food Cost Optimisé</h2>
+            <p>En appliquant une maîtrise stricte des fiches techniques, le recours aux produits de saison et la négociation directe avec les domaines viticoles, la rentabilité de ces événements est maximisée.</p>
+
+            <table>
+                <tr>
+                    <th>Poste de coût</th>
+                    <th>Taux Cible</th>
+                    <th>Levier appliqué</th>
+                </tr>
+                <tr>
+                    <td>Restauration (Food Cost)</td>
+                    <td><strong>28%</strong></td>
+                    <td>Fiches techniques de précision & Saisonnalité</td>
+                </tr>
+                <tr>
+                    <td>Vins & Spiritueux</td>
+                    <td><strong>12%</strong></td>
+                    <td>Négociation directe avec les Domaines de Gaillac</td>
+                </tr>
+                <tr>
+                    <td>Frais de Service / Logistique</td>
+                    <td><strong>15%</strong></td>
+                    <td>Stabilité & Formation des équipes</td>
+                </tr>
+                <tr>
+                    <td>Marge Brute Dégagée</td>
+                    <td><strong>45%</strong></td>
+                    <td>Excellente performance B2B</td>
+                </tr>
+            </table>
+
+            <p><strong>Impact CA sur 1 "Cercle des Gouverneurs" :</strong><br>
+            Sur un CA HT de 2 640 €, le bénéfice net de l'événement s'élève à environ 1 188 € (+264 € de gain net grâce à l'optimisation du Food Cost de 35% à 28%).</p>
+            
+            <h2>IV. Déploiement</h2>
+            <ul>
+                <li>Mise en place d'un calendrier de rencontres trimestrielles.</li>
+                <li>Création de fiches techniques (grammages précis) pour chaque prestation événementielle afin de garantir les 28% de coût matière.</li>
+                <li>Recyclage des excédents d'afterwork en amuse-bouches pour l'hôtel (gestion des pertes).</li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <div>Maison Bakéa - Stratégie Business Network Premium</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

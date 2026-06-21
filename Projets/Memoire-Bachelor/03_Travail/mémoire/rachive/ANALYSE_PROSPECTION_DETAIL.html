@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse Prospection - Happy House Edition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --card-bg: #1A1D23;
+            --text: #FFFFFF;
+            --text-dim: #A0A0A0;
+            --border: rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 40px 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 4px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            margin-top: 40px;
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+        }
+
+        .question {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        input[type="number"], 
+        input[type="text"], 
+        textarea {
+            width: 100%;
+            padding: 12px;
+            background: #000;
+            border: 1px solid #444;
+            color: #fff;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.2);
+        }
+
+        .qcm-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .option:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .option input {
+            margin-right: 15px;
+        }
+
+        .hint {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .btn-copy {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 15px 30px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            width: 100%;
+            cursor: pointer;
+            margin-top: 40px;
+            transition: 0.4s;
+        }
+
+        .btn-copy:hover {
+            background: #fff;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+        }
+
+        .status-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Analyse Prospection Détaillée</h1>
+        
+        <div class="section">
+            <h2>1. Sourcing & Volume de Leads</h2>
+            <div class="question">
+                <label>Volume total de leads extraits via Pharow :</label>
+                <input type="number" id="volume_leads" value="126000">
+                <p class="hint">Base de données identifiée pour le TAM (Total Addressable Market).</p>
+            </div>
+            <div class="question">
+                <label>Qualité de la donnée (Taux d'emails valides) :</label>
+                <div class="qcm-grid">
+                    <label class="option"><input type="radio" name="data_quality" value="high"> Haute (> 80% - Données vérifiées)</label>
+                    <label class="option"><input type="radio" name="data_quality" value="medium" checked> Moyenne (50-80% - Nécessite nettoyage)</label>
+                    <label class="option"><input type="radio" name="data_quality" value="low"> Faible (< 50% - Trop de bounces)</label>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>2. Performances de l'Outbound (Mensuel)</h2>
+            <div class="question">
+                <label>Volume d'appels (Cold Calling) :</label>
+                <input type="number" id="calls_volume" value="1000">
+                <p class="hint">Standard : 50 appels/jour sur 20 jours ouvrés.</p>
+            </div>
+            <div class="question">
+                <label>Taux de contact effectif (Join Rate) :</label>
+                <input type="number" id="join_rate" value="15">
+                <p class="hint">En % (Moyenne hôtellerie : 10-15%).</p>
+            </div>
+            <div class="question">
+                <label>RDV Qualifiés obtenus :</label>
+                <input type="number" id="meetings_booked" value="15">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>3. Conversion & Closing (AE)</h2>
+            <div class="question">
+                <label>Taux de Closing (Signature / RDV) :</label>
+                <div class="qcm-grid">
+                    <label class="option"><input type="radio" name="closing_perf" value="elite"> Élite (> 30%)</label>
+                    <label class="option"><input type="radio" name="closing_perf" value="pro" checked> Professionnel (15-25%)</label>
+                    <label class="option"><input type="radio" name="closing_perf" value="standard"> Standard (5-10%)</label>
+                </div>
+            </div>
+            <div class="question">
+                <label>Durée moyenne du cycle de vente :</label>
+                <input type="text" id="sales_cycle" value="15 jours">
+                <p class="hint">Depuis le premier contact jusqu'à la signature.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>4. Analyse de l'Efficacité (ROI)</h2>
+            <div class="question">
+                <label>Principal levier de succès de Novembre (10 Signatures) :</label>
+                <textarea id="success_lever" rows="3">Prospection ingénieuse via segmentation chirurgicale et reporting de performance quotidien pour réajuster le pitch.</textarea>
+            </div>
+            <div class="question">
+                <label>Impact du blocage des emails (Ruddy) :</label>
+                <div class="qcm-grid">
+                    <label class="option"><input type="radio" name="block_impact" value="critical" checked> Critique : Ralentissement du pipe de 70%</label>
+                    <label class="option"><input type="radio" name="block_impact" value="major"> Majeur : Surcharge de prospection manuelle</label>
+                    <label class="option"><input type="radio" name="block_impact" value="moderate"> Modéré : Compensé par le Cold Calling</label>
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-copy" onclick="copyData()">Copier les données pour le Mémoire</button>
+    </div>
+
+    <script>
+        function copyData() {
+            let data = "ANALYSE PROSPECTION DÉTAILLÉE :\n";
+            data += "- Volume Leads TAM : " + document.getElementById('volume_leads').value + "\n";
+            data += "- Qualité Donnée : " + document.querySelector('input[name="data_quality"]:checked').value + "\n";
+            data += "- Appels/Mois : " + document.getElementById('calls_volume').value + "\n";
+            data += "- Join Rate : " + document.getElementById('join_rate').value + "%\n";
+            data += "- RDV Bookés : " + document.getElementById('meetings_booked').value + "\n";
+            data += "- Perf Closing : " + document.querySelector('input[name="closing_perf"]:checked').value + "\n";
+            data += "- Cycle de Vente : " + document.getElementById('sales_cycle').value + "\n";
+            data += "- Levier Succès Nov : " + document.getElementById('success_lever').value + "\n";
+            data += "- Impact Blocage Email : " + document.querySelector('input[name="block_impact"]:checked').value + "\n";
+            
+            navigator.clipboard.writeText(data).then(function() {
+                alert("Données copiées ! Collez-les dans le chat Gemini pour mise à jour du RDM.");
+            }, function(err) {
+                console.error('Erreur de copie : ', err);
+            });
+        }
+    </script>
+</body>
+</html>

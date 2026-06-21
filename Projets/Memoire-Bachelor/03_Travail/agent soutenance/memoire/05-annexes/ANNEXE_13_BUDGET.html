@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 13 - Budget Prévisionnel Growth - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --border: rgba(212, 175, 55, 0.3);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 20px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 8pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 18pt; letter-spacing: 2px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 7.5pt; }
+        th, td { border: 1px solid var(--border); padding: 6px; text-align: left; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--accent); font-family: 'Cinzel'; text-transform: uppercase; }
+
+        .total-row { background: rgba(212, 175, 55, 0.15); font-weight: 700; color: var(--accent); }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: #888;
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 13 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="header-box">
+            <div class="label">PLANIFICATION FINANCIÈRE</div>
+            <h1>BUDGET PRÉVISIONNEL GROWTH (ANNUEL)</h1>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Catégorie</th>
+                    <th>Outil / Action</th>
+                    <th>Mensuel (€)</th>
+                    <th>Annuel (€)</th>
+                    <th>ROI Attendu / Objectif</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tech & Data</strong></td>
+                    <td>Pharow / CRM Septeo</td>
+                    <td>250 €</td>
+                    <td>3 000 €</td>
+                    <td>Sourcing ultra-qualifié. Vélocité SDR.</td>
+                </tr>
+                <tr>
+                    <td><strong>Automation</strong></td>
+                    <td>Instantly / n8n</td>
+                    <td>150 €</td>
+                    <td>1 800 €</td>
+                    <td>Conversion 24/7. Gain de temps CSM.</td>
+                </tr>
+                <tr>
+                    <td><strong>Ads</strong></td>
+                    <td>LinkedIn / Meta</td>
+                    <td>800 €</td>
+                    <td>9 600 €</td>
+                    <td>Notoriété sur cible CSP+. Leads B2B.</td>
+                </tr>
+                <tr>
+                    <td><strong>Signalétique</strong></td>
+                    <td>Plaques Laiton / Welcome Kits</td>
+                    <td>300 €</td>
+                    <td>3 600 €</td>
+                    <td>Ancrage physique Prestige. Rétention.</td>
+                </tr>
+                <tr>
+                    <td><strong>Contenu</strong></td>
+                    <td>Shooting Photo / Copywriting</td>
+                    <td>200 €</td>
+                    <td>2 400 €</td>
+                    <td>Valorisation du catalogue. Effet Waouh.</td>
+                </tr>
+                <tr class="total-row">
+                    <td colspan="2">TOTAL INVESTISSEMENT GROWTH</td>
+                    <td>1 700 €</td>
+                    <td>20 400 €</td>
+                    <td>Cible : 1 000 Adhérents / ROI 12x</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

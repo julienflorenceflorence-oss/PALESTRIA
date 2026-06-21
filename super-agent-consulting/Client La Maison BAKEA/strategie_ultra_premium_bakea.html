@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stratégie Ultra-Premium - L'Écrin des Initiés</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Palette Ultra-Premium - Platine & Onyx Noir Absolu */
+            --bg: #030303;
+            --accent: #E5E4E2; /* Platine / Argent */
+            --accent-dim: rgba(229, 228, 226, 0.4);
+            --text: #F0F0F0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #000000; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            min-height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 40px rgba(255,255,255,0.05);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Double bordure pour un effet plus luxueux */
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid var(--accent-dim); pointer-events: none;
+        }
+        .inner-border::after {
+            content: ""; position: absolute; top: 2mm; left: 2mm; right: 2mm; bottom: 2mm;
+            border: 1px solid rgba(229, 228, 226, 0.1);
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 1px solid var(--accent-dim); padding-bottom: 15px; margin-bottom: 30px; font-size: 2.2rem; letter-spacing: 2px;}
+        h2 { font-family: 'Cinzel'; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 35px 0 15px 0; font-size: 1.2rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 5px;}
+        h3 { font-family: 'Cinzel'; font-weight: normal; color: #FFFFFF; margin-top: 20px; font-size: 1rem; }
+        
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: #FFFFFF; font-size: 1.3rem;
+            text-align: center; padding: 25px; margin: 30px 0; letter-spacing: 1px;
+        }
+
+        .content { flex-grow: 1; text-align: justify; font-size: 10pt; font-weight: 300; line-height: 1.8; color: #CCCCCC;}
+
+        table { width: 100%; border-collapse: collapse; margin: 30px 0; font-size: 9.5pt; }
+        th, td { border: none; border-bottom: 1px solid var(--accent-dim); padding: 15px 10px; text-align: left; }
+        th { font-family: 'Cinzel'; color: var(--accent); font-weight: normal; text-transform: uppercase; letter-spacing: 1px;}
+        td strong { color: #FFFFFF; font-weight: normal; font-family: 'Cinzel'; }
+
+        .footer {
+            border-top: 1px solid var(--accent-dim); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--accent);
+            text-transform: uppercase; letter-spacing: 2px;
+        }
+        .page-num::after { counter-increment: page; content: "P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>L'Écrin des Initiés</h1>
+        <div class="quote">"Vivez l'Histoire en comité restreint, dégustez l'introuvable."</div>
+        
+        <div class="content">
+            <h2>I. Le Paradigme Hyper-Exclusif</h2>
+            <p>La Maison Bakéa ne vend plus un événement, elle offre l'inaccessible. Le positionnement "Ultra-Premium" cible les Comités Exécutifs (CAC40, ETI), les investisseurs privés et les collectionneurs. L'offre repose sur le secret de la bâtisse, l'absence de communication publique de ces offres (No-Show visuel) et l'accès à des prestations habituellement impossibles à réserver.</p>
+            
+            <h2>II. Formats Haute Couture</h2>
+            
+            <h3>La Table du Chapitre (Dîner Confidentiel)</h3>
+            <p>Limité à 10 convives. Dîner gastronomique préparé par un Chef Étoilé invité. Dégustation de "Vins de Bibliothèque" (Vieux millésimes introuvables de Gaillac ou Grands Crus Français). Service en gants blancs, argenterie d'époque, feu de cheminée dans le salon Haute Époque.<br>
+            <span style="color: var(--accent);">Tarif d'accès : 850 € à 1 200 € HT / pers.</span></p>
+            
+            <h3>L'Enclave (Privatisation 24H)</h3>
+            <p>Privatisation totale du domaine du XVe siècle. Sécurité privée assurée, conciergerie dédiée 24h/24. Le caveau privé est ouvert pour le groupe. Masterclass historique privative.<br>
+            <span style="color: var(--accent);">Tarif de base : 15 000 € HT / jour.</span></p>
+
+            <h2>III. Projection Financière & Modèle de Rareté</h2>
+            <p>Contrairement à la restauration classique, le Food Cost n'est pas optimisé à la baisse, mais justifié par l'achat de matières premières d'exception (Caviar, Truffes, Millésimes rares, Cachet d'un chef). Le prix de vente absorbe ces coûts massifs.</p>
+
+            <table>
+                <tr>
+                    <th>Structure des Coûts</th>
+                    <th>Modèle Ultra-Premium</th>
+                    <th>Philosophie</th>
+                </tr>
+                <tr>
+                    <td>Food & Beverage Cost</td>
+                    <td><strong>35% à 40%</strong></td>
+                    <td>Matières premières d'exception, vins rares.</td>
+                </tr>
+                <tr>
+                    <td>Frais de Service (Staff)</td>
+                    <td><strong>25%</strong></td>
+                    <td>Personnel hautement qualifié (Sommelier, Maître d'hôtel).</td>
+                </tr>
+                <tr>
+                    <td>Marge Brute</td>
+                    <td><strong>35% à 40%</strong></td>
+                    <td>Haute rentabilité en valeur absolue.</td>
+                </tr>
+            </table>
+
+            <p><strong>Impact CA sur "La Table du Chapitre" (10 personnes) :</strong><br>
+            Sur un CA HT de 10 000 €, le coût direct (F&B + Staff) représente 6 000 €. Le bénéfice brut par soirée s'élève à 4 000 € pour 10 personnes seulement.</p>
+            
+            <h2>IV. Déploiement Stratégique</h2>
+            <p>Ce niveau de prestation requiert des alliances stratégiques avec les domaines les plus prestigieux et un "rituel d'arrivée" irréprochable (accueil au champagne, récit historique des murs). La commercialisation se fait par cooptation et réseau privé, garantissant la confidentialité absolue de la Maison Bakéa.</p>
+        </div>
+        
+        <div class="footer">
+            <div>Maison Bakéa - Stratégie Ultra-Premium</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,190 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Happy House | Réservation Prestige",
+        "formDescription": "Réservez votre entretien exclusif pour l'automatisation de votre propriété.",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Nom Complet",
+              "placeholder": "M. Jean Dupont"
+            },
+            {
+              "fieldLabel": "Email Professionnel",
+              "fieldType": "email",
+              "placeholder": "jean@exemple.com"
+            },
+            {
+              "fieldLabel": "Date et Heure souhaitées",
+              "fieldType": "dateTime",
+              "placeholder": "Sélectionnez un créneau"
+            },
+            {
+              "fieldLabel": "Votre Projet",
+              "fieldType": "textarea",
+              "placeholder": "Dites-nous en plus sur vos besoins..."
+            }
+          ]
+        },
+        "options": {
+          "buttonLabel": "Confirmer ma Demande Prestige"
+        }
+      },
+      "id": "form-trigger-id",
+      "name": "Formulaire Prestige",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [
+        100,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://localhost:4747/sessions",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "Formulaire Prestige PDF"
+            }
+          ]
+        }
+      },
+      "id": "create-session-id",
+      "name": "Sync Local Session",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        350,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ 'http://localhost:4747/sessions/' + $node[\"Sync Local Session\"].json[\"id\"] + '/appointments' }}",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "prospectName",
+              "value": "={{ $node[\"Formulaire Prestige\"].json[\"Nom Complet\"] }}"
+            },
+            {
+              "name": "prospectEmail",
+              "value": "={{ $node[\"Formulaire Prestige\"].json[\"Email Professionnel\"] }}"
+            },
+            {
+              "name": "startTime",
+              "value": "={{ $node[\"Formulaire Prestige\"].json[\"Date et Heure souhaitées\"] }}"
+            },
+            {
+              "name": "endTime",
+              "value": "={{ new Date(new Date($node[\"Formulaire Prestige\"].json[\"Date et Heure souhaitées\"]).getTime() + 30*60000).toISOString() }}"
+            },
+            {
+              "name": "notes",
+              "value": "={{ $node[\"Formulaire Prestige\"].json[\"Votre Projet\"] }}"
+            }
+          ]
+        }
+      },
+      "id": "create-appt-id",
+      "name": "Sync Local Appointment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        600,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "calendar": "primary",
+        "start": "={{ $node[\"Formulaire Prestige\"].json[\"Date et Heure souhaitées\"] }}",
+        "end": "={{ new Date(new Date($node[\"Formulaire Prestige\"].json[\"Date et Heure souhaitées\"]).getTime() + 30*60000).toISOString() }}",
+        "additionalFields": {
+          "summary": "=RDV Prestige : {{ $node[\"Formulaire Prestige\"].json[\"Nom Complet\"] }}",
+          "description": "={{ $node[\"Formulaire Prestige\"].json[\"Votre Projet\"] }}",
+          "attendees": [
+            "={{ $node[\"Formulaire Prestige\"].json[\"Email Professionnel\"] }}"
+          ]
+        }
+      },
+      "id": "calendar-id",
+      "name": "Google Calendar",
+      "type": "n8n-nodes-base.googleCalendar",
+      "typeVersion": 1,
+      "position": [
+        850,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "prestige@happy-house.fr",
+        "toEmail": "={{ $node[\"Formulaire Prestige\"].json[\"Email Professionnel\"] }}",
+        "subject": "🏠 Confirmation : Votre Entretien Prestige Happy House",
+        "html": "=<div style=\"background:#0F1115; color:#E0E0E0; padding:40px; font-family:serif; border:2px solid #D4AF37;\">\n  <h1 style=\"color:#D4AF37; font-family:'Cinzel', serif; text-align:center;\">HAPPY HOUSE</h1>\n  <p>Bonjour {{ $node[\"Formulaire Prestige\"].json[\"Nom Complet\"] }},</p>\n  <p>Votre demande d'entretien a bien été enregistrée pour le <strong>{{ $node[\"Formulaire Prestige\"].json[\"Date et Heure souhaitées\"] }}</strong>.</p>\n  <p>Un expert Happy House vous contactera à cette heure précise.</p>\n  <hr style=\"border:0; border-top:1px solid #D4AF37; margin:30px 0;\">\n  <p style=\"text-align:center;\"><em>L'Excellence au service de l'Immobilier.</em></p>\n</div>"
+      },
+      "id": "email-id",
+      "name": "Confirmation Email",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 1,
+      "position": [
+        1100,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Formulaire Prestige": {
+      "main": [
+        [
+          {
+            "node": "Sync Local Session",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sync Local Session": {
+      "main": [
+        [
+          {
+            "node": "Sync Local Appointment",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sync Local Appointment": {
+      "main": [
+        [
+          {
+            "node": "Google Calendar",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Calendar": {
+      "main": [
+        [
+          {
+            "node": "Confirmation Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

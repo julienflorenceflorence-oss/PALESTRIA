@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALESTRIA — The Behavioral Closing Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* PALETTE PALESTRIA - PURE DISC */
+            --bg: #020205; 
+            --surface: #0A0A12;
+            --blue: #007BFF;   /* DISC: Conscient */
+            --red: #FF003C;    /* DISC: Dominant */
+            --yellow: #FFD700;  /* DISC: Influence */
+            --green: #00E676;   /* DISC: Stable */
+            --text: #F8F9FA;
+            --muted: #888888;
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Montserrat', sans-serif; 
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(0, 123, 255, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(255, 0, 60, 0.08) 0%, transparent 50%);
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+
+        /* LOGO OFFICIEL PALESTRIA */
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .logo-official {
+            width: 100%;
+            max-width: 250px; /* Taille réduite */
+            height: auto;
+            margin: 0 auto;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.05));
+            /* Rognage visuel si le logo a des bords blancs */
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .slogan {
+            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            letter-spacing: 5px;
+            color: var(--red);
+            margin-top: 15px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero-quote {
+            max-width: 800px;
+            margin: 60px auto;
+            font-size: 1.3rem;
+            font-weight: 300;
+            border-left: 3px solid var(--red);
+            padding-left: 30px;
+            text-align: left;
+            color: #ddd;
+            font-style: italic;
+        }
+
+        /* BARRE DISC */
+        .disc-bar {
+            display: flex;
+            height: 4px;
+            width: 100%;
+            margin-bottom: 80px;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        .db-r { flex: 1; background: var(--red); }
+        .db-y { flex: 1; background: var(--yellow); }
+        .db-g { flex: 1; background: var(--green); }
+        .db-b { flex: 1; background: var(--blue); }
+
+        /* SECTIONS */
+        section { margin-bottom: 100px; }
+
+        h2 {
+            font-family: 'Orbitron';
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        h2::after { content: ""; flex: 1; height: 1px; background: var(--border); }
+
+        /* GRILLE ORIZONS */
+        .orizon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .orizon-card {
+            background: var(--surface);
+            border: 2px solid var(--border);
+            padding: 40px;
+            border-radius: 40px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+        .orizon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .orizon-num {
+            font-family: 'Orbitron';
+            font-size: 0.75rem;
+            color: var(--yellow);
+            margin-bottom: 15px;
+            display: block;
+            letter-spacing: 2px;
+        }
+        .orizon-card h3 {
+            font-family: 'Orbitron';
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+        .orizon-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.8;
+        }
+
+        /* FEATURES */
+        .feature-box {
+            background: var(--surface);
+            border: 2px solid var(--blue);
+            padding: 50px;
+            margin-top: 30px;
+            border-radius: 40px;
+            box-shadow: inset 0 0 30px rgba(0, 123, 255, 0.05);
+        }
+
+        .tags { margin-bottom: 25px; display: flex; gap: 10px; }
+        .tag {
+            padding: 6px 16px;
+            font-size: 0.7rem;
+            font-weight: 900;
+            font-family: 'Orbitron';
+            border-radius: 4px;
+            color: #000;
+            letter-spacing: 1px;
+        }
+        .tag-disc { background: var(--yellow); }
+        .tag-pcm { background: var(--blue); color: #fff; }
+
+        .feature-list { list-style: none; }
+        .feature-list li {
+            margin-bottom: 25px;
+            padding-left: 35px;
+            position: relative;
+            font-size: 1.05rem;
+        }
+        .feature-list li::before {
+            content: "»";
+            position: absolute;
+            left: 0;
+            color: var(--red);
+            font-weight: bold;
+            font-size: 1.4rem;
+            line-height: 1;
+        }
+        .feature-list strong { color: #fff; }
+
+        /* SCORE DCS */
+        .score-panel {
+            text-align: center;
+            padding: 80px 40px;
+            border: 3px solid var(--green);
+            background: rgba(0, 230, 118, 0.05);
+            border-radius: 40px;
+            box-shadow: 0 0 40px rgba(0, 230, 118, 0.1);
+        }
+        .score-label { font-family: 'Orbitron'; font-size: 0.9rem; letter-spacing: 3px; color: var(--green); }
+        .score-value { font-family: 'Orbitron'; font-size: clamp(3rem, 10vw, 5rem); font-weight: 900; color: var(--green); display: block; margin: 10px 0; }
+
+        footer {
+            text-align: center;
+            padding: 60px 0;
+            font-family: 'Orbitron';
+            font-size: 0.7rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            border-top: 1px solid var(--border);
+        }
+
+        @media (max-width: 600px) {
+            .container { padding: 40px 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <!-- OFFICIAL BRAND LOGO IMAGE -->
+            <img src="../scripts/PALESTRIA LOGO.png" alt="PALESTRIA Official Logo" class="logo-official">
+            <span class="slogan">Entrez dans l'arène du closing immersif</span>
+            
+            <div class="hero-quote">
+                "Ne pratiquez plus sur vos vrais clients. Entrez dans l'arène où l'IA simule l'imprévisible et décode l'invisible."
+            </div>
+        </header>
+
+        <div class="disc-bar">
+            <div class="db-r"></div>
+            <div class="db-y"></div>
+            <div class="db-g"></div>
+            <div class="db-b"></div>
+        </div>
+
+        <section>
+            <h2>01 — LES 3 ORIZONS</h2>
+            <div class="orizon-grid">
+                <div class="orizon-card">
+                    <span class="orizon-num">ORIZON I</span>
+                    <h3>IMMOBILIER</h3>
+                    <p>Négociation de mandats exclusifs et closing de transactions à haute charge émotionnelle.</p>
+                </div>
+                <div class="orizon-card">
+                    <span class="orizon-num">ORIZON II</span>
+                    <h3>RETAIL</h3>
+                    <p>Renégociation de baux commerciaux et pilotage des acheteurs face aux centrales d'achat.</p>
+                </div>
+                <div class="orizon-card">
+                    <span class="orizon-num">ORIZON III</span>
+                    <h3>C.H.R.</h3>
+                    <p>Cessions de fonds de commerce, gestion VIP et résolution de crises hôtelières.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>02 — FONCTIONNALITÉS ENTREPRISE</h2>
+            <div class="orizon-grid">
+                <div class="orizon-card" style="border-left: 3px solid var(--green);">
+                    <span class="orizon-num">ADAPTATIF</span>
+                    <h3>DU DÉBUTANT À L'EXPERT</h3>
+                    <p>3 niveaux d'intensité :<br>
+                    <strong>» ROOKIE</strong> (Scénarios guidés)<br>
+                    <strong>» PRO</strong> (Objections complexes)<br>
+                    <strong>» ELITE</strong> (IA hostile & haute pression)</p>
+                </div>
+                <div class="orizon-card" style="border-left: 3px solid var(--red);">
+                    <span class="orizon-num">RH & TALENT</span>
+                    <h3>RECRUTEMENT PRÉDICTIF</h3>
+                    <p>Évaluez le potentiel de vos candidats via des tests de personnalité <strong>DISC/PCM</strong> immersifs en situation de closing réelle.</p>
+                </div>
+                <div class="orizon-card" style="border-left: 3px solid var(--yellow);">
+                    <span class="orizon-num">FLEXIBILITÉ</span>
+                    <h3>MARQUE BLANCHE & CRM</h3>
+                    <p>Déployez sous vos couleurs. <strong>Connectable nativement</strong> sur vos CRM <strong>HubSpot</strong> et <strong>Salesforce</strong> pour une répétition basée sur vos vraies données.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>03 — ENGINE COMPORTEMENTAL & FINE-TUNING</h2>
+            <div class="feature-box">
+                <div class="tags">
+                    <span class="tag tag-disc">METHODE DISC</span>
+                    <span class="tag tag-pcm">METHODE PCM</span>
+                    <span class="tag" style="background: var(--red); color: #fff;">FINE-TUNED LLM</span>
+                </div>
+                <p>PALESTRIA repose sur une architecture IA propriétaire, fine-tunée sur plus de 10 000 heures de négociations réelles. Notre moteur ne se contente pas de répondre, il <strong>scanne</strong>.</p>
+                <ul class="feature-list">
+                    <li><strong>Analyse de profilage :</strong> Détection instantanée du profil DISC de votre interlocuteur.</li>
+                    <li><strong>Stress Bio-Feedback :</strong> Analyse du ton de voix, des silences et de l'assurance vocale.</li>
+                    <li><strong>Adaptabilité PCM :</strong> Score de votre capacité à synchroniser votre canal de communication.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <h2>04 — DASHBOARD DE PILOTAGE BIOMÉTRIQUE</h2>
+            <div class="orizon-grid">
+                <div class="orizon-card" style="border-top: 2px solid var(--blue);">
+                    <h3 style="color: var(--blue);">CAPTEURS VOCAUX</h3>
+                    <p style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--blue);">[ VOICE SPECTRUM ANALYZER ]</p>
+                    <p>Mesure de la micro-tremblote, du débit syllabique et de l'ancrage vocal pour détecter les chutes de confiance.</p>
+                </div>
+                <div class="orizon-card" style="border-top: 2px solid var(--red);">
+                    <h3 style="color: var(--red);">SENTIMENT LIVE</h3>
+                    <p style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--red);">[ REAL-TIME ALIGNMENT ]</p>
+                    <p>Indicateur de tension entre l'IA et l'utilisateur. Visualisation en temps réel de la courbe de persuasion.</p>
+                </div>
+                <div class="orizon-card" style="border-top: 2px solid var(--yellow);">
+                    <h3 style="color: var(--yellow);">SCORING RH</h3>
+                    <p style="font-family: 'Orbitron'; font-size: 0.8rem; color: var(--yellow);">[ DATA-DRIVEN RECRUITMENT ]</p>
+                    <p>Métriques agrégées sur l'agilité comportementale, idéales pour valider un recrutement sur des preuves objectives.</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>05 — LEADERSHIP & MANAGEMENT DES TALENTS</h2>
+            <div class="feature-box" style="border-color: var(--red); background: rgba(255, 0, 60, 0.02);">
+                <div class="tags">
+                    <span class="tag" style="background: var(--red); color: #fff;">ALERTE DÉTRESSE</span>
+                    <span class="tag" style="background: var(--green); color: #000;">PREVENTIVE 1-TO-1</span>
+                </div>
+                <h3 style="font-family: 'Orbitron'; margin-bottom: 20px;">PILOTAGE DE LA RÉTENTION</h3>
+                <p>Ne laissez plus vos meilleurs talents s'épuiser ou décrocher. PALESTRIA surveille la santé émotionnelle de vos équipes :</p>
+                <ul class="feature-list" style="margin-top: 25px;">
+                    <li><strong style="color: var(--red);">» Alerte Décrochage Immédiate :</strong> Notification automatique dès que l'IA détecte une perte de résilience ou un stress chronique lors des simulations.</li>
+                    <li><strong style="color: var(--yellow);">» Diagnostic de Fatigue Comportementale :</strong> Visualisez qui est en zone de risque "Burn-out" avant que cela n'impacte les ventes réelles.</li>
+                    <li><strong style="color: var(--green);">» Aide à la préparation 1-to-1 :</strong> Le dashboard génère une fiche de synthèse pour le manager afin de mener un entretien de soutien constructif et factuel.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="score-panel">
+            <span class="score-label">DEAL CLOSING SCORE</span>
+            <span class="score-value">94%</span>
+            <p style="color: var(--muted); font-size: 0.8rem; letter-spacing: 1px;">MÉTRIQUE DE SURVIE EN NÉGOCIATION</p>
+        </section>
+
+        <footer>
+            PALESTRIA — PROPULSÉ PAR L'INTELLIGENCE COMPORTEMENTALE 2026<br>
+            CONFIDENTIEL | PALESTRI-A.IO
+        </footer>
+    </div>
+
+</body>
+</html>

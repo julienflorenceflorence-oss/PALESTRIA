@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualisation Diplôme - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --text: #F4F4F4;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        header {
+            padding: 15px 20px;
+            background: rgba(22, 26, 35, 0.95);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .btn-back {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            border-radius: 5px;
+        }
+
+        .btn-back:hover {
+            background: var(--gold);
+            color: var(--bg);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .diploma-title {
+            font-family: 'Cinzel';
+            color: var(--gold);
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-align: right;
+        }
+
+        .viewer-container {
+            flex: 1;
+            width: 100%;
+            position: relative;
+            background: #000; /* Fond noir pour les images cadrées */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        iframe, img.diploma-img {
+            max-width: 100%;
+            max-height: 100%;
+            border: none;
+            object-fit: contain; /* Assure que l'image tient entièrement dans l'écran */
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 10px; }
+            .diploma-title { display: none; }
+            .btn-back { font-size: 0.65rem; padding: 8px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="diplomes.html" class="btn-back" id="back-btn">← Retour au Portfolio</a>
+        <div class="diploma-title" id="cert-title">Certification Prestige</div>
+    </header>
+
+    <div class="viewer-container" id="viewer-content">
+        <!-- Contenu dynamique (iframe ou img) -->
+    </div>
+
+    <script>
+        // Récupération des paramètres de l'URL
+        const params = new URLSearchParams(window.location.search);
+        const file = params.get('file');
+        const title = params.get('title');
+        const anchorId = params.get('id'); // Nouvel ID d'ancre
+        const container = document.getElementById('viewer-content');
+        const backBtn = document.getElementById('back-btn');
+
+        // Mise à jour du bouton retour avec l'ancre
+        if (anchorId) {
+            backBtn.href = `diplomes.html#${anchorId}`;
+        }
+
+        if (file) {
+            const isImage = file.toLowerCase().match(/\.(png|jpg|jpeg|webp)$/);
+            
+            if (isImage) {
+                const img = document.createElement('img');
+                img.src = file;
+                img.className = 'diploma-img';
+                img.alt = title || "Diplôme";
+                
+                // Dézoom spécifique pour Google Fundamentals
+                if (title && decodeURIComponent(title).includes("Google Fundamentals")) {
+                    img.style.transform = "scale(0.9)";
+                }
+                
+                container.appendChild(img);
+            } else {
+                const iframe = document.createElement('iframe');
+                // Ajout des options de vue PDF (Fit pour ajuster à la page)
+                iframe.src = file + (file.toLowerCase().endsWith('.pdf') ? "#view=Fit" : "");
+                iframe.id = 'pdf-frame';
+                iframe.title = title || "Visualisation du diplôme";
+                container.appendChild(iframe);
+            }
+        }
+
+        if (title) {
+            const decodedTitle = decodeURIComponent(title);
+            document.getElementById('cert-title').textContent = decodedTitle;
+            document.title = decodedTitle + " - Julien FLORENCE";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Standards Cold Call 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent-cyan: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--surface);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 50px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--brand-gradient);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .doc-type {
+            font-family: 'Cinzel';
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            font-size: 1.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #FFF;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .container { padding: 30px 15px; border-radius: 0; border-left: none; border-right: none; }
+            .grid { grid-template-columns: 1fr; }
+            .logo { font-size: 1.5rem; }
+            h1 { font-size: 1.2rem; }
+            .stat-value { font-size: 1.5rem; }
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-purple);
+        }
+
+        .card-title {
+            font-family: 'Cinzel';
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            display: block;
+            margin-bottom: 5px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-desc {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .framework {
+            border-left: 3px solid var(--accent-coral);
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        .framework-step {
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-weight: 700;
+            color: var(--accent-coral);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            display: block;
+        }
+
+        .step-desc {
+            font-size: 0.9rem;
+            color: #FFF;
+        }
+
+        .source-tag {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+            margin-top: 20px;
+            text-align: right;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.7rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">QUESTIA</div>
+            <div class="doc-type">Intelligence Commerciale — Unité d'Élite</div>
+        </header>
+
+        <h1>Standards Cold Call B2B (Mise à jour 2025)</h1>
+
+        <div class="grid">
+            <!-- KPIS GONG -->
+            <div class="card">
+                <div class="card-title">⏱️ Durée & Engagement</div>
+                <span class="stat-value">93 Sec.</span>
+                <p class="stat-desc">Durée moyenne d'un premier contact réussi. La patience du prospect a augmenté de 12%.</p>
+                <div class="framework">
+                    <div class="framework-step">
+                        <span class="step-title">Ratio de Parole</span>
+                        <span class="step-desc">45% Vous | 55% Prospect</span>
+                    </div>
+                </div>
+                <span class="source-tag">Source: Gong.io</span>
+            </div>
+
+            <!-- KPIS COGNISM -->
+            <div class="card">
+                <div class="card-title">📞 Performance Volume</div>
+                <span class="stat-value">2.5%</span>
+                <p class="stat-desc">Taux de conversion moyen (Appel vers RDV/Test). Nécessite environ 18 tentatives.</p>
+                <div class="framework">
+                    <div class="framework-step">
+                        <span class="step-title">Timing Idéal</span>
+                        <span class="step-desc">Mercredi & Jeudi (10h-11h30)</span>
+                    </div>
+                </div>
+                <span class="source-tag">Source: Cognism</span>
+            </div>
+
+            <!-- KPIS SALESHIVE -->
+            <div class="card">
+                <div class="card-title">🧠 Psychologie</div>
+                <span class="stat-value">11-14</span>
+                <p class="stat-desc">Nombre de questions idéal pour un call de découverte réussi (70% de succès).</p>
+                <div class="framework">
+                    <div class="framework-step">
+                        <span class="step-title">L'Ouverture</span>
+                        <span class="step-desc">Permission-based approach (70% de chance en plus).</span>
+                    </div>
+                </div>
+                <span class="source-tag">Source: SalesHive</span>
+            </div>
+
+            <!-- STRUCTURE PAS -->
+            <div class="card">
+                <div class="card-title">⚡ Framework P.A.S</div>
+                <div class="framework">
+                    <div class="framework-step">
+                        <span class="step-title">P - Problem</span>
+                        <span class="step-desc">Identifier la charge mentale invisible.</span>
+                    </div>
+                    <div class="framework-step">
+                        <span class="step-title">A - Agitate</span>
+                        <span class="step-desc">Connecter la douleur aux résultats de l'école.</span>
+                    </div>
+                    <div class="framework-step">
+                        <span class="step-title">S - Solution</span>
+                        <span class="step-desc">L'assistant IA QuestIA (Libération).</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            CONFORMITÉ AUX STANDARDS INTERNATIONAUX — QUESTIA 2026
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+Indicateur,Valeur Actuelle,Objectif,Unite,Pole,Note
+Reponses Sondage B2B,0,40,Nombre,Sales,Validation marche initiale
+Prospects Scrapes,0,1500,Nombre,Sales,Cible Ecoles de Commerce / OF
+Taux Ouverture Mails,0,45,%,Sales,Performance sequences Lemlist
+Precision Scoring IA,0,95,%,Tech,Moteur de certification automatique
+Latence IA Vocale,0,2.2,Secondes,Tech,Rapidite de reponse du simulateur
+Taux de Completion Vise,0,85,%,CSM,Engagement record sur le logiciel
+ROI Client Projete,0,65,%,Strategie,Economie pour les ecoles vs presentiel
+Intentions d'achat (LOI),0,3,Nombre,Sales,Preuve de traction commerciale
+Engagement Social (Partages),0,25,%,CSM,Effet viral du Challenge National

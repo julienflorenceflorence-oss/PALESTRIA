@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DEEL 2026 - STRATÉGIE EUROPE COMPLETE</title>
+    <style>
+        :root {
+            --deel-yellow: #FFE27C;
+            --deel-black: #1B1B1B;
+            --deel-white: #FFFFFF;
+            --deel-gray: #4A5568;
+        }
+        body { 
+            margin: 0; 
+            background: var(--deel-black); 
+            color: var(--deel-white); 
+            font-family: 'Helvetica Neue', Arial, sans-serif; 
+            overflow: hidden;
+        }
+        .presentation { width: 100vw; height: 100vh; position: relative; }
+        .slide { 
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; justify-content: center; align-items: center; 
+            text-align: center; padding: 60px; box-sizing: border-box;
+            opacity: 0; transition: opacity 0.5s ease;
+            visibility: hidden;
+        }
+        .slide.active { opacity: 1; z-index: 10; visibility: visible; }
+        h1 { font-size: 100px; color: var(--deel-yellow); text-transform: uppercase; letter-spacing: 12px; margin: 0; }
+        h2 { font-size: 45px; border-bottom: 3px solid var(--deel-yellow); padding-bottom: 15px; margin-bottom: 40px; color: var(--deel-yellow); text-transform: uppercase; }
+        h3 { font-size: 28px; color: var(--deel-yellow); margin-top: 0; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .kpi-grid { display: flex; justify-content: center; gap: 30px; margin-top: 20px; flex-wrap: wrap; }
+        .kpi-box { 
+            background: rgba(255, 226, 124, 0.05); 
+            border: 1px solid var(--deel-yellow); 
+            padding: 30px; border-radius: 20px; width: 280px;
+        }
+        .kpi-val { font-size: 50px; font-weight: bold; color: var(--deel-yellow); display: block; margin-bottom: 5px; }
+        .label { font-size: 16px; text-transform: uppercase; letter-spacing: 2px; opacity: 0.8; }
+        
+        .content-box { 
+            max-width: 900px; text-align: left; font-size: 22px; line-height: 1.6; 
+            background: rgba(255, 255, 255, 0.03); padding: 40px; border-radius: 20px; border-left: 5px solid var(--deel-yellow);
+        }
+        
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; width: 100%; max-width: 1000px; }
+        .swot-card { background: rgba(255, 255, 255, 0.05); padding: 30px; border-radius: 15px; text-align: left; border: 1px solid rgba(255, 226, 124, 0.2); }
+        .swot-card ul { padding-left: 20px; margin: 0; }
+        .swot-card li { margin-bottom: 10px; font-size: 18px; }
+
+        .footer { position: fixed; bottom: 30px; width: 100%; text-align: center; font-size: 14px; opacity: 0.4; color: var(--deel-yellow); letter-spacing: 3px; }
+        .controls { position: fixed; bottom: 30px; right: 30px; z-index: 100; }
+        button { background: transparent; border: 1px solid var(--deel-yellow); color: var(--deel-yellow); padding: 10px 20px; cursor: pointer; margin-left: 10px; font-size: 12px; letter-spacing: 1px; }
+        button:hover { background: var(--deel-yellow); color: var(--deel-black); }
+    </style>
+</head>
+<body>
+
+    <div class="presentation">
+        <!-- Slide 1: Titre -->
+        <div class="slide active" id="s1">
+            <h1>DEEL</h1>
+            <p style="font-size: 30px; letter-spacing: 8px; margin-top: 20px;">EXPANSION EUROPE 2026</p>
+            <div class="footer">DIRECTION GÉNÉRALE • DOCUMENT CONFIDENTIEL</div>
+        </div>
+
+        <!-- Slide 2: Problématique SMART -->
+        <div class="slide" id="s2">
+            <h2>PROBLÉMATIQUE SMART</h2>
+            <div class="content-box">
+                <p>Comment augmenter de <span style="color:var(--deel-yellow)">+20% les MQL</span> en Europe d'ici 12 mois tout en réduisant le CAC de <span style="color:var(--deel-yellow)">15%</span> ?</p>
+                <ul style="margin-top:20px;">
+                    <li>Objectif : 6 000 MQL / an</li>
+                    <li>Cible CAC : 1 530 €</li>
+                    <li>ROI Positif : Dès le mois 8</li>
+                </ul>
+            </div>
+            <div class="footer">OBJECTIFS STRATÉGIQUES 2026</div>
+        </div>
+
+        <!-- Slide 3: Diagnostic Marché -->
+        <div class="slide" id="s3">
+            <h2>DIAGNOSTIC MARCHÉ</h2>
+            <div class="grid-2">
+                <div class="swot-card">
+                    <h3 style="color:var(--deel-yellow)">CONCURRENCE SEO</h3>
+                    <p style="font-size:16px; opacity:0.8">Trafic organique mensuel :</p>
+                    <ul>
+                        <li><span style="color:var(--deel-yellow)">Remote :</span> 300k visites</li>
+                        <li><span style="color:var(--deel-yellow)">Deel :</span> 220k visites</li>
+                        <li><span style="color:var(--deel-yellow)">Oyster :</span> 95k visites</li>
+                    </ul>
+                </div>
+                <div class="swot-card">
+                    <h3 style="color:var(--deel-yellow)">ÉCART DE CONVERSION</h3>
+                    <ul>
+                        <li>Deel : 1,8% conv. visiteur</li>
+                        <li>Benchmark : 3,0%</li>
+                        <li>Cycle vente : 52 jours (Cible 38)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">ANALYSE CONCURRENTIELLE & PERFORMANCE</div>
+        </div>
+
+        <!-- Slide 4: SWOT -->
+        <div class="slide" id="s4">
+            <h2>FORCES & OPPORTUNITÉS</h2>
+            <div class="grid-2">
+                <div class="swot-card">
+                    <h3 style="color:var(--deel-yellow)">OPPORTUNITÉS</h3>
+                    <ul>
+                        <li>Marché EOR EU : 4,2 Md$ (+15%)</li>
+                        <li>Scale-ups Tech x2,4 en 3 ans</li>
+                        <li>Directive Transparence Salaires</li>
+                    </ul>
+                </div>
+                <div class="swot-card">
+                    <h3 style="color:var(--deel-yellow)">FORCES US POWER</h3>
+                    <ul>
+                        <li>Infrastructure 150 pays</li>
+                        <li>Plateforme Unifiée HRIS</li>
+                        <li>Capacité M&A massive (600M$)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer">ANALYSE STRATÉGIQUE SWOT</div>
+        </div>
+
+        <!-- Slide 5: Axe 1 Détails -->
+        <div class="slide" id="s5">
+            <h2>AXE 1 : ABM VERTICAL</h2>
+            <div class="content-box">
+                <h3 style="border-bottom:1px solid var(--deel-yellow); padding-bottom:10px;">Ciblage Scale-ups Tech (198k€)</h3>
+                <p style="font-size:18px; margin-top:20px;">
+                    • Ciblage chirurgical de <span style="color:var(--deel-yellow)">2 000 comptes</span> stratégiques.<br>
+                    • LinkedIn Ads séquencées (Awareness → Démo).<br>
+                    • Landing pages verticales (SaaS/FinTech/DeepTech).<br>
+                    • <strong>KPI :</strong> Conversion ≥ 3,5% | CPL < 150€.
+                </p>
+            </div>
+            <div class="footer">STRATÉGIE ACCOUNT-BASED MARKETING</div>
+        </div>
+
+        <!-- Slide 6: Axe 2 Détails -->
+        <div class="slide" id="s6">
+            <h2>AXE 2 : NURTURING & SALES</h2>
+            <div class="content-box">
+                <h3 style="border-bottom:1px solid var(--deel-yellow); padding-bottom:10px;">Efficience Commerciale (75k€)</h3>
+                <p style="font-size:18px; margin-top:20px;">
+                    • Simulateur de coût interactif (Deel vs Remote).<br>
+                    • Workflows HubSpot segmentés par secteur.<br>
+                    • Battle cards & formation équipe Sales.<br>
+                    • <strong>KPI :</strong> Cycle de vente ≤ 38j | Conv. Lead→Client ≥ 28%.
+                </p>
+            </div>
+            <div class="footer">ACCÉLÉRATION DU CYCLE DE VENTE</div>
+        </div>
+
+        <!-- Slide 7: Budget -->
+        <div class="slide" id="s7">
+            <h2>ALLOCATION BUDGÉTAIRE</h2>
+            <div class="kpi-grid">
+                <div class="kpi-box"><span class="kpi-val">198k€</span><span class="label">ABM VERTICAL</span></div>
+                <div class="kpi-box"><span class="kpi-val">75k€</span><span class="label">NURTURING</span></div>
+                <div class="kpi-box" style="background: var(--deel-yellow); color: var(--deel-black);">
+                    <span class="kpi-val" style="color: var(--deel-black);">273k€</span>
+                    <span class="label">INVESTISSEMENT TOTAL</span>
+                </div>
+            </div>
+            <div class="footer">ROI GLOBAL x12 | BREAK-EVEN MOIS 8</div>
+        </div>
+
+        <!-- Slide 8: Conclusion -->
+        <div class="slide" id="s8">
+            <h2>IMPACT FINAL M12</h2>
+            <div class="kpi-grid">
+                <div class="kpi-box"><span class="kpi-val">+20%</span><span class="label">MQL QUALIFIÉS</span></div>
+                <div class="kpi-box"><span class="kpi-val">-27%</span><span class="label">CYCLE VENTE</span></div>
+                <div class="kpi-box" style="border-color:var(--deel-white);"><span class="kpi-val" style="color:var(--deel-white);">ROI x12</span><span class="label">RETOUR / INVEST.</span></div>
+            </div>
+            <p style="margin-top:40px; font-style:italic; max-width:800px; opacity:0.8;">"L'expansion européenne est une fenêtre à durée limitée. La domination de Deel repose sur cette exécution chirurgicale."</p>
+            <div class="footer">CONCLUSION STRATÉGIQUE</div>
+        </div>
+    </div>
+
+    <div class="controls">
+        <button onclick="change(-1)">PRÉCÉDENT</button>
+        <button onclick="change(1)">SUIVANT</button>
+    </div>
+
+    <script>
+        let current = 1;
+        const total = 8;
+        function change(dir) {
+            document.getElementById(`s${current}`).classList.remove('active');
+            current += dir;
+            if (current > total) current = 1;
+            if (current < 1) current = total;
+            document.getElementById(`s${current}`).classList.add('active');
+        }
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') change(1);
+            if (e.key === 'ArrowLeft') change(-1);
+        });
+    </script>
+</body>
+</html>

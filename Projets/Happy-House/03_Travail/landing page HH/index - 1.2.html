@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinaire Happy House - L'Art de l'Hospitalité Premium</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bleu-principal: #0B2D5C;
+            --dore: #D4A574;
+            --blanc: #FFFFFF;
+            --gris-texte: #4A4A4A;
+            --font-titre: 'Playfair Display', serif;
+            --font-corps: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* --- STYLES DE BASE (MOBILE FIRST - XS) --- */
+        body {
+            font-family: var(--font-corps);
+            background-color: var(--bleu-principal);
+            color: var(--blanc);
+            font-size: 16px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-bottom: 70px; /* Espace pour le bouton CTA flottant */
+        }
+
+        .container {
+            width: 100%;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        section {
+            padding: 4rem 0; /* Increased vertical space between sections */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        section:last-child { border-bottom: none; }
+
+        h1, h2, h3 { font-family: var(--font-titre); font-weight: 700; text-transform: uppercase; }
+        
+        h1 {
+            font-size: 2.2rem;
+            color: var(--dore);
+            margin-bottom: 1rem;
+        }
+        h1 .subtitle-italic {
+            font-size: 1.8rem;
+            color: var(--blanc);
+        }
+        h2 {
+            font-size: 2rem;
+            color: var(--dore);
+            margin-bottom: 1rem;
+        }
+        h3 {
+            font-size: 1.3rem;
+            color: var(--dore);
+            margin-bottom: 1rem;
+        }
+
+        p { margin: 0 auto 1.5rem auto; }
+
+        .btn-cta {
+            display: inline-block;
+            background-color: var(--dore);
+            color: var(--blanc);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- Logo --- */
+        .logo-container { margin-bottom: 2rem; font-family: var(--font-titre); }
+        .logo-text { font-size: 2rem; font-weight: 700; color: var(--blanc); }
+        .logo-subtext { font-size: 1rem; color: var(--dore); letter-spacing: 1px; margin-top: -8px; }
+
+        /* --- Section 1: Cover --- */
+        #cover .badge {
+            display: inline-block;
+            border: 1px solid var(--dore);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        #cover .badge-icon { margin-right: 8px; }
+
+        .cta-actions {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem; /* Space between badge and button */
+            margin-top: 2.5rem; /* Increased space from the paragraph above */
+        }
+        /* No need for margin-top on btn-cta inside cta-actions due to gap */
+
+
+        /* --- Section 2: Constat --- */
+        #constat { background-color: var(--blanc); color: var(--gris-texte); }
+        .constat-grid { display: flex; flex-direction: column; gap: 2rem; text-align: left; }
+        .constat-img img { width: 100%; height: auto; filter: grayscale(100%); border-radius: 8px; }
+        .constat-text h3 { color: var(--bleu-principal); font-family: var(--font-corps); font-weight: 700; }
+        .constat-conclusion { font-weight: 700; color: var(--dore); font-size: 1.2rem; margin-top: 2rem; text-align: center; }
+        
+        /* --- Section 3: Solution --- */
+        .solution-grid { display: flex; flex-direction: column; gap: 2rem; margin-top: 2rem; }
+        .solution-card { background-color: rgba(255, 255, 255, 0.05); padding: 1.5rem; border-radius: 10px; border: 1px solid var(--dore); transition: transform 0.3s ease, opacity 0.5s ease; opacity: 0; transform: translateY(20px); }
+        .solution-card.visible { opacity: 1; transform: translateY(0); }
+        .solution-card:hover { transform: scale(1.02); }
+        .solution-card .icon-hex { display: flex; justify-content: center; align-items: center; height: 35px; margin-bottom: 1rem; transition: transform 0.3s ease; }
+        .solution-card:hover .icon-hex { transform: scale(1.1); }
+        .solution-card .icon-hex img { height: 100%; width: auto; object-fit: contain; }
+        .solution-card ul { list-style: none; padding-left: 0; text-align: center; }
+        .solution-card ul li { margin-bottom: 0.5rem; }
+        #solution .btn-cta { margin-top: 2.5rem; }
+
+        /* --- Section 4: Intervenants --- */
+        #intervenants { background-color: var(--blanc); color: var(--gris-texte); }
+        .intervenants-grid { display: flex; flex-direction: column; align-items: center; gap: 3rem; margin-top: 2rem; }
+        .profil { text-align: center; max-width: 300px; }
+        .hex-photo { width: 180px; height: 207px; clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); overflow: hidden; margin: 0 auto 1rem auto; background-color: var(--dore); }
+        .hex-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .profil-nom { font-family: var(--font-corps); font-weight: 700; font-size: 1.4rem; color: var(--bleu-principal); }
+        .profil-titre { color: var(--dore); font-weight: 700; margin-bottom: 0.5rem; }
+
+        /* --- Section 5: Conclusion --- */
+        .timeline { border: 1px solid var(--dore); padding: 1.5rem; border-radius: 10px; margin: 2rem auto; }
+        .replay-mention { margin-top: 2rem; font-style: italic; font-size: 0.9rem; }
+        
+        /* --- Modal --- */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7); z-index: 1000; display: none; justify-content: center; align-items: center; }
+        .modal-content { background: var(--blanc); color: var(--gris-texte); padding: 2rem 1.5rem; border-radius: 10px; max-width: 500px; width: 90%; position: relative; text-align: center; }
+        .modal-content h3 { color: var(--bleu-principal); font-size: 1.5rem; }
+        .close-btn { position: absolute; top: 10px; right: 15px; font-size: 2rem; color: #aaa; cursor: pointer; }
+        .form-group { margin-bottom: 1rem; text-align: left; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        .form-group input { width: 100%; padding: 0.8rem; border: 1px solid #ccc; border-radius: 5px; font-size: 1rem; }
+        .form-submit-btn { width: 100%; background: var(--dore); color: var(--blanc); border: none; padding: 1rem; border-radius: 50px; font-size: 1.2rem; font-weight: 700; cursor: pointer; margin-top: 1rem; }
+
+        /* --- Sticky Mobile CTA (Visible by default) --- */
+        .sticky-mobile-cta {
+            display: block;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--dore);
+            color: var(--blanc);
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            z-index: 999;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* --- BREAKPOINT SM (Small >= 576px) --- */
+        @media (min-width: 576px) {
+            .container { max-width: 540px; }
+            .solution-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        }
+
+        /* --- BREAKPOINT MD (Medium >= 768px) --- */
+        @media (min-width: 768px) {
+            body { padding-bottom: 0; } /* No more space needed */
+            .container { max-width: 720px; padding: 4rem 2rem; }
+            section { padding: 4rem 0; }
+
+            h1 { font-size: 2.8rem; }
+            h1 .subtitle-italic { font-size: 2.2rem; }
+            h2 { font-size: 2.5rem; }
+
+            .logo-text { font-size: 2.5rem; }
+            .logo-subtext { font-size: 1.2rem; margin-top: -10px;}
+
+            .constat-grid { flex-direction: row; align-items: center; }
+            .constat-img { flex: 0 0 40%; }
+            .constat-text { flex: 1; }
+
+            .intervenants-grid { flex-direction: row; gap: 2rem; }
+            
+            .sticky-mobile-cta { display: none; } /* Caché sur desktop */
+        }
+        
+        /* --- BREAKPOINT LG (Large >= 992px) --- */
+        @media (min-width: 992px) {
+            .container { max-width: 960px; }
+            h1 { font-size: 3.5rem; }
+            h1 .subtitle-italic { font-size: 2.5rem; }
+            h2 { font-size: 2.8rem; }
+
+            .solution-grid { grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+            .intervenants-grid { gap: 4rem; }
+        }
+
+        /* --- BREAKPOINT XL (Extra Large >= 1200px) --- */
+        @media (min-width: 1200px) {
+            .container { max-width: 1140px; }
+        }
+
+        /* --- Custom breakpoints for max-width (if needed for edge cases) --- */
+        @media (max-width: 575px) {
+            .logo-text { font-size: 2.2rem; }
+            .logo-subtext { font-size: 0.9rem; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1 - PAGE DE COUVERTURE -->
+    <section id="cover">
+        <div class="container">
+            <div class="logo-container">
+                <div class="logo-text">Happy House</div>
+                <div class="logo-subtext">Le Cercle</div>
+            </div>
+            <h1>
+                L'EFFET WAOUH. À CHAQUE FOIS.
+            </h1>
+            <p>La porte s'ouvre. La lumière inonde la pièce. Une odeur de propre et de bois naturel. Ce n'est pas juste une location. C'est le sentiment d'être enfin arrivé. C'est la promesse Happy House.</p>
+            
+            <div class="cta-actions">
+                <div class="badge">
+                    <span class="badge-icon">🕒</span> Format Exclusif : Webinaire 30 min max • Sans engagement
+                </div>
+                <a class="btn-cta">OBTENEZ VOTRE EFFET WAOUH</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SLIDE 2 - LE CONSTAT -->
+    <section id="constat">
+        <div class="container">
+            <h2>le paradoxe de l'hébergeur d'exception</h2>
+            <div class="constat-grid">
+                <div class="constat-img">
+                    <img src="Photos/photo land.png" alt="Hébergement Happy House, symbolisant la sérénité retrouvée">
+                </div>
+                <div class="constat-text">
+                    <h3>Les 3 Points de Pression</h3>
+                    <p><strong>Explosion des coûts :</strong> Énergie, linge, fournitures. L'inflation grignote vos marges.</p>
+                    <p><strong>Perquisition de la DATA :</strong> Les plateformes de réservation (OTA) s'interposent entre vous et vos clients directs.</p>
+                    <p><strong>Isolement :</strong> Seul face aux géants et aux évolutions du marché. Impossible de rivaliser seul.</p>
+                    
+                    <h3>L'Investissement vs La Réalité</h3>
+                    <p><strong>L'investissement :</strong> Des lieux sublimes pour offrir du rêve.<br>
+                       <strong>La réalité :</strong> Un cauchemar administratif et financier.</p>
+
+                    <p class="constat-conclusion">"Ce n'est pas une fatalité. C'est un modèle à réinventer."</p>
+                </div>
+            </div>
+             <a class="btn-cta">OBTENEZ VOTRE EFFET WAOUH</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 3 - LA SOLUTION -->
+    <section id="solution">
+        <div class="container">
+            <h2>la solution 'happy house'</h2>
+            <p>Trois leviers pour reprendre le contrôle</p>
+            <div class="solution-grid">
+                <div class="solution-card">
+                    <div class="icon-hex"><img src="Photos/economi.png" alt="Icône Chariot"></div>
+                    <h3>CHOISISSEZ L'EXCEPTION</h3>
+                    <ul>
+                        <li>Plus de 150 adresses uniques, sélectionnées pour leur âme et leur caractère. Oubliez le standard, vivez l'authentique.</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="icon-hex"><img src="Photos/tel.png" alt="Icône Mobile"></div>
+                    <h3>EXIGEZ LE PREMIUM RESPONSABLE</h3>
+                     <ul>
+                        <li>Alliez confort haut de gamme et impact positif. Chaque séjour soutient un tourisme plus juste et plus vert.</li>
+                    </ul>
+                </div>
+                <div class="solution-card">
+                    <div class="icon-hex"><img src="Photos/bosst.png" alt="Icône Bâtiment"></div>
+                    <h3>PROVOQUEZ LE 'WAOUH'</h3>
+                    <ul>
+                        <li>Offrez à vos clients une première impression inoubliable qui se transforme en fidélité et en excellents avis.</li>
+                    </ul>
+                </div>
+            </div>
+            <a class="btn-cta">OBTENEZ VOTRE EFFET WAOUH</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 4 - VOS INTERVENANTS -->
+    <section id="intervenants">
+        <div class="container">
+            <h2>les intervenants</h2>
+            <p>Des experts du terrain, pas des théoriciens. Vos hôtes pour ce format court qui connaissent la réalité de l'hébergement haut de gamme.</p>
+            <div class="intervenants-grid">
+                <div class="profil">
+                    <div class="hex-photo">
+                        <img src="Photos/patrice.jpeg" alt="Portrait de Patrice, Fondateur de Happy House">
+                    </div>
+                    <div class="profil-nom">Patrice</div>
+                    <div class="profil-titre">Fondateur de Happy House</div>
+                    <p>Vision stratégique pour redonner le pouvoir aux indépendants. Leader et expert en stratégie touristique.</p>
+                </div>
+                <div class="profil">
+                    <div class="hex-photo">
+                        <img src="Photos/Julien FLORENCE.jpeg" alt="Portrait de Julien, Directeur des Opérations">
+                    </div>
+                    <div class="profil-nom">Julien</div>
+                    <div class="profil-titre">Directeur des Opérations</div>
+                    <p>Expertise terrain pour déployer les leviers de rentabilité et relever les défis du quotidien.</p>
+                </div>
+            </div>
+             <a class="btn-cta">OBTENEZ VOTRE EFFET WAOUH</a>
+        </div>
+    </section>
+
+    <!-- SLIDE 5 - CONCLUSION & ENGAGEMENT -->
+    <section id="conclusion">
+        <div class="container">
+            <h2>votre temps est précieux. nous le respectons.</h2>
+            <div class="timeline">
+                <div class="timeline-item"><span>20 minutes →</span> Présentation concrète et factuelle</div>
+                <div class="timeline-item"><span>10 minutes →</span> Vos questions stratégiques</div>
+            </div>
+            <div class="info-webinaire">
+                <h3>Rejoignez-nous le [À compléter - JJ/MM/AAAA] à [À compléter - HH:MM]</h3>
+                <p>Lien du webinaire fourni après inscription.</p>
+            </div>
+            <a class="btn-cta">OBTENEZ VOTRE EFFET WAOUH</a>
+            <p class="replay-mention">*Pas disponible à cette date ? Inscrivez-vous pour recevoir le replay.</p>
+        </div>
+    </section>
+    
+    <!-- MODAL FORM -->
+    <div class="modal-overlay" id="booking-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-modal-btn">&times;</span>
+            <h3>Réservez votre place</h3>
+            <p>Inscrivez-vous pour recevoir le lien du webinaire.</p>
+            <form id="booking-form">
+                <div class="form-group">
+                    <label for="name">Nom complet</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Adresse e-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Numéro de téléphone</label>
+                    <input type="tel" id="phone" name="phone">
+                </div>
+                <button type="submit" class="form-submit-btn">Je confirme ma réservation</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- STICKY MOBILE CTA -->
+    <a class="sticky-mobile-cta">OBTENEZ VOTRE EFFET WAOUH</a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modalOverlay = document.getElementById('booking-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const ctaButtons = document.querySelectorAll('.btn-cta');
+            const stickyMobileCta = document.querySelector('.sticky-mobile-cta');
+            const bookingForm = document.getElementById('booking-form');
+            const logoSubtext = document.querySelector('.logo-subtext');
+
+            const openModal = () => {
+                modalOverlay.style.display = 'flex';
+            };
+
+            const closeModal = () => {
+                modalOverlay.style.display = 'none';
+            };
+
+            // --- Modal Logic ---
+            ctaButtons.forEach(button => {
+                button.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openModal();
+                });
+            });
+
+            stickyMobileCta.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal();
+            });
+
+            closeModalBtn.addEventListener('click', closeModal);
+
+            modalOverlay.addEventListener('click', (e) => {
+                if (e.target === modalOverlay) {
+                    closeModal();
+                }
+            });
+            
+            bookingForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                console.log('Form Submitted:', { name, email });
+                
+                alert('Merci, votre place est réservée ! Vous recevrez un e-mail de confirmation.');
+                closeModal();
+                bookingForm.reset();
+            });
+
+            // --- Scroll Animation for Solution Cards ---
+            const solutionCards = document.querySelectorAll('.solution-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the item is visible
+            });
+
+            solutionCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>

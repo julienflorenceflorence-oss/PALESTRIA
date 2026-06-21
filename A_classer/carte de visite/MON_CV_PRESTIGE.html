@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Prestige - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Bibliothèques pour la capture PNG et la génération de QR Code locale -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrious/4.0.2/qrious.min.js"></script>
+    <style>
+        :root {
+            --onyx: #0A0A0A;
+            --gold: #D4AF37;
+            --white: #FFFFFF;
+            --gray: #1C1C1C;
+        }
+
+        body { 
+            background: #111; 
+            color: var(--gold); 
+            font-family: 'Montserrat', sans-serif; 
+            text-align: center; 
+            padding: 20px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container { 
+            background: var(--onyx); 
+            border: 2px solid var(--gold); 
+            border-radius: 32px; 
+            padding: 40px; 
+            display: inline-block; 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.9);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 { 
+            font-family: 'Cinzel', serif;
+            letter-spacing: 4px; 
+            text-transform: uppercase; 
+            margin: 0 0 10px 0;
+            font-size: 1.5rem;
+            color: var(--white);
+        }
+
+        .subtitle {
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .qr-box { 
+            background: white; 
+            padding: 15px; 
+            border-radius: 20px; 
+            display: inline-block; 
+            margin-bottom: 30px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+            line-height: 0;
+        }
+
+        #qr-canvas {
+            width: 250px;
+            height: 250px;
+        }
+
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .btn { 
+            display: inline-block; 
+            background: var(--gold); 
+            color: var(--onyx); 
+            padding: 15px 20px; 
+            text-decoration: none; 
+            border-radius: 12px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            letter-spacing: 1px;
+            cursor: pointer; 
+            border: none;
+            width: 100%;
+            font-size: 0.8rem;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.02);
+            filter: brightness(1.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .footer-text {
+            margin-top: 25px;
+            font-size: 0.7rem;
+            opacity: 0.5;
+            color: var(--white);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="capture">
+    <h1>Julien FLORENCE</h1>
+    <div class="subtitle">Directeur Commercial</div>
+    
+    <div class="qr-box">
+        <!-- Canvas où le QR Code sera dessiné localement -->
+        <canvas id="qr-canvas"></canvas>
+    </div>
+
+    <div class="actions">
+        <button class="btn" onclick="downloadAsPNG()">Télécharger ma Carte (PNG)</button>
+        <a href="https://calendar.app.google/wLA6hcgMgKvCgocy6" class="btn btn-outline" target="_blank">Prendre RDV</a>
+        <button class="btn btn-outline" onclick="downloadVCard()">Enregistrer Contact</button>
+        <a href="https://julienflorenceflorence-oss.github.io/cv-prestige/" class="btn btn-outline" target="_blank">Voir mon CV</a>
+    </div>
+</div>
+
+<div class="footer-text">Présentation Prestige</div>
+
+<script>
+    // Configuration
+    const cvLink = "https://julienflorenceflorence-oss.github.io/cv-prestige/";
+
+    // Génération du QR Code dès le chargement
+    window.onload = function() {
+        new QRious({
+            element: document.getElementById('qr-canvas'),
+            value: cvLink,
+            size: 500, // Taille haute définition pour le PNG
+            level: 'H' // Qualité maximale
+        });
+    };
+
+    function downloadAsPNG() {
+        const element = document.getElementById('capture');
+        const btns = element.querySelector('.actions');
+        
+        // Cacher temporairement les boutons pour l'image
+        btns.style.display = 'none';
+
+        html2canvas(element, {
+            scale: 3, // Très haute résolution
+            backgroundColor: '#0A0A0A',
+            logging: false
+        }).then(canvas => {
+            const link = document.createElement('a');
+            link.download = 'Carte_Julien_FLORENCE_CV.png';
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+            btns.style.display = 'flex'; // Réafficher les boutons
+        }).catch(err => {
+            console.error("Erreur capture PNG:", err);
+            btns.style.display = 'flex';
+        });
+    }
+
+    function downloadVCard() {
+        const vcard = [
+            "BEGIN:VCARD",
+            "VERSION:3.0",
+            "FN:Julien FLORENCE",
+            "N:FLORENCE;Julien;;;",
+            "TITLE:Directeur Commercial",
+            "TEL;TYPE=CELL,VOICE:0661747573",
+            "EMAIL;TYPE=PREF,INTERNET:julienflorence.florence@gmail.com",
+            "URL;TYPE=LinkedIn:https://www.linkedin.com/in/julien-florence-2536a083/",
+            "URL;TYPE=CV:" + cvLink,
+            "NOTE:Directeur Commercial - Profil Prestige",
+            "END:VCARD"
+        ].join("\n");
+
+        const blob = new Blob([vcard], { type: 'text/vcard' });
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = "Julien_FLORENCE_CV.vcf";
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+    }
+</script>
+
+</body>
+</html>

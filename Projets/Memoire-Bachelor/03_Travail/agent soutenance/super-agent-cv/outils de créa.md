@@ -1,0 +1,2 @@
+outil pour créa GIF https://julienflorenceflorence-oss.github.io/cv-prestige/generateur-gif.html
+outil pour créa signature mail https://julienflorenceflorence-oss.github.io/cv-prestige/generateur-signature.html

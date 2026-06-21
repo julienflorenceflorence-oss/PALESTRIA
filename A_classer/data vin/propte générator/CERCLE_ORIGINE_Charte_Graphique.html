@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERCLE ORIGINE - Charte Graphique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600&family=Syne:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --onyx-mat: #0A0A0A;
+            --lie-de-vin: #630D16; /* Bordeaux Prestigieux */
+            --or-liquide: #D4AF37;
+            --phantom-white: #F2F2F2;
+            --deep-gray: #1C1C1C;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--onyx-mat);
+            color: var(--phantom-white);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 60px;
+            margin-bottom: 80px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            letter-spacing: 1rem;
+            text-transform: uppercase;
+            margin: 0;
+            background: linear-gradient(to right, #FFF, var(--or-liquide), #FFF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            letter-spacing: 0.5rem;
+            color: var(--or-liquide);
+            margin-top: 10px;
+            opacity: 0.8;
+        }
+
+        section {
+            margin-bottom: 100px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            border-left: 3px solid var(--or-liquide);
+            padding-left: 20px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+        }
+
+        /* Colors Grid */
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .color-card {
+            background: var(--deep-gray);
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .color-swatch {
+            height: 150px;
+            width: 100%;
+        }
+
+        .color-info {
+            padding: 15px;
+            font-size: 0.9rem;
+        }
+
+        .color-info span {
+            display: block;
+            font-family: monospace;
+            color: var(--or-liquide);
+            margin-top: 5px;
+        }
+
+        /* Logo variations */
+        .logo-variations {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: rgba(255,255,255,0.02);
+            padding: 60px;
+            border-radius: 20px;
+        }
+
+        .logo-box {
+            text-align: center;
+        }
+
+        .circle-logo {
+            width: 100px;
+            height: 100px;
+            border: 1px solid var(--or-liquide);
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .circle-logo.fill {
+            background: var(--lie-de-vin);
+        }
+
+        .inner-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--or-liquide);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--or-liquide);
+        }
+
+        /* Typography */
+        .typo-sample {
+            padding: 40px;
+            background: var(--deep-gray);
+            border-radius: 8px;
+        }
+
+        .cinzel-sample {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .inter-sample {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.2rem;
+            color: #AAA;
+        }
+
+        /* UI Preview */
+        .ui-preview {
+            background: linear-gradient(135deg, var(--onyx-mat) 0%, var(--lie-de-vin) 100%);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 12px;
+            padding: 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-luxe {
+            display: inline-block;
+            padding: 15px 40px;
+            border: 1px solid var(--gold);
+            color: var(--phantom-white);
+            text-decoration: none;
+            letter-spacing: 0.3rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            transition: 0.4s;
+            margin-top: 30px;
+        }
+
+        .btn-luxe:hover {
+            background: var(--or-liquide);
+            color: var(--onyx-mat);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+        }
+
+        .ai-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid var(--or-liquide);
+            border-radius: 20px;
+            font-size: 0.7rem;
+            letter-spacing: 0.1rem;
+            margin-bottom: 30px;
+            color: var(--or-liquide);
+        }
+
+        .pulse-ia {
+            width: 6px;
+            height: 6px;
+            background: var(--or-liquide);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>CERCLE ORIGINE</h1>
+            <div class="subtitle">GUIDE DE MARQUE & IDENTITÉ VISUELLE</div>
+        </header>
+
+        <section>
+            <h2>1. Couleurs Maîtresses</h2>
+            <div class="color-grid">
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--onyx-mat);"></div>
+                    <div class="color-info">Noir Onyx Mat <span>#0A0A0A</span></div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--lie-de-vin);"></div>
+                    <div class="color-info">Bordeaux Prestige <span>#630D16</span></div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: var(--or-liquide);"></div>
+                    <div class="color-info">Or Liquide <span>#D4AF37</span></div>
+                </div>
+                <div class="color-card">
+                    <div class="color-swatch" style="background-color: #1C1C1C;"></div>
+                    <div class="color-info">Gris Profond <span>#1C1C1C</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>2. Concepts de Logo</h2>
+            <div class="logo-variations">
+                <div class="logo-box">
+                    <div style="padding: 40px; background: rgba(0,0,0,0.4); border: 1px solid var(--or-liquide); border-radius: 20px; margin-bottom: 20px;">
+                        <img src="LOGO_CERCLE_ORIGINE_FINAL_BOUSSOLE.svg" alt="LOGO CERCLE ORIGINE" style="width: 250px; height: auto;">
+                    </div>
+                    <p>Logo Officiel (Boussole)</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2>3. Typographies</h2>
+            <div class="typo-sample">
+                <div class="cinzel-sample">ABCDEFGHIJKLM</div>
+                <div class="inter-sample">Le luxe ne se crie pas, il se murmure. La technologie ne s'impose pas, elle anticipe. Cercle Origine est l'alliance du terroir et de l'intelligence.</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>4. Aperçu Interface</h2>
+            <div class="ui-preview">
+                <div class="ai-badge">
+                    <div class="pulse-ia"></div>
+                    AGENT IA ACTIF
+                </div>
+                <h3 style="font-family: 'Cinzel', serif; font-size: 2rem; margin-bottom: 20px;">L'EXPÉRIENCE D'ABORD</h3>
+                <p style="max-width: 600px; margin: 0 auto; opacity: 0.7;">Votre conciergerie privée en Occitanie. Châteaux, domaines viticoles et secrets de terroir sélectionnés par notre intelligence hôtelière.</p>
+                <a href="#" class="btn-luxe">Réserver l'Exception</a>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

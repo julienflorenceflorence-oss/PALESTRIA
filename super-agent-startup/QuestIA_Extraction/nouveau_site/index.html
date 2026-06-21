@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Questia — Simulation IA immersive B2B</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+    <!-- Navigation (UX: Simple, Limited, Logical) -->
+    <nav class="nav">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-mark"></div>
+                QUESTIA
+            </a>
+            <div class="nav-links">
+                <a href="#missions">Missions</a>
+                <a href="#produit">Produit</a>
+                <a href="#methode">Méthodologie</a>
+                <a href="#financements">Financements</a>
+                <a href="#faq">FAQ</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="lang-toggle">
+                    <button class="active">FR</button>
+                    <button>EN</button>
+                </div>
+                <button class="icon-btn" aria-label="Paramètres">⚙️</button>
+                <a href="#formateur" class="btn btn-purple btn-sm">
+                    <span class="icon">📋</span> Formateur
+                </a>
+                <a href="#boutique" class="btn btn-lime btn-sm">
+                    <span class="icon">🛍️</span> Boutique
+                </a>
+                <div class="user-progress">
+                    <div class="progress-info">
+                        <small>Lv. 1</small>
+                        <span class="xp">0 / 500</span>
+                    </div>
+                    <div class="progress-bar"><span></span></div>
+                </div>
+            </div>
+            <button class="nav-burger" aria-label="Menu mobile"><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Hero Section (UX: Understand in 5s) -->
+    <header class="hero">
+        <div class="container hero-layout">
+            <div class="hero-content">
+                <div class="badge-ai">
+                    <span class="dot"></span>
+                    MODE GROUPE · COACH IA · PROGRESSION DÉBLOQUANTE
+                </div>
+                <h1>Learning<br>by <em>living it.</em></h1>
+                <p class="translation">— Apprendre <em>en le vivant.</em> <span>FR</span></p>
+                <p class="lead">La simulation de communication interculturelle pro. <b>Choisis ta langue</b> (espagnol, anglais, allemand, japonais), traverse <b>11 destinations B2B</b>, valide les 3 niveaux de chaque ville (Novice → Pro → Expert). Joue en solo ou avec un <b>groupe de 4 apprenants + Coach Maya</b>. Feedback IA temps réel.</p>
+                <div class="cta-group">
+                    <a href="#missions" class="btn btn-primary">Explorer les missions</a>
+                    <a href="#demo" class="btn btn-ghost">Lancer la démo</a>
+                </div>
+            </div>
+
+            <!-- Card Mockup from Screenshot -->
+            <div class="hero-mockup">
+                <div class="mockup-card">
+                    <div class="mockup-img" style="background-image: url('https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=600&q=70')">
+                        <div class="mockup-badge">MISSION <b>MADRID DEAL</b></div>
+                        <div class="mockup-timer">⏱️ 38:42</div>
+                    </div>
+                    <div class="mockup-body">
+                        <small>OBJECTIF</small>
+                        <h3>Négociation à Madrid</h3>
+                        <p>Convaincre un client exigeant. Chaque formulation modifie la confiance de l'interlocuteur IA.</p>
+                        <div class="mockup-progress"><span></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Missions Grid (Section 1: The Worlds) -->
+    <section id="missions" class="missions">
+        <div class="container">
+            <div class="section-head">
+                <small class="section-num">01 — EXPLORATION</small>
+                <h2>Destinations Immersives</h2>
+                <p class="section-sub">Choisissez votre prochain défi professionnel parmi nos 11 contextes réels.</p>
+            </div>
+            
+            <div class="mission-grid">
+                <!-- Les cartes seront injectées ou générées ici. Exemple pour Madrid: -->
+                <a href="missions/madrid.html" class="mission-card">
+                    <div class="mission-img" style="background-image: url('https://images.unsplash.com/photo-1543783207-ec64e4d95325?auto=format&fit=crop&w=600&q=70')"></div>
+                    <div class="mission-body">
+                        <span class="mission-level">B1-B2 · ESPAGNOL</span>
+                        <h3>Madrid Deal</h3>
+                        <p>Négociation commerciale avec un CPO exigeant.</p>
+                        <span class="mission-cta">Lancer la mission ↗</span>
+                    </div>
+                </a>
+                
+                <a href="missions/london.html" class="mission-card">
+                    <div class="mission-img" style="background-image: url('https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=600&q=70')"></div>
+                    <div class="mission-body">
+                        <span class="mission-level">B2-C1 · ANGLAIS</span>
+                        <h3>London Crisis</h3>
+                        <p>Gestion de crise face à un board de direction.</p>
+                        <span class="mission-cta">Lancer la mission ↗</span>
+                    </div>
+                </a>
+
+                <a href="missions/nyc.html" class="mission-card">
+                    <div class="mission-img" style="background-image: url('https://images.unsplash.com/photo-1485871981521-5b1fd3805eee?auto=format&fit=crop&w=600&q=70')"></div>
+                    <div class="mission-body">
+                        <span class="mission-level">A2-B1 · ANGLAIS</span>
+                        <h3>NYC Survival</h3>
+                        <p>Premier jour de stage en scale-up à Manhattan.</p>
+                        <span class="mission-cta">Lancer la mission ↗</span>
+                    </div>
+                </a>
+                <!-- ... Les autres missions suivront le même pattern ... -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (UX: Contact simple & Preuves) -->
+    <section id="produit" class="container" style="padding: 100px 0;">
+        <h2>Le Produit QuestIA</h2>
+        <p>Contenu détaillé sur la technologie IA et l'immersion...</p>
+    </section>
+
+    <section id="methode" class="container" style="padding: 100px 0;">
+        <h2>Notre Méthodologie</h2>
+        <p>Alignement CECRL et neurosciences appliquées aux langues...</p>
+    </section>
+
+    <section id="financements" class="container" style="padding: 100px 0;">
+        <h2>Financements & Qualiopi</h2>
+        <p>OPCO, Plan de développement des compétences, etc...</p>
+    </section>
+
+    <section id="faq" class="container" style="padding: 100px 0;">
+        <h2>Foire Aux Questions</h2>
+        <p>Tout ce que vous devez savoir sur QuestIA...</p>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">QUESTIA</div>
+                    <p>Simulateur IA de communication interculturelle.</p>
+                </div>
+                <div class="footer-links">
+                    <b>Produit</b>
+                    <a href="#">Missions</a>
+                    <a href="#">Dashboard</a>
+                    <a href="#">Intégrations</a>
+                </div>
+                <div class="footer-contact">
+                    <b>Contact</b>
+                    <a href="mailto:contact@questia.fr">contact@questia.fr</a>
+                    <a href="#">Prendre RDV</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Questia. Tous droits réservés.
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

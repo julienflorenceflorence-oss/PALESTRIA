@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUDIT STRATÉGIQUE | PALESTRIA</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --panel: #1A1D23;
+            --accent: #D4AF37;
+            --accent-soft: rgba(212, 175, 55, 0.1);
+            --text: #FFFFFF;
+            --muted: #A0A0A0;
+            --success: #3FE6A4;
+            --danger: #FF5D6E;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* LOGO PALESTRIA SVG */
+        .logo-container {
+            margin: 40px 0;
+            text-align: center;
+        }
+        .logo-svg {
+            width: 180px;
+            height: auto;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            background: var(--panel);
+            padding: 40px;
+            border-radius: 4px;
+            border: 1px solid var(--accent-soft);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            text-align: center;
+            letter-spacing: 4px;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 40px;
+        }
+
+        .step-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        .step-progress::after {
+            content: "";
+            position: absolute;
+            top: 50%; left: 0; width: 100%; height: 1px;
+            background: var(--accent-soft);
+            z-index: 1;
+        }
+        .step {
+            width: 30px; height: 30px;
+            background: var(--bg);
+            border: 1px solid var(--accent-soft);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            z-index: 2;
+            transition: 0.3s;
+            color: var(--muted);
+        }
+        .step.active {
+            border-color: var(--accent);
+            color: var(--accent);
+            box-shadow: 0 0 15px var(--accent-soft);
+        }
+
+        .question-card {
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+        .question-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 400;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .option {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--accent-soft);
+            padding: 18px 25px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option:hover {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+        }
+
+        .option.selected {
+            background: var(--accent-soft);
+            border-color: var(--accent);
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+
+        button {
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 12px 30px;
+            font-family: 'Cinzel';
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: 0.3s;
+            border-radius: 2px;
+            font-size: 0.9rem;
+        }
+
+        button:hover:not(:disabled) {
+            background: var(--accent);
+            color: var(--bg);
+        }
+
+        button:disabled {
+            border-color: var(--muted);
+            color: var(--muted);
+            cursor: not-allowed;
+        }
+
+        /* RESULTS SECTION */
+        #results {
+            display: none;
+            text-align: center;
+        }
+        .result-title {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .result-desc {
+            line-height: 1.8;
+            color: var(--muted);
+            margin-bottom: 30px;
+        }
+        .risk-gauge {
+            height: 10px;
+            background: #333;
+            border-radius: 5px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        .risk-fill {
+            height: 100%;
+            background: var(--danger);
+            width: 0%;
+            transition: 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <!-- PALESTRIA LOGO SVG -->
+        <svg class="logo-svg" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+            <!-- Stylized Shield/Arena Icon -->
+            <path d="M40 30 L60 20 L80 30 L80 60 C80 80 60 95 60 95 C60 95 40 80 40 60 Z" fill="none" stroke="#D4AF37" stroke-width="3"/>
+            <path d="M52 45 L68 45 M60 35 L60 70" stroke="#D4AF37" stroke-width="2"/>
+            <!-- Text -->
+            <text x="100" y="65" font-family="Cinzel" font-size="42" font-weight="bold" fill="#D4AF37" style="letter-spacing: 5px;">PALESTRIA</text>
+            <text x="102" y="90" font-family="Montserrat" font-size="10" fill="#A0A0A0" style="letter-spacing: 8px; text-transform: uppercase;">Strategic Command</text>
+        </svg>
+    </div>
+
+    <div class="container" id="quiz-container">
+        <h1>Audit Stratégique</h1>
+        <p class="subtitle">Diagnostic de Performance Managériale</p>
+
+        <div class="step-progress">
+            <div class="step active" data-step="1">1</div>
+            <div class="step" data-step="2">2</div>
+            <div class="step" data-step="3">3</div>
+            <div class="step" data-step="4">4</div>
+        </div>
+
+        <form id="auditForm">
+            <!-- Questions will be injected here via JS -->
+            <div id="questions-wrapper"></div>
+
+            <div class="btn-container">
+                <button type="button" id="prevBtn" disabled>Précédent</button>
+                <button type="button" id="nextBtn">Suivant</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container" id="results">
+        <h2 class="result-title">Analyse Terminée</h2>
+        <div id="result-content"></div>
+        <button onclick="window.print()">Télécharger le rapport PDF</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                text: "Face à un imprévu majeur, quelle est votre première réaction ?",
+                options: [
+                    { label: "Agir immédiatement pour reprendre le contrôle.", type: "D" },
+                    { label: "Mobiliser l'équipe avec enthousiasme.", type: "I" },
+                    { label: "Analyser les données calmement avant de décider.", type: "C" },
+                    { label: "S'assurer que tout le monde se sent bien et en sécurité.", type: "S" }
+                ]
+            },
+            {
+                text: "Quel est l'indicateur que vous regardez en premier le matin ?",
+                options: [
+                    { label: "Le Chiffre d'Affaires et les objectifs atteints.", type: "D" },
+                    { label: "Les retours clients et l'ambiance de l'équipe.", type: "I" },
+                    { label: "Les rapports de conformité et les process.", type: "C" },
+                    { label: "La stabilité des effectifs et le planning.", type: "S" }
+                ]
+            },
+            {
+                text: "Comment préférez-vous recevoir un rapport critique ?",
+                options: [
+                    { label: "En 3 points clés, direct et sans filtre.", type: "D" },
+                    { label: "Lors d'un échange informel et créatif.", type: "I" },
+                    { label: "Dans un document détaillé, sourcé et structuré.", type: "C" },
+                    { label: "De manière diplomate, avec une solution collaborative.", type: "S" }
+                ]
+            },
+            {
+                text: "Quel est votre taux de rotation (turnover) sur les 12 derniers mois ?",
+                options: [
+                    { label: "Moins de 5% (Sain)", score: 0 },
+                    { label: "Entre 5% et 15% (Alerte modérée)", score: 10 },
+                    { label: "Plus de 15% (Hémorragie financière)", score: 30 }
+                ]
+            },
+            {
+                text: "Combien d'heures par semaine vos managers perdent-ils en conflits ?",
+                options: [
+                    { label: "Moins de 2h (Optimisé)", score: 0 },
+                    { label: "2h à 5h (Perte visible)", score: 15 },
+                    { label: "Plus de 5h (Gouffre opérationnel)", score: 35 }
+                ]
+            },
+            {
+                text: "Proportion de projets subissant des retards de communication ?",
+                options: [
+                    { label: "Rarement (<10%)", score: 0 },
+                    { label: "Parfois (20-30%)", score: 15 },
+                    { label: "Fréquemment (>40%)", score: 30 }
+                ]
+            },
+            {
+                text: "Avez-vous mesuré le coût du Présentéisme ?",
+                options: [
+                    { label: "Oui, nous avons des indicateurs précis.", score: 0 },
+                    { label: "Nous le ressentons, mais sans le chiffrer.", score: 20 },
+                    { label: "Non, c'est une donnée totalement invisible.", score: 40 }
+                ]
+            },
+            {
+                text: "Quel est votre budget formation par salarié ?",
+                options: [
+                    { label: "> 2 500 € (Culture d'excellence)", target: true },
+                    { label: "1 500 € - 2 500 € (Standard)", target: true },
+                    { label: "< 1 500 € (Budget légal uniquement)", target: false }
+                ]
+            },
+            {
+                text: "Quelle importance accordez-vous à l'IA en 2025 ?",
+                options: [
+                    { label: "Priorité absolue.", target: true },
+                    { label: "En cours de réflexion.", target: true },
+                    { label: "Pas une priorité.", target: false }
+                ]
+            },
+            {
+                text: "Vos managers ont-ils un simulateur de négociation ?",
+                options: [
+                    { label: "Oui, nous sommes équipés.", target: false },
+                    { label: "Non, ils apprennent sur le tas.", target: true },
+                    { label: "C'est leur plus grosse lacune.", target: true }
+                ]
+            },
+            {
+                text: "Principal frein à la formation ?",
+                options: [
+                    { label: "Manque de temps.", target: true },
+                    { label: "Manque d'outils innovants.", target: true },
+                    { label: "Difficulté à mesurer le ROI.", target: true }
+                ]
+            },
+            {
+                text: "Intérêt pour un outil divisant par deux les erreurs de management ?",
+                options: [
+                    { label: "Démo immédiate.", target: true },
+                    { label: "À étudier prochainement.", target: true },
+                    { label: "Demande de preuves.", target: true }
+                ]
+            }
+        ];
+
+        let currentQuestion = 0;
+        const answers = [];
+
+        const wrapper = document.getElementById('questions-wrapper');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+
+        function renderQuestion() {
+            wrapper.innerHTML = '';
+            const q = questions[currentQuestion];
+            const card = document.createElement('div');
+            card.className = 'question-card active';
+            card.innerHTML = `<p class="question-text">Q${currentQuestion + 1}. ${q.text}</p>
+                <div class="options">
+                    ${q.options.map((opt, i) => `
+                        <div class="option ${answers[currentQuestion] === i ? 'selected' : ''}" onclick="selectOption(${i})">
+                            ${opt.label}
+                        </div>
+                    `).join('')}
+                </div>`;
+            wrapper.appendChild(card);
+            
+            // Update steps
+            const stepNum = Math.floor(currentQuestion / 3) + 1;
+            document.querySelectorAll('.step').forEach((s, idx) => {
+                s.classList.toggle('active', idx + 1 === stepNum);
+            });
+
+            prevBtn.disabled = currentQuestion === 0;
+            nextBtn.textContent = currentQuestion === questions.length - 1 ? "Terminer" : "Suivant";
+        }
+
+        window.selectOption = (idx) => {
+            answers[currentQuestion] = idx;
+            renderQuestion();
+        };
+
+        nextBtn.onclick = () => {
+            if (answers[currentQuestion] === undefined) return alert("Veuillez sélectionner une option.");
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                renderQuestion();
+            } else {
+                showResults();
+            }
+        };
+
+        prevBtn.onclick = () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                renderQuestion();
+            }
+        };
+
+        async function showResults() {
+            document.getElementById('quiz-container').style.display = 'none';
+            const res = document.getElementById('results');
+            res.style.display = 'block';
+
+            // Logic scoring
+            let disc = {D:0, I:0, S:0, C:0};
+            let financialRisk = 0;
+            let targetScore = 0;
+
+            questions.forEach((q, i) => {
+                const opt = q.options[answers[i]];
+                if (opt.type) disc[opt.type]++;
+                if (opt.score) financialRisk += opt.score;
+                if (opt.target) targetScore++;
+            });
+
+            const mainProfile = Object.keys(disc).reduce((a, b) => disc[a] > disc[b] ? a : b);
+            const profileNames = {D: "Dominant / Promoteur", I: "Influent / Rebelle", S: "Stable / Empathique", C: "Consciencieux / Analyseur"};
+
+            const finalData = {
+                date: new Date().toLocaleDateString('fr-FR'),
+                profile: profileNames[mainProfile],
+                risk: financialRisk * 1500,
+                target: targetScore > 3 ? 'CRITIQUE' : 'STANDARD',
+                disc: disc
+            };
+
+            document.getElementById('result-content').innerHTML = `
+                <p class="result-desc">Profil Management : <b>${profileNames[mainProfile]}</b></p>
+                <p>Niveau de Risque Financier (Coûts Cachés)</p>
+                <div class="risk-gauge"><div class="risk-fill" style="width: ${Math.min(financialRisk, 100)}%"></div></div>
+                <p class="result-desc">Potentiel PalestrIA : <b>${finalData.target === 'CRITIQUE' ? 'CRITIQUE - Opportunité Prioritaire' : 'STANDARD - Optimisation possible'}</b></p>
+                <div style="text-align:left; background:rgba(212,175,55,0.05); padding:20px; border:1px solid var(--accent-soft); border-radius:4px; margin-top:20px;">
+                    <p><b>Diagnostic :</b> Votre structure présente un manque à gagner estimé à environ <b>${finalData.risk} € / an</b> dû à des inefficacités managériales. Votre profil <b>${mainProfile}</b> indique que vous privilégiez ${mainProfile === 'D' ? 'les résultats' : mainProfile === 'I' ? 'l\'énergie' : mainProfile === 'S' ? 'la relation' : 'la précision'}. PalestrIA peut automatiser cette performance.</p>
+                </div>
+            `;
+
+            // ENVOI VERS GITHUB (Si configuré)
+            await sendToGitHub(finalData);
+        }
+
+        async function sendToGitHub(data) {
+            console.log("Envoi des données vers GitHub...", data);
+            // Pour l'activation réelle, remplacez par votre URL d'API ou GitHub Action
+            // fetch('https://api.github.com/repos/[USER]/[REPO]/dispatches', {
+            //     method: 'POST',
+            //     headers: { 'Authorization': 'token YOUR_PAT_TOKEN', 'Accept': 'application/vnd.github.v3+json' },
+            //     body: JSON.stringify({ event_type: 'audit_submission', client_payload: { data: JSON.stringify(data) } })
+            // });
+        }
+
+        renderQuestion();
+    </script>
+</body>
+</html>

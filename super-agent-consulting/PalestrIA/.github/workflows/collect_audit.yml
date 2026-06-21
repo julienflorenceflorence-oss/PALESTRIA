@@ -1,0 +1,29 @@
+name: Collect Audit Data
+on:
+  repository_dispatch:
+    types: [audit_submission]
+
+jobs:
+  update_json:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Update Responses JSON
+        run: |
+          mkdir -p PalestrIA/data
+          FILE=PalestrIA/data/responses.json
+          if [ ! -f "$FILE" ]; then
+            echo "[]" > "$FILE"
+          fi
+          # On ajoute la nouvelle réponse au début du tableau
+          jq ". = [${{ github.event.client_payload.data }}] + ." "$FILE" > tmp.json && mv tmp.json "$FILE"
+
+      - name: Commit and Push
+        run: |
+          git config --global user.name "PalestrIA Bot"
+          git config --global user.email "bot@palestria.ai"
+          git add PalestrIA/data/responses.json
+          git commit -m "New audit submission received"
+          git push

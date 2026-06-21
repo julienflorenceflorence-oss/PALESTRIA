@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        /* Configuration de la page pour une impression PDF propre */
+        @page {
+            size: 400px 400px;
+            margin: 0;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 400px;
+            width: 400px;
+            background: transparent; /* Fond transparent pour le PDF */
+            -webkit-print-color-adjust: exact;
+        }
+
+        .logo-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* La lettre C stylisée (Le Réseau) */
+        .c-circle {
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            border: 6px solid #D4AF37;
+            border-radius: 50%;
+            border-right-color: transparent; /* Ouvre le C */
+            transform: rotate(45deg);
+            top: 75px;
+        }
+
+        /* La Boussole (Le O central) */
+        .boussole-cadran {
+            position: absolute;
+            width: 110px;
+            height: 110px;
+            border: 2px solid #D4AF37;
+            border-radius: 50%;
+            top: 145px;
+            left: 150px;
+        }
+
+        /* Graduations N S E O */
+        .grad {
+            position: absolute;
+            background: #D4AF37;
+            width: 2px;
+            height: 8px;
+        }
+        .grad.n { top: 0; left: 54px; }
+        .grad.s { bottom: 0; left: 54px; }
+        .grad.e { right: 0; top: 51px; width: 8px; height: 2px; }
+        .grad.o { left: 0; top: 51px; width: 8px; height: 2px; }
+
+        /* L'Aiguille Magnétique */
+        .aiguille-wrapper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            transform: rotate(25deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .aiguille-nord {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-bottom: 40px solid #D4AF37;
+            transform: translateY(-20px);
+        }
+
+        .aiguille-sud {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 40px solid transparent;
+            border-bottom: none;
+            /* On simule le contour par un petit triangle vide */
+            transform: translateY(20px);
+        }
+        .aiguille-sud::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -7px;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+            border-top: 40px solid #D4AF37;
+        }
+        .aiguille-sud::before {
+            content: '';
+            position: absolute;
+            top: -38px;
+            left: -5px;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            border-top: 36px solid white; /* Cache le centre */
+            z-index: 1;
+        }
+
+        .pivot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border: 1.5px solid #D4AF37;
+            border-radius: 50%;
+            z-index: 5;
+        }
+
+        /* Textes */
+        .text-main {
+            position: absolute;
+            bottom: 35px;
+            color: #D4AF37;
+            font-family: 'Cinzel', serif;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .text-sub {
+            position: absolute;
+            bottom: 15px;
+            color: #D4AF37;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+    </style>
+    <!-- Importation de la police Cinzel pour le côté premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="logo-container">
+        <!-- Lettre C -->
+        <div class="c-circle"></div>
+        
+        <!-- Boussole -->
+        <div class="boussole-cadran">
+            <div class="grad n"></div>
+            <div class="grad s"></div>
+            <div class="grad e"></div>
+            <div class="grad o"></div>
+            
+            <div class="aiguille-wrapper">
+                <div class="aiguille-nord"></div>
+                <div class="aiguille-sud"></div>
+                <div class="pivot"></div>
+            </div>
+        </div>
+
+        <!-- Textes -->
+        <div class="text-main">CERCLE ORIGINE</div>
+        <div class="text-sub">EXPERIENCE FIRST</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — La Dualité Stratégique des Sondages</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent-cyan: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            background: var(--surface);
+            max-width: 1000px;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 60px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .container { padding: 30px 15px; border-radius: 0; border: none; }
+            .logo { font-size: 1.5rem; }
+            .title-main { font-size: 1.2rem; }
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--brand-gradient);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+        }
+
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 8px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .doc-type {
+            font-family: 'Cinzel';
+            color: var(--accent-cyan);
+            font-size: 0.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 15px;
+        }
+
+        .intro-text {
+            font-size: 1.1rem;
+            text-align: center;
+            color: var(--text-dim);
+            margin-bottom: 50px;
+            font-style: italic;
+        }
+
+        .dual-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .dual-grid { grid-template-columns: 1fr; }
+        }
+
+        .strategy-card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 30px;
+            border-radius: 12px;
+            position: relative;
+        }
+
+        .card-tag {
+            font-family: 'Cinzel';
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            display: inline-block;
+            letter-spacing: 1px;
+        }
+
+        .tag-short { background: rgba(0, 229, 255, 0.1); color: var(--accent-cyan); border: 1px solid var(--accent-cyan); }
+        .tag-long { background: rgba(123, 92, 255, 0.1); color: var(--accent-purple); border: 1px solid var(--accent-purple); }
+
+        .card-title {
+            font-family: 'Cinzel';
+            font-size: 1.2rem;
+            color: #FFF;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .card-concept {
+            font-size: 0.95rem;
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+
+        .card-concept strong { color: #FFF; }
+
+        .advantage-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .advantage-item {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .advantage-item::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        .deep-dive {
+            background: linear-gradient(135deg, rgba(123, 92, 255, 0.05) 0%, transparent 100%);
+            border: 1px solid var(--accent-purple);
+            padding: 40px;
+            border-radius: 12px;
+            margin-top: 50px;
+        }
+
+        .title-sub {
+            font-family: 'Cinzel';
+            color: var(--accent-purple);
+            font-size: 1rem;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: block;
+            text-align: center;
+        }
+
+        .vision-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        .vision-text em {
+            color: var(--accent-cyan);
+            font-style: normal;
+            font-weight: 600;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            border-top: 1px solid var(--border);
+            padding-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <div class="logo">QUESTIA</div>
+            <div class="doc-type">Intelligence Data — Dualité Stratégique</div>
+        </header>
+
+        <p class="intro-text">
+            "Pour conquérir un marché, il faut savoir être aussi vif qu'un éclair et aussi profond qu'un océan. 
+            Voici pourquoi nous séparons l'Acquisition Rapide de l'Audit de Maturité."
+        </p>
+
+        <div class="dual-grid">
+            <!-- LE DIAGNOSTIC (Short) -->
+            <div class="strategy-card">
+                <span class="card-tag tag-short">L'Éclair (Cold Call)</span>
+                <span class="card-title">Le Diagnostic de Performance</span>
+                <p class="card-concept"><strong>Format :</strong> 7 questions / 3 minutes.</p>
+                <div class="advantage-list">
+                    <div class="advantage-item">Capter l'attention sans friction.</div>
+                    <div class="advantage-item">Activer le "mindset" Haute Performance.</div>
+                    <div class="advantage-item">Générer une traction immédiate (conversion).</div>
+                </div>
+            </div>
+
+            <!-- L'AUDIT (Long) -->
+            <div class="strategy-card">
+                <span class="card-tag tag-long">L'Océan (Sondage 20+)</span>
+                <span class="card-title">L'Audit de Maturité Pédagogique</span>
+                <p class="card-concept"><strong>Format :</strong> 20 questions / Autonomie.</p>
+                <div class="advantage-list">
+                    <div class="advantage-item">Collecter de la donnée structurelle "Hard Data".</div>
+                    <div class="advantage-item">Cartographier l'écosystème global du prospect.</div>
+                    <div class="advantage-item">Établir une crédibilité de "Cabinet Conseil".</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="deep-dive">
+            <span class="title-sub">Pourquoi ce Sondage Long est vital ?</span>
+            <div class="vision-text">
+                Ce n'est pas un simple questionnaire, c'est un <em>Audit de Maturité Augmentée</em>. <br><br>
+                Si le Cold Call est l'étincelle qui allume le désir, ce sondage de 20 questions est le <em>scanner thermique</em> qui analyse la structure même de l'établissement ou de l'entreprise. <br><br>
+                En demandant au prospect de s'auto-évaluer sur 20 points précis, nous le forçons à réaliser lui-même l'ampleur de ses <em>angles morts</em>. C'est ici que nous récoltons les chiffres clés (budgets, taux d'échec, heures de correction) qui rendront notre pitch final devant le jury <em>mathématiquement irréfutable</em>.
+            </div>
+        </div>
+
+        <div class="footer">
+            STRATÉGIE D'ACQUISITION — UNITÉ D'ÉLITE | QUESTIA 2026
+        </div>
+    </div>
+
+</body>
+</html>

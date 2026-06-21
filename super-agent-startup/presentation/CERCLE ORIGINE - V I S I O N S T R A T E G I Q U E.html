@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERCLE ORIGINE - Dossier de Prestige</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bordeaux: #630D16;
+            --deep-bg: #0D0705;
+            --text-gold: #D4AF37;
+            --card-bg: rgba(99, 13, 22, 0.95);
+        }
+
+        /* RESET & PRINT SECURITY */
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        @media print {
+            @page { margin: 0; }
+            body { margin: 0; }
+        }
+        
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--deep-bg);
+            width: 100%;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--text-gold);
+            background: linear-gradient(to bottom, #0D0705 0%, #2F1B12 30%, #630D16 60%, #1A0F0A 100%);
+            background-attachment: fixed;
+        }
+
+        .document-wrapper {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* PAGE STRUCTURE - OPTIMIZED FOR A4 */
+        .page {
+            width: 95%;
+            max-width: 1000px;
+            min-height: 95vh;
+            margin: 40px auto;
+            border: 2px solid var(--gold);
+            border-radius: 40px;
+            background: rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 40px rgba(0,0,0,0.8);
+            page-break-after: always;
+        }
+
+        /* HEADER */
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('photo appli en tete.png');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .logo-frame {
+            max-width: 140px;
+            margin: 0 auto 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            display: block;
+        }
+
+        .logo-frame img { width: 100%; height: auto; }
+
+        .tagline {
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin: 0;
+        }
+
+        .subline {
+            font-size: 1rem;
+            font-style: italic;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* CONTENT */
+        .content {
+            flex: 1;
+            padding: 30px 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin: 20px 0;
+            color: var(--gold);
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 1px;
+            background: var(--gold);
+            margin: 10px auto 0;
+        }
+
+        .vision-box {
+            text-align: center;
+            font-size: 1.2rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 25px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            min-height: 260px;
+            page-break-inside: avoid;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #FFFFFF;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            margin: 0;
+        }
+
+        .badge {
+            background: var(--gold);
+            color: var(--bordeaux);
+            padding: 5px 15px;
+            font-weight: bold;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: inline-block;
+            align-self: center;
+        }
+
+        /* TEAM */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .team-member {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px 10px;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        .team-member b { font-size: 1.1rem; display: block; margin-bottom: 5px; }
+        .team-member span {
+            background: var(--gold);
+            color: var(--bordeaux);
+            padding: 2px 8px;
+            font-size: 0.6rem;
+            font-weight: bold;
+            border-radius: 5px;
+            text-transform: uppercase;
+        }
+        .team-member p { font-size: 0.8rem; color: #CCC; margin-top: 10px; }
+
+        /* FOOTER */
+        footer {
+            background: rgba(0,0,0,0.8);
+            border-top: 1px solid var(--gold);
+            padding: 20px;
+            text-align: center;
+        }
+
+        /* PRINT CONFIG */
+        @page { size: A4; margin: 0; }
+        @media print {
+            body { background: #0D0705 !important; }
+            .page { 
+                margin: 0 !important; 
+                width: 100vw !important;
+                height: 100vh !important;
+                border-radius: 0 !important;
+                border: none !important;
+            }
+            .content { padding: 20px 30px !important; }
+            .card { background: var(--bordeaux) !important; border-radius: 25px !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-wrapper">
+        
+        <!-- PAGE 1 -->
+        <div class="page">
+            <header>
+                <p class="tagline">L'Alliance de l'Excellence et du Terroir</p>
+                <div class="logo-frame">
+                    <img src="LOGO_CERCLE_ORIGINE_FINAL_BOUSSOLE.svg" alt="CERCLE ORIGINE">
+                </div>
+                <p class="subline">Le Réseau Labellisé de Nouvelle Génération</p>
+            </header>
+
+            <div class="content">
+                <section>
+                    <h2>Vision Strategique</h2>
+                    <div class="vision-box">
+                        <p><strong>CERCLE ORIGINE</strong> est une plateforme dédiée à l'expérientiel. C'est une ingénierie de croissance conçue pour libérer les acteurs du tourisme d'exception de la dépendance aux OTA.</p>
+                        <p>Nous fédérons l'hébergement premium et responsable pour notre planète, les domaines viticoles et les commerçants locaux autour d'une promesse unique : <strong>L'Indépendance par l'Excellence.</strong></p>
+                    </div>
+                </section>
+
+                <section class="grid">
+                    <div class="card">
+                        <div class="badge">LIBERTÉ</div>
+                        <h3>Zéro Commission</h3>
+                        <p>Le modèle disruptif du CERCLE ORIGINE remplace la commission par l'abonnement. 100% de votre chiffre d'affaires reste au cœur de votre domaine.</p>
+                    </div>
+                    <div class="card">
+                        <div class="badge">PUISSANCE</div>
+                        <h3>Ingénierie IA</h3>
+                        <p>Nous transformons chaque donnée en opportunité commerciale. Une technologie de pointe (Data) au service de vos réservations directes.</p>
+                    </div>
+                    <div class="card">
+                        <div class="badge">PRESTIGE</div>
+                        <h3>Storytelling</h3>
+                        <p>Nous magnifions votre identité. Chaque membre bénéficie d'une mise en scène visuelle d'exception pour séduire une clientèle internationale.</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="page">
+            <div class="content">
+                <section>
+                    <h2>Les Fondements du Label</h2>
+                    <div class="grid">
+                        <div class="card">
+                            <div class="badge">QUALITÉ</div>
+                            <h3>L'EXCELLENCE</h3>
+                            <p>Une charte de qualité absolue garantissant une expérience client incomparable et un accueil sur-mesure conforme aux standards du luxe.</p>
+                        </div>
+                        <div class="card">
+                            <div class="badge">AUTHENTICITÉ</div>
+                            <h3>LE TERROIR</h3>
+                            <p>La valorisation des circuits courts et du savoir-faire ancestral des commerçants et vignerons locaux, créant une économie circulaire de prestige.</p>
+                        </div>
+                        <div class="card">
+                            <div class="badge">VISION</div>
+                            <h3>L'EXPÉRIENCE</h3>
+                            <p>Une nouvelle ère de commercialisation par la mise en avant d'expériences voyageurs immersives et de rituels exclusifs au réseau.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Le Directoire Fondateur</h2>
+                    <div class="team-grid">
+                        <div class="team-member">
+                            <b>JULIEN</b>
+                            <span>Président</span>
+                            <p>Stratégie Réseau & Développement Commercial</p>
+                        </div>
+                        <div class="team-member">
+                            <b>RUDDY</b>
+                            <span>CTO</span>
+                            <p>Architecture DATA & Intelligence Artificielle</p>
+                        </div>
+                        <div class="team-member">
+                            <b>MATTHIEU</b>
+                            <span>Creative Director</span>
+                            <p>Design Premium & Responsable des Réseaux Sociaux</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <footer>
+                <div class="badge">MODÈLE ÉCONOMIQUE</div>
+                <p style="margin: 0; font-size: 1rem;"><strong>CERCLE ORIGINE</strong> : Une ingénierie logicielle conçue pour les hébergeurs, au bénéfice exclusif de l'expérience voyageur.</p>
+                <p style="font-size: 0.7rem; opacity: 0.6; margin-top: 10px;">&copy; 2026 CERCLE ORIGINE - Document de Présentation Confidentiel</p>
+            </footer>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+Secteur;Sous_Secteur;Region;Nombre_Avis;Note_Moyenne;Qualite_Label;Potentiel_Commercial
+Habitat;Menuiserie;GDE;154;9.2;Excellence (Blockchain);Élevé
+Habitat;Chauffage;ARA;89;8.7;Qualifié (ISO 20252);Très Élevé
+Habitat;Isolation;BRE;120;7.5;Standard (Vérifié);Modéré
+Habitat;Toiture;IDF;45;9.5;Excellence (Blockchain);Élevé
+Automobile;Vente VO;PAC;210;8.9;Qualifié (ISO 20252);Élevé
+Automobile;Entretien;NAQ;67;6.8;Litige (Modéré);Faible
+Services;Immobilier;OCC;340;9.1;Excellence (Blockchain);Très Élevé
+Services;Déménagement;BFC;56;7.2;Standard (Vérifié);Modéré
+Services;Aide à la personne;PDL;112;8.5;Qualifié (ISO 20252);Élevé
+Tourisme;Gîtes de Prestige;GDE;78;9.8;Excellence (Blockchain);Très Élevé
+Tourisme;Hôtellerie;ARA;145;8.2;Qualifié (ISO 20252);Modéré
+Tourisme;Camping;PAC;320;7.9;Standard (Vérifié);Élevé
+Habitat;Menuiserie;PDL;95;9.0;Excellence (Blockchain);Élevé
+Habitat;Rénovation;IDF;230;8.4;Qualifié (ISO 20252);Très Élevé
+Automobile;Vente VO;GDE;180;9.3;Excellence (Blockchain);Élevé
+Services;Communication;IDF;34;9.7;Excellence (Blockchain);Modéré
+Habitat;Façade;NAQ;76;7.1;Standard (Vérifié);Élevé
+Tourisme;Chambres d'hôtes;BRE;54;9.6;Excellence (Blockchain);Modéré
+Services;Nettoyage;OCC;120;8.1;Qualifié (ISO 20252);Élevé
+Habitat;Chauffage;GDE;142;8.8;Excellence (Blockchain);Très Élevé

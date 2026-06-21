@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 8 - Analyse SWOT Détaillée - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 25px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 8pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 20pt; letter-spacing: 2px; }
+
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 20px;
+            flex-grow: 1;
+        }
+
+        .swot-card {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .swot-card h2 {
+            font-family: 'Cinzel';
+            font-size: 11pt;
+            margin-top: 0;
+            padding-bottom: 5px;
+            border-bottom: 1px solid currentColor;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .strengths { color: #2ECC71; border-color: rgba(46, 204, 113, 0.3); }
+        .weaknesses { color: #F39C12; border-color: rgba(243, 156, 18, 0.3); }
+        .opportunities { color: #3498DB; border-color: rgba(52, 152, 219, 0.3); }
+        .threats { color: #E74C3C; border-color: rgba(231, 76, 60, 0.3); }
+
+        .swot-card ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 10px;
+            font-size: 8.5pt;
+            line-height: 1.5;
+        }
+
+        .swot-card li { margin-bottom: 8px; color: #E0E0E0; }
+        .swot-card li strong { color: #FFF; }
+
+        .footer {
+            border-top: 1px solid var(--accent); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: #888;
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 8 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="header-box">
+            <div class="label">SYNTHÈSE ANALYTIQUE</div>
+            <h1>MATRICE SWOT DÉTAILLÉE</h1>
+        </div>
+
+        <div class="swot-grid">
+            <!-- STRENGTHS -->
+            <div class="swot-card strengths">
+                <h2>📦 FORCES (INTERNES)</h2>
+                <ul>
+                    <li><strong>Liberté Totale</strong> : Absence de contrat d'engagement, supprimant la barrière psychologique à l'adhésion.</li>
+                    <li><strong>Centrale d'Achats</strong> : Réduction immédiate des coûts (15-40%) via Entegra, validant le ROI de l'adhésion.</li>
+                    <li><strong>Souveraineté Data</strong> : CRM exclusif redonnant le pouvoir au propriétaire face aux algorithmes opaques.</li>
+                </ul>
+            </div>
+
+            <!-- WEAKNESSES -->
+            <div class="swot-card weaknesses">
+                <h2>⚠️ FAIBLESSES (INTERNES)</h2>
+                <ul>
+                    <li><strong>Notoriété Digitale</strong> : Faible face au matraquage marketing d'Airbnb/Booking.</li>
+                    <li><strong>Structure Startup</strong> : Équipe réduite (3 personnes) gérant un catalogue en forte expansion.</li>
+                    <li><strong>Dépendance Tech</strong> : Nécessite une maintenance permanente des connecteurs et APIs.</li>
+                </ul>
+            </div>
+
+            <!-- OPPORTUNITIES -->
+            <div class="swot-card opportunities">
+                <h2>🚀 OPPORTUNITÉS (EXTERNES)</h2>
+                <ul>
+                    <li><strong>Quête de Sens</strong> : Voyageurs CSP+ recherchant l'authenticité et le circuit court (Vignobles).</li>
+                    <li><strong>Marchés B2B</strong> : Forte demande des CSE pour des séjours de qualité hors plateformes de masse.</li>
+                    <li><strong>Économie Circulaire</strong> : Alliance naturelle avec les commerçants locaux pour un écosystème solidaire.</li>
+                </ul>
+            </div>
+
+            <!-- THREATS -->
+            <div class="swot-card threats">
+                <h2>🚨 MENACES (EXTERNES)</h2>
+                <ul>
+                    <li><strong>Hégémonie OTA</strong> : Pratiques anticoncurrentielles et budgets de communication colossaux.</li>
+                    <li><strong>Pression Fiscale</strong> : Loi Le Meur risquant de décourager certains petits investisseurs.</li>
+                    <li><strong>Consolidation</strong> : Rachat de labels indépendants par des groupes financiers majeurs.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

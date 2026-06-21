@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Observatoire National de la Viticulture 2026</title>
+    <style>
+        :root {
+            --primary: #7A1E29; /* Bordeaux foncé */
+            --secondary: #D4AF37; /* Or */
+            --bg-light: #FAFAFA;
+            --card-bg: #FFFFFF;
+            --text-dark: #2C3E50;
+            --text-muted: #555555;
+            --border-color: #EAEAEA;
+            
+            /* Tag Colors */
+            --tag-bordeaux: #FFEBEE;
+            --tag-bordeaux-text: #C62828;
+            --tag-bourgogne: #E8F5E9;
+            --tag-bourgogne-text: #2E7D32;
+            --tag-provence: #E8EAF6;
+            --tag-provence-text: #283593;
+            --tag-loire: #E0F2F1;
+            --tag-loire-text: #00695C;
+            --tag-occitanie: #F3E5F5;
+            --tag-occitanie-text: #6A1B9A;
+        }
+
+        @page {
+            size: A4;
+            margin: 0; /* Supprime les en-têtes et pieds de page du navigateur */
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif; /* Font plus classique pour ce rapport */
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            color: var(--text-dark);
+            -webkit-print-color-adjust: exact;
+        }
+
+        /* Utilisation d'une police sans-serif pour certains éléments */
+        .sans-serif {
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm 25mm;
+            margin: 10mm auto;
+            background: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            position: relative;
+            box-sizing: border-box;
+        }
+
+        @media print {
+            body { background: none; margin: 0; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                page-break-after: always;
+            }
+        }
+
+        /* Header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 3px solid var(--primary);
+            padding-bottom: 15px;
+            margin-bottom: 40px;
+        }
+
+        .logo-box h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 2px;
+            color: var(--primary);
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .logo-box h1 span {
+            color: var(--secondary);
+        }
+
+        .meta-info {
+            text-align: right;
+            font-size: 11px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Main Title */
+        .main-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .main-title h1 {
+            color: var(--primary);
+            font-size: 42px;
+            margin: 0 0 15px 0;
+            font-weight: 800;
+        }
+
+        .main-title p {
+            font-style: italic;
+            font-size: 16px;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        /* KPI Cards */
+        .kpi-container {
+            display: flex;
+            gap: 15px;
+            margin: 40px 0;
+        }
+
+        .kpi-card {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 25px 10px;
+            text-align: center;
+        }
+
+        .kpi-value {
+            font-size: 38px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .kpi-label {
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: block;
+            line-height: 1.4;
+        }
+
+        /* Sections */
+        h2.section-title {
+            color: var(--primary);
+            font-size: 28px;
+            border-bottom: 1px solid var(--primary);
+            padding-bottom: 10px;
+            margin: 50px 0 30px 0;
+        }
+
+        /* Region Blocks */
+        .region-block {
+            margin-bottom: 35px;
+            padding-left: 20px;
+            border-left: 4px solid var(--secondary);
+        }
+
+        .tag {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .tag-bordeaux { background: var(--tag-bordeaux); color: var(--tag-bordeaux-text); }
+        .tag-bourgogne { background: var(--tag-bourgogne); color: var(--tag-bourgogne-text); }
+        .tag-provence { background: var(--tag-provence); color: var(--tag-provence-text); }
+        .tag-loire { background: var(--tag-loire); color: var(--tag-loire-text); }
+        .tag-occitanie { background: var(--tag-occitanie); color: var(--tag-occitanie-text); }
+
+        .region-block h3 {
+            color: var(--text-dark);
+            font-size: 22px;
+            margin: 0 0 10px 0;
+        }
+
+        .region-stats {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--text-dark);
+        }
+
+        .region-obs {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .region-obs strong {
+            color: var(--text-dark);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #999;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1 -->
+    <div class="page">
+        <header class="sans-serif">
+            <div class="logo-box">
+                <h1>CERCLE ORIGINE <span>NATIONAL</span></h1>
+            </div>
+            <div class="meta-info">
+                REF: FR-VITI-2026-F<br>
+                ÉDITION: MARS 2026<br>
+                CLASSIFICATION: STRATÉGIQUE
+            </div>
+        </header>
+
+        <div class="main-title">
+            <h1>Observatoire National de la<br>Viticulture</h1>
+            <p>Diagnostic chirurgical automatisé - Données au 02/03/2026</p>
+        </div>
+
+        <div class="kpi-container">
+            <div class="kpi-card">
+                <div class="kpi-value">41.2<br>Mhl</div>
+                <span class="kpi-label">PRODUCTION<br>TOTALE 2025</span>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">-12%</div>
+                <span class="kpi-label">VOL. ROUGES (5<br>ANS)</span>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">+18%</div>
+                <span class="kpi-label">DEMANDE<br>CRÉMANTS</span>
+            </div>
+            <div class="kpi-card">
+                <div class="kpi-value">1.05€</div>
+                <span class="kpi-label">PRIX MIN VRAC<br>ROUGE (BX)</span>
+            </div>
+        </div>
+
+        <h2 class="section-title">I. Diagnostic par Bassin Viticole</h2>
+
+        <div class="region-block" style="border-left-color: var(--tag-bordeaux-text);">
+            <span class="tag tag-bordeaux">BORDEAUX / NOUVELLE-AQUITAINE</span>
+            <h3>Bordeaux / Nouvelle-Aquitaine</h3>
+            <div class="region-stats">Prix : 1.05€/L | Volume : 1.5 Mhl</div>
+            <p class="region-obs"><ul><li><strong>Observation :</strong> Crise de rentabilité critique. Arrachage massif de 85 000 ha en cours.</li></ul></p>
+        </div>
+
+        <div class="region-block" style="border-left-color: var(--tag-bourgogne-text);">
+            <span class="tag tag-bourgogne">BOURGOGNE / FRANCHE-COMTÉ</span>
+            <h3>Bourgogne / Franche-Comté</h3>
+            <div class="region-stats">Prix : Sommets Historiques | Volume : Stable</div>
+            <p class="region-obs"><ul><li><strong>Observation :</strong> Demande mondiale insatiable pour le Chardonnay et le Pinot Noir.</li></ul></p>
+        </div>
+    </div>
+
+    <!-- PAGE 2 -->
+    <div class="page">
+        <div class="region-block" style="border-left-color: var(--tag-provence-text);">
+            <span class="tag tag-provence">PROVENCE / PACA</span>
+            <h3>Provence / PACA</h3>
+            <div class="region-stats">Prix : Premium (>250€/hl) | Volume : Stable</div>
+            <p class="region-obs"><ul><li><strong>Observation :</strong> Stabilisation après une décennie de croissance. Benchmark mondial du Rosé.</li></ul></p>
+        </div>
+
+        <div class="region-block" style="border-left-color: var(--tag-loire-text);">
+            <span class="tag tag-loire">VAL DE LOIRE / CENTRE</span>
+            <h3>Val de Loire / Centre</h3>
+            <div class="region-stats">Prix : En traction | Volume : Hausse attendue</div>
+            <p class="region-obs"><ul><li><strong>Observation :</strong> Succès massif des blancs frais (Sauvignon/Chenin).</li></ul></p>
+        </div>
+
+        <div class="region-block" style="border-left-color: var(--tag-occitanie-text);">
+            <span class="tag tag-occitanie">OCCITANIE (LANGUEDOC-ROUSSILLON)</span>
+            <h3>Occitanie (Languedoc-Roussillon)</h3>
+            <div class="region-stats">Prix : 94.78€/hl (IGP) | Volume : 1.43 Mhl (+8%)</div>
+            <p class="region-obs"><ul><li><strong>Observation :</strong> Explosion des volumes SIG (+93%) compensant la baisse des IGP.</li></ul></p>
+        </div>
+
+        <footer>
+            Généré automatiquement par le Moteur IA Viticole | © Cercle Origine 2026
+        </footer>
+    </div>
+</body>
+</html>

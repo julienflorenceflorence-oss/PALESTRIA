@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>DEEL 2026 - Export PDF</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body { margin: 0; padding: 0; background: #f0f0f0; font-family: 'Montserrat', sans-serif; }
+        .page {
+            width: 297mm;
+            height: 210mm;
+            padding: 20mm;
+            margin: 10mm auto;
+            background: #1B1B1B;
+            color: white;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            page-break-after: always;
+            position: relative;
+            box-sizing: border-box;
+            border: 1px solid #FFE27C;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        h1, h2 { font-family: 'Cinzel', serif; color: #FFE27C; text-transform: uppercase; margin: 0 0 20px 0; }
+        h1 { font-size: 60px; text-align: center; }
+        h2 { font-size: 40px; border-bottom: 2px solid #FFE27C; padding-bottom: 10px; }
+        p { font-size: 24px; line-height: 1.5; }
+        .highlight { color: #FFE27C; font-weight: bold; }
+        .footer { position: absolute; bottom: 10mm; right: 10mm; font-size: 14px; color: #FFE27C; opacity: 0.7; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; color: white; font-size: 20px; }
+        th { background: #FFE27C; color: #1B1B1B; padding: 15px; text-align: left; }
+        td { border: 1px solid rgba(255, 226, 124, 0.3); padding: 15px; }
+        
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Slide 1 -->
+    <div class="page">
+        <h1 style="font-size: 100px;">DEEL</h1>
+        <p style="text-align: center; font-size: 35px; letter-spacing: 5px;">EXPANSION EUROPE 2026</p>
+        <p style="text-align: center; margin-top: 50px; opacity: 0.6;">Note d'Opportunité Stratégique - Direction Générale</p>
+        <div class="footer">Page 1/5</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="page">
+        <h2>Diagnostic & Marché</h2>
+        <p>Deel génère <span class="highlight">1 Md$ d'ARR</span> dans 150 pays.</p>
+        <p>Problématique : Augmenter de <span class="highlight">+20% les MQL</span> en Europe.</p>
+        <p>Cible : Réduire le CAC de 1 800€ à <span class="highlight">1 530€</span>.</p>
+        <div class="footer">Page 2/5</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="page">
+        <h2>Recommandations : Axe 1</h2>
+        <p class="highlight">ABM VERTICAL - SCALE-UPS TECH (198 000€)</p>
+        <ul>
+            <li>Ciblage de 2 000 comptes stratégiques.</li>
+            <li>LinkedIn Ads séquencées (CPL < 150€).</li>
+            <li>Landing pages haute conversion (> 3,5%).</li>
+        </ul>
+        <div class="footer">Page 3/5</div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="page">
+        <h2>Recommandations : Axe 2</h2>
+        <p class="highlight">NURTURING & ENABLEMENT (75 000€)</p>
+        <ul>
+            <li>Simulateur de coûts interactif.</li>
+            <li>Workflows HubSpot segmentés (MQL→SQL +40%).</li>
+            <li>Réduction du cycle de vente de 52 à <span class="highlight">38 jours</span>.</li>
+        </ul>
+        <div class="footer">Page 4/5</div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="page">
+        <h2>Synthèse Budgétaire</h2>
+        <table>
+            <tr><th>Axe</th><th>Budget</th><th>ROI</th><th>Break-even</th></tr>
+            <tr><td>ABM Vertical</td><td>198 000 €</td><td>x18,9</td><td>Mois 8</td></tr>
+            <tr><td>Nurturing</td><td>75 000 €</td><td>x12+</td><td>Mois 7</td></tr>
+            <tr style="background: rgba(255,226,124,0.1);"><td><strong>TOTAL</strong></td><td><strong>273 000 €</strong></td><td><strong>x12 MIN.</strong></td><td><strong>Mois 8</strong></td></tr>
+        </table>
+        <p style="margin-top: 40px; font-style: italic; text-align: center;">"ROI x12 à 12 mois pour un investissement < 0,03% de l'ARR."</p>
+        <div class="footer">Page 5/5</div>
+    </div>
+
+</body>
+</html>

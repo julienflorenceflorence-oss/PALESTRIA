@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification en cours - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --text: #F4F4F4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            padding: 40px 20px;
+            position: relative;
+        }
+
+        /* Effet ::before supprimé pour enlever le cadre dégradé */
+
+        .tech-video {
+            max-width: 280px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border-radius: 50%; /* Format circulaire pour une esthétique tech */
+            border: 2px solid var(--gold);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--gold);
+            color: var(--bg);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="width: 250px; height: 250px; margin: 0 auto 30px auto; border-radius: 50%; border: 2px solid var(--gold); overflow: hidden; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); background: #000; position: relative;">
+            <video id="brainVideo" autoplay loop muted playsinline poster="photo/cerveau analyse.png" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="video/cerveau_4.2.mp4" type="video/mp4">
+                <source src="video/cerveau41.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+        <script>
+            window.addEventListener('load', function() {
+                var v = document.getElementById('brainVideo');
+                v.play().catch(function(error) {
+                    document.body.addEventListener('click', function() {
+                        v.play();
+                    }, {once: true});
+                });
+            });
+        </script>
+        <div class="status-badge">Validation en cours</div>
+        <h1>Bachelor Responsable Marketing et Commercial</h1>
+        <div style="color: var(--gold); font-family: 'Cinzel'; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; opacity: 0.8;">Spécialisation Acquisition Numérique</div>
+        <p>Le dossier de certification finale est actuellement en cours d'exécution.</p>
+        <a href="diplomes.html#bachelor" class="btn-back">Retour au Portfolio</a>
+    </div>
+</body>
+</html>

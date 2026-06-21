@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Script Cold Call : Placement de l'Audit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent-cyan: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .prompter-container {
+            background: var(--surface);
+            max-width: 900px;
+            width: 100%;
+            border-radius: 16px;
+            border: 1px solid var(--border);
+            padding: 50px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 0; }
+            .prompter-container {
+                padding: 25px 15px;
+                border-radius: 0;
+                border-left: none;
+                border-right: none;
+            }
+            .logo { font-size: 1.5rem; }
+            .phase { padding: 20px 15px; }
+            .script-text { font-size: 1rem; }
+            .question-box { padding: 15px; }
+            .question-content { font-size: 0.95rem; }
+            .cta-button { width: 100%; box-sizing: border-box; font-size: 0.85rem; padding: 12px 20px; }
+        }
+
+        .prompter-container::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 5px;
+            background: var(--brand-gradient);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 25px;
+        }
+
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 6px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .doc-type {
+            font-family: 'Cinzel';
+            color: var(--accent-cyan);
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .phase {
+            margin-bottom: 40px;
+            padding: 30px;
+            border-radius: 12px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            position: relative;
+        }
+
+        .phase-title {
+            font-family: 'Cinzel';
+            font-size: 0.9rem;
+            color: var(--accent-purple);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .script-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #FFF;
+            font-weight: 500;
+        }
+
+        .script-text em {
+            color: var(--accent-cyan);
+            font-style: normal;
+            font-weight: 700;
+        }
+
+        .question-box {
+            background: rgba(0, 229, 255, 0.03);
+            border-left: 4px solid var(--accent-cyan);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .question-num {
+            font-size: 0.7rem;
+            color: var(--accent-cyan);
+            font-weight: 800;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .question-content {
+            font-size: 1.1rem;
+            color: #FFF;
+            font-style: italic;
+        }
+
+        .coach-tip {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .coach-tip::before {
+            content: "💡";
+        }
+
+        .cta-box {
+            background: linear-gradient(135deg, rgba(123, 92, 255, 0.1) 0%, rgba(0, 229, 255, 0.1) 100%);
+            border: 1px solid var(--accent-purple);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .cta-button {
+            background: var(--brand-gradient);
+            color: #05070D;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 800;
+            text-transform: uppercase;
+            font-size: 1rem;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 10px 30px rgba(123, 92, 255, 0.3);
+            text-decoration: none;
+        }
+
+        .pulse {
+            animation: pulse-animation 2s infinite;
+        }
+
+        @keyframes pulse-animation {
+            0% { box-shadow: 0 0 0 0px rgba(123, 92, 255, 0.4); }
+            100% { box-shadow: 0 0 0 20px rgba(123, 92, 255, 0); }
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="prompter-container">
+        <header>
+            <div class="logo">QUESTIA</div>
+            <div class="doc-type">Script Cold Call — Placement d'Audit de Maturité</div>
+        </header>
+
+        <!-- PHASE 1 : L'OUVERTURE -->
+        <div class="phase">
+            <span class="phase-title">01. L'Accroche (Permission)</span>
+            <div class="script-text">
+                "Bonjour <em>[NOM DU PROSPECT]</em>, c'est <em>[VOTRE NOM]</em>.<br>
+                Je vous appelle brièvement pour vous partager une initiative qu'on mène actuellement sur la <strong>Haute Performance Pédagogique Linguistique</strong>. Est-ce que vous auriez 5 minutes afin de réaliser un court audit ?"
+            </div>
+            <div class="coach-tip">Si accord : "Merci. On travaille sur l'optimisation de l'entraînement à l'oral, un sujet souvent négligé."</div>
+        </div>
+
+        <!-- PHASE 1B : LA MÉTAPHORE DE LA PERFORMANCE -->
+        <div class="phase" style="border-left: 4px solid #FFF; background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, transparent 100%);">
+            <span class="phase-title" style="color: #FFF;">01B. La Métaphore (Le "Mindset" Athlète)</span>
+            <div class="script-text">
+                "L'idée part d'un constat simple : dans le sport de haut niveau, un athlète ne progresse jamais au 'feeling'. Il a besoin de <em>capteurs</em> et de data précise pour corriger son geste.<br><br>
+                Aujourd'hui, l'apprentissage de l'oral est un des rares domaines où l'on demande encore de s'entraîner sans aucun retour concret. En fait, beaucoup de directions <strong>pilotent la progression un peu à l'aveugle</strong>."
+            </div>
+            <div class="coach-tip">Marquez une pause. Laissez le prospect réaliser le "gap" technologique.</div>
+        </div>
+
+        <!-- PHASE 2 : LE DIAGNOSTIC -->
+        <div class="phase" style="border-left: 4px solid var(--accent-purple);">
+            <span class="phase-title">02. Le Diagnostic Partagé</span>
+            <div class="script-text">
+                "C'est pour ça qu'on a mis en place une démarche de co-évaluation. L'idée est d'échanger sur quelques points clés pour confronter nos visions et voir si certains leviers de performance vous auraient échappé.<br><br>
+                Le but, c'est vraiment qu'on identifie ensemble si vous disposez de tous les indicateurs nécessaires pour garantir l'impact réel de vos formations."
+            </div>
+            <div class="coach-tip">L'approche est collaborative : on cherche des solutions ensemble.</div>
+        </div>
+
+        <div class="footer">
+            DIRECTION STRATÉGIQUE — TRIUMVIRAT | 2026
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+Voici une analyse ciblée et structurée de l'identité et de la charte graphique du site de la Maison Bakéa, une maison d'hôtes de charme située dans la cité médiévale de Cordes-sur-Ciel.
+
+1. Positionnement & Univers de Marque
+L'univers de la Maison Bakéa repose sur une alliance entre le patrimoine historique (demeure du XVe siècle) et le bien-être contemporain. Les mots d'ordre graphiques et textuels sont : authenticité, raffinement, sérénité, déconnexion.
+
+Le design du site cherche à retransmettre une atmosphère feutrée, haut de gamme et intimiste, propre aux hébergements d'exception.
+La Charte Graphique du Site Web
+🎨 La Palette de Couleurs
+Le site utilise des tons très épurés, naturels et contrastés pour évoquer le calme et le luxe discret.
+
+Couleur Dominante (Fond) : Blanc pur (#FFFFFF) et blanc cassé / crème très léger. Cela apporte de la lumière et de la lisibilité, contrastant avec la rusticité des pierres anciennes visibles sur les photos.
+
+Couleur Textes & Éléments Structurants : Un gris très foncé presque noir ou un anthracite soutenu. Il remplace le noir pur pour adoucir la lecture tout en restant très institutionnel et élégant.
+
+Couleurs d'Accents (Ponctuel) : Des teintes neutres et douces (taupe, beige) pour les boutons, les filets de séparation ou les arrière-plans de sections, rappelant les matériaux bruts de la bâtisse (bois, pierre, chaux).
+
+✍️ La Typographie
+Le choix typographique marque volontairement le contraste entre l'histoire du lieu et la modernité des prestations.
+
+Titres (Headings) : Utilisation d'une police Serif (à empattements). Les empattements élégants, fins et allongés rappellent le caractère littéraire, historique et haut de gamme. C'est elle qui pose l'identité visuelle forte de la "Maison Bakéa".
+
+Textes courants (Body text) & Menus : Utilisation d'une police Sans-Serif (bâton), très probablement géométrique et fine (style Montserrat ou Open Sans), écrite avec un espacement de lettres (letter-spacing) légèrement accentué pour les menus. Cela garantit une lisibilité maximale sur mobile et écran, tout en insufflant un air moderne et aéré.
+
+📐 Iconographie et Éléments Visuels
+Le Minimalisme : Très peu d'éléments graphiques superflus. Pas de formes géométriques complexes, pas d'illustrations vectorielles chargées. Les séparateurs sont de simples lignes fines et discrètes.
+
+La Force de l'Image : La charte graphique s'efface délibérément au profit de photographies professionnelles grand format (signées Jon Davison). Les visuels (pierres, poutres, vues panoramiques sur la vallée du Tarn) font office de textures et de décors principaux.
+
+Boutons (Call to Action) : Épurés, souvent rectangulaires, utilisant des bordures fines (outline) ou des aplats sobres pour inviter à la réservation sans agresser visuellement l'internaute.
+
+3. Synthèse de l'Expérience Utilisateur (UX)
+Le site adopte une structure haut de gamme classique : un header transparent ou blanc très fin, de grands espaces vides (white spaces) pour laisser respirer le contenu, et une navigation directe axée sur la conversion (Bouton "Réservation" mis en avant). L'ensemble est conçu pour rassurer une clientèle exigeante en quête d'un séjour sur-mesure et écoresponsable.

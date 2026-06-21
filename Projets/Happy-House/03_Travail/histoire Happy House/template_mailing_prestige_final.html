@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Présentation Happy House - Édition Prestige</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0B132B;
+            color: #F4F4F4;
+            font-family: 'Montserrat', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .email-wrapper {
+            max-width: 650px;
+            margin: 0 auto;
+            background-color: #0B132B;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Bouton CTA Flottant (Web View Only - Certains clients mail l'ignorent) */
+        .sticky-cta-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        .sticky-cta-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B68D1F 100%);
+            color: #0B132B !important;
+            padding: 10px 18px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        /* Sections (Pages) */
+        .page-section {
+            padding: 40px 50px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .header {
+            padding: 50px 20px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(27, 42, 78, 0.5), #0B132B);
+            border-bottom: 2px solid #D4AF37;
+        }
+
+        .logo-main {
+            max-width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .prestige-title {
+            font-family: 'Cinzel', serif;
+            color: #D4AF37;
+            font-size: 28px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+        }
+
+        .quote-box {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 20px;
+            color: #D4AF37;
+            line-height: 1.4;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.04);
+            border-left: 3px solid #D4AF37;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 0 10px 10px 0;
+        }
+
+        .feature-title {
+            font-family: 'Cinzel', serif;
+            color: #D4AF37;
+            font-weight: 700;
+            font-size: 15px;
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .feature-desc {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            margin: 0;
+        }
+
+        .section-label {
+            display: block;
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: rgba(212, 175, 55, 0.5);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .btn-group {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .btn-main {
+            display: inline-block;
+            background: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B68D1F 100%);
+            color: #0B132B !important;
+            padding: 16px 40px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin: 10px;
+            font-family: 'Cinzel', serif;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+        }
+
+        .btn-explorer {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #D4AF37;
+            color: #D4AF37 !important;
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin: 10px;
+            background: rgba(212, 175, 55, 0.05);
+            font-family: 'Cinzel', serif;
+            width: 280px;
+        }
+
+        .btn-icon {
+            height: 24px;
+            width: auto;
+            margin-right: 15px;
+        }
+
+        .btn-press {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #F4F4F4 !important;
+            padding: 12px 20px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            margin: 8px;
+        }
+
+        .store-btns {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-clean {
+            padding: 40px;
+            text-align: center;
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        .footer-logo {
+            max-width: 60px;
+            margin-bottom: 15px;
+            opacity: 0.6;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .page-section { padding: 30px 20px; }
+            .btn-explorer { width: 100%; }
+            .sticky-cta-container { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bouton Flottant (Vue Web) -->
+    <div class="sticky-cta-container">
+        <a href="https://calendar.app.google/DsiCxWsy6umQnBzk6" class="sticky-cta-btn">📅 RDV STRATÉGIQUE</a>
+    </div>
+
+    <div class="email-wrapper">
+        
+        <!-- HEADER -->
+        <div class="header">
+            <img src="image Happy House.png" alt="Happy House Logo" class="logo-main">
+            <h1 class="prestige-title">Happy House</h1>
+            <div class="subtitle">Collection Excellence 2026</div>
+        </div>
+
+        <!-- PAGE 1 : PROPOSITION DE VALEUR -->
+        <div class="page-section">
+            <p style="font-size: 16px; color: #FFFFFF; margin-bottom: 30px;">Bonjour,</p>
+            <p>Ravi d'avoir pu échanger avec vous. Voici les piliers de l'écosystème <strong>Happy House</strong>, conçu pour redonner la liberté et la rentabilité aux passionnés de l'hospitalité.</p>
+
+            <div class="quote-box">
+                "Reprenez le contrôle de votre visibilité et de votre marge, sans intermédiaire."
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-title">🌟 Un réseau sélectif et solidaire</span>
+                <p class="feature-desc">Une alliance exclusive d'hébergeurs et commerçants indépendants unis par une charte d'excellence et d'entraide.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-title">🚀 Visibilité premium SANS COMMISSION</span>
+                <p class="feature-desc">Une exposition majeure sur nos plateformes dédiées. Vos clients réservent en direct : 100% du fruit de votre travail reste chez vous.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-title">🛠️ Des outils concrets pour votre impact</span>
+                <p class="feature-desc">Appli mobile, digitalisation de l'accueil, CRM et automatisation. Nous simplifions votre gestion pour libérer votre temps.</p>
+            </div>
+
+            <div class="feature-card">
+                <span class="feature-title">🤝 Des synergies locales puissantes</span>
+                <p class="feature-desc">Carte de fidélité réseau, accès aux Comités d'Entreprise et flux de groupes qualifiés via nos partenaires stratégiques.</p>
+            </div>
+            
+            <div class="btn-group" style="margin-top: 40px;">
+                <a href="https://calendar.app.google/DsiCxWsy6umQnBzk6" class="btn-main">📅 RÉSERVER MON CRÉNEAU</a>
+            </div>
+        </div>
+
+        <!-- PAGE 2 : ÉCOSYSTÈME & PRESSE -->
+        <div class="page-section" style="background-color: rgba(255,255,255,0.02);">
+            <span class="section-label">Notre Écosystème</span>
+            
+            <div class="btn-group">
+                <a href="https://my-happyhouse.com" class="btn-explorer">
+                    <img src="image Happy House.png" alt="HH" class="btn-icon">
+                    VISITER MY HAPPY HOUSE
+                </a>
+                <a href="https://cosy-places.com" class="btn-explorer">
+                    <img src="logo cosyplace.png" alt="CP" class="btn-icon">
+                    DÉCOUVRIR COSY PLACES
+                </a>
+            </div>
+
+            <span class="section-label" style="margin-top: 50px;">Ils valident notre vision</span>
+            <div class="btn-group">
+                <a href="https://hr-infos.fr/contact-hotels-charme-caractere-et-happy-house-forment-une-alliance-smile-hospitality-alliance/" class="btn-press">📰 HR-INFOS</a>
+                <a href="https://www.lhotellerie-restauration.fr/actualite/naissance-de-smile-hospitality-alliance-nouvelle-alliance-d-hebergeurs-independants" class="btn-press">📰 L'HÔTELLERIE RESTAURATION</a>
+            </div>
+
+            <div class="store-btns">
+                <span class="section-label">L'expérience mobile</span>
+                <a href="https://apps.apple.com/fr/app/happy-house/id1439213944">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/3/3c/Download_on_the_App_Store_Badge.svg" alt="App Store" style="height: 45px; margin: 10px;">
+                </a>
+                <a href="https://play.google.com/store/apps/details?id=com.happyhouse">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height: 45px; margin: 10px;">
+                </a>
+            </div>
+        </div>
+
+        <!-- FOOTER CLEAN -->
+        <div class="footer-clean">
+            <img src="image Happy House.png" alt="Happy House" class="footer-logo">
+            <p style="font-size: 11px; color: rgba(212,175,55,0.6); margin: 0; letter-spacing: 1px;">
+                HAPPY HOUSE &copy; 2026 - L'ALLIANCE DE L'HOSPITALITÉ INDÉPENDANTE
+            </p>
+        </div>
+
+    </div>
+
+</body>
+</html>

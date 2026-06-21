@@ -1,0 +1,121 @@
+{
+  "name": "QuestIA Audit 2026 - Data Collection",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "questia-audit-2026",
+        "options": {}
+      },
+      "id": "e4a2d8b1-1234-4567-8901-abcdefabcdef",
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ],
+      "webhookId": "questia-audit-2026"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "string": [
+            {
+              "value1": "={{ $json[\"source\"] }}",
+              "value2": "Questia_Sondage_Expert"
+            }
+          ]
+        }
+      },
+      "id": "b1c2d3e4-5678-9012-3456-7890abcdef12",
+      "name": "Filter Source",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "appendRow",
+        "sheetId": "VOTRE_ID_GOOGLE_SHEET_ICI",
+        "range": "A:Z",
+        "options": {}
+      },
+      "id": "c1d2e3f4-5678-9012-3456-7890abcdef34",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 1,
+      "position": [
+        650,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://api.callmebot.com/whatsapp.php?phone=VOTRE_TELEPHONE&text=🚀 *Nouveau Sondage QuestIA*%0A%0A*Rôle:* {{ $json[\"q0\"] }}%0A*Budget:* {{ $json[\"q19\"] }}%0A%0ACheck le Dashboard!&apikey=VOTRE_API_KEY_CALLMEBOT",
+        "options": {}
+      },
+      "id": "w1h2a3t4-s5a6-p7p8-a9l1-alert123456",
+      "name": "WhatsApp Alert",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 1,
+      "position": [
+        850,
+        450
+      ]
+    },
+    {
+      "parameters": {
+        "sendTo": "julienflorence.florence@gmail.com",
+        "subject": "=🚀 QuestIA : Nouveau Lead Audit - {{ $json[\"q0\"] }}",
+        "message": "=Bonjour Julien,\n\nUn nouveau prospect vient de terminer l'audit QuestIA.\n\n🎯 Profil : {{ $json[\"q0\"] }}\n💰 Budget estimé : {{ $json[\"q19\"] }}\n🌐 Langues : {{ $json[\"q5\"] }}\n\nRetrouvez tous les détails dans votre Google Sheet ou sur votre Dashboard :\nhttps://julienflorenceflorence-oss.github.io/questia-signature/dashboard.html\n\n---\nQuestIA Automation",
+        "options": {}
+      },
+      "id": "e1m2a3i4-l5l6-a7l8-e9r0-email123456",
+      "name": "Email Notification",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Filter Source",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Source": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "WhatsApp Alert",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Email Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+}

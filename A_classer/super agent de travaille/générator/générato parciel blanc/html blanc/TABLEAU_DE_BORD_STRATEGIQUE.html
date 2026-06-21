@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TABLEAU DE BORD STRATÉGIQUE - OBJECTIF 16+/20</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0F1115;
+            --gold: #D4AF37;
+            --gold-light: #F1D37E;
+            --text-color: #E0E0E0;
+            --card-bg: #1A1D23;
+            --danger: #FF4C4C;
+            --success: #2ECC71;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid var(--gold);
+            padding: 40px;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.1);
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 20px;
+        }
+
+        .subtitle {
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            font-size: 0.9em;
+            color: var(--gold-light);
+            margin-bottom: 40px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-left: 4px solid var(--gold);
+            padding: 20px;
+            border-radius: 4px;
+        }
+
+        .command {
+            font-family: monospace;
+            background: #000;
+            color: var(--gold-light);
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .card h3 {
+            color: var(--gold);
+            margin-top: 0;
+            text-transform: uppercase;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.7em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .badge-h1 { background: #3498DB; color: white; }
+        .badge-h2 { background: #9B59B6; color: white; }
+        .badge-h3 { background: #E67E22; color: white; }
+        .badge-h4 { background: #27AE60; color: white; }
+        .badge-h5 { background: #E74C3C; color: white; }
+
+        .rules {
+            margin-top: 40px;
+            border: 1px dashed var(--gold);
+            padding: 20px;
+        }
+
+        .rules h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.5em;
+            text-align: center;
+        }
+
+        .rules ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .rules li::before {
+            content: "✦ ";
+            color: var(--gold);
+        }
+
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .important {
+            color: var(--danger);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>SUPER-AGENT STRATÉGIQUE 16+</h1>
+    <div class="subtitle">Protocole d'Acquisition de Points - Rocket School</div>
+
+    <div class="grid">
+        <!-- H1: DIAG -->
+        <div class="card">
+            <div class="badge badge-h1">Phase H1 : Recherche</div>
+            <h3><span class="command">!DIAG</span> - Scanner de Sujet</h3>
+            <p>Analyse le SWOT/PESTEL et le Modèle Économique. Identifie les 3 leviers de croissance immédiats.</p>
+            <ul>
+                <li>Extraction des faits clés</li>
+                <li>Analyse du Revenue Stream</li>
+            </ul>
+        </div>
+
+        <!-- H2: SMART -->
+        <div class="card">
+            <div class="badge badge-h2">Phase H2 : Problématique</div>
+            <h3><span class="command">!SMART</span> - Laser à Points</h3>
+            <p>Génère 3 variantes de problématiques SMART ultra-précises basées sur le diagnostic.</p>
+            <ul>
+                <li>Volume + Coût + Date</li>
+                <li>Verrouillage des 1 pts de base</li>
+            </ul>
+        </div>
+
+        <!-- H3: BUDGET -->
+        <div class="card">
+            <div class="badge badge-h3">Phase H3 : Stratégie</div>
+            <h3><span class="command">!BUDGET</span> - Ventilation</h3>
+            <p>Ventile un budget global (ex: 5k€) avec les prix réels (SaaS, Freelance, Média).</p>
+            <ul>
+                <li>Prix du marché (Apollo, SalesNav)</li>
+                <li>Justification de la Faisabilité</li>
+            </ul>
+        </div>
+
+        <!-- H4: AUDIT -->
+        <div class="card">
+            <div class="badge badge-h4">Phase H4 : Rédaction</div>
+            <h3><span class="command">!AUDIT</span> - Moulineuse 20/20</h3>
+            <p>Analyse un paragraphe de ton brouillon selon la grille de notation officielle.</p>
+            <ul>
+                <li>Style CEO (Ton exécutif)</li>
+                <li>Détection des "Il faudrait que"</li>
+            </ul>
+        </div>
+
+        <!-- H5: ROI -->
+        <div class="card">
+            <div class="badge badge-h5">Phase H5 : Validation</div>
+            <h3><span class="command">!ROI</span> - Calculateur Final</h3>
+            <p>Génère la synthèse financière et le retour sur investissement prévisionnel.</p>
+            <ul>
+                <li>Preuve de rentabilité</li>
+                <li>Validation de la Mesurabilité</li>
+            </ul>
+        </div>
+
+        <!-- TOUTES PHASES: CEO -->
+        <div class="card">
+            <div class="badge" style="background:var(--gold); color:black;">Bonus Style</div>
+            <h3><span class="command">!CEO</span> - Traducteur Expert</h3>
+            <p>Transforme une idée "étudiante" en recommandation stratégique de haut niveau.</p>
+            <ul>
+                <li>Suppression des hésitations</li>
+                <li>Insertion du jargon pro</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="rules">
+        <h2>LES RÈGLES D'OR DU 16+/20</h2>
+        <ul>
+            <li><span class="important">Pas de budget ventilé = 0 pt en Faisabilité.</span> Chaque euro doit être justifié.</li>
+            <li><span class="important">Pas de KPI Business = 0 pt en Mesurabilité.</span> Les clics ne comptent pas, les ventes oui.</li>
+            <li><span class="important">Pas de lien Diag-Action = 0 pt en Pertinence.</span> Chaque action doit soigner une douleur.</li>
+            <li><span class="important">Le ton passif est interdit.</span> Utilise "Nous allons", "L'offensive consiste à".</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        © 2026 - SUPER-AGENT STRATÉGIQUE - EXAMEN DE PARTIEL ROCKET SCHOOL
+    </div>
+</div>
+
+</body>
+</html>

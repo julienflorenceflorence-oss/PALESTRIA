@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestIA — Audit Stratégique Linguistique 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --bg-card: #0A0E18;
+            --accent: #00E5FF;
+            --purple: #7B5CFF;
+            --coral: #FF5A6A;
+            --text: #EEF1F7;
+            --muted: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .survey-container {
+            max-width: 500px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            border-radius: 24px;
+            padding: 30px 20px;
+            margin-top: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            width: 120px;
+            margin-bottom: 20px;
+        }
+
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 2px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: var(--brand-gradient);
+            width: 10%;
+            transition: width 0.3s ease;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title {
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .question-block {
+            margin-bottom: 35px;
+            display: none; /* Hidden by default for step-by-step */
+        }
+
+        .question-block.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        textarea, input[type="text"] {
+            width: 100%;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 15px;
+            color: var(--text);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        textarea:focus, input[type="text"]:focus {
+            border-color: var(--accent);
+        }
+
+        .btn-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: 0.3s;
+            border: none;
+            text-align: center;
+        }
+
+        .btn-next {
+            background: var(--brand-gradient);
+            color: #05070D;
+        }
+
+        .btn-prev {
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .footer-note {
+            text-align: center;
+            font-size: 0.75rem;
+            color: var(--muted);
+            margin-top: 30px;
+        }
+
+        .intro-text {
+            color: var(--muted);
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .hypothesis {
+            background: rgba(0, 229, 255, 0.05);
+            border-left: 2px solid var(--accent);
+            padding: 12px;
+            font-size: 0.85rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="survey-container">
+        <div class="header">
+            <img src="https://raw.githubusercontent.com/julienflorenceflorence-oss/questia-signature/master/logo-questia.png" alt="QuestIA Logo" class="logo">
+            <h1>Audit Stratégique 2026</h1>
+            <p class="intro-text">Votre expertise nous aide à construire le futur de la formation linguistique immersive.</p>
+        </div>
+
+        <div class="progress-container">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+
+        <form id="questiaSurvey">
+            <!-- STEP 1: CARTOGRAPHIER -->
+            <div class="question-block active" data-step="1">
+                <span class="section-title">Bloc 1 : Cartographier le terrain</span>
+                <label>Pouvez-vous me décrire votre rôle au sein de l’organisation ?</label>
+                <textarea rows="3" name="q0" placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <!-- STEP 2: HYPOTHÈSE 1 -->
+            <div class="question-block" data-step="2">
+                <span class="section-title">Bloc 2 : Méthodes & IA</span>
+                <div class="hypothesis">"La manière dont on forme en langues aujourd'hui n'est plus adaptée à notre temps."</div>
+                <label>Comment gérez-vous les formations chez vous ?</label>
+                <textarea rows="2" name="q1" placeholder="Votre réponse..."></textarea>
+                <label style="margin-top:20px;">Et en particulier, les formations linguistiques ?</label>
+                <textarea rows="2" name="q2" placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <div class="question-block" data-step="3">
+                <span class="section-title">Bloc 2 : Méthodes & IA</span>
+                <label>Quels sont les outils que vous utilisez ? Et quid de l’IA ?</label>
+                <textarea rows="2" name="q3" placeholder="Votre réponse..."></textarea>
+                <label style="margin-top:20px;">Comment évalueriez-vous le niveau de progression après formation ?</label>
+                <textarea rows="2" name="q4" placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <!-- STEP 3: HYPOTHÈSE 2 -->
+            <div class="question-block" data-step="4">
+                <span class="section-title">Bloc 3 : Impact Business</span>
+                <label>Quelles langues sont utilisées dans votre organisation et dans quel contexte ?</label>
+                <textarea rows="2" name="q5" placeholder="Anglais, Espagnol... Négociation, support..."></textarea>
+                <label style="margin-top:20px;">Dans quel objectif business avez-vous besoin de ces langues ?</label>
+                <textarea rows="2" name="q6" placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <div class="question-block" data-step="5">
+                <span class="section-title">Bloc 3 : Impact Business</span>
+                <label>Pouvez-vous raconter une anecdote d’une opportunité manquée par manque de maîtrise ?</label>
+                <textarea rows="3" name="q7" placeholder="Votre expérience..."></textarea>
+                <label style="margin-top:20px;">Quels profils ont le plus besoin d’utiliser des langues au quotidien ?</label>
+                <textarea rows="2" name="q8" placeholder="Sales, Tech, Management..."></textarea>
+            </div>
+
+            <!-- STEP 4: ROI -->
+            <div class="question-block" data-step="6">
+                <span class="section-title">Bloc 4 : Mesure du ROI</span>
+                <div class="hypothesis">Seulement 13% des entreprises évaluent réellement le ROI de ces formations.</div>
+                <label>Comment mesurez-vous concrètement la progression et l'impact ?</label>
+                <textarea rows="2" name="q9" placeholder="KPIs, feedback..."></textarea>
+                <label style="margin-top:20px;">Comment évaluez-vous votre ROI aujourd'hui ?</label>
+                <textarea rows="2" name="q10" placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <div class="question-block" data-step="7">
+                <span class="section-title">Bloc 4 : Mesure du ROI</span>
+                <label>Si vous deviez justifier le budget demain devant votre direction, quels arguments utiliseriez-vous ?</label>
+                <textarea rows="3" name="q11" placeholder="Arguments clés..."></textarea>
+            </div>
+
+            <!-- STEP 5: BIAIS CULTURELS -->
+            <div class="question-block" data-step="8">
+                <span class="section-title">Bloc 5 : Biais Culturels</span>
+                <div class="hypothesis">"Maîtriser une langue ne suffit plus. Lagos n'est pas Dublin."</div>
+                <label>Avez-vous déjà rencontré des malentendus liés à des différences culturelles ?</label>
+                <textarea rows="3" name="q12" placeholder="Racontez-nous..."></textarea>
+            </div>
+
+            <div class="question-block" data-step="9">
+                <span class="section-title">Bloc 5 : Biais Culturels</span>
+                <label>Une anecdote où les différences culturelles ont joué un rôle (positif ou négatif) ?</label>
+                <textarea rows="3" name="q13" placeholder="Votre histoire..."></textarea>
+                <label style="margin-top:20px;">Les formations actuelles couvrent-elles suffisamment ces codes ?</label>
+                <textarea rows="2" name="q14" placeholder="Votre avis..."></textarea>
+            </div>
+
+            <div class="question-block" data-step="10">
+                <span class="section-title">Bloc 5 : Biais Culturels</span>
+                <label>Comment vos collaborateurs sont-ils préparés aujourd'hui à ces différences ?</label>
+                <textarea rows="3" name="q15" placeholder="Votre réponse..."></textarea>
+            </div>
+
+            <!-- STEP 6: SOLUTION -->
+            <div class="question-block" data-step="11">
+                <span class="section-title">Bloc 6 : La solution idéale</span>
+                <label>Quelle expérience avez-vous avec des outils digitaux (Babbel, etc.) ?</label>
+                <textarea rows="2" name="q16" placeholder="Votre retour..."></textarea>
+                <label style="margin-top:20px;">Quels seraient les 3 piliers de l'outil idéal selon vous ?</label>
+                <textarea rows="2" name="q17" placeholder="1... 2... 3..."></textarea>
+            </div>
+
+            <div class="question-block" data-step="12">
+                <span class="section-title">Bloc 6 : La solution idéale</span>
+                <label>Si vous aviez une baguette magique, quelle serait la solution idéale ?</label>
+                <textarea rows="3" name="q18" placeholder="Décrivez votre rêve..."></textarea>
+                <label style="margin-top:20px;">Combien seriez-vous prêt à investir pour cela ?</label>
+                <input type="text" name="q19" placeholder="Budget estimé...">
+            </div>
+
+            <!-- STEP 7: CLÔTURE -->
+            <div class="question-block" data-step="13">
+                <span class="section-title">Clôture</span>
+                <label>Y a-t-il un sujet important qu'on n'a pas abordé ?</label>
+                <textarea rows="4" name="q20" placeholder="Dernières pensées..."></textarea>
+            </div>
+
+            <div class="btn-row">
+                <button type="button" class="btn btn-prev" id="prevBtn" style="display:none;">Retour</button>
+                <button type="button" class="btn btn-next" id="nextBtn">Suivant</button>
+            </div>
+        </form>
+
+        <p class="footer-note">QuestIA — Intelligence Immersive pour le B2B</p>
+    </div>
+
+    <script>
+        let currentStep = 1;
+        const totalSteps = 13;
+        const form = document.getElementById('questiaSurvey');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const progressBar = document.getElementById('progressBar');
+        const blocks = document.querySelectorAll('.question-block');
+
+        function updateStep() {
+            blocks.forEach(block => {
+                block.classList.remove('active');
+                if (parseInt(block.dataset.step) === currentStep) {
+                    block.classList.add('active');
+                }
+            });
+
+            progressBar.style.width = ((currentStep / totalSteps) * 100) + '%';
+            
+            prevBtn.style.display = currentStep === 1 ? 'none' : 'block';
+            nextBtn.textContent = currentStep === totalSteps ? 'Terminer' : 'Suivant';
+        }
+
+        nextBtn.addEventListener('click', async () => {
+            if (currentStep < totalSteps) {
+                currentStep++;
+                updateStep();
+                window.scrollTo(0, 0);
+            } else {
+                // Collecte des données
+                const formData = new FormData(form);
+                const data = {};
+                formData.forEach((value, key) => { data[key] = value; });
+                data.timestamp = new Date().toISOString();
+                data.source = "SMS_Audit_2026";
+
+                // URL du Webhook n8n (PRODUCTION)
+                const N8N_WEBHOOK_URL = "https://spotty-pumas-wink.loca.lt/webhook/questia-audit-2026";
+
+                nextBtn.disabled = true;
+                nextBtn.textContent = "Envoi...";
+
+                try {
+                    if (N8N_WEBHOOK_URL === "VOTRE_URL_WEBHOOK_N8N_ICI") {
+                        console.log("Simulation d'envoi (URL non configurée) :", data);
+                        alert("Merci ! Vos réponses ont été enregistrées localement (URL n8n non configurée).");
+                    } else {
+                        const response = await fetch(N8N_WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(data)
+                        });
+
+                        if (response.ok) {
+                            alert("Merci ! Vos réponses ont été envoyées avec succès à l'équipe QuestIA.");
+                        } else {
+                            throw new Error("Erreur serveur");
+                        }
+                    }
+                    
+                    // Optionnel : Redirection vers votre site après succès
+                    // window.location.href = "https://julienflorenceflorence-oss.github.io/questia-signature/";
+                    
+                } catch (err) {
+                    alert("Désolé, une erreur est survenue lors de l'envoi. Veuillez réessayer.");
+                    nextBtn.disabled = false;
+                    nextBtn.textContent = "Terminer";
+                }
+            }
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentStep > 1) {
+                currentStep--;
+                updateStep();
+                window.scrollTo(0, 0);
+            }
+        });
+    </script>
+</body>
+</html>

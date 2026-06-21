@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PITCH DECK - JULIEN FLORENCE - SOUTENANCE A150</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #DDA83E;
+            --black: #000000;
+            --dark-gray: #0A0C1A;
+            --text-light: #F4F4F4;
+            --red: #E74C3C;
+            --green: #2ECC71;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--text-light);
+            overflow: hidden; /* Prevent scrolling, it's a presentation */
+        }
+
+        #presentation-container {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+        }
+
+        .slide {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            pointer-events: none;
+            padding: 5%;
+        }
+
+        .slide.active {
+            opacity: 1;
+            pointer-events: auto;
+            z-index: 10;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, .cinzel { font-family: 'Cinzel', serif; }
+        
+        .huge-number {
+            font-family: 'Cinzel', serif;
+            font-size: 12vw;
+            font-weight: 900;
+            color: var(--gold);
+            line-height: 1;
+            text-shadow: 0 0 40px rgba(221, 168, 62, 0.2);
+        }
+
+        .big-title {
+            font-size: 5vw;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 2vh;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 2vw;
+            color: var(--gold);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 5vh;
+            font-weight: 200;
+        }
+
+        .label {
+            font-size: 1.5vw;
+            color: #888;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+        }
+
+        /* --- LAYOUTS & COMPONENTS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5vw;
+            width: 90%;
+            max-width: 1400px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 3vw;
+            width: 100%;
+            max-width: 1600px;
+            text-align: center;
+        }
+
+        .card {
+            border: 1px solid rgba(221, 168, 62, 0.3);
+            padding: 3vw;
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(10px);
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .border-gold { border-left: 5px solid var(--gold); padding-left: 2vw; }
+        .border-red { border-left: 5px solid var(--red); padding-left: 2vw; }
+        .border-green { border-left: 5px solid var(--green); padding-left: 2vw; }
+
+        .progress-bar {
+            width: 100vw; height: 4px;
+            background: #222;
+            position: absolute; bottom: 0; left: 0;
+            z-index: 100;
+        }
+        .progress-fill {
+            height: 100%; background: var(--gold); width: 0%;
+            transition: width 0.3s linear;
+        }
+
+        .slide-counter {
+            position: absolute; bottom: 2vh; right: 2vw;
+            font-family: 'Cinzel', serif; color: #555; font-size: 1vw;
+            z-index: 100;
+        }
+
+        /* Helpers */
+        .text-gold { color: var(--gold); }
+        .text-red { color: var(--red); }
+        .text-green { color: var(--green); }
+        .mt-2 { margin-top: 2vh; } .mt-5 { margin-top: 5vh; }
+        
+        /* Decorative Backgrounds */
+        .bg-logo {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 50vw; opacity: 0.03; z-index: -1;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="presentation-container">
+
+        <!-- SLIDE 1 : COVER -->
+        <div class="slide active">
+            <div class="subtitle" style="margin-bottom: 2vh;">CONSULTING STRATÉGIQUE</div>
+            <h1 class="big-title cinzel">HAPPY HOUSE</h1>
+            <div style="width: 10vw; height: 2px; background: var(--gold); margin: 2vh 0 4vh 0;"></div>
+            <h2 style="font-size: 2.5vw; font-weight: 200; letter-spacing: 2px; margin-bottom: 6vh;">LE PIVOT DE LA PÉRENNITÉ</h2>
+            
+            <div style="text-align: center; margin-top: 5vh;">
+                <p style="font-size: 1.5vw; font-weight: 600; letter-spacing: 3px;">JULIEN FLORENCE</p>
+                <p style="font-size: 1vw; color: #666; margin-top: 1vh; letter-spacing: 2px;">PROMOTION A150 — ROCKET SCHOOL</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 : QUI SOMMES-NOUS -->
+        <div class="slide">
+            <h2 class="subtitle">L'Écosystème B2B Premium</h2>
+            <div class="grid-3" style="margin-top: 5vh;">
+                <div class="card">
+                    <h3 class="cinzel text-gold" style="font-size: 2vw; margin-bottom: 2vh;">VISIBILITÉ</h3>
+                    <p style="font-size: 1.2vw; color: #999;">Portail de réservation directe (0% Commission)</p>
+                </div>
+                <div class="card">
+                    <h3 class="cinzel text-gold" style="font-size: 2vw; margin-bottom: 2vh;">TECH</h3>
+                    <p style="font-size: 1.2vw; color: #999;">Guest App & Outils de gestion</p>
+                </div>
+                <div class="card" style="border-color: var(--gold); background: rgba(221,168,62,0.05);">
+                    <h3 class="cinzel text-gold" style="font-size: 2vw; margin-bottom: 2vh;">COST-KILLING</h3>
+                    <p style="font-size: 1.2vw; color: #FFF; font-weight: bold;">Centrale d'Achats Entegra<br>(-15% à -25% sur les charges)</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 : LE CONTEXTE MARCHE -->
+        <div class="slide">
+            <h2 class="subtitle">Le Marché : L'Étau</h2>
+            <div class="grid-2">
+                <div style="text-align: center;">
+                    <div class="huge-number text-red">71%</div>
+                    <div class="label" style="margin-top: 2vh;">Le Monopole Booking.com</div>
+                    <p style="font-size: 1.2vw; color: #777; margin-top: 2vh; max-width: 80%; margin-left: 10%;">Asphyxie des marges</p>
+                </div>
+                <div style="text-align: center;">
+                    <div class="huge-number text-red">ALUR</div>
+                    <div class="label" style="margin-top: 2vh;">La Menace Légale (DPE)</div>
+                    <p style="font-size: 1.2vw; color: #777; margin-top: 2vh; max-width: 80%; margin-left: 10%;">Risque d'interdiction de louer pour les particuliers</p>
+                </div>
+            </div>
+            <p style="font-size: 2vw; color: #FFF; margin-top: 10vh; font-style: italic; border-left: 4px solid var(--gold); padding-left: 20px;">
+                "L'hébergeur indépendant est en détresse administrative et financière."
+            </p>
+        </div>
+
+        <!-- SLIDE 4 : LE PARADOXE INTERNE -->
+        <div class="slide">
+            <h2 class="subtitle">La Tension Opérationnelle</h2>
+            <div class="grid-2" style="align-items: center;">
+                <div class="card">
+                    <div class="cinzel text-gold" style="font-size: 6vw; line-height: 1;">170</div>
+                    <div class="label mt-2">Membres Actifs</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="cinzel" style="font-size: 4vw; color: #FFF;">VS</div>
+                </div>
+                <div class="card" style="border-color: var(--red);">
+                    <div class="cinzel text-red" style="font-size: 6vw; line-height: 1;">4</div>
+                    <div class="label mt-2">Collaborateurs</div>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 8vh; font-size: 1.5vw;">
+                Le management artisanal historique ne peut plus absorber le flux.<br>
+                <span class="text-gold" style="font-weight: bold;">L'acquisition doit être restructurée.</span>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 : LE CRASH OUTBOUND 1 -->
+        <div class="slide">
+            <h2 class="subtitle text-red">L'Audit d'Acquisition (Le Démarchage)</h2>
+            <div class="huge-number" style="font-size: 10vw;">14 500</div>
+            <div class="label" style="margin-top: 1vh; font-size: 2vw;">Appels passés (Cold Calling)</div>
+            
+            <div class="grid-2" style="margin-top: 10vh; width: 60%;">
+                <div class="border-red">
+                    <h3 class="cinzel" style="font-size: 3vw; color: #FFF;">50%</h3>
+                    <p style="color: #888;">De Non-Réponse</p>
+                </div>
+                <div class="border-red">
+                    <h3 class="cinzel" style="font-size: 3vw; color: #FFF;">40%</h3>
+                    <p style="color: #888;">De Refus Immédiat</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 : LE CRASH OUTBOUND 2 -->
+        <div class="slide">
+            <h2 class="subtitle text-red">L'Impasse Financière</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">Coût d'Acquisition (CAC)</div>
+                    <div class="cinzel text-red" style="font-size: 5vw; margin: 2vh 0;">1 823 €</div>
+                    <div style="font-size: 1vw; color: #555;">(Salaire SDR / 1 signature mensuelle)</div>
+                </div>
+                <div class="card">
+                    <div class="label">Revenu Annuel (ARPU)</div>
+                    <div class="cinzel" style="font-size: 5vw; margin: 2vh 0; color: #FFF;">226 €</div>
+                    <div style="font-size: 1vw; color: #555;">(Mix des formules Happy House)</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 : L'HÉMORRAGIE (CHURN) -->
+        <div class="slide">
+            <h2 class="subtitle text-red">L'Audit de Rétention</h2>
+            <div class="huge-number text-red" style="font-size: 12vw;">80%</div>
+            <div class="label" style="font-size: 2.5vw; color: #FFF; margin-bottom: 2vh;">De Déperdition (Churn)</div>
+            <p style="font-size: 1.5vw; color: #888;">Sur la cohorte démarchée par téléphone.</p>
+            
+            <div class="card" style="margin-top: 8vh; width: 60%; background: #111;">
+                <div class="label" style="margin-bottom: 1vh;">Diagnostic Comportemental</div>
+                <div class="cinzel text-gold" style="font-size: 2vw;">L'absence d'usage</div>
+                <p style="font-size: 1.2vw; color: #999; margin-top: 2vh;">Le client ne change pas ses habitudes d'achat.<br>Pas d'utilisation de la centrale = Pas d'économies = Résiliation.</p>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 : LA LIGNE ROUGE -->
+        <div class="slide">
+            <div class="label" style="margin-bottom: 3vh;">LE VERDICT COMPTABLE</div>
+            <div class="cinzel" style="font-size: 6vw; display: flex; align-items: center; gap: 3vw;">
+                <div>LTV / CAC</div>
+                <div style="color: var(--red);">=</div >
+                <div class="text-red" style="font-weight: 900;">0.16</div>
+            </div>
+            <div style="width: 40vw; height: 1px; background: #333; margin: 5vh 0;"></div>
+            <p style="font-size: 2vw; font-weight: 200; letter-spacing: 2px;">Le modèle actuel brûle du cash.</p>
+        </div>
+
+        <!-- SLIDE 9 : LE PIVOT (LA DATA) -->
+        <div class="slide">
+            <h2 class="subtitle text-gold">Phase 1 : Le Pivot Data</h2>
+            <div class="huge-number" style="font-size: 8vw;">126 000</div>
+            <div class="label" style="margin-bottom: 8vh;">Leads Bruts Filtrés par l'I.A.</div>
+            
+            <div class="border-gold" style="text-align: left; width: 70%;">
+                <h3 style="font-size: 2vw; margin-bottom: 1vh;">L'Isolement de la cible vitale</h3>
+                <p style="font-size: 1.5vw; color: #999; line-height: 1.5;">
+                    Sélection stricte des particuliers (gros gîtes)<br>
+                    soumis à la pression de la <strong>Loi ALUR</strong>.<br>
+                    <em>Ils n'ont pas besoin d'un logiciel, ils ont besoin d'être sauvés.</em>
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 : LE VETO -->
+        <div class="slide">
+            <h2 class="subtitle text-gold">La Confrontation</h2>
+            
+            <div style="position: relative; display: inline-block;">
+                <div class="card" style="opacity: 0.4;">
+                    <h3 class="cinzel" style="font-size: 3vw;">Cold Emailing Massif (I.A.)</h3>
+                    <p style="font-size: 1.5vw; color: #888; margin-top: 1vh;">Ma recommandation initiale</p>
+                </div>
+                <!-- Red Cross overlay -->
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 110%; height: 10px; background: var(--red); rotate: -15deg; box-shadow: 0 0 20px red;"></div>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 110%; height: 10px; background: var(--red); rotate: 15deg; box-shadow: 0 0 20px red;"></div>
+            </div>
+
+            <p style="font-size: 2vw; color: #FFF; margin-top: 8vh; font-style: italic; text-align: center; max-width: 80%;">
+                "Véto de la Direction : Risque de Brand Damage.<br>Le Premium ne se 'spamme' pas."
+            </p>
+        </div>
+
+        <!-- SLIDE 11 : LE REMEDE ACQUISITION -->
+        <div class="slide">
+            <h2 class="subtitle text-green">La Recommandation : Inbound Qualitatif</h2>
+            <div class="cinzel text-gold" style="font-size: 4vw; margin-bottom: 2vh;">L'AFTERWORK RÉGIONAL</div>
+            <p style="font-size: 1.5vw; color: #888; margin-bottom: 8vh;">Mutualisation de l'acquisition / Biais de Preuve Sociale</p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">SDR Repositionné</div>
+                    <div style="font-size: 1.5vw; margin-top: 2vh; color: #FFF;">Qualification VIP sur Invitation</div>
+                </div>
+                <div class="card" style="border-color: var(--green);">
+                    <div class="label">Objectif CPA</div>
+                    <div class="cinzel text-green" style="font-size: 4vw; margin-top: 1vh;">166 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12 : LE REMEDE RETENTION -->
+        <div class="slide">
+            <h2 class="subtitle text-green">La Recommandation : Rétention</h2>
+            <div class="cinzel text-gold" style="font-size: 4vw; margin-bottom: 2vh;">LE DASHBOARD R.O.I</div>
+            <p style="font-size: 1.5vw; color: #888; margin-bottom: 8vh;">Rendez-vous visio trimestriel imposé (Customer Success)</p>
+
+            <div class="border-green" style="text-align: left; width: 70%;">
+                <h3 style="font-size: 2vw; margin-bottom: 1vh;">Matérialiser l'invisible</h3>
+                <p style="font-size: 1.5vw; color: #999; line-height: 1.5;">
+                    L'objectif n'est pas seulement de prouver la valeur.<br>
+                    L'objectif est de <strong>forcer l'usage</strong> de la centrale d'achat pour ancrer le client dans le réseau.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 13 : LA PREUVE (DURENTIE) -->
+        <div class="slide">
+            <h2 class="subtitle text-green">La Preuve (Cas "La Durentie")</h2>
+            
+            <div style="display: flex; align-items: center; gap: 4vw; margin-top: 5vh;">
+                <div style="text-align: right;">
+                    <div class="label">Cotisation Annuelle</div>
+                    <div class="cinzel text-red" style="font-size: 3vw; margin-top: 1vh;">- 360 €</div>
+                </div>
+                <div style="font-size: 5vw; color: #555;">➡</div>
+                <div style="text-align: left;">
+                    <div class="label">Économies Nettes (Entegra)</div>
+                    <div class="cinzel text-green" style="font-size: 6vw; margin-top: 1vh; font-weight: 900;">+ 4 120 €</div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 8vh; font-size: 1.5vw; color: #888; font-style: italic;">
+                L'argument d'autorité projeté lors des Afterworks.
+            </div>
+        </div>
+
+        <!-- SLIDE 14 : LE PLAN A 12 MOIS -->
+        <div class="slide">
+            <h2 class="subtitle text-gold">Le Pilotage : Budget & Sécurité</h2>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="label">Budget M12</div>
+                    <div class="cinzel text-gold" style="font-size: 3.5vw; margin: 2vh 0;">~ 3 500 €</div>
+                    <div style="font-size: 1.2vw; color: #999;">6 Afterworks + Infrastructure IA</div>
+                </div>
+                <div class="card">
+                    <div class="label">Comité de Pilotage (COPIL)</div>
+                    <div style="font-size: 1.5vw; margin-top: 2vh; color: #FFF; text-align: left; line-height: 1.6;">
+                        <span class="text-red">⚠ Si CPA > 200€</span> : Analyse causale<br>
+                        <span class="text-red">⚠ 2ème échec</span> : Fin de l'acquisition locale, bascule sur la fidélisation interne.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15 : BILAN & CONCLUSION -->
+        <div class="slide">
+            <div class="cinzel text-gold" style="font-size: 3vw; line-height: 1.4; text-align: center; max-width: 90%;">
+                "L'HUMAIN SANS LA TECHNOLOGIE EST SA PROPRE LIMITE DE CROISSANCE...<br>
+                <br>...MAIS LA TECHNOLOGIE SANS L'HUMAIN MANQUE D'EFFICIENCE."
+            </div>
+            
+            <div style="width: 20vw; height: 1px; background: #555; margin: 8vh 0;"></div>
+            
+            <div style="display: flex; justify-content: space-between; width: 80%; align-items: flex-end;">
+                <div>
+                    <p style="font-size: 1.2vw; color: #888; text-transform: uppercase;">La Maturité du Consultant</p>
+                    <p style="font-size: 1.8vw; color: #FFF; margin-top: 1vh; font-weight: bold;">Le Profil Hybride</p>
+                </div>
+                <div style="text-align: right;">
+                    <p style="font-size: 1vw; color: #888; text-transform: uppercase;">Objectif 2028</p>
+                    <p style="font-size: 1.5vw; color: var(--gold); margin-top: 1vh; font-weight: bold;">Direction Dév. PalestrIA</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- OVERLAYS -->
+        <div class="slide-counter"><span id="current-slide">1</span> / 15</div>
+        <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+    </div>
+
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const counter = document.getElementById('current-slide');
+        const progress = document.getElementById('progress');
+        let currentIndex = 0;
+
+        function updateSlides() {
+            slides.forEach((slide, index) => {
+                if(index === currentIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            counter.innerText = currentIndex + 1;
+            progress.style.width = ((currentIndex + 1) / slides.length) * 100 + '%';
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === 'Space' || e.key === 'Enter') {
+                if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    updateSlides();
+                }
+            } else if (e.key === 'ArrowLeft') {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    updateSlides();
+                }
+            }
+        });
+
+        // Initialize click to next slide for easier presentation mode
+        document.getElementById('presentation-container').addEventListener('click', (e) => {
+             if (currentIndex < slides.length - 1) {
+                    currentIndex++;
+                    updateSlides();
+                }
+        });
+
+        updateSlides();
+    </script>
+</body>
+</html>

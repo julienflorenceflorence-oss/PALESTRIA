@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Julien FLORENCE - LOXAM A4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0B0E;
+            --sidebar: #111418;
+            --accent: #D4AF37;
+            --accent-light: #F7EF8A;
+            --text: #FFFFFF;
+            --text-dim: #A0A4B0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; width: var(--page-w); height: var(--page-h); }
+        }
+
+        body { background: #000; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; line-height: 1.3; font-size: 9pt; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 240px 1fr;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* --- SIDEBAR --- */
+        aside {
+            background: var(--sidebar);
+            padding: 20px 15px;
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-frame {
+            width: 140px;
+            height: 140px;
+            border: 2px solid var(--accent);
+            padding: 3px;
+            margin-bottom: 15px;
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%) contrast(110%);
+        }
+
+        .contact-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 8px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.7rem;
+            font-family: 'Cinzel';
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .btn-action:hover { background: var(--accent); color: var(--bg); }
+
+        .btn-calendar {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+
+        .btn-full-cv {
+            border: 1px dashed var(--accent);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        h2 { font-family: 'Cinzel'; color: var(--accent); font-size: 0.85rem; border-bottom: 1px solid var(--accent); padding-bottom: 3px; margin: 15px 0 8px 0; align-self: flex-start; width: 100%; }
+        
+        .side-list { list-style: none; padding: 0; width: 100%; font-size: 0.75rem; color: var(--text-dim); }
+        .side-list li { margin-bottom: 5px; display: flex; align-items: flex-start; gap: 5px; }
+        .side-list li::before { content: "›"; color: var(--accent); font-weight: bold; }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            padding: 25px 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header { margin-bottom: 20px; }
+        h1 { font-family: 'Cinzel'; font-size: 2.2rem; color: var(--accent); margin: 0; letter-spacing: 2px; }
+        .tagline { font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--text); margin: 3px 0 10px 0; font-size: 0.95rem; border-left: 3px solid var(--accent); padding-left: 12px; }
+
+        .ats-summary { font-size: 0.85rem; text-align: justify; color: var(--text-dim); margin-bottom: 15px; line-height: 1.4; }
+
+        .section-title { font-family: 'Cinzel'; color: var(--accent); font-size: 1.1rem; margin: 15px 0 10px 0; display: flex; align-items: center; gap: 10px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--accent), transparent); }
+
+        .exp-card { margin-bottom: 12px; }
+        .exp-head { display: flex; justify-content: space-between; align-items: baseline; }
+        .role { font-weight: 700; color: var(--accent); font-size: 0.95rem; }
+        .date { font-family: 'Cinzel'; font-size: 0.75rem; color: var(--text-dim); }
+        .company { font-weight: 600; font-size: 0.85rem; color: var(--text); margin-bottom: 4px; }
+        
+        .exp-body { font-size: 0.8rem; color: var(--text-dim); padding-left: 8px; border-left: 1px solid rgba(255,255,255,0.1); }
+        .exp-body ul { margin: 3px 0; padding-left: 12px; }
+        .exp-body li { margin-bottom: 2px; }
+
+        .keyword-pill { display: inline-block; padding: 1px 5px; border: 1px solid rgba(212, 175, 55, 0.4); font-size: 0.65rem; color: var(--accent); margin: 1px; border-radius: 2px; }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <aside>
+            <div class="profile-frame">
+                <img src="../CV lettre de motivation/photo moi pro.jpeg" alt="Julien FLORENCE">
+            </div>
+
+            <div class="contact-buttons">
+                <a href="tel:0661747573" class="btn-action">📞 06 61 74 75 73</a>
+                <a href="mailto:julien.florence@gmail.com" class="btn-action">✉️ EMAIL</a>
+                <a href="https://calendar.app.google/FePzHBS6Lf7BxEaA6" target="_blank" class="btn-action btn-calendar">📅 AGENDA</a>
+                <a href="index.html" class="btn-action btn-full-cv">📂 CV INTÉGRAL</a>
+            </div>
+
+            <h2>Tech & Data</h2>
+            <ul class="side-list">
+                <li>CRM Expert (Bitrix24, HubSpot)</li>
+                <li>Growth : Scraping & Automation</li>
+                <li>Web : HTML/CSS, SEO, SEM</li>
+            </ul>
+
+            <h2>Hard Skills BTP</h2>
+            <ul class="side-list">
+                <li>rénovation/ individuel neuf & Second œuvre</li>
+                <li>Logistique de matériel</li>
+                <li>Sécurité & Conformité chantiers</li>
+                <li>Négociation Accords Cadres</li>
+            </ul>
+
+            <h2>Soft Skills</h2>
+            <ul class="side-list">
+                <li>ENTJ-A | 94% Rationnel</li>
+                <li>Posture Adulte-Adulte</li>
+                <li>Prise de hauteur (Girafe)</li>
+            </ul>
+
+            <h2>Langues</h2>
+            <ul class="side-list">
+                <li>Anglais : Courant (B2)</li>
+                <li>Néerlandais : B2</li>
+            </ul>
+        </aside>
+
+        <main>
+            <header>
+                <h1>Julien FLORENCE</h1>
+                <div class="tagline">Attaché Technico-Commercial BtoB | Spécialiste BTP</div>
+            </header>
+
+            <div class="ats-summary">
+                <strong>Business Developer | 15 ans d'exp. en direction</strong> | Pilotage centres de profit (2.6M€ CA). Expert en <strong>Ingénierie BTP</strong> (Immo/Intérim) & <strong>Acquisition Digitale</strong>. Focus : industrialisation de la croissance pour <strong>LOXAM Rental Lormont</strong> via reporting chirurgical et expertise terrain.
+            </div>
+
+            <div class="section-title">Expériences</div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Responsable Développement Commercial</span><span class="date">2025 – PRÉSENT</span></div>
+                <div class="company">HAPPY HOUSE | B2B PRESTIGE</div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>126 000 prospects qualifiés</strong> générés par automation.</li>
+                        <li>Pilotage <strong>Bitrix24</strong> (KPI : CAC, LTV, ROI).</li>
+                    </ul>
+                    <div class="keyword-pill">Growth</div><div class="keyword-pill">Automation</div><div class="keyword-pill">Smarketing</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Responsable du Pôle HRE (Hôtellerie Restauration Événementiel)</span><span class="date">2022 – 2024</span></div>
+                <div class="company">RAS INTÉRIM | LOGISTIQUE - CA 2.6 M€</div>
+                <div class="exp-body">
+                    <ul>
+                        <li>Gestion 25 comptes B2B (Bâtiment, Transport).</li>
+                        <li>Délégation 20 ETP/semaine. Sécurité & conformité <strong>chantiers</strong>.</li>
+                    </ul>
+                    <div class="keyword-pill">Logistique</div><div class="keyword-pill">Négociation</div><div class="keyword-pill">Coordination des partenariats</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Conseiller Leader - Expert Immobilier</span><span class="date">2015 – 2021</span></div>
+                <div class="company">CENTURY 21 & CABINET BEDIN | CA généré 120 000 €</div>
+                <div class="exp-body">
+                    <ul>
+                        <li>Analyse technique <strong>bâti / rénovation/ individuel neuf</strong>. Chiffrage rénovation.</li>
+                        <li>Prospection terrain (Pige/Porte-à-porte). Réseau artisans BTP.</li>
+                    </ul>
+                    <div class="keyword-pill">rénovation/ individuel neuf</div><div class="keyword-pill">Technique</div><div class="keyword-pill">Mandats</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Management & Événementiel de Luxe</span><span class="date">2000 – 2015</span></div>
+                <div class="company">MICHELIN / PALACES 5* (PARIS, DUBLIN)</div>
+                <div class="exp-body">
+                    <ul>
+                        <li>Croissance <strong>+140% CA</strong>. Maîtrise codes prestige (LHW).</li>
+                        <li>Expertise logistique transférable à <strong>LOXAM EVENT</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section-title">Formations & Certifs</div>
+            <div class="exp-body">
+                <strong>Bachelor Marketing & Commerce (2026)</strong> et Certifs : <strong>Google</strong>, <strong>HubSpot</strong>, <strong>HTML/CSS</strong>.
+            </div>
+
+        </main>
+    </div>
+</body>
+</html>
+</body>
+</html>

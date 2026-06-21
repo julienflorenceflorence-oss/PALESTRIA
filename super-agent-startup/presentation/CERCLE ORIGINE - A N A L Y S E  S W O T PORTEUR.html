@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERCLE ORIGINE - Fondations Stratégiques</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bordeaux: #630D16;
+            --deep-bg: #0D0705;
+            --text-gold: #D4AF37;
+            --card-bg: rgba(99, 13, 22, 0.95);
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        @media print {
+            @page { margin: 0; }
+            body { margin: 0; }
+        }
+        
+        html, body { 
+            margin: 0; 
+            padding: 0; 
+            background-color: var(--deep-bg);
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--text-gold);
+        }
+
+        .document-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom, #0D0705 0%, #2F1B12 30%, #630D16 60%, #1A0F0A 100%);
+            background-attachment: fixed;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296mm;
+            margin: 20px 0;
+            border: 2px solid var(--gold);
+            border-radius: 40px;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('photo appli en tete.png');
+            background-size: cover;
+            background-position: center;
+            padding: 50px 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .logo-frame {
+            max-width: 140px;
+            margin: 0 auto 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--gold);
+            border-radius: 30px;
+            display: block;
+        }
+
+        .logo-frame img { width: 100%; height: auto; }
+
+        h1 { font-size: 2.2rem; letter-spacing: 10px; text-transform: uppercase; margin: 0; color: var(--gold); }
+        
+        h2 { 
+            font-size: 1.6rem; 
+            text-align: center;
+            text-transform: uppercase; 
+            letter-spacing: 5px; 
+            margin: 30px 0 20px;
+            color: var(--gold);
+        }
+
+        h2::after {
+            content: "";
+            display: block;
+            width: 60px;
+            height: 2px;
+            background: var(--gold);
+            margin: 10px auto 0;
+        }
+
+        .content {
+            flex: 1;
+            padding: 0 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+        }
+
+        /* TEAM */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            padding: 25px 15px;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .team-card b { font-size: 1.1rem; display: block; margin-bottom: 5px; color: #FFF; }
+        .team-card span { 
+            background: var(--gold); 
+            color: var(--bordeaux); 
+            padding: 2px 10px; 
+            border-radius: 8px; 
+            font-size: 0.65rem; 
+            font-weight: bold; 
+            text-transform: uppercase;
+        }
+
+        /* SWOT */
+        .swot-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .swot-box {
+            padding: 25px;
+            border-radius: 25px;
+            border: 1px solid var(--gold);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .swot-box h4 { text-transform: uppercase; margin-top: 0; font-size: 1rem; color: var(--gold); }
+        .swot-box ul { padding-left: 15px; margin: 10px 0 0; }
+        .swot-box li { font-size: 0.85rem; margin-bottom: 5px; color: #EEE; }
+
+        /* PORTER */
+        .porter-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+        }
+
+        .porter-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px 10px;
+            border-radius: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+            font-size: 0.75rem;
+        }
+
+        .porter-card b { display: block; margin-bottom: 10px; color: var(--gold); text-transform: uppercase; }
+
+        /* LABELS */
+        .strategy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .strategy-card {
+            background: rgba(99, 13, 22, 0.2);
+            padding: 30px;
+            border-radius: 35px;
+            border: 1px solid var(--gold);
+        }
+
+        .price { font-weight: bold; color: var(--gold); font-size: 1.2rem; display: block; margin: 15px 0; }
+
+        footer {
+            background: rgba(0,0,0,0.8);
+            border-top: 2px solid var(--gold);
+            padding: 30px;
+            text-align: center;
+        }
+
+        @page { size: A4; margin: 0; }
+        @media print {
+            .page { margin: 0 !important; border-radius: 0 !important; height: 297mm !important; }
+            .document-wrapper { background: #0D0705 !important; }
+            .team-card, .swot-box, .strategy-card { background: var(--bordeaux) !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-wrapper">
+        
+        <!-- PAGE 1 : FONDATIONS & SWOT -->
+        <div class="page">
+            <header>
+                <div class="logo-frame">
+                    <img src="charte graphique/LOGO_CERCLE_ORIGINE_FINAL_BOUSSOLE.svg" alt="CERCLE ORIGINE">
+                </div>
+                <h1>CERCLE ORIGINE</h1>
+                <p style="letter-spacing: 3px; opacity: 0.8; font-style: italic;">Dossier de Fondations Stratégiques</p>
+            </header>
+
+            <div class="content">
+                <section>
+                    <h2>Le Directoire Fondateur</h2>
+                    <div class="team-grid">
+                        <div class="team-card">
+                            <b>JULIEN</b>
+                            <span>Président</span>
+                            <p style="font-size: 0.75rem; margin-top:10px; color: #EEE;">Vision Commerciale & Réseau. Garant de la rentabilité du modèle "Zéro Commission".</p>
+                        </div>
+                        <div class="team-card">
+                            <b>RUDDY</b>
+                            <span>CTO</span>
+                            <p style="font-size: 0.75rem; margin-top:10px; color: #EEE;">Architecte IA. Transforme les flux DATA en réservations directes pour les membres.</p>
+                        </div>
+                        <div class="team-card">
+                            <b>MATTHIEU</b>
+                            <span>Creative Director</span>
+                            <p style="font-size: 0.75rem; margin-top:10px; color: #EEE;">Social Manager. Magnifie l'identité visuelle et le rayonnement digital du réseau.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Analyse SWOT Augmentée</h2>
+                    <div class="swot-grid">
+                        <div class="swot-box" style="border-left: 8px solid #2D5A27;">
+                            <h4>Forces</h4>
+                            <ul>
+                                <li>Modèle disruptif sans commission.</li>
+                                <li>Synergie interne Tech / Design / Business.</li>
+                                <li>IA de "Data Recovery" propriétaire.</li>
+                            </ul>
+                        </div>
+                        <div class="swot-box" style="border-left: 8px solid #8B0000;">
+                            <h4>Faiblesses</h4>
+                            <ul>
+                                <li>Notoriété de marque à construire.</li>
+                                <li>Ressources humaines limitées au trio.</li>
+                            </ul>
+                        </div>
+                        <div class="swot-box" style="border-left: 8px solid var(--gold);">
+                            <h4>Opportunités</h4>
+                            <ul>
+                                <li>Loi Le Meur 2026 (Professionnalisation).</li>
+                                <li>Besoin d'indépendance des hébergeurs.</li>
+                                <li>Aides d'État (ADEME / Tourisme Durable).</li>
+                            </ul>
+                        </div>
+                        <div class="swot-box" style="border-left: 8px solid #444;">
+                            <h4>Menaces</h4>
+                            <ul>
+                                <li>Instabilité des quotas locaux (Zones tendues).</li>
+                                <li>Réaction tarifaire agressive des OTA.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Synthèse des Besoins (Phase 1)</h2>
+                    <div style="background: rgba(255,255,255,0.05); padding: 25px; border-radius: 30px; border: 1px solid var(--gold);">
+                        <div style="display: flex; justify-content: space-between; font-size: 1rem;">
+                            <span>Frais Juridiques & Marketing</span>
+                            <b>17 500 €</b>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 1rem; margin-top: 10px;">
+                            <span>Technologie & IA</span>
+                            <b>8 000 €</b>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; font-size: 1rem; margin-top: 10px;">
+                            <span>Trésorerie de Sécurité</span>
+                            <b>20 000 €</b>
+                        </div>
+                        <p style="text-align: right; font-size: 1.4rem; font-weight: bold; margin: 20px 0 0; color: #FFF; border-top: 1px solid var(--gold); padding-top: 15px;">
+                            INVESTISSEMENT TOTAL : 45 500 €
+                        </p>
+                    </div>
+                </section>
+            </div>
+            <footer>Document Confidentiel - &copy; 2026 CERCLE ORIGINE</footer>
+        </div>
+
+        <!-- PAGE 2 : PORTER & LABELLISATION -->
+        <div class="page">
+            <div class="content">
+                <section>
+                    <h2>Les 5 Forces de Porter</h2>
+                    <div class="porter-grid">
+                        <div class="porter-card">
+                            <b>Clients</b>
+                            Hébergeurs premium saturés par les commissions. Demande massive d'indépendance.
+                        </div>
+                        <div class="porter-card">
+                            <b>Fournisseurs</b>
+                            Indépendance totale grâce à la maîtrise tech interne (CTO associé).
+                        </div>
+                        <div class="porter-card">
+                            <b>Substituts</b>
+                            Logiciels de gestion isolés. Cercle Origine apporte la force du réseau.
+                        </div>
+                        <div class="porter-card">
+                            <b>Nouveaux</b>
+                            Barrière à l'entrée : Réseau local exclusif et IA propriétaire.
+                        </div>
+                        <div class="porter-card">
+                            <b>Concurrence</b>
+                            OTA dominantes. Stratégie de contournement par l'hyper-niche terroir.
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Stratégie de Labellisation</h2>
+                    <div class="strategy-grid">
+                        <div class="strategy-card">
+                            <h3>Création du Label Propre</h3>
+                            <p style="font-size: 0.85rem; font-style: italic;">Marque "Cercle Origine" certifiée.</p>
+                            <span class="price">~12 000 €</span>
+                            <p style="font-size: 0.85rem;">Indépendance totale, maîtrise des critères d'excellence et valeur de marque long terme.</p>
+                        </div>
+                        <div class="strategy-card">
+                            <h3>Adoption Labels État</h3>
+                            <p style="font-size: 0.85rem; font-style: italic;">Clef Verte / Destination d'Excellence.</p>
+                            <span class="price">~3 000 €</span>
+                            <p style="font-size: 0.85rem;">Crédibilité immédiate, accès simplifié aux subventions ADEME et déploiement flash.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Le Modèle "Anti-OTA"</h2>
+                    <div style="background: rgba(99, 13, 22, 0.3); padding: 30px; border-radius: 30px; border: 1px solid var(--gold); text-align: center;">
+                        <p style="font-size: 1.2rem; font-style: italic;">"Nous ne vendons pas des nuitées, nous bâtissons des alliances de terroir."</p>
+                        <ul style="display: flex; justify-content: space-around; list-style: none; padding: 0; margin-top: 20px; font-size: 0.9rem;">
+                            <li>✦ 0% Commission</li>
+                            <li>✦ DATA Souveraine</li>
+                            <li>✦ Synergie Réseau</li>
+                        </ul>
+                    </div>
+                </section>
+            </div>
+            <footer>Fondations Stratégiques - CERCLE ORIGINE - Page 2/2</footer>
+        </div>
+
+    </div>
+
+</body>
+</html>

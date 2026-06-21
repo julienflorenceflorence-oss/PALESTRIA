@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Master Plan Opérationnel (15-22 Mai)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        @media print {
+            @page { size: A4 landscape; margin: 5mm; }
+            body { background: white !important; color: black !important; padding: 0 !important; }
+            .no-print { display: none !important; }
+            .container { width: 100% !important; max-width: none !important; }
+            .day-card { border: 1px solid #ddd !important; background: white !important; color: black !important; break-inside: avoid; }
+            .task-item { border: 1px solid #eee !important; background: #fafafa !important; }
+            h1, h2, b, .task-time, .task-owner { color: black !important; }
+            .questia-logo { background: none !important; -webkit-text-fill-color: black !important; color: black !important; }
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { background-color: #000; color: var(--text); font-family: 'Montserrat', sans-serif; padding: 30px; }
+        .container { max-width: 1600px; margin: 0 auto; }
+
+        header { text-align: center; margin-bottom: 40px; }
+        .questia-logo { 
+            font-family: 'Cinzel'; font-weight: 700; font-size: 2.5rem; letter-spacing: 8px; 
+            background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .subtitle { font-family: 'Cinzel'; font-size: 0.8rem; letter-spacing: 3px; color: var(--accent); text-transform: uppercase; margin-top: 5px; }
+
+        .roadmap-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px;
+        }
+
+        .day-card {
+            background: var(--surface); border: 1px solid var(--border); border-radius: 15px; padding: 15px;
+            display: flex; flex-direction: column; gap: 10px;
+        }
+        .day-card.urgent { border-color: var(--accent-coral); background: rgba(255, 90, 106, 0.02); }
+        .day-card.exam { border-color: var(--accent); }
+
+        .day-header { border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+        .day-header h2 { font-family: 'Cinzel'; font-size: 1rem; color: var(--accent); }
+        .day-header span { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; }
+
+        .task-list { display: flex; flex-direction: column; gap: 8px; }
+        .task-item { 
+            padding: 8px; border-radius: 6px; background: rgba(255,255,255,0.02); font-size: 0.75rem;
+            border-left: 3px solid var(--text-dim);
+        }
+        .task-item.sales { border-left-color: var(--accent); }
+        .task-item.tech { border-left-color: var(--accent-purple); }
+        .task-item.strat { border-left-color: var(--accent-coral); }
+
+        .task-time { font-weight: 700; color: #FFF; }
+        .task-desc { color: var(--text-dim); display: block; margin: 2px 0; }
+        .task-owner { font-weight: 600; color: var(--accent); font-size: 0.7rem; }
+
+        .btn-print {
+            position: fixed; top: 20px; right: 20px; background: var(--brand-gradient);
+            border: none; padding: 10px 20px; color: #000; font-family: 'Cinzel'; font-weight: 700;
+            border-radius: 50px; cursor: pointer; z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <button class="btn-print no-print" onclick="window.print()">Exporter PDF</button>
+
+    <div class="container">
+        <header>
+            <div class="questia-logo">QUESTIA ELITE</div>
+            <div class="subtitle">Feuille de Route Commando (15-22 Mai 2026)</div>
+        </header>
+
+        <!-- PHASE 1 : COMMANDO (AVANT ÉPREUVE) -->
+        <div class="roadmap-grid">
+            <div class="day-card urgent">
+                <div class="day-header">
+                    <h2>Ven. 15 Mai</h2>
+                    <span>J-3 : Lancement (14H)</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item sales"><span class="task-time">14:00 - 16:00</span> <span class="task-desc">Scraping 1500 prospects & Lemlist.</span><span class="task-owner">Priscille / Natalia / Jeanne</span></div>
+                    <div class="task-item strat"><span class="task-time">16:00 - 18:00</span> <span class="task-desc">Design Identité Cyber-Prestige.</span><span class="task-owner">Albane</span></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header">
+                    <h2>Sam. 16 Mai</h2>
+                    <span>J-2 : Tech & Data</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item tech"><span class="task-time">10:00</span> <span class="task-desc">Dashboard Intelligence N8N.</span><span class="task-owner">Julien</span></div>
+                    <div class="task-item sales"><span class="task-time">14:00</span> <span class="task-desc">Analyse des 1ères réponses sondage.</span><span class="task-owner">Jeanne / Natalia</span></div>
+                </div>
+            </div>
+            <div class="day-card">
+                <div class="day-header">
+                    <h2>Dim. 17 Mai</h2>
+                    <span>J-1 : Storytelling</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item strat"><span class="task-time">10:00</span> <span class="task-desc">Script Vidéo & Captures Démo.</span><span class="task-owner">Albane / Wassila</span></div>
+                    <div class="task-item tech"><span class="task-time">15:00</span> <span class="task-desc">Workflow Onboarding (Make).</span><span class="task-owner">Priscille / Julien</span></div>
+                </div>
+            </div>
+            <div class="day-card exam">
+                <div class="day-header">
+                    <h2>Lun. 18 Mai</h2>
+                    <span>H1 : Recherche</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item strat"><span class="task-time">09:00</span> <span class="task-desc">Diagnostic PESTEL & SWOT Final.</span><span class="task-owner">Wassila / Lorraine</span></div>
+                    <div class="task-item sales"><span class="task-time">14:00</span> <span class="task-desc">Traction réelle (KPIs Scraping).</span><span class="task-owner">Julien / Jeanne</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PHASE 2 : EXAMEN (MONTÉE EN PUISSANCE) -->
+        <div class="roadmap-grid">
+            <div class="day-card exam">
+                <div class="day-header">
+                    <h2>Mar. 19 Mai</h2>
+                    <span>H2 : SMART</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item strat"><span class="task-time">09:00</span> <span class="task-desc">Fixation Problématique SMART.</span><span class="task-owner">Julien / Lorraine</span></div>
+                    <div class="task-item tech"><span class="task-time">14:00</span> <span class="task-desc">Intégration Graphiques Dashboard.</span><span class="task-owner">Albane / Julien</span></div>
+                </div>
+            </div>
+            <div class="day-card exam">
+                <div class="day-header">
+                    <h2>Mer. 20 Mai</h2>
+                    <span>H3 : Stratégie</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item strat"><span class="task-time">09:00</span> <span class="task-desc">Brainstorming Stratégique & ROI.</span><span class="task-owner">Julien / Albane</span></div>
+                    <div class="task-item sales"><span class="task-time">14:00</span> <span class="task-desc">Lancement Campagne Challenge.</span><span class="task-owner">Lorraine / Myriam</span></div>
+                </div>
+            </div>
+            <div class="day-card exam">
+                <div class="day-header">
+                    <h2>Jeu. 21 Mai</h2>
+                    <span>H4 : Rendu Note d'Op</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item strat"><span class="task-time">09:00</span> <span class="task-desc">Finalisation Canevas & Design.</span><span class="task-owner">Albane / Wassila</span></div>
+                    <div class="task-item tech"><span class="task-time">15:00</span> <span class="task-desc">Validation "Whaou" du Dashboard.</span><span class="task-owner">Toute l'équipe</span></div>
+                </div>
+            </div>
+            <div class="day-card urgent">
+                <div class="day-header">
+                    <h2>Ven. 22 Mai</h2>
+                    <span>H5 : JURY FINAL</span>
+                </div>
+                <div class="task-list">
+                    <div class="task-item strat" style="background: rgba(0, 229, 255, 0.05);"><span class="task-time">09:00</span> <span class="task-desc">PITCH & DÉMO DEVANT LE JURY.</span><span class="task-owner">Lorraine / Albane / Julien</span></div>
+                </div>
+            </div>
+        </div>
+
+        <footer style="text-align:center; font-family:'Cinzel'; font-size:0.7rem; color:var(--text-dim); margin-top:20px;">
+            QUESTIA © 2026 — UNITÉ D'ÉLITE STRATÉGIQUE — SANS VR
+        </footer>
+    </div>
+</body>
+</html>

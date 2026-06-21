@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contrat d'Apporteur d'Affaires - Happy House & LIFEHOME IMMO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap');
+
+        :root {
+            --hh-navy: #1B2A4E;
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B68D1F 100%);
+            --charcoal: rgba(255, 255, 255, 0.04);
+            --off-white: #F4F4F4;
+        }
+
+        @page { size: A4; margin: 0; }
+
+        * { 
+            box-sizing: border-box; 
+            -webkit-print-color-adjust: exact; 
+            print-color-adjust: exact;
+            border: none !important;
+            font-family: 'Cinzel', serif !important;
+        }
+
+        html, body {
+            margin: 0;
+            padding: 0;
+            background-color: #0F172A;
+            color: var(--off-white);
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--hh-navy);
+            margin: 0 auto;
+            padding: 40px 60px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        .logo-container { text-align: center; margin-bottom: 15px; }
+        .logo-image { max-width: 100px; height: auto; }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+            padding-bottom: 10px;
+        }
+
+        h1 { color: var(--gold); font-size: 18px; letter-spacing: 3px; margin: 0; text-transform: uppercase; font-weight: 700; }
+
+        .parties {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+            font-size: 9.5px;
+            line-height: 1.4;
+        }
+
+        .party-box h2 {
+            color: var(--gold);
+            font-size: 10px;
+            margin-bottom: 6px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
+            padding-bottom: 3px;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .section-title {
+            color: var(--gold);
+            font-size: 14px;
+            margin: 15px 0 8px;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .section-title::after {
+            content: "";
+            flex-grow: 1;
+            height: 1px;
+            background: rgba(212, 175, 55, 0.2);
+            margin-left: 10px;
+        }
+
+        .content-text {
+            font-size: 9.5px;
+            line-height: 1.5;
+            font-weight: 400;
+            text-align: justify;
+            margin-bottom: 10px;
+        }
+
+        .commission-table {
+            width: 100%;
+            margin: 15px 0;
+            font-size: 9px;
+            border-collapse: collapse;
+        }
+
+        .commission-table th {
+            color: var(--gold);
+            text-align: left;
+            padding: 10px;
+            background: rgba(212, 175, 55, 0.1);
+            font-weight: 700;
+        }
+
+        .commission-table td {
+            padding: 8px 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important;
+        }
+
+        .commission-rate { color: var(--gold); font-weight: 800; font-size: 12px; }
+
+        .signature-area {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 25px;
+        }
+
+        .sig-box { 
+            height: 110px; 
+            position: relative; 
+            border: 1px solid rgba(212, 175, 55, 0.1) !important;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.02);
+        }
+        .sig-label { 
+            font-size: 9px; 
+            color: var(--gold); 
+            margin-bottom: 8px; 
+            font-weight: 700; 
+            text-transform: uppercase;
+        }
+        .sig-line { 
+            position: absolute; 
+            bottom: 40px; 
+            width: calc(100% - 24px); 
+            height: 1px; 
+            background: var(--gold) !important; 
+            opacity: 0.5;
+        }
+        .sig-mention { 
+            position: absolute; 
+            bottom: 12px; 
+            font-size: 8.5px; 
+            font-weight: 600;
+            color: var(--off-white) !important; 
+        }
+
+        footer {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 7.5px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+            padding-top: 10px;
+            color: var(--gold) !important;
+            text-align: center;
+            line-height: 1.4;
+        }
+
+        /* Page 2 */
+        .grille-title { text-align: center; color: var(--gold); font-size: 22px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 5px; }
+        .commission-grid { width: 100%; font-size: 8.5px; border-collapse: collapse; }
+        .commission-grid th { background: rgba(255,255,255,0.05); color: var(--gold); padding: 8px; text-align: left; border-bottom: 1px solid var(--gold) !important; }
+        .commission-grid td { padding: 6px 8px; border-bottom: 1px solid rgba(212, 175, 55, 0.1) !important; }
+        .cat-row { background: rgba(212, 175, 55, 0.05); font-weight: 800; color: var(--gold); font-size: 9px; }
+        .gold-text { color: var(--gold); font-weight: 700; }
+
+        @media print {
+            body { background: var(--hh-navy); }
+            .a4-page { margin: 0; width: 210mm; height: 297mm; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- PAGE 1 : CONTRAT -->
+<div class="a4-page">
+    <div class="logo-container">
+        <img src="baniere/image Happy House.png" alt="Happy House Logo" class="logo-image">
+    </div>
+
+    <header>
+        <h1>Contrat d'Apporteur d'Affaires</h1>
+    </header>
+
+    <div class="parties">
+        <div class="party-box">
+            <h2>Le Mandant</h2>
+            <strong>HAPPY HOUSE</strong><br>
+            10 rue du Chant du Merle, 31400 Toulouse<br>
+            Représentée par M. Patrice KERMARREC<br>
+            Fondateur
+        </div>
+        <div class="party-box">
+            <h2>L'Apporteur</h2>
+            <strong>LIFEHOME IMMO (SAS)</strong><br>
+            9 rue Robert Schuman, 34430 Saint-Jean-de-Védas<br>
+            Représentée par M. Laurent JOUANIN<br>
+            Carte Pro CPI34022018000032374
+        </div>
+    </div>
+
+    <div class="section-title">Objet & Mission</div>
+    <p class="content-text">
+        <strong>LIFEHOME IMMO</strong> s'engage à identifier et présenter des lieux d'exception éligibles à la labellisation <strong>HAPPY HOUSE</strong>. L'apporteur promeut l'expérience voyageur premium, le modèle économique à 0% de commission, ainsi que la vision du réseau : le déploiement de l'application, une visibilité accrue, des achats mutualisés et l'attractivité des partenariats.
+    </p>
+
+    <div class="section-title">Conditions de Rémunération & Éligibilité</div>
+    <p class="content-text">
+        En contrepartie de ses missions, HAPPY HOUSE verse à LIFEHOME IMMO une commission calculée sur le montant HT de l'adhésion annuelle vendue, selon les taux différenciés ci-dessous. <br><br>
+        <strong style="color: var(--gold);">NOTE : L'éligibilité et l'intégration de tout nouveau lieu restent soumises à la validation finale et discrétionnaire de la Direction de HAPPY HOUSE.</strong>
+    </p>
+
+    <table class="commission-table">
+        <thead>
+            <tr>
+                <th>Type de Formule</th>
+                <th>Nature de l'intervention</th>
+                <th>Commission</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td rowspan="2" style="font-weight: 800; color: var(--gold);">Formule WAOUH !</td>
+                <td><strong>Commerce & Closing</strong> (Cycle de vente complet)</td>
+                <td><span class="commission-rate">30 %</span></td>
+            </tr>
+            <tr>
+                <td><strong>Apport d'Affaires</strong> (Mise en relation qualifiée)</td>
+                <td><span class="commission-rate">15 %</span></td>
+            </tr>
+            <tr>
+                <td rowspan="2" style="font-weight: 800; opacity: 0.8;">Autres Formules<br><small>(Premium, Prestige, Alliance)</small></td>
+                <td><strong>Commerce & Closing</strong> (Cycle de vente complet)</td>
+                <td><span class="commission-rate">10 %</span></td>
+            </tr>
+            <tr>
+                <td><strong>Apport d'Affaires</strong> (Mise en relation qualifiée)</td>
+                <td><span class="commission-rate">5 %</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="signature-area">
+        <div class="sig-box">
+            <div class="sig-label">Pour HAPPY HOUSE</div>
+            <div class="sig-line"></div>
+            <div class="sig-mention">M. Patrice KERMARREC</div>
+        </div>
+        <div class="sig-box">
+            <div class="sig-label">Pour LIFEHOME IMMO</div>
+            <div class="sig-line"></div>
+            <div class="sig-mention">M. Laurent JOUANIN</div>
+        </div>
+    </div>
+
+    <footer>
+        HAPPY HOUSE | 10 rue du Chant du Merle, 31400 Toulouse | www.my-happyhouse.com<br>
+        LIFEHOME IMMO | SIREN 839 468 840 | Garantie Financière 120 000 €
+    </footer>
+</div>
+
+<!-- PAGE 2 : GRILLE DES COMMISSIONS -->
+<div class="a4-page">
+    <div class="logo-container">
+        <img src="baniere/image Happy House.png" alt="Happy House Logo" class="logo-image">
+    </div>
+
+    <div class="grille-title">Grille de Commissions 2026</div>
+
+    <table class="commission-grid">
+        <thead>
+            <tr>
+                <th>Typologie de lieu / Forfait</th>
+                <th>Capacité</th>
+                <th>Prix HT</th>
+                <th>Apport (5/15%)</th>
+                <th>Closing (10/30%)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- HOTELS -->
+            <tr class="cat-row"><td colspan="5">HÔTELS & GRANDS DOMAINES</td></tr>
+            <tr><td>Formule WAOUH !</td><td>15+ pers.</td><td>675 €</td><td class="gold-text">101,25 € (15%)</td><td class="gold-text">202,50 € (30%)</td></tr>
+            <tr><td>Formule Prestige</td><td>15+ pers.</td><td>450 €</td><td>22,50 € (5%)</td><td>45,00 € (10%)</td></tr>
+            <tr><td>Formule Premium</td><td>15+ pers.</td><td>300 €</td><td>15,00 € (5%)</td><td>30,00 € (10%)</td></tr>
+
+            <!-- MAISONS D'HOTES & GITES -->
+            <tr class="cat-row"><td colspan="5">MAISONS D'HÔTES & GRANDS GÎTES</td></tr>
+            <tr><td>Formule WAOUH !</td><td>15+ pers.</td><td>540 €</td><td class="gold-text">81,00 € (15%)</td><td class="gold-text">162,00 € (30%)</td></tr>
+            <tr><td>Formule Prestige</td><td>15+ pers.</td><td>360 €</td><td>18,00 € (5%)</td><td>36,00 € (10%)</td></tr>
+            <tr><td>Formule Premium</td><td>15+ pers.</td><td>240 €</td><td>12,00 € (5%)</td><td>24,00 € (10%)</td></tr>
+
+            <!-- GITES STANDARDS -->
+            <tr class="cat-row"><td colspan="5">GÎTES STANDARDS & VILLAS</td></tr>
+            <tr><td>Formule WAOUH !</td><td>5 à 14 pers.</td><td>360 €</td><td class="gold-text">54,00 € (15%)</td><td class="gold-text">108,00 € (30%)</td></tr>
+            <tr><td>Formule Prestige</td><td>5 à 14 pers.</td><td>240 €</td><td>12,00 € (5%)</td><td>24,00 € (10%)</td></tr>
+            <tr><td>Formule Premium</td><td>5 à 14 pers.</td><td>150 €</td><td>7,50 € (5%)</td><td>15,00 € (10%)</td></tr>
+
+            <!-- PETITS GITES -->
+            <tr class="cat-row"><td colspan="5">PETITS GÎTES</td></tr>
+            <tr><td>Formule WAOUH !</td><td>1 à 4 pers.</td><td>216 €</td><td class="gold-text">32,40 € (15%)</td><td class="gold-text">64,80 € (30%)</td></tr>
+            <tr><td>Formule Prestige</td><td>1 à 4 pers.</td><td>144 €</td><td>7,20 € (5%)</td><td>14,40 € (10%)</td></tr>
+            <tr><td>Formule Premium</td><td>1 à 4 pers.</td><td>90 €</td><td>4,50 € (5%)</td><td>9,00 € (10%)</td></tr>
+
+            <!-- APPARTEMENTS & STUDIOS -->
+            <tr class="cat-row"><td colspan="5">APPARTEMENTS & STUDIOS</td></tr>
+            <tr><td>Formule WAOUH !</td><td>1 à 4 pers.</td><td>324 €</td><td class="gold-text">48,60 € (15%)</td><td class="gold-text">97,20 € (30%)</td></tr>
+            <tr><td>Formule Prestige</td><td>1 à 4 pers.</td><td>216 €</td><td>10,80 € (5%)</td><td>21,60 € (10%)</td></tr>
+            <tr><td>Formule Premium</td><td>1 à 4 pers.</td><td>144 €</td><td>7,20 € (5%)</td><td>14,40 € (10%)</td></tr>
+        </tbody>
+    </table>
+
+    <div style="margin-top: 20px; font-size: 8.5px; text-align: center; opacity: 0.8; line-height: 1.3;">
+        * Les montants de commission sont calculés sur le prix HT de l'adhésion annuelle.<br>
+        La Formule WAOUH ! bénéficie d'un taux de commission premium exceptionnel (15% / 30%).
+    </div>
+
+    <footer>
+        HAPPY HOUSE | Grille Tarifaire & Commissions 2026 | Edition Prestige
+        <div style="text-align: right;">LIFEHOME IMMO | Partenaire Agréé</div>
+    </footer>
+</div>
+
+</body>
+</html>

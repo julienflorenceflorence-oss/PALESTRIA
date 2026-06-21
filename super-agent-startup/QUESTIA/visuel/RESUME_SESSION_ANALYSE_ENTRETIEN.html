@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA — Résumé de Session Stratégique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --border: rgba(255, 255, 255, 0.08);
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Format A4 Prestige */
+        .page-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            background: var(--surface);
+            margin: 40px;
+            padding: 40mm 25mm;
+            position: relative;
+            border: 1px solid var(--border);
+            box-shadow: 0 40px 100px rgba(0,0,0,0.6);
+            overflow: hidden;
+        }
+
+        .page-a4::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 6px;
+            background: var(--brand-gradient);
+        }
+
+        /* Decorative Elements */
+        .corner-accent {
+            position: absolute;
+            top: 20px; right: 20px;
+            font-family: 'Cinzel';
+            font-size: 0.6rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            opacity: 0.5;
+        }
+
+        /* Header */
+        header {
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+        .logo {
+            font-family: 'Cinzel';
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: 10px;
+            background: var(--brand-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+        .doc-title {
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            color: var(--accent);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        /* Info Section */
+        .session-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+        }
+        .session-meta strong { color: var(--text); }
+
+        /* Sections */
+        h2 {
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            color: var(--text);
+            margin: 40px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            letter-spacing: 2px;
+        }
+        h2::before {
+            content: "";
+            width: 30px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .section-content {
+            padding-left: 45px;
+            margin-bottom: 30px;
+        }
+
+        .list-item {
+            position: relative;
+            margin-bottom: 15px;
+            padding-left: 20px;
+            font-size: 0.95rem;
+            font-weight: 300;
+        }
+        .list-item::before {
+            content: "";
+            position: absolute;
+            left: 0; top: 10px;
+            width: 6px; height: 1px;
+            background: var(--brand-gradient);
+        }
+        .list-item strong { color: var(--accent); font-weight: 600; }
+
+        /* Highlight Box */
+        .insight-box {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 30px 0;
+            border-left: 3px solid var(--accent-purple);
+        }
+        .insight-box h3 {
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            margin-top: 0;
+            color: var(--accent-purple);
+            letter-spacing: 2px;
+        }
+        .insight-box p {
+            font-size: 0.9rem;
+            margin: 0;
+            color: var(--text-dim);
+            font-style: italic;
+        }
+
+        /* Badge */
+        .doc-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            background: rgba(0, 229, 255, 0.1);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            color: var(--accent);
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        footer {
+            position: absolute;
+            bottom: 40mm;
+            left: 25mm;
+            right: 25mm;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            text-align: center;
+            font-family: 'Cinzel';
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+        }
+
+        @media print {
+            body { background: white; }
+            .page-a4 { margin: 0; box-shadow: none; border: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-a4">
+        <div class="corner-accent">QUESTIA ELITE // S5-2026</div>
+
+        <header>
+            <h1 class="logo">QUESTIA</h1>
+            <div class="doc-title">Résumé de Session Stratégique</div>
+        </header>
+
+        <div class="session-meta">
+            <div><strong>OBJET :</strong> Analyse Entretien Prospect & Corrélation</div>
+            <div><strong>DATE :</strong> 19 MAI 2026</div>
+        </div>
+
+        <div class="section-content">
+            <div class="doc-badge">Phase : Analyse & Stratégie</div>
+            <p style="font-size: 1.1rem; color: var(--text); font-weight: 300;">
+                Cette session a permis de transformer une interview brute en une série d'actifs décisionnels pour le MVP QuestIA.
+            </p>
+        </div>
+
+        <h2>01. Actions Réalisées</h2>
+        <div class="section-content">
+            <div class="list-item"><strong>Extraction :</strong> Analyse de la retranscription de Rachman (Roslane Bencharif).</div>
+            <div class="list-item"><strong>Corrélation :</strong> Croisement avec le <em>Guide d'Entretien Officiel</em> (95% de complétude).</div>
+            <div class="list-item"><strong>Livrable :</strong> Génération du compte-rendu d'entretien au format Cyber-Prestige.</div>
+            <div class="list-item"><strong>Sourcing :</strong> Intégration du profil professionnel (LinkedIn) pour validation jury.</div>
+        </div>
+
+        <h2>02. Insights Majeurs</h2>
+        <div class="section-content">
+            <div class="list-item"><strong>Validation Pédagogique :</strong> Confirmation absolue du modèle "Immersion par l'action".</div>
+            <div class="list-item"><strong>Levier IA :</strong> Nécessité d'automatiser l'évaluation pour libérer le temps formateur.</div>
+            <div class="list-item"><strong>Positionnement :</strong> Shift de "réparation de lacunes" vers "accélérateur de confiance".</div>
+        </div>
+
+        <div class="insight-box">
+            <h3>Observation Clé</h3>
+            <p>"La langue est une forme, pas le fond. Questia doit être l'outil qui débloque la capacité à transmettre de la valeur, au-delà de la syntaxe."</p>
+        </div>
+
+        <h2>03. Prochaines Étapes</h2>
+        <div class="section-content">
+            <div class="list-item">Injection des retours prospect dans la <strong>Roadmap Produit</strong>.</div>
+            <div class="list-item">Affinage du <strong>Simulateur ROI</strong> avec les tarifs de facturation identifiés.</div>
+            <div class="list-item">Préparation du <strong>Pitch Final</strong> basé sur cette preuve de traction terrain.</div>
+        </div>
+
+        <footer>
+            CONFIDENTIEL — UNITÉ D'ÉLITE STRATÉGIQUE QUESTIA — SANS VR
+        </footer>
+    </div>
+
+</body>
+</html>

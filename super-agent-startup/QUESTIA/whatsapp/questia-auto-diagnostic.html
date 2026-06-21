@@ -1,0 +1,1198 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questia · Auto-diagnostic Cultural Readiness Score — Évaluez votre risque culturel</title>
+<meta name="description" content="En 5 minutes, mesurez l'exposition culturelle de votre organisation. Score gratuit, rapport personnalisé, recommandations actionnables.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   QUESTIA · Auto-diagnostic Cultural Readiness Score
+   Cyber dark + light · quiz interactif · score visuel
+   ========================================================= */
+
+:root[data-theme="dark"] {
+  --bg:          #0A0E1F;
+  --bg-elev:     #131829;
+  --bg-card:     #1A2038;
+  --bg-card-hover: #20294A;
+  --line:        rgba(255,255,255,0.08);
+  --line-bright: rgba(255,255,255,0.18);
+  --text:        #E8EAF6;
+  --text-dim:    rgba(232,234,246,0.70);
+  --text-muted:  rgba(232,234,246,0.45);
+  --cyan:        #4EC9FF;
+  --purple:      #9F4FE0;
+  --ocre:        #C9874B;
+  --green:       #4ADE80;
+  --red:         #F87171;
+  --yellow:      #FBBF24;
+  --gradient-text: linear-gradient(135deg, #9F4FE0 0%, #4EC9FF 100%);
+  --gradient-bg-soft: linear-gradient(135deg, rgba(159,79,224,0.12) 0%, rgba(78,201,255,0.12) 100%);
+}
+
+:root[data-theme="light"] {
+  --bg:          #F5F1EA;
+  --bg-elev:     #FFFFFF;
+  --bg-card:     #FFFFFF;
+  --bg-card-hover: #FAFAF5;
+  --line:        rgba(15,26,46,0.10);
+  --line-bright: rgba(15,26,46,0.20);
+  --text:        #0F1A2E;
+  --text-dim:    rgba(15,26,46,0.70);
+  --text-muted:  rgba(15,26,46,0.50);
+  --cyan:        #1A6FA8;
+  --purple:      #5B3A8B;
+  --ocre:        #B8794B;
+  --green:       #16A34A;
+  --red:         #DC2626;
+  --yellow:      #CA8A04;
+  --gradient-text: linear-gradient(135deg, #5B3A8B 0%, #1A6FA8 100%);
+  --gradient-bg-soft: linear-gradient(135deg, rgba(91,58,139,0.06) 0%, rgba(26,111,168,0.06) 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 16px;
+  transition: background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+input { font-family: inherit; font-size: 1rem; }
+
+.container { width: 100%; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: background 0.3s ease;
+}
+.header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.logo {
+  font-family: 'Orbitron', monospace;
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: 0.16em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.theme-toggle {
+  position: relative;
+  width: 56px;
+  height: 28px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+}
+.theme-toggle__thumb {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--gradient-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: #FFFFFF;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme="dark"] .theme-toggle__thumb { transform: translateX(0); }
+[data-theme="light"] .theme-toggle__thumb { transform: translateX(28px); }
+[data-theme="dark"] .theme-toggle__icon::before { content: "☾"; }
+[data-theme="light"] .theme-toggle__icon::before { content: "☀"; }
+
+/* =========================================================
+   HERO INTRO
+   ========================================================= */
+.hero {
+  padding: 60px 0 32px;
+  position: relative;
+  text-align: center;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(159,79,224,0.10) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(78,201,255,0.10) 0%, transparent 45%);
+  pointer-events: none;
+}
+[data-theme="light"] .hero::before { opacity: 0.6; }
+
+.eyebrow {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 16px;
+  position: relative;
+}
+.hero__title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  position: relative;
+}
+.hero__title--gradient {
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-style: italic;
+}
+.hero__sub {
+  font-size: clamp(16px, 1.7vw, 18px);
+  color: var(--text-dim);
+  max-width: 640px;
+  margin: 0 auto 24px;
+  position: relative;
+}
+.hero__meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  position: relative;
+}
+
+/* =========================================================
+   QUIZ — CONTAINER
+   ========================================================= */
+.quiz {
+  padding: 32px 0 80px;
+}
+.quiz__card {
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 40px;
+  max-width: 780px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 640px) {
+  .quiz__card { padding: 28px 20px; border-radius: 12px; }
+}
+
+/* Progress bar */
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--line);
+}
+.progress__bar {
+  flex: 1;
+  height: 6px;
+  background: var(--bg-elev);
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+}
+.progress__fill {
+  height: 100%;
+  background: var(--gradient-text);
+  border-radius: 3px;
+  width: 0%;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.progress__label {
+  font-family: 'Orbitron', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-dim);
+  white-space: nowrap;
+}
+
+/* Question */
+.question {
+  display: none;
+  animation: fadeIn 0.4s ease;
+}
+.question.is-active { display: block; }
+
+.question__number {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+.question__text {
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.question__hint {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 28px;
+  font-style: italic;
+}
+
+/* Options */
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.option {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px 20px;
+  text-align: left;
+  font-size: 15px;
+  color: var(--text);
+  font-weight: 500;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  line-height: 1.45;
+}
+.option::before {
+  content: '';
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--line-bright);
+  transition: all 0.2s ease;
+}
+.option:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--cyan);
+  transform: translateX(2px);
+}
+.option:hover::before { border-color: var(--cyan); }
+.option.is-selected {
+  background: var(--gradient-bg-soft);
+  border-color: var(--cyan);
+}
+.option.is-selected::before {
+  background: var(--gradient-text);
+  border-color: transparent;
+  box-shadow: inset 0 0 0 3px var(--bg-card);
+}
+
+/* Navigation */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.btn--primary {
+  background: var(--gradient-text);
+  color: #FFFFFF;
+  box-shadow: 0 4px 14px rgba(78,201,255,0.25);
+}
+.btn--primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(78,201,255,0.35);
+}
+.btn--primary:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.btn--ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--line-bright);
+}
+.btn--ghost:hover {
+  color: var(--text);
+  border-color: var(--cyan);
+}
+.btn--ghost:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+.btn--large {
+  padding: 16px 32px;
+  font-size: 15px;
+}
+
+/* =========================================================
+   RESULT SECTION
+   ========================================================= */
+.result {
+  display: none;
+  animation: fadeIn 0.6s ease;
+}
+.result.is-active { display: block; }
+
+.result__header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+.result__eyebrow {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ocre);
+  margin-bottom: 12px;
+}
+.result__title {
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  margin-bottom: 12px;
+  line-height: 1.2;
+}
+
+/* Score gauge */
+.score-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 32px 0;
+}
+.score-circle {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.score-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+.score-circle__bg {
+  fill: none;
+  stroke: var(--bg-elev);
+  stroke-width: 14;
+}
+.score-circle__fill {
+  fill: none;
+  stroke: url(#scoreGradient);
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke-dasharray: 565.48; /* 2 × π × 90 */
+  stroke-dashoffset: 565.48;
+  transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.score-circle__center {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+.score-value {
+  font-family: 'Orbitron', monospace;
+  font-size: 56px;
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+.score-max {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-top: 4px;
+}
+.score-level {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-family: 'Orbitron', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.score-level--risk     { background: rgba(248,113,113,0.12); color: var(--red); border: 1px solid rgba(248,113,113,0.3); }
+.score-level--aware    { background: rgba(251,191,36,0.12);  color: var(--yellow); border: 1px solid rgba(251,191,36,0.3); }
+.score-level--ready    { background: rgba(78,201,255,0.12);  color: var(--cyan); border: 1px solid rgba(78,201,255,0.3); }
+.score-level--mastery  { background: rgba(74,222,128,0.12);  color: var(--green); border: 1px solid rgba(74,222,128,0.3); }
+
+/* Verdict */
+.verdict {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px 28px;
+  margin: 24px 0;
+  border-left: 3px solid var(--cyan);
+}
+.verdict__title {
+  font-family: 'Orbitron', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 10px;
+}
+.verdict__body {
+  font-size: 15px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.verdict__body strong { font-weight: 700; }
+
+/* Dimensions breakdown */
+.dimensions {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+@media (max-width: 640px) {
+  .dimensions { grid-template-columns: 1fr; }
+}
+.dim {
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 16px;
+}
+.dim__label {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.dim__value {
+  font-family: 'Orbitron', monospace;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.dim__bar {
+  height: 4px;
+  background: var(--bg-card);
+  border-radius: 2px;
+  overflow: hidden;
+}
+.dim__bar-fill {
+  height: 100%;
+  border-radius: 2px;
+  transition: width 1s 0.5s ease;
+  width: 0;
+}
+.dim__bar-fill--exposure  { background: linear-gradient(90deg, var(--green), var(--red)); }
+.dim__bar-fill--preparation { background: linear-gradient(90deg, var(--red), var(--green)); }
+.dim__bar-fill--risk { background: linear-gradient(90deg, var(--cyan), var(--purple)); }
+
+/* CTA Email capture */
+.cta-email {
+  background: var(--gradient-bg-soft);
+  border: 1px solid var(--cyan);
+  border-radius: 12px;
+  padding: 28px;
+  margin-top: 32px;
+  position: relative;
+  overflow: hidden;
+}
+.cta-email::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(78,201,255,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78,201,255,0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+  pointer-events: none;
+}
+.cta-email__content { position: relative; }
+.cta-email__title {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+.cta-email__sub {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+}
+.cta-email__list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+.cta-email__list li {
+  padding: 5px 0 5px 24px;
+  position: relative;
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.4;
+}
+.cta-email__list li::before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: var(--ocre);
+}
+.cta-email__form {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+@media (max-width: 540px) {
+  .cta-email__form { flex-direction: column; }
+}
+.cta-email__form input {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--line-bright);
+  border-radius: 8px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-size: 14px;
+}
+.cta-email__form input::placeholder { color: var(--text-muted); }
+.cta-email__form input:focus { outline: none; border-color: var(--cyan); }
+
+.cta-trust {
+  margin-top: 16px;
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+}
+.cta-trust .check { color: var(--green); font-weight: 700; margin: 0 4px; }
+
+/* Email success */
+.email-success {
+  display: none;
+  background: var(--bg-card);
+  border: 1px solid var(--green);
+  border-radius: 12px;
+  padding: 24px;
+  text-align: center;
+  margin-top: 24px;
+}
+.email-success.is-visible { display: block; }
+.email-success__icon {
+  font-size: 36px;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+/* Reset button */
+.reset {
+  text-align: center;
+  margin-top: 24px;
+}
+.reset button {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: underline;
+}
+.reset button:hover { color: var(--text); }
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+.footer {
+  background: var(--bg-elev);
+  border-top: 1px solid var(--line);
+  padding: 32px 0;
+  text-align: center;
+}
+.footer p {
+  font-size: 13px;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto;
+}
+.footer a {
+  color: var(--cyan);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+
+/* =========================================================
+   ANIMATIONS
+   ========================================================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ============== HEADER ============== -->
+<header class="header">
+  <div class="header__inner">
+    <a href="#" class="logo">QUESTIA</a>
+    <button class="theme-toggle" aria-label="Basculer thème clair/sombre" id="themeToggle">
+      <span class="theme-toggle__thumb">
+        <span class="theme-toggle__icon"></span>
+      </span>
+    </button>
+  </div>
+</header>
+
+<!-- ============== HERO ============== -->
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">Auto-diagnostic gratuit · 5 minutes</div>
+    <h1 class="hero__title">
+      Votre organisation est-elle prête<br>
+      <span class="hero__title--gradient">pour ses marchés internationaux ?</span>
+    </h1>
+    <p class="hero__sub">
+      En 8 questions, mesurez votre exposition culturelle, votre niveau de préparation, et votre risque réel. Score immédiat, sans inscription.
+    </p>
+    <div class="hero__meta">
+      <span>8 questions</span>
+      <span>·</span>
+      <span>5 min</span>
+      <span>·</span>
+      <span>100 % confidentiel</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============== QUIZ ============== -->
+<section class="quiz">
+  <div class="container">
+
+    <div class="quiz__card" id="quizCard">
+
+      <!-- Progress -->
+      <div class="progress">
+        <div class="progress__bar">
+          <div class="progress__fill" id="progressFill"></div>
+        </div>
+        <div class="progress__label" id="progressLabel">Q1 / 8</div>
+      </div>
+
+      <!-- Questions container -->
+      <div id="questionsContainer"></div>
+
+      <!-- Result container -->
+      <div class="result" id="resultContainer">
+        <div class="result__header">
+          <div class="result__eyebrow">Votre score</div>
+          <h2 class="result__title">Cultural Readiness Score</h2>
+        </div>
+
+        <!-- Gauge -->
+        <div class="score-display">
+          <div class="score-circle">
+            <svg viewBox="0 0 200 200">
+              <defs>
+                <linearGradient id="scoreGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stop-color="#9F4FE0"/>
+                  <stop offset="100%" stop-color="#4EC9FF"/>
+                </linearGradient>
+              </defs>
+              <circle class="score-circle__bg" cx="100" cy="100" r="90"/>
+              <circle class="score-circle__fill" id="scoreFill" cx="100" cy="100" r="90"/>
+            </svg>
+            <div class="score-circle__center">
+              <div class="score-value" id="scoreValue">0</div>
+              <div class="score-max">/ 100</div>
+            </div>
+          </div>
+          <div class="score-level" id="scoreLevel">Calculer…</div>
+        </div>
+
+        <!-- Verdict -->
+        <div class="verdict">
+          <div class="verdict__title">★ Notre lecture</div>
+          <div class="verdict__body" id="verdictBody">…</div>
+        </div>
+
+        <!-- Dimensions breakdown -->
+        <div class="dimensions">
+          <div class="dim">
+            <div class="dim__label">Exposition</div>
+            <div class="dim__value" id="dimExposure">0</div>
+            <div class="dim__bar"><div class="dim__bar-fill dim__bar-fill--exposure" id="barExposure"></div></div>
+          </div>
+          <div class="dim">
+            <div class="dim__label">Préparation</div>
+            <div class="dim__value" id="dimPreparation">0</div>
+            <div class="dim__bar"><div class="dim__bar-fill dim__bar-fill--preparation" id="barPreparation"></div></div>
+          </div>
+          <div class="dim">
+            <div class="dim__label">Risque résiduel</div>
+            <div class="dim__value" id="dimRisk">0</div>
+            <div class="dim__bar"><div class="dim__bar-fill dim__bar-fill--risk" id="barRisk"></div></div>
+          </div>
+        </div>
+
+        <!-- Email capture -->
+        <div class="cta-email" id="ctaEmail">
+          <div class="cta-email__content">
+            <h3 class="cta-email__title">Recevez votre rapport personnalisé</h3>
+            <p class="cta-email__sub">Votre score général en 8 questions est un aperçu. Le rapport complet va beaucoup plus loin :</p>
+            <ul class="cta-email__list">
+              <li>Analyse détaillée sur les 8 dimensions culturelles d'Erin Meyer</li>
+              <li>Score adapté à 3 marchés de votre choix (Hong Kong, Lagos, NY, etc.)</li>
+              <li>Recommandations actionnables pour vos directions RH et pédagogiques</li>
+              <li>Comparaison sectorielle (votre score vs benchmarks ETI françaises)</li>
+            </ul>
+            <form class="cta-email__form" id="emailForm">
+              <input type="email" placeholder="Email professionnel" required autocomplete="email">
+              <button type="submit" class="btn btn--primary btn--large">Recevoir mon rapport</button>
+            </form>
+            <div class="cta-trust">
+              <span class="check">✓</span>RGPD · AI Act 2026
+              <span class="check">✓</span>Hébergement souverain UE
+              <span class="check">✓</span>Aucun spam
+            </div>
+          </div>
+        </div>
+
+        <div class="email-success" id="emailSuccess">
+          <div class="email-success__icon">✓</div>
+          <div style="font-size: 18px; font-weight: 700; margin-bottom: 6px;">Merci !</div>
+          <div style="color: var(--text-dim); font-size: 14px;">Vous recevez votre rapport personnalisé sous 2 minutes dans votre boîte mail.</div>
+        </div>
+
+        <div class="reset">
+          <button onclick="resetQuiz()">Recommencer le diagnostic</button>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="nav" id="navContainer">
+        <button class="btn btn--ghost" id="btnPrev" disabled>← Précédent</button>
+        <button class="btn btn--primary" id="btnNext" disabled>Suivant →</button>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ============== FOOTER ============== -->
+<footer class="footer">
+  <div class="container">
+    <p>
+      <strong style="color: var(--text);">Questia</strong> · Apprendre une langue et les codes culturels business comme on vit une mission immersive.<br>
+      <a href="mailto:projetquestia@gmail.com">projetquestia@gmail.com</a> · <a href="https://projetquestia.com">projetquestia.com</a><br>
+      © 2026 Questia · Auto-diagnostic basé sur le framework Cultural Readiness Score
+    </p>
+  </div>
+</footer>
+
+<!-- ============== JAVASCRIPT ============== -->
+<script>
+(function() {
+  'use strict';
+
+  // ===== Theme toggle =====
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('questia-theme');
+  if (saved === 'light' || saved === 'dark') html.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('questia-theme', next); } catch(e) {}
+  });
+
+  // ===== QUESTIONS =====
+  // Chaque option a un score sur 3 axes :
+  //   exposure: niveau d'exposition à l'international
+  //   preparation: niveau de préparation actuel
+  //   each question contributes to overall risk score
+  const QUESTIONS = [
+    {
+      text: "Combien de cadres de votre organisation sont régulièrement exposés à des partenaires internationaux ?",
+      hint: "Déplacements, calls, stages, négociations internationales — au moins une fois par mois",
+      options: [
+        { text: "Aucun ou presque", scores: { exposure: 5, preparation: 0 } },
+        { text: "Quelques-uns (moins de 10 %)", scores: { exposure: 25, preparation: 0 } },
+        { text: "Une partie significative (10 à 30 %)", scores: { exposure: 55, preparation: 0 } },
+        { text: "Beaucoup (plus de 30 %)", scores: { exposure: 85, preparation: 0 } }
+      ]
+    },
+    {
+      text: "Sur quels marchés culturellement distants vos cadres opèrent-ils ?",
+      hint: "Asie, Afrique, Amérique du Sud, Moyen-Orient — au-delà de l'Europe occidentale",
+      options: [
+        { text: "Aucun, on reste sur l'Europe et les US", scores: { exposure: 10, preparation: 0 } },
+        { text: "1 ou 2 marchés distants (ex. Chine OU Brésil)", scores: { exposure: 40, preparation: 0 } },
+        { text: "3 à 5 marchés distants régulièrement", scores: { exposure: 65, preparation: 0 } },
+        { text: "Plus de 5 marchés, sur plusieurs continents", scores: { exposure: 90, preparation: 0 } }
+      ]
+    },
+    {
+      text: "Comment formez-vous actuellement vos cadres à la dimension interculturelle ?",
+      hint: "Formation, immersion, coaching, workshop — au-delà de la langue elle-même",
+      options: [
+        { text: "Nous ne le faisons pas spécifiquement", scores: { exposure: 0, preparation: 5 } },
+        { text: "Workshops ponctuels d'un cabinet interculturel (1 ou 2 jours)", scores: { exposure: 0, preparation: 30 } },
+        { text: "Formations linguistiques avec dimension culturelle intégrée", scores: { exposure: 0, preparation: 55 } },
+        { text: "Programme structuré, continu, avec mesure de la progression", scores: { exposure: 0, preparation: 90 } }
+      ]
+    },
+    {
+      text: "Avez-vous déjà perdu un contrat, un partenariat ou un stage à cause de malentendus culturels ?",
+      hint: "Pas juste un soupçon — un cas documenté que vous pouvez nommer",
+      options: [
+        { text: "Pas à notre connaissance", scores: { exposure: 0, preparation: 30 } },
+        { text: "Une fois, anecdotique", scores: { exposure: 0, preparation: 20 } },
+        { text: "Plusieurs fois — c'est un sujet récurrent", scores: { exposure: 0, preparation: 5 } },
+        { text: "Régulièrement, on perd des opportunités sans toujours savoir pourquoi", scores: { exposure: 0, preparation: 0 } }
+      ]
+    },
+    {
+      text: "Comment mesurez-vous le retour sur investissement de vos formations linguistiques actuelles ?",
+      hint: "Ce que vous présentez à votre direction financière ou à votre comité pédagogique",
+      options: [
+        { text: "Nous ne le mesurons pas", scores: { exposure: 0, preparation: 5 } },
+        { text: "Satisfaction des apprenants, taux de complétion", scores: { exposure: 0, preparation: 25 } },
+        { text: "Niveau CECRL atteint, certifications externes (TOEIC, IELTS…)", scores: { exposure: 0, preparation: 55 } },
+        { text: "Mesure mixte : niveau langue + performance opérationnelle réelle", scores: { exposure: 0, preparation: 90 } }
+      ]
+    },
+    {
+      text: "Quel est votre budget annuel pour la formation linguistique et interculturelle ?",
+      hint: "Sur l'ensemble des cadres exposés à l'international",
+      options: [
+        { text: "Pas de budget dédié", scores: { exposure: 0, preparation: 5 } },
+        { text: "Moins de 50 K€", scores: { exposure: 0, preparation: 25 } },
+        { text: "50 K€ à 200 K€", scores: { exposure: 0, preparation: 55 } },
+        { text: "Plus de 200 K€", scores: { exposure: 0, preparation: 75 } }
+      ]
+    },
+    {
+      text: "À quelle fréquence un de vos cadres se déplace-t-il à l'international pour une négociation ou un stage ?",
+      hint: "Cas où l'enjeu commercial ou de carrière est élevé",
+      options: [
+        { text: "Rarement (moins de 5 fois par an)", scores: { exposure: 15, preparation: 0 } },
+        { text: "Mensuellement (5 à 20 fois par an)", scores: { exposure: 50, preparation: 0 } },
+        { text: "Hebdomadairement (plus de 20 fois par an)", scores: { exposure: 80, preparation: 0 } },
+        { text: "Permanente, c'est la norme dans notre organisation", scores: { exposure: 95, preparation: 0 } }
+      ]
+    },
+    {
+      text: "Si on vous demandait, là, maintenant, lesquels de vos cadres sont prêts pour Hong Kong ou Lagos — sauriez-vous répondre ?",
+      hint: "La question clé. Avez-vous une donnée objective sur la préparation interculturelle de vos talents ?",
+      options: [
+        { text: "Non, je n'ai aucun moyen de le savoir", scores: { exposure: 0, preparation: 5 } },
+        { text: "J'ai une intuition, basée sur leur expérience passée", scores: { exposure: 0, preparation: 25 } },
+        { text: "J'ai des éléments partiels (CV, niveaux de langue, séjours antérieurs)", scores: { exposure: 0, preparation: 50 } },
+        { text: "Oui, j'ai une mesure structurée et chiffrée", scores: { exposure: 0, preparation: 90 } }
+      ]
+    }
+  ];
+
+  // ===== STATE =====
+  const state = {
+    currentQuestion: 0,
+    answers: new Array(QUESTIONS.length).fill(null),
+  };
+
+  // ===== DOM REFS =====
+  const $questions = document.getElementById('questionsContainer');
+  const $result = document.getElementById('resultContainer');
+  const $nav = document.getElementById('navContainer');
+  const $btnPrev = document.getElementById('btnPrev');
+  const $btnNext = document.getElementById('btnNext');
+  const $progressFill = document.getElementById('progressFill');
+  const $progressLabel = document.getElementById('progressLabel');
+
+  // ===== RENDER QUESTIONS =====
+  function renderQuestions() {
+    $questions.innerHTML = QUESTIONS.map((q, qi) => `
+      <div class="question" data-q="${qi}">
+        <div class="question__number">Question ${qi + 1} sur ${QUESTIONS.length}</div>
+        <h2 class="question__text">${q.text}</h2>
+        <p class="question__hint">${q.hint}</p>
+        <div class="options">
+          ${q.options.map((o, oi) => `
+            <button class="option" data-q="${qi}" data-o="${oi}">${o.text}</button>
+          `).join('')}
+        </div>
+      </div>
+    `).join('');
+
+    // Bind option clicks
+    document.querySelectorAll('.option').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const qi = parseInt(btn.dataset.q);
+        const oi = parseInt(btn.dataset.o);
+        selectOption(qi, oi);
+      });
+    });
+  }
+
+  function selectOption(qi, oi) {
+    state.answers[qi] = oi;
+    // Update visual
+    document.querySelectorAll(`.option[data-q="${qi}"]`).forEach(b => b.classList.remove('is-selected'));
+    document.querySelector(`.option[data-q="${qi}"][data-o="${oi}"]`).classList.add('is-selected');
+    // Enable Next button
+    $btnNext.disabled = false;
+  }
+
+  // ===== NAVIGATION =====
+  function showQuestion(qi) {
+    document.querySelectorAll('.question').forEach(q => q.classList.remove('is-active'));
+    const $q = document.querySelector(`.question[data-q="${qi}"]`);
+    if ($q) $q.classList.add('is-active');
+
+    // Update progress
+    const pct = ((qi + 1) / QUESTIONS.length) * 100;
+    $progressFill.style.width = pct + '%';
+    $progressLabel.textContent = `Q${qi + 1} / ${QUESTIONS.length}`;
+
+    // Update buttons
+    $btnPrev.disabled = qi === 0;
+    $btnNext.disabled = state.answers[qi] === null;
+    $btnNext.textContent = qi === QUESTIONS.length - 1 ? 'Voir mon score →' : 'Suivant →';
+  }
+
+  $btnNext.addEventListener('click', () => {
+    if (state.currentQuestion < QUESTIONS.length - 1) {
+      state.currentQuestion++;
+      showQuestion(state.currentQuestion);
+    } else {
+      // Show result
+      computeAndShowResult();
+    }
+  });
+
+  $btnPrev.addEventListener('click', () => {
+    if (state.currentQuestion > 0) {
+      state.currentQuestion--;
+      showQuestion(state.currentQuestion);
+    }
+  });
+
+  // ===== COMPUTE SCORE =====
+  function computeAndShowResult() {
+    // Aggregate scores
+    let totalExposure = 0;
+    let totalPreparation = 0;
+    let expWeight = 0;
+    let prepWeight = 0;
+
+    state.answers.forEach((oi, qi) => {
+      if (oi === null) return;
+      const scores = QUESTIONS[qi].options[oi].scores;
+      if (scores.exposure > 0 || QUESTIONS[qi].options.some(o => o.scores.exposure > 0)) {
+        totalExposure += scores.exposure;
+        expWeight++;
+      }
+      if (scores.preparation > 0 || QUESTIONS[qi].options.some(o => o.scores.preparation > 0)) {
+        totalPreparation += scores.preparation;
+        prepWeight++;
+      }
+    });
+
+    const avgExposure = expWeight > 0 ? Math.round(totalExposure / expWeight) : 0;
+    const avgPreparation = prepWeight > 0 ? Math.round(totalPreparation / prepWeight) : 0;
+
+    // Risk = exposure × (1 - preparation/100), normalized 0-100
+    // Plus on est exposé ET peu préparé, plus le risque est élevé
+    const risk = Math.round(avgExposure * (1 - avgPreparation / 100));
+
+    // Cultural Readiness Score = combine préparation et risque inverse
+    // CRS = preparation × (1 - exposure_factor) + (100 - risk) × exposure_factor
+    // Simplified: pondéré sur préparation (60%) + risque inversé (40%)
+    const crs = Math.round((avgPreparation * 0.6) + ((100 - risk) * 0.4));
+
+    // Render
+    document.querySelectorAll('.question').forEach(q => q.classList.remove('is-active'));
+    $result.classList.add('is-active');
+    $nav.style.display = 'none';
+
+    // Progress full
+    $progressFill.style.width = '100%';
+    $progressLabel.textContent = 'Terminé ✓';
+
+    // Animate score
+    animateValue('scoreValue', 0, crs, 1500);
+    document.getElementById('dimExposure').textContent = avgExposure;
+    document.getElementById('dimPreparation').textContent = avgPreparation;
+    document.getElementById('dimRisk').textContent = risk;
+
+    // Animate gauge — circumference = 2 × π × 90 ≈ 565.48
+    const circumference = 565.48;
+    const offset = circumference - (crs / 100) * circumference;
+    setTimeout(() => {
+      document.getElementById('scoreFill').style.strokeDashoffset = offset;
+      document.getElementById('barExposure').style.width = avgExposure + '%';
+      document.getElementById('barPreparation').style.width = avgPreparation + '%';
+      document.getElementById('barRisk').style.width = risk + '%';
+    }, 100);
+
+    // Set level + verdict
+    setLevel(crs);
+    setVerdict(crs, avgExposure, avgPreparation, risk);
+  }
+
+  function setLevel(crs) {
+    const $level = document.getElementById('scoreLevel');
+    if (crs < 40) {
+      $level.textContent = 'Zone à risque';
+      $level.className = 'score-level score-level--risk';
+    } else if (crs < 60) {
+      $level.textContent = 'Sensibilisé';
+      $level.className = 'score-level score-level--aware';
+    } else if (crs < 80) {
+      $level.textContent = 'Opérationnel';
+      $level.className = 'score-level score-level--ready';
+    } else {
+      $level.textContent = 'Maîtrise';
+      $level.className = 'score-level score-level--mastery';
+    }
+  }
+
+  function setVerdict(crs, exposure, preparation, risk) {
+    const $verdict = document.getElementById('verdictBody');
+    let body = '';
+
+    if (crs < 40) {
+      body = `Votre organisation est <strong>en zone à risque culturel</strong>. Votre exposition internationale est ${exposure > 60 ? 'forte' : exposure > 30 ? 'significative' : 'modérée'}, mais votre niveau de préparation interculturelle reste limité (${preparation}/100). Cela explique vraisemblablement les pertes invisibles — contrats échoués, stages écourtés, recrutements ratés — que vous ne reliez pas toujours à la dimension culturelle. <strong>Recommandation prioritaire :</strong> mettre en place une mesure structurée avant de former.`;
+    } else if (crs < 60) {
+      body = `Votre organisation est <strong>sensibilisée mais pas encore préparée</strong>. Vous avez conscience du sujet et vous avez probablement engagé quelques actions (formations linguistiques, workshops ponctuels), mais sans dispositif structuré ni mesure de la progression. <strong>Recommandation prioritaire :</strong> passer du curatif au préventif — anticiper plutôt que rattraper.`;
+    } else if (crs < 80) {
+      body = `Votre organisation est <strong>opérationnelle sur la dimension interculturelle</strong>. Vous avez un dispositif structuré, vous mesurez. Reste à pousser le curseur sur les marchés les plus distants (Asie, Afrique, Moyen-Orient) où la prime à la préparation est la plus forte. <strong>Recommandation prioritaire :</strong> approfondir, pas créer.`;
+    } else {
+      body = `Votre organisation est <strong>en zone de maîtrise</strong>. C'est rare. Vous êtes vraisemblablement dans le top 5 % des ETI françaises sur cette dimension. <strong>Recommandation :</strong> capitaliser, documenter, transformer cet avantage en argument commercial et en outil de marque employeur.`;
+    }
+
+    $verdict.innerHTML = body;
+  }
+
+  function animateValue(elId, from, to, duration) {
+    const $el = document.getElementById(elId);
+    const start = performance.now();
+    function step(now) {
+      const elapsed = now - start;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const value = Math.round(from + (to - from) * eased);
+      $el.textContent = value;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  // ===== EMAIL FORM =====
+  document.getElementById('emailForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('ctaEmail').style.display = 'none';
+    document.getElementById('emailSuccess').classList.add('is-visible');
+  });
+
+  // ===== RESET =====
+  window.resetQuiz = function() {
+    state.currentQuestion = 0;
+    state.answers = new Array(QUESTIONS.length).fill(null);
+    $result.classList.remove('is-active');
+    $nav.style.display = 'flex';
+    document.getElementById('ctaEmail').style.display = 'block';
+    document.getElementById('emailSuccess').classList.remove('is-visible');
+    document.querySelectorAll('.option.is-selected').forEach(b => b.classList.remove('is-selected'));
+    showQuestion(0);
+    document.getElementById('scoreFill').style.strokeDashoffset = '565.48';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // ===== INIT =====
+  renderQuestions();
+  showQuestion(0);
+
+})();
+</script>
+
+</body>
+</html>

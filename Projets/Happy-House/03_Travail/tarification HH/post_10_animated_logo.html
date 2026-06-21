@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post 10 - Animated Logo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        #image-wrapper {
+            position: relative;
+            display: inline-block; /* Wraps the container to the image size */
+            font-size: 0; /* Removes whitespace below the image */
+        }
+
+        #base-image {
+            max-width: 100%;
+            height: auto;
+        }
+
+        #hh-logo {
+            display: none; /* Logo is hidden as per user request */
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="image-wrapper">
+        <img id="base-image" src="photo/post 10.png" alt="Handshake">
+        <img id="hh-logo" src="photo/HH logo 2.2.webp" alt="Happy House Logo">
+    </div>
+
+    <script>
+        // No JavaScript is needed for this effect, CSS animation is more efficient.
+        // You can add JS for more complex interactions if needed in the future.
+        console.log("Animation is running via CSS.");
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+Élément	Valeur extraite / Variable
+Photo	https://github.com/julienflorenceflorence-oss/cv-prestige/blob/main/cerveau%20analyse.png
+Ligne 1	Julien FLORENCE
+Ligne 2	Expert en Stratégie & Développement et Coaching
+Bouton 1	https://calendar.app.google/iCzfE1GQrjxM3ZQ56
+Bouton 2	https://www.linkedin.com/in/julien-florence-2536a083/
+Lien Contact	06 02 06 51 10

@@ -1,0 +1,10 @@
+# Annexe 1 : Matrice PESTEL (Analyse du Macro-Environnement)
+
+| Dimension | Tendances & Observations | Menaces (-) | Opportunités (+) | Recommandations (Actions Happy House) |
+| :--- | :--- | :--- | :--- | :--- |
+| **Politique** | Durcissement de la législation sur les meublés de tourisme. | Pression fiscale accrue. | Valorisation des professionnels déclarés face aux amateurs. | Se positionner comme garant de conformité pour rassurer les propriétaires et acteurs publics. |
+| **Économique** | Inflation et hausse des coûts de l'énergie. | Réduction des marges des hébergeurs. | Recherche de leviers de réduction de coûts par les indépendants. | Déployer la centrale Entegra (+15% à +25% de marge opérationnelle) pour sanctuariser l'EBITDA. |
+| **Socioculturel** | Essor du Bleisure (Business + Leisure) et Digital Detox. | Perte d'attractivité si l'expérience client est trop standardisée. | Demande croissante pour l'ultra-local authentique premium. | Standardiser la tech (invisible) pour libérer le temps de l'hôte dédié à l'accueil personnalisé. |
+| **Technologique** | Les OTAs dominent l'algorithmie et la data. | Dépendance technique des indépendants (25% de marge captée). | Démocratisation des outils No-Code (n8n). | Déployer notre "Stack Tech" (0€/mois) pour réapproprier le tunnel de réservation directe. |
+| **Écologique** | Sensibilité croissante aux hébergements éco-responsables. | Investissements lourds de mise aux normes (DPE). | Création de labels verts, hausse de la valeur perçue. | Mutualiser les audits énergétiques via les fournisseurs de la centrale d'achat. |
+| **Légal** | Application stricte du RGPD sur la collecte de data. | Sanctions financières si la base de données n'est pas "clean". | Barrière à l'entrée élevée pour les nouveaux concurrents. | Hébergement cloud sécurisé, opt-in rigoureux et gestion centralisée de l'actif de prospection brut (126k contacts). |

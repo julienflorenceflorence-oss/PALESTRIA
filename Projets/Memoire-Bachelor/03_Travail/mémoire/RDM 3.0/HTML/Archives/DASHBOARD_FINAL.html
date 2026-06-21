@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Prospects Happy House</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #F4F4F4;
+            --card-bg: #1A1E26;
+            --radius: 8px;
+        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); font-size: 1.6rem; margin: 0; }
+        
+        .controls { display: flex; gap: 15px; flex-wrap: wrap; margin-bottom: 20px; }
+        .filter-box, .search-box { background: var(--card-bg); border: 1px solid var(--accent); color: white; padding: 10px; border-radius: 4px; font-family: 'Montserrat'; }
+        .search-box { flex-grow: 1; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+        
+        .card { background: var(--card-bg); border: 1px solid rgba(212, 175, 55, 0.2); padding: 20px; border-radius: var(--radius); transition: 0.3s; position: relative; display: flex; flex-direction: column; justify-content: space-between; }
+        .card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 5px 15px rgba(0,0,0,0.5); }
+        
+        .badge-type { position: absolute; top: -10px; right: 10px; font-size: 0.6rem; font-weight: bold; padding: 3px 12px; border-radius: 10px; color: white; box-shadow: 0 2px 5px rgba(0,0,0,0.3); }
+        .card-title { font-family: 'Cinzel'; color: var(--accent); font-size: 0.95rem; height: 2.5rem; overflow: hidden; }
+        .stars { color: var(--accent); margin: 10px 0; }
+        .card-content p { margin: 4px 0; font-size: 0.9rem; }
+        
+        .btn-prestige { display: block; width: 100%; padding: 12px; text-align: center; background: var(--accent); color: var(--bg); text-decoration: none; font-family: 'Cinzel'; font-size: 0.8rem; font-weight: bold; border-radius: 4px; transition: 0.3s; margin-top: 15px; }
+        .btn-prestige:hover { filter: brightness(1.2); box-shadow: 0 0 10px var(--accent); }
+        
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 30px; }
+        .pagination button { background: var(--card-bg); border: 1px solid var(--accent); color: var(--accent); padding: 8px 12px; border-radius: 4px; cursor: pointer; }
+        .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pagination span { font-weight: bold; }
+        
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <h1 id="dashboardTitle">Dashboard Prospects Happy House</h1>
+                <p style="opacity: 0.6; margin-top: 5px;">CRM interactif pour le suivi des prospects</p>
+            </div>
+        </header>
+
+        <div class="controls">
+            <input type="text" id="searchBox" class="search-box" placeholder="Rechercher par nom, ville...">
+            <select id="typeFilter" class="filter-box">
+                <option value="all">Tous les types</option>
+                <option value="PROFESSIONNEL">Professionnels</option>
+                <option value="PARTICULIER">Particuliers</option>
+            </select>
+            <select id="deptFilter" class="filter-box">
+                <option value="all">Tous départements</option>
+            </select>
+             <select id="statusFilter" class="filter-box">
+                <option value="all">Tous les statuts</option>
+                <option value="SUIVI NÉGO">Suivi Négo</option>
+                <option value="NRP">NRP</option>
+                <option value="REFUS CATÉGORIQUE">Refus Catégorique</option>
+                <option value="REFUS ARGUMENTÉ">Refus Argumenté</option>
+            </select>
+        </div>
+
+        <div class="grid" id="leadsGrid">
+            <!-- Les fiches prospects seront injectées ici par JavaScript -->
+        </div>
+
+        <div class="pagination" id="pagination-container">
+            <button id="prevPage">Précédent</button>
+            <span id="pageInfo"></span>
+            <button id="nextPage">Suivant</button>
+        </div>
+    </div>
+
+    <script>
+        const prospectData = [
+          { "id": 1, "name": "Les Caudalies", "type": "PARTICULIER", "department": "39", "rating": 3, "zipCode": "39600", "city": "Arbois", "phone": "05 26 80 98 30", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 2, "name": "Annexe du 11 D", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "08 50 24 22 04", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 3, "name": "Chalets des Chemins Verts - Gîte Peter", "type": "PARTICULIER", "department": "39", "rating": 4, "zipCode": "39300", "city": "Le Latet", "phone": "06 36 93 92 46", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 4, "name": "Hôtel Ibis", "type": "PROFESSIONNEL", "department": "70", "rating": 3, "zipCode": "70000", "city": "Vesoul", "phone": "09 25 58 63 11", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 5, "name": "Annexe du 11 C", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "08 50 24 22 04", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 6, "name": "Hostellerie de Bretonnière", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21200", "city": "Beaune", "phone": "08 31 54 62 52", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 7, "name": "Camping Sous-Doriat", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39300", "city": "Monnet-la-Ville", "phone": "02 69 84 58 16", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 8, "name": "Campanile Besançon Ouest Chateaufarine", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "07 43 03 66 17", "status": "REFUS ARGUMENTÉ", "note": "Déjà trop de demandes à gérer, on verra plus tard. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 9, "name": "Chalets des Chemins Verts - Gîte Manon", "type": "PARTICULIER", "department": "39", "rating": 4, "zipCode": "39300", "city": "Le Latet", "phone": "06 36 93 92 46", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 10, "name": "Annexe du 8", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "08 50 24 22 04", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 11, "name": "Hôtel-restaurant Le Grand Monarque", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58220", "city": "Donzy", "phone": "08 66 46 46 33", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 12, "name": "Domaine du Cheval Blanc", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71390", "city": "Saint-Boil", "phone": "04 17 26 79 74", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 13, "name": "Grand Hôtel des Bains", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39110", "city": "Salins-les-Bains", "phone": "05 31 75 69 71", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 14, "name": "Logis Hotel le Grill", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39000", "city": "Lons-le-Saunier", "phone": "05 18 59 02 52", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 15, "name": "Le Sauvage Hôtel Restaurant Spa", "type": "PROFESSIONNEL", "department": "25", "rating": 4, "zipCode": "25000", "city": "Besançon", "phone": "06 36 48 60 81", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 16, "name": "Chalet adossé à la forêt", "type": "PARTICULIER", "department": "25", "rating": 3, "zipCode": "25650", "city": "Montbenoît", "phone": "05 73 57 46 42", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 17, "name": "Le Saint-Pierre", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25300", "city": "Pontarlier", "phone": "06 71 83 21 53", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 18, "name": "Le Pré Oudot", "type": "PROFESSIONNEL", "department": "25", "rating": 5, "zipCode": "25390", "city": "Fournets-Luisans", "phone": "05 93 52 58 95", "status": "REFUS ARGUMENTÉ", "note": "Déjà trop de demandes à gérer, on verra plus tard. Avez-vous des cas concrets dans ma région ?" },
+          { "id": 19, "name": "Le Parc", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39110", "city": "Salins-les-Bains", "phone": "04 64 09 90 74", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Avez-vous des cas concrets dans ma région ?" },
+          { "id": 20, "name": "La Faïencerie", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39110", "city": "Salins-les-Bains", "phone": "04 64 09 90 74", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 21, "name": "Hostellerie de la Poste", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58500", "city": "Clamecy", "phone": "02 85 69 06 56", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 22, "name": "Ibis Centre-Ville", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "06 04 97 28 78", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 23, "name": "Hôtel de France", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25290", "city": "Ornans", "phone": "03 66 13 46 83", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 24, "name": "Maison - grand gîte de la réchassière", "type": "PARTICULIER", "department": "39", "rating": 3, "zipCode": "39140", "city": "Commenailles", "phone": "09 68 94 62 97", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 25, "name": "Camping - Les Bords de Loue", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39100", "city": "Parcey", "phone": "06 25 24 25 73", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 26, "name": "Hôtel-Restaurant Le Saint-Cyr", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71520", "city": "Montmelard", "phone": "04 91 56 42 90", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 27, "name": "Gîte du Brin d'Herbe", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25300", "city": "Pontarlier", "phone": "08 30 79 28 98", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Avez-vous des cas concrets dans ma région ?" },
+          { "id": 28, "name": "Les Géraniums du 95 B", "type": "PARTICULIER", "department": "25", "rating": 3, "zipCode": "25300", "city": "Pontarlier", "phone": "04 68 86 00 91", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 29, "name": "Hôtel L'Ouvrée", "type": "PROFESSIONNEL", "department": "21", "rating": 4, "zipCode": "21420", "city": "Savigny-lès-Beaune", "phone": "03 08 14 67 15", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 30, "name": "La Vieille Auberge du Lac", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58230", "city": "Saint-Agnan", "phone": "08 19 44 37 12", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 31, "name": "Hôtel Villa Louise", "type": "PROFESSIONNEL", "department": "21", "rating": 4, "zipCode": "21420", "city": "Aloxe-Corton", "phone": "01 76 58 13 89", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 32, "name": "Hôtel restaurant - le Domaine du Revermont", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39230", "city": "Passenans", "phone": "03 61 70 83 72", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 33, "name": "Camping du Pont de Bourgogne", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71380", "city": "Saint-Marcel", "phone": "03 45 18 67 19", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 34, "name": "Sure Hotel by Best Western", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39100", "city": "Dole", "phone": "09 13 29 23 17", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 35, "name": "Les Trois Charmes", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25170", "city": "Chaucenne", "phone": "05 35 10 92 16", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 36, "name": "Gîte à Laissey", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25820", "city": "Laissey", "phone": "07 41 54 47 58", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 37, "name": "Gîte de la Doit", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71460", "city": "Saint-Marcelin-de-Cray", "phone": "05 75 03 40 72", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 38, "name": "Auprès du Verger", "type": "PROFESSIONNEL", "department": "25", "rating": 4, "zipCode": "25580", "city": "Échevannes", "phone": "05 74 78 77 89", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 39, "name": "Le Potager", "type": "PARTICULIER", "department": "71", "rating": 3, "zipCode": "71120", "city": "Baron", "phone": "08 75 86 07 82", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 40, "name": "Le Relais de la Vallée", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25110", "city": "Hyèvre-Paroisse", "phone": "06 05 56 66 04", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 41, "name": "Annexe du 11 A", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "08 50 24 22 04", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 42, "name": "L'appart Calme et Volupté", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21270", "city": "Maxilly-sur-Saône", "phone": "01 76 18 41 79", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 43, "name": "Gîte de Curty", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58160", "city": "Imphy", "phone": "04 36 49 95 69", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 44, "name": "La Maison de Jade", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25720", "city": "Beure", "phone": "01 07 76 91 98", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 45, "name": "Au 24", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89320", "city": "Villiers-Louis", "phone": "07 83 73 07 77", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 46, "name": "Campanile", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39100", "city": "Dole", "phone": "07 78 92 89 63", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 47, "name": "Le 104 Feuvrier", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39100", "city": "Dole", "phone": "04 42 47 12 06", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 48, "name": "Le Gîte d'Anaïs", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58320", "city": "Pougues-les-Eaux", "phone": "04 32 41 14 46", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 49, "name": "Hôtel Ibis Beaune Centre", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21200", "city": "Beaune", "phone": "06 81 94 60 63", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 50, "name": "Le Créau", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58310", "city": "Dampierre-sous-Bouhy", "phone": "08 34 00 09 48", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 51, "name": "Montagnon", "type": "PROFESSIONNEL", "department": "58", "rating": 4, "zipCode": "58000", "city": "Nevers", "phone": "07 53 71 17 51", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 52, "name": "LES MAISONS DU BOIS", "type": "PROFESSIONNEL", "department": "58", "rating": 3, "zipCode": "58330", "city": "Crux-la-Ville", "phone": "09 07 47 01 45", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 53, "name": "Domaine des Granges", "type": "PROFESSIONNEL", "department": "70", "rating": 3, "zipCode": "70230", "city": "Cognières", "phone": "02 85 39 31 64", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 54, "name": "Les Verchères", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71120", "city": "Baron", "phone": "08 68 28 07 87", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 55, "name": "Camping Parc des Joumiers", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89520", "city": "Saint-Sauveur-en-Puisaye", "phone": "04 49 45 91 06", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 56, "name": "Camping du Hérisson", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39130", "city": "Menétrux-en-Joux", "phone": "08 97 33 12 61", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 57, "name": "Camping Le Moulin Jacquot", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89460", "city": "Deux Rivières", "phone": "05 70 49 82 59", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 58, "name": "Chambres d’hôtes - Les Grands Prés", "type": "PARTICULIER", "department": "25", "rating": 4, "zipCode": "25250", "city": "Geney", "phone": "06 83 06 75 95", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 59, "name": "Les Dépendances", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21120", "city": "Courtivron", "phone": "03 70 61 55 38", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 60, "name": "Le Clos Badan", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21700", "city": "Agencourt", "phone": "08 86 85 19 58", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 61, "name": "Gîte du Domaine Lemonde", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71640", "city": "Jambles", "phone": "08 32 72 51 23", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 62, "name": "Ici, au gré du temps", "type": "PARTICULIER", "department": "21", "rating": 3, "zipCode": "21120", "city": "Is-sur-Tille", "phone": "06 79 40 30 55", "status": "REFUS ARGUMENTÉ", "note": "Déjà trop de demandes à gérer, on verra plus tard. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 63, "name": "Retour aux sources n°2", "type": "PROFESSIONNEL", "department": "39", "rating": 3, "zipCode": "39270", "city": "Chambéria", "phone": "03 98 30 47 32", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 64, "name": "Retour aux sources n°1", "type": "PROFESSIONNEL", "department": "39", "rating": 4, "zipCode": "39270", "city": "Chambéria", "phone": "03 98 30 47 32", "status": "REFUS ARGUMENTÉ", "note": "Déjà trop de demandes à gérer, on verra plus tard. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 65, "name": "Le Jardin caché", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71270", "city": "Lays-sur-le-Doubs", "phone": "02 05 33 62 34", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 66, "name": "La Maison Pieuse", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89130", "city": "Villiers-Saint-Benoît", "phone": "07 22 70 79 56", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 67, "name": "Les Fiottes", "type": "PARTICULIER", "department": "90", "rating": 3, "zipCode": "90200", "city": "Giromagny", "phone": "01 88 66 11 17", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 68, "name": "Le P'tit Saint Pierre", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25300", "city": "Pontarlier", "phone": "08 41 62 00 85", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 69, "name": "Chalet "Le bon sens" - S Mangeard", "type": "PARTICULIER", "department": "39", "rating": 4, "zipCode": "39150", "city": "Nanchez", "phone": "06 23 16 15 02", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 70, "name": "Le Gîte de Varanges", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71640", "city": "Givry", "phone": "09 21 21 96 30", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 71, "name": "Les Cannes - Appartement 1 - F3", "type": "PARTICULIER", "department": "70", "rating": 3, "zipCode": "70300", "city": "Luxeuil-les-Bains", "phone": "06 31 92 77 46", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 72, "name": "Le Moulin Chopin", "type": "PROFESSIONNEL", "department": "39", "rating": 5, "zipCode": "39160", "city": "Montagna-le-Reconduit", "phone": "06 39 09 19 93", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 73, "name": "Gîte Maison Roy", "type": "PROFESSIONNEL", "department": "25", "rating": 4, "zipCode": "25110", "city": "Baume-les-Dames", "phone": "02 05 18 98 15", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 74, "name": "Gîte à la Ferme", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21500", "city": "Viserny", "phone": "09 25 18 90 00", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 75, "name": "Le Soleil d'Or", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89230", "city": "Montigny-la-Resle", "phone": "08 62 99 93 76", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 76, "name": "Sentier du Paradis", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21410", "city": "Mâlain", "phone": "09 14 34 75 04", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 77, "name": "CABANE INSOLITE AU BONHEUR COMTOIS", "type": "PROFESSIONNEL", "department": "70", "rating": 3, "zipCode": "70250", "city": "Ronchamp", "phone": "08 38 74 38 60", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 78, "name": "Gîte le Garny", "type": "PROFESSIONNEL", "department": "71", "rating": 4, "zipCode": "71700", "city": "Boyer", "phone": "08 55 17 03 06", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Avez-vous des cas concrets dans ma région ?" },
+          { "id": 79, "name": "Gîte du château du Piochy #2", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71380", "city": "Allériot", "phone": "08 93 10 90 67", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 80, "name": "Jurassik'Homes - Gîte Lagoon", "type": "PROFESSIONNEL", "department": "39", "rating": 4, "zipCode": "39380", "city": "Chamblay", "phone": "08 31 73 12 51", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 81, "name": "Le Gîte du Voyageur", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71620", "city": "Damerey", "phone": "07 06 04 70 22", "status": "REFUS ARGUMENTÉ", "note": "Déjà trop de demandes à gérer, on verra plus tard. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 82, "name": "La Grange d'Autrefois", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71620", "city": "Damerey", "phone": "07 06 04 70 22", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 83, "name": "Le Châtel Bourgeois", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89380", "city": "Appoigny", "phone": "03 18 19 64 75", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 84, "name": "Le Grand Bourgeois", "type": "PROFESSIONNEL", "department": "89", "rating": 3, "zipCode": "89380", "city": "Appoigny", "phone": "04 70 94 78 49", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 85, "name": "Gîte Au cœur des rêves", "type": "PARTICULIER", "department": "25", "rating": 3, "zipCode": "25570", "city": "Grand'Combe-Châteleu", "phone": "07 48 70 46 92", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 86, "name": "Gîte La Ferme du Meix Guillot", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71350", "city": "Verdun-sur-le-Doubs", "phone": "01 42 33 44 00", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 87, "name": "St Colomban - T2", "type": "PROFESSIONNEL", "department": "70", "rating": 4, "zipCode": "70300", "city": "Luxeuil-les-Bains", "phone": "06 85 75 85 60", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 88, "name": "Saint Valbert - T1", "type": "PROFESSIONNEL", "department": "70", "rating": 4, "zipCode": "70300", "city": "Luxeuil-les-Bains", "phone": "06 07 21 96 73", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 89, "name": "Cocon de Luxe Besançon", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "03 98 79 59 61", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 90, "name": "La Villa Dakoté", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71530", "city": "Sassenay", "phone": "03 86 62 92 36", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 91, "name": "Le refuge du Cèdre", "type": "PROFESSIONNEL", "department": "90", "rating": 4, "zipCode": "90000", "city": "Belfort", "phone": "04 87 60 03 18", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 92, "name": "Rose & Blue Spa", "type": "PROFESSIONNEL", "department": "71", "rating": 3, "zipCode": "71620", "city": "Saint-Martin-en-Bresse", "phone": "05 21 33 15 20", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 93, "name": "Gîte Les Hirondeaux", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21230", "city": "Champignolles", "phone": "06 12 80 54 65", "status": "REFUS ARGUMENTÉ", "note": "Surcharge d'activité actuelle, pas le temps de discuter. Besoin de Social Proof : envoyez-moi des témoignages clients." },
+          { "id": 94, "name": "Le Cocon", "type": "PARTICULIER", "department": "21", "rating": 4, "zipCode": "21390", "city": "Braux", "phone": "08 40 25 14 21", "status": "REFUS ARGUMENTÉ", "note": "C'est la pleine saison, rappelez-nous dans 3 mois. Déficit de confiance : je ne vous vois nulle part sur le marché." },
+          { "id": 95, "name": "La Symphorienne", "type": "PARTICULIER", "department": "58", "rating": 3, "zipCode": "58150", "city": "Suilly-la-Tour", "phone": "03 66 23 91 74", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 96, "name": "Gite de la Quinquenouille", "type": "PROFESSIONNEL", "department": "39", "rating": 4, "zipCode": "39240", "city": "Valzin en Petite Montagne", "phone": "09 53 80 02 29", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 97, "name": "Gite chez Mylene et Bertrand", "type": "PARTICULIER", "department": "71", "rating": 3, "zipCode": "71220", "city": "Saint-André-le-Désert", "phone": "09 17 42 11 23", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 98, "name": "Appartement au cœur de ville", "type": "PARTICULIER", "department": "71", "rating": 3, "zipCode": "71200", "city": "Le Creusot", "phone": "01 30 96 92 08", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 99, "name": "Maya-Huel", "type": "PROFESSIONNEL", "department": "70", "rating": 5, "zipCode": "70120", "city": "Theuley", "phone": "05 18 60 19 84", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." }
+        ]
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            const leadsGrid = document.getElementById('leadsGrid');
+            const searchBox = document.getElementById('searchBox');
+            const typeFilter = document.getElementById('typeFilter');
+            const deptFilter = document.getElementById('deptFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            const dashboardTitle = document.getElementById('dashboardTitle');
+            
+            // Pagination
+            const paginationContainer = document.getElementById('pagination-container');
+            const prevPageBtn = document.getElementById('prevPage');
+            const nextPageBtn = document.getElementById('nextPage');
+            const pageInfo = document.getElementById('pageInfo');
+            const itemsPerPage = 12;
+            let currentPage = 1;
+            let allProspects = [];
+            let filteredProspects = [];
+
+            const statusColors = {
+                "SUIVI NÉGO": "#28a745",
+                "NRP": "#6c757d",
+                "REFUS CATÉGORIQUE": "#dc3545",
+                "REFUS ARGUMENTÉ": "#ffc107"
+            };
+
+            const typeColors = {
+                "PROFESSIONNEL": "#28a745",
+                "PARTICULIER": "#fd7e14"
+            }
+
+            allProspects = prospectData;
+            filteredProspects = prospectData;
+            dashboardTitle.textContent = `Dashboard Prospects (${allProspects.length})`
+            populateFilters(allProspects);
+            setupEventListeners();
+            renderPage();
+
+            function populateFilters(data) {
+                const depts = [...new Set(data.map(p => p.department))].sort();
+                depts.forEach(dept => {
+                    const option = document.createElement('option');
+                    option.value = dept;
+                    option.textContent = `Dept ${dept}`;
+                    deptFilter.appendChild(option);
+                });
+            }
+            
+            function setupEventListeners() {
+                searchBox.addEventListener('input', applyFilters);
+                typeFilter.addEventListener('change', applyFilters);
+                deptFilter.addEventListener('change', applyFilters);
+                statusFilter.addEventListener('change', applyFilters);
+                prevPageBtn.addEventListener('click', () => {
+                    if (currentPage > 1) {
+                        currentPage--;
+                        renderPage();
+                    }
+                });
+                nextPageBtn.addEventListener('click', () => {
+                     if (currentPage < Math.ceil(filteredProspects.length / itemsPerPage)) {
+                        currentPage++;
+                        renderPage();
+                    }
+                });
+            }
+
+            function applyFilters() {
+                const searchTerm = searchBox.value.toLowerCase();
+                const selectedType = typeFilter.value;
+                const selectedDept = deptFilter.value;
+                const selectedStatus = statusFilter.value;
+
+                filteredProspects = allProspects.filter(p => {
+                    const nameMatch = p.name.toLowerCase().includes(searchTerm);
+                    const cityMatch = p.city.toLowerCase().includes(searchTerm);
+                    const typeMatch = selectedType === 'all' || p.type === selectedType;
+                    const deptMatch = selectedDept === 'all' || p.department === selectedDept;
+                    const statusMatch = selectedStatus === 'all' || p.status === selectedStatus;
+                    return (nameMatch || cityMatch) && typeMatch && deptMatch && statusMatch;
+                });
+                currentPage = 1; // Reset to first page after filtering
+                renderPage();
+            }
+
+            function renderPage() {
+                leadsGrid.innerHTML = '';
+                const totalPages = Math.ceil(filteredProspects.length / itemsPerPage);
+                
+                if (filteredProspects.length === 0) {
+                    leadsGrid.innerHTML = '<p>Aucun prospect ne correspond à votre recherche.</p>';
+                    paginationContainer.classList.add('hidden');
+                    return;
+                }
+
+                paginationContainer.classList.remove('hidden');
+                
+                const start = (currentPage - 1) * itemsPerPage;
+                const end = start + itemsPerPage;
+                const prospectsToShow = filteredProspects.slice(start, end);
+
+                prospectsToShow.forEach(prospect => {
+                    const card = document.createElement('div');
+                    card.className = 'card';
+                    card.style.borderLeft = `5px solid ${statusColors[prospect.status] || '#1A1E26'}`;
+                    
+                    const ratingStars = '⭐'.repeat(prospect.rating);
+
+                    card.innerHTML = `
+                        <div class="badge-type" style="background: ${typeColors[prospect.type] || '#6c757d'};">${prospect.type}</div>
+                        <div class="card-title">${prospect.name}</div>
+                        <div class="stars">${ratingStars} <span style="font-size:0.7rem; opacity:0.5;">(Dept: ${prospect.department})</span></div>
+                        <div class="card-content">
+                            <p><strong>📍 Ville :</strong> ${prospect.zipCode} ${prospect.city}</p>
+                            <p style="font-size: 1.1rem; color: var(--accent); margin: 5px 0;"><strong>📞 ${prospect.phone}</strong></p>
+                            <div style="background: rgba(0,0,0,0.2); padding: 8px; border-radius: 4px; margin-top: 10px; font-size: 0.75rem;">
+                                <strong style="color: ${statusColors[prospect.status] || '#F4F4F4'};">● ${prospect.status} :</strong><br>
+                                ${prospect.note}
+                            </div>
+                        </div>
+                        <a href="tel:${prospect.phone.replace(/\s/g, '')}" class="btn-prestige">Appeler</a>
+                    `;
+                    leadsGrid.appendChild(card);
+                });
+                
+                pageInfo.textContent = `Page ${currentPage} sur ${totalPages}`;
+                prevPageBtn.disabled = currentPage === 1;
+                nextPageBtn.disabled = currentPage === totalPages;
+            }
+        });
+    </script>
+</body>
+</html>

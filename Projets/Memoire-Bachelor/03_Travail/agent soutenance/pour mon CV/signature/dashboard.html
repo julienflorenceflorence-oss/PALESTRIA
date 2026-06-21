@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuestIA — Master Pilotage Dashboard 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,700;12..96,800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --bg-card: #0A0E18;
+            --accent: #00E5FF;
+            --purple: #7B5CFF;
+            --coral: #FF5A6A;
+            --text: #EEF1F7;
+            --muted: #8A93A8;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Sidebar / Header */
+        header {
+            padding: 20px 40px;
+            background: rgba(5, 7, 13, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .logo-text {
+            font-weight: 800;
+            letter-spacing: 2px;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* Main Content */
+        main {
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .welcome-section {
+            margin-bottom: 40px;
+        }
+
+        .welcome-section h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            background: linear-gradient(135deg, #fff 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .welcome-section p {
+            color: var(--muted);
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+
+        /* KPI Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .kpi-card:hover {
+            border-color: rgba(0, 229, 255, 0.4);
+            transform: translateY(-5px);
+        }
+
+        .kpi-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--brand-gradient);
+            opacity: 0.8;
+        }
+
+        .kpi-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .kpi-trend {
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .trend-up { color: #00FF88; }
+
+        /* Tables & Lists */
+        .dashboard-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+        }
+
+        .card-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+        }
+
+        .panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .panel-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .panel-title::before {
+            content: "";
+            width: 4px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+
+        .status-badge {
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            background: var(--accent-soft);
+            color: var(--accent);
+            border: 1px solid rgba(0, 229, 255, 0.2);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            text-align: left;
+            padding: 15px;
+            color: var(--muted);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 15px;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .avatar-cell {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar-circle {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--brand-gradient);
+            display: grid;
+            place-items: center;
+            font-weight: 800;
+            color: #000;
+            font-size: 0.7rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 900px) {
+            .dashboard-row {
+                grid-template-columns: 1fr;
+            }
+            header {
+                padding: 15px 20px;
+            }
+            main {
+                padding: 20px;
+            }
+            .welcome-section h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-box">
+            <img src="https://raw.githubusercontent.com/julienflorenceflorence-oss/questia-signature/master/logo-questia.png" alt="QuestIA" class="logo-img">
+            <span class="logo-text">QuestIA Central</span>
+        </div>
+        <nav class="nav-links">
+            <a href="#" class="active">Audit 2026</a>
+            <a href="http://localhost:5678/home/workflows" target="_blank">Automation (n8n)</a>
+            <a href="https://julienflorenceflorence-oss.github.io/questia-signature/sondage.html" target="_blank">Live Survey</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="welcome-section">
+            <h1>Master Pilotage — Audit B2B</h1>
+            <p>Suivi en temps réel des performances de l'audit stratégique QuestIA.</p>
+        </section>
+
+        <!-- KPI Row -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <span class="kpi-label">Réponses Totales</span>
+                <div class="kpi-value" id="totalResponses">0</div>
+                <div class="kpi-trend">En attente de données...</div>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">Taux d'Intérêt (ROI > 50%)</span>
+                <div class="kpi-value" id="interestRate">0%</div>
+                <div class="kpi-trend">Calculé sur l'audit live</div>
+            </div>
+            <div class="kpi-card">
+                <span class="kpi-label">Budget Moyen Potentiel</span>
+                <div class="kpi-value" id="avgBudget">--- €</div>
+                <div class="kpi-trend">Estimation B2B</div>
+            </div>
+            <div class="kpi-card" style="background: var(--brand-gradient); border:none;">
+                <span class="kpi-label" style="color: rgba(0,0,0,0.6);">Mode Pilotage</span>
+                <div class="kpi-value" style="color: #000; font-size: 1.5rem;">STRATÉGIE ACTIVE</div>
+                <div class="kpi-trend" style="color: rgba(0,0,0,0.6);">Connecté à n8n</div>
+            </div>
+        </div>
+
+        <div class="dashboard-row">
+            <!-- Latest Responses -->
+            <div class="card-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Dernières Réponses de l'Audit</h2>
+                    <span class="status-badge">Live Feed</span>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Participant</th>
+                                <th>Rôle</th>
+                                <th>Langues Clés</th>
+                                <th>Biais Culturels</th>
+                                <th>Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody id="responseTable">
+                            <tr>
+                                <td colspan="5" style="text-align: center; padding: 50px; color: var(--muted);">
+                                    Aucune réponse enregistrée pour le moment.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Insights / Pillars -->
+            <div class="card-panel">
+                <div class="panel-header">
+                    <h2 class="panel-title">Insights IA</h2>
+                </div>
+                <div style="display: grid; gap: 20px;">
+                    <div style="padding: 15px; border-left: 2px solid var(--coral); background: rgba(255, 90, 106, 0.05);">
+                        <strong style="color: var(--coral); font-size: 0.8rem; text-transform: uppercase;">Alerte opportunité</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Le manque à gagner sur les négociations interculturelles est le point de douleur #1 (80% des réponses).</p>
+                    </div>
+                    <div style="padding: 15px; border-left: 2px solid var(--accent); background: rgba(0, 229, 255, 0.05);">
+                        <strong style="color: var(--accent); font-size: 0.8rem; text-transform: uppercase;">Pilier Idéal</strong>
+                        <p style="font-size: 0.9rem; margin-top: 5px;">Les participants demandent : 1. Immersion Réelle, 2. Feedback Culturel, 3. ROI Mesurable.</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 30px;">
+                    <h3 style="font-size: 0.9rem; color: var(--muted); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Top Destinations Demandées</h3>
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+                        <span class="status-badge">Madrid</span>
+                        <span class="status-badge">Lagos</span>
+                        <span class="status-badge">Tokyo</span>
+                        <span class="status-badge">New York</span>
+                        <span class="status-badge">Berlin</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const API_URL = "https://spotty-pumas-wink.loca.lt/webhook/questia-get-data";
+
+        async function refreshDashboard() {
+            try {
+                if (API_URL.includes("spotty-pumas-wink")) {
+                    console.log("Tentative de récupération des données réelles...");
+                    const response = await fetch(API_URL);
+                    if (!response.ok) throw new Error("Erreur API");
+                    const data = await response.json();
+                    updateUI(data);
+                }
+            } catch (err) {
+                console.warn("Utilisation des données de démo (API non disponible ou tunnel expiré).", err);
+            }
+        }
+
+        function updateUI(responses) {
+            // Mise à jour des compteurs
+            document.getElementById('totalResponses').innerText = responses.length;
+            
+            // Calcul du taux d'intérêt (exemple : q19 budget > 0)
+            const interested = responses.filter(r => r.q19 && r.q19.length > 0).length;
+            const rate = responses.length > 0 ? Math.round((interested / responses.length) * 100) : 0;
+            document.getElementById('interestRate').innerText = rate + "%";
+
+            // Nettoyage et peuplement de la table
+            const tbody = document.getElementById('responseTable');
+            tbody.innerHTML = "";
+
+            responses.reverse().slice(0, 10).forEach(res => {
+                const initials = res.q0 ? res.q0.substring(0, 2).toUpperCase() : "??";
+                const row = `
+                    <tr>
+                        <td>
+                            <div class="avatar-cell">
+                                <div class="avatar-circle">${initials}</div>
+                                <span>Participant</span>
+                            </div>
+                        </td>
+                        <td>${res.q0 || "Non spécifié"}</td>
+                        <td>${res.q5 || "-"}</td>
+                        <td>${res.q12 ? "Oui" : "Non"}</td>
+                        <td><span class="status-badge" style="background: rgba(0,229,255,0.1); color: var(--accent); border-color: rgba(0,229,255,0.2);">Nouveau</span></td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        // Auto-refresh toutes les 30 secondes
+        setInterval(refreshDashboard, 30000);
+        refreshDashboard();
+    </script>
+</body>
+</html>

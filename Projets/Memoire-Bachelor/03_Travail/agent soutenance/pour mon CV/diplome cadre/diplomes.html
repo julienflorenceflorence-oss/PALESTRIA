@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Portfolio Prestige - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --gold-light: #F7EF8A;
+            --gold-mid: #D4AF37; 
+            --gold-dark: #8A6426;
+            --bg: #0B0D10; 
+            --card-inner: #1a1a1a;
+            --text: #F4F4F4; 
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text); 
+            line-height: 1.6; 
+            padding: 40px 20px;
+        }
+
+        header { 
+            text-align: center; 
+            margin-bottom: 60px; 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            padding-bottom: 20px;
+        }
+
+        h1 { 
+            font-family: 'Cinzel'; 
+            color: var(--gold-mid); 
+            font-size: clamp(1.8rem, 5vw, 2.8rem); 
+            letter-spacing: 6px; 
+            text-transform: uppercase; 
+        }
+
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 40px; 
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- LE CADRE DORÉ (STYLE CHATGPT IMAGE) --- */
+        .card { 
+            background: var(--card-inner); 
+            position: relative;
+            /* Bordure simulant le relief sculpté */
+            border: 18px solid #d4af37;
+            border-image: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-mid) 25%, var(--gold-light) 50%, var(--gold-mid) 75%, var(--gold-dark) 100%) 1;
+            padding: 30px; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: space-between; 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 15px 15px 35px rgba(0,0,0,0.9), inset 0 0 15px rgba(0,0,0,0.6);
+        }
+
+        /* Effet de profondeur au survol */
+        .card:hover { 
+            transform: scale(1.03) translateY(-10px);
+            box-shadow: 20px 20px 50px rgba(0,0,0,1);
+        }
+
+        .card-cat { 
+            font-size: 0.7rem; 
+            color: var(--gold-mid); 
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            margin-bottom: 15px; 
+            font-weight: 700;
+            border-left: 2px solid var(--gold-mid);
+            padding-left: 10px;
+        }
+
+        .card h3 { 
+            font-family: 'Cinzel'; 
+            color: #fff; 
+            margin-bottom: 15px; 
+            font-size: 1.1rem; 
+            letter-spacing: 1px;
+            min-height: 3em;
+        }
+
+        .card p { 
+            font-size: 0.9rem; 
+            color: #bbb; 
+            margin-bottom: 25px; 
+            font-weight: 300;
+        }
+
+        .btn-v { 
+            display: block; 
+            padding: 12px; 
+            background: linear-gradient(to bottom, var(--gold-mid), var(--gold-dark));
+            color: #000; 
+            text-decoration: none; 
+            font-family: 'Cinzel'; 
+            font-weight: 700;
+            font-size: 0.8rem; 
+            text-transform: uppercase; 
+            text-align: center; 
+            border-radius: 3px;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .btn-v:hover { 
+            filter: brightness(1.2);
+            transform: translateY(-2px);
+        }
+
+        /* Barre de navigation fixe en bas */
+        .fixed-nav {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1000;
+            display: flex;
+            gap: 20px;
+            background: rgba(11, 13, 16, 0.9);
+            padding: 15px 30px;
+            border-radius: 50px;
+            border: 1px solid var(--gold-mid);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            color: var(--gold-mid);
+            text-decoration: none;
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-btn:hover {
+            color: #fff;
+        }
+
+        .nav-btn-gold {
+            background-color: var(--gold-mid);
+            color: #000 !important;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+        }
+
+        .nav-btn-gold:hover {
+            background-color: #fff;
+            color: #000 !important;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 80px;
+            margin-bottom: 100px;
+            font-family: 'Cinzel';
+            color: var(--gold-dark);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Galerie des Diplômes</h1>
+    <p style="color: var(--gold-mid); letter-spacing: 3px; font-size: 0.7rem; text-transform: uppercase; margin-top: 10px;">Julien Florence - Édition Prestige</p>
+</header>
+
+<div class="grid">
+    <div class="card">
+        <div class="card-cat">Académie</div>
+        <h3>Bachelor Responsable Marketing et Commercial</h3>
+        <p>Spécialisation en Acquisition Numérique (Rocket School). Titre certifié RNCP.</p>
+        <a href="prestige_viewer.html?file=bachelor-status.html" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Développement Web</div>
+        <h3>HTML5 & CSS3</h3>
+        <p>Maîtrise du développement web moderne et de l'architecture CSS Prestige.</p>
+        <a href="prestige_viewer.html?file=Diplomes_PDF/Certificat HTML5 CSS.pdf" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Marketing Digital</div>
+        <h3>Google Fundamentals</h3>
+        <p>SEO, SEM, Analyse de données et stratégies d'acquisition multicanale.</p>
+        <a href="prestige_viewer.html?file=CV lettre de motivation/diplome julien/Fundamentals of digital marketing _ Google.html" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Stratégie Inbound</div>
+        <h3>HubSpot Certification</h3>
+        <p>Optimisation du tunnel de conversion et automatisation des workflows.</p>
+        <a href="prestige_viewer.html?file=CV lettre de motivation/diplome julien/diplome tch/Certificat In Band.png" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Performance Sales</div>
+        <h3>B2B Sales Machine</h3>
+        <p>Ingénierie de prospection et social selling (Datananas 2025).</p>
+        <a href="prestige_viewer.html?file=Diplomes_PDF/Certificat B2B Sales Machine.pdf" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Expertise Immobilière</div>
+        <h3>Conseiller Expert</h3>
+        <p>Négociation de haut niveau et gestion de patrimoine (Century 21).</p>
+        <a href="prestige_viewer.html?file=Diplomes_PDF/Certificat Qualification et Certification de conseiller en immobilier.pdf" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Business International</div>
+        <h3>Néerlandais B2</h3>
+        <p>Négociation et gestion de projets en environnement multilingue.</p>
+        <a href="prestige_viewer.html?file=Diplomes_PDF/Certificat Néerlandais.pdf" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Art de Vivre</div>
+        <h3>Gastronomie Française</h3>
+        <p>Codes de l'excellence, service haut de gamme et rigueur opérationnelle.</p>
+        <a href="prestige_viewer.html?file=Diplomes_PDF/Certificat CAP Restauration.pdf" class="btn-v">Voir la Pièce</a>
+    </div>
+
+    <div class="card">
+        <div class="card-cat">Management</div>
+        <h3>Leadership Sportif</h3>
+        <p>Coaching, cohésion d'équipe et résilience sous pression (Certification Fédérale).</p>
+        <a href="prestige_viewer.html?file=Diplomes_PDF/Certificat Fédéral Sportif.pdf" class="btn-v">Voir la Pièce</a>
+    </div>
+</div>
+
+<div class="fixed-nav">
+    <a href="index.html" class="nav-btn">Mon Profil</a>
+    <a href="https://calendar.app.google/iCzfE1GQrjxM3ZQ56" target="_blank" class="nav-btn nav-btn-gold">Prendre RDV</a>
+</div>
+
+<footer>
+    &copy; 2026 JULIEN FLORENCE &bull; PORTFOLIO D'EXCELLENCE
+</footer>
+
+</body>
+</html>

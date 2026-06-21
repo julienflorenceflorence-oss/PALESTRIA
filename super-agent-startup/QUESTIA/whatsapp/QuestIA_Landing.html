@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuestIA — Pilotez la progression de vos cohortes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+:root {
+  --bg:       #0D0B1E;
+  --bg2:      #12102A;
+  --bg3:      #1A1635;
+  --violet:   #7B3FE4;
+  --violet-l: #A57BF7;
+  --cyan:     #00D4FF;
+  --neon:     #8AFF00;
+  --white:    #F0EEF8;
+  --muted:    #7A7896;
+  --dim:      #3D3B58;
+  --border:   rgba(123,63,228,0.2);
+  --border2:  rgba(0,212,255,0.15);
+}
+
+html.light {
+  --bg:       #F2F0FC;
+  --bg2:      #FFFFFF;
+  --bg3:      #E8E4F8;
+  --violet:   #6B2FD4;
+  --violet-l: #7B3FE4;
+  --cyan:     #006FA8;
+  --neon:     #3A8800;
+  --white:    #13103A;
+  --muted:    #5A5478;
+  --dim:      #B0ACCC;
+  --border:   rgba(107,47,212,0.15);
+  --border2:  rgba(0,111,168,0.18);
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--white);
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  transition: background 0.35s ease, color 0.35s ease;
+}
+
+/* ── THEME SWITCH ── */
+.theme-switch {
+  position: fixed;
+  bottom: 28px; right: 28px;
+  z-index: 200;
+  display: flex; align-items: center; gap: 9px;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 8px 16px 8px 10px;
+  cursor: pointer;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  transition: background 0.35s, border-color 0.35s, box-shadow 0.2s;
+  user-select: none;
+}
+.theme-switch:hover {
+  border-color: var(--violet-l);
+  box-shadow: 0 8px 40px rgba(123,63,228,0.25);
+}
+.sw-icons { font-size: 15px; line-height: 1; position: relative; width: 18px; height: 18px; }
+.sw-icon { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; transition: opacity 0.3s, transform 0.3s; }
+.sw-icon-moon { opacity: 1; transform: rotate(0deg); }
+.sw-icon-sun  { opacity: 0; transform: rotate(90deg); }
+html.light .sw-icon-moon { opacity: 0; transform: rotate(-90deg); }
+html.light .sw-icon-sun  { opacity: 1; transform: rotate(0deg); }
+.sw-track {
+  width: 36px; height: 20px; border-radius: 99px;
+  background: var(--bg3); border: 1px solid var(--border);
+  position: relative; transition: background 0.35s;
+}
+.sw-thumb {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--violet-l);
+  position: absolute; top: 2px; left: 2px;
+  transition: transform 0.3s cubic-bezier(.4,0,.2,1), background 0.3s;
+  box-shadow: 0 0 8px rgba(123,63,228,0.6);
+}
+html.light .sw-thumb {
+  transform: translateX(16px);
+  background: var(--cyan);
+  box-shadow: 0 0 8px rgba(0,111,168,0.4);
+}
+.sw-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); transition: color 0.35s; min-width: 36px;
+}
+@media (max-width: 480px) {
+  .theme-switch { bottom: 16px; right: 16px; }
+  .sw-label { display: none; }
+}
+
+/* ── GRAIN ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 18px 48px;
+  background: rgba(13,11,30,0.85);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  transition: padding 0.3s;
+}
+.nav-logo {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800; font-size: 22px;
+  background: linear-gradient(120deg, var(--violet-l), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-decoration: none;
+}
+.nav-links { display: flex; align-items: center; gap: 32px; }
+.nav-links a {
+  font-size: 14px; color: var(--muted); text-decoration: none;
+  transition: color 0.2s; font-weight: 400;
+  letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  background: var(--violet); color: var(--white) !important;
+  padding: 9px 22px; border-radius: 99px;
+  font-weight: 500; font-size: 14px;
+  transition: background 0.2s, transform 0.15s !important;
+  white-space: nowrap;
+}
+.nav-cta:hover { background: var(--violet-l) !important; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 140px 24px 80px;
+  position: relative; z-index: 1;
+  overflow: hidden;
+}
+
+/* orbs */
+.hero::after {
+  content: '';
+  position: absolute;
+  width: 800px; height: 800px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(123,63,228,0.18) 0%, rgba(0,212,255,0.06) 45%, transparent 70%);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: orb-breathe 8s ease-in-out infinite;
+}
+@keyframes orb-breathe {
+  0%,100% { transform: translate(-50%,-50%) scale(1); opacity: 0.7; }
+  50% { transform: translate(-50%,-50%) scale(1.12); opacity: 1; }
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border2);
+  border-radius: 99px; padding: 6px 16px;
+  font-family: 'DM Mono', monospace;
+  font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cyan); margin-bottom: 36px;
+  background: rgba(0,212,255,0.05);
+  animation: fade-up 0.8s ease both;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--neon); box-shadow: 0 0 10px var(--neon);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(38px, 6.5vw, 80px);
+  line-height: 1.02;
+  letter-spacing: -0.03em;
+  max-width: 900px;
+  animation: fade-up 0.8s 0.1s ease both;
+}
+h1 .grad {
+  background: linear-gradient(120deg, var(--violet-l) 10%, var(--cyan) 90%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+h1 .neon { color: var(--neon); -webkit-text-fill-color: var(--neon); }
+
+.hero-sub {
+  max-width: 560px; margin: 24px auto 0;
+  font-size: clamp(16px, 2vw, 20px);
+  color: var(--muted); font-weight: 300; line-height: 1.6;
+  animation: fade-up 0.8s 0.2s ease both;
+}
+
+.hero-ctas {
+  display: flex; gap: 14px; margin-top: 44px;
+  flex-wrap: wrap; justify-content: center;
+  animation: fade-up 0.8s 0.3s ease both;
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--violet);
+  color: var(--white); text-decoration: none;
+  padding: 16px 32px; border-radius: 99px;
+  font-weight: 600; font-size: 16px;
+  transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 0 40px rgba(123,63,228,0.35);
+  border: none; cursor: pointer; font-family: inherit;
+}
+.btn-primary:hover {
+  background: var(--violet-l);
+  transform: translateY(-2px);
+  box-shadow: 0 0 56px rgba(123,63,228,0.5);
+}
+.btn-primary .arrow { transition: transform 0.2s; }
+.btn-primary:hover .arrow { transform: translateX(4px); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border);
+  color: var(--muted); text-decoration: none;
+  padding: 15px 28px; border-radius: 99px;
+  font-size: 15px; transition: border-color 0.2s, color 0.2s;
+  cursor: pointer; background: none; font-family: inherit;
+}
+.btn-ghost:hover { border-color: var(--violet-l); color: var(--white); }
+
+/* social proof */
+.social-proof {
+  display: flex; align-items: center; gap: 20px;
+  margin-top: 52px; flex-wrap: wrap; justify-content: center;
+  animation: fade-up 0.8s 0.4s ease both;
+}
+.sp-avatars { display: flex; }
+.sp-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  border: 2px solid var(--bg);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 12px; font-weight: 700;
+  margin-left: -8px;
+}
+.sp-avatar:first-child { margin-left: 0; }
+.av1 { background: linear-gradient(135deg, #7B3FE4, #A57BF7); }
+.av2 { background: linear-gradient(135deg, #00D4FF, #0099BB); }
+.av3 { background: linear-gradient(135deg, #8AFF00, #5ABB00); color: #0D0B1E; }
+.av4 { background: linear-gradient(135deg, #E040FB, #7B3FE4); }
+
+.sp-text { font-size: 13px; color: var(--muted); }
+.sp-text strong { color: var(--white); }
+.sp-sep { width: 1px; height: 20px; background: var(--dim); }
+.sp-qualiopi {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  color: var(--neon); letter-spacing: 0.08em; text-transform: uppercase;
+}
+
+/* ── DASHBOARD PREVIEW ── */
+.dashboard-wrap {
+  position: relative; z-index: 1;
+  max-width: 1000px; margin: 0 auto;
+  padding: 0 24px 100px;
+  animation: fade-up 0.9s 0.5s ease both;
+}
+.dashboard-frame {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.6), 0 0 80px rgba(123,63,228,0.12);
+}
+.dash-bar {
+  background: var(--bg3); border-bottom: 1px solid var(--border);
+  padding: 12px 20px; display: flex; align-items: center; gap: 8px;
+}
+.dash-dot { width: 10px; height: 10px; border-radius: 50%; }
+.dd1 { background: #FF5F57; } .dd2 { background: #FEBC2E; } .dd3 { background: #28C840; }
+.dash-title {
+  margin-left: 8px; font-family: 'DM Mono', monospace;
+  font-size: 11px; color: var(--muted); letter-spacing: 0.06em;
+}
+.dash-body { display: grid; grid-template-columns: 220px 1fr; min-height: 340px; }
+.dash-sidebar {
+  background: rgba(26,22,53,0.6); border-right: 1px solid var(--border);
+  padding: 20px 0;
+}
+.dash-nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 20px; font-size: 13px; color: var(--muted);
+  cursor: default; transition: background 0.15s;
+}
+.dash-nav-item.active { background: rgba(123,63,228,0.15); color: var(--white); }
+.dash-nav-item .nav-icon { font-size: 15px; width: 20px; text-align: center; }
+.dash-main { padding: 24px; }
+.dash-section-title {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px;
+}
+.dash-kpis { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; margin-bottom: 20px; }
+.dash-kpi {
+  background: var(--bg3); border: 1px solid var(--border);
+  border-radius: 10px; padding: 14px;
+}
+.dash-kpi-val {
+  font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800;
+  margin-bottom: 3px;
+}
+.dash-kpi-val.v { color: var(--violet-l); }
+.dash-kpi-val.c { color: var(--cyan); }
+.dash-kpi-val.n { color: var(--neon); }
+.dash-kpi-label { font-size: 11px; color: var(--muted); }
+
+.dash-table { width: 100%; border-collapse: collapse; }
+.dash-table th {
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--dim); text-align: left; padding: 6px 10px;
+  border-bottom: 1px solid var(--border);
+}
+.dash-table td { padding: 9px 10px; font-size: 12px; color: var(--muted); border-bottom: 1px solid rgba(123,63,228,0.07); }
+.dash-table td:first-child { color: var(--white); }
+.dash-progress { display: flex; align-items: center; gap: 8px; }
+.prog-track { flex: 1; height: 4px; background: var(--bg3); border-radius: 2px; }
+.prog-fill { height: 4px; border-radius: 2px; }
+.prog-fill.high { background: var(--neon); }
+.prog-fill.med  { background: var(--cyan); }
+.prog-fill.low  { background: #FF6B6B; }
+.prog-val { font-family: 'DM Mono', monospace; font-size: 10px; width: 30px; text-align: right; }
+.dash-alert {
+  display: flex; align-items: center; gap: 8px;
+  background: rgba(255,107,107,0.08); border: 1px solid rgba(255,107,107,0.2);
+  border-radius: 8px; padding: 8px 12px; margin-top: 14px; font-size: 12px;
+}
+.dash-alert .a-dot { width: 6px; height: 6px; border-radius: 50%; background: #FF6B6B; flex-shrink: 0; animation: blink 1.5s ease-in-out infinite; }
+.dash-alert .a-text { color: var(--muted); }
+.dash-alert .a-text strong { color: #FF9090; }
+
+/* ── SECTION WRAPPER ── */
+section { position: relative; z-index: 1; }
+.section-inner { max-width: 1000px; margin: 0 auto; padding: 100px 24px; }
+.section-inner.narrow { max-width: 760px; }
+
+/* ── SECTION LABELS ── */
+.eyebrow {
+  font-family: 'DM Mono', monospace; font-size: 11px;
+  letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--violet-l); margin-bottom: 14px; display: block;
+}
+h2 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: clamp(28px, 4vw, 48px);
+  line-height: 1.1; letter-spacing: -0.02em;
+  margin-bottom: 16px;
+}
+.lead {
+  font-size: 18px; color: var(--muted); line-height: 1.65;
+  max-width: 580px; font-weight: 300;
+}
+
+/* ── PROBLEMS ── */
+.problems { background: var(--bg2); }
+.prob-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border-radius: 16px; overflow: hidden; margin-top: 56px; }
+.prob-item {
+  background: var(--bg2); padding: 36px 32px;
+}
+.prob-num {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  font-size: 48px; line-height: 1; margin-bottom: 12px;
+}
+.prob-num.v { color: var(--violet-l); }
+.prob-num.c { color: var(--cyan); }
+.prob-num.n { color: var(--neon); }
+.prob-title { font-size: 16px; font-weight: 600; color: var(--white); margin-bottom: 8px; }
+.prob-desc { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.prob-source { font-family: 'DM Mono', monospace; font-size: 10px; color: var(--dim); margin-top: 10px; letter-spacing: 0.06em; }
+
+/* ── VERBATIM ── */
+.verbatim-section { background: var(--bg); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.verbatim-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+.verbatim-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px;
+  position: relative; overflow: hidden;
+}
+.verbatim-card::before {
+  content: '"'; position: absolute; top: -10px; left: 20px;
+  font-family: 'Syne', sans-serif; font-size: 120px; font-weight: 800;
+  color: var(--violet); opacity: 0.1; line-height: 1; pointer-events: none;
+}
+.verbatim-text {
+  font-size: 17px; line-height: 1.6; color: var(--white);
+  font-weight: 300; font-style: italic; margin-bottom: 20px; position: relative;
+}
+.verbatim-text strong { font-style: normal; color: var(--cyan); font-weight: 500; }
+.verbatim-person { display: flex; align-items: center; gap: 12px; }
+.verbatim-avatar {
+  width: 40px; height: 40px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 15px;
+  flex-shrink: 0;
+}
+.verbatim-name { font-size: 14px; font-weight: 600; color: var(--white); }
+.verbatim-role { font-size: 12px; color: var(--muted); }
+
+/* ── FEATURES ── */
+.features-section { background: var(--bg2); }
+.features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+.feature-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 32px; position: relative;
+  transition: border-color 0.2s, transform 0.2s;
+  overflow: hidden;
+}
+.feature-card:hover { border-color: rgba(123,63,228,0.5); transform: translateY(-3px); }
+.feature-card.featured { border-color: var(--cyan); }
+.feature-card.featured::before {
+  content: '★ Différenciateur #1';
+  position: absolute; top: 16px; right: 16px;
+  font-family: 'DM Mono', monospace; font-size: 9px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--cyan); background: rgba(0,212,255,0.1);
+  padding: 3px 8px; border-radius: 99px;
+}
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; margin-bottom: 18px;
+}
+.fi-v { background: rgba(123,63,228,0.15); }
+.fi-c { background: rgba(0,212,255,0.1); }
+.fi-n { background: rgba(138,255,0,0.1); }
+.feature-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.feature-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+.feature-tag {
+  display: inline-block; margin-top: 14px;
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 99px;
+}
+.ft-v { background: rgba(123,63,228,0.15); color: var(--violet-l); }
+.ft-c { background: rgba(0,212,255,0.1); color: var(--cyan); }
+.ft-n { background: rgba(138,255,0,0.1); color: var(--neon); }
+
+/* ── MOAT TABLE ── */
+.moat-section { background: var(--bg); }
+.moat-table-wrap {
+  margin-top: 56px; overflow-x: auto;
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+}
+.moat-table { width: 100%; border-collapse: collapse; }
+.moat-table th {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--muted); padding: 14px 18px; text-align: left;
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.moat-table td { padding: 14px 18px; font-size: 14px; border-bottom: 1px solid rgba(123,63,228,0.08); color: var(--muted); }
+.moat-table tr:last-child td { border-bottom: none; }
+.moat-table td:first-child { color: var(--white); font-weight: 500; }
+.moat-table tr.us td { background: rgba(123,63,228,0.07); }
+.moat-table tr.us td:first-child { color: var(--cyan); font-weight: 700; }
+.check { color: var(--neon); font-size: 16px; }
+.cross { color: var(--dim); }
+.part  { color: var(--violet-l); }
+
+/* ── PRICING ── */
+.pricing-section { background: var(--bg2); }
+.pricing-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 56px; }
+.price-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 28px 22px;
+  display: flex; flex-direction: column;
+  transition: transform 0.2s, border-color 0.2s;
+}
+.price-card:hover { transform: translateY(-4px); }
+.price-card.pop {
+  border-color: var(--cyan);
+  background: linear-gradient(180deg, rgba(0,212,255,0.06) 0%, var(--bg) 100%);
+  position: relative;
+}
+.pop-badge {
+  position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+  background: var(--cyan); color: var(--bg); font-family: 'DM Mono', monospace;
+  font-size: 10px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 14px; border-radius: 99px; white-space: nowrap;
+}
+.price-tier {
+  font-family: 'DM Mono', monospace; font-size: 10px;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 14px;
+}
+.price-amount {
+  font-family: 'Syne', sans-serif; font-size: 34px;
+  font-weight: 800; color: var(--white); line-height: 1;
+}
+.price-period { font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+.price-arr { font-family: 'DM Mono', monospace; font-size: 11px; color: var(--neon); margin-bottom: 22px; }
+.price-features { list-style: none; flex: 1; }
+.price-features li {
+  font-size: 13px; color: var(--muted); padding: 5px 0;
+  display: flex; align-items: baseline; gap: 8px;
+  border-bottom: 1px solid rgba(123,63,228,0.07);
+}
+.price-features li:last-child { border-bottom: none; }
+.price-features li::before { content: '—'; color: var(--dim); flex-shrink: 0; }
+.price-cta {
+  display: block; text-align: center;
+  margin-top: 22px; padding: 12px;
+  border-radius: 10px; font-size: 14px; font-weight: 500;
+  text-decoration: none; cursor: pointer; border: none; font-family: inherit;
+  transition: background 0.2s, transform 0.15s;
+}
+.cta-ghost {
+  background: var(--bg3); color: var(--muted);
+  border: 1px solid var(--border);
+}
+.cta-ghost:hover { border-color: var(--violet-l); color: var(--white); }
+.cta-filled { background: var(--violet); color: var(--white); }
+.cta-filled:hover { background: var(--violet-l); transform: translateY(-1px); }
+.cta-pop { background: var(--cyan); color: var(--bg); font-weight: 700; }
+.cta-pop:hover { opacity: 0.9; transform: translateY(-1px); }
+
+/* ── CTA SECTION ── */
+.cta-section { background: var(--bg); }
+.cta-box {
+  background: linear-gradient(135deg, rgba(123,63,228,0.15) 0%, rgba(0,212,255,0.08) 100%);
+  border: 1px solid rgba(123,63,228,0.3);
+  border-radius: 24px; padding: 72px 48px;
+  text-align: center; position: relative; overflow: hidden;
+}
+.cta-box::before {
+  content: '';
+  position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 60% 60% at 50% 0%, rgba(0,212,255,0.12) 0%, transparent 70%);
+}
+.cta-box h2 { font-size: clamp(28px, 4vw, 48px); position: relative; }
+.cta-box .lead { margin: 0 auto 40px; position: relative; }
+.cta-box-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; position: relative; }
+.cta-note { margin-top: 20px; font-size: 13px; color: var(--muted); }
+.cta-note span { color: var(--neon); }
+
+/* ── COMPLIANCE BAR ── */
+.compliance { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+.compliance-inner {
+  max-width: 1000px; margin: 0 auto; padding: 28px 24px;
+  display: flex; align-items: center; justify-content: center;
+  gap: 40px; flex-wrap: wrap;
+}
+.comp-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+.comp-badge {
+  font-family: 'DM Mono', monospace; font-size: 10px; font-weight: 500;
+  letter-spacing: 0.08em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 99px;
+}
+.cb-v { background: rgba(123,63,228,0.15); color: var(--violet-l); }
+.cb-n { background: rgba(138,255,0,0.12); color: var(--neon); }
+.cb-c { background: rgba(0,212,255,0.1); color: var(--cyan); }
+.comp-sep { width: 1px; height: 16px; background: var(--dim); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg2); border-top: 1px solid var(--border);
+  padding: 40px 24px 24px;
+}
+.footer-inner {
+  max-width: 1000px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px;
+}
+.footer-brand {
+  font-family: 'Syne', sans-serif; font-weight: 800; font-size: 20px;
+  background: linear-gradient(120deg, var(--violet-l), var(--cyan));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.footer-copy { font-size: 13px; color: var(--dim); }
+
+/* ── ANIMATIONS ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: none; }
+}
+.reveal {
+  opacity: 0; transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.on { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+  .prob-grid, .features-grid, .verbatim-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .dash-body { grid-template-columns: 1fr; }
+  .dash-sidebar { display: none; }
+  .cta-box { padding: 48px 24px; }
+  .compliance-inner { gap: 20px; }
+  .dash-kpis { grid-template-columns: 1fr 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- THEME SWITCH -->
+<button class="theme-switch" id="themeSwitch" aria-label="Basculer mode jour/nuit">
+  <div class="sw-icons">
+    <span class="sw-icon sw-icon-moon">🌙</span>
+    <span class="sw-icon sw-icon-sun">☀️</span>
+  </div>
+  <div class="sw-track"><div class="sw-thumb"></div></div>
+  <span class="sw-label" id="swLabel">Nuit</span>
+</button>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">QuestIA</a>
+  <div class="nav-links">
+    <a href="#solution">Solution</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#pricing">Tarifs</a>
+    <a href="#demo" class="nav-cta">Demander une démo →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">Plateforme B2B de pilotage pédagogique</div>
+  <h1>
+    Vos formations en langue<br>
+    coûtent cher.<br>
+    <span class="grad">Prouvez enfin qu'elles servent.</span>
+  </h1>
+  <p class="hero-sub">QuestIA donne aux DRH et responsables pédagogiques un dashboard temps réel — pour piloter la progression CECRL de leurs cohortes, anticiper le décrochage et justifier leur budget L&D au COMEX.</p>
+  <div class="hero-ctas">
+    <a href="#demo" class="btn-primary">Voir une démo <span class="arrow">→</span></a>
+    <a href="#features" class="btn-ghost">Découvrir les fonctionnalités</a>
+  </div>
+  <div class="social-proof">
+    <div class="sp-avatars">
+      <div class="sp-avatar av1">S</div>
+      <div class="sp-avatar av2">M</div>
+      <div class="sp-avatar av3">K</div>
+      <div class="sp-avatar av4">B</div>
+    </div>
+    <span class="sp-text">Validé avec <strong>12 décideurs terrain</strong></span>
+    <div class="sp-sep"></div>
+    <span class="sp-qualiopi">✓ Qualiopi · AI Act · RGPD-EU</span>
+  </div>
+</section>
+
+<!-- DASHBOARD PREVIEW -->
+<div class="dashboard-wrap" id="solution">
+  <div class="dashboard-frame">
+    <div class="dash-bar">
+      <div class="dash-dot dd1"></div>
+      <div class="dash-dot dd2"></div>
+      <div class="dash-dot dd3"></div>
+      <span class="dash-title">QuestIA — Dashboard formateur · Promo B2 EN · Cohorte export</span>
+    </div>
+    <div class="dash-body">
+      <div class="dash-sidebar">
+        <div class="dash-nav-item active"><span class="nav-icon">📊</span> Vue cohorte</div>
+        <div class="dash-nav-item"><span class="nav-icon">👤</span> Apprenants</div>
+        <div class="dash-nav-item"><span class="nav-icon">🎯</span> Scénarios</div>
+        <div class="dash-nav-item"><span class="nav-icon">📄</span> Export audit</div>
+        <div class="dash-nav-item"><span class="nav-icon">⚙️</span> Paramètres</div>
+      </div>
+      <div class="dash-main">
+        <div class="dash-section-title">Vue d'ensemble · Promo B2 EN · Juin 2026</div>
+        <div class="dash-kpis">
+          <div class="dash-kpi">
+            <div class="dash-kpi-val n">+24 pts</div>
+            <div class="dash-kpi-label">Progression CECRL moy.</div>
+          </div>
+          <div class="dash-kpi">
+            <div class="dash-kpi-val c">87 %</div>
+            <div class="dash-kpi-label">Taux de complétion</div>
+          </div>
+          <div class="dash-kpi">
+            <div class="dash-kpi-val v">B1→B2</div>
+            <div class="dash-kpi-label">Niveau validé cohorte</div>
+          </div>
+        </div>
+        <div class="dash-section-title">Suivi individuel</div>
+        <table class="dash-table">
+          <thead>
+            <tr>
+              <th>Apprenant</th>
+              <th>Score CECRL</th>
+              <th>Progression</th>
+              <th>Statut</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Antoine M.</td>
+              <td>82 / 100</td>
+              <td><div class="dash-progress"><div class="prog-track"><div class="prog-fill high" style="width:82%"></div></div><span class="prog-val" style="color:#8AFF00">82</span></div></td>
+              <td style="color:#8AFF00;font-family:'DM Mono',monospace;font-size:11px">✓ En avance</td>
+            </tr>
+            <tr>
+              <td>Sophie L.</td>
+              <td>78 / 100</td>
+              <td><div class="dash-progress"><div class="prog-track"><div class="prog-fill med" style="width:78%"></div></div><span class="prog-val" style="color:#00D4FF">78</span></div></td>
+              <td style="color:#00D4FF;font-family:'DM Mono',monospace;font-size:11px">✓ Dans les temps</td>
+            </tr>
+            <tr>
+              <td>Karim B.</td>
+              <td>61 / 100</td>
+              <td><div class="dash-progress"><div class="prog-track"><div class="prog-fill med" style="width:61%"></div></div><span class="prog-val" style="color:#00D4FF">61</span></div></td>
+              <td style="color:#FFB347;font-family:'DM Mono',monospace;font-size:11px">⚠ À surveiller</td>
+            </tr>
+            <tr>
+              <td>Léa V.</td>
+              <td>42 / 100</td>
+              <td><div class="dash-progress"><div class="prog-track"><div class="prog-fill low" style="width:42%"></div></div><span class="prog-val" style="color:#FF6B6B">42</span></div></td>
+              <td style="color:#FF6B6B;font-family:'DM Mono',monospace;font-size:11px">⚠ Alerte</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="dash-alert">
+          <div class="a-dot"></div>
+          <div class="a-text"><strong>Léa V.</strong> — 0 connexion depuis 9 jours · risque de décrochage · <span style="color:#00D4FF;cursor:pointer">Envoyer une relance →</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEMS -->
+<section class="problems">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Le problème</span>
+    <h2 class="reveal reveal-d1">Vos apprenants décrochent.<br>Vous le savez <em style="color:var(--violet-l)">trop tard.</em></h2>
+    <p class="lead reveal reveal-d2">93 % des formateurs n'ont aucun outil de pilotage temps réel. La facture tombe quand même — en audit Qualiopi, en accréditation AACSB, en COMEX.</p>
+    <div class="prob-grid reveal reveal-d3">
+      <div class="prob-item">
+        <div class="prob-num v">Ø</div>
+        <div class="prob-title">Aucun outil de pilotage temps réel</div>
+        <div class="prob-desc">93 % des formateurs évaluent sans IA, sans dashboard, sans alerte précoce. Le décrochage est invisible jusqu'à ce qu'il soit trop tard.</div>
+        <div class="prob-source">Source : CGE 2025 · n=1 018 enseignants</div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-num c">&lt;20%</div>
+        <div class="prob-title">Taux de complétion e-learning passif</div>
+        <div class="prob-desc">Les formations en dispositif non tutoré terminent à moins de 20 %. Invendable en audit Qualiopi. Injustifiable au COMEX.</div>
+        <div class="prob-source">Source : ISTF Baromètre 2025 · n=374</div>
+      </div>
+      <div class="prob-item">
+        <div class="prob-num n">42K</div>
+        <div class="prob-title">OF Qualiopi certifiés sans différenciation</div>
+        <div class="prob-desc">42 892 organismes certifiés Qualiopi. Aucun outil de différenciation produit. Commodité totale — sauf pour ceux qui pilotent par la donnée.</div>
+        <div class="prob-source">Source : France Compétences · 1/1/2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VERBATIM -->
+<section class="verbatim-section">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Verbatims terrain · 12 entretiens décideurs</span>
+    <h2 class="reveal reveal-d1">Ce que vos pairs<br>nous ont dit.</h2>
+    <div class="verbatim-grid">
+      <div class="verbatim-card reveal reveal-d1">
+        <div class="verbatim-text">« Mes cadres reviennent d'immersion fatigués mais <strong>sans gain mesurable</strong>. Je n'ai pas de KPI à présenter au COMEX. »</div>
+        <div class="verbatim-person">
+          <div class="verbatim-avatar" style="background:linear-gradient(135deg,#7B3FE4,#A57BF7)">S</div>
+          <div>
+            <div class="verbatim-name">Sophie M.</div>
+            <div class="verbatim-role">DRH · ETI Industrie B2B · 800 collaborateurs</div>
+          </div>
+        </div>
+      </div>
+      <div class="verbatim-card reveal reveal-d2">
+        <div class="verbatim-text">« Je n'ai <strong>aucune vision sur ce qu'il se passe en cours</strong>. C'est désastreux pour l'audit. »</div>
+        <div class="verbatim-person">
+          <div class="verbatim-avatar" style="background:linear-gradient(135deg,#8AFF00,#5ABB00);color:#0D0B1E">K</div>
+          <div>
+            <div class="verbatim-name">Karim B.</div>
+            <div class="verbatim-role">Resp. pédagogique · Centre Qualiopi · 200 stagiaires/an</div>
+          </div>
+        </div>
+      </div>
+      <div class="verbatim-card reveal reveal-d1">
+        <div class="verbatim-text">« L'audit AACSB me demande la <strong>progression cohorte</strong>. J'y passe des semaines à assembler les données. »</div>
+        <div class="verbatim-person">
+          <div class="verbatim-avatar" style="background:linear-gradient(135deg,#00D4FF,#0099BB)">M</div>
+          <div>
+            <div class="verbatim-name">Marc D.</div>
+            <div class="verbatim-role">Directeur pédagogique · École AACSB · 450 étudiants</div>
+          </div>
+        </div>
+      </div>
+      <div class="verbatim-card reveal reveal-d2">
+        <div class="verbatim-text">« Babbel : <strong>20 K€ par an pour zéro connexion active</strong>. Je veux un outil qui me prouve la progression CECRL. »</div>
+        <div class="verbatim-person">
+          <div class="verbatim-avatar" style="background:linear-gradient(135deg,#E040FB,#7B3FE4)">S</div>
+          <div>
+            <div class="verbatim-name">Sophie M.</div>
+            <div class="verbatim-role">DRH · ETI Industrie B2B · Budget L&D 250 K€/an</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section" id="features">
+  <div class="section-inner">
+    <span class="eyebrow reveal">La solution</span>
+    <h2 class="reveal reveal-d1">Un outil de pilotage.<br><span style="color:var(--muted);font-weight:400">Pas une énième app d'apprentissage.</span></h2>
+    <p class="lead reveal reveal-d2">QuestIA donne au décideur ce qu'il n'a jamais eu : la visibilité complète sur ses cohortes, les alertes avant que le décrochage soit irréversible, l'export qui passe l'audit en 2 clics.</p>
+    <div class="features-grid">
+      <div class="feature-card featured reveal reveal-d1">
+        <div class="feature-icon fi-c">📊</div>
+        <div class="feature-title">Dashboard de pilotage temps réel</div>
+        <div class="feature-desc">Visualisez la progression de chaque apprenant et de chaque promo. Alertes décrochage à J+7. Aucun concurrent ne donne cette visibilité granulaire au décideur.</div>
+        <span class="feature-tag ft-c">Unique sur le marché</span>
+      </div>
+      <div class="feature-card reveal reveal-d2">
+        <div class="feature-icon fi-n">🎯</div>
+        <div class="feature-title">Scoring CECRL 4 axes</div>
+        <div class="feature-desc">Confiance · fluidité · vocabulaire · structure. Un barème auditable aligné sur les référentiels Qualiopi et AACSB — exportable en PDF en 1 clic.</div>
+        <span class="feature-tag ft-n">Compatible audit</span>
+      </div>
+      <div class="feature-card reveal reveal-d1">
+        <div class="feature-icon fi-v">🎮</div>
+        <div class="feature-title">Simulation IA multi-joueur</div>
+        <div class="feature-desc">Scénarios professionnels immersifs joués en équipe. L'IA incarne les interlocuteurs, corrige en temps réel. 87 % de taux de complétion vs &lt;20 % en e-learning passif.</div>
+        <span class="feature-tag ft-v">+67 pts complétion</span>
+      </div>
+      <div class="feature-card reveal reveal-d2">
+        <div class="feature-icon fi-n">📄</div>
+        <div class="feature-title">Export reporting COMEX / audit</div>
+        <div class="feature-desc">PDF Qualiopi · CSV cohorte · API LMS (SCORM/xAPI/LTI). Justifiez votre budget L&D à votre DAF et vos accréditations AACSB/EQUIS en un clic.</div>
+        <span class="feature-tag ft-n">RGPD-natif · EU</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MOAT -->
+<section class="moat-section">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Benchmark concurrentiel</span>
+    <h2 class="reveal reveal-d1">Seul à cocher<br>les 5 critères B2B.</h2>
+    <p class="lead reveal reveal-d2">« Là où Babbel apprend les mots, QuestIA pilote la performance pédagogique. » Benchmark sur 8 acteurs · mai 2026.</p>
+    <div class="moat-table-wrap reveal reveal-d3">
+      <table class="moat-table">
+        <thead>
+          <tr>
+            <th>Acteur</th>
+            <th>Dashboard pilotage</th>
+            <th>Multi-joueur</th>
+            <th>CECRL 4 axes</th>
+            <th>Export Qualiopi</th>
+            <th>RGPD-EU</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="us">
+            <td>QuestIA</td>
+            <td class="check">✓</td><td class="check">✓</td>
+            <td class="check">✓</td><td class="check">✓</td><td class="check">✓</td>
+          </tr>
+          <tr><td>Babbel</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+          <tr><td>EF Corporate</td><td class="part">~</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+          <tr><td>goFLUENT</td><td class="part">~</td><td class="cross">✗</td><td class="check">✓</td><td class="part">~</td><td class="cross">✗</td></tr>
+          <tr><td>Talkpal · Langua</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+          <tr><td>GlobalExam</td><td class="part">~</td><td class="cross">✗</td><td class="check">✓</td><td class="part">~</td><td class="cross">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-section" id="pricing">
+  <div class="section-inner">
+    <span class="eyebrow reveal">Tarifs</span>
+    <h2 class="reveal reveal-d1">Transparent.<br>Éligible OPCO.</h2>
+    <p class="lead reveal reveal-d2">Abonnement annuel · engagement mensuel · 4 tiers calibrés sur la valeur perçue par persona. Éligible CPF pour les OF Qualiopi.</p>
+    <div class="pricing-grid">
+      <div class="price-card reveal reveal-d1">
+        <div class="price-tier">Formateur indé</div>
+        <div class="price-amount">89 €</div>
+        <div class="price-period">/mois</div>
+        <div class="price-arr">→ 1 068 € / an</div>
+        <ul class="price-features">
+          <li>30 apprenants max</li>
+          <li>5 scénarios / mois</li>
+          <li>Vue individuelle</li>
+          <li>Self-serve + alertes auto</li>
+        </ul>
+        <a href="#demo" class="price-cta cta-ghost">Démarrer</a>
+      </div>
+      <div class="price-card reveal reveal-d2">
+        <div class="price-tier">Centre Qualiopi</div>
+        <div class="price-amount">490 €</div>
+        <div class="price-period">/mois</div>
+        <div class="price-arr">→ 5 880 € / an</div>
+        <ul class="price-features">
+          <li>200 apprenants</li>
+          <li>20 scénarios / mois</li>
+          <li>Multi-promo + export audit</li>
+          <li>CSM dédié + QBR</li>
+        </ul>
+        <a href="#demo" class="price-cta cta-filled">Demander une démo</a>
+      </div>
+      <div class="price-card pop reveal reveal-d1">
+        <div class="pop-badge">★ Le plus populaire</div>
+        <div class="price-tier">École supérieure</div>
+        <div class="price-amount">1 290 €</div>
+        <div class="price-period">/mois</div>
+        <div class="price-arr">→ 15 480 € / an</div>
+        <ul class="price-features">
+          <li>Apprenants illimités</li>
+          <li>50+ scénarios / mois</li>
+          <li>Reporting AACSB natif</li>
+          <li>Intégration LTI Canvas</li>
+          <li>Concierge + EBR</li>
+        </ul>
+        <a href="#demo" class="price-cta cta-pop">Demander une démo</a>
+      </div>
+      <div class="price-card reveal reveal-d2">
+        <div class="price-tier">★ ETI internationale</div>
+        <div class="price-amount" style="font-size:26px;padding-top:4px">Sur devis</div>
+        <div class="price-period">à partir de 2 500 €/mois</div>
+        <div class="price-arr">→ engagement annuel · KAM dédié</div>
+        <ul class="price-features">
+          <li>200-400 cadres</li>
+          <li>Scénarios illimités sur-mesure</li>
+          <li>Vues COMEX + OPCO + RH</li>
+          <li>KAM + intégration LMS</li>
+          <li>AI Act compliant certifié</li>
+        </ul>
+        <a href="#demo" class="price-cta cta-filled">Parler à un KAM</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPLIANCE BAR -->
+<div class="compliance">
+  <div class="compliance-inner">
+    <div class="comp-item"><span class="comp-badge cb-n">✓ Qualiopi</span> Export audit natif</div>
+    <div class="comp-sep"></div>
+    <div class="comp-item"><span class="comp-badge cb-v">✓ RGPD</span> Hébergement EU · Mistral AI</div>
+    <div class="comp-sep"></div>
+    <div class="comp-item"><span class="comp-badge cb-c">✓ AI Act</span> Pré-conforme août 2026</div>
+    <div class="comp-sep"></div>
+    <div class="comp-item"><span class="comp-badge cb-n">✓ AACSB / EQUIS</span> Reporting cohorte natif</div>
+    <div class="comp-sep"></div>
+    <div class="comp-item"><span class="comp-badge cb-v">✓ OPCO / CPF</span> Éligible financement</div>
+  </div>
+</div>
+
+<!-- CTA FINAL -->
+<section class="cta-section" id="demo">
+  <div class="section-inner narrow">
+    <div class="cta-box reveal">
+      <h2>Votre prochain audit Qualiopi<br>mérite un dashboard.</h2>
+      <p class="lead">Demandez une démo de 30 minutes. On vous montre votre cohorte en temps réel, le scoring CECRL 4 axes, et l'export PDF prêt pour votre audit.</p>
+      <div class="cta-box-btns">
+        <a href="mailto:contact@questia.fr" class="btn-primary">Demander une démo <span class="arrow">→</span></a>
+        <a href="#pricing" class="btn-ghost">Voir les tarifs</a>
+      </div>
+      <p class="cta-note">Pilote gratuit 1 mois · <span>Aucune CB requise</span> · Onboarding en 48h</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <span class="footer-brand">QuestIA</span>
+    <span class="footer-copy">© 2026 QuestIA · Hackathon Rocket School #17 · contact@questia.fr</span>
+  </div>
+</footer>
+
+<script>
+  // ── THEME SWITCH ──
+  const html = document.documentElement;
+  const btn = document.getElementById('themeSwitch');
+  const lbl = document.getElementById('swLabel');
+  if (localStorage.getItem('questia-lp-theme') === 'light') setLight();
+
+  function setLight() { html.classList.add('light'); lbl.textContent = 'Jour'; }
+  function setDark()  { html.classList.remove('light'); lbl.textContent = 'Nuit'; }
+
+  btn.addEventListener('click', () => {
+    if (html.classList.contains('light')) { setDark(); localStorage.setItem('questia-lp-theme','dark'); }
+    else { setLight(); localStorage.setItem('questia-lp-theme','light'); }
+  });
+
+  // ── SCROLL REVEAL ──
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('on'); io.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  els.forEach(e => io.observe(e));
+
+  // nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    document.querySelector('nav').style.padding = window.scrollY > 40 ? '12px 48px' : '18px 48px';
+  });
+</script>
+</body>
+</html>

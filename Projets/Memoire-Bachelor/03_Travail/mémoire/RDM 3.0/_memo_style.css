@@ -1,0 +1,10 @@
+@page { size: A4; margin: 2cm 2.2cm; @bottom-center { content: counter(page); font-size: 9pt; color: #999; } }
+body { font-family: Arial, "Helvetica Neue", sans-serif; font-size: 11pt; line-height: 1.45; color: #1a1a1a; }
+h1 { font-size: 18pt; color: #163A2B; border-bottom: 3px solid #E0A800; padding-bottom: .2em; margin-bottom: .2em; }
+h2 { font-size: 13pt; color: #163A2B; margin-top: 1.1em; border-left: 4px solid #74C69D; padding-left: .5em; }
+table { border-collapse: collapse; width: 100%; margin: .6em 0; font-size: 10pt; }
+th, td { border: 1px solid #c4ccc8; padding: 5px 8px; text-align: left; vertical-align: top; }
+th { background: #163A2B; color: #fff; }
+tr:nth-child(even) td { background: #f2f6f4; }
+strong { color: #000; }
+ol, ul { margin: .3em 0 .3em 1.1em; }

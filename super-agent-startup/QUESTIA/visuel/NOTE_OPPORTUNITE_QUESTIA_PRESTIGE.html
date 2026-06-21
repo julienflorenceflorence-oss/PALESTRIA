@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note d'Opportunité - QuestIA Elite Enterprise</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: #0A0E18;
+            --accent: #00E5FF;
+            --accent-purple: #7B5CFF;
+            --accent-coral: #FF5A6A;
+            --text: #EEF1F7;
+            --text-dim: #8A93A8;
+            --page-w: 210mm;
+            --page-h: 297mm;
+            --brand-gradient: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #000; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; -webkit-print-color-adjust: exact; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(0, 229, 255, 0.1); pointer-events: none;
+        }
+        .inner-border::before {
+            content: ""; position: absolute; top: -1px; left: -1px; width: 40px; height: 40px;
+            border-top: 2px solid var(--accent); border-left: 2px solid var(--accent);
+        }
+        .inner-border::after {
+            content: ""; position: absolute; bottom: -1px; right: -1px; width: 40px; height: 40px;
+            border-bottom: 2px solid var(--accent-coral); border-right: 2px solid var(--accent-coral);
+        }
+
+        header { text-align: center; margin-bottom: 30px; }
+        .logo-text { font-family: 'Cinzel'; font-weight: 700; letter-spacing: 8px; font-size: 2.2rem; background: var(--brand-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .doc-type { font-family: 'Cinzel'; font-size: 0.8rem; letter-spacing: 4px; color: var(--accent); margin-top: 5px; text-transform: uppercase; }
+
+        h1 { font-family: 'Cinzel'; font-size: 1.8rem; color: #FFF; text-align: center; margin: 40px 0 20px 0; letter-spacing: 2px; }
+        
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: var(--accent);
+            text-align: center; padding: 20px; border-top: 1px solid rgba(0, 229, 255, 0.1);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.1); margin: 25px 0; font-size: 1.1rem;
+        }
+
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-left: 3px solid var(--accent); padding-left: 15px; margin: 30px 0 15px 0; font-size: 1.2rem; text-transform: uppercase; letter-spacing: 1px; }
+        h3 { font-family: 'Cinzel'; color: var(--accent-purple); font-size: 0.9rem; margin-top: 20px; margin-bottom: 10px; letter-spacing: 1px; }
+
+        .content { flex-grow: 1; text-align: justify; font-size: 10pt; line-height: 1.6; font-weight: 300; }
+        p { margin-bottom: 12px; color: var(--text-dim); }
+        strong { color: #FFF; font-weight: 600; }
+
+        .kpi-box {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0;
+        }
+        .kpi-item {
+            background: var(--surface); padding: 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.05); text-align: center;
+        }
+        .kpi-val { display: block; font-family: 'Cinzel'; font-size: 1.4rem; color: var(--accent); font-weight: 700; }
+        .kpi-lab { font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; }
+
+        .footer {
+            border-top: 1px solid rgba(0, 229, 255, 0.2); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--text-dim);
+        }
+        .page-num::after { counter-increment: page; content: "SESSION 2026 // P. " counter(page, decimal-leading-zero); }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; }
+        th { text-align: left; color: var(--accent); padding: 10px; border-bottom: 1px solid var(--accent); font-family: 'Cinzel'; }
+        td { padding: 10px; border-bottom: 1px solid rgba(255,255,255,0.05); color: var(--text-dim); }
+
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: DIAGNOSTIC -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <header>
+            <div class="logo-text">QUESTIA</div>
+            <div class="doc-type">Note d'Opportunité Stratégique</div>
+        </header>
+
+        <h1>L'Élite de l'Immersion Linguistique</h1>
+
+        <div class="quote">
+            "Réconcilier la performance académique avec la réalité du terrain par l'IA et la VR."
+        </div>
+
+        <div class="content">
+            <h2>1. Analyse & Diagnostic</h2>
+            <p>
+                Le marché de la formation linguistique en France est à un tournant critique. Malgré des investissements massifs, le niveau de maîtrise orale reste l'un des plus bas d'Europe (33/35 au rang EF EPI). 
+            </p>
+            
+            <h3>Environnement PESTEL</h3>
+            <p>
+                <strong>Politique & Légal :</strong> Durcissement des normes Qualiopi exigeant des preuves de progression réelles. 
+                <strong>Technologique :</strong> Maturité de l'IA générative vocale permettant des interactions à latence ultra-faible (< 2.2s).
+                <strong>Socioculturel :</strong> 91% des RH se déclarent déçus par l'aisance orale des jeunes diplômés.
+            </p>
+
+            <h3>Diagnostic Interne (SWOT)</h3>
+            <table>
+                <tr><th>Forces</th><th>Opportunités</th></tr>
+                <tr><td>Scoring CECRL automatisé (Précision 95%)</td><td>Partenariats "Elite" avec les Grandes Écoles</td></tr>
+                <tr><td>Expérience VR Prestige (Noir/Or/Cyan)</td><td>Challenge National inter-campus</td></tr>
+                <tr><th>Faiblesses</th><th>Menaces</th></tr>
+                <tr><td>Marque émergente à forte identité</td><td>Inertie administrative des institutions</td></tr>
+                <tr><td>Coût d'acquisition client (CAC) B2B élevé</td><td>Arrivée de solutions IA low-cost (B2C)</td></tr>
+            </table>
+
+            <h2>2. La Problématique SMART</h2>
+            <p style="color: #FFF; font-size: 1.1rem; border-left: 2px solid var(--accent-purple); padding-left: 15px; margin-top: 20px;">
+                "Comment <strong>QuestIA</strong> peut-il devenir le standard de certification immersive pour les <strong>écoles de commerce</strong> d'ici fin 2026, en atteignant un <strong>taux de complétion de 85%</strong> et un <strong>ROI client de 65%</strong> ?"
+            </p>
+        </div>
+
+        <div class="footer">
+            <div>CONFIDENTIEL QUESTIA ELITE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: STRATÉGIE & ROI -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <header>
+            <div class="logo-text">QUESTIA</div>
+            <div class="doc-type">Stratégie & Recommandations</div>
+        </header>
+
+        <div class="content">
+            <h2>3. Recommandations Stratégiques</h2>
+            
+            <h3>Action 1 : Le "Challenge National" QuestIA</h3>
+            <p>
+                Instaurer une ligue de compétition inter-écoles sur 6 semaines. 
+                <strong>Objectif :</strong> Maximiser l'engagement par la gamification sociale.
+                <strong>Budget :</strong> 12 500 € (Design du leaderboard & Pilotage).
+                <strong>KPI :</strong> Engagement hebdomadaire > 2.5h / apprenant.
+            </p>
+
+            <h3>Action 2 : L'Infrastructure "Dual-Layer"</h3>
+            <p>
+                Déploiement d'un Hub Web pour l'entraînement quotidien et d'un simulateur de scénarios pro pour les examens finaux.
+                <strong>Objectif :</strong> Réduire les coûts de formation de 65% via l'automatisation.
+                <strong>Budget :</strong> 8 500 € (Architecture Cloud & Cloud IA).
+            </p>
+
+            <h2>4. Faisabilité & ROI</h2>
+            <p>
+                Le modèle économique <strong>SaaS</strong> (Software as a Service) garantit une scalabilité maximale sans contrainte de hardware.
+            </p>
+
+            <div class="kpi-box">
+                <div class="kpi-item">
+                    <span class="kpi-val">65%</span>
+                    <span class="kpi-lab">ROI Client</span>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-val">3.5k€</span>
+                    <span class="kpi-lab">Budget Pilote Min</span>
+                </div>
+                <div class="kpi-item">
+                    <span class="kpi-val">45%</span>
+                    <span class="kpi-lab">Marge Brute Visée</span>
+                </div>
+            </div>
+
+            <h3>Seuil de Rentabilité</h3>
+            <p>
+                Le point mort est atteint à partir de <strong>5 établissements partenaires</strong> (Cohort de 200 élèves/école). 
+                La réduction drastique du temps humain (coachs) permet d'amortir l'infrastructure IA dès le 4ème mois.
+            </p>
+
+            <h2>5. Plan de Déploiement (MVP)</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin-bottom: 10px;">📅 <strong>J-3 à J-1 :</strong> Scraping massif (1500 prospects) et Séquences Lemlist.</li>
+                <li style="margin-bottom: 10px;">📅 <strong>J0 :</strong> Lancement du Dashboard "Intelligence" Live.</li>
+                <li style="margin-bottom: 10px;">📅 <strong>M+1 :</strong> Signature des 3 premiers protocoles d'accord (LOI).</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <div>QUESTIA : THE SOVEREIGN IMMERSION</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CERCLE ORIGINE - Plan d'Action Commercial</title>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bordeaux: #630D16;
+            --deep-bg: #0D0705;
+            --text-gold: #D4AF37;
+            --card-bg: rgba(99, 13, 22, 0.95);
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+        
+        @media print {
+            @page { margin: 0; }
+            body { margin: 0; }
+        }
+        
+        html, body { margin: 0; padding: 0; background-color: var(--deep-bg); }
+        body { font-family: 'Georgia', serif; color: var(--text-gold); line-height: 1.4; }
+
+        .document-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: linear-gradient(to bottom, #0D0705 0%, #2F1B12 30%, #630D16 60%, #1A0F0A 100%);
+            background-attachment: fixed;
+        }
+
+        .page {
+            width: 210mm;
+            height: 296mm;
+            margin: 20px 0;
+            border: 2px solid var(--gold);
+            border-radius: 40px;
+            background: rgba(0,0,0,0.4);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            overflow: hidden;
+            page-break-after: always;
+        }
+
+        header {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('photo appli en tete.png');
+            background-size: cover;
+            background-position: center;
+            padding: 30px 40px;
+            text-align: center;
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .logo-frame {
+            max-width: 100px;
+            margin: 0 auto 10px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--gold);
+            border-radius: 20px;
+        }
+
+        .logo-frame img { width: 100%; height: auto; }
+
+        h1 { font-size: 1.6rem; letter-spacing: 6px; text-transform: uppercase; margin: 0; color: var(--gold); }
+        h2 { font-size: 1.3rem; text-align: center; text-transform: uppercase; letter-spacing: 3px; margin: 15px 0 10px; }
+        h2::after { content: ""; display: block; width: 40px; height: 1px; background: var(--gold); margin: 8px auto 0; }
+
+        .content { flex: 1; padding: 0 40px; display: flex; flex-direction: column; justify-content: space-evenly; }
+
+        /* TIMELINE */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.05);
+            padding: 15px;
+            border-radius: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            text-align: center;
+        }
+
+        .step-card b { color: var(--gold); display: block; margin-bottom: 10px; font-size: 0.9rem; }
+        .step-card ul { list-style: none; padding: 0; font-size: 0.75rem; color: #EEE; text-align: left; }
+        .step-card li { margin-bottom: 5px; padding-left: 12px; position: relative; }
+        .step-card li::before { content: "→"; position: absolute; left: 0; color: var(--gold); }
+
+        /* KPI SECTION */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            padding: 15px 5px;
+            border-radius: 20px;
+            border: 1px solid var(--gold);
+            text-align: center;
+        }
+
+        .kpi-card span { font-size: 0.65rem; color: #EEE; text-transform: uppercase; }
+        .kpi-card b { font-size: 1.4rem; color: #FFF; display: block; }
+
+        /* STRATEGY BOX */
+        .strategy-box {
+            background: rgba(99, 13, 22, 0.2);
+            padding: 20px;
+            border-radius: 30px;
+            border: 1px solid var(--gold);
+            margin-top: 10px;
+        }
+
+        .strategy-box h3 { font-size: 1rem; color: #FFF; margin-top: 0; text-transform: uppercase; }
+        .strategy-box p { font-size: 0.85rem; margin: 5px 0; color: #EEE; }
+
+        footer { background: rgba(0,0,0,0.8); border-top: 2px solid var(--gold); padding: 15px; text-align: center; font-size: 0.7rem; }
+
+        @page { size: A4; margin: 0; }
+        @media print {
+            .page { margin: 0 !important; border-radius: 0 !important; height: 297mm !important; }
+            .document-wrapper { background: #0D0705 !important; }
+            .kpi-card { background: #630D16 !important; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="document-wrapper">
+        
+        <!-- PAGE 1 : PLAN D'ACTION 100 JOURS -->
+        <div class="page">
+            <header>
+                <div class="logo-frame">
+                    <img src="charte graphique/LOGO_CERCLE_ORIGINE_FINAL_BOUSSOLE.svg" alt="CERCLE ORIGINE">
+                </div>
+                <h1>PLAN D'ACTION COMMERCIAL</h1>
+                <p style="letter-spacing: 2px; opacity: 0.8; font-style: italic;">Objectif : 100 Premiers Partenaires "Origine"</p>
+            </header>
+
+            <div class="content">
+                <section>
+                    <h2>Déploiement Stratégique</h2>
+                    <div class="timeline">
+                        <div class="step-card">
+                            <b>MOIS 1 : AMBASSADEURS</b>
+                            <ul>
+                                <li>Identification des 20 Domaines Viticoles "Iconiques".</li>
+                                <li>Phoning & Prise de RDV terrain (Julien).</li>
+                                <li>Signature des 10 premiers contrats "Ambassadeurs".</li>
+                            </ul>
+                        </div>
+                        <div class="step-card" style="border-color: #FFF;">
+                            <b>MOIS 2 : SYNERGIES</b>
+                            <ul>
+                                <li>Démarchage des gîtes/chambres d'hôtes satellites.</li>
+                                <li>Onboarding des commerçants locaux (Modèle %).</li>
+                                <li>Mise en ligne des premières "Expériences" (Matthieu).</li>
+                            </ul>
+                        </div>
+                        <div class="step-card">
+                            <b>MOIS 3 : ACCÉLÉRATION</b>
+                            <ul>
+                                <li>Lancement des campagnes ADS ciblées (Hébergeurs).</li>
+                                <li>Webinaire collectif "Libérez-vous des OTA".</li>
+                                <li>Objectif : 100 membres actifs.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Indicateurs de Performance (KPI)</h2>
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <span>Taux de Signature</span>
+                            <b>25 %</b>
+                        </div>
+                        <div class="kpi-card">
+                            <span>Membres Pionniers</span>
+                            <b>100</b>
+                        </div>
+                        <div class="kpi-card">
+                            <span>MRR (Revenu Récurrent)</span>
+                            <b>3 500€</b>
+                        </div>
+                        <div class="kpi-card">
+                            <span>Cout Acquisition</span>
+                            <b>< 50€</b>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="strategy-box">
+                    <h3>Méthode de Prospection Julien</h3>
+                    <p>✦ <b>L'Approche "Indépendance" :</b> Ne pas vendre un service, mais une sortie de dépendance aux OTA.</p>
+                    <p>✦ <b>Levier Terroir :</b> Utiliser les vignerons comme prescripteurs naturels auprès des hébergeurs et commerçants.</p>
+                    <p>✦ <b>Garantie à Vie :</b> L'argument massue de bloquer le tarif pour récompenser la prise de risque initiale.</p>
+                </section>
+            </div>
+            <footer>Confidentiel - Stratégie Commerciale CERCLE ORIGINE - Page 1/2</footer>
+        </div>
+
+        <!-- PAGE 2 : OUTILS & CONVERSION -->
+        <div class="page">
+            <div class="content">
+                <section>
+                    <h2>Outils au Service de la Vente</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="price-card" style="background: rgba(255,255,255,0.05); text-align: left; padding: 20px;">
+                            <b style="color: var(--gold); display: block; margin-bottom: 10px;">Le "Dossier de Prestige"</b>
+                            <p style="font-size: 0.8rem; margin: 0;">Support physique haut de gamme (A4) pour matérialiser la valeur du réseau lors des visites terrain.</p>
+                        </div>
+                        <div class="price-card" style="background: rgba(255,255,255,0.05); text-align: left; padding: 20px;">
+                            <b style="color: var(--gold); display: block; margin-bottom: 10px;">L'Agent IA (Démo)</b>
+                            <p style="font-size: 0.8rem; margin: 0;">Présentation en direct de la capacité de l'IA à analyser et générer des réservations (Ruddy).</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Tunnel de Conversion Membres</h2>
+                    <table class="stats-table">
+                        <thead>
+                            <tr>
+                                <th>Étape du Tunnel</th>
+                                <th>Action</th>
+                                <th>Objectif Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><b>1. Sensibilisation</b></td>
+                                <td>LinkedIn / Réseaux Sociaux / Presse Locale</td>
+                                <td>500 prospects qualifiés</td>
+                            </tr>
+                            <tr>
+                                <td><b>2. Intérêt</b></td>
+                                <td>Téléchargement du livre blanc "Loi Le Meur"</td>
+                                <td>200 leads</td>
+                            </tr>
+                            <tr>
+                                <td><b>3. Conviction</b></td>
+                                <td>Rendez-vous physique ou Démo IA</td>
+                                <td>150 RDV</td>
+                            </tr>
+                            <tr>
+                                <td><b>4. Adhésion</b></td>
+                                <td>Signature du contrat "Pionnier"</td>
+                                <td>100 Membres</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+
+                <section style="background: rgba(212, 175, 55, 0.1); padding: 25px; border-radius: 30px; border: 1px solid var(--gold); text-align: center;">
+                    <h3 style="margin: 0; color: #FFF; font-size: 1rem;">NOTRE PRIORITÉ : LE SUCCÈS DES 100 PREMIERS</h3>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Chaque nouveau membre est un ambassadeur. Sa réussite via le direct booking est la meilleure publicité pour l'extension nationale du réseau.</p>
+                </section>
+            </div>
+            <footer>Stratégie Opérationnelle - Confidentiel - CERCLE ORIGINE - Page 2/2</footer>
+        </div>
+
+    </div>
+
+</body>
+</html>

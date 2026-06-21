@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PALESTRIA — The Behavioral Closing Arena</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;800&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #020205; 
+            --surface: #0A0A12;
+            --blue: #007BFF;
+            --red: #FF003C;
+            --text: #F8F9FA;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body { 
+            background-color: var(--bg); 
+            color: var(--text); 
+            font-family: 'Montserrat', sans-serif; 
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(0, 123, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 90% 90%, rgba(255, 0, 60, 0.1) 0%, transparent 40%);
+        }
+
+        .hero { text-align: center; max-width: 800px; padding: 20px; }
+
+        .logo-main {
+            max-width: 350px;
+            margin-bottom: 40px;
+            filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+        }
+
+        h1 {
+            font-family: 'Orbitron';
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: var(--red);
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+
+        .btn-launch {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #fff;
+            transition: 0.4s;
+            text-align: center;
+        }
+
+        .btn-launch:hover {
+            border-color: var(--blue);
+            transform: translateY(-5px);
+            background: rgba(0, 123, 255, 0.05);
+        }
+
+        .btn-launch span {
+            display: block;
+            font-family: 'Orbitron';
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            color: var(--muted);
+        }
+
+        .btn-launch h3 { font-size: 1.1rem; letter-spacing: 2px; }
+
+        footer {
+            position: absolute;
+            bottom: 40px;
+            font-family: 'Orbitron';
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <img src="QUESTIA/scripts/PALESTRIA LOGO.png" alt="PALESTRIA Logo" class="logo-main">
+        <h1>Entrez dans l'arène du closing immersif</h1>
+
+        <div class="links-grid">
+            <a href="QUESTIA/visuel/PALESTRI_A_PRESENTATION.html" class="btn-launch">
+                <span>DÉCOUVRIR L'OFFRE</span>
+                <h3>PRÉSENTATION ÉDITION PRESTIGE</h3>
+            </a>
+            <a href="QUESTIA/visuel/Questia_Sondage.html" class="btn-launch" style="opacity: 0.5; pointer-events: none;">
+                <span>PILOTAGE RH (Bientôt)</span>
+                <h3>DASHBOARD DE NÉGOCIATION</h3>
+            </a>
+        </div>
+    </div>
+
+    <footer>PALESTRIA 2026 — ALL RIGHTS RESERVED</footer>
+
+</body>
+</html>

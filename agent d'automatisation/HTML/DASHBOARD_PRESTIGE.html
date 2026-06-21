@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy House | Dashboard Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0F1115;
+            --gold: #D4AF37;
+            --text-color: #E0E0E0;
+            --card-bg: #1A1D23;
+            --border-color: #2A2E35;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .content-wrapper {
+            flex: 1;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 1px solid var(--gold);
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: #888;
+            margin-top: 10px;
+            font-size: 1.1rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            text-align: center;
+            border-radius: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.8rem;
+            display: block;
+        }
+
+        .stat-label {
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            color: #666;
+        }
+
+        .verdict-section {
+            background: var(--card-bg);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.4rem;
+            margin-top: 0;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            text-align: left;
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            padding: 15px;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.9rem;
+        }
+
+        .status-badge {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .status-pending { background: #3a321d; color: var(--gold); }
+        .status-confirmed { background: #1d3a24; color: #4ade80; }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        .btn-refresh {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 10px 20px;
+            font-family: 'Cinzel', serif;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 20px;
+        }
+
+        .btn-refresh:hover {
+            background: var(--gold);
+            color: var(--bg-color);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-wrapper">
+        <header>
+            <h1>Happy House</h1>
+            <div class="quote">"L'excellence de l'automatisation au service de l'immobilier prestige."</div>
+        </header>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <span class="stat-value" id="count-prospects">--</span>
+                <span class="stat-label">Prospects Qualifiés</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value" id="count-appts">--</span>
+                <span class="stat-label">RDV Planifiés</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">70%</span>
+                <span class="stat-label">Gain de temps</span>
+            </div>
+        </div>
+
+        <button class="btn-refresh" onclick="fetchData()">Mettre à jour les données</button>
+
+        <section class="verdict-section">
+            <h2>Derniers Rendez-vous Prospect</h2>
+            <table id="appointments-table">
+                <thead>
+                    <tr>
+                        <th>Date & Heure</th>
+                        <th>Prospect</th>
+                        <th>Email</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Données chargées dynamiquement -->
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-left">SECTION : GESTION AGENT AUTOMATISÉ</div>
+        <div class="footer-right">PAGE : 01 / ÉDITION PRESTIGE</div>
+    </footer>
+
+    <script>
+        const API_URL = 'http://localhost:4747';
+
+        async function fetchData() {
+            try {
+                // On récupère les sessions pour trouver les RDV
+                const sessionsRes = await fetch(`${API_URL}/sessions`);
+                const sessions = await sessionsRes.json();
+                
+                document.getElementById('count-prospects').innerText = sessions.length;
+
+                let allAppts = [];
+                for (const session of sessions) {
+                    const apptRes = await fetch(`${API_URL}/sessions/${session.id}/appointments`);
+                    const appts = await apptRes.json();
+                    allAppts = allAppts.concat(appts);
+                }
+
+                document.getElementById('count-appts').innerText = allAppts.length;
+
+                const tbody = document.getElementById('table-body');
+                tbody.innerHTML = '';
+
+                allAppts.sort((a, b) => new Date(b.startTime) - new Date(a.startTime));
+
+                allAppts.forEach(appt => {
+                    const row = `
+                        <tr>
+                            <td>${new Date(appt.startTime).toLocaleString('fr-FR')}</td>
+                            <td><strong>${appt.prospectName}</strong></td>
+                            <td>${appt.prospectEmail}</td>
+                            <td><span class="status-badge status-${appt.status}">${appt.status}</span></td>
+                        </tr>
+                    `;
+                    tbody.innerHTML += row;
+                });
+
+            } catch (error) {
+                console.error("Erreur de chargement :", error);
+                document.getElementById('table-body').innerHTML = '<tr><td colspan="4" style="text-align:center;color:red;">Erreur : Le serveur local (port 4747) est-il allumé ?</td></tr>';
+            }
+        }
+
+        // Chargement initial
+        fetchData();
+        // Rafraichissement automatique toutes les 30 secondes
+        setInterval(fetchData, 30000);
+    </script>
+</body>
+</html>

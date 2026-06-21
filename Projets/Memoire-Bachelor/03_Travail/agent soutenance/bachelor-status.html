@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certification en cours - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --text: #F4F4F4;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 40px 20px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            background: rgba(22, 26, 35, 0.8);
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px; left: -2px; right: -2px; bottom: -2px;
+            background: linear-gradient(45deg, transparent, var(--gold), transparent);
+            z-index: -1;
+            border-radius: 17px;
+            opacity: 0.3;
+        }
+
+        video {
+            max-width: 280px;
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            margin-bottom: 30px;
+            border-radius: 50%; /* Format circulaire pour une esthétique tech */
+            border: 2px solid var(--gold);
+            filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4));
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 10px 20px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            margin-bottom: 30px;
+        }
+
+        .btn-back {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: var(--gold);
+            color: var(--bg);
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-back:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.05); opacity: 1; }
+            100% { transform: scale(1); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div style="width: 250px; height: 250px; margin: 0 auto 30px auto; border-radius: 50%; border: 2px solid var(--gold); overflow: hidden; filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.4)); background: #000;">
+            <video id="brainVideo" autoplay loop muted playsinline poster="PROJET_CV/cerveau 3.0.png" style="width: 100%; height: 100%; object-fit: cover;">
+                <source src="PROJET_CV/video/cerveau_4.2.mp4" type="video/mp4">
+                <source src="PROJET_CV/video/cerveau41.mp4" type="video/mp4">
+                Votre navigateur ne supporte pas la vidéo.
+            </video>
+        </div>
+        <script>
+            // Force la lecture si le navigateur bloque l'autoplay
+            window.addEventListener('load', function() {
+                var v = document.getElementById('brainVideo');
+                v.play().catch(function(error) {
+                    console.log("Lecture auto bloquée, tentative de relance...");
+                    // On peut essayer de relancer au premier clic sur la page
+                    document.body.addEventListener('click', function() {
+                        v.play();
+                    }, {once: true});
+                });
+            });
+        </script>
+        <div class="status-badge">Validation en cours</div>
+        <h1>Bachelor Responsable Marketing et Commercial</h1>
+        <div style="color: var(--gold); font-family: 'Cinzel'; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 20px; text-transform: uppercase; opacity: 0.8;">Spécialisation Acquisition Numérique</div>
+        <p>Le dossier de certification finale est actuellement en cours d'exécution.</p>
+        <a href="diplomes.html" class="btn-back">Retour au Portfolio</a>
+    </div>
+</body>
+</html>

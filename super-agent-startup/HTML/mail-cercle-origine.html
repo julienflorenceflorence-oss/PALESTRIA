@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="color-scheme" content="light dark">
+  <meta name="supported-color-schemes" content="light dark">
+  <title>Cercle Origine — Julien Florence</title>
+
+  <style>
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body, table, td, a { -webkit-text-size-adjust:100%; -ms-text-size-adjust:100%; }
+    table, td { mso-table-lspace:0pt; mso-table-rspace:0pt; }
+    img { -ms-interpolation-mode:bicubic; border:0; display:block; }
+    table { border-collapse:collapse; }
+
+    body {
+      margin:0; padding:0; width:100%;
+      background-color:#E8E0D0;
+      font-family:Arial, Helvetica, sans-serif;
+      color:#241D18;
+    }
+
+    .email-wrapper {
+      width:100%;
+      background-color:#E8E0D0;
+      padding:40px 16px;
+    }
+
+    .email-container {
+      max-width:600px;
+      margin:0 auto;
+      background-color:#FCFAF4;
+      box-shadow:0 8px 40px rgba(0,0,0,0.12);
+      overflow:hidden;
+    }
+
+    /* ── HEADER ── */
+    .email-header {
+      background-color:#0D0B08;
+      text-align:center;
+      padding:0 0 32px 0;
+    }
+
+    .header-top-bar {
+      height:3px;
+      background:linear-gradient(90deg, transparent 0%, #BC8E31 20%, #D4A72C 50%, #BC8E31 80%, transparent 100%);
+      margin-bottom:28px;
+    }
+
+    .logo-wrap { padding:0 32px 2px; text-align:center; }
+
+    .logo-img { width:280px; height:auto; display:inline-block; margin:0 auto; }
+
+    .header-ornament {
+      width:44px; height:1px; margin:16px auto 0;
+      background:linear-gradient(90deg, transparent, #C5993A, transparent);
+    }
+
+    /* ── BODY ── */
+    .email-body {
+      background-color:#FCFAF4;
+      padding:44px 48px 40px;
+    }
+
+    .salutation {
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:21px; line-height:1.35; color:#18120D;
+      margin-bottom:24px; font-weight:600;
+    }
+
+    .email-paragraph {
+      font-size:15px; line-height:1.85;
+      color:#2A231D; margin-bottom:20px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .email-paragraph strong { color:#18120D; font-weight:700; }
+
+    /* ── HIGHLIGHT ── */
+    .highlight-block {
+      border-left:2px solid #C5993A;
+      background-color:rgba(197,153,58,0.05);
+      padding:14px 20px 14px 20px;
+      margin:28px 0;
+    }
+
+    .highlight-label {
+      display:block; font-size:9px; line-height:1.4;
+      letter-spacing:0.26em; text-transform:uppercase;
+      color:#C5993A; font-weight:700; margin-bottom:9px;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .highlight-block p {
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:17px; line-height:1.7; color:#18120D; font-style:italic;
+    }
+
+    .highlight-block p strong { font-style:normal; font-weight:700; }
+
+    /* ── CTA TEXTE ── */
+    .cta-question {
+      font-size:15px; line-height:1.7; color:#18120D;
+      font-weight:700; font-family:Arial, Helvetica, sans-serif;
+      margin-bottom:6px;
+    }
+
+    .cta-intro {
+      font-size:14px; line-height:1.7; color:#5A5048;
+      font-family:Arial, Helvetica, sans-serif; margin-bottom:0;
+    }
+
+    /* ── BOUTON CTA ── */
+    .cta-button-wrap { text-align:center; margin:28px 0 10px; }
+
+    .cta-button {
+      display:inline-block;
+      background-color:#C5993A;
+      color:#0D0B08 !important;
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:13px; font-weight:700;
+      letter-spacing:0.14em; text-transform:uppercase;
+      text-decoration:none;
+      padding:15px 40px;
+      border-radius:40px;
+      -webkit-border-radius:40px;
+      -moz-border-radius:40px;
+      line-height:1.4;
+    }
+
+    .cta-button:hover { background-color:#D4A72C; }
+
+    .cta-sub {
+      font-family:Arial, Helvetica, sans-serif;
+      font-size:11.5px; color:#9A8C80;
+      text-align:center; margin-top:12px; line-height:1.5;
+    }
+
+    /* ── ENCART PIÈCE JOINTE ── */
+    .attachment-block {
+      display:flex;
+      align-items:flex-start;
+      gap:14px;
+      background-color:rgba(197,153,58,0.06);
+      border:1px solid rgba(197,153,58,0.22);
+      border-radius:4px;
+      padding:14px 18px;
+      margin:32px 0 28px;
+    }
+
+    .attachment-icon {
+      font-size:22px; line-height:1;
+      flex-shrink:0; margin-top:2px;
+    }
+
+    .attachment-text {
+      display:flex; flex-direction:column; gap:4px;
+    }
+
+    .attachment-label {
+      display:block; font-size:9px;
+      letter-spacing:0.24em; text-transform:uppercase;
+      color:#C5993A; font-weight:700;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .attachment-desc {
+      display:block; font-size:13.5px;
+      line-height:1.6; color:#2A231D;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    /* ── SIGNATURE ── */
+    .signature-divider {
+      width:38px; height:1px;
+      background-color:#C5993A; margin:0 0 26px;
+    }
+
+    .closing-text {
+      font-size:13px; line-height:1.6; color:#7A6D61;
+      margin-bottom:18px; font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .signature-name {
+      font-family:Georgia, "Times New Roman", serif;
+      font-size:25px; line-height:1.2; color:#18120D;
+      font-weight:600; margin-bottom:5px; letter-spacing:0.02em;
+    }
+
+    .signature-role {
+      font-size:9px; line-height:1.5; letter-spacing:0.22em;
+      text-transform:uppercase; color:#7A6D61;
+      margin-bottom:4px; font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .signature-company {
+      font-size:9px; line-height:1.5; letter-spacing:0.28em;
+      text-transform:uppercase; color:#C5993A; font-weight:700;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    /* ── FOOTER ── */
+    .email-footer {
+      background-color:#0D0B08;
+      text-align:center; padding:20px 48px 18px;
+    }
+
+    .footer-bottom-bar {
+      height:1px;
+      background:linear-gradient(90deg, transparent 0%, rgba(197,153,58,0.38) 30%, rgba(197,153,58,0.38) 70%, transparent 100%);
+      margin-bottom:16px;
+    }
+
+    .footer-tagline {
+      display:block; font-size:9px; line-height:1.5;
+      letter-spacing:0.34em; text-transform:uppercase;
+      color:rgba(197,153,58,0.44);
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    .footer-sep { color:rgba(197,153,58,0.24); margin:0 8px; font-size:8px; }
+
+    .preheader {
+      display:none !important; visibility:hidden; opacity:0;
+      color:transparent; height:0; width:0; overflow:hidden;
+      mso-hide:all; font-size:1px; line-height:1px;
+      max-height:0; max-width:0;
+    }
+
+    /* ── RESPONSIVE TABLETTE ── */
+    @media only screen and (max-width:640px) {
+      .email-wrapper { padding:0 !important; }
+      .email-container { width:100% !important; box-shadow:none !important; }
+      .email-header { padding-bottom:26px !important; }
+      .logo-wrap { padding:0 20px 2px !important; }
+      .logo-svg { width:120px !important; height:auto !important; }
+      .email-body { padding:36px 32px 32px !important; }
+      .email-footer { padding:18px 32px 16px !important; }
+      .salutation { font-size:19px !important; }
+      .email-paragraph, .cta-question, .cta-intro { font-size:14.5px !important; }
+      .highlight-block p { font-size:16px !important; }
+      .signature-name { font-size:22px !important; }
+      .cta-button { padding:14px 32px !important; font-size:12.5px !important; }
+    }
+
+    /* ── RESPONSIVE MOBILE ── */
+    @media only screen and (max-width:480px) {
+      .email-body { padding:28px 20px 28px !important; }
+      .email-footer { padding:16px 20px 14px !important; }
+      .salutation { font-size:18px !important; }
+      .email-paragraph, .cta-question, .cta-intro { font-size:14px !important; line-height:1.78 !important; }
+      .highlight-block { padding:12px 14px 12px 16px !important; }
+      .highlight-block p { font-size:15.5px !important; }
+      .signature-name { font-size:21px !important; }
+      .attachment-block { gap:10px !important; padding:12px 14px !important; }
+      .attachment-desc { font-size:13px !important; }
+      .cta-button {
+        display:block !important;
+        text-align:center !important;
+        padding:15px 20px !important;
+        font-size:12px !important;
+      }
+    }
+
+    /* ── DARK MODE ── */
+    @media (prefers-color-scheme: dark) {
+      body, .email-wrapper { background-color:#0A0807 !important; }
+      .email-container, .email-body { background-color:#161210 !important; }
+      .salutation, .cta-question, .signature-name { color:#EDE6D6 !important; }
+      .email-paragraph { color:#C2B6A5 !important; }
+      .email-paragraph strong, .highlight-block p strong { color:#EDE6D6 !important; }
+      .highlight-block { background-color:rgba(197,153,58,0.07) !important; }
+      .highlight-block p { color:#D6C9B3 !important; }
+      .cta-intro, .cta-sub { color:#6A5E52 !important; }
+      .closing-text, .signature-role { color:#6A5E52 !important; }
+      .signature-company { color:#D4A72C !important; }
+      .cta-button { background-color:#C5993A !important; color:#0D0B08 !important; }
+      .attachment-block {
+        background-color:rgba(197,153,58,0.07) !important;
+        border-color:rgba(197,153,58,0.20) !important;
+      }
+      .attachment-desc { color:#C2B6A5 !important; }
+    }
+
+    /* ── OUTLOOK DARK ── */
+    [data-ogsc] .email-header,
+    [data-ogsc] .email-footer { background-color:#0D0B08 !important; }
+    [data-ogsc] .email-container,
+    [data-ogsc] .email-body { background-color:#161210 !important; }
+    [data-ogsc] .salutation,
+    [data-ogsc] .cta-question,
+    [data-ogsc] .signature-name { color:#EDE6D6 !important; }
+    [data-ogsc] .email-paragraph { color:#C2B6A5 !important; }
+    [data-ogsc] .highlight-block { background-color:rgba(197,153,58,0.07) !important; }
+    [data-ogsc] .highlight-block p { color:#D6C9B3 !important; }
+    [data-ogsc] .cta-button { background-color:#C5993A !important; color:#0D0B08 !important; }
+    [data-ogsc] .attachment-block {
+      background-color:rgba(197,153,58,0.07) !important;
+      border-color:rgba(197,153,58,0.20) !important;
+    }
+    [data-ogsc] .attachment-desc { color:#C2B6A5 !important; }
+
+  </style>
+
+  <!--[if mso]>
+  <style type="text/css">
+    body, table, td, p, a, span { font-family: Arial, Helvetica, sans-serif !important; }
+    .salutation, .signature-name, .highlight-block p { font-family: Georgia, "Times New Roman", serif !important; }
+  </style>
+  <![endif]-->
+</head>
+
+<body>
+  <div class="preheader">Cercle Origine — 20 minutes pour identifier ce qui bloque concrètement.</div>
+
+  <div class="email-wrapper">
+    <div class="email-container">
+
+      <!-- HEADER -->
+      <div class="email-header">
+        <div class="header-top-bar"></div>
+        <div class="logo-wrap">
+          <img src="https://lh3.googleusercontent.com/d/1v5SOx28Js9aJAGqKK_WISXWn5MiUIVzc" 
+               alt="Cercle Origine" 
+               class="logo-img" 
+               style="border:0; outline:none; text-decoration:none; display:block; margin:0 auto; width:280px; height:auto;">
+        </div>
+        <div class="header-ornament"></div>
+      </div>
+
+      <!-- BODY -->
+      <div class="email-body">
+
+        <p class="salutation">Monsieur le Directeur,</p>
+
+        <p class="email-paragraph">
+          Vos adhérents sont confrontés à un changement de fond : les circuits de distribution
+          traditionnels s'essoufflent, et les domaines qui n'ont pas encore repris le contrôle
+          de leurs ventes en direct commencent à en subir les conséquences sur leur chiffre
+          d'affaires.
+        </p>
+
+        <p class="email-paragraph">
+          C'est précisément pour cela que nous avons fondé <strong>Cercle Origine</strong> —
+          avec un développeur senior, un designer/photographe expert et une direction commerciale.
+          Notre méthode est directe : nous identifions ce qui bloque les ventes en ligne des
+          vignerons et nous corrigeons ces points de façon concrète, sans détour.
+        </p>
+
+        <div class="highlight-block">
+          <span class="highlight-label">Notre position</span>
+          <p>
+            Nous ne faisons pas de « transformation digitale ». Nous travaillons sur le
+            <strong>résultat commercial</strong>, pas sur les apparences.
+          </p>
+        </div>
+
+        <p class="email-paragraph">
+          Les prochaines campagnes arrivent vite. Pour que notre approche soit réellement
+          adaptée aux réalités de vos adhérents, j'aimerais vous soumettre quelques questions
+          en 20 minutes : comprendre ce qui bloque concrètement, pour intervenir là où ça compte.
+        </p>
+
+        <p class="cta-question">Avez-vous un créneau disponible cette semaine&nbsp;?</p>
+        <p class="cta-intro">J'ai partagé quelques créneaux ici, si c'est plus simple :</p>
+
+        <!-- BOUTON -->
+        <div class="cta-button-wrap">
+          <!--[if mso]>
+          <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml"
+                       xmlns:w="urn:schemas-microsoft-com:office:word"
+                       href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3i4bMf93fLjS9zvNFiLDyOSSyhdRbikvKVFGfywU6GBT5qt8FD_2ix6ybBhl8RIqXaxWXC_gcM"
+                       style="height:46px; v-text-anchor:middle; width:260px;"
+                       arcsize="50%" strokecolor="#C5993A" fillcolor="#C5993A">
+            <w:anchorlock/>
+            <center style="color:#0D0B08; font-family:Arial,Helvetica,sans-serif; font-size:13px; font-weight:bold; letter-spacing:2px; text-transform:uppercase;">
+              Prise de rendez-vous
+            </center>
+          </v:roundrect>
+          <![endif]-->
+          <!--[if !mso]><!-->
+          <a href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ3i4bMf93fLjS9zvNFiLDyOSSyhdRbikvKVFGfywU6GBT5qt8FD_2ix6ybBhl8RIqXaxWXC_gcM"
+             class="cta-button"
+             target="_blank"
+             rel="noopener noreferrer">
+            Prise de rendez-vous
+          </a>
+          <!--<![endif]-->
+        </div>
+
+        <p class="cta-sub">Ou répondez directement à cet email.</p>
+
+        <!-- ENCART PIÈCE JOINTE -->
+        <div class="attachment-block">
+          <span class="attachment-icon">&#128206;</span>
+          <div class="attachment-text">
+            <span class="attachment-label">Document joint</span>
+            <span class="attachment-desc">
+              Vous trouverez ci-joint la présentation de notre équipe au format PDF.
+            </span>
+          </div>
+        </div>
+
+        <!-- SIGNATURE -->
+        <div class="signature-divider"></div>
+
+        <p class="closing-text">Bien cordialement,</p>
+        <p class="signature-name">Julien Florence</p>
+        <p class="signature-role">Président</p>
+        <p class="signature-company">Cercle Origine</p>
+
+      </div>
+
+      <!-- FOOTER -->
+      <div class="email-footer">
+        <div class="footer-bottom-bar"></div>
+        <span class="footer-tagline">
+          Expérience <span class="footer-sep">&middot;</span>
+          Excellence <span class="footer-sep">&middot;</span>
+          Performance
+        </span>
+      </div>
+
+    </div>
+  </div>
+</body>
+</html>

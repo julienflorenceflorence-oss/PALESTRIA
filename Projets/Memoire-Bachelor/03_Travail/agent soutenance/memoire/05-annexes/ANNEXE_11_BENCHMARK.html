@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 11 - Benchmark Concurrentiel - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 20px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 8pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 18pt; letter-spacing: 2px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 7pt; }
+        th, td { border: 1px solid rgba(212, 175, 55, 0.2); padding: 5px; text-align: left; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--accent); font-family: 'Cinzel'; text-transform: uppercase; }
+
+        .hh-row { background: rgba(212, 175, 55, 0.05); }
+        .hh-cell { color: var(--accent); font-weight: 700; }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: #888;
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 11 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="header-box">
+            <div class="label">ANALYSE DU MARCHÉ & ALTERNATIVES</div>
+            <h1>BENCHMARK DES SOLUTIONS DE DISTRIBUTION</h1>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Acteur</th>
+                    <th>Com. (%)</th>
+                    <th>Gestion Data</th>
+                    <th>Outils Tech</th>
+                    <th>Circuit Court</th>
+                    <th>Engagement</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="hh-row">
+                    <td class="hh-cell">Happy House</td>
+                    <td class="hh-cell">0% (Adhésion)</td>
+                    <td class="hh-cell">100% Propriétaire</td>
+                    <td class="hh-cell">App IA + CRM</td>
+                    <td class="hh-cell">Oui (Coopératif)</td>
+                    <td class="hh-cell">Libre / 12 mois</td>
+                </tr>
+                <tr>
+                    <td>Airbnb Luxe</td>
+                    <td>20% +</td>
+                    <td>Opaque (OTA)</td>
+                    <td>App Standard</td>
+                    <td>Non</td>
+                    <td>Exclusivité possible</td>
+                </tr>
+                <tr>
+                    <td>Booking.com</td>
+                    <td>17-25%</td>
+                    <td>Opaque (OTA)</td>
+                    <td>Extranet générique</td>
+                    <td>Non</td>
+                    <td>Libre</td>
+                </tr>
+                <tr>
+                    <td>Les Collectionneurs</td>
+                    <td>Variable</td>
+                    <td>Partagée</td>
+                    <td>Label / Annuaire</td>
+                    <td>Limitée</td>
+                    <td>Contractuel fort</td>
+                </tr>
+                <tr>
+                    <td>Relais & Châteaux</td>
+                    <td>Élevée</td>
+                    <td>Marque centrale</td>
+                    <td>Standard Luxe</td>
+                    <td>Gastronomie</td>
+                    <td>Audit très strict</td>
+                </tr>
+                <tr>
+                    <td>Gîtes de France</td>
+                    <td>Fixe / Com.</td>
+                    <td>Institutionnelle</td>
+                    <td>Portail National</td>
+                    <td>Local</td>
+                    <td>Statuts asso.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

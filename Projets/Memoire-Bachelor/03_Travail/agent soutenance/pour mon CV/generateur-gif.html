@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GIF Master Studio v8.3 | Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <!-- Scripts avec fallback de sécurité -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.js"></script>
+    <style>
+        :root {
+            --primary: #D4AF37;
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --sidebar-bg: #08090C;
+            --text: #f4f4f4;
+            --input-bg: #000;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); height: 100vh; display: flex; overflow: hidden; }
+
+        .sidebar { width: 60px; background: var(--sidebar-bg); border-right: 1px solid #1a1d23; display: flex; flex-direction: column; align-items: center; padding: 15px 0; gap: 20px; z-index: 100; }
+        .sidebar-icon { width: 35px; height: 35px; display: flex; align-items: center; justify-content: center; color: #555; cursor: pointer; }
+        .sidebar-icon.active { color: var(--gold); }
+
+        .main-content { flex: 1; display: flex; flex-direction: column; overflow-y: auto; }
+        .top-line { width: 100%; height: 1px; background: rgba(212, 175, 55, 0.3); }
+
+        .studio-layout { display: grid; grid-template-columns: 380px 1fr; padding: 40px; gap: 60px; max-width: 1500px; width: 100%; margin: 0 auto; }
+
+        .section-title { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold); margin-bottom: 25px; letter-spacing: 2px; text-transform: uppercase; }
+        .input-group { margin-bottom: 25px; }
+        label { display: block; font-size: 0.6rem; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; }
+        input, select { width: 100%; padding: 12px; background: var(--input-bg); border: 1px solid #222; color: #fff; font-family: 'Montserrat'; border-radius: 4px; }
+
+        .preview-area { display: flex; flex-direction: column; align-items: center; }
+        .gif-preview-box { width: 100%; max-width: 600px; aspect-ratio: 1/1; background: #000; border: 1px solid var(--gold); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+        .gif-preview-box video, .gif-preview-box img { width: 100%; height: 100%; object-fit: cover; }
+
+        #progress-container { width: 100%; max-width: 600px; height: 35px; background: #000; margin-top: 20px; position: relative; display: none; overflow: hidden; border: 1px solid #222; }
+        #progress-bar { width: 0%; height: 100%; background: var(--gold); transition: width 0.1s; }
+        #progress-text { position: absolute; width: 100%; text-align: center; line-height: 35px; font-size: 0.75rem; font-weight: 700; color: #000; text-transform: uppercase; letter-spacing: 2px; z-index: 10; }
+
+        .btn-generate { width: 100%; max-width: 600px; padding: 20px; background: #1a1d23; color: var(--gold); border: 1px solid rgba(212, 175, 55, 0.2); font-family: 'Cinzel', serif; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; cursor: pointer; margin-top: 15px; }
+        .btn-generate:hover:not(:disabled) { background: var(--gold); color: #000; }
+        .btn-download { display: none; width: 100%; max-width: 600px; padding: 15px; background: #fff; color: #000; text-align: center; text-decoration: none; font-family: 'Cinzel'; font-weight: 700; margin-top: 10px; text-transform: uppercase; }
+
+        #status-info { margin-top: 15px; color: #666; font-size: 0.7rem; text-transform: uppercase; text-align: center; height: 20px; }
+    </style>
+</head>
+<body>
+
+<nav class="sidebar">
+    <div class="sidebar-icon active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg></div>
+</nav>
+
+<div class="main-content">
+    <div class="top-line"></div>
+    <div class="studio-layout">
+        <div class="form-side">
+            <div class="section-title">VIDEO SOURCE</div>
+            <div class="input-group"><input type="file" id="local_video" accept="video/mp4,video/webm"></div>
+            <div class="section-title">CONFIG PRESTIGE</div>
+            <div class="input-group"><label>Format</label><select id="gif_format"><option value="square">Carré (1:1) - Signature</option><option value="hd">HD (16:9)</option></select></div>
+            <div class="input-group"><label>Durée (sec)</label><input type="number" id="capture_duration" value="2.0" step="0.1"></div>
+            <div class="input-group"><label>Qualité (1-20)</label><input type="number" id="gif_quality" value="10"></div>
+        </div>
+
+        <div class="preview-side">
+            <div class="preview-area">
+                <div class="gif-preview-box" id="media_container"><p style="color:#333;">CHARGER UN MÉDIA...</p></div>
+                <div id="progress-container"><div id="progress-text">PRÊT</div><div id="progress-bar"></div></div>
+                <button id="generate_btn" class="btn-generate" onclick="generateGIF()">Générer le Master GIF</button>
+                <a id="download_btn" class="btn-download" download="prestige_signature.gif">Télécharger le GIF</a>
+                <div id="status-info">Studio v8.3 "Ultra-Sync"</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<canvas id="capture_canvas" style="display:none;"></canvas>
+
+<script>
+    let videoUrl = "";
+
+    document.getElementById('local_video').addEventListener('change', function(e) {
+        const file = e.target.files[0];
+        if (file) {
+            videoUrl = URL.createObjectURL(file);
+            document.getElementById('media_container').innerHTML = `<video id="preview_video" src="${videoUrl}" autoplay loop muted playsinline></video>`;
+            document.getElementById('status-info').innerText = "Fichier détecté : " + file.name;
+        }
+    });
+
+    async function generateGIF() {
+        const video = document.getElementById('preview_video');
+        if (!video) return alert("Veuillez charger une vidéo.");
+        if (typeof GIF === 'undefined') return alert("Erreur : Librairie GIF.js non chargée. Vérifiez votre connexion.");
+
+        const btn = document.getElementById('generate_btn');
+        const status = document.getElementById('status-info');
+        const progress = document.getElementById('progress-bar');
+        const progText = document.getElementById('progress-text');
+        const progCont = document.getElementById('progress-container');
+        const downloadBtn = document.getElementById('download_btn');
+
+        btn.disabled = true;
+        downloadBtn.style.display = 'none';
+        progCont.style.display = 'block';
+        
+        const duration = parseFloat(document.getElementById('capture_duration').value);
+        const quality = parseInt(document.getElementById('gif_quality').value);
+        const format = document.getElementById('gif_format').value;
+        const fps = 15;
+        const frameCount = Math.floor(duration * fps);
+        const width = (format === 'square') ? 400 : 640;
+        const height = (format === 'square') ? 400 : 360;
+
+        const gif = new GIF({
+            workers: 2,
+            quality: quality,
+            width: width,
+            height: height,
+            workerScript: 'https://cdnjs.cloudflare.com/ajax/libs/gif.js/0.2.0/gif.worker.js'
+        });
+
+        const canvas = document.getElementById('capture_canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = width; canvas.height = height;
+
+        video.pause();
+
+        // PHASE 1 : CAPTURE
+        for (let i = 0; i < frameCount; i++) {
+            video.currentTime = i * (1 / fps);
+            await new Promise(r => {
+                const t = setTimeout(r, 800);
+                video.onseeked = () => { clearTimeout(t); r(); };
+            });
+
+            if (format === 'square') {
+                const minDim = Math.min(video.videoWidth, video.videoHeight);
+                ctx.drawImage(video, (video.videoWidth-minDim)/2, (video.videoHeight-minDim)/2, minDim, minDim, 0, 0, width, height);
+            } else {
+                ctx.drawImage(video, 0, 0, width, height);
+            }
+
+            gif.addFrame(ctx, {copy: true, delay: 1000 / fps});
+            
+            let p = Math.round((i / frameCount) * 100);
+            progress.style.width = (p/2) + "%";
+            progText.innerText = `CAPTURE : ${p}%`;
+        }
+
+        // PHASE 2 : ENCODAGE
+        status.innerText = "Calcul du rendu Prestige...";
+        gif.on('progress', p => {
+            let val = 50 + Math.round(p * 50);
+            progress.style.width = val + "%";
+            progText.innerText = `ENCODAGE : ${Math.round(p * 100)}%`;
+        });
+
+        gif.on('finished', blob => {
+            const url = URL.createObjectURL(blob);
+            downloadBtn.href = url;
+            downloadBtn.style.display = 'block';
+            document.getElementById('media_container').innerHTML = `<img src="${url}">`;
+            btn.disabled = false;
+            progress.style.width = "100%";
+            progText.innerText = "MASTER PRÊT";
+            status.innerText = "✓ Génération terminée avec succès";
+        });
+
+        gif.render();
+    }
+</script>
+</body>
+</html>

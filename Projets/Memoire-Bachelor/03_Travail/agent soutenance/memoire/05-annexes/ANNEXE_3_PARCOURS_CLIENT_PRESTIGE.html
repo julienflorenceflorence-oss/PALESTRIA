@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 3 - Parcours Client Happy House - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --muted: #A0A0A0;
+            --success: #2ECC71;
+            --alert: #E74C3C;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 30px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 9pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 20pt; letter-spacing: 2px; }
+
+        .journey-container {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            padding-top: 10px;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            bottom: 0;
+            width: 1px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+        }
+
+        .step:last-child::before { display: none; }
+
+        .step-num {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel';
+            font-weight: 700;
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.1);
+            flex-shrink: 0;
+            z-index: 2;
+        }
+
+        .step-content {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            padding: 15px 20px;
+            flex-grow: 1;
+        }
+
+        .step-title {
+            font-family: 'Cinzel';
+            font-size: 11pt;
+            color: var(--accent);
+            margin-bottom: 8px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-pill {
+            font-size: 7pt;
+            padding: 2px 8px;
+            border-radius: 2px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid currentColor;
+        }
+
+        .step-details { font-size: 9pt; line-height: 1.5; color: #E0E0E0; margin-bottom: 10px; }
+        
+        .step-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 8pt;
+            color: var(--muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 8px;
+        }
+        .step-meta strong { color: var(--accent); font-weight: 600; }
+
+        .waouh-moment {
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.15), transparent);
+            padding: 10px;
+            border-left: 3px solid var(--accent);
+            margin-top: 10px;
+            font-style: italic;
+            font-size: 9pt;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: var(--muted);
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 3 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        
+        <div class="header-box">
+            <div class="label">HAPPY HOUSE | SYSTÈME D'ACQUISITION & FIDÉLISATION</div>
+            <h1>SCHÉMA DU PARCOURS CLIENT</h1>
+        </div>
+
+        <div class="journey-container">
+            <!-- STEP 1 -->
+            <div class="step">
+                <div class="step-num">01</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        ACQUISITION & SOURCING
+                        <span class="status-pill" style="color: var(--accent);">Cold Outreach</span>
+                    </div>
+                    <div class="step-details">
+                        Extraction chirurgicale via <strong>Pharow</strong>. Filtrage des pépites (Châteaux, Vignobles, Insolites). Nettoyage SMTP pour garantir la délivrabilité.
+                    </div>
+                    <div class="step-meta">
+                        <span>Outil : <strong>Pharow / Instantly</strong></span>
+                        <span>Propriétaire : <strong>Younes</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 2 -->
+            <div class="step">
+                <div class="step-num">02</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        ENGAGEMENT & CLOSING
+                        <span class="status-pill" style="color: var(--success);">Conversion</span>
+                    </div>
+                    <div class="step-details">
+                        Séquence AIDA hyper-personnalisée. Appel de découverte en posture <strong>Adulte-Adulte</strong>. Présentation du ROI et du concept "Le Cercle".
+                    </div>
+                    <div class="waouh-moment">
+                        "Moment Waouh : La démonstration de la puissance du réseau via le cas Durentie."
+                    </div>
+                    <div class="step-meta">
+                        <span>Outil : <strong>Script de Closing</strong></span>
+                        <span>Propriétaire : <strong>Julien / Younes</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 3 -->
+            <div class="step">
+                <div class="step-num">03</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        ONBOARDING "GANT BLANC"
+                        <span class="status-pill" style="color: var(--accent);">Intégration</span>
+                    </div>
+                    <div class="step-details">
+                        Signature électronique sécurisée. Envoi du <strong>Welcome Kit physique</strong> (Plaque Laiton). Accès prioritaire à la communauté.
+                    </div>
+                    <div class="step-meta">
+                        <span>Outil : <strong>Welcome Kit HH</strong></span>
+                        <span>Propriétaire : <strong>Julien</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 4 -->
+            <div class="step">
+                <div class="step-num">04</div>
+                <div class="step-content">
+                    <div class="step-title">
+                        ACTIVATION TECHNIQUE
+                        <span class="status-pill" style="color: var(--success);">Setup OK</span>
+                    </div>
+                    <div class="step-details">
+                        Synchronisation des calendriers. Audit de la charte visuelle. <strong>Formation personnalisée à l'application</strong>.
+                    </div>
+                    <div class="step-meta">
+                        <span>Outil : <strong>Application HH</strong></span>
+                        <span>Propriétaires : <strong>Patrice / Younes</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STEP 5 -->
+            <div class="step">
+                <div class="step-num">05</div>
+                <div class="step-content" style="border-color: var(--accent);">
+                    <div class="step-title">
+                        FIDÉLISATION & CERCLE
+                        <span class="status-pill" style="color: var(--accent);">Scale</span>
+                    </div>
+                    <div class="step-details">
+                        Redirection collaborative des voyageurs. Monitoring des KPIs de performance. Accès aux alliances exclusives (Direct Châteaux).
+                    </div>
+                    <div class="waouh-moment">
+                        "Objectif : Transformer chaque membre en ambassadeur actif du réseau."
+                    </div>
+                    <div class="step-meta">
+                        <span>Outil : <strong>CRM Bitrix24</strong></span>
+                        <span>Propriétaire : <strong>Équipe Opérationnelle</strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

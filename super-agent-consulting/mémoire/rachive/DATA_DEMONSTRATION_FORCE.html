@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Force de Frappe - Chiffrage RDM</title>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background: #0F1115; color: white; padding: 40px; }
+        .container { max-width: 900px; margin: auto; background: #1a1d23; padding: 30px; border-radius: 10px; border: 2px solid #D4AF37; box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+        h1 { color: #D4AF37; font-family: 'Cinzel', serif; text-align: center; text-transform: uppercase; letter-spacing: 3px; }
+        h2 { color: #D4AF37; font-size: 1.2rem; border-left: 3px solid #D4AF37; padding-left: 15px; margin-top: 30px; }
+        .section { margin-bottom: 25px; background: rgba(255,255,255,0.03); padding: 20px; border-radius: 5px; }
+        label { display: block; margin-bottom: 15px; font-weight: bold; font-size: 1rem; }
+        .input-group { display: flex; align-items: center; gap: 15px; margin-bottom: 10px; }
+        input[type="number"], input[type="text"] { background: #0F1115; border: 1px solid #444; color: #D4AF37; padding: 10px; border-radius: 5px; width: 120px; font-weight: bold; }
+        .hint { font-size: 0.85rem; color: #888; margin-top: 5px; font-style: italic; }
+        .qcm-box { display: flex; flex-direction: column; gap: 12px; }
+        .qcm-option { display: flex; align-items: center; gap: 10px; cursor: pointer; }
+        button { background: #D4AF37; color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; width: 100%; font-size: 1.1rem; margin-top: 20px; transition: 0.3s; }
+        button:hover { background: #fff; box-shadow: 0 0 15px #D4AF37; }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Analyse des Chiffres - 20/20 Jury</h1>
+        <p style="text-align: center; color: #aaa;">Remplissez ces indicateurs pour construire votre "Tableau de Bord Stratégique".</p>
+        
+        <form id="dataForm">
+            <!-- SECTION 1: CAC ELITE -->
+            <div class="section">
+                <h2>1. Coût d'Acquisition (CAC) vs Marketing Classique</h2>
+                <label>Quel est le montant de votre adhésion au Club d'Affaires (payé perso) ?</label>
+                <div class="input-group">
+                    <input type="number" name="club_cost" value="1500"> <span>€ HT / an</span>
+                </div>
+                <label>Combien de signatures "Prestige" visez-vous via ce réseau par an ?</label>
+                <div class="input-group">
+                    <input type="number" name="club_signatures" value="12"> <span>signatures</span>
+                </div>
+                <p class="hint">Note : On calculera un CAC Elite de (Coût / Signatures) vs les 450€ du digital.</p>
+            </div>
+
+            <!-- SECTION 2: SEGMENTATION DATA -->
+            <div class="section">
+                <h2>2. Segmentation des 126 000 leads</h2>
+                <label>Répartition estimée (en volume) :</label>
+                <div class="input-group">
+                    <input type="number" name="seg_domaines" value="42000"> <span>Domaines Viticoles</span>
+                </div>
+                <div class="input-group">
+                    <input type="number" name="seg_chateaux" value="35000"> <span>Châteaux / Manoirs</span>
+                </div>
+                <div class="input-group">
+                    <input type="number" name="seg_gites" value="49000"> <span>Gîtes de Charme</span>
+                </div>
+                <p class="hint">La somme doit faire 126 000. Ajustez si besoin.</p>
+            </div>
+
+            <!-- SECTION 3: FUNNEL DE CONVERSION -->
+            <div class="section">
+                <h2>3. Performance du Tunnel de Vente (Mensuel)</h2>
+                <div class="input-group">
+                    <input type="number" name="calls_month" value="1000"> <span>Appels passés (50/jour x 20j)</span>
+                </div>
+                <div class="input-group">
+                    <input type="number" name="rdv_qualified" value="10"> <span>RDV / Démo obtenus</span>
+                </div>
+                <div class="input-group">
+                    <input type="number" name="closing_rate" value="20"> <span>% de Closing (cible)</span>
+                </div>
+            </div>
+
+            <!-- SECTION 4: IMPACT RÉTENTION -->
+            <div class="section">
+                <h2>4. Le coût du Plan Rétention</h2>
+                <label>Combien de temps passez-vous par mois sur les Newsletters / Webinaires ?</label>
+                <div class="input-group">
+                    <input type="number" name="retention_hours" value="8"> <span>heures / mois</span>
+                </div>
+                <label>Quel est l'objectif de réduction du Churn (perte de membres) ?</label>
+                <div class="qcm-box">
+                    <div class="qcm-option"><input type="radio" name="churn_goal" value="div2" checked> Diviser le départ des membres par 2</div>
+                    <div class="qcm-option"><input type="radio" name="churn_goal" value="stab"> Stabiliser à 95% de renouvellement</div>
+                </div>
+            </div>
+
+            <p style="font-size: 0.9rem; color: #D4AF37; text-align: center; border: 1px dashed #D4AF37; padding: 10px;">
+                Copiez ces chiffres dans le chat et je génère la page "Pilotage de la Performance" !
+            </p>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,2 @@
+JULIEN, si vous lisez ce fichier, c'est que nous sommes dans le bon dossier.
+Les fichiers install.bat et apolearn_autobackup.py doivent etre juste a cote de celui-ci.

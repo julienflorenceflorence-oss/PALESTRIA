@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grille de Rémunération - Happy House & LIFEHOME IMMO</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;800&display=swap');
+
+        :root {
+            --hh-navy: #1B2A4E;
+            --gold: #D4AF37;
+            --gold-gradient: linear-gradient(135deg, #D4AF37 0%, #F1D279 50%, #B68D1F 100%);
+            --charcoal: rgba(255, 255, 255, 0.05);
+            --off-white: #F4F4F4;
+        }
+
+        @page { size: A4; margin: 0; }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; border: none !important; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #0F172A;
+            font-family: 'Cinzel', serif;
+            color: var(--off-white);
+        }
+
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: var(--hh-navy);
+            margin: 0 auto;
+            padding: 60px 80px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 24px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .table-container {
+            flex-grow: 1;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            text-align: left;
+            padding: 15px;
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3) !important;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05) !important;
+            font-size: 13px;
+        }
+
+        .formula-name {
+            font-weight: 600;
+        }
+
+        .price-base {
+            opacity: 0.7;
+            font-size: 11px;
+        }
+
+        .commission-val {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 18px;
+            color: var(--gold);
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .exclusive-mention {
+            background: rgba(212, 175, 55, 0.1);
+            padding: 20px;
+            border-radius: 4px;
+            margin-top: 40px;
+            text-align: center;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        footer {
+            margin-top: auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2) !important;
+            display: flex;
+            justify-content: space-between;
+            font-size: 10px;
+            opacity: 0.9;
+            color: var(--gold) !important;
+        }
+    </style>
+</head>
+<body>
+
+<div class="a4-page">
+    <header>
+        <h1>Grille de Commissions</h1>
+        <div class="subtitle">Partenariat LIFEHOME IMMO & Happy House</div>
+    </header>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Forfait Happy House</th>
+                    <th>Prix HT / An</th>
+                    <th>Apport (15%)</th>
+                    <th>Closing (35%)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="formula-name">Waouh (1-8 voyageurs)</td>
+                    <td class="price-base">216 €</td>
+                    <td><span class="commission-val">32,40 €</span></td>
+                    <td><span class="commission-val">75,60 €</span></td>
+                </tr>
+                <tr>
+                    <td class="formula-name">Waouh (9-14 voyageurs)</td>
+                    <td class="price-base">360 €</td>
+                    <td><span class="commission-val">54,00 €</span></td>
+                    <td><span class="commission-val">126,00 €</span></td>
+                </tr>
+                <tr>
+                    <td class="formula-name">Waouh (15+ voyageurs)</td>
+                    <td class="price-base">540 €</td>
+                    <td><span class="commission-val">81,00 €</span></td>
+                    <td><span class="commission-val">189,00 €</span></td>
+                </tr>
+                <tr>
+                    <td class="formula-name">Alliance < 20 pers.</td>
+                    <td class="price-base">860 €</td>
+                    <td><span class="commission-val">129,00 €</span></td>
+                    <td><span class="commission-val">301,00 €</span></td>
+                </tr>
+                <tr>
+                    <td class="formula-name">Alliance 20-40 pers.</td>
+                    <td class="price-base">1 060 €</td>
+                    <td><span class="commission-val">159,00 €</span></td>
+                    <td><span class="commission-val">371,00 €</span></td>
+                </tr>
+                <tr>
+                    <td class="formula-name">Alliance > 40 pers.</td>
+                    <td class="price-base">1 160 €</td>
+                    <td><span class="commission-val">174,00 €</span></td>
+                    <td><span class="commission-val">406,00 €</span></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="exclusive-mention">
+            <strong style="color: var(--gold); text-transform: uppercase; letter-spacing: 1px; font-family: 'Cinzel', serif;">Note sur l'éligibilité :</strong><br>
+            Les commissions sont dues pour tout contrat validé par la Direction de Happy House.<br>
+            Le règlement s'effectue à réception du paiement de l'adhérent.
+        </div>
+    </div>
+
+    <footer>
+        <div>HAPPY HOUSE - Edition Prestige 2026</div>
+        <div>LIFEHOME IMMO - Partenaire Agréé</div>
+    </footer>
+</div>
+
+</body>
+</html>

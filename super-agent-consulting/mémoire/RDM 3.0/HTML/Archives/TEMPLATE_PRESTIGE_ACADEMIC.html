@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RAPPORT DE MISSION 2026 - JULIEN FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --onyx: #0F163D;
+            --gold: #DDA83E;
+            --gold-light: #F4E4BC;
+            --text-dark: #2C3E50;
+            --text-light: #FFFFFF;
+            --bg-white: #FFFFFF;
+            --border: rgba(221, 168, 62, 0.4);
+            --red: #E74C3C;
+            --green: #27AE60;
+            --yellow: #F1C40F;
+            --blue: #3498DB;
+        }
+
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+        
+        body { margin: 0; padding: 0; background-color: #f0f2f5; font-family: 'Arial', sans-serif; }
+
+        /* FORMAT A4 */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: var(--bg-white);
+            position: relative;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            page-break-after: always;
+        }
+
+        /* STYLE PRESTIGE (POUR COUVERTURE ET SÉPARATEURS) */
+        .page.prestige {
+            background-color: var(--onyx);
+            color: var(--text-light);
+        }
+
+        .page.prestige h1, .page.prestige h2 { font-family: 'Cinzel', serif; color: var(--gold); }
+
+        /* STYLE ACADÉMIQUE (POUR LE CORPS DU RAPPORT) */
+        .page.academic {
+            padding: 25mm 20mm 20mm 25mm;
+            color: var(--text-dark);
+            text-align: justify;
+            line-height: 1.5; /* Interligne académique */
+        }
+
+        .page.academic h1 { font-family: 'Cinzel', serif; font-size: 18pt; color: var(--gold); border-bottom: 2px solid var(--gold); padding-bottom: 10px; margin-top: 0; }
+        .page.academic h2 { font-family: 'Montserrat', sans-serif; font-size: 14pt; color: var(--onyx); border-left: 4px solid var(--gold); padding-left: 15px; margin-top: 30px; }
+        .page.academic p, .page.academic li { font-family: 'Montserrat', sans-serif; font-size: 11pt; font-weight: 400; margin-bottom: 12px; }
+
+        /* BALISAGE COULEUR SÉMANTIQUE */
+        .v-red { color: var(--red); font-weight: bold; }
+        .v-green { color: var(--green); font-weight: bold; }
+        .v-yellow { color: var(--yellow); font-weight: bold; }
+        .v-blue { color: var(--blue); font-weight: bold; }
+
+        /* FOOTER UNIFIÉ */
+        .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 20mm;
+            right: 20mm;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 8pt;
+            padding-top: 3mm;
+            z-index: 100;
+        }
+        .page.prestige .footer { color: var(--gold); }
+        .page.academic .footer { color: #666; }
+
+        /* COUVERTURE */
+        .cover-content { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 40px; }
+        .logos { display: flex; justify-content: space-between; width: 100%; padding: 0 40px; position: absolute; top: 20mm; }
+        .logo-rs { height: 60px; }
+        .logo-hh { height: 70px; }
+
+        @media print {
+            body { background: none; }
+            .page { margin: 0; box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- EXEMPLE PAGE DE GARDE (PRESTIGE) -->
+    <div class="page prestige" id="p01">
+        <div class="logos">
+            <img src="charte graphique/rocket logo 2.png" class="logo-rs">
+            <img src="charte graphique/image Happy House.png" class="logo-hh">
+        </div>
+        <div class="cover-content">
+            <div style="letter-spacing: 5px; font-size: 14pt; color: var(--gold-light); margin-bottom: 20px;">MISSION STRATÉGIQUE</div>
+            <h1 style="font-size: 36pt; margin: 0;">RAPPORT DE MISSION<br>CONSULTANT 2026</h1>
+            <div style="width: 100px; height: 3px; background: var(--gold); margin: 30px auto;"></div>
+            <div style="font-family: 'Playfair Display', serif; font-style: italic; font-size: 16pt;">"Transformer le Prestige en Performance par l'Ingénierie Digitale"</div>
+            <div style="margin-top: 60px; font-size: 24pt; font-family: 'Cinzel'; font-weight: 900;">JULIEN FLORENCE</div>
+            <div style="color: var(--gold); margin-top: 10px; font-family: 'Montserrat'; letter-spacing: 2px;">Directeur du Développement</div>
+        </div>
+        <div class="footer">
+            <div>HAPPY HOUSE & ROCKET SCHOOL</div>
+            <div>PAGE 01</div>
+        </div>
+    </div>
+
+    <!-- EXEMPLE PAGE CORPS (ACADÉMIQUE) -->
+    <div class="page academic" id="p10">
+        <h1>Chapitre 1 — Introduction et problématique</h1>
+        <h2>Contexte de la Mission</h2>
+        <p>Le secteur de l’hébergement indépendant haut de gamme connaît depuis plusieurs années une transformation profonde. Les attentes des voyageurs évoluent vers des expériences plus personnalisées, plus fluides et plus ancrées dans le territoire.</p>
+        
+        <p>Dans ce cadre, la mission menée au sein de <span class="v-blue">Happy House</span> a permis d'identifier une tension majeure entre l'artisanat historique et la nécessité d'une industrialisation <span class="v-yellow">stratégique</span>.</p>
+        
+        <p>Le succès de cette transition repose sur la capacité à dégager des <span class="v-green">gains de productivité</span> massifs via l'automatisation, tout en évitant les <span class="v-red">risques de déshumanisation</span> de la relation client.</p>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | MÉMOIRE STRATÉGIQUE</div>
+            <div>PAGE 10</div>
+        </div>
+    </div>
+
+</body>
+</html>

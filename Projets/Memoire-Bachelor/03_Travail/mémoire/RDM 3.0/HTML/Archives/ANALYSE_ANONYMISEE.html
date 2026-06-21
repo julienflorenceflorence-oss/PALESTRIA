@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse Anonymisée de Prospection</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #F4F4F4;
+            --card-bg: #1A1E26;
+            --radius: 8px;
+        }
+        body { font-family: 'Montserrat', sans-serif; background-color: var(--bg); color: var(--text); margin: 0; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 30px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); font-size: 2rem; margin: 0; text-align: center; }
+        
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .kpi-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+        }
+        .kpi-card .value {
+            font-family: 'Cinzel';
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin: 0;
+        }
+        .kpi-card .label {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        .chart-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+        .chart-container {
+            background: var(--card-bg);
+            padding: 20px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        .chart-container h2 {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Analyse Anonymisée de la Prospection</h1>
+        </header>
+
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <p id="totalProspects" class="value">0</p>
+                <p class="label">Prospects Total</p>
+            </div>
+            <div class="kpi-card">
+                <p id="avgRating" class="value">0</p>
+                <p class="label">Note Moyenne</p>
+            </div>
+             <div class="kpi-card">
+                <p id="proRate" class="value">0%</p>
+                <p class="label">Taux de Professionnels</p>
+            </div>
+             <div class="kpi-card">
+                <p id="negoRate" class="value">0%</p>
+                <p class="label">Taux de "Suivi Négo"</p>
+            </div>
+        </div>
+
+        <div class="chart-grid">
+            <div class="chart-container">
+                <h2>Répartition par Statut</h2>
+                <canvas id="statusChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Répartition par Type</h2>
+                <canvas id="typeChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Top 10 Départements</h2>
+                <canvas id="deptChart"></canvas>
+            </div>
+            <div class="chart-container">
+                <h2>Distribution des Notes</h2>
+                <canvas id="ratingChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const rawProspectData = [
+          { "id": 1, "name": "Les Caudalies", "type": "PARTICULIER", "department": "39", "rating": 3, "zipCode": "39600", "city": "Arbois", "phone": "05 26 80 98 30", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." },
+          { "id": 2, "name": "Annexe du 11 D", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "08 50 24 22 04", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 3, "name": "Chalets des Chemins Verts - Gîte Peter", "type": "PARTICULIER", "department": "39", "rating": 4, "zipCode": "39300", "city": "Le Latet", "phone": "06 36 93 92 46", "status": "NRP", "note": "Pas de réponse (Mobile particulier). Tester un créneau soir/week-end." },
+          { "id": 4, "name": "Hôtel Ibis", "type": "PROFESSIONNEL", "department": "70", "rating": 3, "zipCode": "70000", "city": "Vesoul", "phone": "09 25 58 63 11", "status": "NRP", "note": "Standard automatique ou pas de réponse." },
+          { "id": 5, "name": "Annexe du 11 C", "type": "PROFESSIONNEL", "department": "25", "rating": 3, "zipCode": "25000", "city": "Besançon", "phone": "08 50 24 22 04", "status": "REFUS CATÉGORIQUE", "note": "Refus immédiat sans discussion." },
+          { "id": 6, "name": "Hostellerie de Bretonnière", "type": "PROFESSIONNEL", "department": "21", "rating": 3, "zipCode": "21200", "city": "Beaune", "phone": "08 31 54 62 52", "status": "SUIVI NÉGO", "note": "Potentiel détecté. Demande une étude comparative et des références." }
+        ];
+
+        const prospectData = rawProspectData.map(p => ({
+            ...p,
+            name: `Prospect #${p.id}`,
+            phone: 'XXX-XXX-XXXX',
+            note: `Statut: ${p.status}` 
+        }));
+
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- Process Data ---
+            const total = prospectData.length;
+            const statusCounts = prospectData.reduce((acc, p) => { acc[p.status] = (acc[p.status] || 0) + 1; return acc; }, {});
+            const typeCounts = prospectData.reduce((acc, p) => { acc[p.type] = (acc[p.type] || 0) + 1; return acc; }, {});
+            const deptCounts = prospectData.reduce((acc, p) => { acc[p.department] = (acc[p.department] || 0) + 1; return acc; }, {});
+            const ratingCounts = prospectData.reduce((acc, p) => { acc[p.rating] = (acc[p.rating] || 0) + 1; return acc; }, {});
+            
+            const totalRating = prospectData.reduce((sum, p) => sum + p.rating, 0);
+            const avgRating = total > 0 ? (totalRating / total).toFixed(2) : '0.00';
+            
+            const proRate = total > 0 ? ((typeCounts['PROFESSIONNEL'] || 0) / total * 100).toFixed(0) : 0;
+            const negoRate = total > 0 ? ((statusCounts['SUIVI NÉGO'] || 0) / total * 100).toFixed(0) : 0;
+            
+            const topDepts = Object.entries(deptCounts).sort((a,b) => b[1] - a[1]).slice(0, 10);
+
+            // --- Update KPIs ---
+            document.getElementById('totalProspects').textContent = total;
+            document.getElementById('avgRating').textContent = avgRating;
+            document.getElementById('proRate').textContent = `${proRate}%`;
+            document.getElementById('negoRate').textContent = `${negoRate}%`;
+            
+            const chartFontColor = '#F4F4F4';
+            Chart.defaults.color = chartFontColor;
+
+            // --- Render Charts ---
+            new Chart(document.getElementById('statusChart'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(statusCounts),
+                    datasets: [{
+                        data: Object.values(statusCounts),
+                        backgroundColor: ['#28a745', '#6c757d', '#dc3545', '#ffc107'],
+                        borderColor: '#1A1E26',
+                        borderWidth: 2
+                    }]
+                },
+                options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } } }
+            });
+
+            new Chart(document.getElementById('typeChart'), {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(typeCounts),
+                    datasets: [{
+                        data: Object.values(typeCounts),
+                        backgroundColor: ['#28a745', '#fd7e14'],
+                         borderColor: '#1A1E26',
+                        borderWidth: 2
+                    }]
+                },
+                 options: { responsive: true, maintainAspectRatio: true, plugins: { legend: { position: 'top' } } }
+            });
+
+            new Chart(document.getElementById('deptChart'), {
+                type: 'bar',
+                data: {
+                    labels: topDepts.map(d => `Dept ${d[0]}`),
+                    datasets: [{
+                        label: 'Nombre de Prospects',
+                        data: topDepts.map(d => d[1]),
+                        backgroundColor: 'rgba(212, 175, 55, 0.6)',
+                        borderColor: 'rgba(212, 175, 55, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    indexAxis: 'y',
+                    scales: { y: { beginAtZero: true } },
+                    responsive: true,
+                    plugins: { legend: { display: false } }
+                }
+            });
+            
+            new Chart(document.getElementById('ratingChart'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(ratingCounts).map(r => `${r} ⭐`),
+                    datasets: [{
+                        label: 'Nombre de Prospects',
+                        data: Object.values(ratingCounts),
+                        backgroundColor: 'rgba(212, 175, 55, 0.6)',
+                        borderColor: 'rgba(212, 175, 55, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                 options: {
+                    scales: { y: { beginAtZero: true } },
+                    responsive: true,
+                    plugins: { legend: { display: false } }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

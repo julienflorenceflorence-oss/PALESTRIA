@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 16 - Simulation ROI / CAC / LTV - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --border: rgba(212, 175, 55, 0.3);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 20px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 8pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 18pt; letter-spacing: 2px; }
+
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 15px;
+            flex-grow: 1;
+        }
+
+        .calc-card {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            background: rgba(255, 255, 255, 0.02);
+            padding: 15px;
+        }
+
+        .calc-card h2 {
+            font-family: 'Cinzel';
+            font-size: 10pt;
+            color: var(--accent);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+            padding-bottom: 5px;
+        }
+
+        .formula {
+            font-family: monospace;
+            background: rgba(0,0,0,0.4);
+            padding: 8px;
+            font-size: 8pt;
+            margin: 10px 0;
+            color: var(--accent);
+            text-align: center;
+        }
+
+        .result-value {
+            font-family: 'Cinzel';
+            font-size: 18pt;
+            font-weight: 700;
+            text-align: center;
+            color: #FFFFFF;
+            margin: 10px 0;
+        }
+
+        .desc { font-size: 8pt; color: var(--muted); line-height: 1.4; }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: #888;
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 16 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="header-box">
+            <div class="label">RENTABILITÉ & SCALABILITÉ</div>
+            <h1>SIMULATION ROI / CAC / LTV (HORIZON 1000)</h1>
+        </div>
+
+        <div class="calc-grid">
+            <!-- CAC -->
+            <div class="calc-card">
+                <h2>CAC (Coût d'Acquisition)</h2>
+                <div class="formula">Budget Outbound / Nombre de Signatures</div>
+                <div class="result-value">185 € / Adhérent</div>
+                <p class="desc">Baisse de 60% vs modèle artisanal (450 €) grâce à l'automatisation Pharow/Instantly.</p>
+            </div>
+
+            <!-- LTV -->
+            <div class="calc-card">
+                <h2>LTV (Lifetime Value)</h2>
+                <div class="formula">Cotisation Annuelle x Durée de Rétention</div>
+                <div class="result-value">2 160 € (Cible 6 ans)</div>
+                <p class="desc">Basé sur une cotisation moyenne de 360 €/an et un churn rate maîtrisé via l'onboarding.</p>
+            </div>
+
+            <!-- ROI -->
+            <div class="calc-card">
+                <h2>ROI Marketing Direct</h2>
+                <div class="formula">(LTV - CAC) / CAC</div>
+                <div class="result-value">10.6x</div>
+                <p class="desc">Chaque euro investi dans l'acquisition génère plus de 10 euros de valeur sur le cycle de vie membre.</p>
+            </div>
+
+            <!-- RATIO -->
+            <div class="calc-card">
+                <h2>Ratio LTV / CAC</h2>
+                <div class="formula">2160 / 185</div>
+                <div class="result-value">11.7</div>
+                <p class="desc">Un ratio > 3 est considéré comme sain pour une startup. Happy House affiche une performance exceptionnelle.</p>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+{
+    "meta": {
+        "ref": "FR-VITI-2026-FULL",
+        "edition": "Mars 2026",
+        "date_edition": "02/03/2026"
+    },
+    "kpis": {
+        "vol_total": "41.2 Mhl",
+        "trend_red": "-12%",
+        "trend_cremant": "+18%",
+        "price_min_bx": "1.05€"
+    },
+    "regions": {
+        "bordeaux": {
+            "tag": "CRISIS",
+            "title": "Bordeaux / Nouvelle-Aquitaine",
+            "vol": "1.5 Mhl",
+            "price": "1.05€/L",
+            "insight": "Crise de rentabilité critique. Arrachage massif de 85 000 ha en cours."
+        },
+        "bourgogne": {
+            "tag": "BOOM",
+            "title": "Bourgogne / Franche-Comté",
+            "vol": "Stable",
+            "price": "Sommets Historiques",
+            "insight": "Demande mondiale insatiable pour le Chardonnay et le Pinot Noir."
+        },
+        "provence": {
+            "tag": "STABLE",
+            "title": "Provence / PACA",
+            "vol": "Stable",
+            "price": "Premium (>250€/hl)",
+            "insight": "Stabilisation après une décennie de croissance. Benchmark mondial du Rosé."
+        },
+        "loire": {
+            "tag": "BOOM",
+            "title": "Val de Loire / Centre",
+            "vol": "Hausse attendue",
+            "price": "En traction",
+            "insight": "Succès massif des blancs frais (Sauvignon/Chenin)."
+        },
+        "occitanie": {
+            "tag": "STABLE",
+            "title": "Occitanie (Languedoc-Roussillon)",
+            "vol": "1.43 Mhl (+8%)",
+            "price": "94.78€/hl (IGP)",
+            "insight": "Explosion des volumes SIG (+93%) compensant la baisse des IGP."
+        }
+    }
+}

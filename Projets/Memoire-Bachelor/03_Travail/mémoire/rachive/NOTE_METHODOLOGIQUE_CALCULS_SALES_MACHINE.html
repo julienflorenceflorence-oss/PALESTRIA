@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Méthodologique - Calculs Sales Machine - Julien Florence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --gold: #D4AF37;
+            --gold-dim: rgba(212, 175, 55, 0.1);
+            --text: rgba(255, 255, 255, 0.9);
+            --border: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            background-color: #050505;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .document {
+            max-width: 900px;
+            margin: auto;
+            background: var(--bg);
+            border: var(--border);
+            padding: 60px;
+            position: relative;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+        }
+
+        .document::before {
+            content: '';
+            position: absolute;
+            top: 15px; left: 15px; right: 15px; bottom: 15px;
+            border: 1px solid var(--gold);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            border-bottom: 2px solid var(--gold);
+            padding-bottom: 30px;
+        }
+
+        .label {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            letter-spacing: 5px;
+            font-size: 9pt;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 24pt;
+            letter-spacing: 3px;
+            margin: 20px 0;
+            color: white;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 14pt;
+            margin-top: 40px;
+            border-left: 3px solid var(--gold);
+            padding-left: 20px;
+            text-transform: uppercase;
+        }
+
+        .formula-box {
+            background: rgba(0,0,0,0.3);
+            border: 1px dashed var(--gold);
+            padding: 25px;
+            margin: 20px 0;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--gold);
+            text-align: center;
+            font-size: 12pt;
+        }
+
+        .grid-calc {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .calc-item h3 {
+            font-family: 'Cinzel', serif;
+            font-size: 10pt;
+            color: white;
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--gold-dim);
+            padding-bottom: 5px;
+        }
+
+        ul {
+            padding-left: 20px;
+            font-size: 10pt;
+        }
+
+        li { margin-bottom: 10px; }
+
+        .highlight { color: var(--gold); font-weight: bold; }
+
+        .note-footer {
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--gold-dim);
+            font-size: 8pt;
+            color: var(--gold);
+            text-align: center;
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+        }
+
+        @media print {
+            @page { 
+                margin: 0 !important; 
+                size: A4;
+            }
+            html, body { 
+                background: #050505 !important; 
+                margin: 0 !important; 
+                padding: 0 !important; 
+                height: 100%;
+                -webkit-print-color-adjust: exact; 
+                print-color-adjust: exact;
+                overflow: hidden;
+            }
+            .document { 
+                margin: 0 !important; 
+                width: 100vw !important; 
+                height: 100vh !important;
+                max-width: none !important; 
+                box-shadow: none !important;
+                border: none !important;
+                padding: 40mm 30mm !important;
+                box-sizing: border-box;
+                display: flex;
+                flex-direction: column;
+                background: #0F1115 !important;
+                position: relative;
+            }
+            /* Masquer tout élément qui déborderait et créerait des marges */
+            body::after { display: none !important; }
+        }
+        
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 9pt;
+        }
+
+        th {
+            text-align: left;
+            color: var(--gold);
+            font-family: 'Cinzel', serif;
+            padding: 10px;
+            border-bottom: 2px solid var(--gold-dim);
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--gold-dim);
+            color: var(--gold);
+            border-radius: 2px;
+            font-size: 7pt;
+            margin-bottom: 5px;
+        }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+<div class="document">
+    <header>
+        <div class="label">Ingénierie Commerciale & Data</div>
+        <h1>Note Méthodologique</h1>
+        <div style="font-family: 'Playfair Display', serif; font-style: italic; color: #888;">
+            Analyse comparative et décomposition des métriques de la Sales Machine
+        </div>
+    </header>
+
+    <div class="tag">Section 01</div>
+    <h2>Décomposition du CAC (Coût d'Acquisition)</h2>
+    <p>Le Coût d'Acquisition Client (CAC) est le pivot central de la rentabilité. Nous distinguons trois modèles :</p>
+
+    <div class="grid-calc">
+        <div class="calc-item">
+            <h3>1. Modèle Artisanal (Réel) : 450€</h3>
+            <p>Basé sur une intervention 100% humaine (15h/conversion) :</p>
+            <ul>
+                <li><span class="highlight">300€</span> : Salaire/Commission (Temps commercial)</li>
+                <li><span class="highlight">50€</span> : Outils fragmentés (G-Sheets, etc.)</li>
+                <li><span class="highlight">50€</span> : Frais de représentation/déplacement</li>
+                <li><span class="highlight">50€</span> : Coût d'opportunité (Cycle de 45 jours)</li>
+            </ul>
+        </div>
+        <div class="calc-item">
+            <h3>2. Modèle Sales Machine (Rec) : 185€</h3>
+            <p>Optimisation par l'automatisation et l'IA :</p>
+            <ul>
+                <li><span class="highlight">60€</span> : Frais SaaS (Pharow, Instantly, Make)</li>
+                <li><span class="highlight">80€</span> : Temps humain (Closing uniquement)</li>
+                <li><span class="highlight">45€</span> : Amortissement infra et data</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="formula-box">
+        CAC = (Investissement Marketing + Salaires Commerciaux) / Nombre d'Adhérents Signés
+    </div>
+
+    <div class="tag">Section 02</div>
+    <h2>Méthodologie du TAM (Total Addressable Market)</h2>
+    <p>Le volume de <span class="highlight">126 000 prospects</span> n'est pas une estimation mais un sourcing granulaire via <strong>Pharow</strong> :</p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Segment</th>
+                <th>Volume</th>
+                <th>Critères de Qualification</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Domaines Viticoles</td>
+                <td>42 000</td>
+                <td>Gîtes à la propriété, dégustation prestige</td>
+            </tr>
+            <tr>
+                <td>Châteaux & Manoirs</td>
+                <td>35 000</td>
+                <td>Patrimoine historique, classés ou de caractère</td>
+            </tr>
+            <tr>
+                <td>Gîtes de Charme</td>
+                <td>49 000</td>
+                <td>Note > 4.5/5, label de charme, tarifs premium</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="tag">Section 03</div>
+    <h2>Calcul des Taux de Conversion (Closing)</h2>
+    <p>Les chiffres de conversion reposent sur les tests empiriques menés durant la mission :</p>
+
+    <div class="calc-item" style="margin-top:20px;">
+        <h3>A. Conversion Physique (Terrain) : 100%</h3>
+        <p>Calcul : <span class="highlight">4 signatures obtenues / 4 rendez-vous effectués</span>. Ce chiffre, bien qu'exceptionnel, valide la puissance du contact humain direct pour le segment Prestige.</p>
+    </div>
+
+    <div class="calc-item" style="margin-top:20px;">
+        <h3>B. Conversion Phoning (Volume) : 0,5%</h3>
+        <p>Calcul sur un volume de <span class="highlight">1000 appels/mois</span> :</p>
+        <ul>
+            <li>50% NRP (Ne répond pas) : <span class="highlight">500</span></li>
+            <li>20% Sollicitation mail : <span class="highlight">200</span></li>
+            <li>20% Échanges qualifiés : <span class="highlight">200</span></li>
+            <li>Conversion finale : <span class="highlight">5 Signatures</span> (soit 0,5% du volume total d'appels)</li>
+        </ul>
+    </div>
+
+    <div class="tag">Section 04</div>
+    <h2>ROI Afterwork & Levier Opérationnel</h2>
+    <p>La rentabilité des événements physiques a été modélisée selon le pivot "Afterwork" :</p>
+
+    <div class="grid-calc">
+        <div class="calc-item" style="background: rgba(255,255,255,0.02); padding: 15px;">
+            <h3>Dépenses (Investissement)</h3>
+            <ul>
+                <li>Logistique : 1 200€</li>
+                <li>Trajets : 720€</li>
+                <li><strong>Total : 1 920€</strong></li>
+            </ul>
+        </div>
+        <div class="calc-item" style="background: var(--gold-dim); padding: 15px;">
+            <h3>Gains (ROI Immédiat)</h3>
+            <ul>
+                <li>Signatures Flash (x4) : 7 560€</li>
+                <li><strong>ROI Net : 5 640€</strong></li>
+                <li><strong>Multiplicateur : x3.9</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <p style="font-size: 9pt; border-top: 1px solid var(--gold-dim); padding-top: 20px; font-style: italic;">
+        *Note : La durée de vie moyenne (LTV) de 2,5 ans à 1500€/an génère un CA total de 3750€ par adhérent, justifiant un CAC de 185€ (Ratio LTV/CAC > 20).
+    </p>
+
+    <div class="note-footer">
+        DOCUMENT DE TRAVAIL CONFIDENTIEL | JULIEN FLORENCE | 2026
+    </div>
+</div>
+
+</body>
+</html>

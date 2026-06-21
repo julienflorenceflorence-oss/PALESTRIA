@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annexe 6 - 5 Forces de Porter - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --border: rgba(212, 175, 55, 0.3);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 15mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        .header-box { text-align: center; margin-bottom: 25px; }
+        .header-box .label { font-family: 'Cinzel'; color: var(--accent); font-size: 8pt; letter-spacing: 4px; margin-bottom: 5px; }
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin: 0; font-size: 20pt; letter-spacing: 2px; }
+
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 8.5pt; }
+        th, td { border: 1px solid var(--border); padding: 10px; text-align: left; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--accent); font-family: 'Cinzel'; text-transform: uppercase; font-size: 9pt; }
+        
+        .intensity { font-weight: 700; text-transform: uppercase; font-size: 7.5pt; padding: 2px 6px; border-radius: 2px; border: 1px solid currentColor; }
+        .high { color: #E74C3C; }
+        .mod { color: #F39C12; }
+        .low { color: #2ECC71; }
+
+        .force-cell { font-family: 'Cinzel'; color: var(--accent); font-weight: 700; width: 25%; }
+
+        .footer {
+            border-top: 1px solid var(--accent); padding-top: 5mm; margin-top: auto;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: #888;
+        }
+        .page-num::after { counter-increment: page; content: "ANNEXE 6 | P. " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="inner-border"></div>
+        <div class="header-box">
+            <div class="label">ANALYSE CONCURRENTIELLE</div>
+            <h1>LES 5 FORCES DE PORTER (+1)</h1>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Force Concurrentielle</th>
+                    <th>Intensité</th>
+                    <th>Analyse Factuelle & Impacts Happy House</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="force-cell">Pouvoir de négociation des clients</td>
+                    <td><span class="intensity mod">Modérée</span></td>
+                    <td>Les voyageurs sont volatils et sensibles au prix, mais recherchent l'exclusivité. L'adhésion au "Cercle" réduit cette volatilité par la fidélité communautaire.</td>
+                </tr>
+                <tr>
+                    <td class="force-cell">Pouvoir de négociation des fournisseurs</td>
+                    <td><span class="intensity mod">Modérée</span></td>
+                    <td>Les fournisseurs de services (linge, énergie) sont puissants individuellement, mais la centrale d'achats <strong>Entegra</strong> inverse le rapport de force au profit des membres.</td>
+                </tr>
+                <tr>
+                    <td class="force-cell">Menace des nouveaux entrants</td>
+                    <td><span class="intensity high">Forte</span></td>
+                    <td>Barrières à l'entrée faibles pour les petites plateformes, mais fortes pour un réseau structuré avec CRM et App IA propriétaire.</td>
+                </tr>
+                <tr>
+                    <td class="force-cell">Menace des produits de substitution</td>
+                    <td><span class="intensity mod">Modérée</span></td>
+                    <td>L'hôtellerie classique et le Airbnb Luxe sont des alternatives. Happy House se différencie par son modèle 0% commission et sa dimension humaine.</td>
+                </tr>
+                <tr>
+                    <td class="force-cell">Intensité de la rivalité concurrentielle</td>
+                    <td><span class="intensity high">Forte</span></td>
+                    <td>Hégémonie des OTA (Booking/Airbnb). Happy House joue une stratégie de guérilla sur des niches premium (Vignobles, Châteaux).</td>
+                </tr>
+                <tr>
+                    <td class="force-cell">Rôle de l'État / Réglementation</td>
+                    <td><span class="intensity high">Forte</span></td>
+                    <td>La pression législative (Loi Le Meur) est une menace pour l'hébergeur isolé mais une opportunité pour Happy House qui propose un bouclier via le classement.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="footer">
+            <div>JULIEN FLORENCE | RDM HAPPY HOUSE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

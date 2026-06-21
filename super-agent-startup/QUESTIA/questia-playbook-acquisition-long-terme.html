@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuestIA · Playbook acquisition long terme · 18 mois</title>
+<meta name="description" content="Playbook acquisition long terme QuestIA · 11 canaux structurés · vision 18 mois · Focus exclusif Formateurs & Organismes de Formation (OF).">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* =========================================================
+   QUESTIA · Playbook acquisition long terme
+   SLIDE UNIQUE · 11 canaux · 3 séquences · 18 mois
+   Focus : Formateurs & Organismes de Formation (OF)
+   ========================================================= */
+
+:root[data-theme="dark"] {
+  --bg:          #0A0E1F;
+  --bg-elev:     #131829;
+  --bg-card:     #1A2038;
+  --line:        rgba(255,255,255,0.10);
+  --line-bright: rgba(255,255,255,0.22);
+  --text:        #E8EAF6;
+  --text-dim:    rgba(232,234,246,0.72);
+  --text-muted:  rgba(232,234,246,0.48);
+  --cyan:        #4EC9FF;
+  --purple:      #9F4FE0;
+  --ocre:        #C9874B;
+  --green:       #4ADE80;
+  --red:         #F87171;
+  --yellow:      #FBBF24;
+  --pink:        #EC4899;
+  --gradient-text: linear-gradient(135deg, #9F4FE0 0%, #4EC9FF 100%);
+}
+
+:root[data-theme="light"] {
+  --bg:          #F5F1EA;
+  --bg-elev:     #FFFFFF;
+  --bg-card:     #FFFFFF;
+  --line:        rgba(15,26,46,0.12);
+  --line-bright: rgba(15,26,46,0.22);
+  --text:        #0F1A2E;
+  --text-dim:    rgba(15,26,46,0.74);
+  --text-muted:  rgba(15,26,46,0.52);
+  --cyan:        #1A6FA8;
+  --purple:      #5B3A8B;
+  --ocre:        #B8794B;
+  --green:       #16A34A;
+  --red:         #DC2626;
+  --yellow:      #CA8A04;
+  --pink:        #BE185D;
+  --gradient-text: linear-gradient(135deg, #5B3A8B 0%, #1A6FA8 100%);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.3;
+  font-size: 12px;
+  transition: background 0.3s ease, color 0.3s ease;
+  -webkit-font-smoothing: antialiased;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding: 12px 20px 10px;
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* ===== HEADER ===== */
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+.head__left { display: flex; align-items: baseline; gap: 14px; flex: 1; min-width: 0; }
+.head__logo {
+  font-family: 'Orbitron', monospace;
+  font-weight: 800; font-size: 17px;
+  letter-spacing: 0.18em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  white-space: nowrap;
+}
+.head__title {
+  font-size: clamp(15px, 2vw, 22px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.head__title em {
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-style: italic;
+}
+.head__type {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px; font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--text-dim);
+  padding: 4px 9px;
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.theme-toggle {
+  position: relative;
+  width: 44px; height: 22px;
+  background: var(--bg-card);
+  border: 1px solid var(--line-bright);
+  border-radius: 999px;
+  display: flex; align-items: center; padding: 2px;
+  flex-shrink: 0;
+}
+.theme-toggle__thumb {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--gradient-text);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: #FFFFFF;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+[data-theme="dark"] .theme-toggle__thumb { transform: translateX(0); }
+[data-theme="light"] .theme-toggle__thumb { transform: translateX(22px); }
+[data-theme="dark"] .theme-toggle__icon::before { content: "☾"; }
+[data-theme="light"] .theme-toggle__icon::before { content: "☀"; }
+
+/* ===== SUBTITLE BAR ===== */
+.subtitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 7px;
+  padding: 6px 14px;
+  background: linear-gradient(135deg, rgba(159,79,224,0.08) 0%, rgba(78,201,255,0.08) 100%);
+  border: 1px solid rgba(78,201,255,0.20);
+  border-radius: 7px;
+  flex-shrink: 0;
+}
+.subtitle__left { display: flex; align-items: center; gap: 10px; min-width: 0; flex: 1; }
+.subtitle__label {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--cyan);
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+.subtitle__text {
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 500;
+}
+.subtitle__text strong { font-weight: 700; }
+.subtitle__right { display: flex; gap: 6px; flex-shrink: 0; }
+.timeline-pill {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(201,135,75,0.15);
+  color: var(--ocre);
+  border: 1px solid rgba(201,135,75,0.30);
+}
+
+/* ===== TABLE WRAPPER ===== */
+.table-wrap {
+  flex: 1;
+  min-height: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 10px;
+  flex: 1;
+}
+
+.table thead th {
+  font-family: 'Orbitron', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  padding: 7px 6px;
+  text-align: left;
+  border-bottom: 2px solid var(--cyan);
+  white-space: nowrap;
+  background: var(--bg-elev);
+  vertical-align: middle;
+}
+
+.table tbody tr {
+  border-bottom: 1px solid var(--line);
+}
+
+.table tbody td {
+  padding: 6px 6px;
+  vertical-align: top;
+  line-height: 1.32;
+}
+
+/* Phase row separator */
+.table tbody tr.phase-row td { padding: 5px 10px; }
+.phase-label {
+  font-family: 'Orbitron', monospace;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.table tbody tr.phase-row--p1 { background: rgba(74,222,128,0.10); border-top: 2px solid var(--green); border-bottom: 2px solid var(--green); }
+.table tbody tr.phase-row--p2 { background: rgba(255,215,0,0.10); border-top: 2px solid var(--yellow); border-bottom: 2px solid var(--yellow); }
+.table tbody tr.phase-row--p3 { background: rgba(236,72,153,0.10); border-top: 2px solid var(--pink); border-bottom: 2px solid var(--pink); }
+.phase-label--p1 { background: linear-gradient(135deg, var(--green) 0%, var(--cyan) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.phase-label--p2 { background: linear-gradient(135deg, var(--yellow) 0%, var(--ocre) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.phase-label--p3 { background: linear-gradient(135deg, var(--pink) 0%, var(--purple) 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+/* Column widths · 7 colonnes */
+.col-canal { width: 14%; }
+.col-objectif { width: 13%; }
+.col-outils { width: 14%; }
+.col-action { width: 17%; }
+.col-timing { width: 11%; }
+.col-budget { width: 11%; }
+.col-kpi { width: 20%; }
+
+/* Cell styling */
+.cell-canal {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 10.5px;
+}
+.cell-canal__num {
+  display: inline-block;
+  font-family: 'Orbitron', monospace;
+  font-size: 8px;
+  font-weight: 700;
+  color: var(--ocre);
+  letter-spacing: 0.08em;
+  margin-bottom: 1px;
+}
+.cell-canal__persona {
+  display: block;
+  font-size: 8.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 2px;
+  font-style: italic;
+}
+.cell-canal__persona--formateur { color: var(--purple); }
+.cell-canal__persona--of { color: var(--cyan); }
+.cell-canal__persona--mixed { color: var(--ocre); }
+
+.cell-timing {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 9.5px;
+  color: var(--ocre);
+  white-space: nowrap;
+}
+.cell-timing__sub {
+  display: block;
+  font-size: 8px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 2px;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.cell-budget {
+  font-family: 'Orbitron', monospace;
+  font-weight: 700;
+  font-size: 11px;
+  color: var(--green);
+  white-space: nowrap;
+}
+.cell-budget__sub {
+  display: block;
+  font-size: 8px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-family: 'DM Sans', sans-serif;
+  margin-top: 2px;
+}
+
+.cell-outils {
+  font-size: 9.5px;
+}
+.outil-pill {
+  display: inline-block;
+  font-size: 8.5px;
+  font-weight: 600;
+  padding: 1.5px 6px;
+  border-radius: 3px;
+  margin-right: 2px;
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+.outil-pill--linkedin {
+  background: rgba(78,201,255,0.15);
+  color: var(--cyan);
+  border: 1px solid rgba(78,201,255,0.30);
+}
+.outil-pill--seo {
+  background: rgba(159,79,224,0.15);
+  color: var(--purple);
+  border: 1px solid rgba(159,79,224,0.30);
+}
+.outil-pill--email {
+  background: rgba(251,191,36,0.15);
+  color: var(--yellow);
+  border: 1px solid rgba(251,191,36,0.30);
+}
+.outil-pill--event {
+  background: rgba(236,72,153,0.15);
+  color: var(--pink);
+  border: 1px solid rgba(236,72,153,0.30);
+}
+.outil-pill--saas {
+  background: rgba(74,222,128,0.15);
+  color: var(--green);
+  border: 1px solid rgba(74,222,128,0.30);
+}
+.outil-pill--partner {
+  background: rgba(201,135,75,0.15);
+  color: var(--ocre);
+  border: 1px solid rgba(201,135,75,0.30);
+}
+
+.cell-objectif, .cell-action, .cell-kpi {
+  color: var(--text-dim);
+  font-size: 9.5px;
+}
+.cell-objectif strong, .cell-action strong, .cell-kpi strong {
+  color: var(--text);
+  font-weight: 600;
+}
+.cell-kpi__num {
+  font-family: 'Orbitron', monospace;
+  font-size: 10.5px;
+  font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  letter-spacing: 0.02em;
+}
+
+/* ===== KPI BAR FOOTER ===== */
+.kpibar {
+  margin-top: 7px;
+  background: var(--bg-card);
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  padding: 7px 16px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.kpibar::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(78,201,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(78,201,255,0.025) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+@media (max-width: 900px) { .kpibar { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 540px) { .kpibar { grid-template-columns: 1fr; } }
+
+.kpi { text-align: center; position: relative; z-index: 1; }
+.kpi__value {
+  font-family: 'Orbitron', monospace;
+  font-size: 14px; font-weight: 800;
+  background: var(--gradient-text);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  line-height: 1;
+  margin-bottom: 2px;
+  letter-spacing: 0.02em;
+}
+.kpi__label {
+  font-size: 8.5px;
+  color: var(--text-dim);
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1366px) {
+  .slide { padding: 10px 14px 8px; }
+  body { font-size: 11px; }
+  .table { font-size: 9.5px; }
+  .table thead th { font-size: 8.5px; padding: 6px 5px; }
+  .table tbody td { padding: 5px 5px; font-size: 9px; }
+  .cell-canal { font-size: 10px; }
+  .cell-budget { font-size: 10px; }
+}
+
+@media (max-width: 1100px) {
+  body { overflow: auto; }
+  .slide { height: auto; min-height: 100vh; overflow: visible; }
+  .table-wrap { overflow-x: auto; }
+  .table { min-width: 1200px; }
+}
+
+@media (max-width: 768px) {
+  .subtitle { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .head__title { font-size: 15px; }
+}
+
+/* ===== PRINT · A4 paysage ===== */
+@media print {
+  @page { size: A4 landscape; margin: 6mm; }
+  body { background: white; color: black; font-size: 8px; min-height: auto; overflow: visible; }
+  .slide { padding: 0; height: auto; overflow: visible; }
+  .theme-toggle { display: none; }
+  .table-wrap { overflow: visible; border: 1px solid #ccc; }
+  .table { font-size: 7px; }
+  .table thead th { background: #f0f0f0 !important; color: #1A6FA8 !important; }
+  .table tbody tr.phase-row { background: #f8f0ff !important; }
+  .kpibar { background: #f8f8f8 !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="slide">
+
+  <!-- HEADER -->
+  <header class="head">
+    <div class="head__left">
+      <span class="head__logo">QUESTIA</span>
+      <h1 class="head__title">
+        Playbook acquisition <em>long terme</em> · 18 mois
+      </h1>
+    </div>
+    <span class="head__type">Stratégie GTM · Édition 2026</span>
+    <button class="theme-toggle" aria-label="Basculer thème clair/sombre" id="themeToggle">
+      <span class="theme-toggle__thumb"><span class="theme-toggle__icon"></span></span>
+    </button>
+  </header>
+
+  <!-- SUBTITLE -->
+  <section class="subtitle">
+    <div class="subtitle__left">
+      <span class="subtitle__label">Vision</span>
+      <span class="subtitle__text">
+        <strong>11 canaux</strong> structurés sur <strong>3 séquences</strong> · Focus exclusif <strong>Formateurs &amp; OF privés/indépendants</strong> (hors tutelle État) · stratégie de pénétration EdTech massive · enveloppe ~100 K€/an
+      </span>
+    </div>
+    <div class="subtitle__right">
+      <span class="timeline-pill">Horizon 18 mois</span>
+      <span class="timeline-pill">2 GTM</span>
+    </div>
+  </section>
+
+  <!-- TABLE -->
+  <div class="table-wrap">
+    <table class="table">
+      <thead>
+        <tr>
+          <th class="col-canal">Canal</th>
+          <th class="col-objectif">Objectif</th>
+          <th class="col-outils">Outils</th>
+          <th class="col-action">Action principale</th>
+          <th class="col-timing">Timing</th>
+          <th class="col-budget">Budget</th>
+          <th class="col-kpi">KPI principal</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <!-- SÉQUENCE 1 · OUTBOUND & BRAND -->
+        <tr class="phase-row phase-row--p1">
+          <td colspan="7"><span class="phase-label phase-label--p1">🎯 Séquence 1 · outbound &amp; brand · autorité &amp; impact direct · mois 1 → 18</span></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 01</div>
+            LinkedIn fondateur
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs IA</span>
+          </td>
+          <td class="cell-objectif">Construire l'autorité éditoriale du fondateur dans EdTech &amp; IA pédagogique</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--linkedin">LinkedIn</span>
+            <span class="outil-pill outil-pill--saas">Taplio</span>
+            <span class="outil-pill outil-pill--saas">Notion</span>
+          </td>
+          <td class="cell-action"><strong>3 posts/semaine</strong> · 1 thought leadership, 1 use-case formateur, 1 contenu pédagogique gratuit</td>
+          <td class="cell-timing">Mois 1 → 18<span class="cell-timing__sub">cadence 3×/sem</span></td>
+          <td class="cell-budget">500 €/mois<span class="cell-budget__sub">outils + temps</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">10K → 30K</span> followers qualifiés à M+18 · <strong>5 % d'engagement</strong> moyen</td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 02</div>
+            SEO, ADS &amp; ressources gratuites
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs &amp; OF</span>
+          </td>
+          <td class="cell-objectif">Capturer la demande via recherches organiques (SEO) et campagnes payantes (ADS) ciblées</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--seo">Google/LinkedIn ADS</span>
+            <span class="outil-pill outil-pill--seo">Ahrefs/Semrush</span>
+            <span class="outil-pill outil-pill--saas">Webflow</span>
+          </td>
+          <td class="cell-action"><strong>2 articles/mois</strong> + Campagnes ADS sur mots-clés "IA Formation / Qualiopi"</td>
+          <td class="cell-timing">Mois 1 → 18<span class="cell-timing__sub">Flux continu</span></td>
+          <td class="cell-budget">1 500 €/mois<span class="cell-budget__sub">SEO + ADS budget</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">15K visiteurs/mois</span> à M+12 · <strong>3 % de taux de conversion</strong> ressource → lead</td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 03</div>
+            Cold Calling Chirurgical
+            <span class="cell-canal__persona cell-canal__persona--of">Persona · Dir. OF / Décideurs</span>
+          </td>
+          <td class="cell-objectif">Générer un impact immédiat sur les comptes OF privés identifiés à fort potentiel</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--saas">Aircall</span>
+            <span class="outil-pill outil-pill--saas">HubSpot</span>
+            <span class="outil-pill outil-pill--saas">Lusha</span>
+          </td>
+          <td class="cell-action"><strong>20 appels/jour</strong> · Prospection directe des décideurs OF privés (focus Qualiopi &amp; Productivité)</td>
+          <td class="cell-timing">Mois 1 → 18<span class="cell-timing__sub">Quotidien</span></td>
+          <td class="cell-budget">1 200 €/mois<span class="cell-budget__sub">SaaS + Data</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">10 RDV/mois</span> qualifiés dès M+1 · <strong>5 % conversion</strong> call → démo</td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 04</div>
+            Afterworks &amp; Démos Prestige
+            <span class="cell-canal__persona cell-canal__persona--of">Persona · Dir. OF VIP</span>
+          </td>
+          <td class="cell-objectif">Cadre privilégié pour démos haute fidélité auprès des décideurs d'OF majeurs (Château/Cave)</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--event">Cavistes / Châteaux</span>
+            <span class="outil-pill outil-pill--linkedin">Ads localisés</span>
+            <span class="outil-pill outil-pill--partner">Réseau OF Local</span>
+          </td>
+          <td class="cell-action"><strong>1 event/trimestre</strong> · Afterwork sélectif · Dégustation + immersion QuestIA pour décideurs OF</td>
+          <td class="cell-timing">Mois 2 → 18<span class="cell-timing__sub">1×/trimestre</span></td>
+          <td class="cell-budget">1 500 €/mois<span class="cell-budget__sub">Lissé (logistique)</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">20 décideurs/event</span> · <strong>30 % de conversion</strong> afterwork → pilote signé</td>
+        </tr>
+
+        <!-- SÉQUENCE 2 · AUTOMATION & SCALE -->
+        <tr class="phase-row phase-row--p2">
+          <td colspan="7"><span class="phase-label phase-label--p2">🤝 Séquence 2 · automation &amp; scale · cibler les Organismes de Formation (OF) · mois 4 → 18</span></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 05</div>
+            ABM LinkedIn outbound
+            <span class="cell-canal__persona cell-canal__persona--of">Persona · Dir. OF / Responsables Pédago</span>
+          </td>
+          <td class="cell-objectif">Engager 1 à 1 les décideurs des Organismes de Formation (OF) privés &amp; indépendants (hors tutelle État)</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--linkedin">Sales Navigator</span>
+            <span class="outil-pill outil-pill--email">Lemlist</span>
+            <span class="outil-pill outil-pill--saas">Apollo</span>
+          </td>
+          <td class="cell-action"><strong>50 prospects/sem</strong> avec séquence focus gain de productivité &amp; conformité Qualiopi via IA</td>
+          <td class="cell-timing">Mois 4 → 18<span class="cell-timing__sub">50/sem</span></td>
+          <td class="cell-budget">800 €/mois<span class="cell-budget__sub">stack outbound</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">15 RDV/mois</span> qualifiés à M+9 · <strong>10 % de réponse</strong> · <strong>4 pilotes signés/trimestre</strong></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 06</div>
+            Événements EdTech &amp; Formation
+            <span class="cell-canal__persona cell-canal__persona--of">Persona · Dir. OF / Formateurs</span>
+          </td>
+          <td class="cell-objectif">Présence physique aux salons spécialisés formation professionnelle et EdTech</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--event">Learning Technologies</span>
+            <span class="outil-pill outil-pill--event">Salon de la Formation</span>
+            <span class="outil-pill outil-pill--event">EdTech FR</span>
+          </td>
+          <td class="cell-action"><strong>4 événements/an</strong> · Démo live de QuestIA sur stand · Prise de parole sur l'IA générative</td>
+          <td class="cell-timing">Mois 6 → 18<span class="cell-timing__sub">4 events/an</span></td>
+          <td class="cell-budget">2 500 €/mois<span class="cell-budget__sub">30 K€/an lissé</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">150 leads/an</span> qualifiés issus d'events · <strong>8 % conversion en pilote</strong></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 07</div>
+            Webinaires &amp; masterclasses
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs &amp; OF</span>
+          </td>
+          <td class="cell-objectif">Démontrer l'expertise IA pédagogique · générer des démos produit qualifiées en masse</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--saas">Livestorm</span>
+            <span class="outil-pill outil-pill--saas">Loom</span>
+            <span class="outil-pill outil-pill--linkedin">LinkedIn Live</span>
+          </td>
+          <td class="cell-action"><strong>1 webinaire/mois</strong> · Cas pratiques : « Créer un module de formation en 5 min avec QuestIA »</td>
+          <td class="cell-timing">Mois 4 → 18<span class="cell-timing__sub">1×/mois</span></td>
+          <td class="cell-budget">600 €/mois<span class="cell-budget__sub">SaaS + promotion</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">100 inscrits/webinaire</span> · <strong>45 % de présence live</strong> · <strong>20 % de demande de démo</strong></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 08</div>
+            Newsletter &amp; nurturing
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs &amp; OF</span>
+          </td>
+          <td class="cell-objectif">Convertir le trafic SEO et social en abonnés engagés · maturer les leads vers l'adoption de QuestIA</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--email">Brevo</span>
+            <span class="outil-pill outil-pill--saas">Typeform</span>
+            <span class="outil-pill outil-pill--saas">HubSpot</span>
+          </td>
+          <td class="cell-action"><strong>1 newsletter/semaine</strong> · actualités IA pédagogique &amp; use-cases exclusifs QuestIA</td>
+          <td class="cell-timing">Mois 3 → 18<span class="cell-timing__sub">cadence 1×/sem</span></td>
+          <td class="cell-budget">400 €/mois<span class="cell-budget__sub">SaaS emails</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">5 000 abonnés</span> à M+12 · <strong>35 % open rate</strong> · <strong>4 % CTR moyen</strong></td>
+        </tr>
+
+        <!-- SÉQUENCE 3 · ÉCOSYSTÈME / PARTENARIATS -->
+        <tr class="phase-row phase-row--p3">
+          <td colspan="7"><span class="phase-label phase-label--p3">🌐 Séquence 3 · écosystème &amp; partenariats · démultiplier via le réseau EdTech · mois 6 → 18</span></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 09</div>
+            Communautés métier
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs &amp; OF</span>
+          </td>
+          <td class="cell-objectif">Être omniprésent dans les communautés de formateurs indépendants et réseaux d'OF</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--saas">Slack/Discord</span>
+            <span class="outil-pill outil-pill--linkedin">LinkedIn groups</span>
+            <span class="outil-pill outil-pill--saas">Circle</span>
+          </td>
+          <td class="cell-action"><strong>Animation hebdo</strong> · Partage de templates QuestIA gratuits · Aide à la prise en main IA</td>
+          <td class="cell-timing">Mois 6 → 18<span class="cell-timing__sub">hebdo</span></td>
+          <td class="cell-budget">300 €/mois<span class="cell-budget__sub">cotisations + temps</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">40 leads/mois</span> issus de communautés à M+12 · <strong>NPS communautaire ≥ 60</strong></td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 10</div>
+            Partenariats stratégiques
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs &amp; OF</span>
+          </td>
+          <td class="cell-objectif">Sceller des alliances avec les syndicats de formation (Synofdes) et réseaux EdTech</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--partner">Synofdes</span>
+            <span class="outil-pill outil-pill--partner">EdTech FR</span>
+            <span class="outil-pill outil-pill--partner">BPI EdTech</span>
+          </td>
+          <td class="cell-action"><strong>1 partenariat signé/trimestre</strong> · Webinaires partenaires, visibilité newsletters syndicales</td>
+          <td class="cell-timing">Mois 6 → 18<span class="cell-timing__sub">1/trimestre</span></td>
+          <td class="cell-budget">800 €/mois<span class="cell-budget__sub">temps + co-marketing</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">5 partenariats actifs</span> à M+18 · <strong>25 % du pipe</strong> via canaux partenaires</td>
+        </tr>
+
+        <tr>
+          <td class="cell-canal">
+            <div class="cell-canal__num">Canal 11</div>
+            Programme ambassadeurs
+            <span class="cell-canal__persona cell-canal__persona--formateur">Persona · Formateurs IA</span>
+          </td>
+          <td class="cell-objectif">Transformer les utilisateurs "Power Formateurs" en prescripteurs auprès de leurs pairs et OF</td>
+          <td class="cell-outils">
+            <span class="outil-pill outil-pill--saas">PartnerStack</span>
+            <span class="outil-pill outil-pill--email">Brevo</span>
+            <span class="outil-pill outil-pill--saas">Notion</span>
+          </td>
+          <td class="cell-action"><strong>Recruter 50 ambassadeurs</strong> · Commission d'affiliation · Kit de formation QuestIA certifié</td>
+          <td class="cell-timing">Mois 9 → 18<span class="cell-timing__sub">cohorte trim.</span></td>
+          <td class="cell-budget">700 €/mois<span class="cell-budget__sub">SaaS + récompenses</span></td>
+          <td class="cell-kpi"><span class="cell-kpi__num">50 ambassadeurs actifs</span> à M+18 · <strong>20 % du nouveau pipe</strong> venu du parrainage</td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- KPI BAR FOOTER -->
+  <section class="kpibar">
+    <div class="kpi">
+      <div class="kpi__value">11 canaux</div>
+      <div class="kpi__label">3 séquences orchestrées</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__value">~100 K€/an</div>
+      <div class="kpi__label">Budget annuel acquisition</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__value">18 mois</div>
+      <div class="kpi__label">Horizon temporel cible</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__value">Focus OF</div>
+      <div class="kpi__label">OF privés &amp; indépendants</div>
+    </div>
+    <div class="kpi">
+      <div class="kpi__value">≥ 100 leads/mois</div>
+      <div class="kpi__label">Cible pipe qualifié à M+12</div>
+    </div>
+  </section>
+
+</div>
+
+<script>
+(function() {
+  'use strict';
+  const html = document.documentElement;
+  const toggle = document.getElementById('themeToggle');
+  const saved = localStorage.getItem('questia-theme');
+  if (saved === 'light' || saved === 'dark') html.setAttribute('data-theme', saved);
+  toggle.addEventListener('click', () => {
+    const next = html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    html.setAttribute('data-theme', next);
+    try { localStorage.setItem('questia-theme', next); } catch(e) {}
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Portfolio de Certifications - Julien FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { 
+            --gold: #D4AF37;
+            --bg: #0F1115;
+            --card: #161a23;
+            --text: #F4F4F4;
+            --border-radius: 10px;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* --- BLOCAGE ORIENTATION : PAYSAGE INTERDIT --- */
+        @media screen and (orientation: landscape) and (max-device-width: 1024px) {
+            body::after {
+                content: "Veuillez pivoter votre appareil \A en mode Portrait pour une expérience optimale.";
+                white-space: pre-wrap; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+                background: var(--bg); color: var(--gold); display: flex; align-items: center; justify-content: center;
+                z-index: 9999; font-family: 'Cinzel', serif; text-align: center; padding: 30px; font-size: 1.3rem;
+            }
+            .content-wrapper, .fixed-dock { display: none !important; }
+        }
+
+        .content-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 60px 20px 40px 20px;
+            position: relative;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        h1 {
+            font-family: 'Cinzel';
+            color: var(--gold);
+            font-size: clamp(1.6rem, 6vw, 2.5rem);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-size: 0.75rem;
+            color: var(--gold);
+            font-weight: 300;
+            opacity: 0.8;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: var(--border-radius);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            transform: translateX(-100%);
+            transition: 0.5s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+        }
+
+        .card:hover::before { transform: translateX(100%); }
+
+        .card-cat {
+            font-size: 0.65rem;
+            color: var(--gold);
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            font-family: 'Cinzel';
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #C0C0C0;
+            margin-bottom: 30px;
+            text-align: left;
+            font-weight: 300;
+        }
+
+        .btn-v {
+            display: block;
+            padding: 14px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            text-align: center;
+            transition: 0.3s;
+            border-radius: var(--border-radius);
+            letter-spacing: 2px;
+            background-color: var(--card); /* Indispensable pour que :visited fonctionne */
+        }
+
+        .btn-v:hover {
+            background-color: var(--gold);
+            color: var(--bg);
+        }
+
+        /* État consulté : Le bouton reste Or plein */
+        .btn-v:visited {
+            background-color: var(--gold) !important;
+            color: var(--bg) !important;
+        }
+
+        /* --- FOOTER TYPE PRESTIGE --- */
+        .page-footer {
+            margin-top: 100px;
+            padding: 40px 0;
+            border-top: 1px solid var(--gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cinzel';
+            font-size: 0.7rem;
+            color: var(--text);
+            letter-spacing: 1px;
+        }
+
+        .page-footer span { color: var(--gold); font-weight: 700; }
+
+        /* --- MOBILE DOCK --- */
+        .fixed-dock {
+            position: fixed;
+            bottom: 25px;
+            left: 20px;
+            right: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(15, 17, 21, 0.95);
+            backdrop-filter: blur(15px);
+            border: 1px solid var(--gold);
+            border-radius: var(--border-radius);
+            z-index: 1000;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.9);
+        }
+
+        .btn-d {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            font-family: 'Cinzel';
+            font-weight: 700;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            text-align: center;
+            transition: 0.3s;
+            border-radius: var(--border-radius);
+        }
+
+        .btn-g { background: var(--gold); color: var(--bg); }
+        .btn-g:hover { background: transparent; color: var(--gold); }
+
+        /* --- MOBILE SPACER (MANDATORY) --- */
+        .mobile-spacer { height: 350px; }
+
+        @media (max-width: 768px) {
+            .fixed-dock {
+                flex-direction: column;
+                bottom: 15px;
+                left: 15px;
+                right: 15px;
+            }
+            .btn-d { width: 100%; height: 55px; display: flex; align-items: center; justify-content: center; }
+            h1 { font-size: 1.8rem; letter-spacing: 3px; }
+            .content-wrapper { padding-top: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="content-wrapper">
+    <header>
+        <h1>Dossier de Compétences</h1>
+        <div class="subtitle">Excellence Commerciale & Expertise Tech</div>
+    </header>
+
+    <div class="grid">
+        <!-- ACADÉMIQUE -->
+        <div class="card" id="bachelor">
+            <div class="card-cat">Académie</div>
+            <h3>Bachelor Marketing & Tech</h3>
+            <p>Responsable Marketing et Commercial. Spécialisation en Acquisition Tech (Rocket School).</p>
+            <a href="bachelor-status.html" class="btn-v">Consulter</a>
+        </div>
+
+        <!-- TECH & DIGITAL -->
+        <div class="card" id="html-css">
+            <div class="card-cat">Développement Web</div>
+            <h3>HTML5 & CSS3</h3>
+            <p>Maîtrise du développement web moderne, des standards sémantiques et de l'architecture CSS Prestige.</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_HTML%26CSS.png&title=HTML5%20%26%20CSS3&id=html-css" class="btn-v">Consulter</a>
+        </div>
+
+        <div class="card" id="google">
+            <div class="card-cat">Marketing Digital</div>
+            <h3>Google Fundamentals</h3>
+            <p>Certification Google Academy : SEO, SEM, Analyse de données et stratégies d'acquisition multicanale.</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Digital%20Marketing.png&title=Google%20Fundamentals&id=google" class="btn-v">Consulter</a>
+        </div>
+
+        <div class="card" id="hubspot">
+            <div class="card-cat">Stratégie Inbound</div>
+            <h3>HubSpot Certification</h3>
+            <p>Optimisation du tunnel de conversion, lead nurturing et automatisation des workflows marketing.</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Inband.png&title=HubSpot%20Inbound&id=hubspot" class="btn-v">Consulter</a> 
+        </div>
+
+        <!-- IMMOBILIER (Double Expertise) -->
+        <div class="card" id="immo-expert">
+            <div class="card-cat">Expertise Immobilière</div>
+            <h3>Conseiller Expert</h3>
+            <p>Négociation de haut niveau, droit immobilier et gestion de patrimoine (Century 21).</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Conseiller%20en%20Immobilier.png&title=Conseiller%20Expert%20Immobilier&id=immo-expert" class="btn-v">Consulter</a>
+        </div>
+
+        <div class="card" id="immo-qualif">
+            <div class="card-cat">Expertise Immobilière</div>
+            <h3>Qualification Professionnelle</h3>
+            <p>Certification de compétences en transactions immobilières et ingénierie de vente.</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Qualification%20Conseillier%20en%20Immobilier.png&title=Qualification%20Immobilier&id=immo-qualif" class="btn-v">Consulter</a>
+        </div>
+
+        <!-- MANAGEMENT & BUSINESS -->
+        <div class="card" id="nl">
+            <div class="card-cat">Business International</div>
+            <h3>Néerlandais B2</h3>
+            <p>Capacité de négociation et gestion de projets en environnement multilingue (CBE Centre).</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Néerlandais.png&title=Néerlandais%20B2&id=nl" class="btn-v">Consulter</a>
+        </div>
+
+        <div class="card" id="management">
+            <div class="card-cat">Management</div>
+            <h3>Leadership & Pilotage</h3>
+            <p>Direction d'équipes, pilotage de la performance et stratégie opérationnelle.</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Lead%20Ship.png&title=Leadership%20%26%20Pilotage&id=management" class="btn-v">Consulter</a>
+        </div>
+
+        <!-- ART DE VIVRE & SPORT -->
+        <div class="card" id="sport">
+            <div class="card-cat">Performance</div>
+            <h3>Coaching Sportif</h3>
+            <p>Management de la cohésion d'équipe et résilience sous pression (Certification Fédérale).</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_sportif.png&title=Coaching%20Sportif&id=sport" class="btn-v">Consulter</a>
+        </div>
+
+        <div class="card" id="gastro">
+            <div class="card-cat">Art de Vivre</div>
+            <h3>Gastronomie Française</h3>
+            <p>Maîtrise des codes de l'excellence, du service haut de gamme et de la rigueur opérationnelle.</p>
+            <a href="viewer.html?file=diplomes%20cadre/Certificat_Restauration.png&title=Gastronomie%20Française&id=gastro" class="btn-v">Consulter</a>
+        </div>
+    </div>
+
+    <footer class="page-footer">
+        <div class="section-name">JULIEN FLORENCE &bull; <span>PORTFOLIO</span></div>
+        <div class="page-num">2026 &bull; ÉDITION PRESTIGE</div>
+    </footer>
+
+    <!-- Mandatory Scroll Safety -->
+    <div class="mobile-spacer"></div>
+</div>
+
+<div class="fixed-dock">
+    <a href="index.html" class="btn-d">Mon Profil</a>
+    <a href="https://calendar.app.google/iCzfE1GQrjxM3ZQ56" target="_blank" class="btn-d btn-g">Réserver un RDV</a>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.btn-v');
+
+        // Charger l'historique de vue depuis le navigateur
+        const viewedDiplomas = JSON.parse(localStorage.getItem('viewed_diplomas') || '[]');
+
+        buttons.forEach(btn => {
+            const url = btn.getAttribute('href');
+
+            // Marquer si déjà vu
+            if (viewedDiplomas.includes(url)) {
+                btn.classList.add('viewed');
+            }
+
+            // Gérer le clic
+            btn.addEventListener('click', () => {
+                btn.classList.add('viewed');
+                if (!viewedDiplomas.includes(url)) {
+                    viewedDiplomas.push(url);
+                    localStorage.setItem('viewed_diplomas', JSON.stringify(viewedDiplomas));
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>

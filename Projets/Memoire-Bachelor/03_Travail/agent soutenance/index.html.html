@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Julien FLORENCE - Directeur Commercial - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #0F1115; --gold: #D4AF37; --white: #f4f4f4; --sidebar: #161a23; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Montserrat', sans-serif; background-color: #333; color: var(--white); line-height: 1.25; -webkit-print-color-adjust: exact; }
+        .cv-page { width: 210mm; height: 297mm; background: var(--bg); margin: 20px auto; display: flex; position: relative; overflow: hidden; box-shadow: 0 0 20px rgba(0,0,0,0.5); }
+        aside { width: 32%; background-color: var(--sidebar); padding: 20px 15px; border-right: 1px solid rgba(212, 175, 55, 0.2); z-index: 2; }
+        .profile-img { width: 100%; border: 2px solid var(--gold); padding: 4px; margin-bottom: 15px; }
+        h2 { font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--gold); text-transform: uppercase; margin-bottom: 8px; border-bottom: 1px solid var(--gold); padding-bottom: 4px; }
+        .sidebar-section { margin-bottom: 15px; }
+        .info { font-size: 0.65rem; margin-bottom: 5px; color: #b0b0b0; }
+        .trait-bg { height: 3px; background: rgba(255,255,255,0.1); width: 100%; margin-top: 2px; }
+        .trait-fill { height: 100%; background: var(--gold); }
+        main { width: 68%; padding: 20px 25px; z-index: 2; }
+        h1 { font-family: 'Cinzel', serif; font-size: 1.8rem; color: var(--gold); letter-spacing: 2px; margin-bottom: 2px; }
+        .job { font-size: 0.95rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 8px; color: var(--white); }
+        .summary { font-size: 0.7rem; color: #b0b0b0; text-align: justify; margin-bottom: 12px; padding-left: 10px; border-left: 2px solid var(--gold); }
+        .section-h { font-family: 'Cinzel', serif; font-size: 0.95rem; color: var(--gold); margin: 12px 0 6px 0; display: flex; align-items: center; }
+        .section-h::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--gold), transparent); margin-left: 10px; }
+        .exp-item { margin-bottom: 8px; }
+        .exp-r { font-weight: 700; font-size: 0.8rem; color: var(--gold); display: flex; justify-content: space-between; }
+        .exp-c { font-size: 0.75rem; font-weight: 700; margin-bottom: 1px; color: var(--white); }
+        .exp-d { font-size: 0.65rem; color: #b0b0b0; list-style: none; padding-left: 8px; }
+        .exp-d li::before { content: "•"; color: var(--gold); margin-right: 5px; }
+        .kpi { color: var(--gold); font-weight: 700; }
+        .btn-c { margin-top: 15px; display: flex; gap: 8px; justify-content: center; }
+        .btn { display: inline-block; padding: 10px 15px; border: 2px solid var(--gold); color: var(--gold); text-decoration: none; font-family: 'Cinzel', serif; font-size: 0.65rem; text-transform: uppercase; transition: 0.3s; font-weight: bold; }
+        .btn-p { background-color: var(--gold); color: var(--bg); }
+        .btn:hover { filter: brightness(1.2); transform: translateY(-1px); }
+        .gold-line { position: absolute; top: 0; right: 30px; width: 1px; height: 100%; background: linear-gradient(to bottom, var(--gold), transparent); opacity: 0.15; }
+        @media print { body { background: none; } .cv-page { margin: 0; box-shadow: none; width: 210mm; height: 297mm; } aside { background-color: var(--sidebar) !important; } .btn-c { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="cv-page">
+        <div class="gold-line"></div>
+        <aside>
+            <img src="photo moi pro.jpeg" alt="Julien FLORENCE" class="profile-img">
+            <section class="sidebar-section">
+                <h2>Contact</h2>
+                <div class="info"><strong>Téléphone</strong> 06 61 74 75 73</div>
+                <div class="info"><strong>Email</strong> julienflorence.florence@gmail.com</div>
+            </section>
+            <section class="sidebar-section">
+                <h2>Profil ENTJ-A</h2>
+                <div class="info">Rationnel 94% <div class="trait-bg"><div class="trait-fill" style="width: 94%"></div></div></div>
+                <div class="info">Organisé 94% <div class="trait-bg"><div class="trait-fill" style="width: 94%"></div></div></div>
+                <div class="info">Extraverti 88% <div class="trait-bg"><div class="trait-fill" style="width: 88%"></div></div></div>
+            </section>
+            <section class="sidebar-section">
+                <h2>Expertises</h2>
+                <div class="info">✓ Business Plan & P&L</div>
+                <div class="info">✓ Management (3-15 pers)</div>
+                <div class="info">✓ Tech Acquisition</div>
+                <div class="info">✓ Négociation Contrats</div>
+            </section>
+            <section class="sidebar-section">
+                <h2>Langues</h2>
+                <div class="info"><strong>Anglais</strong> Courant (B2)</div>
+                <div class="info"><strong>Néerlandais</strong> Niveau B2</div>
+            </section>
+        </aside>
+        <main>
+            <header>
+                <h1>Julien FLORENCE</h1>
+                <div class="job">Directeur Commercial</div>
+                <div class="summary">Plus de 15 ans d'expérience dans le pilotage de centres de profit. Expert en management d'équipes et en acquisition Tech au service de l'excellence et du prestige. Profil ENTJ-A orienté action.</div>
+            </header>
+            <h3 class="section-h">Expériences Professionnelles</h3>
+            <div class="exp-item">
+                <div class="exp-r">Responsable Développement<span>2025 – Présent</span></div>
+                <div class="exp-c">Happy House</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-r">Gestionnaire de Centre de Profit<span>2022 – 2024</span></div>
+                <div class="exp-c">RAS Intérim - CA 2.6 M€</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-r">Négociateur Immobilier Leader<span>2015 – 2021</span></div>
+                <div class="exp-c">Century 21 & Cabinet Bedin - CA 7 M€</div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-r">Directeur de Restaurant<span>2010 – 2015</span></div>
+                <div class="exp-c">Ma Salle à Manger (Paris 1er, Île de la Cité)</div>
+                <ul class="exp-d"><li>Croissance <span class="kpi">+140% en 5 ans</span>. Management 15 pers.</li></ul>
+            </div>
+            <h3 class="section-h">Gastronomie de Prestige & Palaces</h3>
+            <div class="exp-item">
+                <div class="exp-r">1er Sommelier (Palace 5*)<span>2003 – 2004</span></div>
+                <div class="exp-comp">THE WESBURY (Leading Hotel, Dublin) - <span class="kpi">1* Michelin</span></div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-r">Chef Barman<span>2001 – 2002</span></div>
+                <div class="exp-c">Le CLOS (Bath, Angleterre) - <span class="kpi">1* Michelin</span></div>
+            </div>
+            <div class="exp-item">
+                <div class="exp-r">Assistant Superviseur (Palace 5*)<span>2000 – 2001</span></div>
+                <div class="exp-c">The GUANAHANI (St-Barth) - <span class="kpi">2* Michelin</span></div>
+            </div>
+            <h3 class="section-h">Diplômes</h3>
+            <div class="info">Bachelor Marketing & Tech (2025) | Century 21 (Bac+2)</div>
+            <div class="btn-c">
+                <a href="https://calendar.app.google/iCzfE1GQrjxM3ZQ56" target="_blank" class="btn btn-p">🗓️ Réserver un entretien</a>
+                <a href="portfolio.html" class="btn">📂 Dossier Diplômes</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse RDM V14 - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --text-muted: #CCCCCC;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; page-break-after: always; }
+        }
+
+        body {
+            background: #050505;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            counter-reset: page;
+        }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            text-align: center;
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 8px;
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+        }
+
+        h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            border-left: 4px solid var(--accent);
+            padding-left: 12px;
+            margin: 20px 0 12px 0;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        .quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--accent);
+            text-align: center;
+            padding: 12px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            margin: 15px 0;
+            font-size: 11pt;
+        }
+
+        .content {
+            flex-grow: 1;
+            font-size: 9.5pt;
+            font-weight: 300;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding-top: 4mm;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Cinzel', serif;
+            font-size: 8.5pt;
+            color: var(--accent);
+            margin-top: 10px;
+        }
+
+        .page-num::after {
+            counter-increment: page;
+            content: "P. " counter(page, decimal-leading-zero);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 8pt;
+        }
+
+        th, td {
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            padding: 7px 9px;
+            text-align: left;
+        }
+
+        th {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--accent);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.02);
+        }
+
+        .note-badge {
+            display: inline-block;
+            padding: 2px 6px;
+            font-weight: 600;
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 2px;
+        }
+
+        .highlight-box {
+            background: rgba(255, 255, 255, 0.015);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 2px;
+        }
+
+        .highlight-box h3 {
+            margin-top: 0;
+            color: var(--accent);
+            font-family: 'Cinzel', serif;
+            font-size: 11pt;
+            border-bottom: 1px dashed rgba(212, 175, 55, 0.3);
+            padding-bottom: 5px;
+        }
+
+        .highlight-box ul {
+            margin: 0;
+            padding-left: 15px;
+        }
+
+        .highlight-box li {
+            margin-bottom: 5px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: ANALYSE DES NOTES -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>ANALYSE DE PROGRESSION RDM V14</h1>
+        <div class="quote">"La rigueur scientifique valide l'esprit d'entreprise."</div>
+        
+        <div class="content">
+            <p><strong>Projet :</strong> Rapport de Mission (RDM) — Happy House<br>
+            <strong>Auteur :</strong> Julien Florence (Bachelor Responsable Marketing et Commercial)<br>
+            <strong>Évaluation :</strong> Comparatif entre l'évaluation initiale (V3) et l'actuelle version V14 (Soutenance).</p>
+            
+            <h2>1. PROGRESSION DÉTAILLÉE DE LA NOTE ESTIMÉE</h2>
+            <p>L'implémentation progressive des correctifs (V4 à V14) a permis de restructurer le document académique, de sober le style emphatique d'origine et d'apporter des preuves terrain solides. La note estimée passe de <strong>14.5/20</strong> à <strong>17.8/20</strong> :</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%;">Critère de la Grille</th>
+                        <th style="width: 15%; text-align: center;">Note V3</th>
+                        <th style="width: 15%; text-align: center;">Note V14</th>
+                        <th style="width: 45%;">Justification du Gain de Points</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Capacité d'analyse</strong> (max 4)</td>
+                        <td style="text-align: center;">3.2</td>
+                        <td style="text-align: center;"><span class="note-badge">3.7</span></td>
+                        <td>Ton critique renforcé. Cadrage du pivot outbound via l'analyse des pressions du marché (OTAs, Labels).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Recherche d'information</strong> (max 4)</td>
+                        <td style="text-align: center;">2.8</td>
+                        <td style="text-align: center;"><span class="note-badge">3.6</span></td>
+                        <td>Intégration de chiffres macro réels et alignement des métriques Happy House (CAC, LTV, Mix ARPU) avec Ruddy.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Choix des recommandations</strong> (max 3)</td>
+                        <td style="text-align: center;">3.0</td>
+                        <td style="text-align: center;"><span class="note-badge">3.0</span></td>
+                        <td>Axe Inbound Event et Dashboard de Rétention. Pertinence maximale.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Plans d'actions</strong> (max 4)</td>
+                        <td style="text-align: center;">3.4</td>
+                        <td style="text-align: center;"><span class="note-badge">3.8</span></td>
+                        <td>Intégration du Cas Durentie, d'une doctrine de pilotage (COPIL) et du plan financier M12.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Prise de recul</strong> (max 1.5)</td>
+                        <td style="text-align: center;">1.2</td>
+                        <td style="text-align: center;"><span class="note-badge">1.4</span></td>
+                        <td>Ajout d'une table Hard/Soft skills claire et d'une posture de consultant augmentée dans le bilan.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clarté / Présentation</strong> (max 1)</td>
+                        <td style="text-align: center;">0.4</td>
+                        <td style="text-align: center;"><span class="note-badge">0.8</span></td>
+                        <td>Création de la page 3 "Executive Summary" pour simplifier la lecture rapide du jury.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Orthographe & Style</strong> (max 1)</td>
+                        <td style="text-align: center;">0.2</td>
+                        <td style="text-align: center;"><span class="note-badge">0.7</span></td>
+                        <td>Sobering linguistique de tous les chapitres. Suppression des hyperboles.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Annexes & Drive</strong> (max 1)</td>
+                        <td style="text-align: center;">0.3</td>
+                        <td style="text-align: center;"><span class="note-badge">0.8</span></td>
+                        <td>Formules du CAC justifiées, scripts de vente et visuels d'outils (n8n, CRM).</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: AMELIORATIONS APPORTEES -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>AMÉLIORATIONS APPORTÉES V4 - V14</h1>
+        <div class="quote">"Le détail fait la perfection, et la perfection n'est pas un détail."</div>
+        
+        <div class="content">
+            <h2>2. SYNTHÈSE DES AMÉLIORATIONS INTÉGRÉES</h2>
+            <p>Les différents scripts de patch et de restructuration ont corrigé les faiblesses identifiées lors des revues précédentes :</p>
+            
+            <div class="highlight-box">
+                <h3>Axe 1 : Richesse de la Preuve & Métriques (Diagnostic et Annexes)</h3>
+                <ul>
+                    <li><strong>Formule du CAC validée (Annexe 4) :</strong> Intégration explicite de la formule de calcul `(Masse salariale SDR 1766€ + Licences Téléphonie 57€) / 1 Signature = 1 823 €`, coupant court au manque de rigueur méthodologique.</li>
+                    <li><strong>Métriques de Rétention alignées :</strong> Définition propre du churn (80% d'attrition comptable CRM vs 18% de tags "NO GO" contractuels) et calcul de la LTV à 290 € (LTV/CAC = 0.16) pour prouver scientifiquement la viabilité du pivot.</li>
+                    <li><strong>Enrichissement Macro-économique (Chapitre 5) :</strong> Ajout de données sur la pression concurrentielle subie par les hébergeurs : Booking.com dominant 71% des OTAs en Europe, et explosion des labels écologiques (+184% d'établissements Clef Verte en 3 ans), expliquant leur fatigue numérique et leur aversion aux appels à froid.</li>
+                </ul>
+            </div>
+
+            <div class="highlight-box">
+                <h3>Axe 2 : Clarté Visuelle & Posture Académique</h3>
+                <ul>
+                    <li><strong>Executive Summary (Page 3) :</strong> Ajout d'une fiche synthétique à lecture rapide décrivant la problématique, le diagnostic, le pivot et les recommandations pour le jury.</li>
+                    <li><strong>Tableau des Compétences Hard/Soft (Chapitre 9) :</strong> Restructuration du bilan personnel pour mettre en avant vos apprentissages concrets en ingénierie de croissance (IA, scraping, BI) et en savoir-être de consultant.</li>
+                    <li><strong>Sobering Stylistique :</strong> Suppression des expressions trop superlatives au profit d'un ton neutre, factuel et mesurable, propre à un rapport de mission commerciale de niveau supérieur.</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: CHANTIERS EN COURS -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>AMÉLIORATIONS EN COURS & V15</h1>
+        <div class="quote">"Celui qui n'avance pas recule."</div>
+        
+        <div class="content">
+            <h2>3. VERSION 15 EN COURS DE PRÉPARATION</h2>
+            <p>La prochaine étape de développement (V15) est programmée pour corriger les derniers points d'ergonomie et de confort de lecture pour vos examinateurs :</p>
+            
+            <div class="highlight-box">
+                <h3>Axe ergonomique : Navigation Intelligente</h3>
+                <ul>
+                    <li><strong>Boutons "Retour au Sommaire" :</strong> Ajout automatique d'un bouton de retour rapide dans la balise H1 de chaque chapitre pour éviter le défilement fastidieux sur écran.</li>
+                    <li><strong>Ancre de destination :</strong> Intégration d'un point d'ancrage `#sommaire-anchor` en tête du Sommaire Analytique Général.</li>
+                </ul>
+            </div>
+
+            <h2>4. PLAN DE TRAVAIL POUR NOTRE SESSION DE SOUTENANCE</h2>
+            <p>Pour finaliser le RDM et attaquer l'oral de soutenance en position de force, voici les tâches que je vous propose d'effectuer :</p>
+            
+            <ol>
+                <li><strong>Exécuter le script `create_v15.py`</strong> : Lancer la compilation pour assembler la version 15 du rapport HTML et générer le document PDF final.</li>
+                <li><strong>Relire le Chapitre 10 (Déclaration de Conformité IA)</strong> : Vérifier que le cadre de transparence sur l'usage de Gemini dans la structuration des bases de données de Happy House est irréprochable face aux questions de déontologie du jury.</li>
+                <li><strong>Simuler les objections de l'oral</strong> : S'entraîner à défendre le CAC de 1 823 € face à un tuteur ou un examinateur académique (savoir expliquer que ce CAC "inacceptable" est précisément la justification scientifique et chiffrée de votre pivot).</li>
+            </ol>
+        </div>
+        
+        <div class="footer">
+            <div>ÉDITION PRESTIGE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+</body>
+</html>

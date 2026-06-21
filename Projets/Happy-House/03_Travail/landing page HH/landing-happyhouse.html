@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webinaire Le Cercle Happy House</title>
+    <style>
+        /* CHARTE GRAPHIQUE HAPPY HOUSE & LAYOUT */
+        :root {
+            --blue-premium: #1E3A8A;
+            --ocre-dynamic: #D97706;
+            --white: #FFFFFF;
+            --font-title: 'Playfair Display', serif; /* Style manuscrit/chic */
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-body);
+            color: #333;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--font-title);
+            font-weight: 700;
+        }
+
+        /* BOUTONS */
+        .btn {
+            background-color: var(--ocre-dynamic);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px; /* Pill shape */
+            text-decoration: none;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(217, 119, 6, 0.4);
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+            background-color: #b45309;
+        }
+
+        /* HEADER / LOGO */
+        .header-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease-out;
+        }
+        
+        .header-logo img {
+            width: 150px; /* Taille ajustée pour élégance */
+            height: auto;
+            margin-bottom: 5px;
+        }
+
+        .header-logo span {
+            font-family: var(--font-title);
+            color: var(--white);
+            font-size: 1.5rem;
+            font-style: italic;
+            letter-spacing: 2px;
+            opacity: 0.9;
+        }
+
+        /* SECTION 1: HERO (FULL SCREEN) */
+        .hero {
+            background-color: var(--blue-premium);
+            color: var(--white);
+            min-height: 90vh; /* Quasi plein écran */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            background-image: radial-gradient(circle at top right, rgba(217, 119, 6, 0.2), transparent);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .reassurance {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            background: rgba(255,255,255,0.1);
+            padding: 10px 20px;
+            border-radius: 30px;
+        }
+
+        /* SECTION 2: CONSTAT (ZIG ZAG) */
+        .section-split {
+            display: flex;
+            flex-wrap: wrap;
+            min-height: 60vh;
+        }
+
+        .split-image {
+            flex: 1;
+            min-width: 300px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .split-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%); /* Style Noir & Blanc Classe */
+        }
+
+        .split-content {
+            flex: 1;
+            min-width: 300px;
+            padding: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background-color: var(--white);
+        }
+
+        .split-content h2 {
+            color: var(--blue-premium);
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+        }
+
+        .pain-points li {
+            margin-bottom: 15px;
+            list-style: none;
+            position: relative;
+            padding-left: 30px;
+        }
+        .pain-points li::before {
+            content: "✖";
+            color: var(--ocre-dynamic);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* SECTION 3: SOLUTION */
+        .solution {
+            padding: 80px 20px;
+            background-color: #f9fafb;
+            text-align: center;
+        }
+        .solution h2 {
+            color: var(--blue-premium);
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+        
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            border-top: 5px solid var(--ocre-dynamic);
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon-box {
+            font-size: 3rem;
+            color: var(--ocre-dynamic);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            color: var(--blue-premium);
+            margin-bottom: 15px;
+        }
+
+        /* SECTION 4: INTERVENANTS */
+        .section-split.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .speakers-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            background-color: var(--blue-premium);
+            padding: 40px;
+        }
+
+        /* Forme Hexagonale */
+        .hex {
+            width: 160px;
+            height: 175px; 
+            background-color: #ccc;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            border: 4px solid var(--ocre-dynamic); /* Bordure simulée via drop-shadow sur parent si complexe, mais simple ici */
+            transition: transform 0.3s;
+        }
+        .hex:hover {
+            transform: scale(1.05);
+        }
+
+        /* SECTION 5: CLOSING */
+        .closing {
+            background-color: var(--blue-premium);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .closing h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .closing p {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        /* ANIMATION SIMPLE */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .section-split.reverse { flex-direction: column; }
+            .speakers-container { min-height: 300px; }
+        }
+
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <section class="hero">
+        <div class="header-logo">
+            <img src="https://www.my-happy.house/wp-content/uploads/2019/05/logo-hh.png" alt="Logo Happy House">
+            <span>Le Cercle</span>
+        </div>
+
+        <h1>L'Hospitalité Premium <br> Réinventée.</h1>
+        <p class="subtitle">Conjuguez enfin rentabilité record et indépendance totale grâce au label Happy House.</p>
+        
+        <div class="reassurance">
+            <span>⏱️ Visio 30 min max</span>
+            <span>•</span>
+            <span>🔓 Sans engagement</span>
+        </div>
+        
+        <a href="#" class="btn">Je réserve ma place (Gratuit)</a>
+    </section>
+
+    <section class="section-split">
+        <div class="split-image">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop" alt="Hébergeur au travail">
+        </div>
+        <div class="split-content">
+            <h2>Le Paradoxe de l'Hébergeur d'Exception</h2>
+            <p>Vous avez investi dans des lieux sublimes. Pourtant, la réalité opérationnelle pèse lourd.</p>
+            <ul class="pain-points">
+                <li><strong>Explosion des coûts :</strong> L'inflation grignote vos marges chaque année.</li>
+                <li><strong>Perte de contact :</strong> Les plateformes confisquent vos données voyageurs.</li>
+                <li><strong>Isolement :</strong> Face aux géants et aux changements juridiques, vous vous battez seul.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="solution">
+        <h2>La Réponse Happy House</h2>
+        <div class="grid-3">
+            <div class="card">
+                <div class="icon-box">💰</div>
+                <h3>Rentabilité Immédiate</h3>
+                <p>Accédez à notre centrale d'achat. Réalisez entre <strong>15% et 40% d'économie</strong> sur vos factures annuelles (énergie, linge, fournitures) pour rentabiliser votre adhésion instantanément.</p>
+            </div>
+            
+            <div class="card">
+                <div class="icon-box">📱</div>
+                <h3>Technologie "Métier"</h3>
+                <p>Une App Mobile créée <strong>par un hébergeur, pour les hébergeurs</strong>. Reprenez le contrôle de votre data voyageur, personnalisez l'accueil et préparez l'avenir de votre tourisme en toute indépendance.</p>
+            </div>
+
+            <div class="card">
+                <div class="icon-box">🤝</div>
+                <h3>Réseau Puissant</h3>
+                <p>Ne restez plus seul. Bénéficiez des avantages du <strong>Cercle CE</strong> et de nos partenariats exclusifs avec les plateformes de séminaires pour remplir vos calendriers.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section-split reverse">
+        <div class="split-image speakers-container">
+            <div class="hex" style="background-image: url('https://image.noelshack.com/fichiers/2026/05/3/1769594157-patrice.jpeg');" title="Patrice - Fondateur">
+            </div>
+            <div class="hex" style="background-image: url('https://image.noelshack.com/fichiers/2026/05/3/1769594185-julien-florence.jpeg');" title="Julien - Directeur">
+            </div>
+        </div>
+        <div class="split-content">
+            <h2>Vos Hôtes</h2>
+            <p>Pas de théorie, du terrain. Échangez en direct avec ceux qui bâtissent le label.</p>
+            <div style="margin-top: 20px;">
+                <p><strong>Patrice</strong><br><span style="color: var(--ocre-dynamic);">Fondateur</span><br>La vision stratégique d'un expert du terrain.</p>
+                <br>
+                <p><strong>Julien</strong><br><span style="color: var(--ocre-dynamic);">Directeur</span><br>L'expertise opérationnelle pour déployer votre croissance.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="closing">
+        <h2>Le temps est votre ressource la plus précieuse.</h2>
+        <p>20 min de présentation. 10 min de questions. C'est tout.</p>
+        <a href="#" class="btn">Je rejoins le live (30 min)</a>
+        <p style="font-size: 0.8rem; margin-top: 20px; color: #ccc;">Pas disponible ? Inscrivez-vous pour recevoir le replay.</p>
+    </section>
+
+</body>
+</html>

@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUESTIA Challenge National - Note Stratégique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { background: #050505; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; counter-reset: page; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 20mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            page-break-after: always;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 { font-family: 'Cinzel'; color: var(--accent); text-align: center; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 20px; font-size: 1.8rem; letter-spacing: 2px; }
+        h2 { font-family: 'Cinzel'; color: var(--accent); border-left: 4px solid var(--accent); padding-left: 15px; margin: 25px 0 15px 0; font-size: 1.2rem; letter-spacing: 1px; }
+        h3 { font-family: 'Montserrat'; color: var(--accent); font-weight: 600; font-size: 1rem; margin: 15px 0 10px 0; text-transform: uppercase; }
+
+        .quote {
+            font-family: 'Playfair Display'; font-style: italic; color: var(--accent);
+            text-align: center; padding: 15px; border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); margin: 20px 0; font-size: 1.1rem;
+        }
+
+        .content { flex-grow: 1; text-align: justify; font-size: 10pt; line-height: 1.6; font-weight: 300; }
+        
+        strong { color: var(--accent); font-weight: 600; }
+        
+        .kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 20px 0; }
+        .kpi-card { border: 1px solid rgba(212, 175, 55, 0.3); padding: 10px; text-align: center; background: rgba(255,255,255,0.03); }
+        .kpi-value { display: block; font-family: 'Cinzel'; font-size: 1.4rem; color: var(--accent); }
+        .kpi-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 9pt; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--accent); font-family: 'Cinzel'; text-align: left; padding: 10px; border-bottom: 1px solid var(--accent); }
+        td { padding: 8px 10px; border-bottom: 1px solid rgba(212, 175, 55, 0.1); }
+
+        .badge { display: inline-block; padding: 2px 8px; border: 1px solid var(--accent); font-size: 0.7rem; font-family: 'Cinzel'; margin-right: 5px; color: var(--accent); }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5mm;
+            display: flex; justify-content: space-between; font-family: 'Cinzel'; font-size: 8pt; color: rgba(255,255,255,0.6);
+        }
+        .page-num::after { counter-increment: page; content: "STRATÉGIE | PAGE " counter(page, decimal-leading-zero); }
+    </style>
+</head>
+<body>
+    <!-- PAGE 1: SYNTHÈSE ET OBJECTIFS -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>QUESTIA CHALLENGE NATIONAL</h1>
+        <div class="quote">"Transformer l'apprentissage linguistique en un levier de prestige institutionnel et de performance collective."</div>
+        
+        <div class="content">
+            <h2>I. Synthèse Exécutive</h2>
+            <p>Le <strong>QUESTIA Challenge National</strong> n'est pas une simple fonctionnalité de ludification ; c'est une extension stratégique conçue pour positionner Questia comme l'acteur de référence de la formation linguistique B2B. En orchestrant une compétition inter-établissements, nous transformons une plateforme SaaS individuelle en une <strong>expérience institutionnelle vivante et mesurable</strong>.</p>
+            
+            <p>Ce format répond à un double impératif : 
+                1. <strong>L'engagement métier</strong> : Garantir des usages récurrents et profonds.
+                2. <strong>La valeur perçue</strong> : Fournir aux décideurs (écoles, RH) une preuve tangible d'impact et un outil de communication marketing puissant.</p>
+
+            <h2>II. Objectifs Stratégiques</h2>
+            <div class="kpi-grid">
+                <div class="kpi-card"><span class="kpi-value">RETENTION</span><span class="kpi-label">Cycle de retour hebdo</span></div>
+                <div class="kpi-card"><span class="kpi-value">DATA</span><span class="kpi-label">Preuve d'impact macro</span></div>
+                <div class="kpi-card"><span class="kpi-value">SAAS ROI</span><span class="kpi-label">Levier d'upsell majeur</span></div>
+            </div>
+            
+            <h3>1. Engagement & Rétention</h3>
+            <p>Le challenge crée une tension narrative sur 6 à 8 semaines. En introduisant des cycles hebdomadaires et des leaderboards segmentés, nous multiplions les points de contact et réduisons drastiquement le <em>churn</em> précoce.</p>
+            
+            <h3>2. Différenciation Institutionnelle</h3>
+            <p>Pour l'établissement partenaire, participer au Challenge National est un argument de vente auprès de ses propres étudiants. Il transforme la "licence de langue" en un "championnat d'excellence", renforçant l'attractivité de l'école.</p>
+            
+            <h3>3. Preuve de Valeur (Data Insight)</h3>
+            <p>Le challenge génère des rapports d'impact précis : taux de complétion, progression réelle par cohorte et dynamique collaborative. Ces données sont cruciales pour justifier les renouvellements budgétaires.</p>
+        </div>
+
+        <div class="footer">
+            <div>CONFIDENTIEL - STRATÉGIE QUESTIA 2026</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: MÉCANIQUE ET FORMAT -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>L'ARCHITECTURE DE L'ENGAGEMENT</h1>
+        
+        <div class="content">
+            <h2>III. Format du Challenge</h2>
+            <p>La compétition est structurée en <strong>saisons annuelles</strong> de 6 à 8 semaines. Cette durée est optimale pour maintenir une intensité maximale sans provoquer de saturation cognitive.</p>
+            
+            <h3>Structure Multi-Niveaux</h3>
+            <ul>
+                <li><strong>Niveau 1 : Équipe (4-6 apprenants)</strong>. Unité de base de la collaboration. Missions jouées en synergie.</li>
+                <li><strong>Niveau 2 : Établissement</strong>. Agrégation des scores pour un classement interne et inter-campus.</li>
+                <li><strong>Niveau 3 : National</strong>. Comparaison par cohortes et catégories d'excellence.</li>
+            </ul>
+
+            <h2>IV. Déroulement Opérationnel</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Phase</th>
+                        <th>Action Clé</th>
+                        <th>Objectif Pédagogique</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>S0</strong></td>
+                        <td>Positionnement Baseline</td>
+                        <td>Définition du point de départ pour mesurer la progression.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S1-S6</strong></td>
+                        <td>Missions Hebdomadaires</td>
+                        <td>Immersion scénarisée (Gestion de crise, Négociation, Pitch).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S7</strong></td>
+                        <td>Phase Finale / Recap</td>
+                        <td>Consolidation des acquis et classement final.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S8</strong></td>
+                        <td>Impact Report & Trophées</td>
+                        <td>Valorisation institutionnelle et sociale.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>L'Équité comme Pilier (Fairness)</h3>
+            <p>Afin d'éviter la démobilisation des niveaux débutants, le Challenge Questia segmente ses leaderboards par :
+                <br>• <strong>Niveau Linguistique</strong> (CECRL)
+                <br>• <strong>Catégorie d'Établissement</strong> (Business Schools vs Centres de Formation)
+                <br>• <strong>Axe de Mérite</strong> (Performance vs Progression vs Régularité)</p>
+        </div>
+
+        <div class="footer">
+            <div>CONFIDENTIEL - STRATÉGIE QUESTIA 2026</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 3: SCORING ET RÉCOMPENSES -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>SYSTÈME DE MÉRITOCRATIE</h1>
+        
+        <div class="content">
+            <h2>V. Modèle de Scoring Équilibré</h2>
+            <p>Le calcul des points est conçu pour récompenser non seulement l'excellence brute, mais aussi l'effort et la cohésion. C'est un <strong>modèle hybride</strong>.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bloc de Score</th>
+                        <th>Poids</th>
+                        <th>Indicateur Mesuré</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Performance Mission</strong></td>
+                        <td>40%</td>
+                        <td>Atteinte des objectifs professionnels et qualité linguistique.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Progression Réelle</strong></td>
+                        <td>25%</td>
+                        <td>Différence de score entre deux cycles ou par rapport à la baseline.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Régularité (Engagement)</strong></td>
+                        <td>20%</td>
+                        <td>Constance de connexion et taux de complétion des modules.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Collaboration d'Équipe</strong></td>
+                        <td>15%</td>
+                        <td>Répartition de la parole et synergie dans les simulations.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>VI. Stratégie de Reconnaissance</h2>
+            <p>Les récompenses Questia privilégient le <strong>capital social et symbolique</strong>, plus durable que les incitatifs monétaires.</p>
+            
+            <h3>Pour l'Établissement</h3>
+            <p><span class="badge">LABEL</span> <strong>Label "Établissement Champion"</strong> : Exploitable sur les supports marketing (site web, brochures).</p>
+            <p><span class="badge">DATA</span> <strong>Étude d'Impact Exclusive</strong> : Document blanc sur la performance de leur cohorte.</p>
+            
+            <h3>Pour les Apprenants</h3>
+            <p><span class="badge">CERTIF</span> <strong>Certificats d'Excellence Digitaux</strong> : Valorisables sur LinkedIn et CV.</p>
+            <p><span class="badge">PREMIUM</span> <strong>Accès Masterclass</strong> : Sessions avec des experts métiers internationaux.</p>
+            
+            <h3>Distinctions Spéciales</h3>
+            <p>• <em>Most Improved Team</em> (Meilleure Progression)
+            <br>• <em>Best Collaboration Award</em> (Cohésion d'Équipe)
+            <br>• <em>Consistency King</em> (Régularité Sans Faille)</p>
+        </div>
+
+        <div class="footer">
+            <div>CONFIDENTIEL - STRATÉGIE QUESTIA 2026</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+
+    <!-- PAGE 4: BUSINESS CASE ET DÉCISION -->
+    <div class="page">
+        <div class="inner-border"></div>
+        <h1>INVESTISSEMENT & ROI STRATÉGIQUE</h1>
+        
+        <div class="content">
+            <h2>VII. Modèle Économique & Upsell</h2>
+            <p>Le Challenge National s'intègre nativement dans le modèle SaaS Questia comme un puissant levier de <strong>croissance de l'ARPU</strong> (Average Revenue Per User).</p>
+            
+            <ul>
+                <li><strong>Offre STARTER</strong> : Accès aux classements internes uniquement.</li>
+                <li><strong>Offre GROWTH</strong> : Participation au Challenge National + Rapports de base.</li>
+                <li><strong>Offre SCALE</strong> : Challenge complet + Personnalisation marque blanche + Mentorat dédié.</li>
+            </ul>
+
+            <h2>VIII. Analyse de l'Investissement (MVP Pilot)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Poste de Dépense</th>
+                        <th>Estimatif Bas</th>
+                        <th>Estimatif Haut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Conception & Scoring</td>
+                        <td>1 500 €</td>
+                        <td>3 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>Missions Premium (Challenge)</td>
+                        <td>2 000 €</td>
+                        <td>5 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>UX Dashboard & Visualisation</td>
+                        <td>2 000 €</td>
+                        <td>4 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>Communication & Kit Écoles</td>
+                        <td>1 000 €</td>
+                        <td>3 000 €</td>
+                    </tr>
+                    <tr>
+                        <td><strong>TOTAL PILOTE</strong></td>
+                        <td><strong>8 500 €</strong></td>
+                        <td><strong>21 000 €</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>IX. Recommandation Opérationnelle</h2>
+            <p>Pour minimiser les risques tout en maximisant l'apprentissage, nous préconisons une <strong>approche par itérations successives</strong> :</p>
+            
+            <p>1. <strong>Lancement Pilote (Q3 2026)</strong> : 5 à 10 établissements sélectionnés pour une saison de 4 semaines.
+            <br>2. <strong>Audit des Métriques</strong> : Analyse de l'engagement, de la progression et du NPS (Net Promoter Score) des directeurs pédagogiques.
+            <br>3. <strong>Généralisation (Q1 2027)</strong> : Ouverture nationale et intégration complète dans le tunnel de vente.</p>
+            
+            <div class="quote">"Le Challenge National transforme Questia d'un outil de formation en un partenaire de la réussite institutionnelle."</div>
+        </div>
+
+        <div class="footer">
+            <div>DOCUMENT DE DÉCISION - JULIEN FLORENCE</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

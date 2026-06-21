@@ -1,0 +1,227 @@
+/* 
+   QuestIA - Main CSS
+   Charte Couleurs Officielle & Base Responsive
+*/
+
+:root {
+    /* Base Colors */
+    --bg: #05070d;
+    --bg-2: #0a0e18;
+    --text: #eef1f7;
+    --muted: #8a93a8;
+
+    /* Accent & Status Colors */
+    --accent: #00e5ff; /* Cyan électrique */
+    --coral: #ff5a6a;  /* Erreur / Pression */
+    --amber: #ffb547;  /* Warning / Timer */
+    --lime: #b8ff3d;   /* Succès / Validation */
+    --purple: #7b5cff; /* Groupe / Spécial */
+
+    /* UX Constraints */
+    --radius: 12px;
+    --container-width: 1200px;
+    --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+/* Base Reset & Typography */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px; /* Base pour rem */
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, .font-title {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+}
+
+/* Layout Containers */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+    
+    .container {
+        padding: 0 20px;
+    }
+}
+
+/* Buttons Base (UX Checklist) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s var(--ease);
+    min-height: 44px; /* Touch target (UX) */
+    cursor: pointer;
+    border: 1px solid transparent;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent), #a6fff4);
+    color: var(--bg);
+    box-shadow: 0 8px 20px rgba(0, 229, 255, 0.25);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 229, 255, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-ghost {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.btn-ghost:hover {
+    border-color: var(--accent);
+    background: rgba(0, 229, 255, 0.08);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* Specific Classes for colored buttons with glass effect */
+.btn-purple {
+    background: rgba(123, 92, 255, 0.08);
+    border-color: rgba(123, 92, 255, 0.3);
+    color: #a38fff;
+}
+.btn-purple:hover {
+    background: rgba(123, 92, 255, 0.15);
+    border-color: var(--purple);
+    box-shadow: 0 0 15px rgba(123, 92, 255, 0.3);
+}
+
+.btn-lime {
+    background: rgba(184, 255, 61, 0.08);
+    border-color: rgba(184, 255, 61, 0.3);
+    color: var(--lime);
+}
+.btn-lime:hover {
+    background: rgba(184, 255, 61, 0.15);
+    border-color: var(--lime);
+    box-shadow: 0 0 15px rgba(184, 255, 61, 0.3);
+}
+
+/* Offset for anchor links to prevent nav covering title */
+section[id] {
+    scroll-margin-top: 100px;
+}
+
+/* Grid background (Theme characteristic) */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -1;
+    pointer-events: none;
+    mask-image: radial-gradient(ellipse at 50% 30%, black 40%, transparent 80%);
+}
+
+/* Animations */
+.reveal-init {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s var(--ease);
+}
+
+.reveal-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Nav Overlay */
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        inset: 0;
+        background: var(--bg);
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 32px;
+        z-index: 99;
+    }
+    
+    .nav-links.is-visible {
+        display: flex;
+        animation: fadeIn 0.3s ease;
+    }
+    
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+    
+    .nav-burger {
+        display: block;
+        width: 30px;
+        height: 20px;
+        position: relative;
+        z-index: 100;
+        background: none;
+        border: none;
+    }
+    
+    .nav-burger span, .nav-burger::before, .nav-burger::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: var(--text);
+        transition: all 0.3s;
+    }
+    
+    .nav-burger::before { top: 0; }
+    .nav-burger span { top: 9px; }
+    .nav-burger::after { bottom: 0; }
+    
+    .nav-burger.is-active span { opacity: 0; }
+    .nav-burger.is-active::before { transform: rotate(45deg); top: 9px; }
+    .nav-burger.is-active::after { transform: rotate(-45deg); bottom: 9px; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nano Banana Pro · Expérience de Bienvenue</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;900&family=Orbitron:wght@600;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #05070D;
+            --surface: rgba(10, 14, 24, 0.8);
+            --cyan: #00E5FF;
+            --cyan-glow: rgba(0, 229, 255, 0.4);
+            --violet: #7B5CFF;
+            --violet-glow: rgba(123, 92, 255, 0.4);
+            --coral: #FF5A6A;
+            --text: #F0F4FF;
+            --gradient-flow: linear-gradient(135deg, #00E5FF 0%, #7B5CFF 50%, #FF5A6A 100%);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        #canvas-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.2; }
+        .deck { position: relative; height: 100%; width: 100%; }
+
+        .slide {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            padding: 5% 10%; opacity: 0; visibility: hidden;
+            transform: translateY(20px); transition: all 0.8s ease-in-out;
+            text-align: center;
+        }
+
+        .slide.active { opacity: 1; visibility: visible; transform: translateY(0); }
+
+        h1 {
+            font-family: 'Cinzel', serif; font-size: 3.5rem;
+            background: var(--gradient-flow); -webkit-background-clip: text; background-clip: text; color: transparent;
+            margin-bottom: 2rem; text-transform: uppercase;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif; font-size: 0.8rem; color: var(--cyan);
+            margin-bottom: 1rem; letter-spacing: 0.5em; text-transform: uppercase;
+        }
+
+        .persona-icon { font-size: 4rem; margin-bottom: 1rem; filter: drop-shadow(0 0 10px var(--cyan-glow)); }
+
+        .narrative-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;
+            width: 100%; max-width: 1000px; text-align: left; margin-top: 1rem;
+        }
+
+        .card {
+            background: var(--surface); border: 1px solid rgba(0, 229, 255, 0.1);
+            padding: 1.5rem; border-radius: 12px; backdrop-filter: blur(15px);
+            border-left: 4px solid var(--violet);
+        }
+
+        .card h3 { font-family: 'Orbitron'; font-size: 0.9rem; color: var(--cyan); margin-bottom: 0.8rem; text-transform: uppercase; }
+        .card p { font-size: 1rem; line-height: 1.4; font-weight: 300; color: #ccc; }
+
+        .controls { position: fixed; bottom: 50px; width: 100%; display: flex; justify-content: center; gap: 40px; z-index: 1000; }
+        .btn {
+            background: transparent; border: 1px solid var(--cyan); color: var(--cyan);
+            padding: 10px 30px; font-family: 'Orbitron'; font-size: 0.7rem; letter-spacing: 3px;
+            cursor: pointer; transition: 0.3s;
+        }
+        .btn:hover { background: var(--cyan); color: #000; box-shadow: 0 0 20px var(--cyan-glow); }
+
+        .progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--gradient-flow); transition: width 0.4s; }
+
+        .comic-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; width: 100%; max-width: 1200px; }
+        .panel { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 4px; font-size: 0.8rem; }
+        .panel-num { color: var(--cyan); font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-bg"></canvas>
+    <div class="progress" id="progress"></div>
+
+    <div class="deck">
+        <!-- 01. INTRO -->
+        <section class="slide active">
+            <h2>Démarrage</h2>
+            <h1>NANO BANANA PRO</h1>
+            <div class="comic-grid">
+                <div class="panel"><span class="panel-num">1.</span> Modèle : "Thinking with 3 Pro"</div>
+                <div class="panel"><span class="panel-num">2.</span> Ajouter un selfie (Caméra)</div>
+                <div class="panel"><span class="panel-num">3.</span> Choisir un Persona (Peluche, Mohawk)</div>
+                <div class="panel"><span class="panel-num">4.</span> Style : "Aquarelle"</div>
+                <div class="panel"><span class="panel-num">5.</span> Affiner avec Gemini</div>
+            </div>
+            <p style="margin-top: 3rem; color: var(--text-dim);">Un voyage poétique au style Aquarelle & Encre</p>
+        </section>
+
+        <!-- 02. PRODUCTIVITY PARTNER -->
+        <section class="slide">
+            <div class="persona-icon">💼</div>
+            <h2>PERSONA 01</h2>
+            <h1>Partenaire de Productivité</h1>
+            <div class="narrative-grid">
+                <div class="card"><h3>Valeur Clé</h3><p>Analyse des données (Gmail/Recherche) pour les vols ou réunions et offre une aide immédiate.</p></div>
+                <div class="card"><h3>Règle Goldilocks</h3><p>Être pertinent (suggérer des restaurants) sans être intrusif (éviter les infos sensibles).</p></div>
+                <div class="card"><h3>Contrôle Utilisateur</h3><p>Présenté comme un exemple d'assistance ; l'utilisateur garde toujours la main sur ses réglages.</p></div>
+                <div class="card"><h3>Invitation</h3><p>Appel à l'action direct : "Voulez-vous organiser les détails de votre prochain voyage ?"</p></div>
+            </div>
+        </section>
+
+        <!-- 03. CREATIVE MUSE -->
+        <section class="slide">
+            <div class="persona-icon">🎨</div>
+            <h2>PERSONA 02</h2>
+            <h1>Muse Créative Inspirante</h1>
+            <div class="narrative-grid">
+                <div class="card"><h3>Points de Passion</h3><p>Identifier les loisirs récurrents dans Photos ou Recherche (ex: cuisine, randonnée, art).</p></div>
+                <div class="card"><h3>Chaleur & Célébration</h3><p>Messages validant les intérêts : "Vos photos capturent des randonnées incroyables en pleine nature."</p></div>
+                <div class="card"><h3>Pertinence vs Faits</h3><p>Ne pas se contenter de citer des données ; montrer la compréhension de la pulsion créative.</p></div>
+                <div class="card"><h3>Dialogue Ouvert</h3><p>Poser une question ouverte pour stimuler une nouvelle session de brainstorming créatif.</p></div>
+            </div>
+        </section>
+
+        <!-- 04. TRUSTWORTHY GUIDE -->
+        <section class="slide">
+            <div class="persona-icon">🛡️</div>
+            <h2>PERSONA 03</h2>
+            <h1>Guide de Confiance Transparent</h1>
+            <div class="narrative-grid">
+                <div class="card"><h3>L'Accroche</h3><p>Utiliser un point à faible enjeu (ex: intérêt pour la NASA) pour montrer la personnalisation sécurisée.</p></div>
+                <div class="card"><h3>Transparence Radicale</h3><p>Format Q&A clair : "Nous protégeons, nous ne vendons pas, pas de ciblage publicitaire."</p></div>
+                <div class="card"><h3>Paramètres Personnels</h3><p>Instructions explicites pour 'oublier' des données ou ajuster le contexte à tout moment.</p></div>
+                <div class="card)<h3>Infrastructure Google</h3><p>Bâtir la confiance sur les standards de sécurité les plus élevés de l'industrie (Google).</p></div>
+            </div>
+        </section>
+
+        <!-- 05. INSIGHTFUL SYNTHESIZER -->
+        <section class="slide">
+            <div class="persona-icon">🧠</div>
+            <h2>PERSONA 04</h2>
+            <h1>Synthétiseur Perspicace</h1>
+            <div class="narrative-grid">
+                <div class="card"><h3>Connexions Cachées</h3><p>Créer des moments "Wow" en liant fluidement Gmail (vols) et Photos (albums de voyage).</p></div>
+                <div class="card"><h3>Observation Fluide</h3><p>Éviter l'exposition robotique ; viser un flux conversationnel naturel et intelligent.</p></div>
+                <div class="card"><h3>Sécurité Contextuelle</h3><p>Filtrage rigoureux pour garantir que les insights ne touchent jamais aux domaines sensibles.</p></div>
+                <div class="card"><h3>Exploration</h3><p>Inviter l'utilisateur à explorer une connexion de données qu'il n'avait pas envisagée.</p></div>
+            </div>
+        </section>
+
+        <!-- 06. SHOWCASE OF POSSIBILITIES -->
+        <section class="slide">
+            <div class="persona-icon">🚀</div>
+            <h2>PERSONA 05</h2>
+            <h1>Vitrine des Possibilités</h1>
+            <div class="narrative-grid">
+                <div class="card"><h3>Le Trifecta</h3><p>Mettre en avant simultanément la Productivité, la Passion et la Curiosité (ex: jardinage, voyage, ukulélé).</p></div>
+                <div class="card"><h3>Polyvalence des Domaines</h3><p>Démontrer comment Gemini aide dans tous les aspects de la vie quotidienne et créative.</p></div>
+                <div class="card"><h3>Spécificités à Fort Impact</h3><p>Utiliser des données précises pour prouver la compréhension unique du modèle IA.</p></div>
+                <div class="card"><h3>Premier Parcours</h3><p>Terminer en laissant l'utilisateur choisir le premier domaine d'insight qu'il souhaite explorer.</p></div>
+            </div>
+        </section>
+
+        <!-- 07. OUTRO -->
+        <section class="slide">
+            <h2>Passez à l'étape suivante</h2>
+            <h1>ESSAYER PENDANT 2 MOIS</h1>
+            <p style="font-size: 1.5rem; margin-bottom: 2rem;">Découvrez le Contexte Personnel sans frais.</p>
+            <div style="padding: 20px; border: 1px solid var(--coral); border-radius: 4px;">
+                <p style="font-family: 'Orbitron'; letter-spacing: 5px; color: var(--coral);">NANO BANANA PRO // GEMINI 3.1</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="controls">
+        <button class="btn" onclick="move(-1)">RETOUR</button>
+        <button class="btn" onclick="move(1)">SUIVANT</button>
+    </div>
+
+    <script>
+        let current = 0;
+        const slides = document.querySelectorAll('.slide');
+        const progress = document.getElementById('progress');
+
+        function showSlide(idx) {
+            slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+            progress.style.width = ((idx + 1) / slides.length * 100) + '%';
+        }
+
+        function move(dir) {
+            current = Math.max(0, Math.min(slides.length - 1, current + dir));
+            showSlide(current);
+        }
+
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight' || e.key === ' ') move(1);
+            if (e.key === 'ArrowLeft') move(-1);
+        });
+
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function init() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            particles = [];
+            for(let i=0; i<50; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    size: Math.random() * 2,
+                    vx: (Math.random() - 0.5) * 0.2,
+                    vy: (Math.random() - 0.5) * 0.2
+                });
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = '#00E5FF';
+            particles.forEach(p => {
+                p.x += p.vx; p.y += p.vy;
+                if(p.x<0 || p.x>canvas.width) p.vx *= -1;
+                if(p.y<0 || p.y>canvas.height) p.sy *= -1;
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init(); animate();
+        window.addEventListener('resize', init);
+    </script>
+</body>
+</html>

@@ -4,7 +4,7 @@
             
 
                 <!-- FICHIER 1 -->
-                <a href="https://htmlpreview.github.io/?https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/Justificatifs_Preuves/DATA_DEMONSTRATION_FORCE.html" target="_blank" style="text-decoration: none;">
+                <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/DATA_DEMONSTRATION_FORCE.html" target="_blank" style="text-decoration: none;">
                     
                         📄
                         <h3 style="margin: 0; color: #fff; font-family: 'Cinzel', serif; font-size: 10pt;">Document de Preuve 1</h3>
@@ -13,7 +13,7 @@
                 </a>
 
                 <!-- FICHIER 2 -->
-                <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/PMS_CONNECTES.pdf" target="_blank" style="text-decoration: none;">
+                <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/PMS_CONNECTES.pdf" target="_blank" style="text-decoration: none;">
                     
                         📄
                         <h3 style="margin: 0; color: #fff; font-family: 'Cinzel', serif; font-size: 10pt;">Document de Preuve 2</h3>
@@ -22,7 +22,7 @@
                 </a>
 
                 <!-- FICHIER 3 -->
-                <a href="https://htmlpreview.github.io/?https://github.com/julienflorenceflorence-oss/PALESTRIA/blob/main/Justificatifs_Preuves/DASHBOARD_HEBERGEURS.html" target="_blank" style="text-decoration: none;">
+                <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/DASHBOARD_HEBERGEURS.html" target="_blank" style="text-decoration: none;">
                     
                         📁
                         <h3 style="margin: 0; color: #fff; font-family: 'Cinzel', serif; font-size: 10pt;">Document de Preuve 3</h3>
@@ -31,7 +31,7 @@
                 </a>
 
                 <!-- FICHIER 4 -->
-                <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/Pack_Communication_2_HH.pdf" target="_blank" style="text-decoration: none;">
+                <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/Pack_Communication_2_HH.pdf" target="_blank" style="text-decoration: none;">
                     
                         📁
                         <h3 style="margin: 0; color: #fff; font-family: 'Cinzel', serif; font-size: 10pt;">Document de Preuve 4</h3>
@@ -40,7 +40,7 @@
                 </a>
 
                 <!-- FICHIER 5 -->
-                <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/Process_Commercial_KPIs_Happy_House.pdf" target="_blank" style="text-decoration: none;">
+                <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/Process_Commercial_KPIs_Happy_House.pdf" target="_blank" style="text-decoration: none;">
                     
                         📈
                         <h3 style="margin: 0; color: #fff; font-family: 'Cinzel', serif; font-size: 10pt;">Document de Preuve 5</h3>
@@ -49,7 +49,7 @@
                 </a>
 
                 <!-- FICHIER 6 -->
-                <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/raw/main/Justificatifs_Preuves/Process_d_integration_1.1.pdf" target="_blank" style="text-decoration: none;">
+                <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/Process_d_integration_1.1.pdf" target="_blank" style="text-decoration: none;">
                     
                         🛡️
                         <h3 style="margin: 0; color: #fff; font-family: 'Cinzel', serif; font-size: 10pt;">Document de Preuve 6</h3>

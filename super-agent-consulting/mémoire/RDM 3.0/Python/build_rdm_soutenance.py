@@ -91710,7 +91710,7 @@ pages.append({
 
 
 
-            <a href="https://github.com/julienflorenceflorence-oss/PALESTRIA/tree/main/Justificatifs_Preuves" target="_blank" style="display: inline-block; background: var(--gold); color: #000; padding: 6px 15px; text-decoration: none; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 8.5pt; letter-spacing: 1px; border-radius: 3px;">📥 ACCÉDER AUX JUSTIFICATIFS DE PREUVES (GITHUB)</a>
+            <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/" target="_blank" style="display: inline-block; background: var(--gold); color: #000; padding: 6px 15px; text-decoration: none; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 8.5pt; letter-spacing: 1px; border-radius: 3px;">📥 ACCÉDER AUX JUSTIFICATIFS DE PREUVES (GITHUB)</a>
 
 
 

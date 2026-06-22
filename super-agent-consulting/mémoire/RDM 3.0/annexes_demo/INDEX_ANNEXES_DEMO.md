@@ -12,7 +12,7 @@
 - **Lien** : [Consulter sur Google Docs](https://docs.google.com/document/d/1cODXz35hWuD4Ul_QJznqq29sbjeZZxCi9-4X7sztBBE/edit?usp=sharing)
 
 ### Annexe 3 : Analyse des 5 Forces de Porter
-- **Lien** : [Consulter sur Google Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/super-agent-consulting/mémoire/RDM 3.0/HTML/RAPPORT_DE_MISSION_SOUTENANCE.html#annexe-3)
+- **Lien** : [Consulter sur Google Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/super-agent-consulting/mémoire/RDM 3.0/HTML/RAPPORT_DE_MISSION_SOUTENANCE.html#annexe-3)
 
 ---
 
@@ -45,12 +45,12 @@
 ## 🛡️ Preuves Opérationnelles & Supports (PDF/Cloud)
 
 ### Dossier de Preuves Complémentaires
-1. **Pack Communication & Branding** : [Lien Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/Pack_Communication_2_HH.pdf)
-2. **Contrats & Cadre de Confiance** : [Lien Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/Process_d_integration_1.1.pdf)
-3. **Justificatif d'Activité n°2** : [Lien Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/PMS_CONNECTES.pdf)
-4. **Livrable Mission n°1** : [Lien Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/DATA_DEMONSTRATION_FORCE.html)
-5. **Relevés de Performance & Stats** : [Lien Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/Process_Commercial_KPIs_Happy_House.pdf)
-6. **Archive Technique & Preuve n°3** : [Lien Drive](https://julienflorenceflorence-oss.github.io/PALESTRIA/Justificatifs_Preuves/DASHBOARD_HEBERGEURS.html)
+1. **Pack Communication & Branding** : [Lien Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/Justificatifs_Preuves/Pack_Communication_2_HH.pdf)
+2. **Contrats & Cadre de Confiance** : [Lien Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/Justificatifs_Preuves/Process_d_integration_1.1.pdf)
+3. **Justificatif d'Activité n°2** : [Lien Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/Justificatifs_Preuves/PMS_CONNECTES.pdf)
+4. **Livrable Mission n°1** : [Lien Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/Justificatifs_Preuves/DATA_DEMONSTRATION_FORCE.html)
+5. **Relevés de Performance & Stats** : [Lien Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/Justificatifs_Preuves/Process_Commercial_KPIs_Happy_House.pdf)
+6. **Archive Technique & Preuve n°3** : [Lien Drive](https://julienflorenceflorence-oss.github.io/rdm-prestige/Justificatifs_Preuves/DASHBOARD_HEBERGEURS.html)
 
 ---
 

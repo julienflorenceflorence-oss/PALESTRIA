@@ -21,7 +21,7 @@ new_full_p = """<p style="font-size: 10.5pt; text-align: center; margin-bottom: 
             Cette section présente un extrait synthétique des livrables opérationnels produits afin d'en faciliter la lecture directe. <strong>La restitution de ce rapport s'opérant sous format PDF dématérialisé, l'intégralité des documents natifs et interactifs (tableaux de bord complets, matrices de calculs, contrats) est tenue à la stricte disposition du jury via un Espace Cloud Sécurisé (Drive).</strong>
         </p>
         <div style="text-align: center; margin-bottom: 35px;">
-            <a href="https://julienflorenceflorence-oss.github.io/PALESTRIA/" target="_blank" style="display: inline-block; background: var(--gold); color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 9pt; letter-spacing: 1px; border-radius: 3px;">📥 ACCÉDER AU DOSSIER DRIVE SÉCURISÉ</a>
+            <a href="https://julienflorenceflorence-oss.github.io/rdm-prestige/" target="_blank" style="display: inline-block; background: var(--gold); color: #000; padding: 10px 20px; text-decoration: none; font-weight: bold; font-family: 'Arial', sans-serif; font-size: 9pt; letter-spacing: 1px; border-radius: 3px;">📥 ACCÉDER AU DOSSIER DRIVE SÉCURISÉ</a>
         </div>"""
 
 c = c.replace(old_full_p, new_full_p)

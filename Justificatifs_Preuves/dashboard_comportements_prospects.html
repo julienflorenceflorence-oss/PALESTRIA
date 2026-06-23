@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analyse Comportementale & Coûts LCD - Happy House Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-glow: rgba(212, 175, 55, 0.15);
+            --card-bg: #161A23;
+            --text-main: #F4F4F4;
+            --text-muted: #8E9297;
+            --border-color: rgba(212, 175, 55, 0.2);
+            --danger: #E05D5D;
+            --success: #27AE60;
+            --warning: #F2994A;
+            --info: #29B6F6;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Header Premium */
+        header {
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .header-title h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-size: 2.2rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        .header-title p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .badge-academic {
+            background: linear-gradient(135deg, var(--accent), #AA7C11);
+            color: #000;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        /* KPI Dashboard Grid */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .kpi-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 22px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .kpi-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .kpi-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--accent);
+        }
+
+        .kpi-card.warning::before { background: var(--warning); }
+        .kpi-card.danger::before { background: var(--danger); }
+        .kpi-card.success::before { background: var(--success); }
+
+        .kpi-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .kpi-value {
+            font-size: 2.2rem;
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            margin: 10px 0;
+            font-weight: 700;
+        }
+
+        .kpi-card.warning .kpi-value { color: var(--warning); }
+        .kpi-card.danger .kpi-value { color: var(--danger); }
+        .kpi-card.success .kpi-value { color: var(--success); }
+
+        .kpi-subtext {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* Grid Layout */
+        .dashboard-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 1024px) {
+            .dashboard-layout {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-card h2 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        /* Progress Bars */
+        .progress-container {
+            margin-bottom: 20px;
+        }
+
+        .progress-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            margin-bottom: 6px;
+        }
+
+        .progress-bar-bg {
+            background: #000;
+            height: 12px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 1s ease-in-out;
+        }
+
+        /* Segment Bar Chart */
+        .segment-chart {
+            display: flex;
+            height: 35px;
+            border-radius: 6px;
+            overflow: hidden;
+            margin: 25px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .segment-bar {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #000;
+            font-family: 'Cinzel', serif;
+            transition: all 0.3s;
+        }
+
+        .legend-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+
+        .legend-color {
+            width: 14px;
+            height: 14px;
+            border-radius: 3px;
+        }
+
+        /* Call Simulator */
+        .simulator-inputs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: flex-end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-grow: 1;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .simulator-input {
+            background: #000;
+            border: 1px solid var(--border-color);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            font-family: 'Montserrat';
+            outline: none;
+            width: 100%;
+        }
+
+        .simulator-btn {
+            background: var(--accent);
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .simulator-btn:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        /* Objection Cards */
+        .objections-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .objection-card {
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent);
+            border-radius: 4px;
+            padding: 15px 20px;
+        }
+
+        .objection-card h4 {
+            color: var(--accent);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .objection-card .objection-quote {
+            font-style: italic;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+            padding-left: 10px;
+        }
+
+        .objection-card .response-tip {
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+
+        .highlight-text {
+            color: var(--accent);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <div class="header-title">
+                <h1>Dashboard de Comportement & Coûts LCD</h1>
+                <p>Évaluation de l'acceptabilité et structure de coûts de Happy House</p>
+            </div>
+            <div class="badge-academic">
+                RDM Soutenance — A150
+            </div>
+        </header>
+
+        <!-- KPI Grid -->
+        <div class="kpi-grid">
+            <div class="kpi-card">
+                <div class="kpi-label">Volume Prospection Outbound</div>
+                <div class="kpi-value">14 500</div>
+                <div class="kpi-subtext">Appels émis sur la base de leads ALUR</div>
+            </div>
+            <div class="kpi-card danger">
+                <div class="kpi-label">Rejet Démarchage (National)</div>
+                <div class="kpi-value">97%</div>
+                <div class="kpi-subtext">des Français jugent ces appels agaçants</div>
+            </div>
+            <div class="kpi-card danger">
+                <div class="kpi-label">Attrition Moyenne (CRM)</div>
+                <div class="kpi-value">80%</div>
+                <div class="kpi-subtext">Déperdition des cohortes Outbound</div>
+            </div>
+            <div class="kpi-card success">
+                <div class="kpi-label">Marge Nette Optimisée</div>
+                <div class="kpi-value">+10-20%</div>
+                <div class="kpi-subtext">visés par nos leviers opérationnels</div>
+            </div>
+        </div>
+
+        <!-- Dashboard Layout -->
+        <div class="dashboard-layout">
+            
+            <!-- Left Card: Tunnel Outbound & Simulator -->
+            <div class="section-card">
+                <h2>1. Le Tunnel Outbound & Aversion Canal</h2>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+                    Distribution des 14 500 contacts de la campagne d'appels à froid Happy House. La friction relationnelle explique 80% des refus directs (fatigue relationnelle du canal).
+                </p>
+
+                <!-- Segment Bar Chart -->
+                <div class="segment-chart">
+                    <div class="segment-bar" style="width: 50%; background-color: var(--text-muted);" title="7 250 contacts">50%</div>
+                    <div class="segment-bar" style="width: 20%; background-color: var(--danger);" title="2 900 contacts">20%</div>
+                    <div class="segment-bar" style="width: 20%; background-color: var(--success);" title="2 900 contacts">20%</div>
+                    <div class="segment-bar" style="width: 10%; background-color: var(--warning);" title="1 450 contacts">10%</div>
+                </div>
+
+                <div class="legend-grid">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--text-muted);"></div>
+                        <span>NRP (Sans rép.) : <strong>7 250 (50%)</strong></span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--danger);"></div>
+                        <span>Refus Directs : <strong>2 900 (20%)</strong></span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--success);"></div>
+                        <span>Suivi en Négo : <strong>2 900 (20%)</strong></span>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background-color: var(--warning);"></div>
+                        <span>Non Disponibles : <strong>1 450 (10%)</strong></span>
+                    </div>
+                </div>
+
+                <!-- Call Simulator -->
+                <h3 style="font-family: 'Cinzel', serif; font-size: 1rem; color: var(--accent); margin: 35px 0 15px 0; border-top: 1px dashed var(--border-color); padding-top: 20px;">Simulateur d'Aversion Commerciale (B2B)</h3>
+                <div class="simulator-inputs">
+                    <div class="input-group">
+                        <label for="callsCount">Volume d'appels ciblés</label>
+                        <input type="number" id="callsCount" class="simulator-input" value="1000" min="10">
+                    </div>
+                    <button class="simulator-btn" onclick="runSimulation()">Simuler</button>
+                </div>
+
+                <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem;">
+                    <thead>
+                        <tr style="background-color: rgba(212, 175, 55, 0.05);">
+                            <th style="padding: 10px; border: 1px solid var(--border-color);">Comportement Attendue</th>
+                            <th style="padding: 10px; border: 1px solid var(--border-color); text-align: center;">Taux</th>
+                            <th style="padding: 10px; border: 1px solid var(--border-color); text-align: center;">Impact en volume</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Raccrochages immédiats (détecte la prospection)</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color);">48%</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color); font-weight: bold; color: var(--danger);" id="sim-hangup">480</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Aversion immédiate (trouvent le démarchage intrusif)</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color);">87%</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color); font-weight: bold;" id="sim-intrusive">870</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Fermeture par méfiance (refus entreprise inconnue)</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color);">96%</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color); font-weight: bold;" id="sim-distrust">960</td>
+                        </tr>
+                        <tr style="background-color: rgba(39, 174, 96, 0.05);">
+                            <td style="padding: 10px; border: 1px solid var(--border-color);">Acceptabilité initiale (prêts à écouter l'argumentaire)</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color);">4%</td>
+                            <td style="text-align: center; padding: 10px; border: 1px solid var(--border-color); font-weight: bold; color: var(--success);" id="sim-accept">40</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Right Card: Costs Structure to Optimize -->
+            <div class="section-card">
+                <h2>2. Structure des Coûts LCD & Rétention</h2>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 20px;">
+                    En location de courte durée, les charges d'exploitation récurrentes représentent <strong>40 à 60%</strong> du CA locatif brut. L'argumentaire de rétention de Happy House attaque les 4 postes majeurs.
+                </p>
+
+                <!-- Ménage -->
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span><strong>Ménage & Propreté</strong> (Poste n°1 d'insatisfaction client)</span>
+                        <span class="highlight-text">15 - 25% des charges</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 25%; background-color: var(--danger);"></div>
+                    </div>
+                </div>
+
+                <!-- Commissions -->
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span><strong>Commissions de plateformes</strong> (Booking, Airbnb)</span>
+                        <span class="highlight-text">15 - 20% des revenus</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 20%; background-color: var(--warning);"></div>
+                    </div>
+                </div>
+
+                <!-- Énergie -->
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span><strong>Énergie & Chauffage</strong> (Incompressible sans domotique)</span>
+                        <span class="highlight-text">5 - 15% des charges</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 15%; background-color: var(--info);"></div>
+                    </div>
+                </div>
+
+                <!-- Maintenance -->
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span><strong>Maintenance & Usure du bien</strong></span>
+                        <span class="highlight-text">5 - 10% des charges</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 10%; background-color: var(--accent);"></div>
+                    </div>
+                </div>
+
+                <!-- Linge -->
+                <div class="progress-container">
+                    <div class="progress-labels">
+                        <span><strong>Linge de maison</strong> (Entretien et blanchisserie)</span>
+                        <span class="highlight-text">3 - 8% des charges</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 8%; background-color: var(--success);"></div>
+                    </div>
+                </div>
+
+                <div style="background: rgba(0,0,0,0.2); padding: 15px; border: 1px dashed var(--border-color); border-radius: 4px; font-size: 0.8rem; margin-top: 30px;">
+                    <strong style="color: var(--accent); display: block; margin-bottom: 5px;">🔥 LA RÈGLE D'OR DE RÉTENTION COMPTABLE :</strong>
+                    Les 4 postes majeurs (Ménage, Commissions, Énergie, Linge) concentrent plus de <strong>80% des charges</strong>. L'offre du Cercle Happy House via la centrale d'achat <em>Entegra</em> permet d'attaquer ces postes et de réduire les coûts d'exploitation globaux de <strong>15 à 20%</strong>, justifiant ainsi pleinement nos frais de gestion de 20%.
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Section 3: Objections Processing -->
+        <div class="section-card" style="margin-bottom: 0;">
+            <h2>3. Traitement Académique des Objections (Méthode DISC)</h2>
+            <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 25px;">
+                Comment l'équipe SDR de Happy House transforme les refus systémiques constatés lors des appels en arguments de closing commerciaux.
+            </p>
+
+            <div class="objections-container">
+                <div class="objection-card">
+                    <h4>Objection 1 : "Je n'ai pas le temps" / "Je suis surchargé"</h4>
+                    <p class="objection-quote">Représente 10% des blocages (soit 1 450 prospects sur la base des 14 500 contacts).</p>
+                    <p class="response-tip">
+                        <strong>Contre-argumentaire :</strong> "C'est précisément l'objet de notre appel. Un hébergeur passe en moyenne 20 à 30 heures par semaine sur la relation client et la gestion logistique. L'écosystème CRM + Guest App de Happy House permet d'automatiser 90% de ces tâches répétitives, vous libérant <strong>10 à 15 heures par semaine</strong> pour vous recentrer sur votre coeur de métier et optimiser votre note."
+                    </p>
+                </div>
+
+                <div class="objection-card">
+                    <h4>Objection 2 : "Je gère tout moi-même pour garder ma marge"</h4>
+                    <p class="objection-quote">Représente 70% des postures des hôtes indépendants en auto-gestion.</p>
+                    <p class="response-tip">
+                        <strong>Contre-argumentaire :</strong> "En gérant seul, vous subissez de plein fouet les coûts fixes (blanchisserie unitaire, ménage ponctuel) et les commissions des plateformes (jusqu'à 20%). Le réseau Happy House intègre une alliance avec la centrale d'achats <em>Entegra</em>. Nous attaquons les postes de dépenses qui pèsent 45% des charges de votre hébergement, pour augmenter votre marge nette de <strong>10 à 20%</strong>. Nous ne sommes pas un coût, mais un multiplicateur de rentabilité."
+                    </p>
+                </div>
+
+                <div class="objection-card">
+                    <h4>Objection 3 : "Le démarchage est agressif, je préfère l'e-mail"</h4>
+                    <p class="objection-quote">Raccourci immédiat constaté chez 48% des prospects à froid.</p>
+                    <p class="response-tip">
+                        <strong>Contre-argumentaire :</strong> "Nous comprenons parfaitement, 97% de nos hôtes partagent ce sentiment. C'est pourquoi nous cessons toute prospection à froid. Nous vous invitons plutôt à nos Afterworks régionaux d'experts, axés sur la conformité de la nouvelle **Loi ALUR** (fiscalité LMNP). Pas de vente agressive, seulement de la réassurance et de la mise en réseau de propriétaires de prestige."
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function runSimulation() {
+            const count = parseInt(document.getElementById("callsCount").value) || 1000;
+            
+            document.getElementById("sim-hangup").textContent = Math.round(count * 0.48);
+            document.getElementById("sim-intrusive").textContent = Math.round(count * 0.87);
+            document.getElementById("sim-distrust").textContent = Math.round(count * 0.96);
+            document.getElementById("sim-accept").textContent = Math.round(count * 0.04);
+        }
+    </script>
+</body>
+</html>

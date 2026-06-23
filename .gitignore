@@ -22,3 +22,5 @@ node_modules/
 *.m4a
 3dbc24ad-4abc-4572-8335-6239ea858b18.png
 
+# Generated HTML report for local PDF compilation
+RAPPORT_DE_MISSION_SOUTENANCE.html

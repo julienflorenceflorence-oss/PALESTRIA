@@ -64670,42 +64670,42 @@ pages.append({
     "content": """
         <h1>Chapitre 10 — Exemples de Prompts & Méthodologie <a href="#src-sommaire-CHAPITRE 10 : CONFORMITÉ IA" class="btn-sommaire">↩ RETOUR SOMMAIRE (p. 2)</a></h1>
         
-        <h2>Curation de l'IA par l'ingénierie de prompts directifs</h2>
+        <h2>Curation de l'IA par l'ingénierie de prompts directifs et structurels</h2>
         
-        <p>Pour garantir l'alignement de l'outil sur les exigences académiques et la réalité de l'entreprise Happy House, une série de prompts directifs et restrictifs a été élaborée par l'auteur. Ci-dessous, trois exemples concrets de prompts utilisés :</p>
+        <p>Afin de respecter scrupuleusement les exigences de délimitation du jury (non-génération de contenu analytique), l'IA a été bridée via des consignes restrictives. Son rôle a été confiné à la mise en page interactive et au rendu visuel. Ci-dessous, trois exemples de prompts d'ingénierie de mise en page utilisés :</p>
         
         <!-- PROMPT 1 -->
         <div class="glass-card" style="border-left: 4px solid var(--gold); padding: 15px; margin-top: 15px; background: rgba(212, 175, 55, 0.02);">
             <div style="font-weight: bold; color: var(--gold); font-size: 9.5pt; text-transform: uppercase; margin-bottom: 5px; font-family: 'Cinzel', serif;">
-                Exemple 1 : Curation du Style "Consulting" (Alignement Métier)
+                Exemple 1 : Identité Visuelle Prestige & Intégration Typographique (CSS)
             </div>
             <p style="font-family: monospace; font-size: 8.5pt; color: var(--text-muted); margin-bottom: 0; line-height: 1.4; text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 3px;">
-                "Agis en tant que consultant senior en stratégie. Relis ce brouillon de diagnostic et réécris-le en adoptant un ton clinique, factuel et analytique. Utilise le vouvoiement pour les équipes Happy House et applique la règle des rendements décroissants pour l'acquisition. Pas de jargon commercial générique, uniquement de la précision financière et opérationnelle."
+                "Formate le texte analytique ci-joint dans une structure HTML5 sémantique. Applique l'esthétique 'Édition Prestige' : fond sombre (#0F1115), texte contrasté (#E2E8F0), polices Montserrat (corps) et Cinzel (titres), avec des bordures d'accentuation dorées (#D4AF37). Conserve mot pour mot mon diagnostic et mes données brutes Happy House sans ajouter ni modifier un seul mot."
             </p>
         </div>
         
         <!-- PROMPT 2 -->
         <div class="glass-card" style="border-left: 4px solid var(--gold); padding: 15px; margin-top: 15px; background: rgba(212, 175, 55, 0.02);">
             <div style="font-weight: bold; color: var(--gold); font-size: 9.5pt; text-transform: uppercase; margin-bottom: 5px; font-family: 'Cinzel', serif;">
-                Exemple 2 : Script Python de Traitement & Filtrage ALUR (Sûreté de Code)
+                Exemple 2 : Gestion de l'Interactivité & Format d'Impression A4 (CSS Print)
             </div>
             <p style="font-family: monospace; font-size: 8.5pt; color: var(--text-muted); margin-bottom: 0; line-height: 1.4; text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 3px;">
-                "Écris un script Python optimisé pour traiter une base de données de 126k contacts d'hébergements. Le script doit filtrer et exclure automatiquement les zones soumises à la réglementation ALUR stricte (limite d'exploitation des meublés de tourisme). Calcule le ratio LTV/CAC et génère le fichier nettoyé en sortie pour l'onboarding Happy House."
+                "Configure la feuille de style CSS pour le rendu d'impression de sorte que chaque fin de chapitre force un saut de page physique ('page-break-after: always') lors de l'export PDF sous format A4 standard. Rajoute des boutons interactifs de retour au sommaire pour la version de lecture d'écran sans altérer la mise en page imprimée."
             </p>
         </div>
         
         <!-- PROMPT 3 -->
         <div class="glass-card" style="border-left: 4px solid var(--gold); padding: 15px; margin-top: 15px; background: rgba(212, 175, 55, 0.02);">
             <div style="font-weight: bold; color: var(--gold); font-size: 9.5pt; text-transform: uppercase; margin-bottom: 5px; font-family: 'Cinzel', serif;">
-                Exemple 3 : Ingénierie Financière & Modélisation du Pivot (Chiffrage)
+                Exemple 3 : Encadrement des restrictions du jury (Non-Génération Éthique)
             </div>
             <p style="font-family: monospace; font-size: 8.5pt; color: var(--text-muted); margin-bottom: 0; line-height: 1.4; text-align: left; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 3px;">
-                "Modélise le budget d'acquisition sur 12 mois pour le pivot Inbound de Happy House. Utilise un CAC cible de 1 400 € et un budget de 1 500 € pour la phase initiale d'Afterworks de conformité. Calcule la rentabilité par horizon en considérant un ARPU de 226 € et un taux de churn Outbound résiduel de 18 %."
+                "Interdiction formelle de proposer de nouvelles conclusions stratégiques, d'extrapoler sur le cas du Domaine de la Preuve ou de modifier le ratio LTV/CAC (0.16) et l'ARPU (226€) fournis. Agis uniquement comme un moteur de rendu CSS et un styliseur de tableaux HTML à partir de mes données d'audit d'acquisition."
             </p>
         </div>
         
         <p style="font-size: 9.5pt; text-align: justify; margin-top: 15px; color: var(--text-muted); margin-bottom: 0;">
-            Ces prompts montrent que l'IA a fonctionné sous une direction humaine stricte et ciblée, où la modélisation sous-jacente des données et le diagnostic final relèvent de la seule expertise métier de l'auteur.
+            Ces prompts démontrent que l'utilisation de l'intelligence artificielle s'est strictement limitée à des tâches matérielles d'intégration technique et d'interactivité visuelle, plaçant l'intégralité de la réflexion analytique sous la souveraineté intellectuelle de l'auteur.
         </p>
     """
 })

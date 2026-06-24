@@ -398,7 +398,7 @@ html_content = """<!DOCTYPE html>
         <!-- SLIDE 7 : RÉTENTION & CENTRALE D'ACHAT ENTEGRA -->
         <div class="slide">
             <h2 class="subtitle">Le Levier Rétention : Centrale Entegra</h2>
-            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Étude de cas pilote : Domaine "La Durentie"</div>
+            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Étude de cas pilote : Domaine de la Preuve</div>
             <div class="grid-3" style="align-items: stretch;">
                 <div class="card border-red" style="display: flex; flex-direction: column; justify-content: center;">
                     <div class="label text-red">Investissement Hébergeur</div>
@@ -434,7 +434,7 @@ html_content = """<!DOCTYPE html>
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2vh; margin-bottom: 3vh;">
                     <div>
                         <span class="label" style="color: var(--gold);">Suivi du Retour sur Investissement</span>
-                        <h3 class="cinzel" style="color: #FFF; font-size: 1.8vw; margin-top: 0.5vh;">DOMAINE DE LA DURENTIE</h3>
+                        <h3 class="cinzel" style="color: #FFF; font-size: 1.8vw; margin-top: 0.5vh;">DOMAINE DE LA PREUVE</h3>
                     </div>
                     <div style="background: rgba(46,204,113,0.15); border: 1px solid var(--green); color: var(--green); padding: 5px 15px; border-radius: 20px; font-size: 0.9vw; font-weight: bold; letter-spacing: 1px;">
                         ADHÉSION ACTIVÉE & RENTABILISÉE

@@ -110,9 +110,9 @@ def generate_html(html_path):
 
         .footer {
             position: absolute;
-            bottom: 12mm;
-            left: 20mm;
-            right: 20mm;
+            bottom: 16mm;
+            left: 25mm;
+            right: 25mm;
             display: flex;
             justify-content: space-between;
             align-items: center;

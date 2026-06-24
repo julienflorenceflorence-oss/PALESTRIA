@@ -220,10 +220,10 @@ html_content = """<!DOCTYPE html>
 
         <!-- SLIDE 1 : COUVERTURE -->
         <div class="slide active">
-            <div class="label" style="margin-bottom: 2vh; color: var(--gold); font-size: 1.2vw;">CONSULTING STRATÉGIQUE & INGÉNIERIE COMMERCIALE</div>
+            <div class="label" style="margin-bottom: 2vh; color: var(--gold); font-size: 1.2vw;">AUDIT COMMERCIAL &amp; BLOCAGE ORGANISATIONNEL</div>
             <h1 class="big-title">HAPPY HOUSE</h1>
             <div style="width: 15vw; height: 2px; background: var(--gold); margin: 2vh 0 4vh 0;"></div>
-            <h2 class="cinzel text-gold" style="font-size: 2.2vw; font-weight: 400; letter-spacing: 4px; margin-bottom: 6vh; text-align: center;">LE PIVOT DE LA PÉRENNITÉ</h2>
+            <h2 class="cinzel text-gold" style="font-size: 2vw; font-weight: 400; letter-spacing: 4px; margin-bottom: 6vh; text-align: center;">LA RÉSISTANCE AU PIVOT STRATÉGIQUE</h2>
             
             <div style="text-align: center; margin-top: 4vh;">
                 <p style="font-size: 1.6vw; font-weight: 700; letter-spacing: 4px; color: #FFF;">JULIEN FLORENCE</p>
@@ -232,30 +232,30 @@ html_content = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- SLIDE 2 : PROBLÉMATIQUE & HYPOTHÈSE -->
+        <!-- SLIDE 2 : PROBLÉMATIQUE & RÉSISTANCE -->
         <div class="slide">
-            <h2 class="subtitle">Problématique & Hypothèse</h2>
+            <h2 class="subtitle">Problématique &amp; Friction Directeur</h2>
             <div class="grid-2" style="margin-top: 2vh; align-items: stretch;">
                 <div class="card border-red" style="text-align: left;">
-                    <div class="label" style="color: var(--red); margin-bottom: 2vh;">Le Défi SMART (2026)</div>
-                    <h3 class="cinzel" style="font-size: 1.8vw; margin-bottom: 3vh; color: #FFF; line-height: 1.4;">
-                        Comment structurer un modèle commercial capable de réduire le CAC, de verrouiller la rétention et de croître sans autre budget que nos salaires ?
+                    <div class="label" style="color: var(--red); margin-bottom: 2vh;">La Question Centrale</div>
+                    <h3 class="cinzel" style="font-size: 1.6vw; margin-bottom: 3vh; color: #FFF; line-height: 1.4;">
+                        Comment recommander un modèle de rupture commerciale face aux unit economics quand la direction refuse le changement opérationnel ?
                     </h3>
-                    <p style="font-size: 1.1vw; color: #999; line-height: 1.6;">
-                        • Cibler l'efficience opérationnelle<br>
-                        • Mettre fin aux processus manuels et diffus<br>
-                        • Financer le développement sur la trésorerie
+                    <p style="font-size: 1vw; color: #999; line-height: 1.6;">
+                        • **Arbitrages bloqués** par Patrice (Dir. Général)<br>
+                        • **Crainte du changement** : attachement au modèle relationnel historique<br>
+                        • **Inaction** : maintien de l'outbound SDR traditionnel
                     </p>
                 </div>
-                <div class="card border-green" style="text-align: left; background: rgba(46, 204, 113, 0.03);">
-                    <div class="label" style="color: var(--green); margin-bottom: 2vh;">L'Hypothèse Arithmétique</div>
-                    <h3 class="cinzel" style="font-size: 1.8vw; margin-bottom: 3vh; color: #FFF; line-height: 1.4;">
-                        La croissance ne dépend pas de l'intensité de l'effort humain, mais de la qualification en amont et de la valeur en aval.
+                <div class="card border-gold" style="text-align: left; background: rgba(212, 175, 55, 0.02);">
+                    <div class="label" style="color: var(--gold); margin-bottom: 2vh;">Le Post-Mortem de l'Alternant</div>
+                    <h3 class="cinzel" style="font-size: 1.6vw; margin-bottom: 3vh; color: #FFF; line-height: 1.4;">
+                        L'ingénierie d'affaires ne se limite pas à la donnée. Elle se heurte à la politique et à la gouvernance d'entreprise.
                     </h3>
-                    <p style="font-size: 1.1vw; color: #999; line-height: 1.6;">
-                        • **Qualification IA** : Zéro coût d'outillage direct<br>
-                        • **Coût-Killing B2B** : Valeur immédiate via centrale d'achat<br>
-                        • **Dashboard ROI** : Matérialisation de la preuve
+                    <p style="font-size: 1vw; color: #999; line-height: 1.6;">
+                        • Conception de **prototypes fonctionnels** validés<br>
+                        • Devoir d'alerte et de recommandation face au crash comptable<br>
+                        • Analyse objective de la résistance organisationnelle
                     </p>
                 </div>
             </div>
@@ -296,7 +296,7 @@ html_content = """<!DOCTYPE html>
 
         <!-- SLIDE 4 : LE DIAGNOSTIC INTERNE -->
         <div class="slide">
-            <h2 class="subtitle text-red" style="border-color: rgba(231,76,60,0.25);">Diagnostic Interne : Le Double Effondrement</h2>
+            <h2 class="subtitle text-red" style="border-color: rgba(231,76,60,0.25);">Diagnostic Interne : La Preuve du Crash</h2>
             <div class="grid-3" style="margin-top: 2vh;">
                 <div class="card border-red">
                     <div class="label text-red">Efficacité Acquisition</div>
@@ -329,41 +329,40 @@ html_content = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- SLIDE 5 : LE PIVOT STRATÉGIQUE -->
+        <!-- SLIDE 5 : LA RECOMMANDATION DE PIVOT (REJETÉE) -->
         <div class="slide">
-            <h2 class="subtitle">Le Pivot : Rationalisation & Rôles</h2>
+            <h2 class="subtitle">La Proposition de Pivot &amp; Le Veto</h2>
             <div class="grid-2" style="margin-top: 2vh;">
-                <div class="card border-red" style="text-align: left;">
-                    <div class="label" style="color: var(--red); margin-bottom: 1.5vh;">Ancien Modèle (Déficitaire)</div>
-                    <h3 class="cinzel" style="font-size: 1.4vw; color: #FFF; margin-bottom: 2vh;">Prospection Téléphonique Cold Calling</h3>
-                    <p style="font-size: 1vw; color: #999; line-height: 1.6;">
-                        • **Coût unitaire SDR** : 1 823 € par signature.<br>
-                        • **Cible** : Listing brut et non-qualifié.<br>
-                        • **Positionnement** : Outil commercial de visibilité incertaine.
+                <div class="card border-green" style="text-align: left; background: rgba(46,204,113,0.01);">
+                    <div class="label" style="color: var(--green); margin-bottom: 1.5vh;">Notre Recommandation (Julien/Ruddy)</div>
+                    <h3 class="cinzel" style="font-size: 1.3vw; color: #FFF; margin-bottom: 2vh;">Inbound Sélectif &amp; Rétention Financière</h3>
+                    <p style="font-size: 0.95vw; color: #999; line-height: 1.6;">
+                        • **Acquisition** : Afterworks régionaux (CPA cible : 166 €).<br>
+                        • **Proposition de valeur** : Centrale Entegra &amp; Cost-killing.<br>
+                        • **Fidélisation** : Dashboard de preuve ROI en temps réel.
                     </p>
                 </div>
-                <div class="card border-green" style="text-align: left; background: rgba(46,204,113,0.02);">
-                    <div class="label" style="color: var(--green); margin-bottom: 1.5vh;">Nouveau Modèle (Viable)</div>
-                    <h3 class="cinzel" style="font-size: 1.4vw; color: #FFF; margin-bottom: 2vh;">Inbound Qualifié & Rétention Financière</h3>
-                    <p style="font-size: 1vw; color: #999; line-height: 1.6;">
-                        • **Canal d'Acquisition** : Afterworks régionaux (CPA cible : 166 €).<br>
-                        • **Proposition de valeur** : Centrale d'achat & Cost-killing direct.<br>
-                        • **Sécurisation** : Onboarding axé usage & Suivi Dashboard.
+                <div class="card border-red" style="text-align: left; background: rgba(231,76,60,0.01);">
+                    <div class="label" style="color: var(--red); margin-bottom: 1.5vh;">La Décision de la Direction (Patrice)</div>
+                    <h3 class="cinzel" style="font-size: 1.3vw; color: #FFF; margin-bottom: 2vh;">Refus du Pivot &amp; Maintien du Status Quo</h3>
+                    <p style="font-size: 0.95vw; color: #999; line-height: 1.6;">
+                        • **Aversion au Risque** : Peur de détruire l'image de relation premium.<br>
+                        • **Refus du Cost-Killing** : Incompréhension du levier centrale d'achats.<br>
+                        • **Arbitrage** : Poursuite de la prospection SDR traditionnelle.
                     </p>
                 </div>
             </div>
             <div class="card" style="width: 100%; max-width: 1300px; margin-top: 4vh; border-color: var(--gold); padding: 1.5vw; text-align: left;">
-                <div class="label" style="color: var(--gold); margin-bottom: 1vh;">Synergie du Binôme : Répartition Rigoureuse</div>
+                <div class="label" style="color: var(--gold); margin-bottom: 1vh;">Constat d'Inaction Opérationnelle</div>
                 <p style="font-size: 1.1vw; color: #DDD;">
-                    • **Ruddy Marie-Luce** : Trafic voyageur, SEO & Génération de demande organique à coût zéro.<br>
-                    • **Julien Florence** : Structuration de l'offre B2B, négociation grand compte, automatisation IA & Rétention.
+                    Suite au veto de Patrice, **aucune des transformations B2B préconisées n'a pu être implémentée**. Les processus commerciaux sont restés artisanaux et le CAC outbound est resté à son niveau de perte historique.
                 </p>
             </div>
         </div>
 
-        <!-- SLIDE 6 : L'INGÉNIERIE ACQUISITION DATA -->
+        <!-- SLIDE 6 : LE PROTOTYPE DE SOURCING DATA -->
         <div class="slide">
-            <h2 class="subtitle">Qualification Data : n8n & Gemini AI</h2>
+            <h2 class="subtitle">Sourcing Automatisé : Preuve de Concept</h2>
             <div class="workflow-container">
                 <div class="card workflow-step" style="border-color: rgba(255,255,255,0.15);">
                     <div class="label" style="margin-bottom: 1vh;">1. Extraction Brute</div>
@@ -374,70 +373,73 @@ html_content = """<!DOCTYPE html>
                 <div class="card workflow-step" style="border-color: var(--gold);">
                     <div class="label" style="margin-bottom: 1vh; color: var(--gold);">2. Orchestration IA</div>
                     <h3 class="cinzel" style="font-size: 1.4vw; color: #FFF;">n8n + Gemini</h3>
-                    <p style="font-size: 0.9vw; color: #888; margin-top: 1vh;">Filtrage et scoring automatique Loi ALUR & DPE.</p>
+                    <p style="font-size: 0.9vw; color: #888; margin-top: 1vh;">Filtrage et scoring automatique Loi ALUR &amp; DPE.</p>
                 </div>
                 <div class="workflow-arrow">➔</div>
-                <div class="card workflow-step" style="border-color: var(--green); background: rgba(46,204,113,0.02);">
-                    <div class="label" style="margin-bottom: 1vh; color: var(--green);">3. Leads Actionnables</div>
-                    <h3 class="cinzel text-green" style="font-size: 1.4vw;">Google Sheets</h3>
-                    <p style="font-size: 0.9vw; color: #888; margin-top: 1vh;">Base VIP pour ciblage prioritaire des afterworks.</p>
+                <div class="card workflow-step" style="border-color: var(--gold); opacity: 0.5;">
+                    <div class="label" style="margin-bottom: 1vh; color: var(--text-light);">3. Prototype Sheets</div>
+                    <h3 class="cinzel" style="font-size: 1.4vw; color: #FFF;">Google Sheets</h3>
+                    <p style="font-size: 0.9vw; color: #888; margin-top: 1vh;">Base qualifiée de démonstration (non déployée).</p>
                 </div>
             </div>
             <div class="grid-2 mt-4" style="max-width: 1200px;">
                 <div class="border-gold" style="text-align: left;">
-                    <h4 style="font-size: 1.1vw; color: #FFF;">Sourcing Inbound Ciblé</h4>
-                    <p style="font-size: 0.95vw; color: #888; margin-top: 0.5vh;">Nos équipes n'interviennent que sur des prospects dont la maturité et les besoins de conformité réglementaire sont scientifiquement qualifiés.</p>
+                    <h4 style="font-size: 1.1vw; color: #FFF;">Preuve de Faisabilité Technique</h4>
+                    <p style="font-size: 0.95vw; color: #888; margin-top: 0.5vh;">J'ai développé un pipeline fonctionnel sous n8n pour prouver qu'un sourcing qualifié à coût d'outillage direct de **0 €** est possible, malgré le refus de déploiement.</p>
                 </div>
-                <div class="border-green" style="text-align: left;">
-                    <h4 style="font-size: 1.1vw; color: #FFF;">Coût d'infrastructure direct</h4>
-                    <p style="font-size: 0.95vw; color: #888; margin-top: 0.5vh;">**0 € de coût récurrent d'outillage**. Exploitation d'outils open source gratuits et d'API à faible coût marginal par exécution.</p>
+                <div class="border-red" style="text-align: left;">
+                    <h4 style="font-size: 1.1vw; color: #FFF;">Limitation en Production</h4>
+                    <p style="font-size: 0.95vw; color: #888; margin-top: 0.5vh;">Le script n'a pas été connecté au flux commercial, la direction préférant conserver les recherches manuelles et le cold calling à froid.</p>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 7 : RÉTENTION & CENTRALE D'ACHAT ENTEGRA -->
+        <!-- SLIDE 7 : SIMULATION FINANCIÈRE : CENTRALE ENTEGRA -->
         <div class="slide">
-            <h2 class="subtitle">Le Levier Rétention : Centrale Entegra</h2>
-            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Étude de cas pilote : Domaine de la Preuve</div>
+            <h2 class="subtitle">La Centrale d'Achat : Modélisation Financière</h2>
+            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Simulation de ROI d'un Domaine Pilote ("Domaine de la Preuve")</div>
             <div class="grid-3" style="align-items: stretch;">
                 <div class="card border-red" style="display: flex; flex-direction: column; justify-content: center;">
-                    <div class="label text-red">Investissement Hébergeur</div>
+                    <div class="label text-red">Investissement Restant</div>
                     <div class="cinzel" style="font-size: 3.5vw; color: var(--red); font-weight: bold; margin: 1.5vh 0;">360&nbsp;€</div>
-                    <div class="label" style="color: #FFF;">Cotisation Annuelle HT</div>
+                    <div class="label" style="color: #FFF;">Cotisation Happy House HT</div>
                 </div>
-                <div class="card border-green" style="grid-column: span 2; text-align: left; background: rgba(46,204,113,0.02);">
-                    <div class="label text-green" style="margin-bottom: 1.5vh;">Économies Opérationnelles Réelles Négociées</div>
+                <div class="card border-green" style="grid-column: span 2; text-align: left; background: rgba(46,204,113,0.02); opacity: 0.7;">
+                    <div class="label text-green" style="margin-bottom: 1.5vh;">Économies Opérationnelles Potentielles Modélisées</div>
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2vw;">
                         <div>
                             <h4 style="color: #FFF; font-size: 1.1vw;">F&B (Alimentaire)</h4>
                             <p style="font-size: 1.8vw; color: var(--green); font-weight: 700; margin: 0.5vh 0;">- 2&nbsp;145&nbsp;€</p>
-                            <p style="font-size: 0.9vw; color: #888;">(Gain de 15% sur 14 300 € d'achats)</p>
+                            <p style="font-size: 0.9vw; color: #888;">(Gain théorique de 15% sur 14 300 € d'achats)</p>
                         </div>
                         <div>
-                            <h4 style="color: #FFF; font-size: 1.1vw;">Blanchisserie & Gaz</h4>
+                            <h4 style="color: #FFF; font-size: 1.1vw;">Blanchisserie &amp; Gaz</h4>
                             <p style="font-size: 1.8vw; color: var(--green); font-weight: 700; margin: 0.5vh 0;">- 910&nbsp;€</p>
-                            <p style="font-size: 0.9vw; color: #888;">(Gain négocié avec nos prestataires régionaux)</p>
+                            <p style="font-size: 0.9vw; color: #888;">(Gain potentiel négocié)</p>
                         </div>
                     </div>
                     <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2vh; padding-top: 1.5vh; display: flex; justify-content: space-between; align-items: center;">
-                        <span class="cinzel text-gold" style="font-size: 1.3vw;">Gain Net Annuel : + 3&nbsp;055&nbsp;€</span>
-                        <span class="label text-green" style="font-size: 0.9vw;">ROI Client : 8,5x la cotisation</span>
+                        <span class="cinzel text-gold" style="font-size: 1.3vw;">Gain Net Théorique : + 3&nbsp;055&nbsp;€</span>
+                        <span class="label text-green" style="font-size: 0.9vw;">ROI Modélisé : 8,5x la cotisation</span>
                     </div>
                 </div>
             </div>
+            <div style="margin-top: 4vh; text-align: center; font-size: 1.1vw; color: var(--red); font-style: italic;">
+                *Le partenariat Entegra a été négocié mais la direction a refusé d'imposer son onboarding technique aux hébergeurs.*
+            </div>
         </div>
 
-        <!-- SLIDE 8 : PREUVE DE PERFORMANCE (DASHBOARD ROI) -->
+        <!-- SLIDE 8 : MAQUETTE DASHBOARD ROI (CONCEPT) -->
         <div class="slide">
-            <h2 class="subtitle">Preuve de Performance : Dashboard ROI</h2>
-            <div class="card" style="width: 100%; max-width: 1100px; text-align: left; padding: 2.5vw; border-color: var(--gold); background: #13151D;">
+            <h2 class="subtitle">Le Dashboard ROI : Maquette Conceptuelle</h2>
+            <div class="card" style="width: 100%; max-width: 1100px; text-align: left; padding: 2.5vw; border-color: var(--red); background: #13151D; opacity: 0.6;">
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2vh; margin-bottom: 3vh;">
                     <div>
-                        <span class="label" style="color: var(--gold);">Suivi du Retour sur Investissement</span>
-                        <h3 class="cinzel" style="color: #FFF; font-size: 1.8vw; margin-top: 0.5vh;">DOMAINE DE LA PREUVE</h3>
+                        <span class="label" style="color: var(--red);">Prototype Non-Déployé</span>
+                        <h3 class="cinzel" style="color: #FFF; font-size: 1.8vw; margin-top: 0.5vh;">SIMULATION : DOMAINE DE LA PREUVE</h3>
                     </div>
-                    <div style="background: rgba(46,204,113,0.15); border: 1px solid var(--green); color: var(--green); padding: 5px 15px; border-radius: 20px; font-size: 0.9vw; font-weight: bold; letter-spacing: 1px;">
-                        ADHÉSION ACTIVÉE & RENTABILISÉE
+                    <div style="background: rgba(231,76,60,0.15); border: 1px solid var(--red); color: var(--red); padding: 5px 15px; border-radius: 20px; font-size: 0.9vw; font-weight: bold; letter-spacing: 1px;">
+                        MOCKUP DE DÉMONSTRATION
                     </div>
                 </div>
                 
@@ -447,7 +449,7 @@ html_content = """<!DOCTYPE html>
                         <p class="cinzel text-red" style="font-size: 2.5vw; font-weight: 700; margin-top: 1vh;">- 360&nbsp;€</p>
                     </div>
                     <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 1vw; padding-left: 1vw;">
-                        <span class="label">Économies cumulées (Entegra)</span>
+                        <span class="label">Économies simulées</span>
                         <p class="cinzel text-green" style="font-size: 2.5vw; font-weight: 700; margin-top: 1vh;">+ 3&nbsp;055&nbsp;€</p>
                     </div>
                     <div style="padding-left: 1vw;">
@@ -458,69 +460,63 @@ html_content = """<!DOCTYPE html>
                 
                 <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 3vh; padding-top: 2vh; display: flex; justify-content: space-between; align-items: center;">
                     <span class="label" style="color: #888;">Gains cumulés Happy House : <strong>4 255 €</strong></span>
-                    <span class="cinzel text-gold" style="font-size: 1.6vw; font-weight: bold;">Indice ROI Global : 11,8x</span>
+                    <span class="cinzel text-gold" style="font-size: 1.6vw; font-weight: bold;">Indice ROI Global théorique : 11,8x</span>
                 </div>
             </div>
         </div>
 
-        <!-- SLIDE 9 : PLAN M12, BUDGET & GOUVERNANCE RSE -->
+        <!-- SLIDE 9 : ANALYSE DU BLOCAGE & COÛT DE L'INACTION -->
         <div class="slide">
-            <h2 class="subtitle">Plan d'Action M12 & Sécurisation</h2>
+            <h2 class="subtitle">Analyse du Blocage &amp; Coût de l'Inaction</h2>
             <div class="grid-2" style="margin-top: 2vh;">
-                <div class="card border-gold" style="text-align: left;">
-                    <div class="label" style="color: var(--gold); margin-bottom: 1.5vh;">Budget & Actions M12</div>
-                    <h3 class="cinzel" style="font-size: 1.5vw; color: #FFF; margin-bottom: 2vh;">3&nbsp;500&nbsp;€ réalloués</h3>
+                <div class="card border-red" style="text-align: left;">
+                    <div class="label" style="color: var(--red); margin-bottom: 1.5vh;">Les Facteurs du Refus Directeur</div>
+                    <h3 class="cinzel" style="font-size: 1.4vw; color: #FFF; margin-bottom: 2vh;">Les Obstacles au Changement</h3>
                     <p style="font-size: 1vw; color: #999; line-height: 1.6;">
-                        • **Financement** : Suppression des charges SDR.<br>
-                        • **Actions** : Organisation de 6 Afterworks locaux VIP.<br>
-                        • **Frais** : Location de lieux, communication, serveurs n8n.
+                        • **Aversion technique** : Peur de complexifier la relation humaine.<br>
+                        • **Crainte réglementaire** : Risque perçu sur l'automatisation IA.<br>
+                        • **Biais de survie** : Illusion de rentabilité des ventes SDR historiques.
                     </p>
                 </div>
                 <div class="card border-red" style="text-align: left;">
-                    <div class="label" style="color: var(--red); margin-bottom: 1.5vh;">Triggers de Risque & COPIL</div>
-                    <h3 class="cinzel" style="font-size: 1.5vw; color: #FFF; margin-bottom: 2vh;">Règles de Pilotage strictes</h3>
+                    <div class="label" style="color: var(--red); margin-bottom: 1.5vh;">Le Coût de l'Inaction (M12)</div>
+                    <h3 class="cinzel" style="font-size: 1.4vw; color: #FFF; margin-bottom: 2vh;">Impact de la Décision Patrice</h3>
                     <p style="font-size: 1vw; color: #999; line-height: 1.6;">
-                        • **Alerte CPA** : Si CPA > 200 €, analyse corrective d'urgence.<br>
-                        • **Plan de Contingence** : Si 2ème échec consécutif, arrêt immédiat du canal afterwork et focus sur la rétention pure.
+                        • **CAC commercial** bloqué à **1 823 €** (Prospection froide).<br>
+                        • **Perte nette de marge** : pas d'économies d'échelle Entegra.<br>
+                        • **Fidélisation** : Churn maintenu à son niveau critique de **80 %**.
                     </p>
                 </div>
-            </div>
-            <div class="card" style="width: 100%; max-width: 1300px; margin-top: 4vh; border-color: rgba(46,204,113,0.3); padding: 1.5vw; text-align: left; background: rgba(46,204,113,0.01);">
-                <div class="label" style="color: var(--green); margin-bottom: 1vh;">Gouvernance & Intégration RSE</div>
-                <p style="font-size: 1.1vw; color: #DDD;">
-                    • **Loi ALUR** : Validation stricte des dossiers d'adhésion pour éliminer les risques de non-conformité administrative.<br>
-                    • **Approvisionnement Responsable** : Réduction carbone via le groupement régional de fournisseurs Entegra.
-                </p>
             </div>
         </div>
 
         <!-- SLIDE 10 : CONCLUSION & BILAN PERSONNEL -->
         <div class="slide">
-            <h2 class="subtitle">Conclusion & Bilan Personnel</h2>
+            <h2 class="subtitle">Conclusion &amp; Bilan du Consultant</h2>
             <div class="grid-2" style="margin-top: 2vh; align-items: stretch;">
                 <div class="card border-gold" style="text-align: left;">
-                    <div class="label" style="color: var(--gold); margin-bottom: 1.5vh;">Maturité Acquise</div>
-                    <h3 class="cinzel" style="font-size: 1.5vw; color: #FFF; margin-bottom: 2vh;">Directeur du Développement Stratégique</h3>
+                    <div class="label" style="color: var(--gold); margin-bottom: 1.5vh;">La Maturité Face au Réel</div>
+                    <h3 class="cinzel" style="font-size: 1.5vw; color: #FFF; margin-bottom: 2vh;">Leçons de Conduite du Changement</h3>
                     <p style="font-size: 1vw; color: #999; line-height: 1.6;">
-                        • Rigueur analytique face aux *unit economics* B2B.<br>
-                        • Compétences de négociation grand compte (Partenariat Entegra).<br>
-                        • Conception d'architectures d'automatisation IA (no-code / API).
+                        • Apprentissage de la **résistance organisationnelle**.<br>
+                        • Importance de la négociation et de l'alignement des décideurs.<br>
+                        • Capacité à concevoir des architectures techniques autonomes (0€).
                     </p>
                 </div>
                 <div class="card border-green" style="text-align: left; background: rgba(46, 204, 113, 0.02);">
                     <div class="label" style="color: var(--green); margin-bottom: 1.5vh;">La Suite (Horizon 2028)</div>
                     <h3 class="cinzel" style="font-size: 1.5vw; color: #FFF; margin-bottom: 2vh;">Direction du Développement — PalestrIA</h3>
                     <p style="font-size: 1vw; color: #999; line-height: 1.6;">
-                        • Leadership d'affaires sur des stratégies B2B Premium.<br>
-                        • Synergie opérationnelle poussée entre l'Intelligence Artificielle et le commerce de relations.<br>
-                        • Résolution de problèmes complexes sous contrainte budgétaire.
+                        • Leadership d'affaires sur des stratégies B2B complexes.<br>
+                        • Conception d'infrastructures IA adaptées à la culture d'entreprise.<br>
+                        • Intégration de la donnée comme outil d'alignement exécutif.
                     </p>
                 </div>
             </div>
             
             <div style="width: 100%; text-align: center; margin-top: 5vh;">
-                <p style="font-size: 1.4vw; font-weight: 200; font-family: 'Cinzel', serif; letter-spacing: 2px;">
-                    "L'HUMAIN SANS LA TECHNOLOGIE EST SA PROPRE LIMITE DE CROISSANCE... MAIS LA TECHNOLOGIE SANS L'HUMAIN MANQUE D'EFFICIENCE."
+                <p style="font-size: 1.3vw; font-weight: 200; font-family: 'Cinzel', serif; letter-spacing: 2px;">
+                    "L'HUMAIN SANS LA TECHNOLOGIE EST SA PROPRE LIMITE... MAIS LA TECHNOLOGIE SANS L'HUMAIN SE HEURTE AUX LIMITES DE L'ORGANISATION."
                 </p>
             </div>
         </div>

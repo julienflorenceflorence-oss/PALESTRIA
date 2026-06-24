@@ -98,7 +98,7 @@ def generate_html(html_path):
         .bottom-left { bottom: 8mm; left: 8mm; border-right: none; border-top: none; }
         .bottom-right { bottom: 8mm; right: 8mm; border-left: none; border-top: none; }
 
-        .content { padding: 25mm 20mm; position: relative; z-index: 10; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; }
+        .content { padding: 25mm 20mm 35mm 20mm; position: relative; z-index: 10; flex-grow: 1; display: flex; flex-direction: column; justify-content: flex-start; }
 
         h1 { font-family: 'Cinzel', serif; color: var(--gold); font-size: 20pt; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 25px; text-align: center; font-weight: 700; }
         h2 { font-family: 'Cinzel', serif; color: var(--gold-light); font-size: 14pt; border-left: 3px solid var(--gold); padding-left: 15px; margin: 25px 0 15px 0; text-transform: uppercase; letter-spacing: 2px; }
@@ -108,7 +108,24 @@ def generate_html(html_path):
         .glass-card { background: var(--card-bg); backdrop-filter: blur(10px); border: 1px solid var(--border-gold); padding: 20px; border-radius: 4px; margin: 15px 0; position: relative; }
         .glass-card::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
 
-        .footer { position: absolute; bottom: 10mm; left: 20mm; right: 20mm; display: flex; justify-content: space-between; align-items: center; font-family: 'Cinzel', serif; font-size: 8pt; color: var(--gold); letter-spacing: 2px; z-index: 100; border-top: 1px solid rgba(212, 175, 55, 0.3); padding-top: 5px; }
+        .footer {
+            position: absolute;
+            bottom: 12mm;
+            left: 20mm;
+            right: 20mm;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Cinzel', serif;
+            font-size: 8pt;
+            color: var(--gold);
+            letter-spacing: 2px;
+            z-index: 100;
+            border-top: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 3px 10px;
+            background-color: var(--bg-dark);
+            font-weight: bold;
+        }
         .page-number { font-weight: 700; }
 
         .cover { justify-content: center; align-items: center; text-align: center; background-color: var(--bg-dark); }
@@ -120,8 +137,8 @@ def generate_html(html_path):
         .author-role { color: #FFF; font-size: 9pt; text-transform: uppercase; letter-spacing: 2px; margin-top: 5px; }
 
         table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 8.5pt; }
-        th { background: rgba(212, 175, 55, 0.1); color: var(--gold); font-family: 'Cinzel', serif; padding: 8px 10px; border: 1px solid var(--border-gold); text-align: left; font-size: 8pt; }
-        td { padding: 8px 10px; border: 1px solid var(--border-gold); background: rgba(255,255,255,0.01); color: #fff; vertical-align: top; }
+        th { background: rgba(212, 175, 55, 0.1); color: var(--gold); font-family: 'Cinzel', serif; padding: 6px 8px; border: 1px solid var(--border-gold); text-align: left; font-size: 8pt; }
+        td { padding: 6px 8px; border: 1px solid var(--border-gold); background: rgba(255,255,255,0.01); color: #fff; vertical-align: top; }
         
         .source-tag { font-size: 7.5pt; color: var(--gold-light); font-style: italic; }
     </style>
@@ -139,7 +156,7 @@ def generate_html(html_path):
             <div class="glass-card" style="width: 90%; max-width: 500px; margin: 20px auto; padding: 20px; text-align: left;">
                 <h3 style="margin-top: 0; text-align: center;">Synthèse Métrique</h3>
                 <p style="font-size: 9pt; color: var(--text-muted); margin-bottom: 0; text-align: justify; line-height: 1.5;">
-                    Ce recueil de données consolidées dresse l'état des lieux de la distribution numérique hôtelière (OTAs) et de l'évolution réglementaire des labels de tourisme durable et de qualité en France et en Europe sur la décennie 2013-2024. Il sert de cadre de référence pour justifier les arbitrages de distribution.
+                    Ce recueil de données dresse l'état des lieux de la distribution numérique hôtelière (OTAs) et de l'évolution réglementaire des labels de tourisme durable et de qualité en France et en Europe sur la décennie 2013-2024. Il sert de cadre de référence pour justifier les arbitrages de distribution.
                 </p>
             </div>
 
@@ -174,7 +191,7 @@ def generate_html(html_path):
                 Parallèlement à l'étau numérique des OTAs, les hébergeurs font face à une pression environnementale et réglementaire. Le label historique de l'État <strong>"Qualité Tourisme"</strong> (créé en 2005) a vu ses attributions s'arrêter définitivement le 31 août 2024, au profit du nouveau label <strong>"Destination d'Excellence"</strong>. Ce dernier intègre des critères stricts d'éco-responsabilité et d'accessibilité.
             </p>
             <p>
-                En réponse aux nouvelles attentes des voyageurs, les certifications éco-responsables explosent. Le label international <strong>"Clef Verte"</strong> est ainsi passé de <strong>855 établissements en 2022</strong> à une projection de <strong>2 428 établissements en 2025</strong>, soit une hausse spectaculaire de 45% par an, démontrant l'obligation pour l'hôtellerie de charme de matérialiser ses engagements durables.
+                En réponse aux nouvelles attentes des voyageurs, les certifications éco-responsables explosent. Le label international <strong>"Clef Verte"</strong> est ainsi passé de <strong>855 établissements en 2022</strong> à une projection de <strong>2&nbsp;428 établissements en 2025</strong>, soit une hausse spectaculaire de 45% par an, démontrant l'obligation pour l'hôtellerie de charme de matérialiser ses engagements durables.
             </p>
         </div>
         <div class="footer">
@@ -183,11 +200,11 @@ def generate_html(html_path):
         </div>
     </div>
 
-    <!-- PAGE 3 : TABLEAU BENCHMARK -->
+    <!-- PAGE 3 : TABLEAU BENCHMARK - PARTIE 1 (OTAs) -->
     <div class="page">
         <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
         <div class="content">
-            <h1>2. Tableau de Synthèse Comparative</h1>
+            <h1>2. Tableau de Synthèse : Marché & OTAs</h1>
             
             <table>
                 <thead>
@@ -202,29 +219,18 @@ def generate_html(html_path):
                 </thead>
                 <tbody>
                     <tr><td>2013</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>19,7%</td><td class="source-tag">HOTREC Study 2013</td></tr>
-                    <tr><td>2015</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs (nuitées cumulées)</td><td>22.0%</td><td class="source-tag">Eurostat Tourism</td></tr>
-                    <tr><td>2016</td><td>OTA</td><td>France</td><td>Voyageurs réservant via une plateforme OTA</td><td>44.0%</td><td class="source-tag">Baromètre Numérique</td></tr>
-                    <tr><td>2016</td><td>OTA</td><td>France</td><td>Français réservant leur voyage en ligne</td><td>72.0%</td><td class="source-tag">Baromètre Numérique</td></tr>
-                    <tr><td>2019</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>29.2%</td><td class="source-tag">HOTREC Study 2019</td></tr>
-                    <tr><td>2019</td><td>OTA</td><td>France</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>27.6%</td><td class="source-tag">Coach Omnium</td></tr>
-                    <tr><td>2021</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>28.8%</td><td class="source-tag">HOTREC Study 2021</td></tr>
-                    <tr><td>2023</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>29.6%</td><td class="source-tag">HOTREC / Phocuswright</td></tr>
-                    <tr><td>2023</td><td>OTA</td><td>Europe</td><td>Poids de Booking Holdings dans le marché OTA européen</td><td>71.0%</td><td class="source-tag">HOTREC Study 2023</td></tr>
-                    <tr><td>2023</td><td>OTA</td><td>Europe</td><td>Poids d'Expedia Group dans le marché OTA européen</td><td>14.4%</td><td class="source-tag">HOTREC Study 2023</td></tr>
-                    <tr><td>2024</td><td>OTA</td><td>Europe</td><td>Poids de Booking.com dans le marché OTA européen</td><td>69.3%</td><td class="source-tag">HOTREC / D-EDGE</td></tr>
-                    <tr><td>2024</td><td>OTA</td><td>Mondial</td><td>Volume du marché mondial des OTAs (Milliards $)</td><td>253.2</td><td class="source-tag">Statista Report 2024</td></tr>
-                    <tr><td>2024</td><td>OTA</td><td>Loisirs</td><td>Part des OTAs dans les revenus des loisirs</td><td>18.0%</td><td class="source-tag">Phocuswright B2B</td></tr>
-                    <tr><td>2022</td><td>Label</td><td>France</td><td>Nombre d'établissements labellisés Clef Verte</td><td>855</td><td class="source-tag">Teragir / Clef Verte</td></tr>
-                    <tr><td>2023</td><td>Label</td><td>France</td><td>Nombre d'établissements labellisés Clef Verte</td><td>1077</td><td class="source-tag">Teragir / Clef Verte</td></tr>
-                    <tr><td>2024</td><td>Label</td><td>France</td><td>Nombre d'établissements labellisés Clef Verte</td><td>1564</td><td class="source-tag">Teragir / Clef Verte</td></tr>
-                    <tr><td>2025</td><td>Label</td><td>France</td><td>Projection établissements labellisés Clef Verte</td><td>2428</td><td class="source-tag">Teragir / Clef Verte</td></tr>
-                    <tr><td>2013</td><td>Label</td><td>France</td><td>Nombre d'établissements Qualité Tourisme</td><td>5600</td><td class="source-tag">DGE Statistiques</td></tr>
-                    <tr><td>2021</td><td>Label</td><td>France</td><td>Nombre d'établissements Qualité Tourisme</td><td>4000</td><td class="source-tag">Ministère Économie</td></tr>
-                    <tr><td>2024</td><td>Label</td><td>France</td><td>Nombre d'établissements Qualité Tourisme</td><td>5000</td><td class="source-tag">DGE Bilan 2024</td></tr>
-                    <tr><td>2024</td><td>Label</td><td>France</td><td>Fin des attributions Qualité Tourisme</td><td>31 Aoû</td><td class="source-tag">Décret d'application</td></tr>
-                    <tr><td>2024</td><td>Label</td><td>France</td><td>Lancement "Destination d'Excellence" (labellisés)</td><td>203</td><td class="source-tag">DGE Septembre 2024</td></tr>
-                    <tr><td>2026</td><td>Label</td><td>France</td><td>Disparition définitive de la marque Qualité Tourisme</td><td>31 Déc</td><td class="source-tag">Décret d'application</td></tr>
-                    <tr><td>2024</td><td>Label</td><td>Europe</td><td>Nombre de produits/services certifiés Écolabel Européen</td><td>98 977</td><td class="source-tag">Commission Européenne</td></tr>
+                    <tr><td>2015</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs (nuitées cumulées)</td><td>22,0%</td><td class="source-tag">Eurostat Tourism</td></tr>
+                    <tr><td>2016</td><td>OTA</td><td>France</td><td>Voyageurs réservant via une plateforme OTA</td><td>44,0%</td><td class="source-tag">Baromètre Numérique</td></tr>
+                    <tr><td>2016</td><td>OTA</td><td>France</td><td>Français réservant leur voyage en ligne</td><td>72,0%</td><td class="source-tag">Baromètre Numérique</td></tr>
+                    <tr><td>2019</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>29,2%</td><td class="source-tag">HOTREC Study 2019</td></tr>
+                    <tr><td>2019</td><td>OTA</td><td>France</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>27,6%</td><td class="source-tag">Coach Omnium</td></tr>
+                    <tr><td>2021</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>28,8%</td><td class="source-tag">HOTREC Study 2021</td></tr>
+                    <tr><td>2023</td><td>OTA</td><td>Europe</td><td>Part de marché des OTAs dans la distribution hôtelière</td><td>29,6%</td><td class="source-tag">HOTREC / Phocuswright</td></tr>
+                    <tr><td>2023</td><td>OTA</td><td>Europe</td><td>Poids de Booking Holdings dans le marché OTA européen</td><td>71,0%</td><td class="source-tag">HOTREC Study 2023</td></tr>
+                    <tr><td>2023</td><td>OTA</td><td>Europe</td><td>Poids d'Expedia Group dans le marché OTA européen</td><td>14,4%</td><td class="source-tag">HOTREC Study 2023</td></tr>
+                    <tr><td>2024</td><td>OTA</td><td>Europe</td><td>Poids de Booking.com dans le marché OTA européen</td><td>69,3%</td><td class="source-tag">HOTREC / D-EDGE</td></tr>
+                    <tr><td>2024</td><td>OTA</td><td>Mondial</td><td>Volume du marché mondial des OTAs (Milliards $)</td><td>253,2</td><td class="source-tag">Statista Report 2024</td></tr>
+                    <tr><td>2024</td><td>OTA</td><td>Loisirs</td><td>Part des OTAs dans les revenus des loisirs</td><td>18,0%</td><td class="source-tag">Phocuswright B2B</td></tr>
                 </tbody>
             </table>
         </div>
@@ -234,12 +240,51 @@ def generate_html(html_path):
         </div>
     </div>
 
+    <!-- PAGE 4 : TABLEAU BENCHMARK - PARTIE 2 (LABELS) -->
+    <div class="page">
+        <div class="corner top-left"></div><div class="corner top-right"></div><div class="corner bottom-left"></div><div class="corner bottom-right"></div>
+        <div class="content">
+            <h1>3. Tableau de Synthèse : Évolution des Labels</h1>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 8%;">Année</th>
+                        <th style="width: 10%;">Axe</th>
+                        <th style="width: 12%;">Zone</th>
+                        <th style="width: 40%;">Indicateur de Performance</th>
+                        <th style="width: 10%;">Valeur</th>
+                        <th style="width: 20%;">Source Officielle</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2022</td><td>Label</td><td>France</td><td>Nombre d'établissements labellisés Clef Verte</td><td>855</td><td class="source-tag">Teragir / Clef Verte</td></tr>
+                    <tr><td>2023</td><td>Label</td><td>France</td><td>Nombre d'établissements labellisés Clef Verte</td><td>1&nbsp;077</td><td class="source-tag">Teragir / Clef Verte</td></tr>
+                    <tr><td>2024</td><td>Label</td><td>France</td><td>Nombre d'établissements labellisés Clef Verte</td><td>1&nbsp;564</td><td class="source-tag">Teragir / Clef Verte</td></tr>
+                    <tr><td>2025</td><td>Label</td><td>France</td><td>Projection établissements labellisés Clef Verte</td><td>2&nbsp;428</td><td class="source-tag">Teragir / Clef Verte</td></tr>
+                    <tr><td>2013</td><td>Label</td><td>France</td><td>Nombre d'établissements Qualité Tourisme</td><td>5&nbsp;600</td><td class="source-tag">DGE Statistiques</td></tr>
+                    <tr><td>2021</td><td>Label</td><td>France</td><td>Nombre d'établissements Qualité Tourisme</td><td>4&nbsp;000</td><td class="source-tag">Ministère Économie</td></tr>
+                    <tr><td>2024</td><td>Label</td><td>France</td><td>Nombre d'établissements Qualité Tourisme</td><td>5&nbsp;000</td><td class="source-tag">DGE Bilan 2024</td></tr>
+                    <tr><td>2024</td><td>Label</td><td>France</td><td>Fin des attributions Qualité Tourisme</td><td>31 Aoû</td><td class="source-tag">Décret d'application</td></tr>
+                    <tr><td>2024</td><td>Label</td><td>France</td><td>Lancement "Destination d'Excellence" (labellisés)</td><td>203</td><td class="source-tag">DGE Septembre 2024</td></tr>
+                    <tr><td>2026</td><td>Label</td><td>France</td><td>Disparition définitive de la marque Qualité Tourisme</td><td>31 Déc</td><td class="source-tag">Décret d'application</td></tr>
+                    <tr><td>2024</td><td>Label</td><td>Europe</td><td>Nombre de produits/services certifiés Écolabel Européen</td><td>98&nbsp;977</td><td class="source-tag">Commission Européenne</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <div style="color: var(--gold);">EDITION PRESTIGE</div>
+            <div class="page-number">04</div>
+        </div>
+    </div>
+
 </body>
 </html>
 """
     with open(html_path, "w", encoding="utf-8") as f:
         f.write(html_content)
     print(f"[OK] HTML généré dans : {html_path}")
+
 
 async def compile_pdf(html_path, pdf_path):
     from playwright.async_api import async_playwright
@@ -277,6 +322,20 @@ def main():
     
     generate_csv(csv_path)
     generate_html(html_path)
+    
+    # Détermination dynamique de l'espace de travail contenant Justificatifs_Preuves
+    workspace_root = base_path
+    for _ in range(10):
+        if os.path.exists(os.path.join(workspace_root, "Justificatifs_Preuves")):
+            break
+        workspace_root = os.path.dirname(workspace_root)
+        
+    html_preuve_path = os.path.join(workspace_root, "Justificatifs_Preuves", "labels_otas_tourisme_10ans.html")
+    if os.path.exists(os.path.dirname(html_preuve_path)):
+        generate_html(html_preuve_path)
+        print(f"[OK] HTML Preuve 4 écrit dans : {html_preuve_path}")
+    else:
+        print(f"[ATTENTION] Dossier de preuve non trouvé à : {html_preuve_path}")
     
     try:
         asyncio.run(compile_pdf(html_path, pdf_path))

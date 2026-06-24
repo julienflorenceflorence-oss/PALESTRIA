@@ -1,15 +1,4 @@
-import os
-import asyncio
-import sys
-
-# Tentative d'import de Playwright
-try:
-    from playwright.async_api import async_playwright
-except ImportError:
-    print("Playwright n'est pas installé. L'export PDF sera ignoré.")
-    print("Exécutez : pip install playwright && playwright install chromium")
-
-html_content = """<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -577,58 +566,3 @@ html_content = """<!DOCTYPE html>
     </script>
 </body>
 </html>
-"""
-
-# Détermination des chemins absolus par rapport au script
-script_dir = os.path.dirname(os.path.abspath(__file__))
-# base_dir de la soutenance (parent du script) : mémoire/RDM 3.0/
-base_dir = os.path.dirname(script_dir) 
-
-# Le fichier HTML doit être écrit dans mémoire/RDM 3.0/PITCH_DECK_PRESTIGE_SOUTENANCE.html
-html_path = os.path.join(base_dir, 'PITCH_DECK_PRESTIGE_SOUTENANCE.html')
-# Le fichier PDF doit être écrit dans mémoire/presentations/Presentation Pitch Deck.pdf
-pdf_path = os.path.normpath(os.path.join(base_dir, '..', 'presentations', 'Presentation Pitch Deck.pdf'))
-
-# S'assurer que le dossier presentations existe
-os.makedirs(os.path.dirname(pdf_path), exist_ok=True)
-
-# 1. Écrire le fichier HTML
-with open(html_path, 'w', encoding='utf-8') as f:
-    f.write(html_content)
-print(f"Pitch Deck Ultra-Prestige (HTML Interactive) généré avec succès dans : {html_path}")
-
-# 2. Exporter en PDF avec Playwright
-async def export_presentation_to_pdf():
-    print(f"Exportation du Pitch Deck en PDF via Playwright...")
-    try:
-        async with async_playwright() as p:
-            browser = await p.chromium.launch(headless=True)
-            page = await browser.new_page()
-            await page.goto(f"file://{html_path}", wait_until="networkidle")
-            
-            # Attente de chargement des polices Google
-            await page.wait_for_timeout(2000)
-            
-            await page.pdf(
-                path=pdf_path,
-                format="A4",
-                landscape=True,
-                print_background=True,
-                margin={
-                    "top": "0mm",
-                    "right": "0mm",
-                    "bottom": "0mm",
-                    "left": "0mm",
-                }
-            )
-            await browser.close()
-        print(f"[OK] Succès ! Le PDF de la présentation a été mis à jour dans : {pdf_path}")
-    except Exception as e:
-        print(f"[ERREUR] Impossible de générer le PDF : {e}")
-
-# Lancement de l'export asynchrone
-if 'playwright' in sys.modules:
-    try:
-        asyncio.run(export_presentation_to_pdf())
-    except KeyboardInterrupt:
-        print("\\nArrêt par l'utilisateur.")

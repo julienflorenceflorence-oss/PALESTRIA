@@ -1,0 +1,1035 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GUIDE DE SOUTENANCE ORALE - JULIEN FLORENCE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Montserrat:wght@200;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #F3E5AB;
+            --black: #0F1115;
+            --card-bg: rgba(25, 27, 36, 0.75);
+            --card-bg-hover: rgba(25, 27, 36, 0.95);
+            --text-light: #F4F4F4;
+            --text-muted: #888;
+            --red: #E74C3C;
+            --green: #2ECC71;
+            --border-color: rgba(212, 175, 55, 0.2);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--black);
+            color: var(--text-light);
+            line-height: 1.6;
+            padding-bottom: 80px;
+        }
+
+        /* --- CONTAINER --- */
+        .content-wrapper {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* --- HEADER (PRESTIGE STYLE) --- */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+        
+        .header-tag {
+            font-size: 0.9rem;
+            color: var(--gold);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            color: #FFF;
+            text-shadow: 0 0 20px rgba(255,255,255,0.05);
+        }
+
+        .header-line {
+            width: 100px;
+            height: 2px;
+            background: var(--gold);
+            margin: 20px auto;
+        }
+
+        .meta-info {
+            font-size: 1rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 200;
+        }
+
+        /* --- NAVIGATION DOCK --- */
+        .nav-dock {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 50px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 12px 24px;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.05);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+
+        /* --- SECTION VIEWPORT --- */
+        .section-view {
+            display: none;
+        }
+
+        .section-view.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- LAYOUT COMPONENTS --- */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: 900px) {
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            padding: 30px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            background: var(--card-bg-hover);
+        }
+
+        .border-gold { border-left: 5px solid var(--gold); }
+        .border-red { border-left: 5px solid var(--red); }
+        .border-green { border-left: 5px solid var(--green); }
+
+        .card h3 {
+            font-family: 'Cinzel', serif;
+            color: #FFF;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        /* --- TABLE --- */
+        .table-container {
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: rgba(212, 175, 55, 0.05);
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            letter-spacing: 1px;
+            font-weight: 600;
+        }
+
+        tr:last-child td { border-bottom: none; }
+
+        /* --- INTERACTIVE PRESENTATION DECK LAYOUT --- */
+        .deck-container {
+            display: grid;
+            grid-template-columns: 320px 1fr;
+            gap: 40px;
+            align-items: start;
+        }
+
+        @media (max-width: 1000px) {
+            .deck-container { grid-template-columns: 1fr; }
+        }
+
+        /* Timeline / Slide Selector */
+        .slide-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 700px;
+            overflow-y: auto;
+            padding-right: 10px;
+            border-right: 1px solid var(--border-color);
+        }
+
+        @media (max-width: 1000px) {
+            .slide-list {
+                flex-direction: row;
+                border-right: none;
+                border-bottom: 1px solid var(--border-color);
+                padding-bottom: 15px;
+                max-height: none;
+                overflow-x: auto;
+            }
+        }
+
+        .slide-selector-btn {
+            background: rgba(25, 27, 36, 0.4);
+            border: 1px solid var(--border-color);
+            color: var(--text-light);
+            padding: 15px;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 1000px) {
+            .slide-selector-btn {
+                width: 200px;
+            }
+        }
+
+        .slide-selector-btn:hover, .slide-selector-btn.active {
+            border-color: var(--gold);
+            background: rgba(212, 175, 55, 0.08);
+        }
+
+        .slide-num {
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+        }
+
+        .slide-title-select {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Slide Content Display */
+        .slide-display-card {
+            background: var(--card-bg);
+            border: 1px solid var(--gold);
+            border-radius: 6px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .slide-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .slide-number-badge {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            font-weight: 700;
+        }
+
+        .slide-main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #FFF;
+            letter-spacing: 1px;
+        }
+
+        /* Mini Slide Visual Mockup */
+        .slide-visual-mockup {
+            background: #000;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 4px;
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .slide-visual-mockup::before {
+            content: "VISUEL DIAPOSITIVE (MINI-MOCKUP DECK)";
+            position: absolute;
+            top: 10px; right: 10px;
+            font-size: 0.7rem;
+            color: var(--gold);
+            letter-spacing: 1px;
+            opacity: 0.5;
+        }
+
+        /* Speech Bubble */
+        .speech-box {
+            background: rgba(212, 175, 55, 0.03);
+            border-left: 4px solid var(--gold);
+            padding: 25px;
+            border-radius: 0 4px 4px 0;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .speech-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .speech-text {
+            font-size: 1.1rem;
+            color: #EEE;
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        /* Transition badge */
+        .transition-badge {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed var(--border-color);
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+            color: var(--gold-light);
+        }
+
+        /* Q&A Accordion */
+        .qa-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: #FFF;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .qa-item {
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: rgba(0,0,0,0.15);
+        }
+
+        .qa-header-btn {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: #FFF;
+            text-align: left;
+            padding: 15px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .qa-header-btn:hover {
+            background: rgba(255,255,255,0.02);
+        }
+
+        .qa-content {
+            display: none;
+            padding: 20px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(212, 175, 55, 0.02);
+            font-size: 0.95rem;
+            color: #CCC;
+            line-height: 1.6;
+        }
+
+        .qa-content.open {
+            display: block;
+        }
+
+        .arrow-icon {
+            font-size: 0.8rem;
+            color: var(--gold);
+            transition: transform 0.3s;
+        }
+
+        .qa-item.open .arrow-icon {
+            transform: rotate(90deg);
+        }
+
+        /* Diagram mockups */
+        .dia-flow {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .dia-box {
+            border: 1px solid var(--border-color);
+            background: rgba(255,255,255,0.02);
+            border-radius: 4px;
+            padding: 15px;
+            text-align: center;
+            min-width: 180px;
+            flex: 1;
+        }
+
+        .dia-arrow {
+            font-size: 1.5rem;
+            color: var(--gold);
+        }
+
+        /* --- PRINT STYLES --- */
+        @media print {
+            body {
+                background: #FFF !important;
+                color: #000 !important;
+            }
+            .nav-dock, .slide-list {
+                display: none !important;
+            }
+            .deck-container {
+                display: block !important;
+            }
+            .section-view {
+                display: block !important;
+                page-break-after: always;
+            }
+            .slide-display-card {
+                border: 1px solid #000 !important;
+                background: #FFF !important;
+                color: #000 !important;
+                box-shadow: none !important;
+                page-break-after: always;
+                margin-bottom: 40px;
+            }
+            .slide-main-title, .card h3, .qa-section h4 {
+                color: #000 !important;
+            }
+            .speech-box {
+                background: #F9F9F9 !important;
+                border-left-color: #000 !important;
+            }
+            .speech-text {
+                color: #333 !important;
+            }
+            .qa-content {
+                display: block !important;
+                background: #FFF !important;
+                color: #333 !important;
+            }
+            .slide-visual-mockup {
+                display: none !important;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="content-wrapper">
+        
+        <!-- HEADER -->
+        <header>
+            <div class="header-tag">Édition Prestige</div>
+            <h1>GUIDE STRATÉGIQUE DE SOUTENANCE</h1>
+            <div class="header-line"></div>
+            <div class="meta-info">Julien FLORENCE — Directeur du Développement Stratégique (Happy House)</div>
+            <div class="meta-info" style="font-size: 0.85rem; margin-top: 5px;">Validation Master (Promotion A150 — Rocket School)</div>
+        </header>
+
+        <!-- NAVIGATION DOCK -->
+        <div class="nav-dock">
+            <button class="nav-btn active" onclick="switchSection('soutenance')">🎯 Trame de l'Oral & Slides</button>
+            <button class="nav-btn" onclick="switchSection('synthese')">📂 Synthèse du Mémoire</button>
+            <button class="nav-btn" onclick="switchSection('attentes')">🧠 Attentes du Jury</button>
+        </div>
+
+        <!-- ================= SECTION 1: TRAME ORALE & SLIDES ================= -->
+        <div id="section-soutenance" class="section-view active">
+            <div class="deck-container">
+                
+                <!-- Slide Timeline Selector (Left) -->
+                <div class="slide-list" id="slide-timeline">
+                    <!-- Javascript generates buttons here -->
+                </div>
+
+                <!-- Slide Detail Display (Right) -->
+                <div class="slide-display-card" id="slide-viewer">
+                    <div class="slide-header">
+                        <span class="slide-number-badge" id="view-slide-num">SLIDE 1 / 10</span>
+                        <span class="label" style="color: var(--gold-light);">PITCH DECK</span>
+                    </div>
+                    
+                    <h2 class="slide-main-title" id="view-slide-title" style="margin-bottom: 25px;">TITRE DE LA DIAPOSITIVE</h2>
+                    
+                    <!-- Visual Mockup Container -->
+                    <div class="slide-visual-mockup" id="view-slide-mockup">
+                        <!-- Custom CSS mockup generated dynamically -->
+                    </div>
+
+                    <!-- Speech script -->
+                    <div class="speech-box">
+                        <div class="speech-label">
+                            <span style="font-size: 1.1rem;">💬</span> DISCOURS DE JULIEN (PREMIÈRE PERSONNE)
+                        </div>
+                        <p class="speech-text" id="view-slide-speech">Texte du discours...</p>
+                    </div>
+
+                    <!-- Transition script -->
+                    <div class="transition-badge" id="view-slide-transition">
+                        <strong>Transition verbale :</strong> Texte...
+                    </div>
+
+                    <!-- Expected Q&A -->
+                    <div class="qa-section">
+                        <h4>🛡️ QUESTIONS PIÈGES &amp; RÉPONSES DU JURY (DÉFENSE ACTIVE)</h4>
+                        <div id="view-slide-qa">
+                            <!-- Collapsible accordion items generated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ================= SECTION 2: SYNTHÈSE DU MÉMOIRE ================= -->
+        <div id="section-synthese" class="section-view">
+            <div class="grid-2">
+                <div class="card border-gold">
+                    <div class="card-subtitle">Le Constat</div>
+                    <h3>Le Double Effondrement Outbound</h3>
+                    <p style="color: #CCC; margin-bottom: 15px;">
+                        L'analyse rigoureuse du moteur commercial historique sous forme de prospection téléphonique à froid (Cold Calling - 14 500 appels) a révélé une impasse structurelle pour un produit à faible valeur unitaire (ARPU de 226 €/an).
+                    </p>
+                    <p style="color: #999;">
+                        • **CAC Outbound Réel** : 1 823 € par signature.<br>
+                        • **Valeur Vie (LTV)** : 290 € (Lifespan moyen : 1,3 an).<br>
+                        • **Ratio LTV / CAC** : 0,16 (Chaque vente détruit 84 % de sa valeur).<br>
+                        • **Usage platforme** : Seuls 5,5 % du parc (8 sur 146) est actif commercialement.<br>
+                        • **Attrition (Churn)** : ~80 % de déperdition post-vente.
+                    </p>
+                </div>
+                <div class="card border-green">
+                    <div class="card-subtitle">Le Remède</div>
+                    <h3>Le Pivot Opérationnel "No-Cost"</h3>
+                    <p style="color: #CCC; margin-bottom: 15px;">
+                        Restructuration complète pour basculer d'un modèle d'effort humain outbound destructeur vers un modèle d'infrastructure automatisée inbound et de valeur réelle.
+                    </p>
+                    <p style="color: #999;">
+                        • **Sourcing Qualification** : Extraction automatique de la base Sirene de 126k contacts, qualifiée par n8n & Gemini AI selon les conformités Loi ALUR et DPE.<br>
+                        • **Rétention Centrale d'Achats** : Partenariat d'affaires avec Entegra. Les tarifs négociés de gros (-15% à -25%) rentabilisent immédiatement l'adhésion.<br>
+                        • **Dashboard ROI** : Matérialisation en temps réel des gains pour ancrer l'usage et éliminer le churn.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Chapter Outline -->
+            <div class="card" style="margin-bottom: 40px; border-color: rgba(255,255,255,0.05);">
+                <h3 class="cinzel" style="margin-bottom: 15px;">Architecture du Mémoire (Chapitres)</h3>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Chapitre</th>
+                                <th>Intitulé stratégique</th>
+                                <th>Focus Opérationnel & Métrique</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 1</td>
+                                <td>Vision et Problématique</td>
+                                <td>Cadrage de Happy House (170 membres). Arbitrage entre artisanat et industrialisation.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 2</td>
+                                <td>Diagnostic Externe (Le Marché)</td>
+                                <td>Monopole des OTAs (Booking captant 71% des flux). Pressions environnementales et loi ALUR.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 3</td>
+                                <td>Diagnostic Interne (Les Actifs)</td>
+                                <td>Sourcing et constitution de la base brute Sirene de 126 000 contacts. Constat d'attrition.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 4</td>
+                                <td>Sales Engine & CAC Outbound</td>
+                                <td>Calcul comptable de l'impasse financière. Calcul exact du CAC Outbound (1 823 €) et LTV (290 €).</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 5</td>
+                                <td>Recherche Terrain</td>
+                                <td>Audit de 100 anciens membres. Constat du manque de valeur perçue post-vente (80 % churn).</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 6</td>
+                                <td>Rétention & Centrale Entegra</td>
+                                <td>Introduction de la centrale d'achats comme levier financier. Onboarding et Welcome Book phygital.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 7</td>
+                                <td>Performance & Dashboard ROI</td>
+                                <td>Maquette du tableau de bord de retour sur investissement. Planification Afterworks M12 (3 500 € budget).</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold; color: var(--gold);">Chapitre 8</td>
+                                <td>Transparence IA & Automatisations</td>
+                                <td>Détail de l'architecture technologique (Sourcing intelligent n8n + Gemini AI API, coût 0 €).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= SECTION 3: ATTENTES DU JURY ================= -->
+        <div id="section-attentes" class="section-view">
+            <div class="card" style="margin-bottom: 40px; border-color: var(--gold);">
+                <div class="card-subtitle">Conseils des meilleurs oraux</div>
+                <h3>Posture Professionnelle Master (Bac+5)</h3>
+                <p style="color: #CCC; margin-bottom: 20px;">
+                    La soutenance de niveau Master n'est pas une simple redite descriptive du mémoire. C'est un exercice de **leadership et de consulting stratégique** où le candidat doit démontrer sa capacité à prendre du recul, à s'autocritiquer et à piloter des budgets sous contraintes réglementaires et financières d'affaires.
+                </p>
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Pilier d'évaluation</th>
+                                <th style="color: var(--red);">À Proscrire (Niveau inf.)</th>
+                                <th style="color: var(--green);">À Adopter (Niveau Master ENTJ-A)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="font-weight: bold;">Rapport aux données</td>
+                                <td>Discours marketing flou. Pas de chiffres ou approximations.</td>
+                                <td>Ratios d'économie réels (LTV/CAC = 0,16, CPA 166 €, 80% Churn).</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Gestion de l'erreur</td>
+                                <td>Nier les échecs, accuser le marché ou le manque de budget.</td>
+                                <td>Présenter froidement les métriques du crash outbound pour imposer la rationalité du pivot.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Complémentarité binôme</td>
+                                <td>Dire "J'ai tout fait seul" ou masquer l'organisation.</td>
+                                <td>Valoriser la synergie : Ruddy sur le flux voyageur / Julien sur la structure de valeur B2B.</td>
+                            </tr>
+                            <tr>
+                                <td style="font-weight: bold;">Pragmatisme RSE</td>
+                                <td>Considérer la RSE comme une boîte à cocher théorique.</td>
+                                <td>Lier la RSE à la rentabilité (Loi ALUR = sécurité brand damage, Entegra = circuits courts et EBITDA).</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- DATA & CONTROL JAVASCRIPT -->
+    <script>
+        // Database of slides, speeches, layouts and Q&A
+        const slideData = [
+            {
+                number: 1,
+                title: "HAPPY HOUSE - LE PIVOT DE LA PÉRENNITÉ",
+                speech: "Mesdames, Messieurs les membres du jury, bonjour. Je suis Julien Florence, Directeur du Développement Stratégique pour le réseau d'hébergements premium Happy House. Ma mission aujourd'hui n'est pas de vous présenter un énième plan de communication digitale standard. Je viens vous exposer la restructuration d'un modèle d'affaires. Face à la saturation du marché hôtelier et aux monopoles des plateformes de réservation, nous avons audité nos chiffres, constaté la faillite de notre prospection traditionnelle, et opéré un pivot stratégique radical. Mon objectif est de vous montrer comment l'alliance de l'automatisation IA et d'une ingénierie de la rétention a permis de transformer un centre de coût destructeur de valeur en un écosystème hautement rentable et pérenne.",
+                transition: "Pour comprendre les raisons de ce pivot, examinons en premier lieu la problématique opérationnelle à laquelle nous étions confrontés.",
+                visual: `<div style="text-align:center; padding: 20px 0;">
+                            <div style="font-size:0.9rem; color:var(--gold); letter-spacing:3px;">CONSULTING STRATÉGIQUE &amp; COMMERCIAL</div>
+                            <h2 style="font-family:'Cinzel',serif; font-size:2.2rem; color:#FFF; margin: 15px 0;">HAPPY HOUSE</h2>
+                            <div style="width:80px; height:1px; background:var(--gold); margin: 10px auto;"></div>
+                            <div style="font-size:1.1rem; letter-spacing:2px; color:var(--gold); font-family:'Cinzel';">LE PIVOT DE LA PÉRENNITÉ</div>
+                            <div style="margin-top:30px; font-size:0.9rem; color:#888;">Julien FLORENCE - DDS<br>Rocket School A150</div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "En tant que Directeur du Développement Stratégique, quel a été votre degré d'autonomie dans ce pivot ?",
+                        answer: "Une autonomie totale sur le diagnostic et la modélisation financière. J'ai partagé les constats de LTV/CAC avec la direction générale pour obtenir le veto immédiat sur l'outbound et la réallocation budgétaire vers notre nouveau plan d'action."
+                    }
+                ]
+            },
+            {
+                number: 2,
+                title: "PROBLÉMATIQUE &amp; HYPOTHÈSE DE TRAVAIL",
+                speech: "Notre problématique se formule ainsi : Comment accompagner la transition de Happy House d'un fonctionnement commercial artisanal vers un modèle structuré, capable de réduire le coût d'acquisition, de renforcer la rétention des adhérents et de soutenir la croissance, sans autre budget que celui de nos propres salaires ? L'hypothèse de travail que j'ai défendue est simple : dans un environnement B2B hôtelier saturé, la croissance ne s'obtient pas en augmentant l'intensité des appels manuels. Elle s'obtient en automatisant la qualification de la donnée en amont et en consolidant la valeur d'usage en aval. Nous avons fait le choix de remplacer l'effort humain répétitif par de l'ingénierie commerciale sans coût d'outillage direct.",
+                transition: "Ce positionnement est dicté par une réalité de marché externe que nous ne pouvions plus ignorer.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px;">
+                            <div style="border-left:3px solid var(--red); background:rgba(255,255,255,0.01); padding:15px; border-radius:2px;">
+                                <div style="font-size:0.7rem; color:var(--red); letter-spacing:1px; font-weight:bold;">DÉFI SMART B2B B-TO-B</div>
+                                <div style="font-size:0.9rem; color:#FFF; font-family:'Cinzel'; margin-top:5px;">Réduire le CAC &amp; Verrouiller la rétention sans budget outils.</div>
+                            </div>
+                            <div style="border-left:3px solid var(--green); background:rgba(255,255,255,0.01); padding:15px; border-radius:2px;">
+                                <div style="font-size:0.7rem; color:var(--green); letter-spacing:1px; font-weight:bold;">HYPOTHÈSE ARITHMÉTIQUE</div>
+                                <div style="font-size:0.9rem; color:#FFF; font-family:'Cinzel'; margin-top:5px;">La croissance s'obtient par la qualification amont et le cost-killing aval.</div>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Pourquoi avoir exclu toute expansion internationale de votre problématique ?",
+                        answer: "C'est un arbitrage pragmatique. Avec une équipe de 4 personnes et un modèle commercial interne en situation de crise de rétention, chercher une expansion géographique immédiate aurait accéléré la perte de contrôle financière. Il fallait d'abord consolider le noyau national."
+                    }
+                ]
+            },
+            {
+                number: 3,
+                title: "DIAGNOSTIC EXTERNE : LA DOUBLE PRESSION",
+                speech: "Le diagnostic externe révèle un étau qui se resserre sur l'hôtelier indépendant. D'un côté, le monopole des OTAs, Booking.com en tête avec 71 % de parts de marché en Europe, capte la marge opérationnelle de nos adhérents en prélevant entre 15 % et 25 % sur chaque réservation. De l'autre, une pression verte réglementaire sans précédent : l'État a mis fin au label historique Qualité Tourisme au profit de 'Destination d'Excellence', tandis que le label Clef Verte connaît une croissance de 45 % par an et devient un prérequis de réservation. Enfin, le durcissement de la loi anti-Airbnb et les exigences DPE pénalisent les hébergeurs amateurs. Notre opportunité est d'aider les exploitants professionnels à regagner leur souveraineté commerciale en ramenant leur dépendance aux OTAs sous les 35 %.",
+                transition: "Face à ce marché sous pression, l'audit interne de nos propres performances a agi comme un véritable électrochoc.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; text-align:center;">
+                            <div style="border:1px solid rgba(255,255,255,0.05); padding:10px;">
+                                <div style="font-size:2rem; color:var(--red); font-weight:bold;">71%</div>
+                                <div style="font-size:0.65rem; color:#888;">Monopole Booking (OTAs)</div>
+                            </div>
+                            <div style="border:1px solid rgba(255,255,255,0.05); padding:10px;">
+                                <div style="font-size:1.5rem; color:var(--gold); font-weight:bold; font-family:'Cinzel'; margin: 8px 0;">ALUR</div>
+                                <div style="font-size:0.65rem; color:#888;">Conformité &amp; DPE</div>
+                            </div>
+                            <div style="border:1px solid rgba(255,255,255,0.05); padding:10px;">
+                                <div style="font-size:2rem; color:var(--green); font-weight:bold;">+45%</div>
+                                <div style="font-size:0.65rem; color:#888;">Label Clef Verte</div>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Pourquoi cibler uniquement des hébergeurs professionnels sous critères ALUR ?",
+                        answer: "Les hébergeurs amateurs louant quelques semaines par an n'ont pas la structure financière pour rentabiliser notre accompagnement. Face aux DPE et aux restrictions de nuitées, seuls les professionnels qui exploitent leur établissement à l'année ont un intérêt vital à s'allier à notre réseau pour réduire leurs charges."
+                    }
+                ]
+            },
+            {
+                number: 4,
+                title: "DIAGNOSTIC INTERNE : LE DOUBLE EFFONDREMENT",
+                speech: "J'ai réalisé un audit interne rigoureux et sans concession de nos métriques financières et opérationnelles. Les chiffres décrivent un modèle destructeur de valeur. La prospection téléphonique à froid, basée sur un volume de 14 500 appels, a généré un coût d'acquisition client de 1 823 € par signature. En face, notre revenu moyen annuel par membre est de 226 €. Étant donné que le churn post-vente sur cette cohorte s'élève à 80 % après 1,3 an d'adhésion, la valeur long terme d'un client plafonne à 290 €. Le ratio LTV/CAC s'établit à 0,16. Pour chaque euro investi dans l'acquisition commerciale outbound, Happy House perd 84 centimes d'euro. De plus, seuls 5,5 % des hébergeurs de notre parc enregistrent des réservations actives via la plateforme. Le constat est limpide : notre moteur d'acquisition outbound était cliniquement mort.",
+                transition: "Ce constat d'échec arithmétique a imposé une autocritique immédiate et la mise en œuvre d'un pivot stratégique.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px; text-align:center;">
+                            <div style="border:1px solid var(--red); background:rgba(231,76,60,0.02); padding:10px;">
+                                <div style="font-size:0.6rem; color:var(--red);">LTV / CAC</div>
+                                <div style="font-size:1.8rem; font-weight:bold; color:var(--red);">0,16</div>
+                                <div style="font-size:0.55rem; color:#666;">CAC : 1 823 € vs LTV : 290 €</div>
+                            </div>
+                            <div style="border:1px solid var(--red); background:rgba(231,76,60,0.02); padding:10px;">
+                                <div style="font-size:0.6rem; color:var(--red);">CHURN RÉEL</div>
+                                <div style="font-size:1.8rem; font-weight:bold; color:var(--red);">80%</div>
+                                <div style="font-size:0.55rem; color:#666;">Attrition Cohorte Cold Calling</div>
+                            </div>
+                            <div style="border:1px solid var(--red); background:rgba(231,76,60,0.02); padding:10px;">
+                                <div style="font-size:0.6rem; color:var(--red);">PLATFORM USAGE</div>
+                                <div style="font-size:1.8rem; font-weight:bold; color:var(--red);">5,5%</div>
+                                <div style="font-size:0.55rem; color:#666;">Seuls 8 sur 146 actifs</div>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Comment expliquez-vous un taux de churn aussi massif (80%) après la signature ?",
+                        answer: "Le cold calling a forcé des signatures de courtoisie ou d'impulsion sans réelle qualification des besoins. Dès que la phase de vente se terminait, les hébergeurs n'utilisaient pas le service car ils souffraient d'une fatigue numérique et d'un onboarding trop complexe. Sans usage, pas de ROI, donc résiliation immédiate."
+                    }
+                ]
+            },
+            {
+                number: 5,
+                title: "LE PIVOT STRATÉGIQUE B2B",
+                speech: "La survie du réseau imposait d'abaisser notre CAC cible sous le seuil des 300 € pour s'aligner sur notre ARPU. Nous avons pris la décision d'arrêter définitivement la prospection outbound téléphonique froide. Nous avons restructuré nos rôles au sein du binôme : Ruddy s'est concentré sur l'acquisition inbound organique voyageurs pour générer du trafic naturel à coût nul. De mon côté, j'ai pris la responsabilité de repenser la proposition de valeur B2B pour les hébergeurs et de structurer le moteur de rétention. Nous ne vendons plus Happy House comme un outil magique de réservations supplémentaires, mais comme une infrastructure de réduction immédiate des charges d'exploitation et de sécurisation des marges.",
+                transition: "Cette nouvelle stratégie d'acquisition inbound sélective s'appuie sur une ingénierie de la donnée rigoureuse.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; text-align:left;">
+                            <div style="border:1px solid rgba(255,255,255,0.05); padding:15px;">
+                                <div style="font-size:0.7rem; color:var(--red); letter-spacing:1px; font-weight:bold;">OLD : OUTBOUND DESTROYER</div>
+                                <div style="font-size:0.85rem; color:#DDD; margin-top:5px;">• Cold calling (CAC 1823 €)<br>• Promesse de réservations floues</div>
+                            </div>
+                            <div style="border:1px solid var(--green); background:rgba(46,204,113,0.02); padding:15px;">
+                                <div style="font-size:0.7rem; color:var(--green); letter-spacing:1px; font-weight:bold;">NEW : INBOUND &amp; RÉTENTION</div>
+                                <div style="font-size:0.85rem; color:#DDD; margin-top:5px;">• Afterworks locaux (CPA 166 €)<br>• Centrale Entegra &amp; Cost-killing</div>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "N'est-il pas risqué d'arrêter totalement la prospection commerciale directe ?",
+                        answer: "Au contraire, continuer à investir 1 823 € par client pour un revenu de 290 € était le véritable risque de faillite. Arrêter l'outbound à froid pour le remplacer par un sourcing inbound hyper-qualifié et des Afterworks locaux nous permet de concentrer nos ressources humaines sur la conversion de leads chauds."
+                    }
+                ]
+            },
+            {
+                number: 6,
+                title: "L'INGÉNIERIE ACQUISITION DATA (n8n + GEMINI)",
+                speech: "Pour remplacer les SDR physiques sans aucun budget d'outillage, j'ai conçu et déployé un moteur d'acquisition data-driven automatisé. Nous avons extrait la base Sirene nationale contenant 126 000 hébergements. Grâce à une architecture d'orchestration développée sous n8n et connectée à l'API Gemini, chaque établissement est analysé et qualifié en temps réel. Notre algorithme vérifie la conformité de l'hébergeur face aux critères stricts de la loi ALUR et son adéquation avec la charte d'exception Happy House. Le système génère automatiquement un score d'opportunité. Nos commerciaux n'appellent plus au hasard : ils contactent uniquement les leads pré-qualifiés à fort potentiel, réduisant le temps de recherche et le coût marginal de sourcing à zéro.",
+                transition: "Une fois ces prospects de qualité identifiés, le moteur de conversion s'appuie sur une preuve de valeur opérationnelle concrète : la centrale d'achats.",
+                visual: `<div style="display:flex; justify-content:space-around; align-items:center; background:#191B24; padding:15px; border-radius:4px;">
+                            <div style="font-size:0.75rem; text-align:center;">Base Sirene<br><strong>126k contacts</strong></div>
+                            <div style="color:var(--gold); font-size:1.5rem;">➔</div>
+                            <div style="font-size:0.75rem; text-align:center; border:1px solid var(--gold); padding:5px; border-radius:3px;">Orchestrateur<br><strong>n8n + Gemini</strong></div>
+                            <div style="color:var(--gold); font-size:1.5rem;">➔</div>
+                            <div style="font-size:0.75rem; text-align:center; color:var(--green);">Leads Qualifiés<br><strong>Google Sheets (0€)</strong></div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Pourquoi avoir choisi n8n et Google Sheets plutôt qu'un CRM classique comme Salesforce ou Hubspot ?",
+                        answer: "C'est une décision guidée par nos contraintes budgétaires strictes (zéro budget hors salaires). n8n permet des automatisations puissantes en open source gratuit. Google Sheets fait office de base de données agile dans notre phase de validation du pivot. Une fois le pivot rentable à l'échelle, la migration vers un CRM structuré sera financée par la trésorerie générée."
+                    }
+                ]
+            },
+            {
+                number: 7,
+                title: "LE LEVIER RÉTENTION : CENTRALE ENTEGRA",
+                speech: "Pour éteindre définitivement notre churn de 80 %, nous devions apporter à l'hôtelier une valeur financière immédiate, indiscutable et totalement indépendante du volume de voyageurs. J'ai négocié un partenariat avec Entegra, la première centrale d'achats hôtelière européenne. Nos membres bénéficient désormais de tarifs de gros négociés jusqu'à -25% sur leurs charges courantes. Prenons le cas concret du Domaine de la Preuve, l'un de nos gîtes pilotes. Pour une cotisation annuelle de 360 €, le domaine a réalisé 2 145 € d'économies sur ses achats alimentaires et 910 € sur sa blanchisserie, soit un gain net de 3 055 €. Dès le premier jour, notre solution est rentalisée plus de 8 fois par l'exploitant. La proposition de valeur n'est plus une promesse marketing, c'est une certitude comptable.",
+                transition: "Mais cette valeur financière n'a d'impact sur la rétention que si elle est visualisée et comprise par l'adhérent.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 2fr; gap:15px; text-align:left;">
+                            <div style="border-right:1px solid rgba(255,255,255,0.1); padding-right:10px; display:flex; flex-direction:column; justify-content:center; text-align:center;">
+                                <div style="font-size:0.65rem; color:#888;">Cotisation Annuelle</div>
+                                <div style="font-size:1.8rem; color:var(--red); font-weight:bold;">360 € HT</div>
+                            </div>
+                            <div>
+                                <div style="font-size:0.75rem; color:var(--green); font-weight:bold;">ÉCONOMIES NETTES CONSTATÉES</div>
+                                <div style="font-size:0.85rem; color:#DDD; margin-top:5px;">
+                                    • Food &amp; Beverage : <strong>-2 145 €</strong> (15% d'achats)<br>
+                                    • Blanchisserie / Consommables : <strong>-910 €</strong><br>
+                                    <span style="color:var(--gold); font-weight:bold;">Gain Net Annuel : + 3 055 € (ROI 8,5x)</span>
+                                </div>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Comment vous assurez-vous que les hébergeurs utilisent réellement la centrale Entegra ?",
+                        answer: "C'est le rôle de notre processus d'onboarding restructuré. Lors des 30 premiers jours, nous imposons un rendez-vous d'activation technique pour connecter l'hébergeur aux fournisseurs d'Entegra. Si la centrale n'est pas activée à M+1, une alerte automatisée est envoyée pour déclencher un accompagnement humain."
+                    }
+                ]
+            },
+            {
+                number: 8,
+                title: "PREUVE DE PERFORMANCE : LE DASHBOARD ROI",
+                speech: "L'hébergeur indépendant souffre d'une fatigue administrative chronique ; il n'a pas le temps de calculer son propre retour sur investissement. J'ai donc conçu et déployé un Dashboard ROI interactif accessible en temps réel par chaque adhérent. Ce tableau de bord agrège automatiquement les économies réelles réalisées via Entegra d'une part, et la valeur des nuitées en réservation directe apportées par les actions inbound de Ruddy d'autre part. L'adhérent voit s'afficher un ratio simple : son ROI Happy House. Cet outil supprime toute friction ou négociation lors du renouvellement de l'abonnement annuel. La preuve mathématique de la valeur devance la demande de réengagement.",
+                transition: "Ce système opérationnel s'inscrit dans un plan de déploiement à 12 mois encadré par des règles strictes de gouvernance et de gestion des risques.",
+                visual: `<div style="border:1px solid var(--gold); background:#13151D; padding:15px; border-radius:4px; font-size:0.75rem; text-align:left;">
+                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px; margin-bottom:10px;">
+                                <strong style="color:var(--gold);">DASHBOARD ROI : Domaine de la Preuve</strong>
+                                <span style="color:var(--green); font-weight:bold;">Actif</span>
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+                                <div>Cotisation payée : <span style="color:var(--red); font-weight:bold;">-360 €</span></div>
+                                <div>Économies Entegra : <span style="color:var(--green); font-weight:bold;">+3 055 €</span></div>
+                            </div>
+                            <div style="border-top:1px solid rgba(255,255,255,0.05); margin-top:10px; padding-top:5px; text-align:right;">
+                                <strong>Indice ROI Global : 11,8x la cotisation</strong>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Comment alimentez-vous les données d'économies du Dashboard en temps réel ?",
+                        answer: "Nous avons mis en place des connecteurs de données mensuels avec Entegra qui nous renvoient le volume d'achats déclaré par chaque ID hébergeur. Le calcul du taux moyen d'économie est ensuite appliqué automatiquement via notre script n8n pour mettre à jour le Dashboard de l'adhérent."
+                    }
+                ]
+            },
+            {
+                number: 9,
+                title: "PLAN D'ACTION M12, BUDGET &amp; GOUVERNANCE RSE",
+                speech: "Notre plan de développement sur les 12 prochains mois est budgété et sécurisé. Nous réallouons nos ressources : les salaires fixes des SDR sont supprimés au profit d'un budget d'infrastructure et d'événementiel local de 3 500 € pour organiser nos Afterworks régionaux. Notre gouvernance repose sur des triggers de risques précis validés en Comité de Pilotage (COPIL). Si le coût par acquisition (CPA) d'un afterwork dépasse 200 €, nous déclenchons une analyse corrective immédiate. En cas de second échec consécutif, nous coupons le canal pour nous recentrer sur la rétention pure. En outre, notre RSE est pragmatique : nous sécurisons la cohabitation des hébergements avec les riverains en exigeant la conformité ALUR (gouvernance éthique) et nous favorisons les circuits d'approvisionnement courts via le catalogue régional d'Entegra.",
+                transition: "Pour conclure, cette expérience de restructuration commerciale a profondément façonné ma posture de dirigeant.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; text-align:left; font-size:0.8rem;">
+                            <div style="border-left:3px solid var(--gold); padding-left:10px;">
+                                <strong>Plan M12</strong><br>
+                                • Budget : 3 500 € (6 Afterworks)<br>
+                                • RSE : circuits courts &amp; ALUR
+                            </div>
+                            <div style="border-left:3px solid var(--red); padding-left:10px;">
+                                <strong>COPIL Triggers</strong><br>
+                                • CPA limite : 200 €<br>
+                                • Contingence : Pivot vers rétention
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Quel est l'impact réel de votre matrice RSE sur la rentabilité de Happy House ?",
+                        answer: "La conformité réglementaire (loi ALUR) évite les poursuites judiciaires et protège l'image de marque premium du réseau. De plus, aider les hébergeurs à obtenir le label Clef Verte répond à une demande client en hausse de 45 % par an, augmentant directement leur taux d'occupation et notre taux de rétention."
+                    }
+                ]
+            },
+            {
+                number: 10,
+                title: "CONCLUSION &amp; BILAN PERSONNEL",
+                speech: "Pour conclure, cette alternance a marqué ma transition d'un profil opérationnel vers une posture de consultant senior et de dirigeant axé sur les résultats. J'ai appris à confronter l'optimisme commercial à la réalité froide des unit economics. En initiant et en pilotant ce pivot, j'ai développé une double compétence unique : la capacité à concevoir des architectures techniques automatisées (n8n, APIs, IA) et la vision stratégique capable de négocier des partenariats à fort impact comme celui d'Entegra. Je suis aujourd'hui pleinement outillé pour diriger des stratégies de croissance complexes. Mon objectif à moyen terme est de prendre la Direction du Développement au sein de PalestrIA, afin de continuer à marier la rigueur de l'intelligence artificielle et l'excellence du business development B2B. Je vous remercie pour votre attention et je suis prêt à répondre à vos questions.",
+                transition: "Fin de la présentation. Tour de table pour les questions du jury.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 1fr; gap:15px; text-align:left;">
+                            <div style="border:1px solid rgba(255,255,255,0.05); padding:12px;">
+                                <strong style="color:var(--gold);">Julien Florence</strong><br>
+                                • Rigueur business development<br>
+                                • Architecture data IA (no-cost)
+                            </div>
+                            <div style="border:1px solid var(--green); background:rgba(46,204,113,0.02); padding:12px;">
+                                <strong style="color:var(--green);">Objectif Horizon 2028</strong><br>
+                                • Direction du Développement au sein de <strong>PalestrIA</strong>
+                            </div>
+                         </div>`,
+                qa: [
+                    {
+                        question: "Si vous deviez refaire cette mission, quelle serait votre principale correction ?",
+                        answer: "J'aurais mené l'audit interne des unit economics dès le premier mois. Nous avons passé trop de temps à essayer de perfectionner les scripts de cold calling avant de réaliser que le modèle outbound était structurellement non viable pour notre tarification. La détection rapide des limites de rentabilité est ma plus grande leçon."
+                    }
+                ]
+            }
+        ];
+
+        // Switch sections from navigation tabs
+        function switchSection(sectionId) {
+            document.querySelectorAll('.section-view').forEach(view => {
+                view.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            document.getElementById('section-' + sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Generate Slide Timeline buttons
+        const timeline = document.getElementById('slide-timeline');
+        slideData.forEach((slide, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'slide-selector-btn' + (idx === 0 ? ' active' : '');
+            btn.id = 'slide-btn-' + slide.number;
+            btn.onclick = () => loadSlide(slide.number);
+            btn.innerHTML = `
+                <span class="slide-num">SLIDE ${slide.number}</span>
+                <span class="slide-title-select">${slide.title.replace('HAPPY HOUSE - ', '')}</span>
+            `;
+            timeline.appendChild(btn);
+        });
+
+        // Load Slide details to the viewer
+        function loadSlide(slideNum) {
+            const slide = slideData.find(s => s.number === slideNum);
+            if (!slide) return;
+
+            // Highlight timeline button
+            document.querySelectorAll('.slide-selector-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.getElementById('slide-btn-' + slideNum).classList.add('active');
+
+            // Set slide text details
+            document.getElementById('view-slide-num').innerText = `DIAPOSITIVE ${slide.number} / ${slideData.length}`;
+            document.getElementById('view-slide-title').innerHTML = slide.title;
+            document.getElementById('view-slide-speech').innerText = slide.speech;
+            document.getElementById('view-slide-transition').innerHTML = `<strong>Transition verbale :</strong> ${slide.transition}`;
+            document.getElementById('view-slide-mockup').innerHTML = slide.visual;
+
+            // Generate QA accordions
+            const qaContainer = document.getElementById('view-slide-qa');
+            qaContainer.innerHTML = '';
+            slide.qa.forEach((qaItem, idx) => {
+                const qaDiv = document.createElement('div');
+                qaDiv.className = 'qa-item';
+                qaDiv.innerHTML = `
+                    <button class="qa-header-btn" onclick="toggleQA(this)">
+                        <span>${idx + 1}. ${qaItem.question}</span>
+                        <span class="arrow-icon">▶</span>
+                    </button>
+                    <div class="qa-content">
+                        ${qaItem.answer}
+                    </div>
+                `;
+                qaContainer.appendChild(qaDiv);
+            });
+        }
+
+        // Toggle QA collapsible contents
+        function toggleQA(btn) {
+            const qaItem = btn.parentElement;
+            const content = qaItem.querySelector('.qa-content');
+            
+            const isOpen = qaItem.classList.contains('open');
+            
+            // Close all items in the current slide viewer
+            document.querySelectorAll('.qa-item').forEach(item => {
+                item.classList.remove('open');
+                item.querySelector('.qa-content').classList.remove('open');
+            });
+
+            if (!isOpen) {
+                qaItem.classList.add('open');
+                content.classList.add('open');
+            }
+        }
+
+        // Initialize with slide 1
+        loadSlide(1);
+    </script>
+</body>
+</html>

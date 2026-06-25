@@ -125,29 +125,30 @@ Pour un niveau Master, présenter un échec opérationnel dû à une résistance
 *   **Discours de Julien :**
     > Pour démontrer la faisabilité technique de notre recommandation, j'ai développé un prototype fonctionnel de sourcing automatique. À partir de la base Sirene nationale de 126 000 hébergements, j'ai bâti un pipeline de qualification sous n8n couplé à l'API Gemini. Ce script trie et score automatiquement les leads en fonction de leur conformité réglementaire face à la loi ALUR et aux critères DPE, avec un coût récurrent d'outillage de 0 €. Bien que ce prototype ait démontré son efficacité technique, il n'a pas été déployé en production commerciale suite au refus de la direction générale de modifier ses process manuels.
 *   **Transition :**
-    > La même démarche de modélisation a été appliquée au levier de rétention de notre proposition de valeur : la centrale d'achats.
-*   **Questions potentielles du Jury & Réponses clés :**
-    *   *Question :* Quels sont les risques liés à l'usage de n8n et de l'API Gemini pour la qualification commerciale ?
-    *   *Réponse :* Les risques majeurs sont liés aux changements d'APIs et aux dérives possibles des prompts (hallucinations). C'est pourquoi le pipeline intègre une étape de vérification humaine avant la prise de contact pour assurer la fiabilité des leads qualifiés.
+    > La même démarche de modélisation a été appliquée au levier de rétention de notre proposition de valeur : la preuve par le réseau.
 
 ---
 
-### 📂 SLIDE 7 : Simulation Rétention : Centrale Entegra (Durée conseillée : 2 min 30)
-*   **Visuel :** Modélisation financière sur le "Domaine de la Preuve". Cotisation Happy House : `360 € HT/an`. Économies potentielles modélisées via Entegra : Food & Beverage (F&B) : `-15% sur 14 300 € = 2 145 €` | Blanchisserie : `910 €`. Gain net potentiel : `+3 055 €`. ROI Client : `8,5x`. Note : `Partenariat négocié mais non déployé suite au refus de la direction`.
-*   **Discours de Julien :**
-    > De même, j'ai modélisé l'impact financier de notre proposition de rétention grâce à la centrale d'achats Entegra. En prenant le Domaine de la Preuve comme cas pilote théorique, notre simulation prouve qu'une cotisation annuelle de 360 € est rentabilisée plus de 8 fois, générant 3 055 € d'économies nettes (2 145 € sur l'alimentaire et 910 € sur la blanchisserie). C'est un argument de cost-killing irréfutable pour tuer le churn de 80 %. Toutefois, ce partenariat est resté à l'état de projet négocié : la direction a refusé d'intégrer techniquement cet onboarding et d'imposer l'usage de la centrale aux adhérents, préférant rester sur une offre purement relationnelle.
+### 📂 SLIDE 7 : Le Levier Collaboratif : Preuve par le Réseau (Durée conseillée : 2 min 30)
+*   **Visuel :** Cas d'école du Domaine de la Preuve (Durentie dans le RDM). Cotisation unique d'adhésion : `360 € TTC`. Transfert client direct de membre-à-membre (gratuit, 0% commission OTAs). Réservation directe générée : `11 000 €` en une seule opération. ROI Direct : `30,5x` l'adhésion. Note : *Le cycle de vente initial a duré 5 mois par manque de métriques ROI souveraines, validant le besoin de transparence.*
+*   **Discours de Julien (Première personne) :**
+    > Pour prouver que la valeur de Happy House ne dépend pas uniquement d'une centrale d'achats externe mais de la force de son réseau collaboratif, j'ai analysé le cas d'école du Domaine de la Preuve. Sur la base d'une cotisation annuelle de 360 € TTC, un hébergeur complet du réseau a transféré directement et gratuitement un client haut de gamme vers un autre membre. Cette unique opération a généré 11 000 € de réservation brute directe, sans aucune commission intermédiaire d'OTA. C'est la preuve ultime du retour sur investissement de l'effet réseau, affichant un ROI immédiat de 30,5 fois la cotisation annuelle. Ce cas pilote valide le modèle de recommandation, mais a souffert d'un cycle de vente de 5 mois à cause d'une absence de dashboard de preuve de valeur pour rassurer le prospect au départ.
 *   **Transition :**
-    > Pour matérialiser ce retour sur investissement auprès de l'hébergeur, j'avais conçu un support de preuve visuel.
+    > Pour matérialiser ces retours sur investissements sur l'ensemble de notre parc d'hébergeurs, j'avais conçu un support de preuve visuel sous forme de Dashboard ROI.
 *   **Questions potentielles du Jury & Réponses clés :**
     *   *Question :* Entegra accepte-t-il des adhésions de petits gîtes indépendants ?
     *   *Réponse :* Oui, c'est l'essence même du partenariat que j'ai négocié : mutualiser la puissance d'achat de nos 170 membres pour obtenir les mêmes remises que les grands groupes hôteliers, ce qui donnait toute sa pertinence à notre proposition.
 
 ---
 
-### 📂 SLIDE 8 : Maquette Dashboard ROI : Concept de Rétention (Durée conseillée : 2 min)
-*   **Visuel :** Maquette conceptuelle du Dashboard ROI (Édition Prestige). Écran de simulation pour le Domaine de la Preuve. Cotisation : `-360 €` | Économies Entegra simulées : `+3 055 €` | Nuitées directes : `+1 200 €` | ROI théorique : `11,8x`. Note : `Maquette fonctionnelle non intégrée en production`.
+### 📂 SLIDE 8 : L'Impact Entegra : Simulations ROI par Profil (Durée conseillée : 2 min)
+*   **Visuel :** Maquette du Dashboard ROI Conceptuel (Non-Déployé). Grille comparative des 4 simulations RDM basées sur les remises Entegra (15% à 25% de marge opérationnelle) pour 360 € TTC de cotisation :
+    *   Chambre d'hôte (1 ch.) : CA 76,6k € | Gain : `+2 292 €/an` (ROI `6,3x`)
+    *   Grand Gîte (8 pers.) : CA 36,5k € | Gain : `+1 340 €/an` (ROI `3,7x`)
+    *   Villa Premium (10 pers.) : CA 80,3k € | Gain : `+3 581 €/an` (ROI `9,9x`)
+    *   Vignoble (Hôtel + Resto) : CA 1 126k € | Gain : `+53 058 €/an` (ROI `147x`)
 *   **Discours de Julien :**
-    > J'ai également conçu la maquette d'un Dashboard ROI interactif. Son objectif était d'objectiver la valeur et de forcer l'usage du réseau en affichant en temps réel le retour sur investissement du membre, éliminant ainsi toute friction lors des renouvellements d'abonnements. Cette maquette conceptuelle valide notre démarche orientée bénéfice client. Néanmoins, en raison du blocage stratégique, ce tableau de bord n'a pas pu être développé en production et le réseau n'a pas pu bénéficier de ce levier de fidélisation par la preuve de valeur.
+    > De plus, pour objectiver la proposition de valeur financière de Happy House et lutter contre l'attrition de 80 %, j'ai modélisé les économies offertes par la centrale d'achats Entegra sur quatre profils d'hébergements réels de notre mémoire. Pour un investissement de 360 € TTC, les gains annuels simulés s'échelonnent de 1 340 € pour un Grand Gîte, soit 3,7 fois l'adhésion, jusqu'à plus de 53 000 € pour un grand domaine hôtelier et viticole, soit un ROI spectaculaire de 147 fois la cotisation. J'avais conçu la maquette d'un Dashboard ROI automatisant cet affichage pour le membre lors de ses renouvellements. En raison du blocage stratégique de la direction générale, ce dashboard n'a pas été développé en production et le réseau n'a pas pu bénéficier de ce levier de rétention par la preuve.
 *   **Transition :**
     > Ce refus de déploiement nous amène à analyser les causes réelles de ce blocage organisationnel et à mesurer le coût de l'inaction.
 *   **Questions potentielles du Jury & Réponses clés :**

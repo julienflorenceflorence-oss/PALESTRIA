@@ -848,20 +848,20 @@
             },
             {
                 number: 7,
-                title: "LA CENTRALE D'ACHATS : MODÉLISATION DE RÉTENTION",
-                speech: "De même, j'ai modélisé l'impact financier de notre proposition de rétention grâce à la centrale d'achats Entegra. En prenant le Domaine de la Preuve comme cas pilote théorique, notre simulation prouve qu'une cotisation annuelle de 360 € est rentabilisée plus de 8 fois, générant 3 055 € d'économies nettes (2 145 € sur l'alimentaire et 910 € sur la blanchisserie). C'est un argument de cost-killing irréfutable pour tuer le churn de 80 %. Toutefois, ce partenariat est resté à l'état de projet négocié : la direction a refusé d'intégrer techniquement cet onboarding et d'imposer l'usage de la centrale aux adhérents, préférant rester sur une offre purement relationnelle.",
-                transition: "Pour matérialiser ce retour sur investissement auprès de l'hébergeur, j'avais conçu un support de preuve visuel.",
-                visual: `<div style="display:grid; grid-template-columns:1fr 2fr; gap:15px; text-align:left; opacity:0.7;">
+                title: "LE LEVIER COLLABORATIF : EFFET RÉSEAU",
+                speech: "Pour prouver que la valeur de Happy House ne dépend pas uniquement d'une centrale d'achats externe mais de la force de son réseau collaboratif, j'ai analysé le cas d'école du Domaine de la Preuve. Sur la base d'une cotisation annuelle de 360 € TTC, un hébergeur complet du réseau a transféré directement et gratuitement un client haut de gamme vers un autre membre. Cette unique opération a généré 11 000 € de réservation brute directe, sans aucune commission intermédiaire d'OTA. C'est la preuve ultime du retour sur investissement de l'effet réseau, affichant un ROI immédiat de 30,5 fois la cotisation annuelle. Ce cas pilote valide le modèle de recommandation, mais a souffert d'un cycle de vente de 5 mois à cause d'une absence de dashboard de preuve de valeur pour rassurer le prospect au départ.",
+                transition: "Pour matérialiser ces retours sur investissements sur l'ensemble de notre parc d'hébergeurs, j'avais conçu un support de preuve visuel sous forme de Dashboard ROI.",
+                visual: `<div style="display:grid; grid-template-columns:1fr 2fr; gap:15px; text-align:left; opacity:0.9;">
                             <div style="border-right:1px solid rgba(255,255,255,0.1); padding-right:10px; display:flex; flex-direction:column; justify-content:center; text-align:center;">
-                                <div style="font-size:0.65rem; color:#888;">Cotisation Annuelle</div>
-                                <div style="font-size:1.8rem; color:var(--red); font-weight:bold;">360 € HT</div>
+                                <div style="font-size:0.65rem; color:#888;">Cotisation unique</div>
+                                <div style="font-size:1.8rem; color:var(--red); font-weight:bold;">360 € TTC</div>
                             </div>
                             <div>
-                                <div style="font-size:0.75rem; color:var(--green); font-weight:bold;">GAINS THÉORIQUES MODÉLISÉS</div>
+                                <div style="font-size:0.75rem; color:var(--green); font-weight:bold;">PREUVE CAS DURENTIE (DOMAINE DE LA PREUVE)</div>
                                 <div style="font-size:0.85rem; color:#DDD; margin-top:5px;">
-                                    • Alimentaire (F&B) : <strong>-2 145 €</strong><br>
-                                    • Blanchisserie / Gaz : <strong>-910 €</strong><br>
-                                    <span style="color:var(--gold); font-weight:bold;">Gain Net Annuel : + 3 055 € (ROI 8,5x)</span>
+                                    • Transfert collaboratif gratuit d'un client haut de gamme<br>
+                                    • Réservation directe générée : <strong>11 000 €</strong> (one-shot)<br>
+                                    <span style="color:var(--gold); font-weight:bold;">ROI direct immédiat : 30,5x la cotisation</span>
                                 </div>
                             </div>
                          </div>`,
@@ -874,20 +874,21 @@
             },
             {
                 number: 8,
-                title: "MAQUETTE DASHBOARD ROI (MOCKUP)",
-                speech: "J'ai également conçu la maquette d'un Dashboard ROI interactif. Son objectif était d'objectiver la valeur et de forcer l'usage du réseau en affichant en temps réel le retour sur investissement du membre, éliminant ainsi toute friction lors des renouvellements d'abonnements. Cette maquette conceptuelle valide notre démarche orientée bénéfice client. Néanmoins, en raison du blocage stratégique, ce tableau de bord n'a pas pu être développé en production et le réseau n'a pas pu bénéficier de ce levier de fidélisation par la preuve de valeur.",
+                title: "L'IMPACT ENTEGRA : SIMULATIONS ROI PAR PROFIL",
+                speech: "De plus, pour objectiver la proposition de valeur financière de Happy House et lutter contre l'attrition de 80 %, j'ai modélisé les économies offertes par la centrale d'achats Entegra sur quatre profils d'hébergements réels de notre mémoire. Pour un investissement de 360 € TTC, les gains annuels simulés s'échelonnent de 1 340 € pour un Grand Gîte, soit 3,7 fois l'adhésion, jusqu'à plus de 53 000 € pour un grand domaine hôtelier et viticole, soit un ROI spectaculaire de 147 fois la cotisation. J'avais conçu la maquette d'un Dashboard ROI automatisant cet affichage pour le membre lors de ses renouvellements. En raison du blocage stratégique de la direction générale, ce dashboard n'a pas été développé en production et le réseau n'a pas pu bénéficier de ce levier de rétention par la preuve.",
                 transition: "Ce refus de déploiement nous amène à analyser les causes réelles de ce blocage organisationnel et à mesurer le coût de l'inaction.",
-                visual: `<div style="border:1px solid var(--red); background:#13151D; padding:15px; border-radius:4px; font-size:0.75rem; text-align:left; opacity:0.6;">
-                            <div style="display:flex; justify-content:space-between; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:5px; margin-bottom:10px;">
-                                <strong style="color:var(--red);">MOCKUP CONCEPTUEL : Domaine de la Preuve</strong>
-                                <span style="color:var(--red); font-weight:bold;">Non déployé</span>
+                visual: `<div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:10px; font-size:0.7rem; text-align:left; opacity:0.9;">
+                            <div style="border:1px solid rgba(255,255,255,0.1); padding:8px;">
+                                <strong>Chambre d'hôte (1 ch.)</strong><br>CA 76,6k € | Gain : <span style="color:var(--green); font-weight:bold;">+2 292 €</span> (ROI 6,3x)
                             </div>
-                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
-                                <div>Cotisation payée : <span style="color:var(--red); font-weight:bold;">-360 €</span></div>
-                                <div>Économies Entegra : <span style="color:var(--green); font-weight:bold;">+3 055 €</span></div>
+                            <div style="border:1px solid rgba(255,255,255,0.1); padding:8px;">
+                                <strong>Grand Gîte (8 pers.)</strong><br>CA 36,5k € | Gain : <span style="color:var(--green); font-weight:bold;">+1 340 €</span> (ROI 3,7x)
                             </div>
-                            <div style="border-top:1px solid rgba(255,255,255,0.05); margin-top:10px; padding-top:5px; text-align:right;">
-                                <strong>ROI théorique : 11,8x</strong>
+                            <div style="border:1px solid rgba(255,255,255,0.1); padding:8px;">
+                                <strong>Villa Premium (10 pers.)</strong><br>CA 80,3k € | Gain : <span style="color:var(--green); font-weight:bold;">+3 581 €</span> (ROI 9,9x)
+                            </div>
+                            <div style="border:1px solid var(--green); background:rgba(46,204,113,0.02); padding:8px;">
+                                <strong>Vignoble (Hôtel + Resto)</strong><br>CA 1 126k € | Gain : <span style="color:var(--green); font-weight:bold;">+53 058 €</span> (ROI 147x)
                             </div>
                          </div>`,
                 qa: [

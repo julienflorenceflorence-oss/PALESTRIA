@@ -1,8 +1,8 @@
-# 🏆 GUIDE STRATÉGIQUE DE SOUTENANCE DE MASTER & TRAME DU PITCH (POSTURE MESURÉE)
+# 🏆 GUIDE STRATÉGIQUE DE SOUTENANCE DE BACHELOR & TRAME DU PITCH (POSTURE MESURÉE)
 
 **Candidat :** Julien FLORENCE  
 **Poste :** Directeur du Développement Stratégique (Happy House)  
-**Établissement :** Rocket School — Promotion A150 (Validation Niveau Master / Bac+5)  
+**Établissement :** Rocket School — Promotion A150 (Validation Niveau Bachelor / Bac+3)  
 **Esthétique :** Édition Prestige (Noir Anthracite `#0F1115`, Or Prestige `#D4AF37`, polices Cinzel & Montserrat)
 
 ---
@@ -43,11 +43,11 @@ graph TD
 
 ---
 
-## 🧠 2. ANALYSE DES MEILLEURS ORAUX DE MASTER (ATTENTES DU JURY)
+## 🧠 2. ANALYSE DES MEILLEURS ORAUX DE BACHELOR (ATTENTES DU JURY)
 
-Pour un niveau Master, présenter un échec opérationnel dû à une résistance managériale n'est pas un handicap, c'est une opportunité de prouver sa maturité analytique.
+Pour un niveau Bachelor, présenter un échec opérationnel dû à une résistance managériale n'est pas un handicap, c'est une opportunité de prouver sa maturité analytique.
 
-| Critère d'Excellence | Posture à Proscrire | Posture de niveau Master (Julien - ENTJ-A) |
+| Critère d'Excellence | Posture à Proscrire | Posture de niveau Bachelor (Julien - ENTJ-A) |
 | :--- | :--- | :--- |
 | **Analyse du Pivot** | Présenter un succès artificiel ou inventer des données de réussite. | Poser le diagnostic financier et admettre objectivement le blocage des solutions par la direction. |
 | **Gestion du Veto** | Critiquer personnellement le dirigeant, se placer en victime ou parent critique. | Expliquer rationnellement les causes du refus de Patrice (aversion au risque, aversion technologique, biais de survie). |
@@ -61,7 +61,7 @@ Pour un niveau Master, présenter un échec opérationnel dû à une résistance
 ---
 
 ### 📂 SLIDE 1 : Titre & Introduction (Durée conseillée : 1 min 30)
-*   **Visuel (Édition Prestige) :** Mise en page split-screen asymétrique. **À gauche (1.2) :** Fond noir `#0F1115` mat, filet doré de séparation vertical. Titre en Cinzel `HAPPY HOUSE` et sous-titre doré `LA RÉSISTANCE AU PIVOT STRATÉGIQUE`. En bas, cartouche d'identité épuré pour Julien Florence. **À droite (1) :** Photographie `Images/LFDB_004.jpg` plein cadre avec dégradé d'ombre pour apporter de la profondeur, de la couleur et un caractère haut de gamme immédiat.
+*   **Visuel (Édition Prestige) :** Mise en page split-screen asymétrique. **À gauche (1.2) :** Fond noir `#0F1115` mat, filet doré de séparation vertical. En haut, logos de `Happy House` et de `Rocket School`. Titre en Cinzel `HAPPY HOUSE` et sous-titre doré `LA RÉSISTANCE AU PIVOT STRATÉGIQUE`. En bas, mention `SOUTENANCE ORALE — VALIDATION BACHELOR` et identité de Julien Florence. **À droite (1) :** Photographie `Images/LFDB_004.jpg` plein cadre avec dégradé d'ombre pour apporter de la profondeur, de la couleur et un caractère haut de gamme immédiat.
 *   **Discours de Julien (Première personne) :**
     > Mesdames, Messieurs les membres du jury, bonjour. Je suis Julien Florence, Directeur du Développement Stratégique pour le réseau d'hébergements premium Happy House. Ma mission aujourd'hui n'est pas de vous raconter une transition opérationnelle idéale. Je viens vous exposer un diagnostic commercial et une analyse de résistance organisationnelle. Face à la saturation du marché hôtelier et aux monopoles des plateformes de réservation, nous avons audité nos chiffres et modélisé des propositions de pivot technologiques et opérationnels. Cependant, ce projet s'est heurté à un arbitrage de notre direction générale, qui a refusé la mise en œuvre de ces transformations. Mon objectif est de vous montrer comment l'analyse rigoureuse d'un modèle en crise, alliée à une posture d'autocritique, constitue un enseignement majeur sur la conduite du changement en entreprise.
 *   **Transition :**
@@ -168,7 +168,7 @@ Pour un niveau Master, présenter un échec opérationnel dû à une résistance
 ### 📂 SLIDE 10 : Analyse du Blocage & Coût de l'Inaction (Durée conseillée : 2 min)
 *   **Visuel :** Les Facteurs de résistance de Patrice (Aversion technologique, crainte de dénaturer le premium relationnel) vs Le Coût de l'Inaction M12 (CAC maintenu à 1 823 €, Churn bloqué à 80 %, EBITDA hôtelier dégradé).
 *   **Discours de Julien :**
-    > Analyser la soutenance de niveau Master, c'est comprendre les causes de ce blocage organisationnel et mesurer le coût de l'inaction. Le refus de Patrice de valider notre pivot repose sur une aversion au risque technologique et sur la crainte infondée de dénaturer le positionnement haut de gamme du réseau. Le coût de ce statu quo est lourd de conséquences : les équipes commerciales ont continué à prospecter par cold calling manuel avec un CAC de 1 823 €, et la cohorte a maintenu son taux d'attrition historique de 80 % faute de valeur perçue post-vente. C'est la démonstration claire qu'un bon diagnostic technique ne suffit pas sans conduite du changement.
+    > Analyser la soutenance de niveau Bachelor, c'est comprendre les causes de ce blocage organisationnel et mesurer le coût de l'inaction. Le refus de Patrice de valider notre pivot repose sur une aversion au risque technologique et sur la crainte infondée de dénaturer le positionnement haut de gamme du réseau. Le coût de ce statu quo is lourd de conséquences : les équipes commerciales ont continué à prospecter par cold calling manuel avec un CAC de 1 823 €, et la cohorte a maintenu son taux d'attrition historique de 80 % faute de valeur perçue post-vente. C'est la démonstration claire qu'un bon diagnostic technique ne suffit pas sans conduite du changement.
 *   **Transition :**
     > Cette confrontation avec la résistance au changement a été le véritable moteur de mon évolution professionnelle.
 *   **Questions potentielles du Jury & Réponses clés :**

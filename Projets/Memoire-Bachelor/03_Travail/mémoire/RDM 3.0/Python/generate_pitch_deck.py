@@ -294,7 +294,40 @@ html_content = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- SLIDE 4 : LE DIAGNOSTIC INTERNE -->
+        <!-- SLIDE 4 : DOMINATION DES OTAS & FUITE DE MARGES -->
+        <div class="slide">
+            <h2 class="subtitle">L'Impact Macro : Domination des OTAs &amp; Fuite de Marges</h2>
+            <div class="grid-3" style="margin-top: 2vh;">
+                <div class="card border-red">
+                    <div class="huge-number text-red" style="font-size: 5vw;">71%</div>
+                    <div class="label mt-2" style="color: #FFF;">Domination Numérique</div>
+                    <p style="font-size: 1vw; color: #888; margin-top: 2vh; line-height: 1.6;">
+                        Part de marché de **Booking Holdings** en Europe. Les OTAs captent 29,6% du marché global des nuitées.
+                    </p>
+                </div>
+                <div class="card border-gold">
+                    <div class="huge-number text-gold" style="font-size: 5vw;">-25%</div>
+                    <div class="label mt-2" style="color: #FFF;">Marge Perdue Hébergeurs</div>
+                    <p style="font-size: 1vw; color: #888; margin-top: 2vh; line-height: 1.6;">
+                        De commission systématique sur le CA. Soit une perte nette de **15k € à 30k €/an** par établissement indépendant.
+                    </p>
+                </div>
+                <div class="card border-red">
+                    <div class="huge-number text-red" style="font-size: 5vw;">IS</div>
+                    <div class="label mt-2" style="color: #FFF;">Perte Collectivités</div>
+                    <p style="font-size: 1vw; color: #888; margin-top: 2vh; line-height: 1.6;">
+                        Optimisation fiscale internationale. Les commissions fuient vers l'étranger, privant les territoires d'investissements locaux.
+                    </p>
+                </div>
+            </div>
+            <div class="card" style="width: 100%; max-width: 1400px; margin-top: 4vh; padding: 1.5vw; border-color: var(--border-color); text-align: left;">
+                <p style="font-size: 1.1vw; color: #DDD; text-align: center;">
+                    **Fuite économique** : Pour 100 € dépensés par un voyageur, **15 € à 25 € quittent définitivement l'économie locale** française.
+                </p>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 : LE DIAGNOSTIC INTERNE -->
         <div class="slide">
             <h2 class="subtitle text-red" style="border-color: rgba(231,76,60,0.25);">Diagnostic Interne : La Preuve du Crash</h2>
             <div class="grid-3" style="margin-top: 2vh;">
@@ -532,7 +565,7 @@ html_content = """<!DOCTYPE html>
         </div>
 
         <!-- OVERLAYS -->
-        <div class="slide-counter"><span id="current-slide">1</span> / 10</div>
+        <div class="slide-counter"><span id="current-slide">1</span> / 11</div>
         <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
     </div>
 

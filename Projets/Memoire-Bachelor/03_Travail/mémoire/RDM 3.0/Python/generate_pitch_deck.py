@@ -223,9 +223,9 @@ html_content = """<!DOCTYPE html>
             <!-- Left Panel: Content -->
             <div style="flex: 1.2; background: var(--black); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 5% 6%; border-right: 1px solid var(--border-color); z-index: 2; position: relative;">
                 <!-- Logos container -->
-                <div style="display: flex; gap: 2vw; align-items: center; margin-bottom: 4vh;">
-                    <img src="Images/logo_happy_house.png" alt="Happy House Logo" style="height: 4.5vh; max-width: 10vw; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.15));">
-                    <img src="Images/logo_rocket_school.png" alt="Rocket School Logo" style="height: 4vh; max-width: 10vw; object-fit: contain; filter: brightness(0) invert(1); opacity: 0.9;">
+                <div style="display: flex; gap: 3vw; align-items: center; margin-bottom: 4vh;">
+                    <img src="Images/logo_happy_house.png" alt="Happy House Logo" style="height: 7.5vh; max-width: 15vw; object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.15));">
+                    <img src="Images/logo_rocket_school.png" alt="Rocket School Logo" style="height: 7vh; max-width: 15vw; object-fit: contain; filter: invert(1); opacity: 0.95;">
                 </div>
                 
                 <div class="label" style="margin-bottom: 1.5vh; color: var(--gold); font-size: 1vw; text-align: left; letter-spacing: 2px;">AUDIT COMMERCIAL &amp; BLOCAGE ORGANISATIONNEL</div>

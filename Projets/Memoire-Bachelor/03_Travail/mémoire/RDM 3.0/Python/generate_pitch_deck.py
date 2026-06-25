@@ -219,16 +219,26 @@ html_content = """<!DOCTYPE html>
     <div id="presentation-container">
 
         <!-- SLIDE 1 : COUVERTURE -->
-        <div class="slide active">
-            <div class="label" style="margin-bottom: 2vh; color: var(--gold); font-size: 1.2vw;">AUDIT COMMERCIAL &amp; BLOCAGE ORGANISATIONNEL</div>
-            <h1 class="big-title">HAPPY HOUSE</h1>
-            <div style="width: 15vw; height: 2px; background: var(--gold); margin: 2vh 0 4vh 0;"></div>
-            <h2 class="cinzel text-gold" style="font-size: 2vw; font-weight: 400; letter-spacing: 4px; margin-bottom: 6vh; text-align: center;">LA RÉSISTANCE AU PIVOT STRATÉGIQUE</h2>
-            
-            <div style="text-align: center; margin-top: 4vh;">
-                <p style="font-size: 1.6vw; font-weight: 700; letter-spacing: 4px; color: #FFF;">JULIEN FLORENCE</p>
-                <p style="font-size: 1.1vw; color: #777; margin-top: 1.5vh; letter-spacing: 2px;">DIRECTEUR DU DÉVELOPPEMENT STRATÉGIQUE</p>
-                <p style="font-size: 0.9vw; color: #555; margin-top: 1vh; letter-spacing: 3px;">VALIDATION MASTER (A150) — ROCKET SCHOOL</p>
+        <div class="slide active" style="padding: 0; flex-direction: row; align-items: stretch; justify-content: stretch;">
+            <!-- Left Panel: Content -->
+            <div style="flex: 1.2; background: var(--black); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; padding: 5% 6%; border-right: 1px solid var(--border-color); z-index: 2; position: relative;">
+                <div class="label" style="margin-bottom: 2vh; color: var(--gold); font-size: 1.1vw; text-align: left;">AUDIT COMMERCIAL &amp; BLOCAGE ORGANISATIONNEL</div>
+                <h1 class="big-title" style="text-align: left; font-size: 3.8vw; margin-bottom: 1vh; line-height: 1.1; letter-spacing: 0.1em; color: #FFF;">HAPPY HOUSE</h1>
+                <div style="width: 10vw; height: 2px; background: var(--gold); margin: 2vh 0 3vh 0;"></div>
+                <h2 class="cinzel text-gold" style="font-size: 1.6vw; font-weight: 400; letter-spacing: 3px; margin-bottom: 6vh; text-align: left; line-height: 1.4;">
+                    LA RÉSISTANCE AU PIVOT STRATÉGIQUE
+                </h2>
+                
+                <div style="border-top: 1px solid rgba(255,255,255,0.05); padding-top: 3vh; width: 100%;">
+                    <p style="font-size: 1.4vw; font-weight: 700; letter-spacing: 3px; color: #FFF; margin-bottom: 0.5vh;">JULIEN FLORENCE</p>
+                    <p style="font-size: 0.9vw; color: #888; margin-top: 0.5vh; letter-spacing: 1px;">DIRECTEUR DU DÉVELOPPEMENT STRATÉGIQUE</p>
+                    <p style="font-size: 0.75vw; color: #555; margin-top: 0.5vh; letter-spacing: 2px;">VALIDATION MASTER (A150) — ROCKET SCHOOL</p>
+                </div>
+            </div>
+            <!-- Right Panel: Image -->
+            <div style="flex: 1; background: url('Images/LFDB_004.jpg') no-repeat center center; background-size: cover; position: relative;">
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to right, rgba(15, 17, 21, 0.4) 0%, rgba(15, 17, 21, 0.0) 100%);"></div>
+                <div style="position: absolute; left: 0; top: 0; bottom: 0; width: 1px; background: var(--gold); box-shadow: 0 0 15px var(--gold);"></div>
             </div>
         </div>
 

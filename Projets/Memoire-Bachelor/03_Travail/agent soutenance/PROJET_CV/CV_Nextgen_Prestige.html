@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Julien FLORENCE - NEXTGEN RH - Édition Prestige A4</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0A0B0E;
+            --sidebar: #111418;
+            --accent: #D4AF37;
+            --accent-light: #F7EF8A;
+            --text: #FFFFFF;
+            --text-dim: #A0A4B0;
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; width: var(--page-w); height: var(--page-h); }
+        }
+
+        body { background: #000; color: var(--text); font-family: 'Montserrat', sans-serif; margin: 0; line-height: 1.3; font-size: 8.5pt; }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 220px 1fr;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* --- SIDEBAR --- */
+        aside {
+            background: var(--sidebar);
+            padding: 15px 12px;
+            border-right: 1px solid rgba(212, 175, 55, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-frame {
+            width: 120px;
+            height: 120px;
+            border: 2px solid var(--accent);
+            padding: 3px;
+            margin-bottom: 12px;
+            border-radius: 10px; /* Arrondi 10px obligatoire */
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(10%) contrast(110%);
+            border-radius: 10px; /* Arrondi 10px obligatoire */
+        }
+
+        .contact-buttons {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin-bottom: 15px;
+        }
+
+        .btn-action {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            padding: 6px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--accent);
+            text-decoration: none;
+            font-size: 0.65rem;
+            font-family: 'Cinzel';
+            transition: all 0.3s;
+            text-align: center;
+            border-radius: 10px; /* Arrondi 10px obligatoire */
+        }
+
+        .btn-action:hover { background: var(--accent); color: var(--bg); }
+
+        .btn-calendar {
+            background: linear-gradient(135deg, var(--accent-light), var(--accent));
+            color: #000;
+            border: none;
+            font-weight: 700;
+        }
+
+        .btn-digital-cv {
+            border: 1px solid var(--accent);
+            background: rgba(212, 175, 55, 0.15);
+            font-weight: 600;
+        }
+
+        h2 { font-family: 'Cinzel'; color: var(--accent); font-size: 0.8rem; border-bottom: 1px solid var(--accent); padding-bottom: 2px; margin: 10px 0 6px 0; align-self: flex-start; width: 100%; }
+        
+        .side-list { list-style: none; padding: 0; width: 100%; font-size: 0.72rem; color: var(--text-dim); }
+        .side-list li { margin-bottom: 4px; display: flex; align-items: flex-start; gap: 4px; }
+        .side-list li::before { content: "›"; color: var(--accent); font-weight: bold; }
+
+        /* --- MAIN CONTENT --- */
+        main {
+            padding: 20px 25px 15px 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        header { margin-bottom: 10px; }
+        h1 { font-family: 'Cinzel'; font-size: 2rem; color: var(--accent); margin: 0; letter-spacing: 2px; }
+        .tagline { font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--text); margin: 2px 0 8px 0; font-size: 0.9rem; border-left: 3px solid var(--accent); padding-left: 10px; }
+
+        .ats-summary { font-size: 0.8rem; text-align: justify; color: var(--text-dim); margin-bottom: 12px; line-height: 1.35; }
+
+        .section-title { font-family: 'Cinzel'; color: var(--accent); font-size: 1rem; margin: 10px 0 6px 0; display: flex; align-items: center; gap: 8px; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: linear-gradient(to right, var(--accent), transparent); }
+
+        .exp-card { margin-bottom: 8px; }
+        .exp-head { display: flex; justify-content: space-between; align-items: baseline; }
+        .role { font-weight: 700; color: var(--accent); font-size: 0.85rem; }
+        .date { font-family: 'Cinzel'; font-size: 0.7rem; color: var(--text-dim); }
+        .company { font-weight: 600; font-size: 0.78rem; color: var(--text); margin-bottom: 2px; }
+        
+        .exp-body { font-size: 0.75rem; color: var(--text-dim); padding-left: 8px; border-left: 1px solid rgba(255,255,255,0.1); }
+        .exp-body ul { margin: 2px 0; padding-left: 10px; }
+        .exp-body li { margin-bottom: 1px; }
+
+        .keyword-pill { display: inline-block; padding: 1px 4px; border: 1px solid rgba(212, 175, 55, 0.4); font-size: 0.6rem; color: var(--accent); margin: 1px; border-radius: 10px; /* Arrondi 10px obligatoire */ }
+
+    </style>
+</head>
+<body>
+    <div class="page">
+        <aside>
+            <div class="profile-frame">
+                <img src="../CV lettre de motivation/photo moi pro.jpeg" alt="Julien FLORENCE">
+            </div>
+
+            <div class="contact-buttons">
+                <a href="tel:0661747573" class="btn-action">📞 06 61 74 75 73</a>
+                <a href="mailto:julien.florence@gmail.com" class="btn-action">✉️ EMAIL</a>
+                <a href="https://calendar.app.google/iCzfE1GQrjxM3ZQ56" target="_blank" class="btn-action btn-calendar">📅 AGENDA</a>
+                <a href="../index.html" class="btn-action btn-digital-cv">🌐 ACCÈS CV DIGITAL</a>
+            </div>
+
+            <h2>Expertises Métier</h2>
+            <ul class="side-list">
+                <li>Management Retail & Vente (3-20 collab.)</li>
+                <li>Pilotage Commercial & KPIs (CA, P&L)</li>
+                <li>Gestion des Flux, Appro. & Stocks</li>
+                <li>Excellence Client & Fidélisation</li>
+                <li>CRM Expert & Smarketing (Bitrix24)</li>
+            </ul>
+
+            <h2>Soft Skills</h2>
+            <ul class="side-list">
+                <li>ENTJ-A | 94% Rationnel & Organisé</li>
+                <li>Sens aigu de l'organisation & Rigueur</li>
+                <li>Leadership fédérateur (Posture Girafe)</li>
+                <li>Gestion de conflits & Résolution de prob.</li>
+                <li>Management participatif & Terrain</li>
+            </ul>
+
+            <h2>Langues</h2>
+            <ul class="side-list">
+                <li>Anglais : Courant (B2)</li>
+                <li>Néerlandais : B2</li>
+            </ul>
+
+            <h2>Formation</h2>
+            <ul class="side-list">
+                <li><strong>Bachelor Marketing & Commerce</strong> (2025)</li>
+                <li>HTML5 & CSS3 - Google Academy</li>
+            </ul>
+        </aside>
+
+        <main>
+            <header>
+                <h1>Julien FLORENCE</h1>
+                <div class="tagline">Responsable Adjoint de Point de Vente</div>
+            </header>
+
+            <div class="ats-summary">
+                <strong>Manager commercial et opérationnel</strong> avec 15 ans d'expérience dans l'animation d'équipes et la gestion de centres de profit (jusqu'à 2.6 M€). Alliant la rigueur opérationnelle issue de l'hôtellerie de luxe (Palaces 5* & Étoilés) à de solides compétences en techniques de vente et outils technologiques (Bachelor Marketing, CRM), je suis orienté terrain et satisfaction client. <strong>Immédiatement mobile et opérationnel sur Bordeaux</strong> pour dynamiser la performance de votre point de vente.
+            </div>
+
+            <div class="section-title">Expériences Professionnelles</div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Responsable Développement Commercial</span><span class="date">2025 – PRÉSENT</span></div>
+                <div class="company">HAPPY HOUSE | SOLUTIONS B2B & RENTABILITÉ</div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>Management et coaching</strong> d'une équipe de 3 collaborateurs (animation, objectifs).</li>
+                        <li>Intégration d'outils d'acquisition Tech, automatisation et suivi des KPIs de performance.</li>
+                        <li>Contribution directe aux projets transverses et à l'évolution des processus de vente.</li>
+                    </ul>
+                    <div class="keyword-pill">Management</div><div class="keyword-pill">Processus</div><div class="keyword-pill">KPIs</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Gestionnaire de Centre de Profit & Manager</span><span class="date">2022 – 2024</span></div>
+                <div class="company">RAS INTÉRIM | LOGISTIQUE & SERVICES - CA 2.6 M€</div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>Management quotidien</strong> de 20 ETP par semaine (formation, plannings, évaluations).</li>
+                        <li>Pilotage commercial : analyse des indicateurs clés et gestion de 25 comptes B2B stratégiques.</li>
+                        <li>Garant du respect strict des procédures internes et de la conformité réglementaire.</li>
+                    </ul>
+                    <div class="keyword-pill">Gestion d'équipe</div><div class="keyword-pill">Indicateurs</div><div class="keyword-pill">Procédures</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Conseiller Leader - Expert Immobilier</span><span class="date">2015 – 2021</span></div>
+                <div class="company">CENTURY 21 & CABINET BEDIN | BORDEAUX / GIRONDE - CA global 7 M€</div>
+                <div class="exp-body">
+                    <ul>
+                        <li>Négociation commerciale et pilotage d'un portefeuille clients exigeants (120k€ CA personnel).</li>
+                        <li>Fidélisation d'une clientèle locale et animation d'actions commerciales de terrain.</li>
+                        <li>Grand sens de l'organisation et rigueur administrative dans le suivi des dossiers de vente.</li>
+                    </ul>
+                    <div class="keyword-pill">Négociation</div><div class="keyword-pill">Rigueur</div><div class="keyword-pill">Fidélisation</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Directeur de Restaurant</span><span class="date">2010 – 2015</span></div>
+                <div class="company">MA SALLE À MANGER | PARIS 1er</div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>Animation quotidienne</strong> de l'espace de vente et management d'une équipe de 15 salariés.</li>
+                        <li>Pilotage de la rentabilité (comptes d'exploitation, P&L) : croissance de <strong>+140%</strong> du CA.</li>
+                        <li>Gestion rigoureuse des stocks, approvisionnements et respect strict des normes de sécurité.</li>
+                    </ul>
+                    <div class="keyword-pill">Gestion de stock</div><div class="keyword-pill">P&L</div><div class="keyword-pill">Animation</div>
+                </div>
+            </div>
+
+            <div class="exp-card">
+                <div class="exp-head"><span class="role">Management & Service d'Excellence</span><span class="date">2000 – 2009</span></div>
+                <div class="company">PALACES 5* & RESTAURANTS ÉTOILÉS | DUBLIN, SAINT-BARTH, ANGLETERRE</div>
+                <div class="exp-body">
+                    <ul>
+                        <li><strong>Management opérationnel</strong> d'équipes de 7 à 20 collaborateurs sous haute exigence.</li>
+                        <li>Fidélisation d'une clientèle internationale selon les standards prestigieux LHW.</li>
+                        <li>Capacités de résolution de problèmes et de gestion des conflits en situation de forte affluence.</li>
+                    </ul>
+                    <div class="keyword-pill">Excellence</div><div class="keyword-pill">Résolution de problèmes</div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

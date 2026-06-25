@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidature Attaché Commercial 33 - Plus que PRO</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --sidebar-bg: #14171F;
+            --card-bg: #1A1E29;
+            --accent: #D4AF37;
+            --accent-hover: #F3D06D;
+            --accent-glow: rgba(212, 175, 55, 0.2);
+            --text: #FFFFFF;
+            --text-dim: #9FA4B3;
+            --border: rgba(212, 175, 55, 0.12);
+            --success: #10B981;
+            --danger: #EF4444;
+        }
+
+        /* Fallbacks de polices pour un affichage hors-ligne optimal */
+        body, button, input, select, textarea {
+            font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, .brand-text, .brand-logo span, .nav-item, .candidate-name, .header-badge, .stat-value, .stat-label, .timeline-year, th, .btn-prestige, .budget-row.total span.val {
+            font-family: 'Cinzel', Georgia, "Times New Roman", serif !important;
+        }
+        .quote {
+            font-family: 'Playfair Display', Georgia, "Times New Roman", serif !important;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 280px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .brand-logo {
+            width: 40px;
+            height: 40px;
+            border: 2px solid var(--accent);
+            transform: rotate(45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .brand-logo span {
+            transform: rotate(-45deg);
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .brand-text {
+            font-family: 'Cinzel';
+            font-size: 0.95rem;
+            letter-spacing: 3px;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex-grow: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 14px 16px;
+            color: var(--text-dim);
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--accent);
+            background-color: rgba(212, 175, 55, 0.05);
+            border-color: var(--border);
+            box-shadow: inset 0 0 10px rgba(212, 175, 55, 0.02);
+        }
+
+        .sidebar-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+            text-align: center;
+        }
+
+        .candidate-name {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 280px;
+            flex-grow: 1;
+            padding: 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+
+        .header-title h1 {
+            font-family: 'Cinzel';
+            font-size: 1.8rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .header-title p {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        .header-badge {
+            border: 1px solid var(--accent);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+            background: rgba(212, 175, 55, 0.03);
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Dashboard Views */
+        .dashboard-view {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+            flex-grow: 1;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .dashboard-view.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Layout Grid Components */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 25px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 40px;
+            background: var(--accent);
+            border-radius: 3px 3px 0 0;
+            transition: width 0.3s ease;
+        }
+
+        .card:hover::before {
+            width: 100%;
+        }
+
+        .card-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 10px;
+        }
+
+        .card h2 {
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+
+        /* Large statistics */
+        .stat-value {
+            font-family: 'Cinzel';
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--text);
+            margin: 10px 0;
+            text-shadow: 0 0 10px rgba(255,255,255,0.1);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Text layout */
+        p.desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            color: var(--text-dim);
+            text-align: justify;
+            margin-bottom: 15px;
+        }
+
+        /* Chronology Timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            position: relative;
+        }
+
+        .timeline-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            left: 55px;
+            top: 30px;
+            bottom: -20px;
+            width: 1px;
+            background: var(--border);
+        }
+
+        .timeline-year {
+            width: 110px;
+            font-family: 'Cinzel';
+            font-weight: 700;
+            color: var(--accent);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            border: 1px solid var(--accent);
+            border-radius: 4px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.05);
+            flex-shrink: 0;
+        }
+
+        .timeline-content {
+            flex-grow: 1;
+            padding-top: 3px;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Cinzel';
+            font-size: 0.85rem;
+            color: var(--text);
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-content p {
+            font-size: 0.78rem;
+            color: var(--text-dim);
+            line-height: 1.4;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.8rem;
+        }
+
+        th {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            background: rgba(20, 23, 31, 0.8);
+            border: 1px solid var(--border);
+            padding: 12px;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        td {
+            border: 1px solid var(--border);
+            padding: 10px 12px;
+            color: var(--text-dim);
+        }
+
+        tr:hover td {
+            color: var(--text);
+            background: rgba(255,255,255,0.01);
+        }
+
+        /* Badges */
+        .badge {
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Cinzel';
+            font-size: 0.65rem;
+            font-weight: 600;
+            display: inline-block;
+            letter-spacing: 0.5px;
+        }
+
+        .badge-green { background: rgba(16, 185, 129, 0.12); color: var(--success); border: 1px solid var(--success); }
+        .badge-red { background: rgba(239, 68, 68, 0.12); color: var(--danger); border: 1px solid var(--danger); }
+        .badge-gold { background: rgba(212, 175, 55, 0.12); color: var(--accent); border: 1px solid var(--accent); }
+
+        /* Lists */
+        .custom-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .custom-list li {
+            position: relative;
+            padding-left: 20px;
+            font-size: 0.8rem;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        .custom-list li::before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 0.6rem;
+            top: 2px;
+        }
+
+        /* Quotes */
+        .quote {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            color: var(--accent);
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Quantified Cost Card for Afterwork */
+        .budget-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: rgba(212, 175, 55, 0.03);
+            border: 1px dashed var(--accent);
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .budget-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding-bottom: 8px;
+        }
+
+        .budget-row:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            font-weight: 700;
+        }
+
+        .budget-row span.label {
+            color: var(--text-dim);
+        }
+
+        .budget-row span.val {
+            color: var(--text);
+        }
+
+        .budget-row.total span.val {
+            color: var(--accent);
+            font-size: 1.1rem;
+            font-family: 'Cinzel';
+        }
+
+        /* Tab switching animations */
+        .section-title {
+            font-family: 'Cinzel';
+            font-size: 1.3rem;
+            color: var(--accent);
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        /* Interactive ROI Calculator */
+        .roi-box {
+            background: rgba(16, 185, 129, 0.03);
+            border: 1px solid var(--success);
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <div class="brand">
+            <div class="brand-logo">
+                <span>+</span>
+            </div>
+            <div class="brand-text">Plus que PRO</div>
+        </div>
+
+        <div class="nav-menu">
+            <button class="nav-item active" onclick="switchView('view-historique', this)">
+                ◆ Historique & Vision
+            </button>
+            <button class="nav-item" onclick="switchView('view-clients', this)">
+                ◆ Retours & E-Réputation
+            </button>
+            <button class="nav-item" onclick="switchView('view-tarifs', this)">
+                ◆ Benchmark Tarifs
+            </button>
+            <button class="nav-item" onclick="switchView('view-ciblage', this)">
+                ◆ Méthodologie 33
+            </button>
+            <button class="nav-item" onclick="switchView('view-network', this)">
+                ◆ Plan Closing Afterwork
+            </button>
+            <button class="nav-item" onclick="switchView('view-integration', this)">
+                ◆ Plan d'Intégration & Cibles
+            </button>
+        </div>
+
+        <div class="sidebar-footer">
+            <div class="candidate-name">Julien Florence</div>
+            <div>Candidature Attaché Commercial 33</div>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="main-content">
+        <header>
+            <div class="header-title">
+                <h1 id="page-main-title">Historique & Vision Stratégique</h1>
+                <p id="page-sub-title">Comprendre les fondations, la croissance et le potentiel de Plus que PRO</p>
+            </div>
+            <div class="header-badge">Objectif Concession 33</div>
+        </header>
+
+        <!-- VIEW 1: HISTORIQUE -->
+        <div class="dashboard-view active" id="view-historique">
+            <div class="grid-3">
+                <div class="card">
+                    <span class="stat-label">Levée de Fonds</span>
+                    <div class="stat-value">100 M€</div>
+                    <p class="desc">Deux levées massives (2022 et 2025) avec l'entrée au capital d'IK Partners, validant la solidité financière et l'ambition nationale.</p>
+                </div>
+                <div class="card">
+                    <span class="stat-label">Classement Logiciel</span>
+                    <div class="stat-value">32e</div>
+                    <p class="desc">Au classement national Top 250 Syntec des éditeurs de logiciels horizontaux français en 2024, affirmant le pivot technologique.</p>
+                </div>
+                <div class="card">
+                    <span class="stat-label">CA Agrégé Réseau</span>
+                    <div class="stat-value">8 Md€</div>
+                    <p class="desc">Le chiffre d'affaires cumulé des entreprises adhérentes du label, témoignant de l'impact macroéconomique du réseau.</p>
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Chronologie de la Croissance</h2>
+                        <span class="badge badge-gold">2014 - 2026</span>
+                    </div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">2014</div>
+                            <div class="timeline-content">
+                                <h4>Création de Plus que PRO</h4>
+                                <p>Fondation en Alsace par Grégory Regouby et Sacha Goepp. Prix CCI Numeric’2014. Lancement du label d'avis clients contrôlés.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2018</div>
+                            <div class="timeline-content">
+                                <h4>Lancement de la Tribu</h4>
+                                <p>Déploiement national via un réseau d'affiliés et concessionnaires indépendants pour couvrir les territoires (dont le 33).</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2022-2025</div>
+                            <div class="timeline-content">
+                                <h4>Hyper-croissance & Levées</h4>
+                                <p>Levée de 100M€ au total. Entrée d'IK Partners. Acquisition de plusieurs briques technologiques tierces.</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">2026</div>
+                            <div class="timeline-content">
+                                <h4>Consolidation Territoriale</h4>
+                                <p>Optimisation des concessions. Restructuration et recrutement de profils commerciaux de combat pour conquérir la Gironde.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="card-header-flex">
+                            <h2>Vision Stratégique de l'Éditeur</h2>
+                        </div>
+                        <p class="desc">
+                            Plus que PRO n'est plus seulement une plateforme d'avis clients. C'est un <strong>éditeur de solutions logicielles tout-en-un pour TPME</strong>.
+                        </p>
+                        <p class="desc">
+                            Son modèle repose sur un <strong>cercle vertueux unique</strong> : le label d'avis contrôlés (ISO 20488) crée la confiance et attire les clients, tandis que la suite applicative (facturation, devis, e-commerce, relation client, cyber-sécurité) équipe la TPME pour gérer son activité avec efficacité et rentabilité.
+                        </p>
+                        <div class="quote">
+                            "Nous protégeons les consommateurs en identifiant les meilleures entreprises de France, et nous sécurisons le chiffre d'affaires des artisans méritants."
+                        </div>
+                    </div>
+                    <div>
+                        <p class="desc" style="margin-bottom: 0; font-size: 0.8rem; border-top: 1px solid var(--border); padding-top: 15px;">
+                            <strong>Note d'Analyse Julien :</strong> Ce pivot vers l'édition logicielle SaaS doit être au cœur de notre pitch en Gironde pour nous démarquer des simples agences web ou plateformes d'avis.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 2: CLIENTS & AVIS -->
+        <div class="dashboard-view" id="view-clients">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Analyse des Retours & Preuve Sociale</h2>
+                        <span class="badge badge-green">99% Satisfaits</span>
+                    </div>
+                    <p class="desc">
+                        L'offre de Plus que PRO s'appuie sur une preuve sociale forte validée par des organismes tiers (étude IFOP) indiquant un taux exceptionnel de satisfaction des clients adhérents.
+                    </p>
+                    <h3>Le ROI pour les adhérents :</h3>
+                    <ul class="custom-list" style="margin-top: 10px; margin-bottom: 20px;">
+                        <li><strong>1,2 Md€</strong> de CA générés directement pour les adhérents chaque année.</li>
+                        <li>Amélioration moyenne de <strong>+20% à +30%</strong> du taux de transformation des devis.</li>
+                        <li>Protection efficace contre la cyber-dépréciation (faux avis concurrents ou malveillants).</li>
+                    </ul>
+                    <div class="quote">
+                        "Les avis clients contrôlés ne sont pas une option de communication. C'est l'actif le plus précieux d'une entreprise locale face à Google."
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Gestion Critique des Avis sur Plus que PRO</h2>
+                        <span class="badge badge-gold">Analyse Réaliste</span>
+                    </div>
+                    <p class="desc">
+                        En tant que commercial de combat, je ne crains pas d'aborder les sujets sensibles. Il existe sur le web des critiques concernant le démarchage commercial de Plus que PRO et des procédures de résiliation contractuelle parfois perçues comme rigides.
+                    </p>
+                    <h3>Ma posture de réponse en clientèle (Méthode ENTJ-A) :</h3>
+                    <ul class="custom-list" style="margin-top: 10px;">
+                        <li><strong>Honnêteté et Transparence</strong> : Assumer que Plus que PRO est une entreprise performante et exigeante. Les litiges passés sont minoritaires face aux 99% de satisfaction.</li>
+                        <li><strong>Rigueur des avis</strong> : Rappeler que la sévérité du label protège l'adhérent. Exclure les fraudeurs provoque parfois des réactions virulentes sur le web, ce qui prouve paradoxalement l'intégrité de notre contrôle.</li>
+                        <li><strong>Engagement ROI</strong> : Un contrat Plus que PRO est un investissement stratégique, pas une dépense passive. Mon rôle en tant qu'attaché commercial sera de suivre et d'accompagner l'adhérent pour garantir son retour sur investissement.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <h2>La chaîne de valeur : De la récolte d'avis au Closing</h2>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Étape du processus</th>
+                            <th>Mécanique de cause à effet</th>
+                            <th>Bénéfice adhérent (ROI)</th>
+                            <th>Rôle de l'Attaché Commercial</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>1. Récolte sécurisée</strong></td>
+                            <td>Avis récoltés via un tiers de confiance certifié ISO, évitant les filtres d'avis biaisés.</td>
+                            <td>Preuve de confiance infalsifiable et valorisable juridiquement.</td>
+                            <td>Former l'adhérent à automatiser la demande d'avis en fin de chantier.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>2. Référencement Google</strong></td>
+                            <td>Les avis alimentent le site web optimisé Plus que PRO et améliorent le SEO local.</td>
+                            <td>Visibilité maximale sur la première page de recherche Google.</td>
+                            <td>Démontrer le gain de positions sur les mots-clés stratégiques locaux.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3. Transformation Devis</strong></td>
+                            <td>Le commercial de l'adhérent présente le label Plus que PRO lors de son rendez-vous client.</td>
+                            <td>Rassure le client final, justifie un prix plus élevé et réduit les objections.</td>
+                            <td>Fournir les kits d'aide à la vente aux équipes de nos adhérents.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- VIEW 3: BENCHMARK TARIFS -->
+        <div class="dashboard-view" id="view-tarifs">
+            <div class="card">
+                <div class="card-header-flex">
+                    <h2>Plus que PRO vs Concurrence : Le Benchmark Réel</h2>
+                    <span class="badge badge-gold">Étude EY Validée</span>
+                </div>
+                <p class="desc">
+                    L'argument phare pour convaincre les TPE/PME de Gironde est le rapport qualité-prix de la suite logicielle. Selon l'étude comparative d'EY, Plus que PRO se positionne comme l'offre la plus compétitive du marché.
+                </p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Solution / Type</th>
+                            <th>Coût moyen estimé / mois</th>
+                            <th>Briques incluses</th>
+                            <th>Accompagnement local</th>
+                            <th>Positionnement vs Plus que PRO</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Plus que PRO (Tout-en-un)</strong></td>
+                            <td><strong>~150€ à 250€</strong></td>
+                            <td>Label avis contrôlés + Site SEO + CRM + Facturation + e-Signature + Cyber-protection</td>
+                            <td style="color: var(--success);">Oui (Visites terrain 33)</td>
+                            <td><span class="badge badge-gold">Référence</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>SaaS Avis Directs (Trustpilot / Skeepers)</strong></td>
+                            <td>~90€ à 300€</td>
+                            <td>Uniquement collecte et modération d'avis</td>
+                            <td style="color: var(--danger);">Non (Support à distance)</td>
+                            <td>Plus cher à périmètre restreint. Pas de brique facturation/gestion.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Agences Web locales (Création sur-mesure)</strong></td>
+                            <td>~150€ à 400€ + frais setup</td>
+                            <td>Site internet vitrine + SEO basique</td>
+                            <td style="color: var(--success);">Oui (Bordeaux/Mérignac)</td>
+                            <td>Budget élevé. Pas de label de réassurance, pas d'outils de gestion ERP intégrés.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ERP Métiers (Wineriz / Cap Vignes pour les châteaux)</strong></td>
+                            <td>~150€ à 500€</td>
+                            <td>Stocks viticoles, DRM, facturation réglementaire, traçabilité</td>
+                            <td style="color: var(--success);">Oui / Variable</td>
+                            <td>Complémentaire. Indispensable pour la technique vinicole, mais n'a pas la brique e-réputation publique.</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="quote-box" style="margin-top: 20px;">
+                    "En moyenne, l'offre globale de Plus que PRO est 5 fois moins chère que le cumul d'outils équivalents achetés séparément, et 27% moins chère que le concurrent direct le plus bas."
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Contrer l'objection : "C'est trop cher"</h2>
+                    </div>
+                    <p class="desc">
+                        Une TPE girondine arbitrera toujours son budget. Face à l'objection du prix, ma méthodologie commerciale repose sur le calcul de rentabilité immédiat :
+                    </p>
+                    <ul class="custom-list">
+                        <li><strong>Démystifier le coût quotidien</strong> : Un abonnement à 200€/mois représente environ 6,60€ par jour (soit le prix d'un paquet de café/tapas).</li>
+                        <li><strong>Raisonner en ROI</strong> : Pour un artisan du bâtiment (menuisier, couvreur, maçon) en Gironde, le gain d'<strong>un seul contrat supplémentaire</strong> par an (panier moyen à 5 000€) rembourse deux ans d'abonnement.</li>
+                        <li><strong>La valeur du temps gagné</strong> : Utiliser un seul outil pour sa facturation, son CRM et ses avis fait gagner 4 heures de gestion administrative par semaine au dirigeant.</li>
+                    </ul>
+                </div>
+
+                <div class="card" style="background: rgba(212, 175, 55, 0.02); display: flex; flex-direction: column; justify-content: center;">
+                    <h3 style="font-family: 'Cinzel'; text-align: center; color: var(--accent); margin-bottom: 15px;">Simulateur de ROI pour le Directeur Général</h3>
+                    <p class="desc" style="text-align: center;">
+                        Si je signe <strong>5 clients</strong> par mois à un panier moyen de <strong>200€/mois (contrat de 24 mois)</strong> :
+                    </p>
+                    <div style="display: flex; justify-content: space-around; text-align: center; margin: 15px 0;">
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--accent);">1 000 €</div>
+                            <div style="font-size: 0.7rem; color: var(--text-dim);">CA Mensuel Récurrent (MRR)</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 1.5rem; font-weight: 700; color: var(--success);">24 000 €</div>
+                            <div style="font-size: 0.7rem; color: var(--text-dim);">Valeur Contractuelle Totale (TCV)</div>
+                        </div>
+                    </div>
+                    <p class="desc" style="text-align: center; font-size: 0.75rem; margin-bottom: 0;">
+                        En 12 mois d'activité commerciale, mon objectif est d'apporter un minimum de <strong>288 000 € de TCV</strong> à la concession.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 4: CIBLAGE GIRONDE -->
+        <div class="dashboard-view" id="view-ciblage">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Méthodologie de Ciblage (Territoire 33)</h2>
+                        <span class="badge badge-gold">Plan de Conquête</span>
+                    </div>
+                    <p class="desc">
+                        Pour cartonner dès mon arrivée, je refuse d'arroser au hasard. J'ai défini deux axes de ciblage à fort potentiel en Gironde, adaptés à la réalité économique locale :
+                    </p>
+                    
+                    <h3 style="margin-top: 15px;">Axe A : Les Artisans du Bâtiment de Prestige</h3>
+                    <p class="desc">
+                        <strong>Cibles</strong> : Paysagistes haut de gamme, charpentiers de patrimoine, tailleurs de pierre, installateurs de piscines d'exception sur les zones : <em>Bassin d'Arcachon, Cap Ferret, Bordeaux Rive Gauche (Pessac, Mérignac, Le Bouscat)</em>.
+                        <br><strong>Pourquoi</strong> : Des paniers d'achat clients élevés (20k€ à +100k€). La confiance est le levier d'achat n°1 pour ces chantiers. Le ROI de notre label y est surmultiplié.
+                    </p>
+
+                    <h3>Axe B : Les Sous-traitants & Prestataires des Domaines Viticoles</h3>
+                    <p class="desc">
+                        <strong>Cibles</strong> : Entreprises de maintenance de cuveries, électriciens industriels viticoles, loueurs de matériel événementiel pour châteaux, traiteurs haut de gamme à <em>Saint-Émilion, Libourne, Pauillac, Langon</em>.
+                        <br><strong>Pourquoi</strong> : Plutôt que de vendre aux Châteaux eux-mêmes (trop de contraintes ERP), nous ciblons tout leur écosystème de fournisseurs B2B pour qui la réassurance et les avis contrôlés sont un immense facteur de différenciation pour signer avec les grands domaines.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Approche Prospection & Business Networking</h2>
+                    </div>
+                    <p class="desc">
+                        En tant qu'attaché commercial, je ne compte pas uniquement sur le cold calling. Ma stratégie repose sur le <strong>networking d'affaires B2B</strong> et le tissu partenarial girondin :
+                    </p>
+                    <ul class="custom-list">
+                        <li><strong>Partenariat CAPEB 33 & CMA 33 (Chambre de Métiers)</strong> : Proposer des webinaires et ateliers co-animés d'éducation sur *"Comment défendre sa e-réputation locale contre le chantage aux faux avis Google"*. C'est un vecteur d'acquisition passif de confiance.</li>
+                        <li><strong>Les Clubs d'Affaires Locaux (BNI, Clubs d'Entreprises)</strong> : M'intégrer rapidement dans les clubs d'affaires de Bordeaux Métropole et du Bassin d'Arcachon. Recommander nos adhérents pour obtenir, en retour, des introductions chaudes auprès de leurs clients.</li>
+                        <li><strong>La Recommandation Active (Parrainage)</strong> : Mettre en place un système de parrainage chez nos adhérents girondins satisfaits. *"Un mois offert pour chaque confrère recommandé et signé"*.</li>
+                    </ul>
+                    <div class="quote">
+                        "Dans le Sud-Ouest, le business se fait d'abord par la recommandation et la confiance partagée sur le terrain."
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW 5: CLOSING & BUDGET -->
+        <div class="dashboard-view" id="view-network">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>La Stratégie de Closing : "Afterwork de Confiance"</h2>
+                        <span class="badge badge-green">Méthode de Vente Indirecte</span>
+                    </div>
+                    <p class="desc">
+                        Le meilleur moyen de signer des prospects sceptiques est de les mettre en relation directe avec des clients déjà convaincus, dans un cadre informel et premium. 
+                    </p>
+                    <p class="desc">
+                        <strong>Le Concept</strong> : Organiser un Afterwork exclusif dans un bar à vin réputé de Bordeaux ou Mérignac. 
+                        <br><strong>Les Invités (15 personnes au total)</strong> :
+                        <br>• <strong>10 Prospects Chauds</strong> (artisans du bâtiment de prestige et sous-traitants viticoles en phase finale de négociation).
+                        <br>• <strong>5 Clients Ambassadeurs</strong> (adhérents Plus que PRO du 33 très satisfaits de leur ROI et fervents défenseurs du label).
+                    </p>
+                    <div class="quote">
+                        "Pendant l'afterwork, les 5 clients satisfaits font 90% du travail de closing. Je n'ai plus qu'à finaliser les contrats en fin de soirée."
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Chiffrage Précis du Budget (Afterwork 15 Invités)</h2>
+                        <span class="badge badge-gold">100% Quantifié</span>
+                    </div>
+                    <p class="desc">
+                        Voici le budget prévisionnel détaillé pour la privatisation d'un espace premium dans un bar à vin de Bordeaux Métropole :
+                    </p>
+
+                    <div class="budget-summary">
+                        <div class="budget-row">
+                            <span class="label">Réservation / Privatisation espace (Privatif Bordeaux)</span>
+                            <span class="val">350,00 €</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="label">Vins locaux premium (8 bouteilles de Pessac-Léognan/Graves)</span>
+                            <span class="val">240,00 €</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="label">Planches dinatoires gourmandes (Charcuterie fine, fromages affinés, tapas)</span>
+                            <span class="val">320,00 €</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="label">Invitations papier prestige personnalisées (Imprimerie locale)</span>
+                            <span class="val">40,00 €</span>
+                        </div>
+                        <div class="budget-row">
+                            <span class="label">Frais divers & imprévus</span>
+                            <span class="val">50,00 €</span>
+                        </div>
+                        <div class="budget-row total">
+                            <span class="label">BUDGET TOTAL ESTIMÉ (TTC)</span>
+                            <span class="val">1 000,00 €</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header-flex">
+                    <h2>Calcul du ROI de l'Événement pour la Concession</h2>
+                </div>
+                <p class="desc">
+                    Un investissement de 1 000 € doit générer un retour commercial immédiat. En appliquant des ratios réalistes basés sur la présence de nos 5 ambassadeurs :
+                </p>
+
+                <div class="roi-box">
+                    <div class="grid-3" style="text-align: center; gap: 15px;">
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Investissement Afterwork</div>
+                            <div style="font-size: 1.8rem; font-weight: 700; color: var(--accent); margin-top: 5px;">1 000 €</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">Objectif de Signatures (Conversion 40%)</div>
+                            <div style="font-size: 1.8rem; font-weight: 700; color: var(--text); margin-top: 5px;">4 Contrats</div>
+                        </div>
+                        <div>
+                            <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase;">CA Généré Récurrent (200€/mois x 24 mois)</div>
+                            <div style="font-size: 1.8rem; font-weight: 700; color: var(--success); margin-top: 5px;">19 200 €</div>
+                        </div>
+                    </div>
+                </div>
+                <p class="desc" style="margin-top: 15px; margin-bottom: 0; font-size: 0.8rem;">
+                    <strong>Démonstration de Cause à Effet pour le Directeur Général :</strong> Avec un taux de conversion de 40% (4 signatures sur 10 prospects grâce à la preuve sociale directe de nos clients), l'événement s'autofinance immédiatement et génère un <strong>ROI de 1 920%</strong> sur la valeur totale des contrats (TCV) signés. C'est une méthode de closing moderne, élégante et redoutablement efficace pour asseoir Plus que PRO en Gironde.
+                </p>
+            </div>
+        </div>
+
+        <!-- VIEW 6: PLAN D'INTÉGRATION & PROSPECTS -->
+        <div class="dashboard-view" id="view-integration">
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Fichier de Prospects Prioritaires (33)</h2>
+                        <span class="badge badge-gold">Prêts à l'action</span>
+                    </div>
+                    <p class="desc">
+                        Sélection de cibles girondines à forte valeur ajoutée prêtes à être démarchées dès le jour 1 :
+                    </p>
+                    <ul class="custom-list" style="margin-top: 10px; margin-bottom: 15px;">
+                        <li><strong>Aquitaine Piscines & Spas (Arcachon)</strong> : Rassurer face aux risques de litiges chantiers et justifier les tarifs haut de gamme.</li>
+                        <li><strong>Menuiserie d'Art du Sud-Ouest - MASO (Mérignac)</strong> : Contrer la concurrence industrielle en certifiant la satisfaction sur les échoppes bordelaises.</li>
+                        <li><strong>Les Compagnons de la Pierre (Saint-Émilion)</strong> : Obtenir la crédibilité nécessaire pour être sous-traitant des grands domaines de châteaux.</li>
+                        <li><strong>Bassin Paysage Éco (Cap Ferret)</strong> : Capter à distance la confiance des propriétaires de résidences secondaires.</li>
+                    </ul>
+                    <p class="desc" style="font-size: 0.75rem; border-top: 1px solid var(--border); padding-top: 10px; margin-bottom: 0;">
+                        Le fichier complet structuré avec les angles d'attaque précis est disponible dans le dossier local sous format JSON : <code>/Data/2026-06-24_Fichier_Prospects_Chauds_33.json</code>.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-flex">
+                        <h2>Plan d'Action d'Intégration à 90 Jours</h2>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Période</th>
+                                <th>Objectifs Opérationnels</th>
+                                <th>Indicateurs (KPI)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>J+1 à J+30</strong></td>
+                                <td>Maîtrise produit, formation de la Tribu, cartographie de 50 premiers artisans et contact CAPEB/CMA.</td>
+                                <td style="color: var(--accent);">Base de 100 leads qualifiés</td>
+                            </tr>
+                            <tr>
+                                <td><strong>J+31 à J+60</strong></td>
+                                <td>Campagnes de prospection active, signature des 3 premiers clients, préparation de l'Afterwork.</td>
+                                <td style="color: var(--success);">3 signatures (TCV 14,4k€)</td>
+                            </tr>
+                            <tr>
+                                <td><strong>J+61 à J+90</strong></td>
+                                <td>Réalisation de l'Afterwork de closing, signature des prospects chauds restants, déploiement des ateliers CAPEB.</td>
+                                <td style="color: var(--success);">+5 signatures (TCV 24k€)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS TABS NAVIGATION -->
+    <script>
+        function switchView(viewId, element) {
+            // Update active state in nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            // Hide all views
+            const views = document.querySelectorAll('.dashboard-view');
+            views.forEach(view => view.classList.remove('active'));
+
+            // Show active view
+            const activeView = document.getElementById(viewId);
+            if (activeView) {
+                activeView.classList.add('active');
+            }
+
+            // Update Page Header Title & Subtitle dynamically
+            const mainTitle = document.getElementById('page-main-title');
+            const subTitle = document.getElementById('page-sub-title');
+
+            if (viewId === 'view-historique') {
+                mainTitle.innerText = "Historique & Vision Stratégique";
+                subTitle.innerText = "Comprendre les fondations, la croissance et le potentiel de Plus que PRO";
+            } else if (viewId === 'view-clients') {
+                mainTitle.innerText = "Retours Clients & E-Réputation";
+                subTitle.innerText = "Analyser la preuve sociale, l'impact ROI et la gestion des critiques";
+            } else if (viewId === 'view-tarifs') {
+                mainTitle.innerText = "Benchmark Tarifaire & Valeur";
+                subTitle.innerText = "Pourquoi Plus que PRO est l'offre la plus compétitive et rentable du marché";
+            } else if (viewId === 'view-ciblage') {
+                mainTitle.innerText = "Méthodologie de Ciblage & Prospection 33";
+                subTitle.innerText = "Plan d'attaque opérationnel pour conquérir la Gironde de manière chirurgicale";
+            } else if (viewId === 'view-network') {
+                mainTitle.innerText = "Stratégie de Closing & Afterwork";
+                subTitle.innerText = "Budget quantifié et plan de closing par la preuve sociale directe";
+            } else if (viewId === 'view-integration') {
+                mainTitle.innerText = "Plan d'Action & Fichier Prospects";
+                subTitle.innerText = "Intégration à 90 jours et premières cibles commerciales qualifiées du 33";
+            }
+        }
+    </script>
+</body>
+</html>

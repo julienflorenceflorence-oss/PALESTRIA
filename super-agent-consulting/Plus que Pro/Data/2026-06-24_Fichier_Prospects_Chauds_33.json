@@ -1,0 +1,58 @@
+{
+  "prospects_prioritaires_33": [
+    {
+      "nom_entreprise": "Aquitaine Piscines & Spas",
+      "secteur": "Piscines de prestige & Aménagement extérieur",
+      "zone_gironde": "Bassin d'Arcachon / La Teste-de-Buch",
+      "panier_moyen_chantier": "35000",
+      "angle_attaque_plus_que_pro": "Sécurisation des acomptes et réassurance face à la forte concurrence déloyale sur le Bassin. Preuve de qualité pour justifier des tarifs premium.",
+      "statut": "Prospect Chaud (Priorité 1)"
+    },
+    {
+      "nom_entreprise": "Menuiserie d'Art du Sud-Ouest (MASO)",
+      "secteur": "Menuiserie & Agencement haut de gamme",
+      "zone_gironde": "Bordeaux Métropole / Mérignac",
+      "panier_moyen_chantier": "15000",
+      "angle_attaque_plus_que_pro": "Valorisation du savoir-faire artisanal sur des projets de rénovation d'échoppes bordelaises. Utilisation du label pour lever les objections de prix face aux industriels.",
+      "statut": "Prospect Chaud (Priorité 1)"
+    },
+    {
+      "nom_entreprise": "Les Compagnons de la Pierre Girondine",
+      "secteur": "Taille de pierre & Rénovation de patrimoine",
+      "zone_gironde": "Libournais / Saint-Émilion",
+      "panier_moyen_chantier": "50000",
+      "angle_attaque_plus_que_pro": "Sous-traitant direct des grands châteaux viticoles. Le label certifié ISO est un pré-requis idéal pour rassurer les régisseurs des domaines historiques.",
+      "statut": "Prospect Chaud (Priorité 1)"
+    },
+    {
+      "nom_entreprise": "Bassin Paysage Éco",
+      "secteur": "Aménagement paysager de luxe",
+      "zone_gironde": "Cap Ferret / Lège-Cap-Ferret",
+      "panier_moyen_chantier": "20000",
+      "angle_attaque_plus_que_pro": "Création de jardins pour villas de prestige. E-réputation stratégique car les clients (souvent résidents secondaires) cherchent leurs prestataires exclusivement via internet.",
+      "statut": "Prospect Chaud (Priorité 2)"
+    },
+    {
+      "nom_entreprise": "Gironde Rénovation Prestige",
+      "secteur": "Rénovation immobilière de standing",
+      "zone_gironde": "Bordeaux Centre / Le Bouscat",
+      "panier_moyen_chantier": "75000",
+      "angle_attaque_plus_que_pro": "Protéger l'entreprise contre le chantage aux faux avis Google des concurrents directs. Apport de la brique de cyber-défense Plus que PRO.",
+      "statut": "Prospect Chaud (Priorité 2)"
+    }
+  ],
+  "partenaires_institutionnels_cles": [
+    {
+      "nom_organisme": "CAPEB Gironde",
+      "contact_cible": "Secrétariat Général / Responsable Développement des Partenariats",
+      "lieu": "Bordeaux",
+      "action_prevue": "Proposer la co-animation d'un atelier technique trimestriel 'Sécurité numérique et E-réputation des Artisans'"
+    },
+    {
+      "nom_organisme": "Chambre de Métiers et de l'Artisanat (CMA 33)",
+      "contact_cible": "Conseiller Numérique / Animation des réseaux d'artisans",
+      "lieu": "Bordeaux / Antennes locales",
+      "action_prevue": "Intégrer les solutions de cyber-protection Plus que PRO dans les parcours d'accompagnement numérique des jeunes créateurs"
+    }
+  ]
+}

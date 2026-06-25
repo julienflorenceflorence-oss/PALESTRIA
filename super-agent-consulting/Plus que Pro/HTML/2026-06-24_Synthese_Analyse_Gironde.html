@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthèse & Plan d'Attaque Gironde (33) - Plus que PRO - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@200;300;400;500;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --accent-glow: rgba(212, 175, 55, 0.3);
+            --text: #FFFFFF;
+            --text-dim: #A0A5B5;
+            --card-bg: #161A23;
+            --border-color: rgba(212, 175, 55, 0.15);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #050505;
+            color: var(--text);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 0;
+            counter-reset: page;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        @media print {
+            body {
+                background: none;
+            }
+            .page {
+                margin: 0 !important;
+                border: none !important;
+                box-shadow: none !important;
+                page-break-after: always;
+            }
+            .fixed-dock {
+                display: none !important;
+            }
+        }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg);
+            margin: 40px auto;
+            position: relative;
+            padding: 25mm 20mm 20mm 20mm;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+            border: 1px solid rgba(212, 175, 55, 0.05);
+        }
+
+        .inner-border {
+            position: absolute;
+            top: 10mm;
+            left: 10mm;
+            right: 10mm;
+            bottom: 10mm;
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+        }
+
+        /* Cover Page Styling */
+        .cover-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            text-align: center;
+            padding: 0 10mm;
+        }
+
+        .cover-logo-wrapper {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .cover-logo {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--accent);
+            transform: rotate(45deg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .cover-logo-inner {
+            transform: rotate(-45deg);
+            font-family: 'Cinzel';
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .cover-title-brand {
+            font-family: 'Cinzel';
+            font-size: 1.1rem;
+            letter-spacing: 6px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            margin-top: 20px;
+        }
+
+        .cover-main-title {
+            font-family: 'Cinzel';
+            font-size: 2.3rem;
+            color: var(--accent);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 25px 0;
+            margin-bottom: 25px;
+            letter-spacing: 4px;
+            line-height: 1.3;
+            width: 100%;
+        }
+
+        .cover-subtitle {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            font-size: 1.3rem;
+            color: var(--text);
+            margin-bottom: 80px;
+            opacity: 0.9;
+        }
+
+        .cover-meta {
+            margin-top: auto;
+            border-top: 1px solid var(--border-color);
+            padding-top: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Cinzel';
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+        }
+
+        /* Standard Page Elements */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .header-title {
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        .header-subtitle {
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+        }
+
+        .page-body {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        h2 {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            border-left: 3px solid var(--accent);
+            padding-left: 15px;
+            margin-top: 10px;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-family: 'Cinzel';
+            color: var(--text);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 9.5pt;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--text-dim);
+            text-align: justify;
+            margin-bottom: 12px;
+        }
+
+        p strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        .quote-box {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            color: var(--accent);
+            text-align: center;
+            padding: 15px 25px;
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            margin: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            background: rgba(212, 175, 55, 0.02);
+        }
+
+        /* Tables & Matrices */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 8.5pt;
+        }
+
+        th {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            background: rgba(22, 26, 35, 0.8);
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+            letter-spacing: 1px;
+        }
+
+        td {
+            border: 1px solid var(--border-color);
+            padding: 8px 10px;
+            color: var(--text-dim);
+        }
+
+        tr:nth-child(even) {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .badge-priority {
+            background: rgba(212, 175, 55, 0.15);
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Cinzel';
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .badge-discard {
+            background: rgba(239, 68, 68, 0.1);
+            color: #EF4444;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Cinzel';
+            font-size: 0.7rem;
+            text-align: center;
+            display: inline-block;
+        }
+
+        /* Layout Grid Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 15px 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            position: relative;
+        }
+
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 3px;
+            background: var(--accent);
+        }
+
+        .card-title {
+            font-family: 'Cinzel';
+            color: var(--accent);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .card-body {
+            font-size: 8.5pt;
+            color: var(--text-dim);
+            line-height: 1.5;
+        }
+
+        /* Footer */
+        .page-footer {
+            border-top: 1px solid var(--border-color);
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+        }
+
+        .page-num::after {
+            counter-increment: page;
+            content: "Page " counter(page, decimal-leading-zero);
+        }
+
+        /* Fixed Navigation Dock for Web view */
+        .fixed-dock {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 90%;
+            max-width: 500px;
+            background: rgba(15, 17, 21, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--accent);
+            border-radius: 8px;
+            padding: 12px;
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-prestige {
+            flex-grow: 1;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            text-decoration: none;
+            font-family: 'Cinzel';
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: 0.3s;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        .btn-prestige:hover, .btn-prestige.active {
+            background: var(--accent);
+            color: var(--bg);
+            font-weight: 600;
+            box-shadow: 0 0 12px var(--accent-glow);
+        }
+
+        /* Dynamic view switcher for browser */
+        @media screen {
+            body {
+                padding-bottom: 80px;
+            }
+            .page {
+                display: none;
+            }
+            .page.active-page {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PAGE 1: COVER -->
+    <div class="page active-page" id="p1">
+        <div class="inner-border"></div>
+        <div class="cover-content">
+            <div class="cover-logo-wrapper">
+                <div class="cover-logo">
+                    <div class="cover-logo-inner">+</div>
+                </div>
+            </div>
+            <div class="cover-title-brand">Plus que PRO</div>
+            <div class="cover-main-title">STRATÉGIE & DÉPLOIEMENT<br>TERRITOIRE GIRONDE (33)</div>
+            <div class="cover-subtitle">"Sécuriser la croissance des TPME d'exception par la confiance certifiée"</div>
+            <div class="cover-meta">
+                <div>Édition Prestige</div>
+                <div>24 Juin 2026</div>
+                <div>Julien F.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PAGE 2: SYNTHÈSE DE L'EXISTANT -->
+    <div class="page" id="p2">
+        <div class="inner-border"></div>
+        <div class="page-header">
+            <span class="header-title">Plus que PRO - Territoire 33</span>
+            <span class="header-subtitle">Partie I : Synthèse Stratégique</span>
+        </div>
+        <div class="page-body">
+            <h2>I. Synthèse de l'existant & diagnostic</h2>
+            <p>
+                <strong>Plus que PRO</strong> s'est imposé comme un acteur leader de la confiance numérique pour les TPME, avec un positionnement unique qui allie la force d'un <strong>label de confiance certifié ISO</strong> et une <strong>suite logicielle de gestion</strong>. Porté par un réseau national de concessionnaires indépendants ("La Tribu"), le groupe affiche une dynamique de croissance solide (+25% par an) et une légitimité financière robuste avec plus de 100 M€ levés auprès de fonds prestigieux comme IK Partners.
+            </p>
+            <div class="quote-box">
+                "Un CA agrégé réseau de 8 Md€ et plus de 1,2 Md€ de retombées économiques annuelles directes générées pour les adhérents."
+            </div>
+            <p>
+                Sur le <strong>territoire de la Gironde (33)</strong>, la présence est historique mais nécessite un second souffle stratégique. Le tissu économique girondin présente un potentiel exceptionnel : une très forte densité de TPME, une économie hautement tertiarisée, un secteur du bâtiment dynamique et un secteur viticole/œnotouristique de renommée mondiale. Cependant, la pénétration locale se heurte à des agences web bordelaises très implantées et à l'hégémonie organique de Google Business Profile.
+            </p>
+            <h3>Les piliers de différenciation concurrentielle</h3>
+            <p>
+                Face à des solutions d'e-réputation classiques (Trustpilot, Skeepers) ou des logiciels de gestion pure, Plus que PRO détient trois avantages compétitifs majeurs :
+            </p>
+            <p>
+                1. <strong>La double proposition de valeur</strong> : Elle est la seule offre à combiner outils d'acquisition (avis certifiés, visibilité) et outils de conversion/gestion (factures, devis, relation client).<br>
+                2. <strong>L'accompagnement humain</strong> : Contrairement aux solutions SaaS self-service, la proximité de "La Tribu" sur le terrain assure un fort taux d'adoption de la solution.<br>
+                3. <strong>Un prix de rupture</strong> : L'offre globale reste en moyenne 5 fois moins chère que les solutions séparées cumulées du marché.
+            </p>
+        </div>
+        <div class="page-footer">
+            <span>Confidentiel</span>
+            <span class="page-num"></span>
+        </div>
+    </div>
+
+    <!-- PAGE 3: CRITIQUE STRATÉGIQUE (ENTJ-A) -->
+    <div class="page" id="p3">
+        <div class="inner-border"></div>
+        <div class="page-header">
+            <span class="header-title">Plus que PRO - Territoire 33</span>
+            <span class="header-subtitle">Partie II : Audit de rupture</span>
+        </div>
+        <div class="page-body">
+            <h2>II. Audit critique & recadrage out-of-the-box</h2>
+            <p>
+                Pour réussir le déploiement sur la Gironde, une posture rationnelle et pragmatique (ENTJ-A) impose de rompre avec les approches commerciales trop généralistes ou utopiques. L'analyse critique met en évidence deux impasses stratégiques majeures :
+            </p>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-title">L'impasse sectorielle de l'œnotourisme</div>
+                    <div class="card-body">
+                        Les châteaux et domaines viticoles ont des contraintes métiers (traçabilité, DRM, accises) gérées par des ERP spécifiques (Wineriz, Baqio). Tenter d'imposer le CRM généraliste de Plus que PRO est un échec assuré en raison de la lourdeur du changement. De plus, la marque "Plus que PRO" ne cadre pas avec les exigences d'image du secteur du luxe viticole.
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title">La confrontation tarifaire stérile</div>
+                    <div class="card-body">
+                        Se focaliser sur l'argument "5x moins cher" face aux agences locales dévalorise la solution et réveille les inquiétudes contractuelles. Dans le 33, la décision d'achat d'un artisan repose d'abord sur la réassurance éthique, le ROI tangible et l'ancrage territorial du distributeur.
+                    </div>
+                </div>
+            </div>
+
+            <h3>Le pivot stratégique : "Le Bouclier de Confiance"</h3>
+            <p>
+                Le nouveau plan d'attaque consiste à repositionner la brique e-réputation de Plus que PRO non pas comme un substitut ou un concurrent des logiciels métiers des clients, mais comme une <strong>couche d'acquisition front-office complémentaire</strong>, s'interfaçant de manière transparente.
+            </p>
+            <p>
+                Au lieu de vendre du logiciel de gestion à des châteaux qui n'en veulent pas, nous vendons la **labellisation de l'excellence de service** à leurs fournisseurs de confiance (artisans de prestige du bâtiment, tailleurs de pierre, menuisiers d'art, paysagistes d'exception).
+            </p>
+            <p>
+                En ciblant les sous-traitants haut de gamme du Bâtiment et des Espaces Extérieurs (Bassin d'Arcachon, Bordeaux Métropole), nous restons sur le savoir-faire historique de Plus que PRO tout en élevant le panier moyen des contrats labellisés et en maximisant le ROI pour nos adhérents.
+            </p>
+        </div>
+        <div class="page-footer">
+            <span>Confidentiel</span>
+            <span class="page-num"></span>
+        </div>
+    </div>
+
+    <!-- PAGE 4: PLAN D'ATTAQUE OPTIMISÉ (ICE) -->
+    <div class="page" id="p4">
+        <div class="inner-border"></div>
+        <div class="page-header">
+            <span class="header-title">Plus que PRO - Territoire 33</span>
+            <span class="header-subtitle">Partie III : Plan d'action & Priorisation</span>
+        </div>
+        <div class="page-body">
+            <h2>III. Plan d'action & priorisation (Méthode ICE)</h2>
+            <p>
+                Le déploiement terrain sur le département 33 doit obéir à la loi des rendements marginaux : concentrer l'effort sur les actions les plus faciles à exécuter, offrant la plus haute probabilité de confiance et le meilleur effet de levier commercial.
+            </p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Action Stratégique</th>
+                        <th style="width: 12%">Facilité</th>
+                        <th style="width: 12%">Confiance</th>
+                        <th style="width: 12%">Effet</th>
+                        <th style="width: 15%">Score ICE</th>
+                        <th style="width: 18%">Priorité</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Artisans du Bâtiment de Prestige & Rénovation Haut de Gamme</strong><br>Cibler les sous-traitants des grands domaines et villas du Bassin.</td>
+                        <td>5 / 5</td>
+                        <td>4 / 5</td>
+                        <td>5 / 5</td>
+                        <td><strong>100</strong></td>
+                        <td><span class="badge-priority">Priorité 1</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Partenariats CAPEB & CMA 33</strong><br>Ateliers co-animés sur la défense contre les faux avis Google.</td>
+                        <td>3 / 5</td>
+                        <td>5 / 5</td>
+                        <td>5 / 5</td>
+                        <td><strong>75</strong></td>
+                        <td><span class="badge-priority">Priorité 2</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Offre "Bouclier de Confiance"</strong><br>Intégration API sans remplacement de l'ERP de facturation existant.</td>
+                        <td>4 / 5</td>
+                        <td>4 / 5</td>
+                        <td>4 / 5</td>
+                        <td><strong>64</strong></td>
+                        <td><span class="badge-priority">Priorité 3</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cible Œnotourisme en direct</strong><br>Remplacement ERP/CRM et labellisation châteaux.</td>
+                        <td>2 / 5</td>
+                        <td>2 / 5</td>
+                        <td>3 / 5</td>
+                        <td><strong>12</strong></td>
+                        <td><span class="badge-discard">Reporter</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>L'alliance avec les Guildes Institutionnelles</h3>
+            <p>
+                Afin de contourner la barrière de méfiance envers les outils commerciaux d'e-réputation, la concession Gironde doit asseoir sa légitimité à travers des interventions à forte valeur éducative auprès des instances locales de l'artisanat.
+            </p>
+            <p>
+                L'organisation d'ateliers et de webinaires thématiques sous l'égide de la CAPEB 33 ou de la CMA 33, centrés sur la protection numérique, la conformité de la récolte des avis et le référencement local, créera un flux régulier de leads qualifiés et pré-convaincus du besoin de certification.
+            </p>
+        </div>
+        <div class="page-footer">
+            <span>Confidentiel</span>
+            <span class="page-num"></span>
+        </div>
+    </div>
+
+    <!-- PAGE 5: GESTION DES RISQUES & RSE -->
+    <div class="page" id="p5">
+        <div class="inner-border"></div>
+        <div class="page-header">
+            <span class="header-title">Plus que PRO - Territoire 33</span>
+            <span class="header-subtitle">Partie IV : Pilotage des Risques & RSE</span>
+        </div>
+        <div class="page-body">
+            <h2>IV. Matrice RSE & Couplage Risques-Impacts</h2>
+            <p>
+                Le pilotage à 360° du territoire 33 nécessite d'anticiper les risques inhérents au modèle et de structurer des réponses managériales claires, tout en respectant une logique RSE irréprochable.
+            </p>
+
+            <h3>1. Couplage Risques - Impacts & Plan de contingence</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 25%">Risque Identifié</th>
+                        <th style="width: 15%; text-align: center;">Criticité (P x G)</th>
+                        <th style="width: 20%">Responsable</th>
+                        <th>Plan de Mitigation (Contingence)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Rejet de la marque</strong> (rumeurs de contentieux passés)</td>
+                        <td style="text-align: center;"><strong>12</strong> (3 x 4)</td>
+                        <td>Dir. Concession 33</td>
+                        <td>Discours transparent. Présentation de la conformité ISO et des cas de détection des fraudeurs par le label.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Churn élevé</strong> par manque d'usage local</td>
+                        <td style="text-align: center;"><strong>16</strong> (4 x 4)</td>
+                        <td>Customer Success</td>
+                        <td>Mise en place d'un plan d'onboarding obligatoire à J+7 et J+30 avec un coach digital sur site dans le 33.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Concurrence frontale</strong> des agences bordelaises</td>
+                        <td style="text-align: center;"><strong>12</strong> (4 x 3)</td>
+                        <td>Équipe Commerciale</td>
+                        <td>Offre d'apport d'affaires : proposer aux agences de concevoir le site, pendant que nous gérons le label et les avis.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>2. L'axe RSE & Matérialité 360°</h3>
+            <p>
+                Le label d'avis contrôlés est en soi une action de gouvernance éthique forte : protéger le consommateur contre les fausses notations et valoriser le savoir-faire des TPME méritantes. Sur le plan social local, la concession Gironde s'engage à recruter et former ses collaborateurs via l'Académie Plus que PRO, créant des emplois stables et qualifiés dans la région bordelaise.
+            </p>
+        </div>
+        <div class="page-footer">
+            <span>Confidentiel</span>
+            <span class="page-num"></span>
+        </div>
+    </div>
+
+    <!-- FIXED DOCK FOR INTERACTIVE BROWSER VIEW -->
+    <div class="fixed-dock">
+        <button class="btn-prestige active" onclick="showPage(1)">Page de Garde</button>
+        <button class="btn-prestige" onclick="showPage(2)">Synthèse</button>
+        <button class="btn-prestige" onclick="showPage(3)">Audit Critique</button>
+        <button class="btn-prestige" onclick="showPage(4)">Plan ICE</button>
+        <button class="btn-prestige" onclick="showPage(5)">Risques & RSE</button>
+    </div>
+
+    <script>
+        function showPage(num) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(p => p.classList.remove('active-page'));
+            
+            // Show target page
+            const targetPage = document.getElementById('p' + num);
+            if (targetPage) {
+                targetPage.classList.add('active-page');
+            }
+
+            // Update active state in dock
+            const buttons = document.querySelectorAll('.btn-prestige');
+            buttons.forEach((btn, idx) => {
+                if (idx === (num - 1)) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

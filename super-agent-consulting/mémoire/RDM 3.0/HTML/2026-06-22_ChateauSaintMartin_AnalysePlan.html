@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport Stratégique & Plan d'Action - Château Pont-Saint-Martin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+        }
+
+        body { 
+            background: #050505; 
+            color: var(--text); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .document-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .page {
+            width: var(--page-w);
+            height: 297mm; /* Hauteur fixe A4 pour impression parfaite */
+            background: var(--bg);
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 { 
+            font-family: 'Cinzel'; 
+            color: var(--accent); 
+            text-align: center; 
+            border-bottom: 1px solid var(--accent); 
+            padding-bottom: 10px; 
+            margin-bottom: 25px; 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+        }
+        
+        h2 { 
+            font-family: 'Cinzel'; 
+            color: var(--accent); 
+            border-left: 4px solid var(--accent); 
+            padding-left: 15px; 
+            margin: 25px 0 15px 0; 
+            font-size: 1.1rem; 
+            letter-spacing: 1px; 
+        }
+        
+        h3 { 
+            font-family: 'Cinzel'; 
+            color: var(--text); 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15); 
+            padding-bottom: 5px; 
+            margin: 15px 0 10px 0; 
+            font-size: 0.9rem; 
+        }
+        
+        .quote {
+            font-family: 'Playfair Display'; 
+            font-style: italic; 
+            color: var(--accent);
+            text-align: center; 
+            padding: 12px; 
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+
+        .content { 
+            flex-grow: 1; 
+            text-align: justify; 
+            font-size: 9pt; 
+            font-weight: 300; 
+            line-height: 1.52; 
+        }
+        
+        ul { padding-left: 20px; }
+        li { margin-bottom: 5px; }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 8.5pt;
+        }
+        
+        th, td {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 6px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        th {
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--accent);
+            font-family: 'Cinzel';
+            font-size: 8pt;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.15); 
+            padding-top: 5mm; 
+            margin-top: 15px;
+            display: flex; 
+            justify-content: space-between; 
+            font-family: 'Cinzel'; 
+            font-size: 7.5pt;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .page-num {
+            font-weight: 600;
+        }
+
+        /* Styles pour diagrammes simplifiés */
+        .diagram {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 15px;
+            margin: 15px 0;
+            background: rgba(255,255,255,0.02);
+            font-family: monospace;
+            font-size: 8.5pt;
+            line-height: 1.4;
+        }
+
+        @media print {
+            body { padding: 0; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-wrapper">
+        <!-- PAGE 1 -->
+        <div class="page">
+            <div class="inner-border"></div>
+            <div>
+                <h1>Château Pont-Saint-Martin</h1>
+                <div class="quote">"Transformer l'expérience œnotouristique et immobilière en un moteur de croissance en direct."</div>
+                
+                <div class="content">
+                    <h2>🎯 1. Analyse Structurelle &amp; Chaîne Causale</h2>
+                    <p>L'analyse de l'échange montre que les freins actuels du Château Pont-Saint-Martin s'expliquent par des causalités mécaniques précises. Pour débloquer les ventes et l'activité, nos solutions doivent adresser directement ces leviers structurels :</p>
+                    
+                    <div class="diagram">
+[Douanes &amp; Frais d'export (450€ / 9 btlles)]
+   └── Bloque l'export individuel à distance post-séjour
+   └── Nécessite de vendre 100% sur place pendant le séjour
+   └── Exige de capter les accompagnants (non-réservants) en direct
+
+[Aéroport de Bordeaux sous-desservi l'hiver]
+   └── Chute de la fréquentation touristique basse saison
+   └── Taux d'occupation hivernal bloqué à 40%
+   └── Difficulté à financer le personnel permanent à l'année
+   └── Exige des forfaits d'affaires/séminaires oenologiques d'hiver
+
+[Gel interne des budgets d'outils marketing]
+   └── Blocage d'une adhésion fixe annuelle de 360€
+   └── Nécessité de proposer une alternative sans impact trésorerie
+                    </div>
+
+                    <h3>A. Enjeu de la Vente Directe de Vin</h3>
+                    <p>Puisque l'expédition post-séjour est paralysée pour les petits volumes, la propriété doit devenir son propre canal de distribution intensif. L'application mobile doit servir de vitrine instantanée et d'accélérateur d'achat au caveau avant le départ physique du groupe.</p>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Rapport de Mission - RDM 3.0</div>
+                <div class="page-num">P. 01</div>
+            </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="page">
+            <div class="inner-border"></div>
+            <div>
+                <h1>Alignement &amp; Mise en Opposition</h1>
+                <div class="content">
+                    <h2>⚖️ 2. Confrontation : Besoins Client vs Suggestions Avancées</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 35%;">Besoins Clés (Château)</th>
+                                <th style="width: 65%;">Suggestions Avancées &amp; Solutions Apiouse / Cosy Places</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>1. Vendre du vin sur place</strong><br><small>Export direct bloqué par des taxes de 450 € pour 9 bouteilles.</small></td>
+                                <td><strong>QR-Code Wine Bar &amp; Conciergerie Coffre</strong> : Intégrer l'inventaire dans l'app avec bouton "Click &amp; Collect" et livraison directe dans le coffre du véhicule au check-out. Achat facilité au caveau.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>2. Clients internationaux post-séjour</strong><br><small>Volonté de réachat hors-taxe prohibitive.</small></td>
+                                <td><strong>Distributeurs Partenaires Géolocalisés</strong> : L'app détecte la localisation du client (ex. Genève) et le redirige vers l'importateur suisse partenaire avec un tarif préférentiel membre.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>3. Capter la data des accompagnants</strong><br><small>36 voyageurs présents, mais seulement 1 adresse mail via les OTAs.</small></td>
+                                <td><strong>Livret partagé &amp; Bonus oenotouristique</strong> : Partage de l'app indispensable pour la clé/Wi-Fi. Chaque membre connecté bénéficie d'une dégustation offerte au caveau contre opt-in.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>4. Remplir l'hiver (40 % d'occupation)</strong><br><small>Coûts des permanents à équilibrer sur la basse saison.</small></td>
+                                <td><strong>Masterclass Corporate "Assemblage de Cuvée"</strong> : Cibler les séminaires de comités de direction (négociants, entreprises locales) en proposant des ateliers privatifs de création de vin en hiver.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>5. Lancer le Cap Ferret (4k€-10k€/sem)</strong><br><small>Synergies complexes avec les chambres d'hôtes.</small></td>
+                                <td><strong>Pass VIP "Terre &amp; Mer"</strong> : Cross-selling automatique. Les locataires du Cap Ferret reçoivent une excursion privée oenotouristique guidée vers le Château Pont-Saint-Martin.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>6. Contourner le gel des budgets</strong><br><small>Honoraires d'adhésion annuels de 360 € impossibles à engager.</small></td>
+                                <td><strong>Contrat d'Échange (Barter Agreement)</strong> : Financer la licence en bouteilles de vin prestigieuses pour les événements d'Apiouse. Zéro impact de trésorerie pour le viticulteur.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Rapport de Mission - RDM 3.0</div>
+                <div class="page-num">P. 02</div>
+            </div>
+        </div>
+
+        <!-- PAGE 3 -->
+        <div class="page">
+            <div class="inner-border"></div>
+            <div>
+                <h1>Plan d'Action Commercial</h1>
+                <div class="content">
+                    <h2>📈 3. Processus d'Acquisition Multi-Touch</h2>
+                    <p>Pour transformer cette opportunité, nous déployons une séquence commerciale structurée :</p>
+                    
+                    <h3>Phase 1 : La Démo Graphique de Staging</h3>
+                    <p>Création d'une pré-configuration graphique du Château Pont-Saint-Martin et des bouteilles sur l'application. L'interlocutrice peut visualiser le rendu en scannant une maquette.</p>
+                    
+                    <h3>Phase 2 : L'E-mail d'Accroche Ciblé</h3>
+                    <ul>
+                        <li><strong>Objet</strong> : <em>Château Pont-Saint-Martin &amp; Cap Ferret : Leviers de vente directe et synergies d'offres</em></li>
+                        <li><strong>Introduction</strong> : Rappel de l'échange de lundi et validation de leur vision de croissance.</li>
+                        <li><strong>Pivot ROI</strong> : Présentation des axes *Click &amp; Collect*, *Captation accompagnants*, *Pass Terre &amp; Mer* et *Offres Séminaires d'hiver*.</li>
+                        <li><strong>Alternative Barter</strong> : Proposition de financement de la licence en dotation de vin pour contourner le gel budgétaire.</li>
+                    </ul>
+
+                    <h3>Phase 3 : La Relance &amp; Traitement des Objections</h3>
+                    <ul>
+                        <li><strong>Objection de configuration (Manque de temps)</strong> : *"Nous prenons tout en charge sous 48h sur simple envoi WhatsApp de vos tarifs et photos. Aucune ressource requise chez vous."*</li>
+                        <li><strong>Doute sur le ROI</strong> : *"Seulement deux caisses de vin supplémentaires vendues par mois grâce aux accompagnants captés couvrent le coût de l'outil."*</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Rapport de Mission - RDM 3.0</div>
+                <div class="page-num">P. 03</div>
+            </div>
+        </div>
+
+        <!-- PAGE 4 -->
+        <div class="page">
+            <div class="inner-border"></div>
+            <div>
+                <h1>Matrice de Pilotage &amp; Itération</h1>
+                <div class="content">
+                    <h2>📊 4. Matrice Risques &amp; KPIs de Performance</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th style="width: 30%;">Risque Identifié</th>
+                                <th style="width: 15%;">Gravité</th>
+                                <th style="width: 35%;">Plan de Contingence (Apiouse)</th>
+                                <th style="width: 20%;">KPI de Suivi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Faible adhésion du personnel</strong></td>
+                                <td>Élevée (4/5)</td>
+                                <td>Fournir des supports physiques d'accueil (plaquettes en bois gravées avec QR code) pour inciter les clients à l'autonomie.</td>
+                                <td>% de scans / nombre d'arrivées réelles.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Logistique Cap Ferret complexe</strong></td>
+                                <td>Moyenne (3/5)</td>
+                                <td>Centralisation des deux fiches de gestion (Château &amp; Villas) sur une seule et unique console d'administration Apiouse.</td>
+                                <td>Nombre de réservations croisées.</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Transport hivernal difficile</strong></td>
+                                <td>Moyenne (3/5)</td>
+                                <td>Nouer un partenariat local avec des compagnies de chauffeurs VTC pour intégrer le transport dans les offres séminaires.</td>
+                                <td>Volume d'offres d'affaires d'hiver vendues.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2>🎯 5. Questions d'Itération Stratégique</h2>
+                    <ul>
+                        <li>Le deal d'échange (Barter) en bouteilles de vin vous semble-t-il être le levier le plus puissant pour contourner leur gel de budget, ou devrions-nous plutôt proposer une gratuité totale de 6 mois ?</li>
+                        <li>Souhaitez-vous que nous contactions directement un partenaire de transport privé à Bordeaux pour l'intégrer dans le chiffrage du package séminaire d'hiver ?</li>
+                        <li>Devons-nous planifier la création d'une maquette graphique haute définition des plaquettes de table en bois gravées (kit d'accueil physique) pour la joindre en pièce jointe du mail ?</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Rapport de Mission - RDM 3.0</div>
+                <div class="page-num">P. 04</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Process Commercial & KPIs - Happy House Edition RDM Midnight</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-midnight: #0d1436;
+            --accent-gold: #DDA83E;
+            --text-white: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.85);
+            --page-w: 210mm;
+            --page-h: 297mm;
+        }
+
+        @media print {
+            @page { size: A4; margin: 0; }
+            body { background: var(--bg-midnight) !important; -webkit-print-color-adjust: exact; }
+            .page { margin: 0 !important; border: none !important; box-shadow: none !important; }
+        }
+
+        body { 
+            background: #050505; 
+            color: var(--text-white); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            counter-reset: page;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .page {
+            width: var(--page-w);
+            height: var(--page-h);
+            background: var(--bg-midnight);
+            margin: 20px auto;
+            position: relative;
+            padding: 15mm 20mm;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inner-border {
+            position: absolute; top: 8mm; left: 8mm; right: 8mm; bottom: 8mm;
+            border: 1px solid var(--accent-gold); opacity: 0.15; pointer-events: none;
+        }
+
+        h1 { 
+            font-family: 'Cinzel', serif; 
+            color: var(--accent-gold); 
+            text-align: left; 
+            margin: 0 0 20px 0; 
+            font-size: 18pt; 
+            border-bottom: 1px solid var(--accent-gold);
+            padding-bottom: 5px;
+            letter-spacing: 2px;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-weight: bold;
+            text-decoration: none;
+            border-bottom: 1px solid rgba(221, 168, 62, 0.4);
+            margin: 15px 0 10px 0;
+            font-size: 11pt;
+            letter-spacing: 1px;
+        }
+
+        .content-block {
+            font-size: 10.5pt;
+            line-height: 1.4;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .highlight-gold {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .kpi-row {
+            margin-bottom: 10px;
+        }
+
+        .actor-name {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-weight: bold;
+            font-size: 12pt;
+            margin-top: 15px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .footer {
+            margin-top: auto;
+            border-top: 1px solid rgba(221, 168, 62, 0.3);
+            padding-top: 5px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 8pt;
+            color: var(--text-dim);
+            font-family: 'Cinzel', serif;
+        }
+
+        .page-num::after { counter-increment: page; content: "P. " counter(page, decimal-leading-zero); }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+    <div class="page title-only">
+        <div class="inner-border"></div>
+        
+        <h1>Process commercial et KPIS</h1>
+
+        <div class="content-block">
+            <div class="kpi-row"><b>Volume total de prospects :</b> <span class="highlight-gold">900</span> tout les 2 semaines</div>
+        </div>
+
+        <div class="actor-name">Younese</div>
+        <div class="content-block">
+            <b>Intensif (2 semaines)</b> 10 jours <span class="highlight-gold">900 contact</span><br>
+            <b>Blocs de temps :</b> Pour 90 appels/jour, prévoit deux sessions de 3h téléphonique (matin et d'après-midi).<br><br>
+            <b>Taux de Transformation (Closing) : <span class="highlight-gold">20%</span></b> Il faut 5 Rendez-vous qualifiés = Nom Prénom + TEL + Mail + Nom du lieu + lien URL du site ) pour signer 1 contrat.<br>
+            <b>Taux de Prise de RDV (Outbound) : <span class="highlight-gold">5%</span></b> (Il faut contacter 20 prospects pour décrocher 1 RDV. Réaliste sur du Cold Calling.<br><br>
+            Tu dois tenir à jour le CRM et compléter l’agenda partagé. Dès la validation d’un rendez-vous avec ton prospect, envoie un message WhatsApp précisant l’heure, le jour, le nom du contact et le lieu.
+        </div>
+
+        <div class="actor-name">Julien</div>
+        <div class="content-block">
+            2 semaines 10 jours <span class="highlight-gold">45 Rendez-vous</span><br><br>
+            <b>Nombre de RDV potentiels :</b> 900 5% <span class="highlight-gold">45 Rendez-vous</span> (RDV jour 4.5)<br>
+            <b>Nombre de signatures (Closing) :</b> 45 rendez-vous 20% = <span class="highlight-gold">9 Contrats</span><br><br>
+            Je dois tenir à jour le CRM et compléter l’agenda partagé. En cas de besoin, j'envoie un message à Patrice sur WhatsApp dès la validation d’un rendez-vous avec un prospect (en précisant l’heure, le jour, le nom de la personne et le lieu).
+        </div>
+
+        <div class="section-title">LOGISTIQUE ET REPORTING</div>
+        <div class="content-block">
+            <b>Pour Yonese et Julien :</b> un résumé de la semaine sera envoyé chaque <span class="highlight-gold">vendredi avant 17h00</span>.<br>
+            <b>Pour Patrice :</b> un point sur tes disponibilités sera envoyé chaque <span class="highlight-gold">vendredi avant 17h00</span>.
+        </div>
+
+        <div class="footer">
+            <div>Édition Prestige Midnight - Happy House</div>
+            <div class="page-num"></div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collecte KPIs Prospection - Édition Prestige</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #0F1115;
+            --accent-gold: #D4AF37;
+            --accent-gold-dim: rgba(212, 175, 55, 0.2);
+            --text-white: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.7);
+            --border-gold: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        body {
+            background-color: var(--bg-deep);
+            color: var(--text-white);
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 850px;
+            width: 100%;
+            background: rgba(26, 29, 35, 0.5);
+            border: var(--border-gold);
+            padding: 50px;
+            border-radius: 4px;
+            position: relative;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 10px; left: 10px; right: 10px; bottom: 10px;
+            border: 1px solid var(--accent-gold);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            text-align: center;
+            font-size: 24pt;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: var(--text-dim);
+            margin-bottom: 40px;
+            letter-spacing: 1px;
+        }
+
+        .section {
+            margin-bottom: 35px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--accent-gold);
+            font-size: 13pt;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            letter-spacing: 2px;
+        }
+
+        .section-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-gold-dim), transparent);
+            margin-left: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 9pt;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+        }
+
+        input[type="text"], 
+        input[type="number"], 
+        select, 
+        textarea {
+            width: 100%;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: white;
+            padding: 12px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10pt;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--accent-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .radio-group, .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-size: 10pt;
+            transition: color 0.3s ease;
+        }
+
+        .option input {
+            margin-right: 12px;
+            accent-color: var(--accent-gold);
+            width: 18px;
+            height: 18px;
+        }
+
+        .option:hover {
+            color: var(--accent-gold);
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: var(--accent-gold);
+            color: black;
+            border: none;
+            font-family: 'Cinzel', serif;
+            font-weight: bold;
+            font-size: 12pt;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            margin-top: 20px;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: #f0cc6b;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.2);
+        }
+
+        #results-container {
+            display: none;
+            margin-top: 40px;
+            background: #000;
+            padding: 20px;
+            border: 1px solid var(--accent-gold);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 9pt;
+            white-space: pre-wrap;
+            color: #ccc;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            background: var(--accent-gold-dim);
+            color: var(--accent-gold);
+            font-size: 8pt;
+            margin-bottom: 10px;
+            border-radius: 2px;
+        }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="badge">Intelligence Commerciale</div>
+    <h1>Prospection & KPIs</h1>
+    <p class="subtitle">Collecte de données pour le Rapport de Mission - Édition Prestige</p>
+
+    <form id="kpiForm">
+        <!-- 1. Période -->
+        <div class="section">
+            <div class="section-title">01. Temporalité</div>
+            <div class="grid">
+                <div>
+                    <label>Période de référence</label>
+                    <select name="periode" required>
+                        <option value="Novembre 2025 (Promotion)">Novembre 2025 (Promotion)</option>
+                        <option value="Décembre 2025">Décembre 2025</option>
+                        <option value="Janvier 2026">Janvier 2026</option>
+                        <option value="Trimestre 4 2025">Trimestre 4 2025</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Statut Actuel</label>
+                    <input type="text" name="statut" placeholder="ex: Directeur Commercial">
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Leads -->
+        <div class="section">
+            <div class="section-title">02. Flux de Leads</div>
+            <div class="grid">
+                <div>
+                    <label>Volume total traité</label>
+                    <input type="number" name="vol_leads" placeholder="ex: 1800">
+                </div>
+                <div>
+                    <label>Source majoritaire</label>
+                    <div class="checkbox-group">
+                        <label class="option"><input type="checkbox" name="source" value="Liste 126k"> Liste 126 000 leads</label>
+                        <label class="option"><input type="checkbox" name="source" value="Listes Régionales"> Listes Régionales (Normandie...)</label>
+                        <label class="option"><input type="checkbox" name="source" value="Réseau"> Réseau / Recommandations</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Activité -->
+        <div class="section">
+            <div class="section-title">03. Intensité Outbound</div>
+            <div class="grid">
+                <div>
+                    <label>Nombre d'appels passés</label>
+                    <input type="number" name="nb_appels" placeholder="ex: 900">
+                </div>
+                <div>
+                    <label>Taux de joignabilité</label>
+                    <div class="radio-group">
+                        <label class="option"><input type="radio" name="joignabilite" value="Faible (<10%)"> Faible (&lt;10%)</label>
+                        <label class="option"><input type="radio" name="joignabilite" value="Standard (20%)" checked> Standard (20%)</label>
+                        <label class="option"><input type="radio" name="joignabilite" value="Excellent (>30%)"> Excellent (&gt;30%)</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Conversion -->
+        <div class="section">
+            <div class="section-title">04. Transformation & Closing</div>
+            <div class="grid">
+                <div>
+                    <label>RDV Qualifiés (Visioconférences)</label>
+                    <input type="number" name="rdv" placeholder="Cible: 45">
+                </div>
+                <div>
+                    <label>Signatures (Contrats signés)</label>
+                    <input type="number" name="signatures" placeholder="Cible: 9">
+                </div>
+            </div>
+            <div style="margin-top:20px;">
+                <label>Répartition par type</label>
+                <div class="grid">
+                    <input type="number" name="type_prestige" placeholder="Prestige (ex: 10)">
+                    <input type="number" name="type_cse" placeholder="CSE (ex: 2)">
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Finance -->
+        <div class="section">
+            <div class="section-title">05. Indicateurs Financiers</div>
+            <div class="grid">
+                <div>
+                    <label>CA Estimé (Adhésions HT)</label>
+                    <input type="number" name="ca" placeholder="ex: 15000">
+                </div>
+                <div>
+                    <label>Contrat type</label>
+                    <select name="contrat_type">
+                        <option value="Adhésion Fixe + Comm">Adhésion Fixe + Commission</option>
+                        <option value="Commission uniquement">Commission uniquement</option>
+                        <option value="Pack Master Prestige">Pack Master Prestige</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- 6. Analyse Qualitative -->
+        <div class="section">
+            <div class="section-title">06. Analyse & Obstacles</div>
+            <label>Principal frein rencontré</label>
+            <textarea name="freins" rows="3" placeholder="Ex: Absence des leads 126k promis par Ruddy..."></textarea>
+            
+            <label style="margin-top:15px;">Levier de succès majeur</label>
+            <textarea name="succes" rows="3" placeholder="Ex: Valorisation de la montée en gamme Prestige..."></textarea>
+        </div>
+
+        <button type="button" onclick="generateSummary()">Générer le rapport de données</button>
+    </form>
+
+    <div id="results-container"></div>
+</div>
+
+<script>
+    function generateSummary() {
+        const form = document.getElementById('kpiForm');
+        const formData = new FormData(form);
+        let summary = "### DONNÉES DE PROSPECTION EXPORTÉES ###\n\n";
+        
+        for (const [key, value] of formData.entries()) {
+            summary += `${key.toUpperCase()}: ${value}\n`;
+        }
+
+        const resDiv = document.getElementById('results-container');
+        resDiv.style.display = 'block';
+        resDiv.innerText = summary + "\n\n(Copiez ces données et envoyez-les moi dans le chat)";
+        
+        window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Questionnaire Stratégique RDM - Julien Florence</title>
+    <style>
+        body { font-family: 'Montserrat', sans-serif; background: #0F1115; color: white; padding: 40px; }
+        .container { max-width: 800px; margin: auto; background: #1a1d23; padding: 30px; border-radius: 10px; border: 1px solid #D4AF37; }
+        h1 { color: #D4AF37; font-family: 'Cinzel', serif; text-align: center; }
+        .section { margin-bottom: 25px; padding: 15px; border-bottom: 1px solid rgba(212, 175, 55, 0.2); }
+        label { display: block; margin-bottom: 10px; font-weight: bold; color: #D4AF37; }
+        textarea, input { width: 100%; background: #0F1115; border: 1px solid #333; color: white; padding: 10px; border-radius: 5px; margin-bottom: 10px; }
+        .qcm { display: flex; flex-direction: column; gap: 10px; }
+        button { background: #D4AF37; color: black; border: none; padding: 15px 30px; font-weight: bold; cursor: pointer; border-radius: 5px; width: 100%; }
+    
+        /* Centrage automatique pour les pages de titre seul */
+        .page.title-only {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .page.title-only .footer {
+            position: absolute;
+            bottom: 10mm;
+            left: 15mm;
+            right: 15mm;
+            margin-top: 0;
+            width: auto;
+        }
+        .page.title-only h1 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .page.title-only .content-wrapper {
+            justify-content: center;
+        }
+    
+        /* Fix Footer et Pagination pour rendu net */
+        .footer { 
+            position: absolute !important;
+            bottom: 12mm !important;
+            left: 20mm !important;
+            right: 20mm !important;
+            border-top: 1px solid rgba(212, 175, 55, 0.5) !important; 
+            padding-top: 4mm !important; 
+            display: flex !important; 
+            justify-content: space-between !important; 
+            font-family: 'Cinzel', serif !important; 
+            font-size: 8pt !important; 
+            color: var(--accent) !important;
+            z-index: 100 !important;
+            background: transparent !important;
+            margin-top: 0 !important;
+        }
+        .page {
+            padding-bottom: 30mm !important; /* Espace pour le footer */
+        }
+    
+        /* Optimisation de l'espace vertical */
+        .page {
+            padding: 30mm 25mm 35mm 25mm !important; 
+        }
+        h1 { margin-top: 0 !important; margin-bottom: 20px !important; }
+        h2 { margin-top: 20px !important; margin-bottom: 15px !important; }
+        p { margin-bottom: 12px !important; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Validation Jury - Données Clés</h1>
+        
+        <form id="rdmForm">
+            <div class="section">
+                <label>1. Sur l'objectif des 1000 adhérents de Patrice :</label>
+                <div class="qcm">
+                    <input type="radio" name="vision_patrice" value="unrealistic" checked> Objectif jugé irréaliste sans investissement B2C (Voyageurs)<br>
+                    <input type="radio" name="vision_patrice" value="pivot"> Objectif maintenu mais pivot vers l'industrialisation pour compenser le manque de moyens<br>
+                </div>
+            </div>
+
+            <div class="section">
+                <label>2. Le blocage des 126 000 leads (Webinaire de Closing) :</label>
+                <textarea rows="3">Demande faite en Décembre (arrivée de Ruddy). 6 adresses mails demandées, jamais obtenues. Impact : Prospection "aveugle" maintenue.</textarea>
+            </div>
+
+            <div class="section">
+                <label>3. Promotion & Succès Novembre :</label>
+                <textarea rows="3">Promotion Directeur Commercial. Succès : 10 hébergements Prestige + 2 CSE intégrés. Comment valoriser ce succès face au jury ?</textarea>
+            </div>
+
+            <div class="section">
+                <label>4. L'Audit des 100 anciens (Le signal d'alarme) :</label>
+                <p>Spécifiez le ton pour le jury :</p>
+                <div class="qcm">
+                    <input type="radio" name="audit_tone" value="alarming" checked> "Échec systémique de la relation client" (Cru mais vrai)<br>
+                    <input type="radio" name="audit_tone" value="opportunity"> "Gisement de croissance via la rétention" (Plus politique)<br>
+                </div>
+            </div>
+
+            <div class="section">
+                <label>5. La réunion des 8 Actionnaires/Clients :</label>
+                <textarea rows="2">Toujours en attente. Objectif : Preuve sociale sur les réseaux. Pourquoi est-ce un frein majeur selon vous ?</textarea>
+            </div>
+
+            <div class="section">
+                <label>6. Plan d'Action Rétention :</label>
+                <p>Détail des Newsletter & Webinaires Régionaux (Max 15 pers) :</p>
+                <textarea rows="4">Newsletter début de mois (Team photo + Vision) / Mi-mois (Ordre du jour + Questionnaire) / Webinaires (Questions + Présentation nouveaux).</textarea>
+            </div>
+
+            <p style="font-size: 0.8rem; color: #888;">Copiez vos réponses et renvoyez-les moi dans le chat pour que j'attaque la rédaction.</p>
+        </form>
+    </div>
+</body>
+</html>

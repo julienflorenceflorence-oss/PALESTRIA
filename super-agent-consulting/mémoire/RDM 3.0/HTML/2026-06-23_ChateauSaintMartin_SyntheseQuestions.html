@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Synthèse des Questionnements - Château Pont-Saint-Martin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0F1115;
+            --accent: #D4AF37;
+            --text: #FFFFFF;
+            --page-w: 210mm;
+        }
+
+        body { 
+            background: #050505; 
+            color: var(--text); 
+            font-family: 'Montserrat', sans-serif; 
+            margin: 0; 
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .document-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .page {
+            width: var(--page-w);
+            height: 297mm; /* Hauteur fixe A4 pour impression parfaite */
+            background: var(--bg);
+            position: relative;
+            padding: 25mm 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            page-break-after: always;
+        }
+
+        .inner-border {
+            position: absolute; top: 10mm; left: 10mm; right: 10mm; bottom: 10mm;
+            border: 1px solid rgba(212, 175, 55, 0.15); pointer-events: none;
+        }
+
+        h1 { 
+            font-family: 'Cinzel'; 
+            color: var(--accent); 
+            text-align: center; 
+            border-bottom: 1px solid var(--accent); 
+            padding-bottom: 10px; 
+            margin-bottom: 25px; 
+            font-size: 1.5rem; 
+            letter-spacing: 2px; 
+        }
+        
+        h2 { 
+            font-family: 'Cinzel'; 
+            color: var(--accent); 
+            border-left: 4px solid var(--accent); 
+            padding-left: 15px; 
+            margin: 25px 0 15px 0; 
+            font-size: 1.1rem; 
+            letter-spacing: 1px; 
+        }
+        
+        h3 { 
+            font-family: 'Cinzel'; 
+            color: var(--text); 
+            border-bottom: 1px solid rgba(212, 175, 55, 0.15); 
+            padding-bottom: 5px; 
+            margin: 15px 0 10px 0; 
+            font-size: 0.95rem; 
+        }
+        
+        .quote {
+            font-family: 'Playfair Display'; 
+            font-style: italic; 
+            color: var(--accent);
+            text-align: center; 
+            padding: 12px; 
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2); 
+            margin: 15px 0;
+            font-size: 1rem;
+        }
+
+        .content { 
+            flex-grow: 1; 
+            text-align: justify; 
+            font-size: 9.5pt; 
+            font-weight: 300; 
+            line-height: 1.55; 
+        }
+        
+        ul { padding-left: 20px; }
+        li { margin-bottom: 6px; }
+        
+        .highlight {
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 8.5pt;
+        }
+        
+        th, td {
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            padding: 6px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+        
+        th {
+            background: rgba(212, 175, 55, 0.05);
+            color: var(--accent);
+            font-family: 'Cinzel';
+            font-size: 8pt;
+        }
+
+        .footer {
+            border-top: 1px solid rgba(212, 175, 55, 0.15); 
+            padding-top: 5mm; 
+            margin-top: 15px;
+            display: flex; 
+            justify-content: space-between; 
+            font-family: 'Cinzel'; 
+            font-size: 7.5pt;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .page-num {
+            font-weight: 600;
+        }
+
+        @media print {
+            body { padding: 0; }
+            .page { margin: 0; box-shadow: none; page-break-after: always; }
+        }
+    </style>
+</head>
+<body>
+    <div class="document-wrapper">
+        <!-- PAGE 1 -->
+        <div class="page">
+            <div class="inner-border"></div>
+            <div>
+                <h1>Château Pont-Saint-Martin</h1>
+                <div class="quote">"Souveraineté des données et performance commerciale : comprendre les doutes pour mieux y répondre."</div>
+                
+                <div class="content">
+                    <h2>🔍 Synthèse des Questionnements Téléphoniques</h2>
+                    <p>Au cours de l'échange, l'interlocutrice du Château Pont-Saint-Martin s'est montrée à la fois intéressée et rigoureuse. Ses questions factuelles démontrent une volonté claire d'évaluer le retour sur investissement (ROI) de Happy House (Apiouse), tout en protégeant les actifs du domaine. Voici la synthèse structurée de ses questionnements :</p>
+                    
+                    <h3>1. Souveraineté &amp; Exportabilité des Données</h3>
+                    <ul>
+                        <li><span class="highlight">Exportabilité</span> : <em>« Est-ce que ces données sont exportables ? »</em><br>Ils veulent s'assurer que les coordonnées des clients (surtout des accompagnants) captées via l'application puissent être facilement intégrées dans leur propre CRM ou système d'e-mailing oenologique.</li>
+                        <li><span class="highlight">Propriété et gestion</span> : <em>« Toutes les informations qui sont mises en fait sur votre plateforme... On a la gestion de ces informations, c'est vous qui les gérez ? »</em><br>Un besoin de contrôle opérationnel : ils veulent pouvoir modifier en direct leurs tarifs, photos et descriptifs sans être tributaires d'un support technique tiers.</li>
+                    </ul>
+
+                    <h3>2. Performance Commerciale &amp; ROI</h3>
+                    <ul>
+                        <li><span class="highlight">Volume d'affaires direct</span> : <em>« Pourriez-vous me donner un chiffre de réservation de combien il peut y avoir de réservations via l'application grâce à l'application ? »</em><br>Le besoin d'estimer concrètement l'apport d'Apiouse en termes de nuitées directes avant de s'engager.</li>
+                        <li><span class="highlight">Audience et trafic</span> : <em>« Est-ce que vous avez par exemple une idée du trafic mensuel du nombre de personnes qui regardent l'application pour réserver par mois ? »</em><br>Une interrogation légitime sur la notoriété et le volume de voyageurs qualifiés actifs sur la plateforme.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Synthèse Questions - RDM 3.0</div>
+                <div class="page-num">P. 01</div>
+            </div>
+        </div>
+
+        <!-- PAGE 2 -->
+        <div class="page">
+            <div class="inner-border"></div>
+            <div>
+                <h1>Analyse &amp; Enjeux Stratégiques</h1>
+                <div class="content">
+                    <h3>3. Visibilité, Référencement &amp; Concurrence Locale</h3>
+                    <ul>
+                        <li><span class="highlight">Référencement Web</span> : <em>« Expedia ... comment sont positionnées votre commentateur ? ... si on tape château pont-saint-martin sur internet, on tombe sur booking... quel est le lien, comment va se référencer my house ? »</em><br>La crainte de voir leur site ou leur fiche noyée derrière les investissements SEO/SEA massifs des grandes OTAs. Ils souhaitent comprendre le positionnement de MyApiouse dans les moteurs de recherche.</li>
+                        <li><span class="highlight">Densité concurrentielle du réseau</span> : <em>« Combien il y a d'hébergements autour de nous la partie de la plateforme Apia ? »</em><br>La peur d'une dilution de l'offre dans leur secteur géographique. *Note : La réponse sur la limite géographique stricte à 1,5 % de l'offre territoriale a permis de lever ce doute.*</li>
+                    </ul>
+
+                    <h3>4. Typologie de Clientèle &amp; Alignement de l'Offre</h3>
+                    <ul>
+                        <li><span class="highlight">Profil client</span> : <em>« Aujourd'hui c'est quoi votre type de clients que vous avez qui réserve justement sur happy house ? Qu'est-ce qu'ils cherchent surtout ? »</em><br>Ils veulent s'assurer que l'audience de l'application correspond aux codes CSP+ de leur domaine viticole et de leurs chambres.</li>
+                        <li><span class="highlight">Budgets moyens</span> : <em>« C'est quoi le budget moyen qu'ils cherchent ou sur lequel ils réservent aujourd'hui ? »</em><br>Valider la cohérence des prix de la plateforme avec leurs tarifs haut de gamme, notamment pour l'intégration future de leurs villas de luxe sur pilotis au Cap Ferret (louées de 4k € à 10k € la semaine).</li>
+                    </ul>
+
+                    <h3>5. Engagement Contractuel</h3>
+                    <ul>
+                        <li><span class="highlight">Durée et réversibilité</span> : <em>« Les engagements c'est sur combien d'années ? »</em><br>Le besoin de flexibilité commerciale : pouvoir sortir facilement du réseau si l'outil ne répond pas aux attentes, sans perte de données.</li>
+                    </ul>
+
+                    <p style="margin-top: 25px;"><span class="highlight">Conclusion</span> : L'échange révèle que le Château Pont-Saint-Martin n'est pas à la recherche d'une énième vitrine publicitaire, mais d'un <strong>outil d'indépendance commerciale, de souveraineté sur ses clients et de cross-selling</strong>. Notre argumentaire de vente doit directement s'appuyer sur la sécurité et le contrôle de la data, l'exclusivité locale de 1,5% et la liberté d'un modèle en direct sans commissions.</p>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div>Synthèse Questions - RDM 3.0</div>
+                <div class="page-num">P. 02</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

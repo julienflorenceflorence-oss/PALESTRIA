@@ -168,15 +168,19 @@ Pour un niveau Master, présenter un échec opérationnel dû à une résistance
 ### 📂 SLIDE 10 : Analyse du Blocage & Coût de l'Inaction (Durée conseillée : 2 min)
 *   **Visuel :** Les Facteurs de résistance de Patrice (Aversion technologique, crainte de dénaturer le premium relationnel) vs Le Coût de l'Inaction M12 (CAC maintenu à 1 823 €, Churn bloqué à 80 %, EBITDA hôtelier dégradé).
 *   **Discours de Julien :**
-    > Analyser la soutenance de niveau Master, c'est comprendre les causes de ce blocage organisationnel et mesurer le coût de l'inaction. Le refus de Patrice de valider notre pivot repose sur une aversion au risque technologique et sur la crainte infondée de dénaturer le positionnement haut de gamme du réseau. Le coût de ce statu quo est lourd de conséquences : les équipes commerciales ont continué à prospecter par cold calling manuel avec un CAC de 1 823 €, et la cohorte a maintenu son taux d'attrition historique de 80 % faute de valeur perçue post-vente### 📂 SLIDE 11 : Conclusion & Bilan Personnel (Durée conseillée : 1 min 30)
+    > Analyser la soutenance de niveau Master, c'est comprendre les causes de ce blocage organisationnel et mesurer le coût de l'inaction. Le refus de Patrice de valider notre pivot repose sur une aversion au risque technologique et sur la crainte infondée de dénaturer le positionnement haut de gamme du réseau. Le coût de ce statu quo est lourd de conséquences : les équipes commerciales ont continué à prospecter par cold calling manuel avec un CAC de 1 823 €, et la cohorte a maintenu son taux d'attrition historique de 80 % faute de valeur perçue post-vente. C'est la démonstration claire qu'un bon diagnostic technique ne suffit pas sans conduite du changement.
+*   **Transition :**
+    > Cette confrontation avec la résistance au changement a été le véritable moteur de mon évolution professionnelle.
+*   **Questions potentielles du Jury & Réponses clés :**
+    *   *Question :* Comment auriez-vous pu contourner l'aversion au risque de la direction ?
+    *   *Réponse :* En impliquant le Directeur Général dès la phase de sourcing des données. Si nous avions co-construit le diagnostic interne des unit economics dès le départ, il aurait lui-même constaté l'impasse financière, facilitant ainsi l'acceptation de notre recommandation de pivot.
+
+---
+
+### 📂 SLIDE 11 : Conclusion & Bilan Personnel (Durée conseillée : 1 min 30)
 *   **Visuel :** Plan de carrière de Julien Florence (DDS). Compétences validées : `Diagnostic & Rigueur Business`, `Prototype IA no-cost`, `Conduite du changement & Gestion des blocages`. Horizon 2028 : `Direction du Développement — PalestrIA`.
 *   **Discours de Julien :**
     > Pour conclure, cette alternance a été un accélérateur de maturité professionnelle. J'ai été confronté aux dures réalités politiques de l'entreprise. En assumant mon rôle de Directeur du Développement Stratégique, j'ai validé ma posture de consultant : savoir poser un diagnostic financier lucide, concevoir des solutions techniques d'automatisation IA no-cost, mais aussi se heurter à la résistance au changement. C'est cette posture de dirigeant pragmatique que je souhaite mettre au service de ses projets futurs. Mon ambition d'intégrer la Direction du Développement au sein de PalestrIA en 2028 reste intacte, armé de cette expérience inestimable sur la négociation des pivots stratégiques face aux statu quo. Je vous remercie pour votre attention.
-*   **Questions potentielles du Jury & Réponses clés :**
-    *   *Question :* Si vous deviez résumer le principal apport de cette alternance pour votre carrière ?
-    *   *Réponse :* Apprendre que la stratégie d'entreprise n'est pas qu'une affaire de théorie ou d'outils. Sans une communication soignée, sans pédagogie active et sans alignement des parties prenantes, le meilleur plan stratégique du monde reste à l'état de concept. C'est cette maturité organisationnelle que je retiens.
-
----geant pragmatique que je souhaite mettre au service de mes projets futurs. Mon ambition d'intégrer la Direction du Développement au sein de PalestrIA en 2028 reste intacte, armé de cette expérience inestimable sur la négociation des pivots stratégiques face aux statu quo. Je vous remercie pour votre attention.
 *   **Questions potentielles du Jury & Réponses clés :**
     *   *Question :* Si vous deviez résumer le principal apport de cette alternance pour votre carrière ?
     *   *Réponse :* Apprendre que la stratégie d'entreprise n'est pas qu'une affaire de théorie ou d'outils. Sans une communication soignée, sans pédagogie active et sans alignement des parties prenantes, le meilleur plan stratégique du monde reste à l'état de concept. C'est cette maturité organisationnelle que je retiens.

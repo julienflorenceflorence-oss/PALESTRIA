@@ -394,74 +394,84 @@ html_content = """<!DOCTYPE html>
             </div>
         </div>
 
-        <!-- SLIDE 7 : SIMULATION FINANCIÈRE : CENTRALE ENTEGRA -->
+        <!-- SLIDE 7 : LE LEVIER COLLABORATIF -->
         <div class="slide">
-            <h2 class="subtitle">La Centrale d'Achat : Modélisation Financière</h2>
-            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Simulation de ROI d'un Domaine Pilote ("Domaine de la Preuve")</div>
-            <div class="grid-3" style="align-items: stretch;">
+            <h2 class="subtitle">Le Levier Collaboratif : Preuve par le Réseau</h2>
+            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Cas d'école du Domaine de la Preuve (Cas Durentie dans le RDM)</div>
+            <div class="grid-3" style="align-items: stretch; margin-top: 2vh;">
                 <div class="card border-red" style="display: flex; flex-direction: column; justify-content: center;">
-                    <div class="label text-red">Investissement Restant</div>
+                    <div class="label text-red">Investissement Unique</div>
                     <div class="cinzel" style="font-size: 3.5vw; color: var(--red); font-weight: bold; margin: 1.5vh 0;">360&nbsp;€</div>
-                    <div class="label" style="color: #FFF;">Cotisation Happy House HT</div>
+                    <div class="label" style="color: #FFF;">Cotisation Annuelle TTC</div>
                 </div>
-                <div class="card border-green" style="grid-column: span 2; text-align: left; background: rgba(46,204,113,0.02); opacity: 0.7;">
-                    <div class="label text-green" style="margin-bottom: 1.5vh;">Économies Opérationnelles Potentielles Modélisées</div>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2vw;">
+                <div class="card border-green" style="grid-column: span 2; text-align: left; background: rgba(46,204,113,0.02);">
+                    <div class="label text-green" style="margin-bottom: 1.5vh;">Transfert Client Collaboratif (Membre-à-Membre)</div>
+                    <div style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 2vw; align-items: center;">
                         <div>
-                            <h4 style="color: #FFF; font-size: 1.1vw;">F&B (Alimentaire)</h4>
-                            <p style="font-size: 1.8vw; color: var(--green); font-weight: 700; margin: 0.5vh 0;">- 2&nbsp;145&nbsp;€</p>
-                            <p style="font-size: 0.9vw; color: #888;">(Gain théorique de 15% sur 14 300 € d'achats)</p>
+                            <h4 style="color: #FFF; font-size: 1.1vw;">Mécanisme de Synergie</h4>
+                            <p style="font-size: 0.95vw; color: #aaa; margin-top: 1vh; line-height: 1.5;">
+                                Un hébergeur membre complet réoriente gratuitement un voyageur haut de gamme vers un autre membre disponible du réseau.
+                            </p>
+                            <p style="font-size: 0.9vw; color: var(--gold); margin-top: 1vh; font-weight: bold;">
+                                ➔ 0 % commission OTAs (Valeur brute 100% conservée)
+                            </p>
                         </div>
                         <div>
-                            <h4 style="color: #FFF; font-size: 1.1vw;">Blanchisserie &amp; Gaz</h4>
-                            <p style="font-size: 1.8vw; color: var(--green); font-weight: 700; margin: 0.5vh 0;">- 910&nbsp;€</p>
-                            <p style="font-size: 0.9vw; color: #888;">(Gain potentiel négocié)</p>
+                            <h4 style="color: #FFF; font-size: 1.1vw;">Réservation Générée</h4>
+                            <p style="font-size: 2.2vw; color: var(--green); font-weight: 700; margin: 0.5vh 0;">11&nbsp;000&nbsp;€</p>
+                            <p style="font-size: 0.9vw; color: #888;">(En une seule opération)</p>
                         </div>
                     </div>
                     <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 2vh; padding-top: 1.5vh; display: flex; justify-content: space-between; align-items: center;">
-                        <span class="cinzel text-gold" style="font-size: 1.3vw;">Gain Net Théorique : + 3&nbsp;055&nbsp;€</span>
-                        <span class="label text-green" style="font-size: 0.9vw;">ROI Modélisé : 8,5x la cotisation</span>
+                        <span class="cinzel text-gold" style="font-size: 1.3vw;">Rentabilité Immédiate de l'Effet Réseau</span>
+                        <span class="label text-green" style="font-size: 0.95vw; font-weight: bold;">ROI Direct : 30,5x l'adhésion</span>
                     </div>
                 </div>
             </div>
             <div style="margin-top: 4vh; text-align: center; font-size: 1.1vw; color: var(--red); font-style: italic;">
-                *Le partenariat Entegra a été négocié mais la direction a refusé d'imposer son onboarding technique aux hébergeurs.*
+                *Le cycle de vente initial a duré 5 mois par manque de métriques ROI souveraines, validant le besoin de transparence.*
             </div>
         </div>
 
-        <!-- SLIDE 8 : MAQUETTE DASHBOARD ROI (CONCEPT) -->
+        <!-- SLIDE 8 : IMPACT ENTEGRA & SIMULATIONS ROI -->
         <div class="slide">
-            <h2 class="subtitle">Le Dashboard ROI : Maquette Conceptuelle</h2>
-            <div class="card" style="width: 100%; max-width: 1100px; text-align: left; padding: 2.5vw; border-color: var(--red); background: #13151D; opacity: 0.6;">
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 2vh; margin-bottom: 3vh;">
-                    <div>
-                        <span class="label" style="color: var(--red);">Prototype Non-Déployé</span>
-                        <h3 class="cinzel" style="color: #FFF; font-size: 1.8vw; margin-top: 0.5vh;">SIMULATION : DOMAINE DE LA PREUVE</h3>
-                    </div>
-                    <div style="background: rgba(231,76,60,0.15); border: 1px solid var(--red); color: var(--red); padding: 5px 15px; border-radius: 20px; font-size: 0.9vw; font-weight: bold; letter-spacing: 1px;">
-                        MOCKUP DE DÉMONSTRATION
-                    </div>
+            <h2 class="subtitle">L'Impact Entegra : Simulations ROI par Profil</h2>
+            <div class="label" style="margin-bottom: 2vh; color: var(--gold);">Maquette du Dashboard ROI Conceptuel (Sur la base de la Centrale d'Achats)</div>
+            
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5vw; width: 100%; max-width: 1400px; margin-top: 1vh;">
+                <!-- Profil 1 -->
+                <div class="card border-gold" style="padding: 1.5vw 1vw; text-align: left; background: #13151D;">
+                    <div class="label" style="font-size: 0.85vw; color: #888;">Chambre d'hôte (1 ch.)</div>
+                    <div class="cinzel" style="font-size: 1.6vw; color: #FFF; font-weight: bold; margin: 1vh 0;">CA 76,6k €</div>
+                    <div class="label text-green" style="font-size: 0.9vw;">Gain : +2 292 €/an</div>
+                    <p style="font-size: 0.8vw; color: #666; margin-top: 1vh;">(Rentabilité : +9.3% du CA)<br><strong>ROI Cible : 6,3x</strong></p>
                 </div>
-                
-                <div class="grid-3">
-                    <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 1vw;">
-                        <span class="label">Cotisation payée</span>
-                        <p class="cinzel text-red" style="font-size: 2.5vw; font-weight: 700; margin-top: 1vh;">- 360&nbsp;€</p>
-                    </div>
-                    <div style="border-right: 1px solid rgba(255,255,255,0.1); padding-right: 1vw; padding-left: 1vw;">
-                        <span class="label">Économies simulées</span>
-                        <p class="cinzel text-green" style="font-size: 2.5vw; font-weight: 700; margin-top: 1vh;">+ 3&nbsp;055&nbsp;€</p>
-                    </div>
-                    <div style="padding-left: 1vw;">
-                        <span class="label">Valeur Résas Directes</span>
-                        <p class="cinzel text-green" style="font-size: 2.5vw; font-weight: 700; margin-top: 1vh;">+ 1&nbsp;200&nbsp;€</p>
-                    </div>
+                <!-- Profil 2 -->
+                <div class="card border-gold" style="padding: 1.5vw 1vw; text-align: left; background: #13151D;">
+                    <div class="label" style="font-size: 0.85vw; color: #888;">Grand Gîte (8 pers.)</div>
+                    <div class="cinzel" style="font-size: 1.6vw; color: #FFF; font-weight: bold; margin: 1vh 0;">CA 36,5k €</div>
+                    <div class="label text-green" style="font-size: 0.9vw;">Gain : +1 340 €/an</div>
+                    <p style="font-size: 0.8vw; color: #666; margin-top: 1vh;">(Rentabilité : +11.5% du CA)<br><strong>ROI Cible : 3,7x</strong></p>
                 </div>
-                
-                <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 3vh; padding-top: 2vh; display: flex; justify-content: space-between; align-items: center;">
-                    <span class="label" style="color: #888;">Gains cumulés Happy House : <strong>4 255 €</strong></span>
-                    <span class="cinzel text-gold" style="font-size: 1.6vw; font-weight: bold;">Indice ROI Global théorique : 11,8x</span>
+                <!-- Profil 3 -->
+                <div class="card border-gold" style="padding: 1.5vw 1vw; text-align: left; background: #13151D;">
+                    <div class="label" style="font-size: 0.85vw; color: #888;">Villa Premium (10 pers.)</div>
+                    <div class="cinzel" style="font-size: 1.6vw; color: #FFF; font-weight: bold; margin: 1vh 0;">CA 80,3k €</div>
+                    <div class="label text-green" style="font-size: 0.9vw;">Gain : +3 581 €/an</div>
+                    <p style="font-size: 0.8vw; color: #666; margin-top: 1vh;">(Rentabilité : +11.4% du CA)<br><strong>ROI Cible : 9,9x</strong></p>
                 </div>
+                <!-- Profil 4 -->
+                <div class="card border-green" style="padding: 1.5vw 1vw; text-align: left; background: rgba(46,204,113,0.03);">
+                    <div class="label" style="font-size: 0.85vw; color: var(--green);">Vignoble (Hôtel + Resto)</div>
+                    <div class="cinzel" style="font-size: 1.6vw; color: #FFF; font-weight: bold; margin: 1vh 0;">CA 1 126k €</div>
+                    <div class="label text-green" style="font-size: 0.9vw; font-weight: bold;">Gain : +53 058 €/an</div>
+                    <p style="font-size: 0.8vw; color: #666; margin-top: 1vh;">(Rentabilité : +9.4% du CA)<br><strong class="text-gold">ROI Cible : 147x</strong></p>
+                </div>
+            </div>
+            
+            <div style="border-top: 1px solid rgba(255,255,255,0.1); margin-top: 3vh; padding-top: 2vh; width: 100%; max-width: 1400px; display: flex; justify-content: space-between; align-items: center;">
+                <span class="label" style="color: var(--red);">Dashboard non-déployé en production</span>
+                <span class="cinzel text-gold" style="font-size: 1.2vw; font-weight: bold;">Réductions Entegra cibles : 15% à 25% de marge opérationnelle</span>
             </div>
         </div>
 

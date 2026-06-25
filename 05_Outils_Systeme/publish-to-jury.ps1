@@ -13,16 +13,11 @@ if (Test-Path -Path $TempPath) {
 }
 $null = New-Item -Path $TempPath -ItemType Directory -Force
 
-# 2. Copier uniquement les fichiers destinés au jury
-Write-Output "Copie des fichiers publics autorisés..."
-Copy-Item -Path (Join-Path $SourcePath "index.html") -Destination $TempPath -Force
-
-if (Test-Path -Path (Join-Path $SourcePath "audit_agents_ia.html")) {
-    Copy-Item -Path (Join-Path $SourcePath "audit_agents_ia.html") -Destination $TempPath -Force
-}
-
-if (Test-Path -Path (Join-Path $SourcePath "Justificatifs_Preuves")) {
-    Copy-Item -Path (Join-Path $SourcePath "Justificatifs_Preuves") -Destination $TempPath -Recurse -Force
+# 2. Copier uniquement les fichiers destinés au jury depuis le dossier d'Espace de Soutenance V2
+Write-Output "Copie des fichiers publics depuis 02_Espace_Soutenance..."
+$PublicSource = Join-Path $SourcePath "02_Espace_Soutenance"
+if (Test-Path -Path $PublicSource) {
+    Copy-Item -Path "$PublicSource\*" -Destination $TempPath -Recurse -Force
 }
 
 # 3. Initialiser un dépôt propre dans le dossier temporaire pour écraser tout historique privé

@@ -13,6 +13,7 @@ maj: 2026-06-25
 ## 1. Identité & Profil ENTJ-A
 - **CEO** : Julien Florence (Consultant & Manager)
 - **Personnalité** : ENTJ-A (Commandant). Rationnel (94%), Organisé (94%), Extraverti (88%), Sûr de soi (86%).
+- **Leadership & Sport** : 20 ans d'expérience en management, diplômé coach de handball fédéral, ancien joueur niveau National 3 (N3). Vision de manager-coach axée sur la cohésion, la performance collective et le dépassement de soi.
 - **Axes forts** : Prospection, management d'équipe, planification et croissance d'équipe.
 - **Posture exigeante** : Communication en **Position Adulte** systématique (factuel, orienté solutions, pyramide de Maslow pour gérer les émotions de l'interlocuteur).
 

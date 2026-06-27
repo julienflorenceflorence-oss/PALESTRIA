@@ -8,15 +8,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #0B0E14;      /* Bleu nuit très profond */
-            --bg-card: #121824;      /* Bleu nuit intermédiaire */
+            --bg-dark: #07090E;      /* Bleu nuit ultra-profond presque noir */
+            --bg-card: rgba(18, 24, 38, 0.6); /* Transparent pour effet verre dépoli */
             --accent: #C5A059;       /* Ocre / Doré Happy House */
             --accent-glow: #F3D082;
             --text-pure: #FFFFFF;    /* Blanc Pur */
             --text-dim: #94A3B8;     /* Gris bleuté */
             --red-alert: #E15B5B;    /* Rouge pour Unit Economics */
-            --border-glow: rgba(197, 160, 89, 0.15);
-            --transition-speed: 0.5s;
+            --border-glow: rgba(197, 160, 89, 0.12);
+            --transition-speed: 0.4s;
         }
 
         * {
@@ -28,23 +28,28 @@
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--bg-dark);
+            /* Grille technique de Dashboard */
+            background-image: 
+                radial-gradient(rgba(197, 160, 89, 0.035) 1.5px, transparent 1.5px),
+                linear-gradient(rgba(197, 160, 89, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197, 160, 89, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px, 120px 120px, 120px 120px;
             color: var(--text-pure);
             overflow: hidden;
             height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
         }
 
         /* Top Progress Bar */
         .progress-container {
             width: 100%;
             height: 4px;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.02);
             position: fixed;
             top: 0;
             left: 0;
-            z-index: 100;
+            z-index: 150;
         }
 
         .progress-bar {
@@ -53,6 +58,89 @@
             background: linear-gradient(90deg, var(--accent), var(--accent-glow));
             box-shadow: 0 0 10px var(--accent);
             transition: width 0.3s ease-out;
+        }
+
+        /* Top Dashboard Header */
+        .dashboard-header {
+            position: fixed;
+            top: 4px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 100;
+        }
+
+        .db-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .db-logo-icon {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .db-part-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 15px;
+        }
+
+        .db-status-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            background: rgba(197, 160, 89, 0.05);
+            padding: 4px 10px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .db-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        .db-slide-counter {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--accent);
         }
 
         /* Deck Wrapper */
@@ -72,14 +160,14 @@
             height: 100%;
             opacity: 0;
             visibility: hidden;
-            transform: translateY(20px);
+            transform: translateY(15px);
             transition: opacity var(--transition-speed) ease, 
                         transform var(--transition-speed) ease, 
                         visibility var(--transition-speed);
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 60px 8%;
+            padding: 85px 8% 40px 8%; /* Augmenté en haut pour le header, dégagé en bas */
             z-index: 1;
         }
 
@@ -93,8 +181,8 @@
         /* Layout Types */
         .layout-grid {
             display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-            gap: 5%;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 6%;
             width: 100%;
             max-width: 1300px;
             align-items: center;
@@ -110,91 +198,111 @@
         }
 
         /* Typography & Headings */
-        .part-indicator {
-            font-family: 'Cinzel', serif;
-            color: var(--accent);
-            font-size: 0.9rem;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            opacity: 0.8;
-        }
-
         .slide-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
             color: var(--text-pure);
-            line-height: 1.2;
-            margin-bottom: 30px;
+            line-height: 1.25;
+            margin-bottom: 25px;
             font-weight: 700;
             letter-spacing: 1px;
-            border-left: 3px solid var(--accent);
-            padding-left: 20px;
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
         }
 
         .layout-title-page h1 {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-size: clamp(3rem, 6vw, 4.5rem);
             color: var(--accent);
-            letter-spacing: 5px;
+            letter-spacing: 6px;
             text-transform: uppercase;
             line-height: 1.1;
-            margin-bottom: 25px;
-            text-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
         }
 
         .layout-title-page h2 {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: var(--text-dim);
             text-transform: uppercase;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
-        /* Grille Analytique en Points */
+        /* Grille Analytique en Points - Look Dashboard */
         .analytical-points {
             display: flex;
             flex-direction: column;
-            gap: 24px;
+            gap: 16px;
         }
 
         .point-box {
-            background: rgba(18, 24, 36, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-left: 2px solid var(--accent);
-            padding: 16px 20px;
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 160, 89, 0.08);
+            border-left: 3px solid var(--accent);
+            padding: 14px 18px;
             border-radius: 4px;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .point-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 4px;
+            background: rgba(197, 160, 89, 0.2);
+            border-radius: 0 4px 0 0;
         }
 
         .point-box:hover {
-            border-left-width: 4px;
-            background: rgba(18, 24, 36, 0.7);
-            transform: translateX(5px);
+            border-color: rgba(197, 160, 89, 0.35);
+            background: rgba(18, 24, 38, 0.85);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transform: translateX(4px);
         }
 
         .point-box.maladie {
             border-left-color: var(--red-alert);
         }
+        .point-box.maladie::before {
+            background: rgba(225, 91, 91, 0.2);
+        }
 
         .point-label {
             font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--accent);
             letter-spacing: 2px;
             text-transform: uppercase;
-            margin-bottom: 6px;
+            margin-bottom: 5px;
             font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .point-label::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: rgba(197, 160, 89, 0.1);
         }
 
         .point-box.maladie .point-label {
             color: var(--red-alert);
         }
+        .point-box.maladie .point-label::after {
+            background: rgba(225, 91, 91, 0.1);
+        }
 
         .point-text {
-            font-size: 0.95rem;
-            line-height: 1.5;
+            font-size: 0.9rem;
+            line-height: 1.45;
             color: var(--text-dim);
         }
 
@@ -205,21 +313,34 @@
 
         /* Right Panel: Visual Components */
         .visual-panel {
-            background: var(--bg-card);
+            background: rgba(11, 15, 24, 0.8);
+            backdrop-filter: blur(12px);
             border: 1px solid var(--border-glow);
-            border-radius: 8px;
+            border-radius: 6px;
             aspect-ratio: 4/3;
             width: 100%;
             position: relative;
             overflow: hidden;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
         }
 
-        /* Interactive Widgets in CSS */
-        
+        /* En-tête interne du Panel Visuel pour renforcer l'aspect Dashboard */
+        .visual-panel::before {
+            content: 'PANEL // OBSERVATION SYSTEM';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+        }
+
         /* Slide 0 Logo & Title Visuel */
         .logo-container {
             display: flex;
@@ -229,22 +350,22 @@
         }
 
         .hexagon-logo {
-            width: 140px;
-            height: 160px;
-            background: var(--bg-dark);
+            width: 130px;
+            height: 150px;
+            background: #0B0E14;
             border: 2px solid var(--accent);
             position: relative;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+            box-shadow: 0 0 35px rgba(197, 160, 89, 0.25);
             margin-bottom: 20px;
         }
 
         .hexagon-logo span {
             font-family: 'Cinzel', serif;
-            font-size: 3rem;
+            font-size: 2.8rem;
             color: var(--accent);
             font-weight: 700;
         }
@@ -260,8 +381,8 @@
         }
 
         .venn-circle {
-            width: 200px;
-            height: 200px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
             position: absolute;
             mix-blend-mode: screen;
@@ -271,38 +392,38 @@
             justify-content: center;
             text-align: center;
             padding: 20px;
-            font-size: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .venn-left {
-            background: rgba(11, 14, 20, 0.85);
+            background: rgba(7, 9, 14, 0.9);
             border: 1px solid var(--accent);
-            transform: translateX(-60px);
+            transform: translateX(-55px);
         }
 
         .venn-right {
-            background: rgba(19, 26, 38, 0.85);
+            background: rgba(18, 24, 38, 0.9);
             border: 1px solid var(--text-pure);
-            transform: translateX(60px);
+            transform: translateX(55px);
         }
 
         .venn-intersection {
             position: absolute;
-            background: rgba(255, 255, 255, 0.95);
-            color: var(--bg-dark);
-            width: 120px;
-            height: 120px;
+            background: var(--text-pure);
+            color: #07090E;
+            width: 110px;
+            height: 110px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 700;
             z-index: 5;
-            box-shadow: 0 0 25px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
             padding: 10px;
             line-height: 1.3;
         }
@@ -312,53 +433,53 @@
             width: 80%;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 18px;
         }
 
         .profiler-bar-row {
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 5px;
         }
 
         .profiler-header {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             letter-spacing: 1px;
+            color: var(--text-dim);
         }
 
         .profiler-bar-bg {
             width: 100%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 4px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 3px;
             overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
         }
 
         .profiler-bar-fill {
             height: 100%;
             background: var(--accent);
-            border-radius: 4px;
+            border-radius: 3px;
             width: 0%;
-            transition: width 1s ease-in-out;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
         }
 
         /* Slide 3: Dashboard Organique */
         .dashboard-organique {
-            width: 90%;
-            height: 90%;
+            width: 85%;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
         }
 
         .dashboard-header-card {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.02);
-            padding: 15px;
-            border-radius: 6px;
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            background: rgba(197, 160, 89, 0.02);
+            padding: 12px;
+            border-radius: 4px;
             text-align: center;
         }
 
@@ -369,23 +490,35 @@
         }
 
         .stat-card {
-            border: 1px solid var(--border-glow);
-            background: rgba(197, 160, 89, 0.03);
-            padding: 20px 15px;
-            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.01);
+            padding: 15px 10px;
+            border-radius: 4px;
             text-align: center;
+            position: relative;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 3px;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.3;
         }
 
         .stat-value {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             color: var(--accent);
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .stat-label {
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 1px;
@@ -394,9 +527,9 @@
         /* Slide 4: Diagnostic Sectoriel Circular */
         .circle-progress-container {
             position: relative;
-            width: 160px;
-            height: 160px;
-            margin-bottom: 20px;
+            width: 140px;
+            height: 140px;
+            margin-bottom: 15px;
         }
 
         .circle-svg {
@@ -405,17 +538,17 @@
 
         .circle-bg {
             fill: none;
-            stroke: rgba(255, 255, 255, 0.05);
-            stroke-width: 8;
+            stroke: rgba(255, 255, 255, 0.03);
+            stroke-width: 6;
         }
 
         .circle-fill {
             fill: none;
             stroke: var(--accent);
-            stroke-width: 8;
+            stroke-width: 6;
             stroke-dasharray: 440;
             stroke-dashoffset: 440;
-            transition: stroke-dashoffset 1.5s ease-in-out;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.1, 0.8, 0.1, 1);
             stroke-linecap: round;
         }
 
@@ -425,34 +558,34 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
             color: var(--accent);
         }
 
         .hex-imbriques {
             display: flex;
-            gap: 20px;
+            gap: 15px;
         }
 
         .hex-small {
-            width: 90px;
-            height: 100px;
+            width: 80px;
+            height: 90px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             text-align: center;
             clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            font-weight: 700;
+            font-weight: 750;
             padding: 5px;
         }
 
         .hex-grey {
-            background: #2D3748;
+            background: rgba(255, 255, 255, 0.05);
             color: var(--text-pure);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .hex-blue {
@@ -462,28 +595,28 @@
 
         /* Slide 5: Rupture Unit Economics */
         .financial-crisis {
-            width: 90%;
+            width: 85%;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 18px;
         }
 
         .efficiency-gauge {
             width: 100%;
-            height: 25px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 12.5px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
             overflow: hidden;
             position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         .efficiency-fill {
             height: 100%;
             width: 0%;
             background: var(--red-alert);
-            border-radius: 12.5px;
-            transition: width 1.2s ease-in-out;
+            border-radius: 10px;
+            transition: width 1.2s cubic-bezier(0.1, 0.8, 0.1, 1);
         }
 
         .efficiency-label {
@@ -491,7 +624,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             letter-spacing: 1px;
         }
@@ -499,31 +632,31 @@
         .comparison-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px;
+            gap: 15px;
         }
 
         .comp-card {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 6px;
-            padding: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            padding: 15px;
             text-align: center;
         }
 
         .comp-card.red {
-            border-color: rgba(225, 91, 91, 0.3);
-            background: rgba(225, 91, 91, 0.02);
+            border-color: rgba(225, 91, 91, 0.25);
+            background: rgba(225, 91, 91, 0.01);
         }
 
         .comp-card.gold {
-            border-color: rgba(197, 160, 89, 0.3);
-            background: rgba(197, 160, 89, 0.02);
+            border-color: rgba(197, 160, 89, 0.25);
+            background: rgba(197, 160, 89, 0.01);
         }
 
         .comp-val {
             font-family: 'Cinzel', serif;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             font-weight: 700;
-            margin-bottom: 5px;
+            margin-bottom: 3px;
         }
 
         .comp-card.red .comp-val { color: var(--red-alert); }
@@ -534,116 +667,115 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 18px;
         }
 
         .pie-chart {
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 50%;
             background: conic-gradient(
                 var(--accent) 0% 5.5%,
-                rgba(255, 255, 255, 0.05) 5.5% 100%
+                rgba(255, 255, 255, 0.03) 5.5% 100%
             );
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.6), inset 0 0 10px rgba(0,0,0,0.8);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.8);
             position: relative;
         }
 
         .pie-chart::after {
             content: '';
             position: absolute;
-            top: 30px;
-            left: 30px;
-            width: 100px;
-            height: 100px;
-            background: var(--bg-card);
+            top: 25px;
+            left: 25px;
+            width: 90px;
+            height: 90px;
+            background: #0B0E14;
             border-radius: 50%;
         }
 
         .pie-legend {
             display: flex;
-            gap: 20px;
-            font-size: 0.8rem;
+            gap: 15px;
+            font-size: 0.75rem;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .legend-color {
-            width: 12px;
-            height: 12px;
+            width: 10px;
+            height: 10px;
             border-radius: 2px;
         }
 
         /* Slide 7: ROI Centrale Entegra */
         .roi-central-card {
-            width: 90%;
-            height: 90%;
+            width: 85%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
             text-align: center;
         }
 
         .roi-value-glow {
             font-family: 'Cinzel', serif;
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 800;
             color: var(--accent);
-            text-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
-            margin-bottom: 5px;
+            text-shadow: 0 0 25px rgba(197, 160, 89, 0.35);
+            margin-bottom: 3px;
         }
 
         .roi-details {
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.01);
-            padding: 15px 30px;
-            border-radius: 6px;
-            font-size: 0.85rem;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.005);
+            padding: 12px 24px;
+            border-radius: 4px;
+            font-size: 0.8rem;
             color: var(--text-dim);
+            line-height: 1.4;
         }
 
         /* Slide 8: Gantt Chart */
         .gantt-chart {
-            width: 90%;
+            width: 85%;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
             position: relative;
         }
 
         .gantt-row {
             display: grid;
-            grid-template-columns: 1fr 3fr;
+            grid-template-columns: 1fr 3.2fr;
             align-items: center;
-            gap: 15px;
+            gap: 12px;
         }
 
         .gantt-label {
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             color: var(--text-dim);
         }
 
         .gantt-bar-bg {
-            height: 12px;
-            background: rgba(255, 255, 255, 0.02);
-            border-radius: 6px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 5px;
             position: relative;
         }
 
         .gantt-bar-fill {
             height: 100%;
-            border-radius: 6px;
+            border-radius: 5px;
             position: absolute;
-            transition: width 1s ease-in-out;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
         }
 
         .gantt-bar-fill.bar-1 { background: var(--accent); left: 0%; width: 0%; }
@@ -666,95 +798,84 @@
 
         .gantt-veto-tag {
             background: var(--red-alert);
-            color: var(--bg-dark);
-            font-size: 0.55rem;
+            color: #07090E;
+            font-size: 0.5rem;
             font-weight: 800;
-            padding: 2px 6px;
-            border-radius: 3px;
-            transform: rotate(-90deg) translateY(-25px);
+            padding: 2px 5px;
+            border-radius: 2px;
+            transform: rotate(-90deg) translateY(-22px);
             white-space: nowrap;
             letter-spacing: 1px;
         }
 
         /* Slide 9: Digital Assets Dashboard */
         .digital-assets-list {
-            width: 85%;
+            width: 80%;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 12px;
         }
 
         .asset-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px 20px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(255, 255, 255, 0.01);
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.005);
             border-radius: 4px;
-            transition: background 0.3s;
-        }
-
-        .asset-row:hover {
-            background: rgba(255, 255, 255, 0.03);
         }
 
         .asset-name {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 500;
+            color: var(--text-dim);
         }
 
         .asset-metric {
             font-family: 'Cinzel', serif;
             color: var(--accent);
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         /* Slide 10: Hick / Fitts Layout Optimization */
         .cognitive-grid {
-            width: 90%;
-            height: 90%;
+            width: 85%;
+            height: 85%;
             display: grid;
             grid-template-rows: 1fr auto;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
         }
 
         .schema-conversion {
-            border: 1px dashed rgba(197, 160, 89, 0.3);
-            border-radius: 6px;
+            border: 1px dashed rgba(197, 160, 89, 0.2);
+            border-radius: 4px;
             position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            gap: 15px;
-            background: rgba(0, 0, 0, 0.2);
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
         }
 
         .fitts-target {
-            width: 90px;
-            height: 90px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
             background: radial-gradient(circle, var(--accent) 0%, rgba(197,160,89,0) 70%);
-            border: 2px solid var(--accent);
-            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.25);
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
             color: var(--text-pure);
             text-align: center;
             animation: pulse-glow 2s infinite;
-        }
-
-        @keyframes pulse-glow {
-            0% { transform: scale(0.95); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; box-shadow: 0 0 30px rgba(197, 160, 89, 0.5); }
-            100% { transform: scale(0.95); opacity: 0.8; }
         }
 
         .badge-palestria {
@@ -762,12 +883,12 @@
             background: var(--accent);
             color: var(--bg-dark);
             font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            padding: 6px 15px;
-            border-radius: 4px;
-            letter-spacing: 2px;
-            box-shadow: 0 5px 15px rgba(197, 160, 89, 0.2);
+            padding: 5px 12px;
+            border-radius: 2px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 10px rgba(197, 160, 89, 0.15);
         }
 
         /* Slide 11: Remerciements Final Page */
@@ -777,140 +898,96 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            gap: 30px;
+            gap: 20px;
         }
 
         .remerciements-title {
             font-family: 'Cinzel', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
             color: var(--accent);
-            letter-spacing: 6px;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            margin-bottom: 10px;
+            margin-bottom: 5px;
         }
 
         .remerciements-sub {
-            font-size: 1.1rem;
+            font-size: 1rem;
             font-weight: 300;
-            letter-spacing: 2px;
+            letter-spacing: 1.5px;
             color: var(--text-dim);
-            max-width: 600px;
-            line-height: 1.6;
+            max-width: 550px;
+            line-height: 1.5;
         }
 
         .footer-q-a {
-            margin-top: 30px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            color: var(--accent);
-            letter-spacing: 4px;
-            border: 1px solid var(--accent);
-            padding: 10px 30px;
-            border-radius: 4px;
-        }
-
-        /* Navigation Controls Bottom */
-        .controls-footer {
-            height: 80px;
-            width: 100%;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            background: rgba(11, 14, 20, 0.95);
-            backdrop-filter: blur(10px);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 8%;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            z-index: 100;
-        }
-
-        .left-info {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .presenter-name {
+            margin-top: 20px;
             font-family: 'Cinzel', serif;
             font-size: 0.8rem;
-            font-weight: 600;
-            letter-spacing: 2px;
             color: var(--accent);
+            letter-spacing: 3px;
+            border: 1px solid var(--accent);
+            padding: 8px 24px;
+            border-radius: 3px;
         }
 
-        .project-tag {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-dim);
-        }
-
-        .nav-buttons {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
-
-        .btn-nav {
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--text-pure);
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            cursor: pointer;
+        /* Floating Minimalist Sidebar Controls (No Bottom Bar) */
+        .btn-nav-floating {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 80px;
+            background: rgba(18, 24, 38, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 100;
             outline: none;
         }
 
-        .btn-nav:hover {
-            border-color: var(--accent);
+        .btn-nav-floating:hover {
+            background: rgba(197, 160, 89, 0.08);
             color: var(--accent);
-            box-shadow: 0 0 10px var(--border-glow);
-            transform: scale(1.05);
+            border-color: rgba(197, 160, 89, 0.15);
         }
 
-        .slide-counter {
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            color: var(--accent);
-            min-width: 60px;
-            text-align: center;
+        .btn-nav-floating.left {
+            left: 0;
+            border-radius: 0 6px 6px 0;
         }
 
-        /* Keyboard Tip overlay */
-        .keyboard-tip {
-            font-size: 0.6rem;
-            color: rgba(255, 255, 255, 0.2);
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .btn-nav-floating.right {
+            right: 0;
+            border-radius: 6px 0 0 6px;
         }
 
         /* Responsive */
         @media (max-width: 1024px) {
             .layout-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
                 overflow-y: auto;
                 height: 85%;
-                padding-bottom: 40px;
+                padding-bottom: 20px;
             }
             .slide {
                 align-items: flex-start;
-                padding-top: 40px;
+                padding-top: 75px;
             }
             .visual-panel {
                 aspect-ratio: 16/9;
-                max-height: 250px;
+                max-height: 220px;
             }
             body {
                 overflow: auto;
+            }
+            .btn-nav-floating {
+                display: none;
             }
         }
     </style>
@@ -922,32 +999,51 @@
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
+    <!-- En-tête Fixe style Dashboard -->
+    <div class="dashboard-header">
+        <div class="db-logo">
+            <span class="db-logo-icon">HH</span>
+            <span class="db-part-title" id="dbPartTitle">INTRODUCTION</span>
+        </div>
+        <div class="db-status-badge">
+            <span class="db-status-dot"></span> DECISION COCKPIT
+        </div>
+        <div class="db-slide-counter" id="dbSlideCounter">[ SLIDE 01 / 12 ]</div>
+    </div>
+
+    <!-- Zones de navigation flottantes latérales -->
+    <button class="btn-nav-floating left" id="btnPrev" aria-label="Slide Précédente">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="btn-nav-floating right" id="btnNext" aria-label="Slide Suivante">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
     <!-- Conteneur principal des Slides -->
     <div class="deck">
 
         <!-- SLIDE 0 : PAGE DE GARDE -->
-        <div class="slide active" id="slide-0">
+        <div class="slide active" id="slide-0" data-part="INTRODUCTION">
             <div class="layout-title-page">
                 <div class="hexagon-logo">
                     <span>HH</span>
                 </div>
                 <h1>Happy House</h1>
                 <h2>Soutenance de Rapport de Mission (RDM)</h2>
-                <div style="width: 80px; height: 1px; background: var(--accent); margin: 0 auto 30px;"></div>
+                <div style="width: 80px; height: 1px; background: var(--accent); margin: 0 auto 25px;"></div>
                 <div style="font-family: 'Cinzel'; font-size: 1.1rem; letter-spacing: 3px; font-weight: 600;">
                     Julien Florence
                 </div>
-                <div style="font-size: 0.85rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">
+                <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">
                     Directeur du Développement Stratégique B2B
                 </div>
             </div>
         </div>
 
         <!-- SLIDE 1 : Trajectoire d'Excellence & Légitimité B2B (Partie 1 - A) -->
-        <div class="slide" id="slide-1">
+        <div class="slide" id="slide-1" data-part="Partie 1 : Alignement du Profil">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 1 : Alignement du Profil & Posture</div>
                     <h2 class="slide-title">Trajectoire d'Excellence & Légitimité</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -983,10 +1079,9 @@
         </div>
 
         <!-- SLIDE 2 : Maturation Comportementale ENTJ-A (Partie 1 - B) -->
-        <div class="slide" id="slide-2">
+        <div class="slide" id="slide-2" data-part="Partie 1 : Alignement du Profil">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 1 : Alignement du Profil & Posture</div>
                     <h2 class="slide-title">Maturation Comportementale ENTJ-A</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1023,10 +1118,9 @@
         </div>
 
         <!-- SLIDE 3 : Fondations & Cible Marché (Partie 2 - A) -->
-        <div class="slide" id="slide-3">
+        <div class="slide" id="slide-3" data-part="Partie 2 : L'Écosystème Happy House">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 2 : L'Écosystème Happy House</div>
                     <h2 class="slide-title">Fondations & Cible Marché</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1046,8 +1140,8 @@
                 <div class="visual-panel">
                     <div class="dashboard-organique">
                         <div class="dashboard-header-card">
-                            <div style="font-family: 'Cinzel'; font-size: 0.75rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase;">Logo Officiel</div>
-                            <div style="font-family: 'Cinzel'; font-size: 1.5rem; font-weight: 700; margin-top: 5px;">HAPPY HOUSE</div>
+                            <div style="font-family: 'Cinzel'; font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase;">Logo Officiel</div>
+                            <div style="font-family: 'Cinzel'; font-size: 1.3rem; font-weight: 700; margin-top: 5px;">HAPPY HOUSE</div>
                         </div>
                         <div class="dashboard-stats">
                             <div class="stat-card">
@@ -1065,10 +1159,9 @@
         </div>
 
         <!-- SLIDE 4 : Diagnostic Sectoriel & Urgence Digitale (Partie 2 - B) -->
-        <div class="slide" id="slide-4">
+        <div class="slide" id="slide-4" data-part="Partie 2 : L'Écosystème Happy House">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 2 : L'Écosystème Happy House</div>
                     <h2 class="slide-title">Diagnostic & Urgence Digitale</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1087,13 +1180,13 @@
                 </div>
                 <div class="visual-panel">
                     <div class="circle-progress-container">
-                        <svg class="circle-svg" width="160" height="160">
-                            <circle class="circle-bg" cx="80" cy="80" r="70"></circle>
-                            <circle class="circle-fill" id="circularProgress" cx="80" cy="80" r="70"></circle>
+                        <svg class="circle-svg" width="140" height="140">
+                            <circle class="circle-bg" cx="70" cy="70" r="60"></circle>
+                            <circle class="circle-fill" id="circularProgress" cx="70" cy="70" r="60"></circle>
                         </svg>
                         <div class="circle-value">+45%</div>
                     </div>
-                    <div class="hex-imbriques" style="margin-top: 15px;">
+                    <div class="hex-imbriques">
                         <div class="hex-small hex-grey">Biais:<br>Isolement</div>
                         <div class="hex-small hex-blue">Solution:<br>Plateforme</div>
                     </div>
@@ -1102,10 +1195,9 @@
         </div>
 
         <!-- SLIDE 5 : Rupture des Unit Economics (Partie 3 - A) -->
-        <div class="slide" id="slide-5">
+        <div class="slide" id="slide-5" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 3 : L'Impasse Outbound vs Rétention</div>
                     <h2 class="slide-title">Rupture des Unit Economics</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1124,7 +1216,7 @@
                 </div>
                 <div class="visual-panel">
                     <div class="financial-crisis">
-                        <div style="font-size: 0.75rem; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; text-align: center;">Efficience Commerciale (LTV / CAC)</div>
+                        <div style="font-size: 0.7rem; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; text-align: center;">Efficience Commerciale (LTV / CAC)</div>
                         <div class="efficiency-gauge">
                             <div class="efficiency-fill" style="width: 16%;"></div>
                             <div class="efficiency-label">0.16 (Seuil min: 3.0)</div>
@@ -1145,10 +1237,9 @@
         </div>
 
         <!-- SLIDE 6 : L'Illusion du Volume d'Acquisition (Partie 3 - B) -->
-        <div class="slide" id="slide-6">
+        <div class="slide" id="slide-6" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 3 : L'Impasse Outbound vs Rétention</div>
                     <h2 class="slide-title">L'Illusion du Volume d'Acquisition</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1171,24 +1262,23 @@
                         <div class="pie-legend">
                             <div class="legend-item">
                                 <div class="legend-color" style="background: var(--accent);"></div>
-                                <div style="font-size: 0.75rem; color: var(--text-pure);">5.5% Membres Actifs (8/146)</div>
+                                <div style="font-size: 0.7rem; color: var(--text-pure);">5.5% Actifs (8/146)</div>
                             </div>
                             <div class="legend-item">
-                                <div class="legend-color" style="background: rgba(255, 255, 255, 0.05);"></div>
-                                <div style="font-size: 0.75rem; color: var(--text-dim);">94.5% Membres Inactifs</div>
+                                <div class="legend-color" style="background: rgba(255, 255, 255, 0.03);"></div>
+                                <div style="font-size: 0.7rem; color: var(--text-dim);">94.5% Inactifs</div>
                             </div>
                         </div>
-                        <div style="font-size: 0.65rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Effet d'Isolation Visuelle (Von Restorff)</div>
+                        <div style="font-size: 0.6rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Effet d'Isolation Visuelle (Von Restorff)</div>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- SLIDE 7 : Ingénierie d'Affaires & Effet Réseau (Partie 4 - A) -->
-        <div class="slide" id="slide-7">
+        <div class="slide" id="slide-7" data-part="Partie 4 : Pivot Stratégique & Résistance">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 4 : Pivot Stratégique & Résistance</div>
                     <h2 class="slide-title">Ingénierie d'Affaires & Effet Réseau</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1207,7 +1297,7 @@
                 </div>
                 <div class="visual-panel">
                     <div class="roi-central-card">
-                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim);">Valeur Générée (Centrale Entegra)</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim);">Valeur Générée (Centrale Entegra)</div>
                         <div class="roi-value-glow">11 000 €</div>
                         <div class="roi-details">
                             Cotisation Membre : <strong>360 € TTC</strong><br>
@@ -1219,10 +1309,9 @@
         </div>
 
         <!-- SLIDE 8 : Le Gantt & Veto Management (Partie 4 - B) -->
-        <div class="slide" id="slide-8">
+        <div class="slide" id="slide-8" data-part="Partie 4 : Pivot Stratégique & Résistance">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 4 : Pivot Stratégique & Résistance</div>
                     <h2 class="slide-title">Gantt & Résistance Managériale</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1262,10 +1351,9 @@
         </div>
 
         <!-- SLIDE 9 : Posture du Consultant & Métriques (Partie 5 - A) -->
-        <div class="slide" id="slide-9">
+        <div class="slide" id="slide-9" data-part="Partie 5 : Bilan Personnel & Perspectives">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 5 : Bilan Personnel & Perspectives</div>
                     <h2 class="slide-title">Bilan : Posture & Métriques</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1284,7 +1372,7 @@
                 </div>
                 <div class="visual-panel">
                     <div class="digital-assets-list">
-                        <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); text-align: center; margin-bottom: 5px;">Livrables & Actifs Réalisés</div>
+                        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); text-align: center; margin-bottom: 5px;">Livrables & Actifs Réalisés</div>
                         <div class="asset-row">
                             <span class="asset-name">Appels Sortants Audités</span>
                             <span class="asset-metric">14 500</span>
@@ -1303,10 +1391,9 @@
         </div>
 
         <!-- SLIDE 10 : Ergonomie Cognitive & Horizon 2028 (Partie 5 - B) -->
-        <div class="slide" id="slide-10">
+        <div class="slide" id="slide-10" data-part="Partie 5 : Bilan Personnel & Perspectives">
             <div class="layout-grid">
                 <div class="slide-content">
-                    <div class="part-indicator">Partie 5 : Bilan Personnel & Perspectives</div>
                     <h2 class="slide-title">Ergonomie & Horizon 2028</h2>
                     <div class="analytical-points">
                         <div class="point-box">
@@ -1326,9 +1413,9 @@
                 <div class="visual-panel">
                     <div class="cognitive-grid">
                         <div class="schema-conversion">
-                            <div style="font-size: 0.65rem; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase;">Réduction des Points de Friction</div>
+                            <div style="font-size: 0.6rem; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase;">Réduction des Points de Friction</div>
                             <div class="fitts-target">Fitts & Hick</div>
-                            <div style="font-size: 0.6rem; color: var(--accent); font-weight: 500;">Action immédiate</div>
+                            <div style="font-size: 0.55rem; color: var(--accent); font-weight: 500;">Action immédiate</div>
                         </div>
                         <div class="badge-palestria">Horizon 2028 : PalestrIA</div>
                     </div>
@@ -1337,10 +1424,10 @@
         </div>
 
         <!-- SLIDE 11 : REMERCIEMENTS & QUESTIONS/RÉPONSES -->
-        <div class="slide" id="slide-11">
+        <div class="slide" id="slide-11" data-part="CONCLUSION">
             <div class="remerciements-layout">
                 <h1 class="remerciements-title">Merci pour votre attention</h1>
-                <div style="width: 80px; height: 1px; background: var(--accent); margin: 10px auto;"></div>
+                <div style="width: 80px; height: 1px; background: var(--accent); margin: 5px auto;"></div>
                 <p class="remerciements-sub">
                     "La rigueur de la donnée au service d'une stratégie de croissance solide et humaine."
                 </p>
@@ -1352,31 +1439,13 @@
 
     </div>
 
-    <!-- Contrôles Bas du Deck -->
-    <div class="controls-footer">
-        <div class="left-info">
-            <div class="presenter-name">Julien Florence</div>
-            <div class="project-tag">Soutenance RDM — Happy House</div>
-        </div>
-        
-        <div class="nav-buttons">
-            <span class="keyboard-tip">Flèches ou Espace</span>
-            <button class="btn-nav" id="btnPrev" aria-label="Slide Précédente">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            </button>
-            <span class="slide-counter" id="slideCounter">01 / 12</span>
-            <button class="btn-nav" id="btnNext" aria-label="Slide Suivante">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </button>
-        </div>
-    </div>
-
     <!-- Logique Interactive JS -->
     <script>
         const slides = document.querySelectorAll('.slide');
         const btnPrev = document.getElementById('btnPrev');
         const btnNext = document.getElementById('btnNext');
-        const slideCounter = document.getElementById('slideCounter');
+        const dbPartTitle = document.getElementById('dbPartTitle');
+        const dbSlideCounter = document.getElementById('dbSlideCounter');
         const progressBar = document.getElementById('progressBar');
         let currentSlideIndex = 0;
 
@@ -1389,16 +1458,22 @@
                 }
             });
 
-            // Update Counter (ex: "01 / 12")
+            const activeSlide = slides[currentSlideIndex];
+
+            // Update Header Part Title
+            const partTitle = activeSlide.getAttribute('data-part') || 'INTRODUCTION';
+            dbPartTitle.textContent = partTitle;
+
+            // Update Header Slide Counter (ex: "[ SLIDE 01 / 12 ]")
             const formattedCurrent = String(currentSlideIndex + 1).padStart(2, '0');
             const formattedTotal = String(slides.length).padStart(2, '0');
-            slideCounter.textContent = `${formattedCurrent} / ${formattedTotal}`;
+            dbSlideCounter.textContent = `[ SLIDE ${formattedCurrent} / ${formattedTotal} ]`;
 
             // Update Progress Bar
             const progress = (currentSlideIndex / (slides.length - 1)) * 100;
             progressBar.style.width = `${progress}%`;
 
-            // Reset and trigger animations based on active slide
+            // Trigger animations
             triggerSlideAnimations(currentSlideIndex);
         }
 
@@ -1427,7 +1502,7 @@
             }
         });
 
-        // Click navigation
+        // Click navigation on floating triggers
         btnNext.addEventListener('click', nextSlide);
         btnPrev.addEventListener('click', prevSlide);
 
@@ -1441,18 +1516,17 @@
                     fill.style.width = '0%';
                     setTimeout(() => {
                         fill.style.width = width;
-                    }, 100);
+                    }, 50);
                 });
             }
             
             // Slide 4: Circular progress
             if (index === 4) {
                 const circle = document.getElementById('circularProgress');
-                // Target is +45%, so dashoffset = 440 * (1 - 0.45) = 242
                 circle.style.strokeDashoffset = '440';
                 setTimeout(() => {
-                    circle.style.strokeDashoffset = '242';
-                }, 100);
+                    circle.style.strokeDashoffset = '242'; // Target +45% (440 * (1 - 0.45) = 242)
+                }, 50);
             }
 
             // Slide 5: Efficiency gauge
@@ -1461,7 +1535,7 @@
                 fill.style.width = '0%';
                 setTimeout(() => {
                     fill.style.width = '16%';
-                }, 100);
+                }, 50);
             }
 
             // Slide 8: Gantt Bars
@@ -1475,10 +1549,10 @@
                 bar3.style.width = '0%';
 
                 setTimeout(() => {
-                    bar1.style.width = '55%'; // Sourced up to veto line
+                    bar1.style.width = '55%'; // Sourced up to veto line (55%)
                     bar2.style.width = '35%'; 
                     bar3.style.width = '15%'; 
-                }, 100);
+                }, 50);
             }
         }
 

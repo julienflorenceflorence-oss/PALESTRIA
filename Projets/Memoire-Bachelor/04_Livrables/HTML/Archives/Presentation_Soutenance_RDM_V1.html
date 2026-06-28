@@ -1,0 +1,1851 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soutenance RDM - Direction du Développement Stratégique</title>
+    <!-- Typographies Premium -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #07090E;      /* Bleu nuit ultra-profond presque noir */
+            --bg-card: rgba(18, 24, 38, 0.6); /* Transparent pour effet verre dépoli */
+            --accent: #C5A059;       /* Ocre / Doré Happy House */
+            --accent-glow: #F3D082;
+            --text-pure: #FFFFFF;    /* Blanc Pur */
+            --text-dim: #94A3B8;     /* Gris bleuté */
+            --red-alert: #E15B5B;    /* Rouge pour Unit Economics */
+            --border-glow: rgba(197, 160, 89, 0.12);
+            --transition-speed: 0.4s;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-dark);
+            /* Grille technique de Dashboard */
+            background-image: 
+                radial-gradient(rgba(197, 160, 89, 0.035) 1.5px, transparent 1.5px),
+                linear-gradient(rgba(197, 160, 89, 0.01) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(197, 160, 89, 0.01) 1px, transparent 1px);
+            background-size: 30px 30px, 120px 120px, 120px 120px;
+            color: var(--text-pure);
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Progress Bar */
+        .progress-container {
+            width: 100%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.02);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 150;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--accent), var(--accent-glow));
+            box-shadow: 0 0 10px var(--accent);
+            transition: width 0.3s ease-out;
+        }
+
+        /* Top Dashboard Header */
+        .dashboard-header {
+            position: fixed;
+            top: 4px;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: rgba(7, 9, 14, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.08);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            z-index: 100;
+        }
+
+        .db-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .db-logo-icon {
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        .db-part-title {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            padding-left: 15px;
+        }
+
+        .db-status-badge {
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: var(--accent);
+            background: rgba(197, 160, 89, 0.05);
+            padding: 4px 10px;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .db-status-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #10B981;
+            box-shadow: 0 0 8px #10B981;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.4; }
+            50% { opacity: 1; }
+            100% { opacity: 0.4; }
+        }
+
+        .db-slide-counter {
+            font-family: 'Cinzel', serif;
+            font-size: 0.75rem;
+            letter-spacing: 2px;
+            color: var(--accent);
+        }
+
+        /* Deck Wrapper */
+        .deck {
+            position: relative;
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Base Slide Styles */
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            transition: opacity var(--transition-speed) ease, 
+                        transform var(--transition-speed) ease, 
+                        visibility var(--transition-speed);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 85px 8% 40px 8%; /* Augmenté en haut pour le header, dégagé en bas */
+            z-index: 1;
+        }
+
+        .slide.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+            z-index: 10;
+        }
+
+        /* Layout Types */
+        .layout-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 6%;
+            width: 100%;
+            max-width: 1300px;
+            align-items: center;
+        }
+
+        .layout-title-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* Typography & Headings */
+        .slide-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+            color: var(--text-pure);
+            line-height: 1.25;
+            margin-bottom: 25px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border-left: 2px solid var(--accent);
+            padding-left: 15px;
+        }
+
+        .layout-title-page h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            color: var(--accent);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
+        }
+
+        .layout-title-page h2 {
+            font-size: 1.1rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        /* Grille Analytique en Points - Look Dashboard */
+        .analytical-points {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .point-box {
+            background: var(--bg-card);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(197, 160, 89, 0.08);
+            border-left: 3px solid var(--accent);
+            padding: 14px 18px;
+            border-radius: 4px;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+
+        .point-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 4px;
+            background: rgba(197, 160, 89, 0.2);
+            border-radius: 0 4px 0 0;
+        }
+
+        .point-box:hover {
+            border-color: rgba(197, 160, 89, 0.35);
+            background: rgba(18, 24, 38, 0.85);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            transform: translateX(4px);
+        }
+
+        .point-box.maladie {
+            border-left-color: var(--red-alert);
+        }
+        .point-box.maladie::before {
+            background: rgba(225, 91, 91, 0.2);
+        }
+
+        .point-label {
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .point-label::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: rgba(197, 160, 89, 0.1);
+        }
+
+        .point-box.maladie .point-label {
+            color: var(--red-alert);
+        }
+        .point-box.maladie .point-label::after {
+            background: rgba(225, 91, 91, 0.1);
+        }
+
+        .point-text {
+            font-size: 0.9rem;
+            line-height: 1.45;
+            color: var(--text-dim);
+        }
+
+        .point-text strong {
+            color: var(--text-pure);
+            font-weight: 600;
+        }
+
+        /* Right Panel: Visual Components */
+        .visual-panel {
+            background: rgba(11, 15, 24, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-glow);
+            border-radius: 6px;
+            aspect-ratio: 4/3;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        /* En-tête interne du Panel Visuel pour renforcer l'aspect Dashboard */
+        .visual-panel::before {
+            content: 'PANEL // OBSERVATION SYSTEM';
+            position: absolute;
+            top: 10px;
+            left: 15px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.55rem;
+            color: var(--accent);
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+            z-index: 10;
+        }
+
+        /* Slide 0 Logo & Title Visuel */
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hexagon-logo {
+            width: 130px;
+            height: 150px;
+            background: #0B0E14;
+            border: 2px solid var(--accent);
+            position: relative;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 35px rgba(197, 160, 89, 0.25);
+            margin-bottom: 20px;
+        }
+
+        .hexagon-logo span {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        /* Slide 1: Venn Diagram replacement (Donut Chart) */
+        .pie-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .pie-chart {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: conic-gradient(
+                var(--accent) 0% 5.5%,
+                rgba(255, 255, 255, 0.03) 5.5% 100%
+            );
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.8);
+            position: relative;
+        }
+
+        .pie-chart::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            left: 22px;
+            width: 86px;
+            height: 86px;
+            background: #0B0E14;
+            border-radius: 50%;
+        }
+
+        .pie-legend {
+            display: flex;
+            gap: 10px;
+            font-size: 0.75rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .legend-color {
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            flex-shrink: 0;
+        }
+
+        /* Slide 2: Profiler Graph */
+        .profiler-container {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .profiler-bar-row {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .profiler-header {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+        }
+
+        .profiler-bar-bg {
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 3px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .profiler-bar-fill {
+            height: 100%;
+            background: var(--accent);
+            border-radius: 3px;
+            width: 0%;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+        }
+
+        /* Slide 3 & 4: Dashboard & Calculs */
+        .dashboard-organique {
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dashboard-header-card {
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            background: rgba(197, 160, 89, 0.02);
+            padding: 10px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .stat-card {
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.01);
+            padding: 12px 8px;
+            border-radius: 4px;
+            text-align: center;
+            position: relative;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            width: 3px;
+            height: 3px;
+            background: var(--accent);
+            opacity: 0.3;
+        }
+
+        .stat-value {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .stat-label {
+            font-size: 0.65rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Tables de Calculs Décisionnels */
+        .calc-table {
+            width: 90%;
+            border-collapse: collapse;
+            font-size: 0.72rem;
+            margin-top: 10px;
+        }
+
+        .calc-table th {
+            border-bottom: 2px solid var(--accent);
+            color: var(--accent);
+            font-family: 'Cinzel', serif;
+            padding: 8px 10px;
+            text-align: left;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .calc-table td {
+            padding: 10px 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+            color: var(--text-dim);
+        }
+
+        .calc-table tr:hover td {
+            color: var(--text-pure);
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .highlight-accent {
+            color: var(--accent) !important;
+            font-weight: 700;
+        }
+        .highlight-alert {
+            color: var(--red-alert) !important;
+            font-weight: 700;
+        }
+
+        /* Slide 5: Diagnostic Sectoriel Circular */
+        .circle-progress-container {
+            position: relative;
+            width: 130px;
+            height: 130px;
+            margin-bottom: 12px;
+        }
+
+        .circle-svg {
+            transform: rotate(-90deg);
+        }
+
+        .circle-bg {
+            fill: none;
+            stroke: rgba(255, 255, 255, 0.03);
+            stroke-width: 5;
+        }
+
+        .circle-fill {
+            fill: none;
+            stroke: var(--accent);
+            stroke-width: 5;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 440;
+            transition: stroke-dashoffset 1.5s cubic-bezier(0.1, 0.8, 0.1, 1);
+            stroke-linecap: round;
+        }
+
+        .circle-value {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        .hex-imbriques {
+            display: flex;
+            gap: 12px;
+        }
+
+        .hex-small {
+            width: 75px;
+            height: 85px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.58rem;
+            text-align: center;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            font-weight: 750;
+            padding: 5px;
+        }
+
+        .hex-grey {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-pure);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hex-blue {
+            background: var(--accent);
+            color: var(--bg-dark);
+        }
+
+        /* Slide 6: Rupture Unit Economics */
+        .financial-crisis {
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .efficiency-gauge {
+            width: 100%;
+            height: 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 9px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .efficiency-fill {
+            height: 100%;
+            width: 0%;
+            background: var(--red-alert);
+            border-radius: 9px;
+            transition: width 1.2s cubic-bezier(0.1, 0.8, 0.1, 1);
+        }
+
+        .efficiency-label {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .comparison-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .comp-card {
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .comp-card.red {
+            border-color: rgba(225, 91, 91, 0.25);
+            background: rgba(225, 91, 91, 0.01);
+        }
+
+        .comp-card.gold {
+            border-color: rgba(197, 160, 89, 0.25);
+            background: rgba(197, 160, 89, 0.01);
+        }
+
+        .comp-val {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 3px;
+        }
+
+        .comp-card.red .comp-val { color: var(--red-alert); }
+        .comp-card.gold .comp-val { color: var(--accent); }
+
+        /* Slide 9: Funnel d'inactivité */
+        .funnel-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            width: 85%;
+        }
+
+        .funnel-stage {
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+        }
+
+        .funnel-1 {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: var(--text-pure);
+            width: 100%;
+            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+        }
+
+        .funnel-2 {
+            background: rgba(225, 91, 91, 0.25);
+            border: 1px solid rgba(225, 91, 91, 0.4);
+            color: var(--text-pure);
+            width: 80%;
+            clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
+        }
+
+        .funnel-3 {
+            background: var(--accent);
+            color: var(--bg-dark);
+            width: 40%;
+            clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Slide 11: ROI Flow */
+        .roi-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 85%;
+        }
+
+        .flow-step {
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.005);
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-size: 0.72rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .flow-step.final {
+            border-color: var(--accent);
+            background: rgba(197, 160, 89, 0.05);
+        }
+
+        .flow-label {
+            color: var(--text-dim);
+        }
+
+        .flow-val {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            color: var(--text-pure);
+        }
+
+        .flow-arrow {
+            width: 2px;
+            height: 12px;
+            background: var(--accent);
+            margin: 0 auto;
+            opacity: 0.6;
+        }
+
+        /* Slide 12: Gantt Chart */
+        .gantt-chart {
+            width: 85%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            position: relative;
+        }
+
+        .gantt-row {
+            display: grid;
+            grid-template-columns: 1fr 3.2fr;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .gantt-label {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-dim);
+        }
+
+        .gantt-bar-bg {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.01);
+            border-radius: 5px;
+            position: relative;
+        }
+
+        .gantt-bar-fill {
+            height: 100%;
+            border-radius: 5px;
+            position: absolute;
+            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+        }
+
+        .gantt-bar-fill.bar-1 { background: var(--accent); left: 0%; width: 0%; }
+        .gantt-bar-fill.bar-2 { background: var(--accent-glow); left: 20%; width: 0%; }
+        .gantt-bar-fill.bar-3 { background: var(--text-pure); left: 40%; width: 0%; }
+
+        .gantt-veto-line {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 55%;
+            width: 2px;
+            background: var(--red-alert);
+            box-shadow: 0 0 10px var(--red-alert);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .gantt-veto-tag {
+            background: var(--red-alert);
+            color: #07090E;
+            font-size: 0.5rem;
+            font-weight: 800;
+            padding: 2px 5px;
+            border-radius: 2px;
+            transform: rotate(-90deg) translateY(-22px);
+            white-space: nowrap;
+            letter-spacing: 1px;
+        }
+
+        /* Slide 13: Digital Assets Dashboard */
+        .digital-assets-list {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .asset-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            background: rgba(255, 255, 255, 0.005);
+            border-radius: 4px;
+        }
+
+        .asset-name {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-dim);
+        }
+
+        .asset-metric {
+            font-family: 'Cinzel', serif;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        /* Slide 14: Hick / Fitts Layout Optimization */
+        .cognitive-grid {
+            width: 85%;
+            height: 85%;
+            display: grid;
+            grid-template-rows: 1fr auto;
+            gap: 15px;
+        }
+
+        .schema-conversion {
+            border: 1px dashed rgba(197, 160, 89, 0.2);
+            border-radius: 4px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 12px;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .fitts-target {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent) 0%, rgba(197,160,89,0) 70%);
+            border: 1px solid var(--accent);
+            box-shadow: 0 0 15px rgba(197, 160, 89, 0.25);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-pure);
+            text-align: center;
+            animation: pulse-glow 2s infinite;
+        }
+
+        .badge-palestria {
+            align-self: flex-end;
+            background: var(--accent);
+            color: var(--bg-dark);
+            font-family: 'Cinzel', serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 2px;
+            letter-spacing: 1.5px;
+            box-shadow: 0 4px 10px rgba(197, 160, 89, 0.15);
+        }
+
+        /* Slide 15: Remerciements Final Page */
+        .remerciements-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            gap: 20px;
+        }
+
+        .remerciements-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.2rem, 5.5vw, 4rem);
+            color: var(--accent);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .remerciements-sub {
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            color: var(--text-dim);
+            max-width: 550px;
+            line-height: 1.5;
+        }
+
+        .footer-q-a {
+            margin-top: 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 0.8rem;
+            color: var(--accent);
+            letter-spacing: 3px;
+            border: 1px solid var(--accent);
+            padding: 8px 24px;
+            border-radius: 3px;
+        }
+
+        /* Floating Minimalist Sidebar Controls (No Bottom Bar) */
+        .btn-nav-floating {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 80px;
+            background: rgba(18, 24, 38, 0.15);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            color: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            z-index: 100;
+            outline: none;
+        }
+
+        .btn-nav-floating:hover {
+            background: rgba(197, 160, 89, 0.08);
+            color: var(--accent);
+            border-color: rgba(197, 160, 89, 0.15);
+        }
+
+        .btn-nav-floating.left {
+            left: 0;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .btn-nav-floating.right {
+            right: 0;
+            border-radius: 6px 0 0 6px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .layout-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                overflow-y: auto;
+                height: 85%;
+                padding-bottom: 20px;
+            }
+            .slide {
+                align-items: flex-start;
+                padding-top: 75px;
+            }
+            .visual-panel {
+                aspect-ratio: 16/9;
+                max-height: 220px;
+            }
+            body {
+                overflow: auto;
+            }
+            .btn-nav-floating {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barre de Progression Fine Or -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <!-- En-tête Fixe style Dashboard -->
+    <div class="dashboard-header">
+        <div class="db-logo">
+            <span class="db-logo-icon">HH</span>
+            <span class="db-part-title" id="dbPartTitle">INTRODUCTION</span>
+        </div>
+        <div class="db-status-badge">
+            <span class="db-status-dot"></span> DECISION COCKPIT
+        </div>
+        <div class="db-slide-counter" id="dbSlideCounter">[ SLIDE 01 / 16 ]</div>
+    </div>
+
+    <!-- Zones de navigation flottantes latérales -->
+    <button class="btn-nav-floating left" id="btnPrev" aria-label="Slide Précédente">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+    </button>
+    <button class="btn-nav-floating right" id="btnNext" aria-label="Slide Suivante">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+    </button>
+
+    <!-- Conteneur principal des Slides -->
+    <div class="deck">
+
+        <!-- SLIDE 0 : PAGE DE GARDE -->
+        <div class="slide active" id="slide-0" data-part="INTRODUCTION">
+            <div class="layout-title-page">
+                <div class="hexagon-logo">
+                    <span>HH</span>
+                </div>
+                <h1>Happy House</h1>
+                <h2>Soutenance de Rapport de Mission (RDM)</h2>
+                <div style="width: 80px; height: 1px; background: var(--accent); margin: 0 auto 25px;"></div>
+                <div style="font-family: 'Cinzel'; font-size: 1.1rem; letter-spacing: 3px; font-weight: 600;">
+                    Julien Florence
+                </div>
+                <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">
+                    Directeur du Développement Stratégique B2B
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 1 : Trajectoire d'Excellence & Légitimité B2B (Partie 1 - A) -->
+        <div class="slide" id="slide-1" data-part="Partie 1 : Alignement du Profil">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Trajectoire d'Excellence & Légitimité</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Point (Le Fait)</div>
+                            <div class="point-text">Un parcours d'élite combinant la haute gastronomie (sommelier Michelin, dir. de restaurant), l'immobilier, la gestion RH et la discipline du <strong>sport de compétition</strong>.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">La Raison (L'Enjeu)</div>
+                            <div class="point-text">Légitimité absolue : gestion d'actifs, exigences de service "Waouh !", management et <strong>mentalité de compétiteur</strong> (résilience et culte de la performance).</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Chiffre (La Data)</div>
+                            <div class="point-text">Plus de <strong>15 ans d'expérience</strong> opérationnelle couplés à une rigueur d'entraînement et d'atteinte continue d'objectifs.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="pie-container" style="width: 90%; gap: 12px;">
+                        <div class="pie-chart" style="background: conic-gradient(var(--accent) 0% 35%, var(--accent-glow) 35% 65%, var(--text-pure) 65% 85%, #94A3B8 85% 100%);"></div>
+                        <div class="pie-legend" style="flex-direction: column; gap: 5px; width: 100%; align-items: flex-start; padding-left: 10px;">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--accent);"></div>
+                                <div style="font-size: 0.62rem; color: var(--text-pure); text-align: left;">35% - Gastronomie & Palace (Sommelier Michelin & Dir. de Restaurant)</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--accent-glow);"></div>
+                                <div style="font-size: 0.62rem; color: var(--text-dim); text-align: left;">30% - Immobilier Premium (Gestion d'Agences & d'Actifs)</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--text-pure);"></div>
+                                <div style="font-size: 0.62rem; color: var(--text-dim); text-align: left;">20% - Ressources Humaines (Gestion de Comptes RH)</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: #94A3B8;"></div>
+                                <div style="font-size: 0.62rem; color: var(--text-dim); text-align: left;">15% - Sport de Compétition (Discipline de fer & Résilience)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 2 : Maturation Comportementale ENTJ-A (Partie 1 - B) -->
+        <div class="slide" id="slide-2" data-part="Partie 1 : Alignement du Profil">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Maturation Comportementale ENTJ-A</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Contexte</div>
+                            <div class="point-text">Intégration de <strong>Rocket School</strong> pour acquérir la maîtrise des outils de marketing digital, de l'IA et de l'automatisation des processus complexes.</div>
+                        </div>
+                        <div class="point-box maladie">
+                            <div class="point-label">La Friction (Biais Comportemental)</div>
+                            <div class="point-text">Le piège du profil <strong>ENTJ-A (Commandant)</strong> : le risque de basculer en posture de "parent critique" face à l'inertie managériale traditionnelle.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Levier (La Solution)</div>
+                            <div class="point-text">Utilisation du <strong>triangle de Maslow</strong> et prise de hauteur pour basculer en position d'adulte neutre. Réalisation d'un audit purement factuel et comptable.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="profiler-container">
+                        <div class="profiler-bar-row">
+                            <div class="profiler-header"><span>Rationnel</span><span>94%</span></div>
+                            <div class="profiler-bar-bg"><div class="profiler-bar-fill" style="width: 94%;"></div></div>
+                        </div>
+                        <div class="profiler-bar-row">
+                            <div class="profiler-header"><span>Organisé</span><span>94%</span></div>
+                            <div class="profiler-bar-bg"><div class="profiler-bar-fill" style="width: 94%;"></div></div>
+                        </div>
+                        <div class="profiler-bar-row">
+                            <div class="profiler-header"><span>Posture Adulte Neutre (Acquise)</span><span>85%</span></div>
+                            <div class="profiler-bar-bg"><div class="profiler-bar-fill" style="width: 85%; background: var(--accent-glow);"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 3 : Fondations & Cible Marché (Partie 2 - A) -->
+        <div class="slide" id="slide-3" data-part="Partie 2 : L'Écosystème Happy House">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Fondations & Cible Marché</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Point (Le Fait)</div>
+                            <div class="point-text">Happy House est un <strong>réseau coopératif solidaire</strong> et responsable d'hébergeurs indépendants premium et de commerçants labellisés.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">La Raison (L'Enjeu)</div>
+                            <div class="point-text">Rompre l'isolement des exploitants ruraux et <strong>dynamiser l'économie locale</strong> face aux commissions abusives des géants du web.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Chiffre (La Data)</div>
+                            <div class="point-text"><strong>146 membres actifs</strong> actuels, avec une cible nationale ambitieuse à <strong>10 000 hébergeurs solidaires</strong> (soit 1% de part de marché).</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="dashboard-organique">
+                        <div class="dashboard-header-card">
+                            <div style="font-family: 'Cinzel'; font-size: 0.7rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase;">Logo Officiel</div>
+                            <div style="font-family: 'Cinzel'; font-size: 1.3rem; font-weight: 700; margin-top: 5px;">HAPPY HOUSE</div>
+                        </div>
+                        <div class="dashboard-stats">
+                            <div class="stat-card">
+                                <div class="stat-value">146</div>
+                                <div class="stat-label">Membres Actuels</div>
+                            </div>
+                            <div class="stat-card">
+                                <div class="stat-value" style="color: var(--accent-glow);">10k</div>
+                                <div class="stat-label">Objectif Hébergeurs</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 4 (NOUVELLE) : Cible Marché - Le Calcul Détaillé (Partie 2 - A.1) -->
+        <div class="slide" id="slide-4" data-part="Partie 2 : L'Écosystème Happy House">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Modélisation & Écarts Marché</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Calcul</div>
+                            <div class="point-text">Sur un marché de <strong>1 000 000 d'hébergeurs</strong> en France, cibler 1 % représente <strong>10 000 hébergeurs</strong>. Cotisation de 300 € HT/an.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Raisonnement</div>
+                            <div class="point-text">Un CA récurrent annuel potentiel de <strong>3 000 000 € HT</strong> pour la tête de réseau. Avec 146 membres, le taux de pénétration actuel n'est que de <strong>1,46 %</strong> de l'objectif.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">L'Écart</div>
+                            <div class="point-text">L'écart de <strong>9 854 signatures</strong> restant prouve qu'un modèle basé sur la prospection artisanale outbound est sous-dimensionné.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <table class="calc-table">
+                        <thead>
+                            <tr>
+                                <th>Indicateur</th>
+                                <th>Formule / Valeur</th>
+                                <th>Résultat</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Marché Global Français</td>
+                                <td>Données INSEE / OTAs</td>
+                                <td>1 000 000</td>
+                            </tr>
+                            <tr>
+                                <td>Cible Solidaire (1%)</td>
+                                <td>1 000 000 × 0.01</td>
+                                <td class="highlight-accent">10 000</td>
+                            </tr>
+                            <tr>
+                                <td>CA Potentiel Annuel</td>
+                                <td>10 000 × 300 € HT</td>
+                                <td class="highlight-accent">3 000 000 €</td>
+                            </tr>
+                            <tr>
+                                <td>Taux de Réalisation</td>
+                                <td>(146 / 10 000) × 100</td>
+                                <td class="highlight-alert">1.46 %</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 5 : Diagnostic Sectoriel & Urgence Digitale (Partie 2 - B) -->
+        <div class="slide" id="slide-5" data-part="Partie 2 : L'Écosystème Happy House">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Diagnostic & Urgence Digitale</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Contexte (ESG & Loi ALUR/Le Meur)</div>
+                            <div class="point-text">Pression du label <strong>Clef Verte (+45%/an)</strong> et durcissement des réglementations. Les hébergeurs isolés n'ont plus les moyens de se conformer seuls.</div>
+                        </div>
+                        <div class="point-box maladie">
+                            <div class="point-label">La Friction (Dysfonctionnement structurel)</div>
+                            <div class="point-text"><strong>Dépendance de 71 % aux OTAs</strong> et perte de la propriété de la donnée client (Data). Risque de marginalisation digitale totale des ruraux.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Levier (La Solution)</div>
+                            <div class="point-text">Déploiement d'une <strong>plateforme web mutualisée</strong> (my-happyhouse.com) pour reconquérir la relation client directe et digitaliser le parcours voyageur.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="circle-progress-container">
+                        <svg class="circle-svg" width="130" height="130">
+                            <circle class="circle-bg" cx="65" cy="65" r="55"></circle>
+                            <circle class="circle-fill" id="circularProgress" cx="65" cy="65" r="55"></circle>
+                        </svg>
+                        <div class="circle-value">+45%</div>
+                    </div>
+                    <div class="hex-imbriques">
+                        <div class="hex-small hex-grey">Biais:<br>71% OTAs</div>
+                        <div class="hex-small hex-blue">Solution:<br>Plateforme</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 6 : Rupture des Unit Economics (Partie 3 - A) -->
+        <div class="slide" id="slide-6" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Rupture des Unit Economics</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Point (Le Fait)</div>
+                            <div class="point-text">Le modèle d'acquisition historique, basé sur la <strong>prospection téléphonique à froid (Cold Calling)</strong>, est en situation d'effondrement financier.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">La Raison (L'Enjeu)</div>
+                            <div class="point-text">Aucune coopérative ne peut survivre si le <strong>Coût d'Acquisition Client (CAC)</strong> détruit la rentabilité de la cotisation perçue.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Chiffre (La Data)</div>
+                            <div class="point-text">Ratio LTV / CAC catastrophique de <strong>0,16</strong>. Un CAC de <strong>1 823 €</strong> par signature face à une valeur vie client (LTV) de <strong>290 €</strong> (80% Churn).</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="financial-crisis">
+                        <div style="font-size: 0.7rem; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; text-align: center;">Efficience Commerciale (LTV / CAC)</div>
+                        <div class="efficiency-gauge">
+                            <div class="efficiency-fill" id="efficiencyFill1" style="width: 16%;"></div>
+                            <div class="efficiency-label">0.16 (Seuil min: 3.0)</div>
+                        </div>
+                        <div class="comparison-cards">
+                            <div class="comp-card red">
+                                <div class="stat-label">CAC Réel</div>
+                                <div class="comp-val">1 823 €</div>
+                            </div>
+                            <div class="comp-card gold">
+                                <div class="stat-label">LTV Réelle</div>
+                                <div class="comp-val">290 €</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 7 (NOUVELLE) : Décomposition & Cheminement du CAC/LTV (Partie 3 - A.1) -->
+        <div class="slide" id="slide-7" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Décomposition du CAC & LTV</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Cheminement du CAC</div>
+                            <div class="point-text">Budget mensuel outbound de <strong>5 469 €</strong> (prospection, outils, temps d'appel chargé) divisé par <strong>3 signatures</strong> = CAC de <strong>1 823 €</strong>.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Cheminement de la LTV</div>
+                            <div class="point-text">Cotisation de 300 € HT/an. Avec un **Churn annuel de 80%**, la durée de vie moyenne (Lifetime) = 1 / 0,80 = 1,25 an. LTV = 300 € × 1,25 = **375 €** (290 € net).</div>
+                        </div>
+                        <div class="point-box maladie">
+                            <div class="point-label">La Perte Nette</div>
+                            <div class="point-text">Chaque nouveau membre signé génère une **perte sèche immédiate de 1 533 €** pour le réseau. Plus Happy House prospecte à froid, plus il s'appauvrit.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <table class="calc-table">
+                        <thead>
+                            <tr>
+                                <th>Variable</th>
+                                <th>Calcul / Composant</th>
+                                <th>Montant</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Coût Outbound Mensuel</td>
+                                <td>Téléphonie, bases, temps chargé</td>
+                                <td>5 469 €</td>
+                            </tr>
+                            <tr>
+                                <td>Signatures Mensuelles</td>
+                                <td>Prospection froide (taux de conversion)</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>CAC Unitaire</td>
+                                <td>5 469 € / 3</td>
+                                <td class="highlight-alert">1 823 €</td>
+                            </tr>
+                            <tr>
+                                <td>Marge Cotisation HT</td>
+                                <td>Annuelle (nette de frais de service)</td>
+                                <td>232 €</td>
+                            </tr>
+                            <tr>
+                                <td>Durée de vie (Lifetime)</td>
+                                <td>1 / 0.80 (Churn)</td>
+                                <td>1.25 an</td>
+                            </tr>
+                            <tr>
+                                <td>LTV Unitaire</td>
+                                <td>232 € × 1.25</td>
+                                <td class="highlight-accent">290 €</td>
+                            </tr>
+                            <tr>
+                                <td>Perte par Nouveau Membre</td>
+                                <td>LTV (290 €) - CAC (1 823 €)</td>
+                                <td class="highlight-alert">-1 533 €</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 8 : L'Illusion du Volume d'Acquisition (Partie 3 - B) -->
+        <div class="slide" id="slide-8" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">L'Illusion du Volume d'Acquisition</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Contexte</div>
+                            <div class="point-text">Les intermédiaires (OTAs prélèvent jusqu'à <strong>25% de commissions</strong>), ce qui oblige Happy House à proposer une rétention et un service interne parfaits.</div>
+                        </div>
+                        <div class="point-box maladie">
+                            <div class="point-label">La Friction (Dysfonctionnement structurel)</div>
+                            <div class="point-text"><strong>L'illusion de croissance par le volume</strong> : focus sur la signature de nouveaux membres alors que seulement <strong>8 hébergeurs sur 146</strong> sont commercialement actifs.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Levier (La Solution)</div>
+                            <div class="point-text">Arrêt immédiat du Cold Calling Outbound traditionnel et transition stratégique vers de <strong>l'Inbound Marketing</strong> axé sur la rétention et l'activation du parc.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="pie-container">
+                        <div class="pie-chart" id="pieChartInactivity"></div>
+                        <div class="pie-legend">
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: var(--accent);"></div>
+                                <div style="font-size: 0.7rem; color: var(--text-pure);">5.5% Actifs (8/146)</div>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color" style="background: rgba(255, 255, 255, 0.03);"></div>
+                                <div style="font-size: 0.7rem; color: var(--text-dim);">94.5% Inactifs</div>
+                            </div>
+                        </div>
+                        <div style="font-size: 0.6rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Effet d'Isolation Visuelle (Von Restorff)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 9 (NOUVELLE) : Calcul de l'Inactivité et Réflexion Stratégique (Partie 3 - B.1) -->
+        <div class="slide" id="slide-9" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Rétention & Entonnoir d'Activation</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Calcul d'Inactivité</div>
+                            <div class="point-text">Avec **8 membres actifs sur 146**, le taux d'inactivité du réseau est de **94,52 %**. La coopérative n'a pas un problème de vente, elle a un problème d'usage.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">La Réflexion Stratégique</div>
+                            <div class="point-text">Activer 20 % du parc existant (29 membres) sans un centime de CAC génère plus de valeur collective que signer 100 membres inactifs au prix d'un CAC ruineux.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Levier d'Activation</div>
+                            <div class="point-text">Pivot des ressources de vente vers l'accompagnement post-vente (Onboarding, formation et welcome book) pour abaisser le Churn de 80 % à 15 %.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="funnel-container">
+                        <div style="font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Funnel d'Engagement Happy House</div>
+                        <div class="funnel-stage funnel-1" id="fun1">Membres Signés (146) — 100%</div>
+                        <div class="funnel-stage funnel-2" id="fun2">Membres Inactifs (138) — 94.5%</div>
+                        <div class="funnel-stage funnel-3" id="fun3">Membres Actifs (8) — 5.5%</div>
+                        <div style="font-size: 0.6rem; color: var(--red-alert); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">Perte d'usage colossale de 94.5%</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 10 : Ingénierie d'Affaires & Effet Réseau (Partie 4 - A) -->
+        <div class="slide" id="slide-10" data-part="Partie 4 : Pivot Stratégique & Résistance">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Ingénierie d'Affaires & Effet Réseau</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Point (Le Fait)</div>
+                            <div class="point-text">Conception d'un plan de pivot stratégique : automatisation du sourcing et introduction de la <strong>centrale d'achats Entegra</strong>.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">La Raison (L'Enjeu)</div>
+                            <div class="point-text">Apporter une <strong>preuve de ROI immédiate</strong> dès le premier jour (Cost-Killing) pour faire s'effondrer le taux d'attrition de 80%.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Chiffre (La Data)</div>
+                            <div class="point-text"><strong>11 000 €</strong> de réservation directe générés sans commission d'intermédiaire sur un seul cas réel (cotisation de 360 € TTC).</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="roi-central-card">
+                        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim);">Valeur Générée (Centrale Entegra)</div>
+                        <div class="roi-value-glow">11 000 €</div>
+                        <div class="roi-details">
+                            Cotisation Membre : <strong>360 € TTC</strong><br>
+                            Commission OTA Évitée : <strong>2 750 € (25%)</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 11 (NOUVELLE) : Schéma de Calcul de l'Effet Réseau Centrale (Partie 4 - A.1) -->
+        <div class="slide" id="slide-11" data-part="Partie 4 : Pivot Stratégique & Résistance">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Modèle ROI & Effet Centrale</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Modèle Mathématique de Gain</div>
+                            <div class="point-text">Achat direct moyen via Entegra : **60 000 €**. Remise de 15% négociée centrale = **9 000 €** d'économies directes brutes.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">L'Effet Réseau</div>
+                            <div class="point-text">Réservations directes additionnelles : **11 000 €**. À 25 % de commissions OTAs évitées = **2 750 €** de marge brute récupérée.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Résultat ROI</div>
+                            <div class="point-text">Valeur nette créée : **11 750 €** (9k économies + 2,75k commissions évitées) face à une cotisation de **360 €** = **32.6x de ROI**.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="roi-flow">
+                        <div class="flow-step">
+                            <span class="flow-label">Cotisation Annuelle</span>
+                            <span class="flow-val" style="color: var(--red-alert);">-360 €</span>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step">
+                            <span class="flow-label">Économies Centrale (15% sur 60k€)</span>
+                            <span class="flow-val" style="color: #10B981;">+9 000 €</span>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step">
+                            <span class="flow-label">Commissions OTAs Évitées (25% sur 11k€)</span>
+                            <span class="flow-val" style="color: #10B981;">+2 750 €</span>
+                        </div>
+                        <div class="flow-arrow"></div>
+                        <div class="flow-step final">
+                            <span class="flow-label" style="color: var(--accent); font-weight: 700;">Valeur Nette Générée</span>
+                            <span class="flow-val" style="color: var(--accent); font-weight: 700;">11 390 € (ROI: 32.6x)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 12 : Le Gantt & Veto Management (Partie 4 - B) -->
+        <div class="slide" id="slide-12" data-part="Partie 4 : Pivot Stratégique & Résistance">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Gantt & Résistance Managériale</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Contexte</div>
+                            <div class="point-text">Validation technique d'un POC d'automatisation (n8n + API Gemini) qualifiant <strong>126 000 hébergements</strong> gratuitement (outillage 0 €).</div>
+                        </div>
+                        <div class="point-box maladie">
+                            <div class="point-label">La Friction (Résistance Psychologique)</div>
+                            <div class="point-text">Veto de la DG (Patrice) : crainte du risque technique et croyance erronée qu'automatiser dénature l'image haut de gamme "artisanale" du réseau.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Levier (La Solution)</div>
+                            <div class="point-text">Acceptation managériale de la décision. <strong>Documentation rigoureuse</strong> des métriques pour exposer factuellement le coût de l'inaction.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="gantt-chart">
+                        <div class="gantt-row">
+                            <div class="gantt-label">Sourcing</div>
+                            <div class="gantt-bar-bg"><div class="gantt-bar-fill bar-1" id="gantt1"></div></div>
+                        </div>
+                        <div class="gantt-row">
+                            <div class="gantt-label">Welcome</div>
+                            <div class="gantt-bar-bg"><div class="gantt-bar-fill bar-2" id="gantt2"></div></div>
+                        </div>
+                        <div class="gantt-row">
+                            <div class="gantt-label">Centrale</div>
+                            <div class="gantt-bar-bg"><div class="gantt-bar-fill bar-3" id="gantt3"></div></div>
+                        </div>
+                        <div class="gantt-veto-line">
+                            <div class="gantt-veto-tag">VETO DIRECTION</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 13 : Posture du Consultant & Métriques (Partie 5 - A) -->
+        <div class="slide" id="slide-13" data-part="Partie 5 : Bilan Personnel & Perspectives">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Bilan : Posture & Métriques</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Point (Le Fait)</div>
+                            <div class="point-text">Une confrontation directe et enrichissante aux réalités politiques, stratégiques et organisationnelles complexes de la PME.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">La Raison (L'Enjeu)</div>
+                            <div class="point-text">Validation des compétences de fin de cycle Bachelor en démontrant une capacité à analyser objectivement un <strong>échec d'adoption</strong>.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Chiffre (La Data)</div>
+                            <div class="point-text"><strong>14 500 appels</strong> analysés, <strong>100 anciens membres</strong> interrogés, 1 pipeline technique validé et documenté.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="digital-assets-list">
+                        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); text-align: center; margin-bottom: 5px;">Livrables & Actifs Réalisés</div>
+                        <div class="asset-row">
+                            <span class="asset-name">Appels Sortants Audités</span>
+                            <span class="asset-metric">14 500</span>
+                        </div>
+                        <div class="asset-row">
+                            <span class="asset-name">Interviews Qualitatives Churn</span>
+                            <span class="asset-metric">100</span>
+                        </div>
+                        <div class="asset-row">
+                            <span class="asset-name">Scénarios d'Automatisation</span>
+                            <span class="asset-metric">Actif (0€)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 14 : Ergonomie Cognitive & Horizon 2028 (Partie 5 - B) -->
+        <div class="slide" id="slide-14" data-part="Partie 5 : Bilan Personnel & Perspectives">
+            <div class="layout-grid">
+                <div class="slide-content">
+                    <h2 class="slide-title">Ergonomie & Horizon 2028</h2>
+                    <div class="analytical-points">
+                        <div class="point-box">
+                            <div class="point-label">Le Contexte</div>
+                            <div class="point-text">Intégration de la démarche "Content First" et réduction de la friction cognitive (Lois de <strong>Hick</strong> et <strong>Fitts</strong>) issues des enseignements UX/UI.</div>
+                        </div>
+                        <div class="point-box maladie">
+                            <div class="point-label">La Friction (Piège Académique)</div>
+                            <div class="point-text">Biais de jeunesse : croire que la justesse d'une solution technique suffit à son adoption, en négligeant la <strong>psychologie du changement</strong>.</div>
+                        </div>
+                        <div class="point-box">
+                            <div class="point-label">Le Levier (La Solution)</div>
+                            <div class="point-text">Montée en compétences en management d'influence et négociation. Lancement de mes objectifs de direction chez <strong>PalestrIA</strong>.</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="visual-panel">
+                    <div class="cognitive-grid">
+                        <div class="schema-conversion">
+                            <div style="font-size: 0.6rem; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase;">Réduction des Points de Friction</div>
+                            <div class="fitts-target">Fitts & Hick</div>
+                            <div style="font-size: 0.55rem; color: var(--accent); font-weight: 500;">Action immédiate</div>
+                        </div>
+                        <div class="badge-palestria">Horizon 2028 : PalestrIA</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SLIDE 15 : REMERCIEMENTS & QUESTIONS/RÉPONSES -->
+        <div class="slide" id="slide-15" data-part="CONCLUSION">
+            <div class="remerciements-layout">
+                <h1 class="remerciements-title">Merci pour votre attention</h1>
+                <div style="width: 80px; height: 1px; background: var(--accent); margin: 5px auto;"></div>
+                <p class="remerciements-sub">
+                    "La rigueur de la donnée au service d'une stratégie de croissance solide et humaine."
+                </p>
+                <div class="footer-q-a">
+                    Questions & Réponses
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Logique Interactive JS -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        const btnPrev = document.getElementById('btnPrev');
+        const btnNext = document.getElementById('btnNext');
+        const dbPartTitle = document.getElementById('dbPartTitle');
+        const dbSlideCounter = document.getElementById('dbSlideCounter');
+        const progressBar = document.getElementById('progressBar');
+        let currentSlideIndex = 0;
+
+        function updateSlidePosition() {
+            slides.forEach((slide, index) => {
+                if (index === currentSlideIndex) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+
+            const activeSlide = slides[currentSlideIndex];
+
+            // Update Header Part Title
+            const partTitle = activeSlide.getAttribute('data-part') || 'INTRODUCTION';
+            dbPartTitle.textContent = partTitle;
+
+            // Update Header Slide Counter (ex: "[ SLIDE 01 / 16 ]")
+            const formattedCurrent = String(currentSlideIndex + 1).padStart(2, '0');
+            const formattedTotal = String(slides.length).padStart(2, '0');
+            dbSlideCounter.textContent = `[ SLIDE ${formattedCurrent} / ${formattedTotal} ]`;
+
+            // Update Progress Bar
+            const progress = (currentSlideIndex / (slides.length - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Trigger animations
+            triggerSlideAnimations(currentSlideIndex);
+        }
+
+        function nextSlide() {
+            if (currentSlideIndex < slides.length - 1) {
+                currentSlideIndex++;
+                updateSlidePosition();
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                updateSlidePosition();
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevSlide();
+            }
+        });
+
+        // Click navigation on floating triggers
+        btnNext.addEventListener('click', nextSlide);
+        btnPrev.addEventListener('click', prevSlide);
+
+        // Slide animation triggers
+        function triggerSlideAnimations(index) {
+            // Slide 1: Experience Donut
+            if (index === 1) {
+                const pie = document.querySelector('#slide-1 .pie-chart');
+                pie.style.background = 'conic-gradient(var(--accent) 0% 0%, var(--accent-glow) 0% 0%, var(--text-pure) 0% 0%, #94A3B8 0% 0%)';
+                setTimeout(() => {
+                    pie.style.background = 'conic-gradient(var(--accent) 0% 35%, var(--accent-glow) 35% 65%, var(--text-pure) 65% 85%, #94A3B8 85% 100%)';
+                }, 50);
+            }
+
+            // Slide 2: Profiler bars
+            if (index === 2) {
+                const fills = document.querySelectorAll('#slide-2 .profiler-bar-fill');
+                fills.forEach(fill => {
+                    const width = fill.style.width;
+                    fill.style.width = '0%';
+                    setTimeout(() => {
+                        fill.style.width = width;
+                    }, 50);
+                });
+            }
+            
+            // Slide 5: Circular progress
+            if (index === 5) {
+                const circle = document.getElementById('circularProgress');
+                circle.style.strokeDashoffset = '440';
+                setTimeout(() => {
+                    circle.style.strokeDashoffset = '242'; // Target +45% (440 * (1 - 0.45) = 242)
+                }, 50);
+            }
+
+            // Slide 6: Efficiency gauge
+            if (index === 6) {
+                const fill = document.getElementById('efficiencyFill1');
+                fill.style.width = '0%';
+                setTimeout(() => {
+                    fill.style.width = '16%';
+                }, 50);
+            }
+
+            // Slide 8: Inactivity Donut
+            if (index === 8) {
+                const pie = document.getElementById('pieChartInactivity');
+                pie.style.background = 'conic-gradient(var(--accent) 0% 0%, rgba(255, 255, 255, 0.03) 0% 100%)';
+                setTimeout(() => {
+                    pie.style.background = 'conic-gradient(var(--accent) 0% 5.5%, rgba(255, 255, 255, 0.03) 5.5% 100%)';
+                }, 50);
+            }
+
+            // Slide 9: Funnel Stages
+            if (index === 9) {
+                const fun1 = document.getElementById('fun1');
+                const fun2 = document.getElementById('fun2');
+                const fun3 = document.getElementById('fun3');
+
+                fun1.style.width = '0%';
+                fun2.style.width = '0%';
+                fun3.style.width = '0%';
+
+                setTimeout(() => {
+                    fun1.style.width = '100%';
+                    fun2.style.width = '80%';
+                    fun3.style.width = '40%';
+                }, 50);
+            }
+
+            // Slide 12: Gantt Bars
+            if (index === 12) {
+                const bar1 = document.getElementById('gantt1');
+                const bar2 = document.getElementById('gantt2');
+                const bar3 = document.getElementById('gantt3');
+                
+                bar1.style.width = '0%';
+                bar2.style.width = '0%';
+                bar3.style.width = '0%';
+
+                setTimeout(() => {
+                    bar1.style.width = '55%'; // Sourced up to veto line (55%)
+                    bar2.style.width = '35%'; 
+                    bar3.style.width = '15%'; 
+                }, 50);
+            }
+        }
+
+        // Initial setup
+        updateSlidePosition();
+    </script>
+</body>
+</html>

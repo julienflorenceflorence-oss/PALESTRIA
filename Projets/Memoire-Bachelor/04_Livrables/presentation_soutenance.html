@@ -1621,8 +1621,22 @@
         }
       }
 
-      // Slide 18 (Index 17) : Gantt Bars
+      // Slide 18 (Index 17) : Histogramme des coûts Afterwork vs Téléphone
       if (index === 17) {
+        const barCacTel = document.getElementById('barCacTel');
+        const barCacRel = document.getElementById('barCacRel');
+        if (barCacTel && barCacRel) {
+          barCacTel.style.height = '0px';
+          barCacRel.style.height = '0px';
+          setTimeout(() => {
+            barCacTel.style.height = '160px'; // 1823 (max)
+            barCacRel.style.height = '24px'; // 275
+          }, 50);
+        }
+      }
+
+      // Slide 19 (Index 18) : Gantt Bars
+      if (index === 18) {
         const bar1 = document.getElementById('gantt1');
         const bar2 = document.getElementById('gantt2');
         const bar3 = document.getElementById('gantt3');
@@ -1638,8 +1652,8 @@
         }
       }
 
-      // Slide 19 (Index 18) : Courbes Hick & Fitts
-      if (index === 18) {
+      // Slide 20 (Index 19) : Courbes Hick & Fitts
+      if (index === 19) {
         const hick = document.getElementById('hickPath');
         const fitts = document.getElementById('fittsPath');
         if (hick && fitts) {

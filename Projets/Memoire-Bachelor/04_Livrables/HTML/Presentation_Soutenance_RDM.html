@@ -1221,11 +1221,11 @@
         const barReal = document.getElementById('barReal');
         const barTarget = document.getElementById('barTarget');
         if (barReal && barTarget) {
-          barReal.style.height = '0%';
-          barTarget.style.height = '0%';
+          barReal.style.height = '0px';
+          barTarget.style.height = '0px';
           setTimeout(() => {
-            barReal.style.height = '8%'; // 1.46% proportionnel (rehaussé pour visibilité)
-            barTarget.style.height = '100%';
+            barReal.style.height = '12px'; // Représentation proportionnelle stable
+            barTarget.style.height = '160px';
           }, 50);
         }
       }
@@ -1266,11 +1266,11 @@
         const barCac = document.getElementById('barCac');
         const barLtv = document.getElementById('barLtv');
         if (barCac && barLtv) {
-          barCac.style.height = '0%';
-          barLtv.style.height = '0%';
+          barCac.style.height = '0px';
+          barLtv.style.height = '0px';
           setTimeout(() => {
-            barCac.style.height = '100%'; // 1823€ (max)
-            barLtv.style.height = '16%'; // 290€ (16%)
+            barCac.style.height = '160px'; // 1823€ (max)
+            barLtv.style.height = '25px'; // 290€
           }, 50);
         }
       }
@@ -1309,15 +1309,65 @@
         const barRoi2 = document.getElementById('barRoi2');
         const barRoi3 = document.getElementById('barRoi3');
         if (barRoi1 && barRoi2 && barRoi3) {
-          barRoi1.style.height = '0%';
-          barRoi2.style.height = '0%';
-          barRoi3.style.height = '0%';
+          barRoi1.style.height = '0px';
+          barRoi2.style.height = '0px';
+          barRoi3.style.height = '0px';
           setTimeout(() => {
-            barRoi1.style.height = '10%'; // 360 €
-            barRoi2.style.height = '35%'; // 2 750 €
-            barRoi3.style.height = '100%'; // 11 000 € (max)
+            barRoi1.style.height = '8px'; // 360 €
+            barRoi2.style.height = '42px'; // 2 750 €
+            barRoi3.style.height = '160px'; // 11 000 € (max)
           }, 50);
         }
       }
 
-     
+      // Slide 13 (Index 12) : Gantt Bars
+      if (index === 12) {
+        const bar1 = document.getElementById('gantt1');
+        const bar2 = document.getElementById('gantt2');
+        const bar3 = document.getElementById('gantt3');
+        if (bar1 && bar2 && bar3) {
+          bar1.style.width = '0%';
+          bar2.style.width = '0%';
+          bar3.style.width = '0%';
+          setTimeout(() => {
+            bar1.style.width = '55%';
+            bar2.style.width = '35%';
+            bar3.style.width = '15%';
+          }, 50);
+        }
+      }
+
+      // Slide 14 (Index 13) : Histogramme des volumes d'audit
+      if (index === 13) {
+        const barAudit1 = document.getElementById('barAudit1');
+        const barAudit2 = document.getElementById('barAudit2');
+        if (barAudit1 && barAudit2) {
+          barAudit1.style.height = '0px';
+          barAudit2.style.height = '0px';
+          setTimeout(() => {
+            barAudit1.style.height = '160px'; // 14500 (max)
+            barAudit2.style.height = '10px'; // 100
+          }, 50);
+        }
+      }
+
+      // Slide 15 (Index 14) : Courbes Hick & Fitts
+      if (index === 14) {
+        const hick = document.getElementById('hickPath');
+        const fitts = document.getElementById('fittsPath');
+        if (hick && fitts) {
+          hick.style.strokeDashoffset = '120';
+          fitts.style.strokeDashoffset = '120';
+          setTimeout(() => {
+            hick.style.strokeDashoffset = '0';
+            fitts.style.strokeDashoffset = '0';
+          }, 50);
+        }
+      }
+    }
+    
+    const initial = Number((location.hash || '').replace('#','')) || Number(new URLSearchParams(location.search).get('slide')) || 1;
+    setSlide(initial - 1, false);
+  </script>
+</body>
+</html>

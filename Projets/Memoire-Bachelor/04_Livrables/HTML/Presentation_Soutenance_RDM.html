@@ -1,1872 +1,1326 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Soutenance RDM - Développement Stratégique B2B</title>
-    <!-- Typographies Premium -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #07090E;      /* Bleu nuit ultra-profond presque noir */
-            --bg-card: rgba(18, 24, 38, 0.6); /* Transparent pour effet verre dépoli */
-            --accent: #C5A059;       /* Ocre / Doré Happy House */
-            --accent-glow: #F3D082;
-            --text-pure: #FFFFFF;    /* Blanc Pur */
-            --text-dim: #94A3B8;     /* Gris bleuté */
-            --red-alert: #E15B5B;    /* Rouge pour Unit Economics */
-            --border-glow: rgba(197, 160, 89, 0.12);
-            --transition-speed: 0.4s;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--bg-dark);
-            /* Grille technique de Dashboard */
-            background-image: 
-                radial-gradient(rgba(197, 160, 89, 0.035) 1.5px, transparent 1.5px),
-                linear-gradient(rgba(197, 160, 89, 0.01) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(197, 160, 89, 0.01) 1px, transparent 1px);
-            background-size: 30px 30px, 120px 120px, 120px 120px;
-            color: var(--text-pure);
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        /* Top Progress Bar */
-        .progress-container {
-            width: 100%;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.02);
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 150;
-        }
-
-        .progress-bar {
-            height: 100%;
-            width: 0%;
-            background: linear-gradient(90deg, var(--accent), var(--accent-glow));
-            box-shadow: 0 0 10px var(--accent);
-            transition: width 0.3s ease-out;
-        }
-
-        /* Top Dashboard Header */
-        .dashboard-header {
-            position: fixed;
-            top: 4px;
-            left: 0;
-            width: 100%;
-            height: 60px;
-            background: rgba(7, 9, 14, 0.85);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.08);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 5%;
-            z-index: 100;
-        }
-
-        .db-logo {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .db-logo-icon {
-            font-family: 'Cinzel', serif;
-            font-size: 1.1rem;
-            color: var(--accent);
-            border: 1px solid var(--accent);
-            width: 32px;
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 4px;
-            font-weight: 700;
-        }
-
-        .db-part-title {
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            border-left: 1px solid rgba(255, 255, 255, 0.1);
-            padding-left: 15px;
-        }
-
-        .db-status-badge {
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            color: var(--accent);
-            background: rgba(197, 160, 89, 0.05);
-            padding: 4px 10px;
-            border: 1px solid rgba(197, 160, 89, 0.2);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .db-status-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #10B981;
-            box-shadow: 0 0 8px #10B981;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { opacity: 0.4; }
-            50% { opacity: 1; }
-            100% { opacity: 0.4; }
-        }
-
-        .db-slide-counter {
-            font-family: 'Cinzel', serif;
-            font-size: 0.75rem;
-            letter-spacing: 2px;
-            color: var(--accent);
-        }
-
-        /* Deck Wrapper */
-        .deck {
-            position: relative;
-            flex-grow: 1;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Base Slide Styles */
-        .slide {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(15px);
-            transition: opacity var(--transition-speed) ease, 
-                        transform var(--transition-speed) ease, 
-                        visibility var(--transition-speed);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 85px 8% 40px 8%; /* Augmenté en haut pour le header, dégagé en bas */
-            z-index: 1;
-            user-select: none;
-            -webkit-user-select: none;
-        }
-
-        .slide.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-            z-index: 10;
-        }
-
-        /* Layout Types */
-        .layout-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 6%;
-            width: 100%;
-            max-width: 1300px;
-            align-items: center;
-        }
-
-        .layout-title-page {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 900px;
-            width: 100%;
-        }
-
-        /* Typography & Headings */
-        .slide-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-            color: var(--text-pure);
-            line-height: 1.25;
-            margin-bottom: 25px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            border-left: 2px solid var(--accent);
-            padding-left: 15px;
-        }
-
-        .layout-title-page h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(3rem, 6vw, 4.5rem);
-            color: var(--accent);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-shadow: 0 0 30px rgba(197, 160, 89, 0.15);
-        }
-
-        .layout-title-page h2 {
-            font-size: 1.1rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        /* Grille Analytique en Points - Look Dashboard */
-        .analytical-points {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .point-box {
-            background: var(--bg-card);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(197, 160, 89, 0.08);
-            border-left: 3px solid var(--accent);
-            padding: 14px 18px;
-            border-radius: 4px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-        }
-
-        .point-box::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 4px;
-            background: rgba(197, 160, 89, 0.2);
-            border-radius: 0 4px 0 0;
-        }
-
-        .point-box:hover {
-            border-color: rgba(197, 160, 89, 0.35);
-            background: rgba(18, 24, 38, 0.85);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            transform: translateX(4px);
-        }
-
-        .point-box.maladie {
-            border-left-color: var(--red-alert);
-        }
-        .point-box.maladie::before {
-            background: rgba(225, 91, 91, 0.2);
-        }
-
-        .point-label {
-            font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
-            color: var(--accent);
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            font-weight: 700;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .point-label::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: rgba(197, 160, 89, 0.1);
-        }
-
-        .point-box.maladie .point-label {
-            color: var(--red-alert);
-        }
-        .point-box.maladie .point-label::after {
-            background: rgba(225, 91, 91, 0.1);
-        }
-
-        .point-text {
-            font-size: 0.9rem;
-            line-height: 1.45;
-            color: var(--text-dim);
-        }
-
-        .point-text strong {
-            color: var(--text-pure);
-            font-weight: 600;
-        }
-
-        /* Right Panel: Visual Components */
-        .visual-panel {
-            background: rgba(11, 15, 24, 0.8);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-glow);
-            border-radius: 6px;
-            aspect-ratio: 4/3;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            padding: 28px 12px 10px 12px;
-            box-sizing: border-box;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-        }
-
-        .visual-panel > * {
-            margin: auto;
-        }
-
-        /* En-tête interne du Panel Visuel pour renforcer l'aspect Dashboard */
-        .visual-panel::before {
-            content: 'PANEL // OBSERVATION SYSTEM';
-            position: absolute;
-            top: 10px;
-            left: 15px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.55rem;
-            color: var(--accent);
-            letter-spacing: 1.5px;
-            opacity: 0.6;
-            z-index: 10;
-        }
-
-        /* Slide 0 Logo & Title Visuel */
-        .logo-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .hexagon-logo {
-            width: 130px;
-            height: 150px;
-            background: #0B0E14;
-            border: 2px solid var(--accent);
-            position: relative;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 0 35px rgba(197, 160, 89, 0.25);
-            margin-bottom: 20px;
-        }
-
-        .hexagon-logo span {
-            font-family: 'Cinzel', serif;
-            font-size: 2.8rem;
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        /* Slide 1: Venn Diagram replacement (Donut Chart) */
-        .pie-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .pie-chart {
-            width: 130px;
-            height: 130px;
-            border-radius: 50%;
-            background: conic-gradient(
-                var(--accent) 0% 5.5%,
-                rgba(255, 255, 255, 0.03) 5.5% 100%
-            );
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.8);
-            position: relative;
-        }
-
-        .pie-chart::after {
-            content: '';
-            position: absolute;
-            top: 22px;
-            left: 22px;
-            width: 86px;
-            height: 86px;
-            background: #0B0E14;
-            border-radius: 50%;
-        }
-
-        .pie-legend {
-            display: flex;
-            gap: 10px;
-            font-size: 0.75rem;
-        }
-
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        .legend-color {
-            width: 10px;
-            height: 10px;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-
-        /* Slide 2: Profiler Graph */
-        .profiler-container {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .profiler-bar-row {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .profiler-header {
-            display: flex;
-            justify-content: space-between;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-            color: var(--text-dim);
-        }
-
-        .profiler-bar-bg {
-            width: 100%;
-            height: 6px;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 3px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.02);
-        }
-
-        .profiler-bar-fill {
-            height: 100%;
-            background: var(--accent);
-            border-radius: 3px;
-            width: 0%;
-            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
-        }
-
-        /* Slide 3 & 4: Dashboard & Calculs */
-        .dashboard-organique {
-            width: 85%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .dashboard-header-card {
-            border: 1px solid rgba(197, 160, 89, 0.15);
-            background: rgba(197, 160, 89, 0.02);
-            padding: 10px;
-            border-radius: 4px;
-            text-align: center;
-        }
-
-        .dashboard-stats {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-        }
-
-        .stat-card {
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            background: rgba(255, 255, 255, 0.01);
-            padding: 12px 8px;
-            border-radius: 4px;
-            text-align: center;
-            position: relative;
-        }
-
-        .stat-card::after {
-            content: '';
-            position: absolute;
-            top: 5px;
-            left: 5px;
-            width: 3px;
-            height: 3px;
-            background: var(--accent);
-            opacity: 0.3;
-        }
-
-        .stat-value {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            color: var(--accent);
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .stat-label {
-            font-size: 0.65rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* Tables de Calculs Décisionnels */
-        .calc-table {
-            width: 96%;
-            border-collapse: collapse;
-            font-size: 0.63rem;
-            margin: auto;
-        }
-
-        .calc-table th {
-            border-bottom: 2px solid var(--accent);
-            color: var(--accent);
-            font-family: 'Cinzel', serif;
-            padding: 4px 6px;
-            text-align: left;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .calc-table td {
-            padding: 4px 6px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            color: var(--text-dim);
-        }
-
-        .calc-table tr:hover td {
-            color: var(--text-pure);
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .highlight-accent {
-            color: var(--accent) !important;
-            font-weight: 700;
-        }
-        .highlight-alert {
-            color: var(--red-alert) !important;
-            font-weight: 700;
-        }
-
-        /* Slide 5: Diagnostic Sectoriel Circular */
-        .circle-progress-container {
-            position: relative;
-            width: 130px;
-            height: 130px;
-            margin-bottom: 12px;
-        }
-
-        .circle-svg {
-            transform: rotate(-90deg);
-        }
-
-        .circle-bg {
-            fill: none;
-            stroke: rgba(255, 255, 255, 0.03);
-            stroke-width: 5;
-        }
-
-        .circle-fill {
-            fill: none;
-            stroke: var(--accent);
-            stroke-width: 5;
-            stroke-dasharray: 440;
-            stroke-dashoffset: 440;
-            transition: stroke-dashoffset 1.5s cubic-bezier(0.1, 0.8, 0.1, 1);
-            stroke-linecap: round;
-        }
-
-        .circle-value {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .hex-imbriques {
-            display: flex;
-            gap: 12px;
-        }
-
-        .hex-small {
-            width: 75px;
-            height: 85px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.58rem;
-            text-align: center;
-            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
-            font-weight: 750;
-            padding: 5px;
-        }
-
-        .hex-grey {
-            background: rgba(255, 255, 255, 0.05);
-            color: var(--text-pure);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .hex-blue {
-            background: var(--accent);
-            color: var(--bg-dark);
-        }
-
-        /* Slide 6: Rupture Unit Economics */
-        .financial-crisis {
-            width: 85%;
-            display: flex;
-            flex-direction: column;
-            gap: 18px;
-        }
-
-        .efficiency-gauge {
-            width: 100%;
-            height: 18px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 9px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-
-        .efficiency-fill {
-            height: 100%;
-            width: 0%;
-            background: var(--red-alert);
-            border-radius: 9px;
-            transition: width 1.2s cubic-bezier(0.1, 0.8, 0.1, 1);
-        }
-
-        .efficiency-label {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 0.65rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .comparison-cards {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-        }
-
-        .comp-card {
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-            padding: 12px;
-            text-align: center;
-        }
-
-        .comp-card.red {
-            border-color: rgba(225, 91, 91, 0.25);
-            background: rgba(225, 91, 91, 0.01);
-        }
-
-        .comp-card.gold {
-            border-color: rgba(197, 160, 89, 0.25);
-            background: rgba(197, 160, 89, 0.01);
-        }
-
-        .comp-val {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 3px;
-        }
-
-        .comp-card.red .comp-val { color: var(--red-alert); }
-        .comp-card.gold .comp-val { color: var(--accent); }
-
-        /* Slide 9: Funnel d'inactivité */
-        .funnel-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 12px;
-            width: 85%;
-        }
-
-        .funnel-stage {
-            height: 32px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            position: relative;
-            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
-        }
-
-        .funnel-1 {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            color: var(--text-pure);
-            width: 100%;
-            clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
-        }
-
-        .funnel-2 {
-            background: rgba(225, 91, 91, 0.25);
-            border: 1px solid rgba(225, 91, 91, 0.4);
-            color: var(--text-pure);
-            width: 80%;
-            clip-path: polygon(0 0, 100% 0, 88% 100%, 12% 100%);
-        }
-
-        .funnel-3 {
-            background: var(--accent);
-            color: var(--bg-dark) !important;
-            width: 52%;
-            clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.4);
-            font-size: 0.66rem;
-        }
-
-        /* Slide 11: ROI Flow */
-        .roi-flow {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            width: 85%;
-        }
-
-        .flow-step {
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            background: rgba(255, 255, 255, 0.005);
-            padding: 10px 15px;
-            border-radius: 4px;
-            font-size: 0.72rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .flow-step.final {
-            border-color: var(--accent);
-            background: rgba(197, 160, 89, 0.05);
-        }
-
-        .flow-label {
-            color: var(--text-dim);
-        }
-
-        .flow-val {
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            color: var(--text-pure);
-        }
-
-        .flow-arrow {
-            width: 2px;
-            height: 12px;
-            background: var(--accent);
-            margin: 0 auto;
-            opacity: 0.6;
-        }
-
-        /* Slide 12: Gantt Chart */
-        .gantt-chart {
-            width: 85%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            position: relative;
-        }
-
-        .gantt-row {
-            display: grid;
-            grid-template-columns: 1fr 3.2fr;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .gantt-label {
-            font-size: 0.65rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-dim);
-        }
-
-        .gantt-bar-bg {
-            height: 10px;
-            background: rgba(255, 255, 255, 0.01);
-            border-radius: 5px;
-            position: relative;
-        }
-
-        .gantt-bar-fill {
-            height: 100%;
-            border-radius: 5px;
-            position: absolute;
-            transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
-        }
-
-        .gantt-bar-fill.bar-1 { background: var(--accent); left: 0%; width: 0%; }
-        .gantt-bar-fill.bar-2 { background: var(--accent-glow); left: 20%; width: 0%; }
-        .gantt-bar-fill.bar-3 { background: var(--text-pure); left: 40%; width: 0%; }
-
-        .gantt-veto-line {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 55%;
-            width: 2px;
-            background: var(--red-alert);
-            box-shadow: 0 0 10px var(--red-alert);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10;
-        }
-
-        .gantt-veto-tag {
-            background: var(--red-alert);
-            color: #07090E;
-            font-size: 0.5rem;
-            font-weight: 800;
-            padding: 2px 5px;
-            border-radius: 2px;
-            transform: rotate(-90deg) translateY(-22px);
-            white-space: nowrap;
-            letter-spacing: 1px;
-        }
-
-        /* Slide 13: Digital Assets Dashboard */
-        .digital-assets-list {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .asset-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 16px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            background: rgba(255, 255, 255, 0.005);
-            border-radius: 4px;
-        }
-
-        .asset-name {
-            font-size: 0.8rem;
-            font-weight: 500;
-            color: var(--text-dim);
-        }
-
-        .asset-metric {
-            font-family: 'Cinzel', serif;
-            color: var(--accent);
-            font-weight: 700;
-            font-size: 1rem;
-        }
-
-        /* Slide 14: Hick / Fitts Layout Optimization */
-        .cognitive-grid {
-            width: 85%;
-            height: 85%;
-            display: grid;
-            grid-template-rows: 1fr auto;
-            gap: 15px;
-        }
-
-        .schema-conversion {
-            border: 1px dashed rgba(197, 160, 89, 0.2);
-            border-radius: 4px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            gap: 12px;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .fitts-target {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--accent) 0%, rgba(197,160,89,0) 70%);
-            border: 1px solid var(--accent);
-            box-shadow: 0 0 15px rgba(197, 160, 89, 0.25);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-pure);
-            text-align: center;
-            animation: pulse-glow 2s infinite;
-        }
-
-        .badge-palestria {
-            align-self: flex-end;
-            background: var(--accent);
-            color: var(--bg-dark);
-            font-family: 'Cinzel', serif;
-            font-size: 0.7rem;
-            font-weight: 700;
-            padding: 5px 12px;
-            border-radius: 2px;
-            letter-spacing: 1.5px;
-            box-shadow: 0 4px 10px rgba(197, 160, 89, 0.15);
-        }
-
-        /* Slide 15: Remerciements Final Page */
-        .remerciements-layout {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 20px;
-        }
-
-        .remerciements-title {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2.2rem, 5.5vw, 4rem);
-            color: var(--accent);
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-        }
-
-        .remerciements-sub {
-            font-size: 1rem;
-            font-weight: 300;
-            letter-spacing: 1.5px;
-            color: var(--text-dim);
-            max-width: 550px;
-            line-height: 1.5;
-        }
-
-        .footer-q-a {
-            margin-top: 20px;
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            color: var(--accent);
-            letter-spacing: 3px;
-            border: 1px solid var(--accent);
-            padding: 8px 24px;
-            border-radius: 3px;
-        }
-
-        /* Floating Minimalist Sidebar Controls (No Bottom Bar) */
-        .btn-nav-floating {
-            position: fixed;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 80px;
-            background: rgba(18, 24, 38, 0.15);
-            backdrop-filter: blur(4px);
-            border: 1px solid rgba(255, 255, 255, 0.02);
-            color: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s;
-            z-index: 100;
-            outline: none;
-        }
-
-        .btn-nav-floating:hover {
-            background: rgba(197, 160, 89, 0.08);
-            color: var(--accent);
-            border-color: rgba(197, 160, 89, 0.15);
-        }
-
-        .btn-nav-floating.left {
-            left: 0;
-            border-radius: 0 6px 6px 0;
-        }
-
-        .btn-nav-floating.right {
-            right: 0;
-            border-radius: 6px 0 0 6px;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .layout-grid {
-                grid-template-columns: 1fr;
-                gap: 30px;
-                overflow-y: auto;
-                height: 85%;
-                padding-bottom: 20px;
-            }
-            .slide {
-                align-items: flex-start;
-                padding-top: 75px;
-            }
-            .visual-panel {
-                aspect-ratio: 16/9;
-                max-height: 220px;
-            }
-            body {
-                overflow: auto;
-            }
-            .btn-nav-floating {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Soutenance RDM - Julien Florence - Happy House</title>
+  <!-- Typographies Premium -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme:dark;
+      --deep:#07090E;      /* Noir profond Happy House */
+      --navy:#121826;      /* Arrière-plan secondaire */
+      --blue:#3E301D;      /* Brun/doré sombre */
+      --blue2:#92753F;     /* Doré moyen */
+      --cyan:#D4AF37;      /* Doré prestige */
+      --cyan2:#F3D082;     /* Doré clair / glow */
+      --ice:#FFFFFF;       /* Blanc pur */
+      --text:#FFFFFF;      /* Texte blanc */
+      --muted:#94A3B8;     /* Gris bleuté */
+      --muted2:#64748B;    /* Gris neutre */
+      --line:rgba(197,160,89,.20);
+      --line2:rgba(197,160,89,.10);
+      --glass:rgba(18,24,38,.42);
+      --glass2:rgba(197,160,89,.08);
+      --rose:#E15B5B;      /* Rouge alerte */
+      --slide:1;
+      --progress:5%;
+      --a:#D4AF37;
+      --b:#C5A059;
+      --c:#07090E;
+      --pad:clamp(42px,5.55vw,90px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--deep);overflow:hidden}
+    body{
+      font-family:'Montserrat', sans-serif;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+    }
+    button{font:inherit}
+    .ambient{
+      position:fixed;inset:-18%;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(48vw 38vw at calc(8% + var(--slide)*2.4%) 17%, color-mix(in srgb,var(--a) 23%, transparent), transparent 70%),
+        radial-gradient(46vw 42vw at calc(92% - var(--slide)*1.6%) 7%, color-mix(in srgb,var(--b) 42%, transparent), transparent 64%),
+        radial-gradient(58vw 42vw at 70% calc(96% - var(--slide)*1.2%), color-mix(in srgb,var(--a) 18%, transparent), transparent 68%),
+        linear-gradient(145deg,#07090E 0%, #16120b 47%, #1f180e 100%);
+      filter:saturate(1.12);
+      transition:background 820ms cubic-bezier(.2,.8,.2,1), filter 820ms ease;
+    }
+    .ambient::before,.ambient::after{
+      content:"";position:absolute;pointer-events:none;opacity:.62;mix-blend-mode:screen;
+      transform:translateZ(0);will-change:transform,opacity;
+    }
+    .ambient::before{
+      width:58vw;height:22vh;left:9%;top:15%;
+      background:linear-gradient(100deg,transparent 0%,rgba(243,208,130,.18) 43%,rgba(255,255,255,.24) 50%,rgba(197,160,89,.13) 58%,transparent 100%);
+      filter:blur(14px);
+      transform:translateX(calc(var(--slide)*1.4vw)) rotate(-10deg);
+      animation:glide 12s ease-in-out infinite alternate;
+    }
+    .ambient::after{
+      width:50vw;height:50vw;right:-10vw;bottom:-15vw;border-radius:50%;
+      background:radial-gradient(circle at 36% 33%,rgba(255,255,255,.16),rgba(243,208,130,.10) 31%,rgba(146,117,63,.13) 48%,transparent 70%);
+      filter:blur(34px);
+      transform:translate(calc(var(--slide)*-0.8vw), calc(var(--slide)*-.35vw));
+      animation:orb 15s ease-in-out infinite alternate;
+    }
+    .rays{
+      position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.36;mix-blend-mode:screen;
+      background:
+        linear-gradient(118deg,transparent 23%,rgba(255,255,255,.045) 34%,transparent 47%),
+        linear-gradient(65deg,transparent 54%,rgba(197,160,89,.06) 61%,transparent 72%);
+      transform:translateX(calc(var(--slide)*-.55vw));
+      transition:transform 850ms cubic-bezier(.2,.8,.2,1), opacity 850ms ease;
+    }
+    @keyframes glide{from{translate:-4vw 0}to{translate:5vw 1.8vh}}
+    @keyframes orb{from{scale:1;opacity:.48}to{scale:1.08;opacity:.7}}
+    .deck{
+      position:relative;z-index:2;
+      width:min(100vw,177.7778vh);
+      height:min(100vh,56.25vw);
+      margin:auto;top:50%;transform:translateY(-50%);
+      overflow:hidden;
+      contain:layout paint;
+    }
+    .deck-frame{
+      position:absolute;inset:clamp(7px,.72vw,14px);z-index:1;pointer-events:none;
+      border-radius:clamp(24px,3vw,44px);
+      border:1px solid rgba(197,160,89,.12);
+      background:
+        linear-gradient(135deg,rgba(255,255,255,.040),rgba(255,255,255,.012) 44%,rgba(197,160,89,.025)),
+        linear-gradient(155deg,rgba(7,9,14,.58),rgba(18,24,38,.38));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.09), inset 0 -1px 0 rgba(197,160,89,.045);
+      overflow:hidden;
+    }
+    .deck-frame::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(620px 180px at 18% 0%,rgba(255,255,255,.08),transparent 72%),
+        linear-gradient(103deg,transparent 0%,rgba(197,160,89,.045) 48%,transparent 61%);
+    }
+    .deck-frame::after{
+      content:"";position:absolute;inset:-22% -18%;pointer-events:none;opacity:.30;mix-blend-mode:screen;
+      background:linear-gradient(112deg,transparent 17%,rgba(255,255,255,.10) 44%,rgba(197,160,89,.08) 50%,transparent 65%);
+      transform:rotate(-7deg);
+      transition:opacity 900ms ease;
+      filter:blur(10px);
+    }
+    .chrome{
+      position:absolute;inset:0;z-index:4;pointer-events:none;padding:var(--pad);
+      display:grid;grid-template-rows:auto 1fr auto;
+    }
+    .chrome-top,.chrome-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .chrome-brand{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px;letter-spacing:.20em;text-transform:uppercase;font-weight:800;font-family:'Cinzel', serif;}
+    .chrome-brand .bar{height:24px;width:1px;background:rgba(197,160,89,.23)}
+    .chrome-section{font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan2);font-weight:950;font-family:'Cinzel', serif;}
+    .chrome-foot-label,.chrome-page{font-size:13px;color:var(--muted2);font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+    .chrome-progress{position:absolute;left:50%;bottom:calc(var(--pad) + 2px);transform:translateX(-50%);width:min(190px,18vw);height:3px;border-radius:999px;background:rgba(197,160,89,.12);overflow:hidden}
+    .chrome-progress i{display:block;height:100%;width:var(--progress);background:linear-gradient(90deg,var(--cyan2),var(--blue2));border-radius:inherit;transition:width .42s cubic-bezier(.16,.84,.28,1)}
+    
+    .slide{
+      position:absolute;inset:0;z-index:2;
+      display:grid;grid-template-rows:1fr;
+      gap:clamp(18px,2.2vw,34px);
+      padding:var(--pad);
+      opacity:0;
+      transform:translate3d(0,0,0);
+      filter:none;
+      pointer-events:none;
+      transition:opacity .42s cubic-bezier(.16,.84,.28,1);
+      isolation:isolate;
+      user-select:none;
+      -webkit-user-select:none;
+    }
+    .slide.active{opacity:1;filter:none;pointer-events:auto}
+    .slide::before,.slide::after{display:none}
+    .top,.foot{display:none!important}
+    .brand{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px;letter-spacing:.20em;text-transform:uppercase;font-weight:800;font-family:'Cinzel', serif;}
+    .digitair{font-size:clamp(18px,1.6vw,26px);letter-spacing:-.04em;text-transform:none;color:#fff;font-weight:900;font-family:'Cinzel', serif;}
+    .digitair span{color:var(--cyan)}
+    .brand .bar{height:24px;width:1px;background:rgba(197,160,89,.23)}
+    .section{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan2);font-weight:900;font-family:'Cinzel', serif;}
+    .content{align-self:center;position:relative;z-index:2;width:100%;min-width:0;padding-inline:clamp(10px,1vw,22px)}
+    .center{text-align:center;max-width:min(1120px,100%);margin:0 auto}
+    .narrow{max-width:980px}
+    .split{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr);gap:clamp(28px,5vw,76px);align-items:center}
+    .split > *{min-width:0}
+    .split.equal{grid-template-columns:1fr 1fr}
+    .split.wide{grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr)}
+    h1,h2,h3,p{margin:0}
+    h1{
+      font-size:clamp(38px,5vw,76px);
+      line-height:1.11;letter-spacing:-.035em;font-weight:920;max-width:100%;
+      overflow:visible;padding:.045em .12em .07em .05em;
+      font-family:'Cinzel', serif;
+    }
+    h2{
+      font-size:clamp(32px,3.8vw,56px);
+      line-height:1.12;letter-spacing:-.03em;font-weight:920;max-width:100%;
+      overflow:visible;padding:.045em .12em .07em .05em;
+      font-family:'Cinzel', serif;
+    }
+    h3{font-size:clamp(22px,2.4vw,38px);line-height:1.05;letter-spacing:-.03em;font-weight:880;font-family:'Cinzel', serif;}
+    .lead{font-size:clamp(18px,1.8vw,28px);line-height:1.3;color:#fdfdfd;max-width:920px;margin-top:clamp(15px,1.8vw,25px);font-weight:300;}
+    .sub{font-size:clamp(15px,1.2vw,19px);line-height:1.46;color:var(--muted);max-width:900px;margin-top:14px}
+    .eyebrow{font-size:clamp(12px,0.9vw,15px);font-weight:900;text-transform:uppercase;letter-spacing:.24em;color:var(--cyan2);margin-bottom:clamp(12px,1.5vw,22px);font-family:'Cinzel', serif;}
+    .grad{background:linear-gradient(96deg,var(--cyan2),#ffffff 44%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-right:.04em;margin-right:-.02em}
+    .cyan{color:var(--cyan)}
+    .quiet{color:var(--muted)}
+    
+    .glass{
+      position:relative;border:1px solid var(--line);background:linear-gradient(135deg,var(--glass2),rgba(18,24,38,.30));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.15), inset 0 -1px 0 rgba(197,160,89,.08), 0 24px 90px rgba(0,0,0,.28);
+      transform:translateZ(0);overflow:hidden;
+    }
+    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+      .glass{backdrop-filter:blur(12px) saturate(1.25);-webkit-backdrop-filter:blur(12px) saturate(1.25)}
+    }
+    .glass::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(340px 80px at 18% 0%,rgba(255,255,255,.15),transparent 72%),
+        linear-gradient(115deg,transparent 0%,rgba(255,255,255,.05) 42%,transparent 55%);
+      opacity:.75;
+    }
+    .statline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(28px,4vw,58px)}
+    .stat{padding:22px 18px 20px;border-radius:26px;text-align:left;min-height:132px}
+    .stat small{display:block;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.15em;font-size:clamp(12px,0.9vw,14px);margin-bottom:12px}
+    .stat b{display:block;font-size:clamp(32px,4.2vw,60px);line-height:.9;letter-spacing:-.05em;color:#fff;font-family:'Cinzel', serif;}
+    .stat b.compact{font-size:clamp(24px,3vw,42px)}
+    .stat em{display:block;font-style:normal;color:var(--cyan2);font-size:clamp(13px,0.9vw,16px);margin-top:10px;font-weight:750}
+    
+    .rail{display:grid;gap:0;margin-top:clamp(20px,3vw,40px)}
+    .rail-item{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:14px 4px;border-bottom:1px solid var(--line2)}
+    .rail-item:first-child{border-top:1px solid var(--line2)}
+    .rail-num{min-width:42px;font-size:clamp(16px,1.1vw,20px);color:var(--cyan2);font-weight:950;letter-spacing:.08em;font-family:'Cinzel', serif;}
+    .rail-text{font-size:clamp(16px,1.35vw,21px);line-height:1.22;font-weight:500;color:#eefaff}
+    
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,3vw,44px);margin-top:clamp(24px,3.5vw,48px)}
+    .step{padding:20px 0 16px;border-radius:0;background:transparent;border:0;border-top:2px solid rgba(243,208,130,.55);min-height:140px;position:relative;overflow:visible}
+    .step::before{content:"";position:absolute;left:0;top:-2px;width:42%;height:2px;background:linear-gradient(90deg,var(--cyan2),transparent)}
+    .step small{display:block;color:var(--cyan2);font-size:clamp(12px,0.9vw,14px);text-transform:uppercase;letter-spacing:.15em;font-weight:950;margin-bottom:16px;font-family:'Cinzel', serif;}
+    .step p{font-size:clamp(16px,1.45vw,23px);line-height:1.15;font-weight:800;color:#eefaff}
+    .step .desc{font-size:clamp(13px,0.95vw,16px);line-height:1.35;color:var(--muted);font-weight:560;margin-top:10px}
+    
+    .funnel{display:grid;gap:8px}
+    .funnel-row{display:grid;grid-template-columns:78px 1fr 58px;gap:16px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line2)}
+    .funnel-row b{font-size:clamp(26px,2.9vw,42px);letter-spacing:-.06em;color:#fff}
+    .funnel-row span{font-size:clamp(16px,1.25vw,20px);font-weight:740;color:#e5f6ff}
+    .funnel-row small{font-size:clamp(14px,1vw,16px);text-align:right;color:var(--cyan2);font-weight:900}
+    .quote{
+      padding:clamp(22px,3.8vw,50px);border-radius:36px;
+      font-size:clamp(24px,3vw,48px);line-height:1.06;letter-spacing:-.045em;font-weight:900;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+    .chip{font-size:clamp(14px,1.2vw,18px);font-weight:600;color:#f3fbff;padding:10px 14px;border-radius:999px;background:rgba(18,24,38,0.45);border:1px solid var(--line2)}
+    
+    .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(24px,3.5vw,48px)}
+    .plan-card{min-height:120px;border-radius:24px;padding:18px 16px;display:flex;flex-direction:column;justify-content:space-between}
+    .plan-card small{display:block;color:var(--cyan2);font-size:clamp(14px,1.1vw,18px);text-transform:uppercase;letter-spacing:.15em;font-weight:950;font-family:'Cinzel', serif;}
+    .plan-card b{display:block;font-size:clamp(16px,1.4vw,22px);line-height:1.12;letter-spacing:-.03em;color:#fff;margin-top:14px}
+    
+    .swot{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:clamp(22px,3vw,38px)}
+    .swot .box{border-radius:24px;padding:18px 18px 16px}
+    .swot .box small{display:block;font-size:clamp(12px,0.9vw,14px);color:var(--cyan2);text-transform:uppercase;letter-spacing:.15em;font-weight:950;margin-bottom:10px;font-family:'Cinzel', serif;}
+    .swot .box p{font-size:clamp(14px,1.15vw,18px);line-height:1.25;font-weight:500;color:#eefaff}
+    
+    .smart-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:clamp(24px,3.5vw,48px)}
+    .smart{border-radius:20px;padding:16px 12px;min-height:130px}
+    .smart small{display:block;color:var(--cyan2);font-size:clamp(12px,0.9vw,14px);text-transform:uppercase;letter-spacing:.15em;font-weight:950;margin-bottom:12px;font-family:'Cinzel', serif;}
+    .smart p{font-size:clamp(14px,1.05vw,17px);line-height:1.27;font-weight:500;color:#eefaff}
+    
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:clamp(24px,3.2vw,44px);align-items:stretch}
+    .flow-step{position:relative;border-radius:20px;padding:18px 14px;min-height:120px}
+    .flow-step:not(:last-child)::after{content:"";position:absolute;right:-10px;top:50%;width:12px;height:2px;background:rgba(243,208,130,.42)}
+    .flow-step b{display:block;font-size:clamp(22px,2.4vw,38px);letter-spacing:-.05em;color:#fff;line-height:.9;margin-bottom:12px;font-family:'Cinzel', serif;}
+    .flow-step span{display:block;font-size:clamp(13px,0.95vw,15px);line-height:1.25;font-weight:600;color:#e9f8ff}
+    .flow-step small{display:block;margin-top:8px;color:var(--cyan2);font-size:clamp(11px,0.85vw,13px);font-weight:950;text-transform:uppercase;letter-spacing:.12em;font-family:'Cinzel', serif;}
+    
+    .foot{font-size:12px;color:var(--muted2);font-weight:800;letter-spacing:.10em;text-transform:uppercase}
+    .progress-mini{width:min(180px,18vw);height:3px;border-radius:999px;background:rgba(197,160,89,.10);overflow:hidden}
+    .progress-mini i{display:block;height:100%;width:var(--progress);background:linear-gradient(90deg,var(--cyan2),var(--blue2));border-radius:inherit;transition:width .45s ease}
+    
+    .fs-btn{
+      position:fixed;left:50%;bottom:30px;top:auto;right:auto;z-index:50;border-radius:999px;padding:14px 24px;
+      color:#f5fcff;font-weight:900;border:1px solid rgba(197,160,89,.32);
+      background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(243,208,130,.10) 52%,rgba(225,91,91,.12));
+      box-shadow:0 18px 54px rgba(0,0,0,.28), 0 0 34px rgba(225,91,91,.12), inset 0 1px 0 rgba(255,255,255,.34);
+      cursor:pointer;opacity:0;pointer-events:none;transform:translate(-50%,10px) scale(.98);filter:blur(4px);
+      transition:opacity .36s ease, transform .36s cubic-bezier(.16,.84,.28,1), filter .36s ease, border-color .36s ease, background .36s ease;
+      backdrop-filter:blur(16px) saturate(1.25);-webkit-backdrop-filter:blur(16px) saturate(1.25);
+    }
+    .is-first-slide:not(.is-fullscreen) .fs-btn{opacity:1;pointer-events:auto;transform:translate(-50%,0) scale(1);filter:blur(0)}
+    .fs-btn:hover{border-color:rgba(255,255,255,.46);background:linear-gradient(135deg,rgba(255,255,255,.20),rgba(243,208,130,.13) 52%,rgba(225,91,91,.16));transform:translate(-50%,-1px) scale(1.01)}
+    .is-fullscreen .fs-btn{opacity:0;pointer-events:none;transform:translate(-50%,8px) scale(.96);filter:blur(4px)}
+    
+    .hint{position:fixed;right:26px;bottom:22px;z-index:30;color:rgba(197,160,89,.46);font-size:12px;font-weight:780;letter-spacing:.08em}
+    .is-fullscreen .hint{opacity:0}
+    
+    .note-panel{
+      position:fixed;left:22px;top:22px;z-index:60;width:min(510px,46vw);max-height:calc(100vh - 44px);overflow:auto;
+      display:none;border-radius:26px;padding:20px 22px;background:rgba(7,9,14,.82);border:1px solid var(--line);
+      box-shadow:0 22px 70px rgba(0,0,0,.38);color:var(--muted);
+    }
+    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+      .note-panel{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    }
+    .show-notes .note-panel{display:block}
+    .note-panel h4{margin:0 0 10px;color:#fff;font-size:16px;font-family:'Cinzel', serif;}
+    .note-panel p{margin:0;font-size:14px;line-height:1.45}
+    .title-logos{display:flex;align-items:center;gap:22px;justify-content:center;margin-bottom:24px}
+    .rocket{font-weight:950;text-transform:uppercase;line-height:.86;letter-spacing:-.08em;font-size:clamp(18px,1.6vw,26px);text-align:left}
+    .bigmark{font-size:clamp(90px,11.5vw,180px);line-height:1;letter-spacing:-.07em;font-weight:950;color:transparent;background:linear-gradient(135deg,#ffffff,var(--cyan2) 42%,var(--blue2));-webkit-background-clip:text;background-clip:text;text-shadow:0 26px 70px rgba(197,160,89,.16);padding:.08em .16em .10em}
+    
+    .reveal{opacity:0;transform:translate3d(var(--from-x,0),var(--from-y,30px),0) scale(.985);filter:blur(22px);will-change:opacity,transform,filter}
+    .split > .reveal:first-child{--from-x:-34px;--from-y:18px}
+    .split > .reveal:nth-child(2){--from-x:34px;--from-y:18px}
+    .slide.active .reveal{animation:enter .90s cubic-bezier(.17,.82,.22,1) .06s forwards}
+    .slide.active .reveal.delay1{animation-delay:.18s}
+    .slide.active .reveal.delay2{animation-delay:.30s}
+    .slide.active .reveal.delay3{animation-delay:.42s}
+    .stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px);will-change:opacity,transform,filter}
+    .slide.active .stat,.slide.active .rail-item,.slide.active .step,.slide.active .plan-card,.slide.active .swot .box,.slide.active .smart,.slide.active .flow-step,.slide.active .chip{animation:itemEnter .78s cubic-bezier(.17,.82,.22,1) forwards}
+    .slide.active .stat:nth-child(1),.slide.active .rail-item:nth-child(1),.slide.active .step:nth-child(1),.slide.active .plan-card:nth-child(1),.slide.active .swot .box:nth-child(1),.slide.active .smart:nth-child(1),.slide.active .flow-step:nth-child(1),.slide.active .chip:nth-child(1){animation-delay:.28s}
+    .slide.active .stat:nth-child(2),.slide.active .rail-item:nth-child(2),.slide.active .step:nth-child(2),.slide.active .plan-card:nth-child(2),.slide.active .swot .box:nth-child(2),.slide.active .smart:nth-child(2),.slide.active .flow-step:nth-child(2),.slide.active .chip:nth-child(2){animation-delay:.36s}
+    .slide.active .stat:nth-child(3),.slide.active .rail-item:nth-child(3),.slide.active .step:nth-child(3),.slide.active .plan-card:nth-child(3),.slide.active .swot .box:nth-child(3),.slide.active .smart:nth-child(3),.slide.active .flow-step:nth-child(3),.slide.active .chip:nth-child(3){animation-delay:.44s}
+    .slide.active .stat:nth-child(4),.slide.active .rail-item:nth-child(4),.slide.active .step:nth-child(4),.slide.active .plan-card:nth-child(4),.slide.active .swot .box:nth-child(4),.slide.active .smart:nth-child(4),.slide.active .flow-step:nth-child(4),.slide.active .chip:nth-child(4){animation-delay:.52s}
+    
+    @keyframes enter{0%{opacity:0;transform:translate3d(var(--from-x,0),var(--from-y,30px),0) scale(.985);filter:blur(22px)}42%{opacity:.45;filter:blur(14px)}72%{opacity:.86;filter:blur(5px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+    @keyframes itemEnter{0%{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px)}46%{opacity:.50;filter:blur(10px)}76%{opacity:.88;filter:blur(4px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+    
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .reveal,.stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:1!important;transform:none!important;filter:none!important}
+    }
+    @media (max-width:980px){
+      :root{--pad:clamp(24px,5vw,46px)}
+      .split,.split.equal,.split.wide{grid-template-columns:1fr;gap:24px}
+      .statline,.timeline{grid-template-columns:1fr 1fr}
+      .plan-grid{grid-template-columns:1fr 1fr}
+      .smart-grid,.flow{grid-template-columns:1fr 1fr}
+      .flow-step:not(:last-child)::after{display:none}
+      .stat{min-height:110px}
+      .brand{font-size:10px}.section{font-size:10px}
+      .hint{display:none}
+    }
+    @media (max-width:680px),(max-aspect-ratio:4/3){
+      html,body{overflow:auto}
+      .deck{width:100vw;max-width:100vw;height:100dvh;top:0;transform:none;overflow:hidden}
+      .slide{width:100vw;max-width:100vw;overflow-y:auto;overflow-x:hidden;padding:24px 22px 64px;gap:16px}
+      .slide::before,.slide::after{inset:8px;border-radius:26px}
+      .top{align-items:flex-start}.brand .bar,.brand .school{display:none}
+      .section{display:none}
+      .statline,.timeline{grid-template-columns:1fr}
+      .plan-grid,.smart-grid,.flow,.swot{grid-template-columns:1fr}
+      .statline[style]{grid-template-columns:1fr!important}
+      .funnel-row{grid-template-columns:66px 1fr 48px}
+      .content,.center,.narrow,.split,.rail,.timeline,.statline,.funnel,.plan-grid,.smart-grid,.flow,.swot{width:100%;max-width:calc(100vw - 108px)!important;min-width:0}
+      .rail-item,.rail-text,.step,.stat,.quote,.glass,.plan-card,.smart,.flow-step,.swot .box{width:100%;min-width:0;max-width:100%}
+      h1,h2,.lead,.rail-text,.step p{width:calc(100vw - 108px)!important;max-width:calc(100vw - 108px)!important}
+      h1{font-size:clamp(26px,9vw,38px);line-height:1;overflow-wrap:break-word}
+      h2{font-size:clamp(24px,8vw,36px);line-height:1.02;overflow-wrap:break-word}
+      .lead{font-size:clamp(15px,4.5vw,20px)}
+      .rail-text,.step p{font-size:clamp(14px,4vw,17px);line-height:1.25;overflow-wrap:anywhere;word-break:break-word;hyphens:auto}
+      .chip{font-size:13px;padding:9px 12px}
+      .foot{font-size:10px}.progress-mini{width:92px}
+      .fs-btn{display:none}
+    }
+    @media print{
+      @page{size:16in 9in;margin:0}
+      html,body{width:16in;height:auto;overflow:visible;background:#07090E}
+      .ambient,.rays,.fs-btn,.hint,.note-panel,.deck-frame,.chrome{display:none!important}
+      .deck{position:static;width:16in;height:auto;transform:none;overflow:visible;contain:none}
+      .slide{position:relative;width:16in;height:9in;opacity:1;filter:none;transform:none;page-break-after:always;break-after:page;display:grid;overflow:hidden;background:
+        radial-gradient(900px 620px at 84% 0%,rgba(197,160,89,.18),transparent 62%),
+        radial-gradient(780px 540px at 0% 100%,rgba(146,117,63,.22),transparent 64%),
+        linear-gradient(145deg,#07090E,#16120b 48%,#1f180e 100%)}
+      .split{grid-template-columns:minmax(0,1.15fr) minmax(280px,.85fr)!important}
+      .split.equal{grid-template-columns:1fr 1fr!important}
+      .split.wide{grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr)!important}
+      .statline{grid-template-columns:repeat(4,1fr)!important}
+      .timeline{grid-template-columns:repeat(3,1fr)!important}
+      .plan-grid{grid-template-columns:repeat(4,1fr)!important}
+      .smart-grid{grid-template-columns:repeat(5,1fr)!important}
+      .flow{grid-template-columns:repeat(5,1fr)!important}
+      .swot{grid-template-columns:1fr 1fr!important}
+      .slide .reveal{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+    }
+
+    /* Widgets Spécifiques de Julien */
+    .visual-panel {
+      background: rgba(11, 15, 24, 0.8);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      aspect-ratio: 4/3;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 28px 12px 10px 12px;
+      box-sizing: border-box;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .visual-panel > * {
+      margin: auto;
+    }
+    .visual-panel::before {
+      content: 'PANEL // OBSERVATION SYSTEM';
+      position: absolute;
+      top: 10px;
+      left: 15px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.55rem;
+      color: var(--cyan);
+      letter-spacing: 1.5px;
+      opacity: 0.6;
+      z-index: 10;
+    }
+    .calc-table {
+      width: 96%;
+      border-collapse: collapse;
+      font-size: 0.63rem;
+      margin: auto;
+    }
+    .calc-table th {
+      border-bottom: 2px solid var(--cyan);
+      color: var(--cyan);
+      font-family: 'Cinzel', serif;
+      padding: 4px 6px;
+      text-align: left;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .calc-table td {
+      padding: 4px 6px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      color: var(--muted);
+    }
+    .calc-table tr:hover td {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.01);
+    }
+    .highlight-accent {
+      color: var(--cyan) !important;
+      font-weight: 700;
+    }
+    .highlight-alert {
+      color: var(--rose) !important;
+      font-weight: 700;
+    }
+    .pie-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+    .pie-chart {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.8);
+      position: relative;
+      transition: background 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+    }
+    .pie-chart::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 80px;
+      height: 80px;
+      background: #07090E;
+      border-radius: 50%;
+    }
+    .pie-legend {
+      display: flex;
+      gap: 8px;
+      font-size: 0.72rem;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .legend-color {
+      width: 10px;
+      height: 10px;
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+    .profiler-container {
+      width: 80%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .profiler-bar-row {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .profiler-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.7rem;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+    .profiler-bar-bg {
+      width: 100%;
+      height: 6px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 3px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .profiler-bar-fill {
+      height: 100%;
+      background: var(--cyan);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+    }
+    .circle-progress-container {
+      position: relative;
+      width: 100px;
+      height: 100px;
+    }
+    .circle-svg {
+      transform: rotate(-90deg);
+    }
+    .circle-bg {
+      fill: none;
+      stroke: rgba(255, 255, 255, 0.03);
+      stroke-width: 5;
+    }
+    .circle-fill {
+      fill: none;
+      stroke: var(--cyan);
+      stroke-width: 5;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.5s cubic-bezier(0.1, 0.8, 0.1, 1);
+    }
+    .circle-value {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Cinzel', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--cyan);
+    }
+    .hex-imbriques {
+      display: flex;
+      gap: 12px;
+    }
+    .hex-small {
+      width: 75px;
+      height: 85px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.58rem;
+      text-align: center;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      font-weight: 750;
+      padding: 5px;
+    }
+    .hex-grey {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .hex-blue {
+      background: var(--cyan);
+      color: var(--deep);
+    }
+    .gantt-chart {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      position: relative;
+    }
+    .gantt-row {
+      display: grid;
+      grid-template-columns: 1fr 3.2fr;
+      align-items: center;
+      gap: 12px;
+    }
+    .gantt-label {
+      font-size: 0.65rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: 600;
+      text-align: right;
+    }
+    .gantt-bar-bg {
+      width: 100%;
+      height: 8px;
+      background: rgba(255, 255, 255, 0.04);
+      border-radius: 4px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+    }
+    .gantt-bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      width: 0%;
+      transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
+    }
+    .gantt-bar-fill.bar-1 { background: var(--cyan); }
+    .gantt-bar-fill.bar-2 { background: var(--cyan2); }
+    .gantt-bar-fill.bar-3 { background: #FFFFFF; }
+    .gantt-veto-line {
+      position: absolute;
+      top: 0;
+      left: 55%;
+      width: 2px;
+      height: 100%;
+      background: var(--rose);
+      box-shadow: 0 0 10px var(--rose);
+    }
+    .gantt-veto-tag {
+      position: absolute;
+      top: -22px;
+      left: 55%;
+      transform: translateX(-50%);
+      font-size: 0.52rem;
+      background: var(--rose);
+      color: #FFFFFF;
+      padding: 2px 6px;
+      border-radius: 2px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .roi-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 90%;
+    }
+    .flow-step-roi {
+      border: 1px solid rgba(255, 255, 255, 0.03);
+      background: rgba(255, 255, 255, 0.005);
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.68rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .flow-step-roi.final {
+      border-color: var(--cyan);
+      background: rgba(197, 160, 89, 0.05);
+    }
+    .flow-label-roi {
+      color: var(--muted);
+    }
+    .flow-val-roi {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      color: var(--text);
+    }
+    .flow-arrow-roi {
+      width: 2px;
+      height: 12px;
+      background: var(--cyan);
+      margin: 0 auto;
+      opacity: 0.6;
+    }
+  </style>
 </head>
 <body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="rays" aria-hidden="true"></div>
+  <button id="fullscreenBtn" class="fs-btn" type="button" aria-label="Mettre la présentation en plein écran">Mettre en plein écran</button>
+  <aside id="notePanel" class="note-panel"><h4>Notes orales</h4><p id="noteText"></p></aside>
+  <div class="hint">← → naviguer · F plein écran · N notes</div>
 
-    <!-- Barre de Progression Fine Or -->
-    <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
+  <main id="deck" class="deck" aria-live="polite">
+    <div class="deck-frame" aria-hidden="true"></div>
+    <div class="chrome" aria-hidden="true">
+      <div class="chrome-top">
+        <div class="chrome-brand">
+          <div class="digitair">Happy<span>House</span></div>
+          <div class="bar"></div>
+          <div>Julien Florence</div>
+        </div>
+        <div id="chromeSection" class="chrome-section">Introduction</div>
+      </div>
+      <div></div>
+      <div class="chrome-bottom">
+        <div id="chromeFootLabel" class="chrome-foot-label">Soutenance RDM</div>
+        <div id="chromePage" class="chrome-page">01</div>
+      </div>
+      <div class="chrome-progress"><i></i></div>
     </div>
 
-    <!-- En-tête Fixe style Dashboard -->
-    <div class="dashboard-header">
-        <div class="db-logo">
-            <span class="db-logo-icon">HH</span>
-            <span class="db-part-title" id="dbPartTitle">INTRODUCTION</span>
+    <!-- SLIDE 1 : PAGE DE GARDE -->
+    <section class="slide active" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Ouverture de la soutenance. Se présenter, introduire le tuteur Patrice Kermarrec et annoncer l'idée centrale : structurer un modèle scalable et rentable en passant de l'artisanat commercial à un système d'acquisition B2B.">
+      <div class="top reveal">
+        <div class="title-logos">
+          <div class="rocket" style="font-family: 'Cinzel'; color: var(--cyan2);">Rocket<br>School</div>
+          <div class="digitair" style="font-family: 'Cinzel'; font-size: clamp(20px, 1.8vw, 30px); text-transform: uppercase;">Happy<span>House</span></div>
         </div>
-        <div class="db-status-badge">
-            <span class="db-status-dot"></span> DECISION COCKPIT
+        <div class="section">Introduction</div>
+      </div>
+      <div class="content center reveal delay1">
+        <div class="eyebrow">Soutenance · Bachelor Responsable Marketing B2B</div>
+        <h1>Soutenance de Rapport de <span class="grad">Mission (RDM)</span></h1>
+        <p class="lead" style="margin-left:auto;margin-right:auto; font-weight: 300;">Analyse des processus d'acquisition numérique et restructuration du cycle de vie adhérent.</p>
+        <div class="chips" style="justify-content:center">
+          <span class="chip">Julien Florence</span>
+          <span class="chip">Chargé du Développement Stratégique B2B</span>
+          <span class="chip">Oral · 20 min</span>
         </div>
-        <div class="db-slide-counter" id="dbSlideCounter">[ SLIDE 01 / 16 ]</div>
-    </div>
+      </div>
+      <div class="foot reveal delay2"><span>Introduction</span><div class="progress-mini"><i></i></div><span>01</span></div>
+    </section>
 
-    <!-- Zones de navigation flottantes latérales -->
-    <button class="btn-nav-floating left" id="btnPrev" aria-label="Slide Précédente">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-    </button>
-    <button class="btn-nav-floating right" id="btnNext" aria-label="Slide Suivante">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-    </button>
-
-    <!-- Conteneur principal des Slides -->
-    <div class="deck">
-
-        <!-- SLIDE 0 : PAGE DE GARDE -->
-        <div class="slide active" id="slide-0" data-part="INTRODUCTION">
-            <div class="layout-title-page">
-                <div class="hexagon-logo">
-                    <span>HH</span>
-                </div>
-                <h1>Happy House</h1>
-                <h2>Soutenance de Rapport de Mission (RDM)</h2>
-                <div style="width: 80px; height: 1px; background: var(--accent); margin: 0 auto 25px;"></div>
-                <div style="font-family: 'Cinzel'; font-size: 1.1rem; letter-spacing: 3px; font-weight: 600;">
-                    Julien Florence
-                </div>
-                <div style="font-size: 0.8rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 2px; margin-top: 8px;">
-                    Chargé du Développement Stratégique B2B
-                </div>
-            </div>
+    <!-- SLIDE 2 : PARCOURS & COMPÉTENCES -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Présentation de mon parcours multi-sectoriel. Comment mon expérience en restauration gastronomique étoilée, en gestion immobilière et en RH a développé ma résilience, mon exigence du service client haut de gamme et ma rigueur managériale.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Parcours & Légitimité</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Le Point & L'Enjeu</div>
+          <h2>Un parcours multi-sectoriel au service de <span class="grad">l'exigence B2B</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Management d'équipes et d'actifs, standards de service exigeants (Michelin) et discipline sportive transférés au développement de réseau.</p>
         </div>
-
-        <!-- SLIDE 1 : Parcours Professionnel & Compétences B2B (Partie 1 - A) -->
-        <div class="slide" id="slide-1" data-part="Partie 1 : Alignement du Profil">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Parcours Professionnel & Compétences</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Point (Le Fait)</div>
-                            <div class="point-text">Un parcours multi-sectoriel associant la restauration gastronomique (sommelier, direction d'établissement), l'immobilier, la gestion RH et la discipline du <strong>sport de compétition</strong>.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">La Raison (L'Enjeu)</div>
-                            <div class="point-text">Compétences transférables : gestion d'actifs, standards de service exigeants, management d'équipe et <strong>rigueur sportive</strong> (résilience et orientation résultats).</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Chiffre (La Data)</div>
-                            <div class="point-text">Plus de <strong>15 ans d'expérience</strong> opérationnelle combinant management de terrain et atteinte d'objectifs commerciaux.</div>
-                        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="pie-container" style="width: 90%; gap: 12px; margin: auto;">
+                <div class="pie-chart" id="pieChartExperience" style="background: conic-gradient(var(--cyan) 0% 35%, var(--cyan2) 35% 65%, #FFFFFF 65% 85%, var(--muted) 85% 100%);"></div>
+                <div class="pie-legend" style="flex-direction: column; gap: 4px; width: 100%; align-items: flex-start; padding-left: 10px; font-size: 0.65rem;">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--cyan);"></div>
+                        <div style="color: #FFFFFF;">35% - Restauration (Sommelier étoilé & Direction)</div>
                     </div>
-                </div>
-                <div class="visual-panel">
-                    <div class="pie-container" style="width: 90%; gap: 12px;">
-                        <div class="pie-chart" style="background: conic-gradient(var(--accent) 0% 35%, var(--accent-glow) 35% 65%, var(--text-pure) 65% 85%, #94A3B8 85% 100%);"></div>
-                        <div class="pie-legend" style="flex-direction: column; gap: 5px; width: 100%; align-items: flex-start; padding-left: 10px;">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: var(--accent);"></div>
-                                <div style="font-size: 0.62rem; color: var(--text-pure); text-align: left;">35% - Restauration Gastronomique (Sommelier en établissement étoilé & Direction)</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: var(--accent-glow);"></div>
-                                <div style="font-size: 0.62rem; color: var(--text-dim); text-align: left;">30% - Immobilier Premium (Gestion d'Agences & d'Actifs)</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: var(--text-pure);"></div>
-                                <div style="font-size: 0.62rem; color: var(--text-dim); text-align: left;">20% - Ressources Humaines (Gestion de Comptes RH)</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: #94A3B8;"></div>
-                                <div style="font-size: 0.62rem; color: var(--text-dim); text-align: left;">15% - Sport de Compétition (Discipline & Résilience)</div>
-                            </div>
-                        </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--cyan2);"></div>
+                        <div style="color: var(--muted);">30% - Immobilier Premium (Gestion d'Actifs)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: #FFFFFF;"></div>
+                        <div style="color: var(--muted);">20% - Ressources Humaines (Comptes RH)</div>
+                    </div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--muted);"></div>
+                        <div style="color: var(--muted);">15% - Sport de Compétition (Discipline & Résilience)</div>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Parcours</span><div class="progress-mini"><i></i></div><span>02</span></div>
+    </section>
 
-        <!-- SLIDE 2 : Profil Comportemental & Posture Professionnelle (Partie 1 - B) -->
-        <div class="slide" id="slide-2" data-part="Partie 1 : Alignement du Profil">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Profil Comportemental & Posture</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Contexte</div>
-                            <div class="point-text">Intégration de <strong>Rocket School</strong> pour acquérir la maîtrise des outils de marketing digital, de l'IA et de l'automatisation des processus.</div>
-                        </div>
-                        <div class="point-box maladie">
-                            <div class="point-label">La Friction (Biais Comportemental)</div>
-                            <div class="point-text">Le risque du profil <strong>ENTJ-A (Commandant)</strong> : tendance à adopter une posture de "parent critique" face aux processus managériaux en place.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Levier (La Solution)</div>
-                            <div class="point-text">Prise de hauteur et communication en <strong>Position Adulte</strong> (Analyse Transactionnelle). Réalisation d'un diagnostic purement quantitatif et factuel.</div>
-                        </div>
-                    </div>
+    <!-- SLIDE 3 : PROFIL COMPORTEMENTAL & POSTURE -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Mon profil comportemental ENTJ-A. Importance d'apprendre à réguler le biais de parent critique pour basculer en posture d'adulte neutre. Réalisation d'un diagnostic et d'une analyse quantitative rigoureuse pour éviter l'impulsion commerciale.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Profil comportemental</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">MBTI & Posture</div>
+          <h2>Profil ENTJ-A et posture <span class="grad">d'Adulte neutre</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Régulation du biais de 'parent critique' inhérent au profil Commandant, par une posture objective et un diagnostic factuel.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="profiler-container" style="margin: auto;">
+                <div class="profiler-bar-row">
+                    <div class="profiler-header"><span>Rationnel</span><span>94%</span></div>
+                    <div class="profiler-bar-bg"><div class="profiler-bar-fill fill-rational" style="width: 94%;"></div></div>
                 </div>
-                <div class="visual-panel">
-                    <div class="profiler-container">
-                        <div class="profiler-bar-row">
-                            <div class="profiler-header"><span>Rationnel</span><span>94%</span></div>
-                            <div class="profiler-bar-bg"><div class="profiler-bar-fill" style="width: 94%;"></div></div>
-                        </div>
-                        <div class="profiler-bar-row">
-                            <div class="profiler-header"><span>Organisé</span><span>94%</span></div>
-                            <div class="profiler-bar-bg"><div class="profiler-bar-fill" style="width: 94%;"></div></div>
-                        </div>
-                        <div class="profiler-bar-row">
-                            <div class="profiler-header"><span>Posture Adulte Neutre (Objectif)</span><span>85%</span></div>
-                            <div class="profiler-bar-bg"><div class="profiler-bar-fill" style="width: 85%; background: var(--accent-glow);"></div></div>
-                        </div>
+                <div class="profiler-bar-row" style="margin-top: 10px;">
+                    <div class="profiler-header"><span>Organisé</span><span>94%</span></div>
+                    <div class="profiler-bar-bg"><div class="profiler-bar-fill fill-organized" style="width: 94%;"></div></div>
+                </div>
+                <div class="profiler-bar-row" style="margin-top: 10px;">
+                    <div class="profiler-header"><span>Posture Adulte</span><span>85%</span></div>
+                    <div class="profiler-bar-bg"><div class="profiler-bar-fill fill-adulte" style="width: 85%; background: var(--cyan2);"></div></div>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Posture</span><div class="progress-mini"><i></i></div><span>03</span></div>
+    </section>
+
+    <!-- SLIDE 4 : FONDATIONS & OFFRE HAPPY HOUSE -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="L'écosystème Happy House. Présentation de la proposition de valeur en 4 briques fondamentales qui structurent le réseau : un label qualité de confiance, des solutions applicatives/CRM, un levier de visibilité directe et une centrale de cost-killing.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Écosystème</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Proposition de valeur</div>
+          <h2>Quatre piliers de service <span class="grad">coopératif</span></h2>
+          <p class="sub" style="font-size: 0.90rem; margin-top: 10px; font-weight: 300; line-height: 1.5;">
+            <strong>01 // Label Qualité</strong> : Labellisation selon une charte d'éco-responsabilité.<br>
+            <strong>02 // App Mobile & CRM</strong> : Outils de pilotage voyageurs et CRM hébergeur.<br>
+            <strong>03 // Double Visibilité Web</strong> : Portail collectif et SEO ciblé direct.<br>
+            <strong>04 // Centrale d'Achat</strong> : Tarifs négociés via Entegra pour le cost-killing.
+          </p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="dashboard-organique" style="width: 90%; gap: 10px; margin: auto; display: flex; flex-direction: column;">
+                <div class="dashboard-header-card" style="border: 1px solid rgba(197, 160, 89, 0.15); background: rgba(197, 160, 89, 0.02); padding: 8px; border-radius: 4px; text-align: center;">
+                    <div style="font-family: 'Cinzel'; font-size: 0.65rem; color: var(--cyan); letter-spacing: 2px; text-transform: uppercase;">Fondé en 2017 par P. Kermarrec</div>
+                    <div style="font-family: 'Cinzel'; font-size: 1.1rem; font-weight: 700; margin-top: 3px;">HAPPY HOUSE</div>
+                </div>
+                <div class="dashboard-stats" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 5px;">
+                    <div class="stat-card" style="border: 1px solid rgba(255, 255, 255, 0.04); background: rgba(255, 255, 255, 0.01); padding: 10px 5px; border-radius: 4px; text-align: center;">
+                        <div style="font-family: 'Cinzel'; font-size: 1.3rem; color: var(--cyan); font-weight: 700;">146</div>
+                        <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase;">Membres</div>
+                    </div>
+                    <div class="stat-card" style="border: 1px solid rgba(255, 255, 255, 0.04); background: rgba(255, 255, 255, 0.01); padding: 10px 5px; border-radius: 4px; text-align: center;">
+                        <div style="font-family: 'Cinzel'; font-size: 1.3rem; color: var(--cyan2); font-weight: 700;">10k</div>
+                        <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase;">Cible</div>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Offre & Objectifs</span><div class="progress-mini"><i></i></div><span>04</span></div>
+    </section>
 
-        <!-- SLIDE 3 : Fondations & Cible Marché (Partie 2 - A) -->
-        <div class="slide" id="slide-3" data-part="Partie 2 : L'Écosystème Happy House">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Fondations & Offre Happy House</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">01 // Label Qualité</div>
-                            <div class="point-text">Sélection et labellisation des hébergements selon une charte d'excellence et d'engagement solidaire.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">02 // Application Mobile & CRM</div>
-                            <div class="point-text">Application mobile dédiée à l'expérience voyageurs et outils CRM (Bitrix24) de pilotage et onboarding pour l'hébergeur.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">03 // Double Visibilité Web</div>
-                            <div class="point-text">Diffusion multi-canal combinant le portail collectif du réseau et le référencement direct (SEO/Maps) de l'établissement.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">04 // Centrale d'Achat</div>
-                            <div class="point-text">Mutualisation des volumes avec la centrale Entegra pour générer des remises immédiates sur les coûts d'exploitation.</div>
-                        </div>
-                    </div>
+    <!-- SLIDE 5 : MODÉLISATION & ÉCARTS MARCHÉ -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Calcul de dimensionnement du marché. Montrer qu'avec 1,46% de taux de réalisation sur une ambition nationale à 10 000 hébergeurs, la prospection manuelle froide outbound est sous-dimensionnée de 9 854 signatures.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Modélisation</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Calcul de pénétration</div>
+          <h2>Le défi de la <span class="grad">scalabilité du réseau</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Un CA récurrent potentiel de 3M€ pour 10 000 hébergeurs. L'écart de 9 854 signatures prouve que le modèle outbound artisanal est dépassé.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <table class="calc-table">
+                <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Valeur / Formule</th>
+                        <th>Résultat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Marché Français</td>
+                        <td>Hébergeurs globaux</td>
+                        <td>1 000 000</td>
+                    </tr>
+                    <tr>
+                        <td>Cible Solidaire (1%)</td>
+                        <td>1 000 000 × 0.01</td>
+                        <td class="highlight-accent">10 000</td>
+                    </tr>
+                    <tr>
+                        <td>CA Potentiel Annuel</td>
+                        <td>10 000 × 300 € HT</td>
+                        <td class="highlight-accent">3 000 000 €</td>
+                    </tr>
+                    <tr>
+                        <td>Taux de Réalisation</td>
+                        <td>(146 / 10 000) × 100</td>
+                        <td class="highlight-alert">1.46 %</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Écart marché</span><div class="progress-mini"><i></i></div><span>05</span></div>
+    </section>
+
+    <!-- SLIDE 6 : DIAGNOSTIC & URGENCE DIGITALE -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Diagnostic sectoriel. La dépendance de 71% vis-à-vis des OTAs détruit la relation client et la souveraineté. L'urgence est renforcée par le nouveau label Destination d'Excellence (+45%/an pour Clef Verte).">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Diagnostic</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Réglementations & Menaces</div>
+          <h2>Une urgence de conformité et <span class="grad">de souveraineté</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Forte dépendance à 71% aux OTAs avec perte de la propriété de la donnée client, combinée à la pression du nouveau label Destination d'Excellence.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="circle-progress-container" style="margin: auto; display: flex; flex-direction: column; align-items: center;">
+                <div style="position: relative; width: 100px; height: 100px;">
+                    <svg class="circle-svg" width="100" height="100">
+                        <circle class="circle-bg" cx="50" cy="50" r="42"></circle>
+                        <circle class="circle-fill" id="circularProgress" cx="50" cy="50" r="42" style="stroke-dasharray: 264; stroke-dashoffset: 264;"></circle>
+                    </svg>
+                    <div class="circle-value" style="font-size: 1.2rem;">+45%</div>
                 </div>
-                <div class="visual-panel">
-                    <div class="dashboard-organique">
-                        <div class="dashboard-header-card">
-                            <div style="font-family: 'Cinzel'; font-size: 0.65rem; color: var(--accent); letter-spacing: 2px; text-transform: uppercase;">Fondé en 2017 par P. Kermarrec</div>
-                            <div style="font-family: 'Cinzel'; font-size: 1.3rem; font-weight: 700; margin-top: 5px;">HAPPY HOUSE</div>
-                        </div>
-                        <div class="dashboard-stats">
-                            <div class="stat-card">
-                                <div class="stat-value">146</div>
-                                <div class="stat-label">Membres Actuels</div>
-                            </div>
-                            <div class="stat-card">
-                                <div class="stat-value" style="color: var(--accent-glow);">10k</div>
-                                <div class="stat-label">Objectif Hébergeurs</div>
-                            </div>
-                        </div>
+                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; margin-top: 5px; text-align: center;">Hausse Clef Verte / An</div>
+            </div>
+            <div class="hex-imbriques" style="margin-top: 5px;">
+                <div class="hex-small hex-grey" style="font-size: 0.5rem; height: 60px; width: 55px;">OTAs<br>71%</div>
+                <div class="hex-small hex-blue" style="font-size: 0.5rem; height: 60px; width: 55px; background: var(--cyan); color: var(--deep);">Solution<br>Portail</div>
+            </div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Urgence digitale</span><div class="progress-mini"><i></i></div><span>06</span></div>
+    </section>
+
+    <!-- SLIDE 7 : RUPTURE DES UNIT ECONOMICS -->
+    <section class="slide" data-palette="#E15B5B,#C5A059,#07090E" data-notes="Impasse financière. La prospection à froid par Cold Calling est hautement déficitaire : un CAC à 1823 € face à une LTV nette de 290 € (due au taux de churn de 80%). Le modèle de vente traditionnel détruit la valeur.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Unit Economics</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Impasse Financière</div>
+          <h2>Un coût d'acquisition qui détruit <span class="grad">la marge client</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">La prospection froide téléphonique (Cold Calling) présente un déficit d'efficience avec un ratio LTV / CAC de seulement 0,16.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div style="width: 100%; display: flex; flex-direction: column; align-items: center; margin: auto;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; margin-bottom: 5px;">Efficience LTV / CAC (Outbound)</div>
+                <div style="width: 90%; height: 12px; background: rgba(255,255,255,0.03); border-radius: 6px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05); position: relative;">
+                    <div id="efficiencyFill" style="height: 100%; width: 0%; background: var(--rose); border-radius: 6px; transition: width 1.2s ease;"></div>
+                </div>
+                <div style="font-size: 0.6rem; color: var(--rose); font-weight: 700; margin-top: 3px;">0.16 (Seuil min : 3.0)</div>
+                <div class="comparison-cards" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; width: 90%; margin-top: 10px;">
+                    <div class="comp-card red" style="border: 1px solid rgba(225, 91, 91, 0.25); background: rgba(225, 91, 91, 0.01); border-radius: 4px; padding: 6px; text-align: center;">
+                        <div style="font-size: 0.55rem; color: var(--muted); text-transform: uppercase;">CAC Réel</div>
+                        <div style="font-family: 'Cinzel'; font-size: 1.1rem; font-weight: 700; color: var(--rose);">1 823 €</div>
+                    </div>
+                    <div class="comp-card gold" style="border: 1px solid rgba(197, 160, 89, 0.25); background: rgba(197, 160, 89, 0.01); border-radius: 4px; padding: 6px; text-align: center;">
+                        <div style="font-size: 0.55rem; color: var(--muted); text-transform: uppercase;">LTV Nette</div>
+                        <div style="font-family: 'Cinzel'; font-size: 1.1rem; font-weight: 700; color: var(--cyan);">290 €</div>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Déficit d'acquisition</span><div class="progress-mini"><i></i></div><span>07</span></div>
+    </section>
 
-        <!-- SLIDE 4 (NOUVELLE) : Cible Marché - Le Calcul Détaillé (Partie 2 - A.1) -->
-        <div class="slide" id="slide-4" data-part="Partie 2 : L'Écosystème Happy House">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Modélisation & Écarts Marché</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Calcul</div>
-                            <div class="point-text">Sur un marché de <strong>1 000 000 d'hébergeurs</strong> en France, cibler 1 % représente <strong>10 000 hébergeurs</strong>. Cotisation de 300 € HT/an.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Raisonnement</div>
-                            <div class="point-text">Un CA récurrent annuel potentiel de <strong>3 000 000 € HT</strong> pour la tête de réseau. Avec 146 membres, le taux de pénétration actuel n'est que de <strong>1,46 %</strong> de l'objectif.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">L'Écart</div>
-                            <div class="point-text">L'écart de <strong>9 854 signatures</strong> restant prouve qu'un modèle basé sur la prospection artisanale outbound est sous-dimensionné.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-panel">
-                    <table class="calc-table">
-                        <thead>
-                            <tr>
-                                <th>Indicateur</th>
-                                <th>Formule / Valeur</th>
-                                <th>Résultat</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Marché Global Français</td>
-                                <td>Données INSEE / OTAs</td>
-                                <td>1 000 000</td>
-                            </tr>
-                            <tr>
-                                <td>Cible Solidaire (1%)</td>
-                                <td>1 000 000 × 0.01</td>
-                                <td class="highlight-accent">10 000</td>
-                            </tr>
-                            <tr>
-                                <td>CA Potentiel Annuel</td>
-                                <td>10 000 × 300 € HT</td>
-                                <td class="highlight-accent">3 000 000 €</td>
-                            </tr>
-                            <tr>
-                                <td>Taux de Réalisation</td>
-                                <td>(146 / 10 000) × 100</td>
-                                <td class="highlight-alert">1.46 %</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+    <!-- SLIDE 8 : CALCUL & FORMULES DES UNIT ECONOMICS -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Détail mathématique des calculs. Coût mensuel outbound (outils, temps) de 5469 € divisé par 3 signatures. Cotisation HT de 300 € / an ramenée à 232 € de marge nette avec Churn de 80% (1,25 an d'espérance de vie).">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Détail des calculs</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Formules & Rigueur</div>
+          <h2>Modélisation mathématique du <span class="grad">déficit d'acquisition</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Chaque signature à froid génère un déficit d'acquisition net de 1 533 €. Plus Happy House vend sous ce format, plus les pertes augmentent.</p>
         </div>
+        <div class="visual-panel reveal delay1">
+            <table class="calc-table">
+                <thead>
+                    <tr>
+                        <th>Indicateur</th>
+                        <th>Calcul / Composant</th>
+                        <th>Montant</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Coût Outbound</td>
+                        <td>Mensuel (outils, temps)</td>
+                        <td>5 469 €</td>
+                    </tr>
+                    <tr>
+                        <td>CAC Unitaire</td>
+                        <td>5 469 € / 3 signatures</td>
+                        <td class="highlight-alert">1 823 €</td>
+                    </tr>
+                    <tr>
+                        <td>LTV Nette Unitaire</td>
+                        <td>232 € marge × 1.25 an (1/0.80 churn)</td>
+                        <td class="highlight-accent">290 €</td>
+                    </tr>
+                    <tr>
+                        <td>Déficit Net</td>
+                        <td>LTV (290 €) - CAC (1 823 €)</td>
+                        <td class="highlight-alert">-1 533 €</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Calculs détaillés</span><div class="progress-mini"><i></i></div><span>08</span></div>
+    </section>
 
-        <!-- SLIDE 5 : Diagnostic Sectoriel & Urgence Digitale (Partie 2 - B) -->
-        <div class="slide" id="slide-5" data-part="Partie 2 : L'Écosystème Happy House">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Diagnostic & Urgence Digitale</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Contexte (ESG & Loi ALUR/Le Meur)</div>
-                            <div class="point-text">Pression du label <strong>Clef Verte (+45%/an)</strong> et durcissement des réglementations. Les hébergeurs isolés n'ont plus les moyens de se conformer seuls.</div>
-                        </div>
-                        <div class="point-box maladie">
-                            <div class="point-label">La Friction (Dysfonctionnement structurel)</div>
-                            <div class="point-text"><strong>Dépendance de 71 % aux OTAs</strong> et perte de la propriété de la donnée client (Data). Risque de perte d'autonomie numérique pour les exploitants ruraux.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Levier (La Solution)</div>
-                            <div class="point-text">Déploiement d'une <strong>plateforme web mutualisée</strong> (my-happyhouse.com) pour reconquérir la relation client directe et digitaliser le parcours voyageur.</div>
-                        </div>
+    <!-- SLIDE 9 : VOLUME D'ACQUISITION VS. RÉTENTION -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Volume vs Rétention. Le problème fondamental n'est pas la signature brute de contrats, mais l'usage du service. 94,5% des adhérents sont inactifs (8 actifs sur 146). Il faut combler le trou d'usage post-vente.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Volume vs Rétention</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Priorité stratégique</div>
+          <h2>Le décalage d'usage comme <span class="grad">limite du modèle</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Avec 25% de commissions prélevées par les OTAs, Happy House doit fournir un accompagnement structuré, l'usage étant le pivot de la fidélité.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="pie-container" style="margin: auto;">
+                <div class="pie-chart" id="pieChartInactivity" style="background: conic-gradient(var(--cyan) 0% 5.5%, rgba(255, 255, 255, 0.03) 5.5% 100%);"></div>
+                <div class="pie-legend" style="margin-top: 10px; font-size: 0.72rem;">
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: var(--cyan);"></div>
+                        <div style="color: #FFFFFF;">5.5% Actifs (8/146)</div>
                     </div>
-                </div>
-                <div class="visual-panel">
-                    <div class="circle-progress-container">
-                        <svg class="circle-svg" width="130" height="130">
-                            <circle class="circle-bg" cx="65" cy="65" r="55"></circle>
-                            <circle class="circle-fill" id="circularProgress" cx="65" cy="65" r="55"></circle>
-                        </svg>
-                        <div class="circle-value">+45%</div>
-                    </div>
-                    <div class="hex-imbriques">
-                        <div class="hex-small hex-grey">Biais:<br>71% OTAs</div>
-                        <div class="hex-small hex-blue">Solution:<br>Plateforme</div>
+                    <div class="legend-item">
+                        <div class="legend-color" style="background: rgba(255, 255, 255, 0.03);"></div>
+                        <div style="color: var(--muted);">94.5% Inactifs</div>
                     </div>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Usage & Rétention</span><div class="progress-mini"><i></i></div><span>09</span></div>
+    </section>
 
-        <!-- SLIDE 6 : Rupture des Unit Economics (Partie 3 - A) -->
-        <div class="slide" id="slide-6" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Rupture des Unit Economics</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Point (Le Fait)</div>
-                            <div class="point-text">Le modèle d'acquisition historique, basé sur la <strong>prospection téléphonique à froid (Cold Calling)</strong>, présente un déficit d'efficience financière.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">La Raison (L'Enjeu)</div>
-                            <div class="point-text">La viabilité du modèle repose sur un <strong>Coût d'Acquisition Client (CAC)</strong> inférieur à la valeur générée par la cotisation.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Chiffre (La Data)</div>
-                            <div class="point-text">Ratio LTV / CAC de <strong>0,16</strong>, largement inférieur au seuil de rentabilité standard. Un CAC de <strong>1 823 €</strong> face à une LTV nette de <strong>290 €</strong> (80% de Churn).</div>
-                        </div>
-                    </div>
+    <!-- SLIDE 10 : RÉTENTION & ENTONNOIR D'ACTIVATION -->
+    <section class="slide" data-palette="#E15B5B,#C5A059,#07090E" data-notes="Entonnoir d'engagement. Le diagnostic démontre une fuite colossale de 94,5% de l'usage. La solution consiste à déplacer les ressources commerciales vers l'onboarding et l'activation pour abaisser le churn cible à 15%.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Entonnoir</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Friction & Levier</div>
+          <h2>Activer l'existant plutôt que <span class="grad">prospecter à perte</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">La réorientation des forces commerciales vers l'onboarding et la formation permet de réduire le taux d'attrition cible de 80% à 15%.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="funnel" style="width: 90%; margin: auto; font-size: 0.65rem;">
+                <div class="funnel-row" id="fun1" style="background: rgba(255,255,255,0.04); padding: 8px 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; width: 100%; transition: width 1s ease;">
+                    <b style="font-size: 1.1rem; color: #FFF; font-family: 'Cinzel';">146</b><span>Membres Signés</span><small style="color: var(--cyan2);">100%</small>
                 </div>
-                <div class="visual-panel">
-                    <div class="financial-crisis">
-                        <div style="font-size: 0.7rem; letter-spacing: 1px; color: var(--text-dim); text-transform: uppercase; text-align: center;">Efficience Commerciale (LTV / CAC)</div>
-                        <div class="efficiency-gauge">
-                            <div class="efficiency-fill" id="efficiencyFill1" style="width: 16%;"></div>
-                            <div class="efficiency-label">0.16 (Seuil min: 3.0)</div>
-                        </div>
-                        <div class="comparison-cards">
-                            <div class="comp-card red">
-                                <div class="stat-label">CAC Réel</div>
-                                <div class="comp-val">1 823 €</div>
-                            </div>
-                            <div class="comp-card gold">
-                                <div class="stat-label">LTV Réelle</div>
-                                <div class="comp-val">290 €</div>
-                            </div>
-                        </div>
-                    </div>
+                <div class="funnel-row" id="fun2" style="background: rgba(225,91,91,0.08); padding: 8px 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; width: 80%; margin-top: 8px; transition: width 1s ease;">
+                    <b style="font-size: 1.1rem; color: #FFF; font-family: 'Cinzel';">138</b><span>Inactifs</span><small style="color: var(--rose);">94.5%</small>
+                </div>
+                <div class="funnel-row" id="fun3" style="background: rgba(197,160,89,0.15); padding: 8px 10px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center; width: 52%; margin-top: 8px; transition: width 1s ease;">
+                    <b style="font-size: 1.1rem; color: var(--cyan); font-family: 'Cinzel';">8</b><span style="color: var(--cyan); font-weight: 700;">Actifs</span><small style="color: var(--cyan); font-weight: 700;">5.5%</small>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Funnel d'activation</span><div class="progress-mini"><i></i></div><span>10</span></div>
+    </section>
 
-        <!-- SLIDE 7 (NOUVELLE) : Décomposition & Cheminement du CAC/LTV (Partie 3 - A.1) -->
-        <div class="slide" id="slide-7" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Calcul & Formules des Unit Economics</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">01 // Coût d'Acquisition Client (CAC)</div>
-                            <div class="point-text">Somme des coûts d'acquisition directs divisée par le nombre de signatures mensuelles.</div>
-                            <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--accent); margin-top: 5px; border-left: 2px solid var(--accent); padding-left: 8px; font-weight: 600;">CAC = Coût Outbound / Signatures = 5 469 € / 3 = 1 823 €</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">02 // Durée de Vie Adhérent (Lifetime)</div>
-                            <div class="point-text">Période moyenne d'activité d'un adhérent dans le réseau, inverse du taux d'attrition.</div>
-                            <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--accent); margin-top: 5px; border-left: 2px solid var(--accent); padding-left: 8px; font-weight: 600;">Lifetime = 1 / Churn = 1 / 0.80 = 1.25 an</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">03 // Valeur Vie Client Nette (LTV)</div>
-                            <div class="point-text">Valeur financière nette générée par un adhérent sur l'ensemble de son cycle de vie.</div>
-                            <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--accent); margin-top: 5px; border-left: 2px solid var(--accent); padding-left: 8px; font-weight: 600;">LTV = Marge Annuelle x Lifetime = 232 € x 1.25 = 290 €</div>
-                        </div>
-                        <div class="point-box maladie">
-                            <div class="point-label">04 // Efficience Commerciale (Ratio LTV / CAC)</div>
-                            <div class="point-text">Indicateur mesurant la rentabilité du moteur d'acquisition (seuil min. de viabilité : 3.0).</div>
-                            <div style="font-family: 'Cinzel', serif; font-size: 0.85rem; color: var(--red-alert); margin-top: 5px; border-left: 2px solid var(--red-alert); padding-left: 8px; font-weight: 600;">Ratio = LTV / CAC = 290 € / 1 823 € = 0.16</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-panel">
-                    <table class="calc-table">
-                        <thead>
-                            <tr>
-                                <th>Variable</th>
-                                <th>Calcul / Composant</th>
-                                <th>Montant</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Coût Outbound Mensuel</td>
-                                <td>Téléphonie, bases, temps chargé</td>
-                                <td>5 469 €</td>
-                            </tr>
-                            <tr>
-                                <td>Signatures Mensuelles</td>
-                                <td>Prospection froide (taux de conversion)</td>
-                                <td>3</td>
-                            </tr>
-                            <tr>
-                                <td>CAC Unitaire</td>
-                                <td>5 469 € / 3</td>
-                                <td class="highlight-alert">1 823 €</td>
-                            </tr>
-                            <tr>
-                                <td>Marge Nette Annuelle HT</td>
-                                <td>Nette de frais de service (22,6%)</td>
-                                <td>232 €</td>
-                            </tr>
-                            <tr>
-                                <td>Durée de vie (Lifetime)</td>
-                                <td>1 / 0.80 (Churn)</td>
-                                <td>1.25 an</td>
-                            </tr>
-                            <tr>
-                                <td>LTV Nette Unitaire</td>
-                                <td>232 € × 1.25</td>
-                                <td class="highlight-accent">290 €</td>
-                            </tr>
-                            <tr>
-                                <td>Déficit d'Acquisition Net</td>
-                                <td>LTV Nette (290 €) - CAC (1 823 €)</td>
-                                <td class="highlight-alert">-1 533 €</td>
-                            </tr>
-                        </tbody>
-                    </table>
+    <!-- SLIDE 11 : INGÉNIERIE D'AFFAIRES & EFFET RÉSEAU -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Pivot et ingénierie d'affaires. Apporter la preuve d'un retour sur investissement immédiat dès l'onboarding en intégrant la centrale d'achats Entegra. Exemple du Domaine de la Durentie (11 000 € de réservation générés).">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Pivot stratégique</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Valeur ajoutée brute</div>
+          <h2>Preuve de ROI immédiate par <span class="grad">l'achat négocié</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">L'intégration d'Entegra et le transfert gratuit de réservations (cas Durentie : 11k€) créent une preuve de ROI dès l'adhésion.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div style="border: 1px solid var(--line); background: rgba(197,160,89,0.02); padding: 15px; border-radius: 8px; text-align: center; margin: auto;">
+                <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; font-family:'Cinzel';">Réservations directes générées</div>
+                <div style="font-family: 'Cinzel'; font-size: 2.2rem; font-weight: 800; color: var(--cyan); margin-top: 5px; text-shadow: 0 0 15px rgba(197, 160, 89, 0.2);">11 000 €</div>
+                <div style="font-size: 0.65rem; color: var(--muted); margin-top: 5px; line-height: 1.3;">
+                    Cotisation Adhérent : <strong>360 € TTC</strong><br>
+                    Commission OTA Évitée : <strong>2 750 € (25%)</strong>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Preuve de valeur</span><div class="progress-mini"><i></i></div><span>11</span></div>
+    </section>
 
-        <!-- SLIDE 8 : L'Illusion du Volume d'Acquisition (Partie 3 - B) -->
-        <div class="slide" id="slide-8" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Volume d'Acquisition vs. Rétention</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Contexte</div>
-                            <div class="point-text">Les intermédiaires (OTAs) prélèvent jusqu'à <strong>25% de commissions</strong>, ce qui oblige Happy House à proposer un accompagnement et un service interne structurés.</div>
-                        </div>
-                        <div class="point-box maladie">
-                            <div class="point-label">La Friction (Décalage Usage)</div>
-                            <div class="point-text">Le décalage entre acquisition et usage : focus sur la signature de nouveaux membres alors que seulement <strong>8 hébergeurs sur 146</strong> sont commercialement actifs.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Levier (La Solution)</div>
-                            <div class="point-text">Suspension du Cold Calling Outbound au profit d'une transition stratégique vers de <strong>l'Inbound Marketing</strong> axé sur la rétention et l'activation du parc.</div>
-                        </div>
-                    </div>
+    <!-- SLIDE 12 : MODÈLE ROI & EFFET CENTRALE -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Modélisation financière du gain de l'adhérent. Le gain cumulé (9000 € d'économies centrale + 2750 € de commissions évitées) face à une adhésion de 360 € TTC génère un ROI massif de 32,6x.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Modèle financier</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Coopérative vs Isolé</div>
+          <h2>Rendement de la cotisation <span class="grad">sur cas réel</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Un achat direct moyen négocié de 60k€ à 15% d'économies, cumulé aux économies de commissions, finance instantanément la cotisation.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="roi-flow" style="margin: auto; font-size: 0.65rem;">
+                <div class="flow-step-roi" style="border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.005); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="flow-label-roi">Cotisation Annuelle</span>
+                    <span class="flow-val-roi" style="color: var(--rose); font-family: 'Cinzel';">-360 €</span>
                 </div>
-                <div class="visual-panel">
-                    <div class="pie-container">
-                        <div class="pie-chart" id="pieChartInactivity"></div>
-                        <div class="pie-legend">
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: var(--accent);"></div>
-                                <div style="font-size: 0.7rem; color: var(--text-pure);">5.5% Actifs (8/146)</div>
-                            </div>
-                            <div class="legend-item">
-                                <div class="legend-color" style="background: rgba(255, 255, 255, 0.03);"></div>
-                                <div style="font-size: 0.7rem; color: var(--text-dim);">94.5% Inactifs</div>
-                            </div>
-                        </div>
-                        <div style="font-size: 0.6rem; color: var(--accent); font-weight: 600; text-transform: uppercase; letter-spacing: 1px;">Effet d'Isolation Visuelle (Von Restorff)</div>
-                    </div>
+                <div class="flow-arrow-roi" style="width: 2px; height: 8px; background: var(--cyan); margin: 2px auto; opacity: 0.6;"></div>
+                <div class="flow-step-roi" style="border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.005); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="flow-label-roi">Économies (Centrale Entegra)</span>
+                    <span class="flow-val-roi" style="color: #10B981; font-family: 'Cinzel';">+9 000 €</span>
+                </div>
+                <div class="flow-arrow-roi" style="width: 2px; height: 8px; background: var(--cyan); margin: 2px auto; opacity: 0.6;"></div>
+                <div class="flow-step-roi" style="border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.005); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="flow-label-roi">Commissions OTAs Évitées</span>
+                    <span class="flow-val-roi" style="color: #10B981; font-family: 'Cinzel';">+2 750 €</span>
+                </div>
+                <div class="flow-arrow-roi" style="width: 2px; height: 8px; background: var(--cyan); margin: 2px auto; opacity: 0.6;"></div>
+                <div class="flow-step-roi final" style="border: 1px solid var(--cyan); background: rgba(197, 160, 89, 0.05); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                    <span class="flow-label-roi" style="color: var(--cyan); font-weight: 700;">Valeur Nette Générée</span>
+                    <span class="flow-val-roi" style="color: var(--cyan); font-weight: 700; font-family: 'Cinzel';">11 390 € (ROI: 32.6x)</span>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Flux de ROI</span><div class="progress-mini"><i></i></div><span>12</span></div>
+    </section>
 
-        <!-- SLIDE 9 (NOUVELLE) : Calcul de l'Inactivité et Réflexion Stratégique (Partie 3 - B.1) -->
-        <div class="slide" id="slide-9" data-part="Partie 3 : L'Impasse Outbound vs Rétention">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Rétention & Entonnoir d'Activation</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Calcul d'Inactivité</div>
-                            <div class="point-text">Avec **8 membres actifs sur 146**, le taux d'inactivité du réseau est de **94,52 %**. La priorité stratégique doit donc porter sur l'engagement et l'usage plutôt que sur la seule acquisition.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">La Réflexion Stratégique</div>
-                            <div class="point-text">Activer 20 % du parc existant (29 membres) sans coût d'acquisition supplémentaire génère plus de valeur collective que signer 100 membres inactifs avec un CAC élevé.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Levier d'Activation</div>
-                            <div class="point-text">Réorientation des ressources commerciales vers l'onboarding, la formation et l'accompagnement pour réduire le taux d'attrition de 80 % à 15 %.</div>
-                        </div>
-                    </div>
+    <!-- SLIDE 13 : GANTT & RÉSISTANCE MANAGÉRIALE -->
+    <section class="slide" data-palette="#E15B5B,#C5A059,#07090E" data-notes="Résistances au changement. L'automatisation technique du sourcing par n8n (126k fiches) s'est heurtée au veto de la direction (crainte de déshumaniser la marque). Mon rôle a été de respecter cette décision stratégique et de documenter factuellement la solution.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Gantt & Veto</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Arbitrages internes</div>
+          <h2>Gestion des résistances <span class="grad">et alignement</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Un POC d'automatisation qualifiant 126k fiches se heurte au veto de la direction. Solution : respect de la décision, et documentation.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="gantt-chart" style="width: 90%; margin: auto; position: relative;">
+                <div class="gantt-row" style="display: grid; grid-template-columns: 1fr 2.5fr; gap: 8px; align-items: center;">
+                    <div class="gantt-label" style="font-size: 0.6rem; color: var(--muted); text-align: right; font-weight: 600;">Sourcing</div>
+                    <div class="gantt-bar-bg" style="width: 100%; height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02);"><div class="gantt-bar-fill bar-1" id="gantt1" style="height: 100%; background: var(--cyan); border-radius: 4px; width: 0%; transition: width 1s ease;"></div></div>
                 </div>
-                <div class="visual-panel">
-                    <div class="funnel-container">
-                        <div style="font-size: 0.65rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px;">Funnel d'Engagement Happy House</div>
-                        <div class="funnel-stage funnel-1" id="fun1">Membres Signés (146) — 100%</div>
-                        <div class="funnel-stage funnel-2" id="fun2">Membres Inactifs (138) — 94.5%</div>
-                        <div class="funnel-stage funnel-3" id="fun3">Membres Actifs (8) — 5.5%</div>
-                        <div style="font-size: 0.6rem; color: var(--red-alert); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">Perte d'usage colossale de 94.5%</div>
-                    </div>
+                <div class="gantt-row" style="display: grid; grid-template-columns: 1fr 2.5fr; gap: 8px; align-items: center; margin-top: 8px;">
+                    <div class="gantt-label" style="font-size: 0.6rem; color: var(--muted); text-align: right; font-weight: 600;">Onboard</div>
+                    <div class="gantt-bar-bg" style="width: 100%; height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02);"><div class="gantt-bar-fill bar-2" id="gantt2" style="height: 100%; background: var(--cyan2); border-radius: 4px; width: 0%; transition: width 1s ease;"></div></div>
+                </div>
+                <div class="gantt-row" style="display: grid; grid-template-columns: 1fr 2.5fr; gap: 8px; align-items: center; margin-top: 8px;">
+                    <div class="gantt-label" style="font-size: 0.6rem; color: var(--muted); text-align: right; font-weight: 600;">Centrale</div>
+                    <div class="gantt-bar-bg" style="width: 100%; height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; border: 1px solid rgba(255,255,255,0.02);"><div class="gantt-bar-fill bar-3" id="gantt3" style="height: 100%; background: #FFFFFF; border-radius: 4px; width: 0%; transition: width 1s ease;"></div></div>
+                </div>
+                <div class="gantt-veto-line" style="position: absolute; top: -5px; left: 55%; width: 2px; height: calc(100% + 10px); background: var(--rose); box-shadow: 0 0 8px var(--rose);"></div>
+                <div class="gantt-veto-tag" style="position: absolute; top: -18px; left: 55%; transform: translateX(-50%); font-size: 0.45rem; background: var(--rose); color: #FFF; padding: 1px 4px; border-radius: 2px; font-weight: 700; white-space: nowrap;">VETO DIRECTION</div>
+            </div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Gestion du changement</span><div class="progress-mini"><i></i></div><span>13</span></div>
+    </section>
+
+    <!-- SLIDE 14 : BILAN : POSTURE & MÉTRIQUES -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Bilan. L'échec d'adoption d'un outil n'est pas une fatalité mais un enseignement. La rigueur quantitative (14 500 appels audités, 100 anciens membres interrogés) permet de dresser un constat transparent.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Bilan & Livrables</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Capacité d'analyse</div>
+          <h2>Validation des livrables et <span class="grad">des métriques d'audit</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Un diagnostic validé par l'analyse factuelle d'un important volume de données pour dresser un bilan neutre et objectif de la mission.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="digital-assets-list" style="width: 90%; margin: auto; font-size: 0.65rem; display: flex; flex-direction: column; gap: 8px;">
+                <div style="font-size: 0.6rem; text-transform: uppercase; color: var(--muted); text-align: center; margin-bottom: 5px; font-family: 'Cinzel';">Livrables de l'Alternance</div>
+                <div class="asset-row" style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line2); padding-bottom: 4px;">
+                    <span class="asset-name" style="color: var(--muted);">Appels Sortants Audités</span>
+                    <span class="asset-metric" style="color: #FFFFFF; font-weight: 700;">14 500</span>
+                </div>
+                <div class="asset-row" style="display: flex; justify-content: space-between; border-bottom: 1px solid var(--line2); padding-bottom: 4px;">
+                    <span class="asset-name" style="color: var(--muted);">Interviews Churn Réalisées</span>
+                    <span class="asset-metric" style="color: #FFFFFF; font-weight: 700;">100</span>
+                </div>
+                <div class="asset-row" style="display: flex; justify-content: space-between;">
+                    <span class="asset-name" style="color: var(--muted);">Pipeline Technique validé</span>
+                    <span class="asset-metric" style="color: var(--cyan); font-weight: 700;">POC (0 €)</span>
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Livrables</span><div class="progress-mini"><i></i></div><span>14</span></div>
+    </section>
 
-        <!-- SLIDE 10 : Ingénierie d'Affaires & Effet Réseau (Partie 4 - A) -->
-        <div class="slide" id="slide-10" data-part="Partie 4 : Pivot Stratégique & Résistance">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Ingénierie d'Affaires & Effet Réseau</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Point (Le Fait)</div>
-                            <div class="point-text">Conception d'un plan de pivot stratégique : automatisation du sourcing et introduction de la <strong>centrale d'achats Entegra</strong>.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">La Raison (L'Enjeu)</div>
-                            <div class="point-text">Démontrer un <strong>ROI immédiat</strong> (réduction de coûts négociée) afin de réduire le taux d'attrition historique de 80%.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Chiffre (La Data)</div>
-                            <div class="point-text"><strong>11 000 €</strong> de réservation directe générés sans commission d'intermédiaire sur un seul cas réel (cotisation de 360 € TTC).</div>
-                        </div>
-                    </div>
+    <!-- SLIDE 15 : ERGONOMIE & PERSPECTIVES -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="L'ergonomie et le futur. Utilisation de la démarche Content First et des lois UX de Hick et Fitts pour structurer le futur portail voyageur. Poursuite de mes objectifs professionnels chez PalestrIA.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Ergonomie & Futur</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">UX/UI & PalestrIA</div>
+          <h2>Ergonomie cognitive et <span class="grad">horizon PalestrIA</span></h2>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Application des lois d'utilisabilité pour améliorer l'usage. Enseignement tiré : accompagner le changement au-delà de la technique.</p>
+        </div>
+        <div class="visual-panel reveal delay1">
+            <div class="cognitive-grid" style="margin: auto; display: flex; flex-direction: column; align-items: center; gap: 10px; width: 90%;">
+                <div class="schema-conversion" style="border: 1px solid var(--line); background: rgba(255,255,255,0.01); padding: 10px; border-radius: 6px; text-align: center; width: 100%;">
+                    <div style="font-size: 0.55rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px;">Ergonomie UX</div>
+                    <div class="fitts-target" style="font-size: 0.95rem; font-family: 'Cinzel'; font-weight: 700; color: var(--cyan); margin: 3px 0;">Fitts & Hick</div>
+                    <div style="font-size: 0.5rem; color: var(--cyan2); font-weight: 500;">Simplification du parcours</div>
                 </div>
-                <div class="visual-panel">
-                    <div class="roi-central-card">
-                        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; color: var(--text-dim);">Valeur Générée (Centrale Entegra)</div>
-                        <div class="roi-value-glow">11 000 €</div>
-                        <div class="roi-details">
-                            Cotisation Membre : <strong>360 € TTC</strong><br>
-                            Commission OTA Évitée : <strong>2 750 € (25%)</strong>
-                        </div>
-                    </div>
+                <div class="badge-palestria" style="border: 1px solid var(--cyan); background: rgba(197, 160, 89, 0.1); color: var(--cyan); font-family: 'Cinzel'; font-size: 0.65rem; font-weight: 700; padding: 6px 12px; border-radius: 4px; text-align: center; width: 100%; letter-spacing: 1px;">
+                    Perspectives : PalestrIA
                 </div>
             </div>
         </div>
+      </div>
+      <div class="foot reveal delay2"><span>Perspectives</span><div class="progress-mini"><i></i></div><span>15</span></div>
+    </section>
 
-        <!-- SLIDE 11 (NOUVELLE) : Schéma de Calcul de l'Effet Réseau Centrale (Partie 4 - A.1) -->
-        <div class="slide" id="slide-11" data-part="Partie 4 : Pivot Stratégique & Résistance">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Modèle ROI & Effet Centrale</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Modèle Mathématique de Gain</div>
-                            <div class="point-text">Achat direct moyen via Entegra : **60 000 €**. Remise de 15% négociée centrale = **9 000 €** d'économies directes brutes.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">L'Effet Réseau</div>
-                            <div class="point-text">Réservations directes additionnelles : **11 000 €**. À 25 % de commissions OTAs évitées = **2 750 €** de marge brute récupérée.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Résultat ROI</div>
-                            <div class="point-text">Valeur nette créée : **11 750 €** (9k économies + 2,75k commissions évitées) face à une cotisation de **360 €** = **32.6x de ROI**.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-panel">
-                    <div class="roi-flow">
-                        <div class="flow-step">
-                            <span class="flow-label">Cotisation Annuelle</span>
-                            <span class="flow-val" style="color: var(--red-alert);">-360 €</span>
-                        </div>
-                        <div class="flow-arrow"></div>
-                        <div class="flow-step">
-                            <span class="flow-label">Économies Centrale (15% sur 60k€)</span>
-                            <span class="flow-val" style="color: #10B981;">+9 000 €</span>
-                        </div>
-                        <div class="flow-arrow"></div>
-                        <div class="flow-step">
-                            <span class="flow-label">Commissions OTAs Évitées (25% sur 11k€)</span>
-                            <span class="flow-val" style="color: #10B981;">+2 750 €</span>
-                        </div>
-                        <div class="flow-arrow"></div>
-                        <div class="flow-step final">
-                            <span class="flow-label" style="color: var(--accent); font-weight: 700;">Valeur Nette Générée</span>
-                            <span class="flow-val" style="color: var(--accent); font-weight: 700;">11 390 € (ROI: 32.6x)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- SLIDE 16 : REMERCIEMENTS & QUESTIONS -->
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Clôture et questions-réponses. Remercier le jury pour son écoute et engager la conversation.">
+      <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Clôture</div></div>
+      <div class="content center reveal">
+        <div class="bigmark" style="font-family: 'Cinzel'; text-shadow: 0 26px 70px rgba(197, 160, 89, 0.16); background: linear-gradient(135deg, #FFF, var(--cyan) 50%, var(--blue2)); -webkit-background-clip: text; background-clip: text;">?</div>
+        <h2>Merci. <span class="grad">Questions ?</span></h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto; font-weight: 300;">« La rigueur de la donnée au service d'une stratégie de croissance solide et humaine. »</p>
+      </div>
+      <div class="foot reveal delay2"><span>Questions-réponses</span><div class="progress-mini"><i></i></div><span>16</span></div>
+    </section>
+  </main>
 
-        <!-- SLIDE 12 : Le Gantt & Veto Management (Partie 4 - B) -->
-        <div class="slide" id="slide-12" data-part="Partie 4 : Pivot Stratégique & Résistance">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Gantt & Résistance Managériale</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Contexte</div>
-                            <div class="point-text">Validation technique d'un POC d'automatisation (n8n + API Gemini) qualifiant <strong>126 000 hébergements</strong> gratuitement (outillage 0 €).</div>
-                        </div>
-                        <div class="point-box maladie">
-                            <div class="point-label">La Friction (Arbitrage Direction)</div>
-                            <div class="point-text">Arbitrage de la DG (Patrice) : réserve face au risque technique et préservation de l'approche relationnelle traditionnelle haut de gamme.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Levier (La Solution)</div>
-                            <div class="point-text">Alignement sur les choix de la direction. <strong>Documentation rigoureuse</strong> des processus et métriques pour matérialiser le coût d'opportunité.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-panel">
-                    <div class="gantt-chart">
-                        <div class="gantt-row">
-                            <div class="gantt-label">Sourcing</div>
-                            <div class="gantt-bar-bg"><div class="gantt-bar-fill bar-1" id="gantt1"></div></div>
-                        </div>
-                        <div class="gantt-row">
-                            <div class="gantt-label">Welcome</div>
-                            <div class="gantt-bar-bg"><div class="gantt-bar-fill bar-2" id="gantt2"></div></div>
-                        </div>
-                        <div class="gantt-row">
-                            <div class="gantt-label">Centrale</div>
-                            <div class="gantt-bar-bg"><div class="gantt-bar-fill bar-3" id="gantt3"></div></div>
-                        </div>
-                        <div class="gantt-veto-line">
-                            <div class="gantt-veto-tag">VETO DIRECTION</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 13 : Posture du Consultant & Métriques (Partie 5 - A) -->
-        <div class="slide" id="slide-13" data-part="Partie 5 : Bilan Personnel & Perspectives">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Bilan : Posture & Métriques</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Point (Le Fait)</div>
-                            <div class="point-text">Une confrontation directe et enrichissante aux réalités politiques, stratégiques et organisationnelles complexes de la PME.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">La Raison (L'Enjeu)</div>
-                            <div class="point-text">Validation des compétences de fin de cycle Bachelor en démontrant une capacité à analyser objectivement un <strong>échec d'adoption</strong>.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Chiffre (La Data)</div>
-                            <div class="point-text"><strong>14 500 appels</strong> analysés, <strong>100 anciens membres</strong> interrogés, 1 pipeline technique validé et documenté.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-panel">
-                    <div class="digital-assets-list">
-                        <div style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-dim); text-align: center; margin-bottom: 5px;">Livrables & Actifs Réalisés</div>
-                        <div class="asset-row">
-                            <span class="asset-name">Appels Sortants Audités</span>
-                            <span class="asset-metric">14 500</span>
-                        </div>
-                        <div class="asset-row">
-                            <span class="asset-name">Interviews Qualitatives Churn</span>
-                            <span class="asset-metric">100</span>
-                        </div>
-                        <div class="asset-row">
-                            <span class="asset-name">Scénarios d'Automatisation</span>
-                            <span class="asset-metric">Actif (0€)</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 14 : Ergonomie Cognitive & Horizon 2028 (Partie 5 - B) -->
-        <div class="slide" id="slide-14" data-part="Partie 5 : Bilan Personnel & Perspectives">
-            <div class="layout-grid">
-                <div class="slide-content">
-                    <h2 class="slide-title">Ergonomie & Perspectives Professionnelles</h2>
-                    <div class="analytical-points">
-                        <div class="point-box">
-                            <div class="point-label">Le Contexte</div>
-                            <div class="point-text">Intégration de la démarche "Content First" et réduction de la friction cognitive (Lois de <strong>Hick</strong> et <strong>Fitts</strong>) issues des enseignements UX/UI.</div>
-                        </div>
-                        <div class="point-box maladie">
-                            <div class="point-label">La Friction (Biais Méthodologique)</div>
-                            <div class="point-text">Biais d'analyse : surestimer l'adoption d'une solution technique en sous-estimant la conduite de la <strong>conduite du changement</strong>.</div>
-                        </div>
-                        <div class="point-box">
-                            <div class="point-label">Le Levier (La Solution)</div>
-                            <div class="point-text">Développement des compétences en management transversal. Poursuite des objectifs professionnels au sein de <strong>PalestrIA</strong>.</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="visual-panel">
-                    <div class="cognitive-grid">
-                        <div class="schema-conversion">
-                            <div style="font-size: 0.6rem; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase;">Réduction des Points de Friction</div>
-                            <div class="fitts-target">Fitts & Hick</div>
-                            <div style="font-size: 0.55rem; color: var(--accent); font-weight: 500;">Action immédiate</div>
-                        </div>
-                        <div class="badge-palestria">Perspectives : PalestrIA</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SLIDE 15 : REMERCIEMENTS & QUESTIONS/RÉPONSES -->
-        <div class="slide" id="slide-15" data-part="CONCLUSION">
-            <div class="remerciements-layout">
-                <h1 class="remerciements-title">Merci pour votre attention</h1>
-                <div style="width: 80px; height: 1px; background: var(--accent); margin: 5px auto;"></div>
-                <p class="remerciements-sub">
-                    "La rigueur de la donnée au service d'une stratégie de croissance solide et humaine."
-                </p>
-                <div class="footer-q-a">
-                    Questions & Réponses
-                </div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Logique Interactive JS -->
-    <script>
-        const slides = document.querySelectorAll('.slide');
-        const btnPrev = document.getElementById('btnPrev');
-        const btnNext = document.getElementById('btnNext');
-        const dbPartTitle = document.getElementById('dbPartTitle');
-        const dbSlideCounter = document.getElementById('dbSlideCounter');
-        const progressBar = document.getElementById('progressBar');
-        let currentSlideIndex = 0;
-
-        function updateSlidePosition() {
-            slides.forEach((slide, index) => {
-                if (index === currentSlideIndex) {
-                    slide.classList.add('active');
-                } else {
-                    slide.classList.remove('active');
-                }
-            });
-
-            const activeSlide = slides[currentSlideIndex];
-
-            // Update Header Part Title
-            const partTitle = activeSlide.getAttribute('data-part') || 'INTRODUCTION';
-            dbPartTitle.textContent = partTitle;
-
-            // Update Header Slide Counter (ex: "[ SLIDE 01 / 16 ]")
-            const formattedCurrent = String(currentSlideIndex + 1).padStart(2, '0');
-            const formattedTotal = String(slides.length).padStart(2, '0');
-            dbSlideCounter.textContent = `[ SLIDE ${formattedCurrent} / ${formattedTotal} ]`;
-
-            // Update Progress Bar
-            const progress = (currentSlideIndex / (slides.length - 1)) * 100;
-            progressBar.style.width = `${progress}%`;
-
-            // Trigger animations
-            triggerSlideAnimations(currentSlideIndex);
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    const btnFull = document.getElementById('fullscreenBtn');
+    const noteText = document.getElementById('noteText');
+    const chromeSection = document.getElementById('chromeSection');
+    const chromeFootLabel = document.getElementById('chromeFootLabel');
+    const chromePage = document.getElementById('chromePage');
+    let index = 0;
+    
+    function clamp(n){ return Math.max(0, Math.min(total - 1, n)); }
+    
+    function setSlide(n, push = true){
+      index = clamp(n);
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      const palette = (slides[index].dataset.palette || '').split(',');
+      if(palette.length >= 3){
+        document.documentElement.style.setProperty('--a', palette[0].trim());
+        document.documentElement.style.setProperty('--b', palette[1].trim());
+        document.documentElement.style.setProperty('--c', palette[2].trim());
+      }
+      document.documentElement.style.setProperty('--slide', String(index + 1));
+      document.documentElement.style.setProperty('--progress', `${((index + 1) / total) * 100}%`);
+      document.body.classList.toggle('is-first-slide', index === 0);
+      const activeSlide = slides[index];
+      chromeSection.textContent = activeSlide.querySelector('.top .section')?.textContent?.trim() || '';
+      chromeFootLabel.textContent = activeSlide.querySelector('.foot span:first-child')?.textContent?.trim() || '';
+      chromePage.textContent = activeSlide.querySelector('.foot span:last-child')?.textContent?.trim() || String(index + 1).padStart(2, '0');
+      noteText.textContent = slides[index].dataset.notes || '';
+      if(push) history.replaceState(null, '', `#${index + 1}`);
+      
+      // Déclenchement des animations spécifiques
+      triggerSlideAnimations(index);
+    }
+    
+    function next(){ setSlide(index + 1); }
+    function prev(){ setSlide(index - 1); }
+    
+    btnFull.addEventListener('click', async () => {
+      if(!document.fullscreenElement && document.documentElement.requestFullscreen){
+        await document.documentElement.requestFullscreen();
+      }
+    });
+    
+    document.addEventListener('fullscreenchange', () => {
+      document.body.classList.toggle('is-fullscreen', Boolean(document.fullscreenElement));
+    });
+    
+    window.addEventListener('keydown', (e) => {
+      if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); next(); }
+      if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){ e.preventDefault(); prev(); }
+      if(e.key.toLowerCase() === 'f'){ e.preventDefault(); btnFull.click(); }
+      if(e.key.toLowerCase() === 'n'){ e.preventDefault(); document.body.classList.toggle('show-notes'); }
+      if(e.key === 'Home'){ e.preventDefault(); setSlide(0); }
+      if(e.key === 'End'){ e.preventDefault(); setSlide(total - 1); }
+    });
+    
+    let pointerX = 0;
+    document.addEventListener('pointerup', (e) => {
+      if(e.target.closest('button') || document.body.classList.contains('show-notes')) return;
+      const w = window.innerWidth || 1;
+      if(Math.abs(e.clientX - pointerX) > 16) return;
+      e.clientX > w * .54 ? next() : prev();
+    });
+    document.addEventListener('pointerdown', (e) => { pointerX = e.clientX; });
+    
+    // Déclenchement de nos animations spécifiques de slides
+    function triggerSlideAnimations(index) {
+      // Slide 2 (Index 1) : Donut Expérience
+      if (index === 1) {
+        const pie = document.getElementById('pieChartExperience');
+        if (pie) {
+          pie.style.background = 'conic-gradient(var(--cyan) 0% 0%, var(--cyan2) 0% 0%, #FFFFFF 0% 0%, var(--muted) 0% 0%)';
+          setTimeout(() => {
+            pie.style.background = 'conic-gradient(var(--cyan) 0% 35%, var(--cyan2) 35% 65%, #FFFFFF 65% 85%, var(--muted) 85% 100%)';
+          }, 50);
         }
+      }
 
-        function nextSlide() {
-            if (currentSlideIndex < slides.length - 1) {
-                currentSlideIndex++;
-                updateSlidePosition();
-            }
+      // Slide 3 (Index 2) : Profiler Bars
+      if (index === 2) {
+        const fillRational = document.querySelector('.fill-rational');
+        const fillOrganized = document.querySelector('.fill-organized');
+        const fillAdulte = document.querySelector('.fill-adulte');
+        if (fillRational && fillOrganized && fillAdulte) {
+          fillRational.style.width = '0%';
+          fillOrganized.style.width = '0%';
+          fillAdulte.style.width = '0%';
+          setTimeout(() => {
+            fillRational.style.width = '94%';
+            fillOrganized.style.width = '94%';
+            fillAdulte.style.width = '85%';
+          }, 50);
         }
+      }
 
-        function prevSlide() {
-            if (currentSlideIndex > 0) {
-                currentSlideIndex--;
-                updateSlidePosition();
-            }
+      // Slide 6 (Index 5) : Circle Progress
+      if (index === 5) {
+        const circle = document.getElementById('circularProgress');
+        if (circle) {
+          circle.style.strokeDashoffset = '264';
+          setTimeout(() => {
+            circle.style.strokeDashoffset = '145'; // Target +45% (264 * (1 - 0.45) = 145)
+          }, 50);
         }
+      }
 
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'Enter') {
-                e.preventDefault();
-                nextSlide();
-            } else if (e.key === 'ArrowLeft') {
-                e.preventDefault();
-                prevSlide();
-            }
-        });
-
-        // Click navigation on floating triggers
-        btnNext.addEventListener('click', nextSlide);
-        btnPrev.addEventListener('click', prevSlide);
-
-        // Slide animation triggers
-        function triggerSlideAnimations(index) {
-            // Slide 1: Experience Donut
-            if (index === 1) {
-                const pie = document.querySelector('#slide-1 .pie-chart');
-                pie.style.background = 'conic-gradient(var(--accent) 0% 0%, var(--accent-glow) 0% 0%, var(--text-pure) 0% 0%, #94A3B8 0% 0%)';
-                setTimeout(() => {
-                    pie.style.background = 'conic-gradient(var(--accent) 0% 35%, var(--accent-glow) 35% 65%, var(--text-pure) 65% 85%, #94A3B8 85% 100%)';
-                }, 50);
-            }
-
-            // Slide 2: Profiler bars
-            if (index === 2) {
-                const fills = document.querySelectorAll('#slide-2 .profiler-bar-fill');
-                fills.forEach(fill => {
-                    const width = fill.style.width;
-                    fill.style.width = '0%';
-                    setTimeout(() => {
-                        fill.style.width = width;
-                    }, 50);
-                });
-            }
-            
-            // Slide 5: Circular progress
-            if (index === 5) {
-                const circle = document.getElementById('circularProgress');
-                circle.style.strokeDashoffset = '440';
-                setTimeout(() => {
-                    circle.style.strokeDashoffset = '242'; // Target +45% (440 * (1 - 0.45) = 242)
-                }, 50);
-            }
-
-            // Slide 6: Efficiency gauge
-            if (index === 6) {
-                const fill = document.getElementById('efficiencyFill1');
-                fill.style.width = '0%';
-                setTimeout(() => {
-                    fill.style.width = '16%';
-                }, 50);
-            }
-
-            // Slide 8: Inactivity Donut
-            if (index === 8) {
-                const pie = document.getElementById('pieChartInactivity');
-                pie.style.background = 'conic-gradient(var(--accent) 0% 0%, rgba(255, 255, 255, 0.03) 0% 100%)';
-                setTimeout(() => {
-                    pie.style.background = 'conic-gradient(var(--accent) 0% 5.5%, rgba(255, 255, 255, 0.03) 5.5% 100%)';
-                }, 50);
-            }
-
-            // Slide 9: Funnel Stages
-            if (index === 9) {
-                const fun1 = document.getElementById('fun1');
-                const fun2 = document.getElementById('fun2');
-                const fun3 = document.getElementById('fun3');
-
-                fun1.style.width = '0%';
-                fun2.style.width = '0%';
-                fun3.style.width = '0%';
-
-                setTimeout(() => {
-                    fun1.style.width = '100%';
-                    fun2.style.width = '80%';
-                    fun3.style.width = '52%';
-                }, 50);
-            }
-
-            // Slide 12: Gantt Bars
-            if (index === 12) {
-                const bar1 = document.getElementById('gantt1');
-                const bar2 = document.getElementById('gantt2');
-                const bar3 = document.getElementById('gantt3');
-                
-                bar1.style.width = '0%';
-                bar2.style.width = '0%';
-                bar3.style.width = '0%';
-
-                setTimeout(() => {
-                    bar1.style.width = '55%'; // Sourced up to veto line (55%)
-                    bar2.style.width = '35%'; 
-                    bar3.style.width = '15%'; 
-                }, 50);
-            }
+      // Slide 7 (Index 6) : Jauge d'Efficience
+      if (index === 6) {
+        const fill = document.getElementById('efficiencyFill');
+        if (fill) {
+          fill.style.width = '0%';
+          setTimeout(() => {
+            fill.style.width = '16%'; // 16% pour 0.16
+          }, 50);
         }
+      }
 
-        // Initial setup
-        updateSlidePosition();
-    </script>
+      // Slide 9 (Index 8) : Donut Inactivité
+      if (index === 8) {
+        const pie = document.getElementById('pieChartInactivity');
+        if (pie) {
+          pie.style.background = 'conic-gradient(var(--cyan) 0% 0%, rgba(255, 255, 255, 0.03) 0% 100%)';
+          setTimeout(() => {
+            pie.style.background = 'conic-gradient(var(--cyan) 0% 5.5%, rgba(255, 255, 255, 0.03) 5.5% 100%)';
+          }, 50);
+        }
+      }
+
+      // Slide 10 (Index 9) : Funnel Stages
+      if (index === 9) {
+        const fun1 = document.getElementById('fun1');
+        const fun2 = document.getElementById('fun2');
+        const fun3 = document.getElementById('fun3');
+        if (fun1 && fun2 && fun3) {
+          fun1.style.width = '0%';
+          fun2.style.width = '0%';
+          fun3.style.width = '0%';
+          setTimeout(() => {
+            fun1.style.width = '100%';
+            fun2.style.width = '80%';
+            fun3.style.width = '52%';
+          }, 50);
+        }
+      }
+
+      // Slide 13 (Index 12) : Gantt Bars
+      if (index === 12) {
+        const bar1 = document.getElementById('gantt1');
+        const bar2 = document.getElementById('gantt2');
+        const bar3 = document.getElementById('gantt3');
+        if (bar1 && bar2 && bar3) {
+          bar1.style.width = '0%';
+          bar2.style.width = '0%';
+          bar3.style.width = '0%';
+          setTimeout(() => {
+            bar1.style.width = '55%';
+            bar2.style.width = '35%';
+            bar3.style.width = '15%';
+          }, 50);
+        }
+      }
+    }
+    
+    const initial = Number((location.hash || '').replace('#','')) || Number(new URLSearchParams(location.search).get('slide')) || 1;
+    setSlide(initial - 1, false);
+  </script>
 </body>
 </html>

@@ -1282,8 +1282,22 @@
         }
       }
 
-      // Slide 7 (Index 6) : Histogramme CAC vs LTV
+      // Slide 7 (Index 6) : Histogramme des volumes d'audit (ancienne slide 14)
       if (index === 6) {
+        const barAudit1 = document.getElementById('barAudit1');
+        const barAudit2 = document.getElementById('barAudit2');
+        if (barAudit1 && barAudit2) {
+          barAudit1.style.height = '0px';
+          barAudit2.style.height = '0px';
+          setTimeout(() => {
+            barAudit1.style.height = '160px'; // 14500 (max)
+            barAudit2.style.height = '10px'; // 100
+          }, 50);
+        }
+      }
+
+      // Slide 8 (Index 7) : Histogramme CAC vs LTV (ancienne slide 7)
+      if (index === 7) {
         const barCac = document.getElementById('barCac');
         const barLtv = document.getElementById('barLtv');
         if (barCac && barLtv) {
@@ -1296,8 +1310,8 @@
         }
       }
 
-      // Slide 9 (Index 8) : Donut Inactivité
-      if (index === 8) {
+      // Slide 10 (Index 9) : Donut Inactivité (ancienne slide 9)
+      if (index === 9) {
         const circle = document.getElementById('inactivityCircle');
         if (circle) {
           circle.style.strokeDashoffset = '377';
@@ -1307,8 +1321,8 @@
         }
       }
 
-      // Slide 10 (Index 9) : Funnel Stages
-      if (index === 9) {
+      // Slide 11 (Index 10) : Funnel Stages (ancienne slide 10)
+      if (index === 10) {
         const fun1 = document.getElementById('fun1');
         const fun2 = document.getElementById('fun2');
         const fun3 = document.getElementById('fun3');
@@ -1324,8 +1338,8 @@
         }
       }
 
-      // Slide 11 (Index 10) : Histogramme ROI Domaine de la Preuve
-      if (index === 10) {
+      // Slide 12 (Index 11) : Histogramme ROI Domaine de la Preuve (ancienne slide 11)
+      if (index === 11) {
         const barRoi1 = document.getElementById('barRoi1');
         const barRoi2 = document.getElementById('barRoi2');
         const barRoi3 = document.getElementById('barRoi3');
@@ -1341,8 +1355,8 @@
         }
       }
 
-      // Slide 13 (Index 12) : Gantt Bars
-      if (index === 12) {
+      // Slide 14 (Index 13) : Gantt Bars (ancienne slide 13)
+      if (index === 13) {
         const bar1 = document.getElementById('gantt1');
         const bar2 = document.getElementById('gantt2');
         const bar3 = document.getElementById('gantt3');
@@ -1354,20 +1368,6 @@
             bar1.style.width = '55%';
             bar2.style.width = '35%';
             bar3.style.width = '15%';
-          }, 50);
-        }
-      }
-
-      // Slide 14 (Index 13) : Histogramme des volumes d'audit
-      if (index === 13) {
-        const barAudit1 = document.getElementById('barAudit1');
-        const barAudit2 = document.getElementById('barAudit2');
-        if (barAudit1 && barAudit2) {
-          barAudit1.style.height = '0px';
-          barAudit2.style.height = '0px';
-          setTimeout(() => {
-            barAudit1.style.height = '160px'; // 14500 (max)
-            barAudit2.style.height = '10px'; // 100
           }, 50);
         }
       }

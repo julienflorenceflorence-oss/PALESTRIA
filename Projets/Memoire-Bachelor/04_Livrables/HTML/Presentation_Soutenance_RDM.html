@@ -637,7 +637,7 @@
           <span class="chip">Oral · 20 min</span>
         </div>
       </div>
-      <div class="foot reveal delay2"><span>Conclusion</span><div class="progress-mini"><i></i></div><span>19</span></div>
+      <div class="foot reveal delay2"><span>Introduction</span><div class="progress-mini"><i></i></div><span>01</span></div>
     </section>
 
     <!-- SLIDE 2 : SOMMAIRE -->
@@ -1322,7 +1322,7 @@
             </div>
         </div>
       </div>
-      <div class="foot reveal delay2"><span>Perspectives</span><div class="progress-mini"><i></i></div><span>15</span></div>
+      <div class="foot reveal delay2"><span>Perspectives</span><div class="progress-mini"><i></i></div><span>19</span></div>
     </section>
 
     <!-- SLIDE 16 : REMERCIEMENTS & QUESTIONS -->
@@ -1333,7 +1333,7 @@
         <h2>Merci. <span class="grad">Questions ?</span></h2>
         <p class="lead" style="margin-left:auto;margin-right:auto; font-weight: 300;">« La rigueur de la donnée au service d'une stratégie de croissance solide et humaine. »</p>
       </div>
-      <div class="foot reveal delay2"><span>Questions-réponses</span><div class="progress-mini"><i></i></div><span>16</span></div>
+      <div class="foot reveal delay2"><span>Questions-réponses</span><div class="progress-mini"><i></i></div><span>20</span></div>
     </section>
   </main>
 
@@ -1405,8 +1405,8 @@
     
     // Déclenchement de nos animations spécifiques de slides
     function triggerSlideAnimations(index) {
-      // Slide 2 (Index 1) : Donut Expérience SVG
-      if (index === 1) {
+      // Slide 3 (Index 2) : Donut Expérience SVG
+      if (index === 2) {
         const seg1 = document.getElementById('parcoursSeg1');
         const seg2 = document.getElementById('parcoursSeg2');
         const seg3 = document.getElementById('parcoursSeg3');
@@ -1425,8 +1425,8 @@
         }
       }
 
-      // Slide 3 (Index 2) : Profiler Bars
-      if (index === 2) {
+      // Slide 4 (Index 3) : Profiler Bars
+      if (index === 3) {
         const fillRational = document.querySelector('.fill-rational');
         const fillOrganized = document.querySelector('.fill-organized');
         const fillAdulte = document.querySelector('.fill-adulte');
@@ -1442,8 +1442,8 @@
         }
       }
 
-      // Slide 4 (Index 3) : Histogramme Réel vs Cible
-      if (index === 3) {
+      // Slide 7 (Index 6) : Histogramme Réel vs Cible
+      if (index === 6) {
         const barReal = document.getElementById('barReal');
         const barTarget = document.getElementById('barTarget');
         if (barReal && barTarget) {
@@ -1456,8 +1456,8 @@
         }
       }
 
-      // Slide 5 (Index 4) : Barres Horizontales Écarts Marché
-      if (index === 4) {
+      // Slide 8 (Index 7) : Barres Horizontales Écarts Marché
+      if (index === 7) {
         const barH1 = document.getElementById('barH1');
         const barH2 = document.getElementById('barH2');
         const barH3 = document.getElementById('barH3');
@@ -1473,8 +1473,8 @@
         }
       }
 
-      // Slide 6 (Index 5) : Donut OTAs
-      if (index === 5) {
+      // Slide 9 (Index 8) : Donut OTAs
+      if (index === 8) {
         const otaCircle = document.getElementById('otaCircle');
         const directCircle = document.getElementById('directCircle');
         if (otaCircle && directCircle) {
@@ -1487,8 +1487,8 @@
         }
       }
 
-      // Slide 7 (Index 6) : Histogramme des volumes d'audit (ancienne slide 14)
-      if (index === 6) {
+      // Slide 10 (Index 9) : Histogramme des volumes d'audit
+      if (index === 9) {
         const barAudit1 = document.getElementById('barAudit1');
         const barAudit2 = document.getElementById('barAudit2');
         if (barAudit1 && barAudit2) {
@@ -1496,13 +1496,13 @@
           barAudit2.style.height = '0px';
           setTimeout(() => {
             barAudit1.style.height = '160px'; // 14500 (max)
-            barAudit2.style.height = '10px'; // 100
+            barAudit2.style.height = '10px'; // 30
           }, 50);
         }
       }
 
-      // Slide 8 (Index 7) : Histogramme CAC vs LTV (ancienne slide 7)
-      if (index === 7) {
+      // Slide 11 (Index 10) : Histogramme CAC vs LTV
+      if (index === 10) {
         const barCac = document.getElementById('barCac');
         const barLtv = document.getElementById('barLtv');
         if (barCac && barLtv) {
@@ -1515,8 +1515,8 @@
         }
       }
 
-      // Slide 10 (Index 9) : Donut Inactivité (ancienne slide 9)
-      if (index === 9) {
+      // Slide 13 (Index 12) : Donut Inactivité
+      if (index === 12) {
         const circle = document.getElementById('inactivityCircle');
         if (circle) {
           circle.style.strokeDashoffset = '377';
@@ -1526,8 +1526,8 @@
         }
       }
 
-      // Slide 11 (Index 10) : Funnel Stages (ancienne slide 10)
-      if (index === 10) {
+      // Slide 14 (Index 13) : Funnel Stages
+      if (index === 13) {
         const fun1 = document.getElementById('fun1');
         const fun2 = document.getElementById('fun2');
         const fun3 = document.getElementById('fun3');
@@ -1543,8 +1543,8 @@
         }
       }
 
-      // Slide 12 (Index 11) : Histogramme ROI Domaine de la Preuve (ancienne slide 11)
-      if (index === 11) {
+      // Slide 15 (Index 14) : Histogramme ROI Domaine de la Preuve
+      if (index === 14) {
         const barRoi1 = document.getElementById('barRoi1');
         const barRoi2 = document.getElementById('barRoi2');
         const barRoi3 = document.getElementById('barRoi3');
@@ -1560,8 +1560,8 @@
         }
       }
 
-      // Slide 14 (Index 13) : Gantt Bars (ancienne slide 13)
-      if (index === 13) {
+      // Slide 18 (Index 17) : Gantt Bars
+      if (index === 17) {
         const bar1 = document.getElementById('gantt1');
         const bar2 = document.getElementById('gantt2');
         const bar3 = document.getElementById('gantt3');
@@ -1577,8 +1577,8 @@
         }
       }
 
-      // Slide 15 (Index 14) : Courbes Hick & Fitts
-      if (index === 14) {
+      // Slide 19 (Index 18) : Courbes Hick & Fitts
+      if (index === 18) {
         const hick = document.getElementById('hickPath');
         const fitts = document.getElementById('fittsPath');
         if (hick && fitts) {

@@ -87,27 +87,7 @@
       contain:layout paint;
     }
     .deck-frame{
-      position:absolute;inset:clamp(7px,.72vw,14px);z-index:1;pointer-events:none;
-      border-radius:clamp(24px,3vw,44px);
-      border:1px solid rgba(197,160,89,.12);
-      background:
-        linear-gradient(135deg,rgba(255,255,255,.040),rgba(255,255,255,.012) 44%,rgba(197,160,89,.025)),
-        linear-gradient(155deg,rgba(7,9,14,.58),rgba(18,24,38,.38));
-      box-shadow:inset 0 1px 0 rgba(255,255,255,.09), inset 0 -1px 0 rgba(197,160,89,.045);
-      overflow:hidden;
-    }
-    .deck-frame::before{
-      content:"";position:absolute;inset:0;pointer-events:none;
-      background:
-        radial-gradient(620px 180px at 18% 0%,rgba(255,255,255,.08),transparent 72%),
-        linear-gradient(103deg,transparent 0%,rgba(197,160,89,.045) 48%,transparent 61%);
-    }
-    .deck-frame::after{
-      content:"";position:absolute;inset:-22% -18%;pointer-events:none;opacity:.30;mix-blend-mode:screen;
-      background:linear-gradient(112deg,transparent 17%,rgba(255,255,255,.10) 44%,rgba(197,160,89,.08) 50%,transparent 65%);
-      transform:rotate(-7deg);
-      transition:opacity 900ms ease;
-      filter:blur(10px);
+      display:none !important; /* Suppression complète du cadre de structure restrictif */
     }
     .chrome{
       position:absolute;inset:0;z-index:4;pointer-events:none;padding:var(--pad);
@@ -283,7 +263,7 @@
     .slide.active .reveal.delay2{animation-delay:.30s}
     .slide.active .reveal.delay3{animation-delay:.42s}
     .stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px);will-change:opacity,transform,filter}
-    .slide.active .stat,.slide.active .rail-item,.slide.active .step,.slide.active .plan-card,.slide.active .swot .box,.slide.active .smart,.slide.active .flow-step,.slide.active .chip{animation:itemEnter .78s cubic-bezier(.17,.82,.22,1) forwards}
+    .slide.active .stat,.slide.active .rail-item,.slide.active .step,.slide.active .plan-card,.slide.active .swot .box,.slide.active .smart,.slide.active .flow-step,.chip{animation:itemEnter .78s cubic-bezier(.17,.82,.22,1) forwards}
     .slide.active .stat:nth-child(1),.slide.active .rail-item:nth-child(1),.slide.active .step:nth-child(1),.slide.active .plan-card:nth-child(1),.slide.active .swot .box:nth-child(1),.slide.active .smart:nth-child(1),.slide.active .flow-step:nth-child(1),.slide.active .chip:nth-child(1){animation-delay:.28s}
     .slide.active .stat:nth-child(2),.slide.active .rail-item:nth-child(2),.slide.active .step:nth-child(2),.slide.active .plan-card:nth-child(2),.slide.active .swot .box:nth-child(2),.slide.active .smart:nth-child(2),.slide.active .flow-step:nth-child(2),.slide.active .chip:nth-child(2){animation-delay:.36s}
     .slide.active .stat:nth-child(3),.slide.active .rail-item:nth-child(3),.slide.active .step:nth-child(3),.slide.active .plan-card:nth-child(3),.slide.active .swot .box:nth-child(3),.slide.active .smart:nth-child(3),.slide.active .flow-step:nth-child(3),.slide.active .chip:nth-child(3){animation-delay:.44s}
@@ -350,62 +330,43 @@
       .slide .reveal{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
     }
 
-    /* Widgets Spécifiques de Julien */
+    /* Widgets Spécifiques de Julien épurés sans bordures ni fonds sombres */
     .visual-panel {
-      background: rgba(11, 15, 24, 0.8);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      aspect-ratio: 4/3;
       width: 100%;
       position: relative;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      padding: 28px 12px 10px 12px;
+      justify-content: center;
+      padding: 10px;
       box-sizing: border-box;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-    }
-    .visual-panel > * {
-      margin: auto;
     }
     .visual-panel::before {
-      content: 'PANEL // OBSERVATION SYSTEM';
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.55rem;
-      color: var(--cyan);
-      letter-spacing: 1.5px;
-      opacity: 0.6;
-      z-index: 10;
+      display: none !important; /* Suppression complète du label observation */
     }
     .calc-table {
-      width: 96%;
+      width: 100%;
       border-collapse: collapse;
-      font-size: 0.63rem;
+      font-size: 0.65rem;
       margin: auto;
     }
     .calc-table th {
       border-bottom: 2px solid var(--cyan);
       color: var(--cyan);
       font-family: 'Cinzel', serif;
-      padding: 4px 6px;
+      padding: 6px;
       text-align: left;
       font-weight: 700;
       letter-spacing: 1px;
     }
     .calc-table td {
-      padding: 4px 6px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      padding: 6px;
+      border-bottom: 1px solid rgba(197, 160, 89, 0.08);
       color: var(--muted);
     }
     .calc-table tr:hover td {
       color: var(--text);
-      background: rgba(255, 255, 255, 0.01);
+      background: rgba(197, 160, 89, 0.02);
     }
     .highlight-accent {
       color: var(--cyan) !important;
@@ -420,24 +381,7 @@
       flex-direction: column;
       align-items: center;
       gap: 15px;
-    }
-    .pie-chart {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(0,0,0,0.8);
-      position: relative;
-      transition: background 1s cubic-bezier(0.1, 0.8, 0.1, 1);
-    }
-    .pie-chart::after {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 80px;
-      height: 80px;
-      background: #07090E;
-      border-radius: 50%;
+      width: 100%;
     }
     .pie-legend {
       display: flex;
@@ -456,35 +400,35 @@
       flex-shrink: 0;
     }
     .profiler-container {
-      width: 80%;
+      width: 90%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 16px;
     }
     .profiler-bar-row {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
     .profiler-header {
       display: flex;
       justify-content: space-between;
-      font-size: 0.7rem;
+      font-size: 0.78rem;
       letter-spacing: 1px;
       color: var(--muted);
     }
     .profiler-bar-bg {
       width: 100%;
-      height: 6px;
+      height: 10px;
       background: rgba(255, 255, 255, 0.04);
-      border-radius: 3px;
+      border-radius: 5px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.02);
     }
     .profiler-bar-fill {
       height: 100%;
       background: var(--cyan);
-      border-radius: 3px;
+      border-radius: 5px;
       width: 0%;
       transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
     }
@@ -522,7 +466,7 @@
       width: 90%;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
       position: relative;
     }
     .gantt-row {
@@ -532,7 +476,7 @@
       gap: 12px;
     }
     .gantt-label {
-      font-size: 0.65rem;
+      font-size: 0.7rem;
       color: var(--muted);
       text-transform: uppercase;
       letter-spacing: 1.5px;
@@ -541,15 +485,15 @@
     }
     .gantt-bar-bg {
       width: 100%;
-      height: 8px;
+      height: 10px;
       background: rgba(255, 255, 255, 0.04);
-      border-radius: 4px;
+      border-radius: 5px;
       overflow: hidden;
       border: 1px solid rgba(255, 255, 255, 0.02);
     }
     .gantt-bar-fill {
       height: 100%;
-      border-radius: 4px;
+      border-radius: 5px;
       width: 0%;
       transition: width 1s cubic-bezier(0.1, 0.8, 0.1, 1);
     }
@@ -567,14 +511,14 @@
     }
     .gantt-veto-tag {
       position: absolute;
-      top: -22px;
+      top: -24px;
       left: 55%;
       transform: translateX(-50%);
-      font-size: 0.52rem;
+      font-size: 0.55rem;
       background: var(--rose);
       color: #FFFFFF;
-      padding: 2px 6px;
-      border-radius: 2px;
+      padding: 3px 8px;
+      border-radius: 3px;
       font-weight: 700;
       letter-spacing: 1px;
       white-space: nowrap;
@@ -582,22 +526,23 @@
     .roi-flow {
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      width: 90%;
+      gap: 10px;
+      width: 95%;
     }
     .flow-step-roi {
-      border: 1px solid rgba(255, 255, 255, 0.03);
-      background: rgba(255, 255, 255, 0.005);
-      padding: 8px 12px;
-      border-radius: 4px;
-      font-size: 0.68rem;
+      border: 1px solid rgba(197, 160, 89, 0.12);
+      background: rgba(18, 24, 38, 0.3);
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-size: 0.72rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
     .flow-step-roi.final {
       border-color: var(--cyan);
-      background: rgba(197, 160, 89, 0.05);
+      background: rgba(197, 160, 89, 0.08);
+      box-shadow: 0 0 15px rgba(197, 160, 89, 0.1);
     }
     .flow-label-roi {
       color: var(--muted);
@@ -609,7 +554,7 @@
     }
     .flow-arrow-roi {
       width: 2px;
-      height: 12px;
+      height: 14px;
       background: var(--cyan);
       margin: 0 auto;
       opacity: 0.6;
@@ -637,6 +582,15 @@
       border-radius: 4px 4px 0 0;
       transition: height 1s cubic-bezier(0.1, 0.8, 0.1, 1);
     }
+    .horiz-bar-chart {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+    .horiz-row {
+      display: flex;
+      flex-direction: column;
+    }
   </style>
 </head>
 <body>
@@ -647,7 +601,6 @@
   <div class="hint">← → naviguer · F plein écran · N notes</div>
 
   <main id="deck" class="deck" aria-live="polite">
-    <div class="deck-frame" aria-hidden="true"></div>
     <div class="chrome" aria-hidden="true">
       <div class="chrome-top">
         <div class="chrome-brand">
@@ -697,18 +650,18 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Management d'équipes et d'actifs, standards de service exigeants (Michelin) et discipline sportive transférés au développement de réseau.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div class="pie-container" style="width: 90%; gap: 10px; margin: auto;">
-                <div style="position: relative; width: 110px; height: 110px;">
-                    <svg class="circle-svg" width="110" height="110">
-                        <circle cx="55" cy="55" r="46" fill="none" stroke="var(--cyan)" stroke-width="8" stroke-dasharray="289" stroke-dashoffset="289" id="parcoursSeg1" style="transition: stroke-dashoffset 1s ease; stroke-linecap: round;"></circle>
-                        <circle cx="55" cy="55" r="46" fill="none" stroke="var(--cyan2)" stroke-width="8" stroke-dasharray="289" stroke-dashoffset="289" id="parcoursSeg2" style="transition: stroke-dashoffset 1s ease; transform: rotate(126deg); transform-origin: 55px 55px; stroke-linecap: round;"></circle>
-                        <circle cx="55" cy="55" r="46" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-dasharray="289" stroke-dashoffset="289" id="parcoursSeg3" style="transition: stroke-dashoffset 1s ease; transform: rotate(234deg); transform-origin: 55px 55px; stroke-linecap: round;"></circle>
-                        <circle cx="55" cy="55" r="46" fill="none" stroke="var(--muted)" stroke-width="8" stroke-dasharray="289" stroke-dashoffset="289" id="parcoursSeg4" style="transition: stroke-dashoffset 1s ease; transform: rotate(306deg); transform-origin: 55px 55px; stroke-linecap: round;"></circle>
+            <div class="pie-container" style="width: 100%; gap: 10px; margin: auto;">
+                <div style="position: relative; width: 150px; height: 150px;">
+                    <svg class="circle-svg" width="150" height="150">
+                        <circle cx="75" cy="75" r="66" fill="none" stroke="var(--cyan)" stroke-width="12" stroke-dasharray="415" stroke-dashoffset="415" id="parcoursSeg1" style="transition: stroke-dashoffset 1s ease; stroke-linecap: round;"></circle>
+                        <circle cx="75" cy="75" r="66" fill="none" stroke="var(--cyan2)" stroke-width="12" stroke-dasharray="415" stroke-dashoffset="415" id="parcoursSeg2" style="transition: stroke-dashoffset 1s ease; transform: rotate(126deg); transform-origin: 75px 75px; stroke-linecap: round;"></circle>
+                        <circle cx="75" cy="75" r="66" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-dasharray="415" stroke-dashoffset="415" id="parcoursSeg3" style="transition: stroke-dashoffset 1s ease; transform: rotate(234deg); transform-origin: 75px 75px; stroke-linecap: round;"></circle>
+                        <circle cx="75" cy="75" r="66" fill="none" stroke="var(--muted)" stroke-width="12" stroke-dasharray="415" stroke-dashoffset="415" id="parcoursSeg4" style="transition: stroke-dashoffset 1s ease; transform: rotate(306deg); transform-origin: 75px 75px; stroke-linecap: round;"></circle>
                     </svg>
-                    <div class="circle-value" style="font-size: 0.95rem; color: #FFFFFF; font-family: 'Cinzel'; text-align: center; line-height: 1.1;">Julien<br><span style="font-size: 0.55rem; color: var(--cyan);">Florence</span></div>
+                    <div class="circle-value" style="font-size: 1.1rem; color: #FFFFFF; font-family: 'Cinzel'; text-align: center; line-height: 1.1;">Julien<br><span style="font-size: 0.65rem; color: var(--cyan);">Florence</span></div>
                 </div>
-                <div class="pie-legend" style="flex-direction: column; gap: 4px; width: 100%; align-items: flex-start; padding-left: 5px; font-size: 0.62rem;">
-                    <div class="legend-item"><div class="legend-color" style="background: var(--cyan);"></div><span style="color: #FFFFFF;">35% Sommelier & Restauration Étoilée</span></div>
+                <div class="pie-legend" style="flex-direction: column; gap: 4px; width: 100%; align-items: flex-start; padding-left: 10px; font-size: 0.65rem;">
+                    <div class="legend-item"><div class="legend-color" style="background: var(--cyan);"></div><span style="color: #FFFFFF; font-weight: 500;">35% Sommelier & Restauration Étoilée</span></div>
                     <div class="legend-item"><div class="legend-color" style="background: var(--cyan2);"></div><span style="color: var(--muted);">30% Gestion d'Actifs Immobiliers</span></div>
                     <div class="legend-item"><div class="legend-color" style="background: #FFFFFF;"></div><span style="color: var(--muted);">20% Ressources Humaines & Recrutement</span></div>
                     <div class="legend-item"><div class="legend-color" style="background: var(--muted);"></div><span style="color: var(--muted);">15% Voile & Sport de Compétition</span></div>
@@ -763,21 +716,21 @@
           </p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div style="width: 90%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 90%;">
-                <div style="font-size: 0.58rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; text-align: center; font-family: 'Cinzel';">Volume Réel vs Ambition Cible</div>
-                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 95px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 95%;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; text-align: center; font-family: 'Cinzel';">Volume Réel vs Ambition Cible</div>
+                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 40%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--rose); font-weight: 700; margin-bottom: 2px;">146</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--rose); font-weight: 700; margin-bottom: 4px;">146</div>
                         <div class="bar-graphic" id="barReal" style="width: 100%; height: 0%; background: var(--rose); border-radius: 4px 4px 0 0;"></div>
-                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase;">Membres</div>
+                        <div style="font-size: 0.55rem; color: var(--muted); margin-top: 4px; text-transform: uppercase;">Membres</div>
                     </div>
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 40%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--cyan); font-weight: 700; margin-bottom: 2px;">10 000</div>
-                        <div class="bar-graphic" id="barTarget" style="width: 100%; height: 0%; background: linear-gradient(to top, var(--blue2), var(--cyan)); border-radius: 4px 4px 0 0; box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);"></div>
-                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase;">Cible (1%)</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px;">10 000</div>
+                        <div class="bar-graphic" id="barTarget" style="width: 100%; height: 0%; background: linear-gradient(to top, var(--blue2), var(--cyan)); border-radius: 4px 4px 0 0; box-shadow: 0 0 12px rgba(197, 160, 89, 0.25);"></div>
+                        <div style="font-size: 0.55rem; color: var(--muted); margin-top: 4px; text-transform: uppercase;">Cible (1%)</div>
                     </div>
                 </div>
-                <div style="font-size: 0.52rem; color: var(--rose); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">Taux de pénétration actuel : 1.46%</div>
+                <div style="font-size: 0.55rem; color: var(--rose); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px;">Taux de pénétration actuel : 1.46%</div>
             </div>
         </div>
       </div>
@@ -794,23 +747,23 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Un CA récurrent potentiel de 3M€ pour 10 000 hébergeurs. L'écart de 9 854 signatures prouve que le modèle outbound artisanal est dépassé.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div style="width: 90%; display: flex; flex-direction: column; gap: 12px; margin: auto; height: 90%;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Échelle Relative du Marché</div>
-                <div class="horiz-bar-chart" style="display: flex; flex-direction: column; gap: 8px; width: 100%;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 14px; margin: auto; height: 95%;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Échelle Relative du Marché</div>
+                <div class="horiz-bar-chart" style="display: flex; flex-direction: column; gap: 12px; width: 100%;">
                     <div class="horiz-row">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.58rem; color: var(--muted); margin-bottom: 2px;"><span>Marché Global (Toutes structures)</span><span>1 000 000</span></div>
-                        <div class="profiler-bar-bg" style="height: 6px;"><div class="profiler-bar-fill" id="barH1" style="width: 0%; background: var(--muted);"></div></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--muted); margin-bottom: 2px;"><span>Marché Global (Toutes structures)</span><span>1 000 000</span></div>
+                        <div class="profiler-bar-bg" style="height: 10px;"><div class="profiler-bar-fill" id="barH1" style="width: 0%; background: var(--muted);"></div></div>
                     </div>
                     <div class="horiz-row">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.58rem; color: var(--muted); margin-bottom: 2px;"><span>Cible Réseau Solidaire (1%)</span><span>10 000</span></div>
-                        <div class="profiler-bar-bg" style="height: 6px;"><div class="profiler-bar-fill" id="barH2" style="width: 0%; background: var(--cyan);"></div></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--muted); margin-bottom: 2px;"><span>Cible Réseau Solidaire (1%)</span><span>10 000</span></div>
+                        <div class="profiler-bar-bg" style="height: 10px;"><div class="profiler-bar-fill" id="barH2" style="width: 0%; background: var(--cyan);"></div></div>
                     </div>
                     <div class="horiz-row">
-                        <div style="display: flex; justify-content: space-between; font-size: 0.58rem; color: var(--muted); margin-bottom: 2px;"><span>Membres Signés Actuels</span><span>146</span></div>
-                        <div class="profiler-bar-bg" style="height: 6px;"><div class="profiler-bar-fill" id="barH3" style="width: 0%; background: var(--rose);"></div></div>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.62rem; color: var(--muted); margin-bottom: 2px;"><span>Membres Signés Actuels</span><span>146</span></div>
+                        <div class="profiler-bar-bg" style="height: 10px;"><div class="profiler-bar-fill" id="barH3" style="width: 0%; background: var(--rose);"></div></div>
                     </div>
                 </div>
-                <div style="font-size: 0.52rem; color: var(--muted); font-style: italic; text-align: center;">Écart de scale à combler : 9 854 membres</div>
+                <div style="font-size: 0.58rem; color: var(--muted); font-style: italic; text-align: center; margin-top: 4px;">Écart de scale à combler : 9 854 membres</div>
             </div>
         </div>
       </div>
@@ -827,16 +780,16 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Forte dépendance à 71% aux OTAs avec perte de la propriété de la donnée client, combinée à la pression du nouveau label Destination d'Excellence.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div class="pie-container" style="width: 90%; gap: 10px; margin: auto;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Souveraineté des Canaux (Happy House)</div>
-                <div style="position: relative; width: 95px; height: 95px;">
-                    <svg class="circle-svg" width="95" height="95">
-                        <circle cx="47.5" cy="47.5" r="40" fill="none" stroke="var(--rose)" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="251" id="otaCircle" style="transition: stroke-dashoffset 1s ease; stroke-linecap: round;"></circle>
-                        <circle cx="47.5" cy="47.5" r="40" fill="none" stroke="var(--cyan)" stroke-width="8" stroke-dasharray="251" stroke-dashoffset="251" id="directCircle" style="transition: stroke-dashoffset 1s ease; transform: rotate(255deg); transform-origin: 47.5px 47.5px; stroke-linecap: round;"></circle>
+            <div class="pie-container" style="width: 100%; gap: 12px; margin: auto;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Souveraineté des Canaux (Happy House)</div>
+                <div style="position: relative; width: 140px; height: 140px;">
+                    <svg class="circle-svg" width="140" height="140">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="var(--rose)" stroke-width="10" stroke-dasharray="377" stroke-dashoffset="377" id="otaCircle" style="transition: stroke-dashoffset 1s ease; stroke-linecap: round;"></circle>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="var(--cyan)" stroke-width="10" stroke-dasharray="377" stroke-dashoffset="377" id="directCircle" style="transition: stroke-dashoffset 1s ease; transform: rotate(255deg); transform-origin: 70px 70px; stroke-linecap: round;"></circle>
                     </svg>
-                    <div class="circle-value" style="font-size: 1.1rem; color: var(--rose); font-family: 'Cinzel'; font-weight: 700;">71%</div>
+                    <div class="circle-value" style="font-size: 1.4rem; color: var(--rose); font-family: 'Cinzel'; font-weight: 700;">71%</div>
                 </div>
-                <div class="pie-legend" style="flex-direction: row; gap: 8px; font-size: 0.58rem; justify-content: center; width: 100%;">
+                <div class="pie-legend" style="flex-direction: row; gap: 8px; font-size: 0.65rem; justify-content: center; width: 100%;">
                     <div class="legend-item"><div class="legend-color" style="background: var(--rose);"></div><span style="color: var(--rose); font-weight: 600;">71% Dépendance OTAs</span></div>
                     <div class="legend-item"><div class="legend-color" style="background: var(--cyan);"></div><span style="color: var(--cyan); font-weight: 600;">29% Vente Directe</span></div>
                 </div>
@@ -853,24 +806,24 @@
         <div class="reveal">
           <div class="eyebrow">Impasse Financière</div>
           <h2>Un coût d'acquisition qui détruit <span class="grad">la marge client</span></h2>
-          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">La prospection froide téléphonique (Cold Calling) presents un déficit d'efficience avec un ratio LTV / CAC de seulement 0,16.</p>
+          <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">La prospection froide téléphonique (Cold Calling) présente un déficit d'efficience avec un ratio LTV / CAC de seulement 0,16.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div style="width: 90%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 90%;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Impasse Budgétaire Unitaire</div>
-                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 95px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 95%;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Impasse Budgétaire Unitaire</div>
+                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 40%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--rose); font-weight: 700; margin-bottom: 2px;">1 823 €</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--rose); font-weight: 700; margin-bottom: 4px;">1 823 €</div>
                         <div class="bar-graphic" id="barCac" style="width: 100%; height: 0%; background: var(--rose); border-radius: 4px 4px 0 0; box-shadow: 0 0 10px rgba(225, 91, 91, 0.2);"></div>
-                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center;">CAC Outbound</div>
+                        <div style="font-size: 0.55rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center;">CAC Outbound</div>
                     </div>
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 40%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--cyan); font-weight: 700; margin-bottom: 2px;">290 €</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px;">290 €</div>
                         <div class="bar-graphic" id="barLtv" style="width: 100%; height: 0%; background: var(--cyan); border-radius: 4px 4px 0 0; box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);"></div>
-                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center;">LTV Nette</div>
+                        <div style="font-size: 0.55rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center;">LTV Nette</div>
                     </div>
                 </div>
-                <div style="font-size: 0.52rem; color: var(--rose); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.5px;">Déficit net par membre : -1 533 €</div>
+                <div style="font-size: 0.55rem; color: var(--rose); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px;">Déficit net par membre : -1 533 €</div>
             </div>
         </div>
       </div>
@@ -933,18 +886,18 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Avec 25% de commissions prélevées par les OTAs, Happy House doit fournir un accompagnement structuré, l'usage étant le pivot de la fidélité.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div class="pie-container" style="margin: auto; width: 90%; gap: 10px;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Taux d'Usage Réel du Réseau</div>
-                <div style="position: relative; width: 100px; height: 100px;">
-                    <svg class="circle-svg" width="100" height="100">
-                        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="8"></circle>
-                        <circle cx="50" cy="50" r="42" fill="none" stroke="var(--cyan)" stroke-width="8" stroke-dasharray="264" stroke-dashoffset="264" id="inactivityCircle" style="transition: stroke-dashoffset 1s ease; stroke-linecap: round;"></circle>
+            <div class="pie-container" style="margin: auto; width: 100%; gap: 12px;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Taux d'Usage Réel du Réseau</div>
+                <div style="position: relative; width: 140px; height: 140px;">
+                    <svg class="circle-svg" width="140" height="140">
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(255, 255, 255, 0.03)" stroke-width="10"></circle>
+                        <circle cx="70" cy="70" r="60" fill="none" stroke="var(--cyan)" stroke-width="10" stroke-dasharray="377" stroke-dashoffset="377" id="inactivityCircle" style="transition: stroke-dashoffset 1s ease; stroke-linecap: round;"></circle>
                     </svg>
-                    <div class="circle-value" style="font-size: 1.2rem; color: var(--cyan); font-weight: 700; font-family: 'Cinzel';">5.5%</div>
+                    <div class="circle-value" style="font-size: 1.4rem; color: var(--cyan); font-weight: 700; font-family: 'Cinzel';">5.5%</div>
                 </div>
-                <div class="pie-legend" style="margin-top: 5px; font-size: 0.62rem; justify-content: center; width: 100%;">
-                    <div class="legend-item"><div class="legend-color" style="background: var(--cyan);"></div><span style="color: #FFFFFF;">5.5% Membres Actifs (8)</span></div>
-                    <div class="legend-item"><div class="legend-color" style="background: rgba(255,255,255,0.03);"></div><span style="color: var(--muted);">94.5% Membres Inactifs (138)</span></div>
+                <div class="pie-legend" style="margin-top: 5px; font-size: 0.65rem; justify-content: center; width: 100%;">
+                    <div class="legend-item"><div class="legend-color" style="background: var(--cyan);"></div><span style="color: #FFFFFF; font-weight: 500;">5.5% Membres Actifs (8)</span></div>
+                    <div class="legend-item"><div class="legend-color" style="background: rgba(255,255,255,0.03);"></div><span style="color: var(--muted); font-weight: 500;">94.5% Membres Inactifs (138)</span></div>
                 </div>
             </div>
         </div>
@@ -988,23 +941,23 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">L'intégration d'Entegra et le transfert gratuit de réservations (cas Durentie : 11k€) créent une preuve de ROI dès l'adhésion.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div style="width: 90%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 90%;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">L'Effet de Levier Financier (Durentie)</div>
-                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 95px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 95%;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">L'Effet de Levier Financier (Durentie)</div>
+                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 28%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.62rem; color: var(--rose); font-weight: 700; margin-bottom: 2px;">360 €</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--rose); font-weight: 700; margin-bottom: 4px;">360 €</div>
                         <div class="bar-graphic" id="barRoi1" style="width: 100%; height: 0%; background: var(--rose); border-radius: 4px 4px 0 0;"></div>
-                        <div style="font-size: 0.45rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">Cotisation</div>
+                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">Cotisation</div>
                     </div>
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 28%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.62rem; color: var(--cyan2); font-weight: 700; margin-bottom: 2px;">2 750 €</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--cyan2); font-weight: 700; margin-bottom: 4px;">2 750 €</div>
                         <div class="bar-graphic" id="barRoi2" style="width: 100%; height: 0%; background: var(--cyan2); border-radius: 4px 4px 0 0;"></div>
-                        <div style="font-size: 0.45rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">OTA évitée</div>
+                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">OTA évitée</div>
                     </div>
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 28%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.62rem; color: var(--cyan); font-weight: 700; margin-bottom: 2px;">11 000 €</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px;">11 000 €</div>
                         <div class="bar-graphic" id="barRoi3" style="width: 100%; height: 0%; background: var(--cyan); border-radius: 4px 4px 0 0; box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);"></div>
-                        <div style="font-size: 0.45rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">Gain Direct</div>
+                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">Gain Direct</div>
                     </div>
                 </div>
             </div>
@@ -1024,22 +977,22 @@
         </div>
         <div class="visual-panel reveal delay1">
             <div class="roi-flow" style="margin: auto; font-size: 0.65rem;">
-                <div class="flow-step-roi" style="border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.005); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                <div class="flow-step-roi" style="border: 1px solid rgba(197, 160, 89, 0.15); background: rgba(18, 24, 38, 0.35); padding: 8px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
                     <span class="flow-label-roi">Cotisation Annuelle</span>
                     <span class="flow-val-roi" style="color: var(--rose); font-family: 'Cinzel';"><span style="font-size: 0.55rem; vertical-align: middle;">▼</span> -360 €</span>
                 </div>
                 <div class="flow-arrow-roi" style="width: 2px; height: 8px; background: var(--cyan); margin: 2px auto; opacity: 0.6;"></div>
-                <div class="flow-step-roi" style="border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.005); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                <div class="flow-step-roi" style="border: 1px solid rgba(197, 160, 89, 0.15); background: rgba(18, 24, 38, 0.35); padding: 8px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
                     <span class="flow-label-roi">Économies (Centrale Entegra)</span>
                     <span class="flow-val-roi" style="color: #10B981; font-family: 'Cinzel';"><span style="font-size: 0.55rem; vertical-align: middle;">▲</span> +9 000 €</span>
                 </div>
                 <div class="flow-arrow-roi" style="width: 2px; height: 8px; background: var(--cyan); margin: 2px auto; opacity: 0.6;"></div>
-                <div class="flow-step-roi" style="border: 1px solid rgba(255,255,255,0.03); background: rgba(255,255,255,0.005); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                <div class="flow-step-roi" style="border: 1px solid rgba(197, 160, 89, 0.15); background: rgba(18, 24, 38, 0.35); padding: 8px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
                     <span class="flow-label-roi">Commissions OTAs Évitées</span>
                     <span class="flow-val-roi" style="color: #10B981; font-family: 'Cinzel';"><span style="font-size: 0.55rem; vertical-align: middle;">▲</span> +2 750 €</span>
                 </div>
                 <div class="flow-arrow-roi" style="width: 2px; height: 8px; background: var(--cyan); margin: 2px auto; opacity: 0.6;"></div>
-                <div class="flow-step-roi final" style="border: 1px solid var(--cyan); background: rgba(197, 160, 89, 0.05); padding: 6px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
+                <div class="flow-step-roi final" style="border: 1px solid var(--cyan); background: rgba(197, 160, 89, 0.05); padding: 8px 12px; border-radius: 4px; display: flex; justify-content: space-between; align-items: center;">
                     <span class="flow-label-roi" style="color: var(--cyan); font-weight: 700;">Valeur Nette Générée</span>
                     <span class="flow-val-roi" style="color: var(--cyan); font-weight: 700; font-family: 'Cinzel';">11 390 € (ROI: 32.6x)</span>
                 </div>
@@ -1090,18 +1043,18 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Un diagnostic validé par l'analyse factuelle d'un important volume de données pour dresser un bilan neutre et objectif de la mission.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div style="width: 90%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 90%;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Rigueur Quantitative de l'Audit</div>
-                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 100px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 95%;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Rigueur Quantitative de l'Audit</div>
+                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; width: 100%; position: relative; border-bottom: 1px solid var(--line); padding-bottom: 2px;">
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 42%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--cyan); font-weight: 700; margin-bottom: 2px;">14 500</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--cyan); font-weight: 700; margin-bottom: 4px;">14 500</div>
                         <div class="bar-graphic" id="barAudit1" style="width: 100%; height: 0%; background: var(--cyan); border-radius: 4px 4px 0 0; box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);"></div>
-                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">Appels Audités</div>
+                        <div style="font-size: 0.55rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center;">Appels Audités</div>
                     </div>
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 42%;">
-                        <div style="font-family: 'Cinzel'; font-size: 0.72rem; color: var(--cyan2); font-weight: 700; margin-bottom: 2px;">100</div>
+                        <div style="font-family: 'Cinzel'; font-size: 0.8rem; color: var(--cyan2); font-weight: 700; margin-bottom: 4px;">100</div>
                         <div class="bar-graphic" id="barAudit2" style="width: 100%; height: 0%; background: var(--cyan2); border-radius: 4px 4px 0 0;"></div>
-                        <div style="font-size: 0.5rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center; line-height: 1.1;">Interviews Churn</div>
+                        <div style="font-size: 0.55rem; color: var(--muted); margin-top: 4px; text-transform: uppercase; text-align: center;">Interviews Churn</div>
                     </div>
                 </div>
             </div>
@@ -1120,20 +1073,20 @@
           <p class="lead" style="font-weight: 300; font-size: 1.1rem; line-height: 1.4;">Application des lois d'utilisabilité pour améliorer l'usage. Enseignement tiré : accompagner le changement au-delà de la technique.</p>
         </div>
         <div class="visual-panel reveal delay1">
-            <div style="width: 90%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 90%;">
-                <div style="font-size: 0.6rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Lois de Hick & Fitts (UX)</div>
-                <div style="position: relative; width: 100%; height: 90px; background: rgba(255, 255, 255, 0.01); border: 1px solid var(--line2); border-radius: 4px; overflow: hidden;">
-                    <svg viewBox="0 0 100 50" style="width: 100%; height: 100%;">
+            <div style="width: 100%; display: flex; flex-direction: column; gap: 8px; margin: auto; height: 95%;">
+                <div style="font-size: 0.65rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel';">Lois de Hick & Fitts (UX)</div>
+                <div style="position: relative; width: 100%; height: 130px; background: rgba(255, 255, 255, 0.01); border: 1px solid var(--line2); border-radius: 4px; overflow: hidden;">
+                    <svg viewBox="0 0 100 50" style="width: 100%; height: 100%; min-height: 130px;">
                         <line x1="0" y1="40" x2="100" y2="40" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"></line>
                         <line x1="0" y1="20" x2="100" y2="20" stroke="rgba(255,255,255,0.05)" stroke-width="0.5"></line>
                         <path d="M 5 40 Q 30 15, 100 10" fill="none" stroke="var(--cyan)" stroke-width="2.5" stroke-dasharray="120" stroke-dashoffset="120" id="hickPath" style="transition: stroke-dashoffset 1.5s ease; stroke-linecap: round;"></path>
                         <path d="M 5 45 Q 40 30, 100 20" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-dasharray="120" stroke-dashoffset="120" id="fittsPath" style="transition: stroke-dashoffset 1.5s ease; stroke-dasharray: 4 2; stroke-linecap: round;"></path>
                         <line x1="5" y1="0" x2="5" y2="50" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"></line>
                     </svg>
-                    <div style="position: absolute; bottom: 4px; right: 8px; font-size: 0.45rem; color: var(--muted);">Complexité / Distance →</div>
-                    <div style="position: absolute; top: 4px; left: 8px; font-size: 0.45rem; color: var(--muted); transform: rotate(-90deg); transform-origin: 0 0; padding-left: 20px;">Temps →</div>
+                    <div style="position: absolute; bottom: 4px; right: 8px; font-size: 0.48rem; color: var(--muted); font-weight: 600;">Complexité / Distance →</div>
+                    <div style="position: absolute; top: 4px; left: 8px; font-size: 0.48rem; color: var(--muted); transform: rotate(-90deg); transform-origin: 0 0; padding-left: 30px; font-weight: 600;">Temps →</div>
                 </div>
-                <div style="display: flex; gap: 8px; font-size: 0.52rem; justify-content: center; font-weight: 700;">
+                <div style="display: flex; gap: 8px; font-size: 0.58rem; justify-content: center; font-weight: 700; margin-top: 4px;">
                     <span style="color: var(--cyan);">— Hick (Choix)</span>
                     <span style="color: #FFFFFF;">- - Fitts (Cible)</span>
                 </div>
@@ -1230,15 +1183,15 @@
         const seg3 = document.getElementById('parcoursSeg3');
         const seg4 = document.getElementById('parcoursSeg4');
         if (seg1 && seg2 && seg3 && seg4) {
-          seg1.style.strokeDashoffset = '289';
-          seg2.style.strokeDashoffset = '289';
-          seg3.style.strokeDashoffset = '289';
-          seg4.style.strokeDashoffset = '289';
+          seg1.style.strokeDashoffset = '415';
+          seg2.style.strokeDashoffset = '415';
+          seg3.style.strokeDashoffset = '415';
+          seg4.style.strokeDashoffset = '415';
           setTimeout(() => {
-            seg1.style.strokeDashoffset = '187'; // Restauration (35% -> stroke 101.15)
-            seg2.style.strokeDashoffset = '202'; // Immobilier (30% -> stroke 86.7)
-            seg3.style.strokeDashoffset = '231'; // RH (20% -> stroke 57.8)
-            seg4.style.strokeDashoffset = '245'; // Sport (15% -> stroke 43.3)
+            seg1.style.strokeDashoffset = '270'; // Restauration (35% -> stroke 145.25)
+            seg2.style.strokeDashoffset = '290'; // Immobilier (30% -> stroke 124.5)
+            seg3.style.strokeDashoffset = '332'; // RH (20% -> stroke 83)
+            seg4.style.strokeDashoffset = '353'; // Sport (15% -> stroke 62.25)
           }, 50);
         }
       }
@@ -1296,11 +1249,11 @@
         const otaCircle = document.getElementById('otaCircle');
         const directCircle = document.getElementById('directCircle');
         if (otaCircle && directCircle) {
-          otaCircle.style.strokeDashoffset = '251';
-          directCircle.style.strokeDashoffset = '251';
+          otaCircle.style.strokeDashoffset = '377';
+          directCircle.style.strokeDashoffset = '377';
           setTimeout(() => {
-            otaCircle.style.strokeDashoffset = '73'; // 71% -> stroke 178
-            directCircle.style.strokeDashoffset = '178'; // 29% -> stroke 73
+            otaCircle.style.strokeDashoffset = '109'; // 71% -> stroke 268
+            directCircle.style.strokeDashoffset = '268'; // 29% -> stroke 109
           }, 50);
         }
       }
@@ -1323,9 +1276,9 @@
       if (index === 8) {
         const circle = document.getElementById('inactivityCircle');
         if (circle) {
-          circle.style.strokeDashoffset = '264';
+          circle.style.strokeDashoffset = '377';
           setTimeout(() => {
-            circle.style.strokeDashoffset = '250'; // 5.5% -> stroke 14.5, offset 264 - 14.5 = 249.5
+            circle.style.strokeDashoffset = '356'; // 5.5% -> stroke 21, offset 377 - 21 = 356
           }, 50);
         }
       }

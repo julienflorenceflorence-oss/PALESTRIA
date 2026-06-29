@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Soutenance - Matthieu Antunez - Digitair</title>
+  <style>
+    :root{
+      color-scheme:dark;
+      --deep:#020817;
+      --navy:#051a36;
+      --blue:#0b3d78;
+      --blue2:#0f5fb3;
+      --cyan:#69d9ff;
+      --cyan2:#b7f1ff;
+      --ice:#f4fbff;
+      --text:#edf8ff;
+      --muted:#9fb9d2;
+      --muted2:#7896b5;
+      --line:rgba(190,234,255,.20);
+      --line2:rgba(190,234,255,.10);
+      --glass:rgba(8,30,62,.42);
+      --glass2:rgba(160,226,255,.11);
+      --rose:#ff5bd8;
+      --slide:1;
+      --progress:5%;
+      --a:#69d9ff;
+      --b:#0f5fb3;
+      --c:#0a244a;
+      --pad:clamp(42px,5.55vw,90px);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:var(--deep);overflow:hidden}
+    body{
+      font-family:ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Arial, sans-serif;
+      color:var(--text);
+      -webkit-font-smoothing:antialiased;
+      text-rendering:geometricPrecision;
+    }
+    button{font:inherit}
+    .ambient{
+      position:fixed;inset:-18%;z-index:0;pointer-events:none;
+      background:
+        radial-gradient(48vw 38vw at calc(8% + var(--slide)*2.4%) 17%, color-mix(in srgb,var(--a) 23%, transparent), transparent 70%),
+        radial-gradient(46vw 42vw at calc(92% - var(--slide)*1.6%) 7%, color-mix(in srgb,var(--b) 42%, transparent), transparent 64%),
+        radial-gradient(58vw 42vw at 70% calc(96% - var(--slide)*1.2%), color-mix(in srgb,var(--a) 18%, transparent), transparent 68%),
+        linear-gradient(145deg,#020817 0%, #061a34 47%, #071d3b 100%);
+      filter:saturate(1.12);
+      transition:background 820ms cubic-bezier(.2,.8,.2,1), filter 820ms ease;
+    }
+    .ambient::before,.ambient::after{
+      content:"";position:absolute;pointer-events:none;opacity:.62;mix-blend-mode:screen;
+      transform:translateZ(0);will-change:transform,opacity;
+    }
+    .ambient::before{
+      width:58vw;height:22vh;left:9%;top:15%;
+      background:linear-gradient(100deg,transparent 0%,rgba(185,245,255,.18) 43%,rgba(255,255,255,.24) 50%,rgba(105,217,255,.13) 58%,transparent 100%);
+      filter:blur(14px);
+      transform:translateX(calc(var(--slide)*1.4vw)) rotate(-10deg);
+      animation:glide 12s ease-in-out infinite alternate;
+    }
+    .ambient::after{
+      width:50vw;height:50vw;right:-10vw;bottom:-15vw;border-radius:50%;
+      background:radial-gradient(circle at 36% 33%,rgba(255,255,255,.16),rgba(105,217,255,.10) 31%,rgba(16,95,179,.13) 48%,transparent 70%);
+      filter:blur(34px);
+      transform:translate(calc(var(--slide)*-0.8vw), calc(var(--slide)*-.35vw));
+      animation:orb 15s ease-in-out infinite alternate;
+    }
+    .rays{
+      position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.36;mix-blend-mode:screen;
+      background:
+        linear-gradient(118deg,transparent 23%,rgba(255,255,255,.045) 34%,transparent 47%),
+        linear-gradient(65deg,transparent 54%,rgba(105,217,255,.06) 61%,transparent 72%);
+      transform:translateX(calc(var(--slide)*-.55vw));
+      transition:transform 850ms cubic-bezier(.2,.8,.2,1), opacity 850ms ease;
+    }
+    @keyframes glide{from{translate:-4vw 0}to{translate:5vw 1.8vh}}
+    @keyframes orb{from{scale:1;opacity:.48}to{scale:1.08;opacity:.7}}
+    .deck{
+      position:relative;z-index:2;
+      width:min(100vw,177.7778vh);
+      height:min(100vh,56.25vw);
+      margin:auto;top:50%;transform:translateY(-50%);
+      overflow:hidden;
+      contain:layout paint;
+    }
+    .deck-frame{
+      position:absolute;inset:clamp(7px,.72vw,14px);z-index:1;pointer-events:none;
+      border-radius:clamp(24px,3vw,44px);
+      border:1px solid rgba(190,234,255,.12);
+      background:
+        linear-gradient(135deg,rgba(255,255,255,.040),rgba(255,255,255,.012) 44%,rgba(105,217,255,.025)),
+        linear-gradient(155deg,rgba(3,13,31,.58),rgba(3,18,43,.38));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.09), inset 0 -1px 0 rgba(105,217,255,.045);
+      overflow:hidden;
+    }
+    .deck-frame::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(620px 180px at 18% 0%,rgba(255,255,255,.08),transparent 72%),
+        linear-gradient(103deg,transparent 0%,rgba(190,245,255,.045) 48%,transparent 61%);
+    }
+    .deck-frame::after{
+      content:"";position:absolute;inset:-22% -18%;pointer-events:none;opacity:.30;mix-blend-mode:screen;
+      background:linear-gradient(112deg,transparent 17%,rgba(255,255,255,.10) 44%,rgba(105,217,255,.08) 50%,transparent 65%);
+      transform:rotate(-7deg);
+      transition:opacity 900ms ease;
+      filter:blur(10px);
+    }
+    .chrome{
+      position:absolute;inset:0;z-index:4;pointer-events:none;padding:var(--pad);
+      display:grid;grid-template-rows:auto 1fr auto;
+    }
+    .chrome-top,.chrome-bottom{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .chrome-brand{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px;letter-spacing:.20em;text-transform:uppercase;font-weight:800}
+    .chrome-brand .bar{height:24px;width:1px;background:rgba(190,234,255,.23)}
+    .chrome-section{font-size:13px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan2);font-weight:950}
+    .chrome-foot-label,.chrome-page{font-size:13px;color:var(--muted2);font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+    .chrome-progress{position:absolute;left:50%;bottom:calc(var(--pad) + 2px);transform:translateX(-50%);width:min(190px,18vw);height:3px;border-radius:999px;background:rgba(190,234,255,.12);overflow:hidden}
+    .chrome-progress i{display:block;height:100%;width:var(--progress);background:linear-gradient(90deg,var(--cyan2),var(--blue2));border-radius:inherit;transition:width .42s cubic-bezier(.16,.84,.28,1)}
+    .slide{
+      position:absolute;inset:0;z-index:2;
+      display:grid;grid-template-rows:1fr;
+      gap:clamp(18px,2.2vw,34px);
+      padding:var(--pad);
+      opacity:0;
+      transform:translate3d(0,0,0);
+      filter:none;
+      pointer-events:none;
+      transition:opacity .42s cubic-bezier(.16,.84,.28,1);
+      isolation:isolate;
+    }
+    .slide.active{opacity:1;filter:none;pointer-events:auto}
+    .slide::before,.slide::after{display:none}
+    .top,.foot{display:none!important}
+    .brand{display:flex;align-items:center;gap:14px;color:var(--muted);font-size:12px;letter-spacing:.20em;text-transform:uppercase;font-weight:800}
+    .digitair{font-size:clamp(20px,1.8vw,30px);letter-spacing:-.06em;text-transform:none;color:#fff;font-weight:900}
+    .digitair span{color:var(--cyan)}
+    .brand .bar{height:24px;width:1px;background:rgba(190,234,255,.23)}
+    .section{font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--cyan2);font-weight:900}
+    .content{align-self:center;position:relative;z-index:2;width:100%;min-width:0;padding-inline:clamp(10px,1vw,22px)}
+    .center{text-align:center;max-width:min(1120px,100%);margin:0 auto}
+    .narrow{max-width:980px}
+    .split{display:grid;grid-template-columns:minmax(0,1.08fr) minmax(280px,.72fr);gap:clamp(28px,5vw,76px);align-items:center}
+    .split > *{min-width:0}
+    .split.equal{grid-template-columns:1fr 1fr}
+    .split.wide{grid-template-columns:minmax(0,1.28fr) minmax(300px,.72fr)}
+    h1,h2,h3,p{margin:0}
+    h1{
+      font-size:clamp(42px,5.55vw,88px);
+      line-height:1.11;letter-spacing:-.040em;font-weight:920;max-width:100%;
+      overflow:visible;padding:.045em .12em .07em .05em;
+    }
+    h2{
+      font-size:clamp(36px,4.10vw,64px);
+      line-height:1.12;letter-spacing:-.038em;font-weight:920;max-width:100%;
+      overflow:visible;padding:.045em .12em .07em .05em;
+    }
+    h3{font-size:clamp(26px,2.7vw,44px);line-height:1.05;letter-spacing:-.04em;font-weight:880}
+    .lead{font-size:clamp(22px,2.15vw,34px);line-height:1.25;color:#d8efff;max-width:920px;margin-top:clamp(18px,2.2vw,30px);font-weight:520}
+    .sub{font-size:clamp(17px,1.42vw,23px);line-height:1.46;color:var(--muted);max-width:900px;margin-top:18px}
+    .eyebrow{font-size:clamp(14px,1.04vw,17px);font-weight:900;text-transform:uppercase;letter-spacing:.24em;color:var(--cyan2);margin-bottom:clamp(15px,1.7vw,26px)}
+    .grad{background:linear-gradient(96deg,var(--cyan2),#f7fdff 44%,var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-right:.04em;margin-right:-.02em}
+    .cyan{color:var(--cyan)}
+    .quiet{color:var(--muted)}
+    .glass{
+      position:relative;border:1px solid var(--line);background:linear-gradient(135deg,var(--glass2),rgba(7,28,58,.30));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.25), inset 0 -1px 0 rgba(105,217,255,.08), 0 24px 90px rgba(0,0,0,.28);
+      transform:translateZ(0);overflow:hidden;
+    }
+    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+      .glass{backdrop-filter:blur(12px) saturate(1.25);-webkit-backdrop-filter:blur(12px) saturate(1.25)}
+    }
+    .glass::before{
+      content:"";position:absolute;inset:0;pointer-events:none;
+      background:
+        radial-gradient(340px 80px at 18% 0%,rgba(255,255,255,.22),transparent 72%),
+        linear-gradient(115deg,transparent 0%,rgba(255,255,255,.08) 42%,transparent 55%);
+      opacity:.75;
+    }
+    .statline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:clamp(28px,4vw,58px)}
+    .stat{padding:22px 18px 20px;border-radius:26px;text-align:left;min-height:132px}
+    .stat small{display:block;color:var(--muted);font-weight:900;text-transform:uppercase;letter-spacing:.15em;font-size:clamp(14px,1vw,16px);margin-bottom:12px}
+    .stat b{display:block;font-size:clamp(36px,4.8vw,70px);line-height:.9;letter-spacing:-.07em;color:#fff}
+    .stat b.compact{font-size:clamp(28px,3.6vw,48px)}
+    .stat em{display:block;font-style:normal;color:var(--cyan2);font-size:clamp(15px,1.1vw,18px);margin-top:10px;font-weight:750}
+    .rail{display:grid;gap:0;margin-top:clamp(25px,3.6vw,48px)}
+    .rail-item{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line2)}
+    .rail-item:first-child{border-top:1px solid var(--line2)}
+    .rail-num{min-width:52px;font-size:clamp(19px,1.25vw,24px);color:var(--cyan2);font-weight:950;letter-spacing:.08em}
+    .rail-text{font-size:clamp(18px,1.55vw,25px);line-height:1.22;font-weight:760;color:#eefaff}
+    .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(22px,3.5vw,54px);margin-top:clamp(28px,4vw,54px)}
+    .step{padding:24px 0 20px;border-radius:0;background:transparent;border:0;border-top:2px solid rgba(183,241,255,.55);min-height:160px;position:relative;overflow:visible}
+    .step::before{content:"";position:absolute;left:0;top:-2px;width:42%;height:2px;background:linear-gradient(90deg,var(--cyan2),transparent)}
+    .step small{display:block;color:var(--cyan2);font-size:clamp(14px,1vw,16px);text-transform:uppercase;letter-spacing:.15em;font-weight:950;margin-bottom:20px}
+    .step p{font-size:clamp(20px,1.75vw,29px);line-height:1.15;font-weight:800;color:#eefaff}
+    .step .desc{font-size:clamp(16px,1.12vw,19px);line-height:1.35;color:var(--muted);font-weight:560;margin-top:12px}
+    .funnel{display:grid;gap:8px}
+    .funnel-row{display:grid;grid-template-columns:78px 1fr 58px;gap:16px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line2)}
+    .funnel-row b{font-size:clamp(26px,2.9vw,42px);letter-spacing:-.06em;color:#fff}
+    .funnel-row span{font-size:clamp(16px,1.25vw,20px);font-weight:740;color:#e5f6ff}
+    .funnel-row small{font-size:clamp(14px,1vw,16px);text-align:right;color:var(--cyan2);font-weight:900}
+    .quote{
+      padding:clamp(26px,4.2vw,56px);border-radius:36px;
+      font-size:clamp(28px,3.55vw,58px);line-height:1.06;letter-spacing:-.055em;font-weight:900;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:14px;margin-top:30px}
+    .chip{font-size:clamp(18px,1.5vw,24px);font-weight:850;color:#f3fbff;padding:14px 18px;border-radius:999px;background:rgba(6,31,65,.34);border:1px solid var(--line2)}
+    .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:clamp(30px,4vw,56px)}
+    .plan-card{min-height:150px;border-radius:30px;padding:22px 20px;display:flex;flex-direction:column;justify-content:space-between}
+    .plan-card small{display:block;color:var(--cyan2);font-size:clamp(18px,1.35vw,24px);text-transform:uppercase;letter-spacing:.15em;font-weight:950}
+    .plan-card b{display:block;font-size:clamp(22px,1.9vw,32px);line-height:1.12;letter-spacing:-.035em;color:#fff;margin-top:18px}
+    .swot{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:clamp(26px,3.4vw,44px)}
+    .swot .box{border-radius:28px;padding:22px 22px 20px}
+    .swot .box small{display:block;font-size:clamp(14px,1vw,16px);color:var(--cyan2);text-transform:uppercase;letter-spacing:.15em;font-weight:950;margin-bottom:14px}
+    .swot .box p{font-size:clamp(18px,1.42vw,23px);line-height:1.25;font-weight:760;color:#eefaff}
+    .smart-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:clamp(28px,4vw,54px)}
+    .smart{border-radius:24px;padding:20px 16px;min-height:160px}
+    .smart small{display:block;color:var(--cyan2);font-size:clamp(14px,1vw,16px);text-transform:uppercase;letter-spacing:.15em;font-weight:950;margin-bottom:16px}
+    .smart p{font-size:clamp(18px,1.30vw,22px);line-height:1.27;font-weight:760;color:#eefaff}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:clamp(28px,3.8vw,50px);align-items:stretch}
+    .flow-step{position:relative;border-radius:26px;padding:22px 18px;min-height:140px}
+    .flow-step:not(:last-child)::after{content:"";position:absolute;right:-14px;top:50%;width:18px;height:2px;background:rgba(183,241,255,.42)}
+    .flow-step b{display:block;font-size:clamp(29px,3vw,48px);letter-spacing:-.06em;color:#fff;line-height:.9;margin-bottom:16px}
+    .flow-step span{display:block;font-size:clamp(16px,1.16vw,19px);line-height:1.25;font-weight:760;color:#e9f8ff}
+    .flow-step small{display:block;margin-top:12px;color:var(--cyan2);font-size:clamp(14px,1vw,16px);font-weight:950;text-transform:uppercase;letter-spacing:.12em}
+    .foot{font-size:12px;color:var(--muted2);font-weight:800;letter-spacing:.10em;text-transform:uppercase}
+    .progress-mini{width:min(180px,18vw);height:3px;border-radius:999px;background:rgba(190,234,255,.10);overflow:hidden}
+    .progress-mini i{display:block;height:100%;width:var(--progress);background:linear-gradient(90deg,var(--cyan2),var(--blue2));border-radius:inherit;transition:width .45s ease}
+    .fs-btn{
+      position:fixed;left:50%;bottom:30px;top:auto;right:auto;z-index:50;border-radius:999px;padding:14px 24px;
+      color:#f5fcff;font-weight:900;border:1px solid rgba(214,245,255,.32);
+      background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(105,217,255,.10) 52%,rgba(255,91,216,.12));
+      box-shadow:0 18px 54px rgba(0,0,0,.28), 0 0 34px rgba(255,91,216,.12), inset 0 1px 0 rgba(255,255,255,.34);
+      cursor:pointer;opacity:0;pointer-events:none;transform:translate(-50%,10px) scale(.98);filter:blur(4px);
+      transition:opacity .36s ease, transform .36s cubic-bezier(.16,.84,.28,1), filter .36s ease, border-color .36s ease, background .36s ease;
+      backdrop-filter:blur(16px) saturate(1.25);-webkit-backdrop-filter:blur(16px) saturate(1.25);
+    }
+    .is-first-slide:not(.is-fullscreen) .fs-btn{opacity:1;pointer-events:auto;transform:translate(-50%,0) scale(1);filter:blur(0)}
+    .fs-btn:hover{border-color:rgba(255,255,255,.46);background:linear-gradient(135deg,rgba(255,255,255,.20),rgba(105,217,255,.13) 52%,rgba(255,91,216,.16));transform:translate(-50%,-1px) scale(1.01)}
+    .is-fullscreen .fs-btn{opacity:0;pointer-events:none;transform:translate(-50%,8px) scale(.96);filter:blur(4px)}
+    .hint{position:fixed;right:26px;bottom:22px;z-index:30;color:rgba(214,238,255,.46);font-size:12px;font-weight:780;letter-spacing:.08em}
+    .is-fullscreen .hint{opacity:0}
+    .note-panel{
+      position:fixed;left:22px;top:22px;z-index:60;width:min(510px,46vw);max-height:calc(100vh - 44px);overflow:auto;
+      display:none;border-radius:26px;padding:20px 22px;background:rgba(3,14,32,.82);border:1px solid var(--line);
+      box-shadow:0 22px 70px rgba(0,0,0,.38);color:var(--muted);
+    }
+    @supports ((backdrop-filter: blur(10px)) or (-webkit-backdrop-filter: blur(10px))){
+      .note-panel{backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    }
+    .show-notes .note-panel{display:block}
+    .note-panel h4{margin:0 0 10px;color:#fff;font-size:16px}
+    .note-panel p{margin:0;font-size:14px;line-height:1.45}
+    .title-logos{display:flex;align-items:center;gap:22px;justify-content:center;margin-bottom:32px}
+    .rocket{font-weight:950;text-transform:uppercase;line-height:.86;letter-spacing:-.08em;font-size:clamp(22px,2vw,34px);text-align:left}
+    .bigmark{font-size:clamp(116px,14.6vw,224px);line-height:1;letter-spacing:-.07em;font-weight:950;color:transparent;background:linear-gradient(135deg,#eaffff,var(--cyan2) 42%,var(--blue2));-webkit-background-clip:text;background-clip:text;text-shadow:0 26px 70px rgba(105,217,255,.16);padding:.08em .16em .10em}
+    .reveal{opacity:0;transform:translate3d(var(--from-x,0),var(--from-y,30px),0) scale(.985);filter:blur(22px);will-change:opacity,transform,filter}
+    .split > .reveal:first-child{--from-x:-34px;--from-y:18px}
+    .split > .reveal:nth-child(2){--from-x:34px;--from-y:18px}
+    .slide.active .reveal{animation:enter .90s cubic-bezier(.17,.82,.22,1) .06s forwards}
+    .slide.active .reveal.delay1{animation-delay:.18s}
+    .slide.active .reveal.delay2{animation-delay:.30s}
+    .slide.active .reveal.delay3{animation-delay:.42s}
+    .stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px);will-change:opacity,transform,filter}
+    .slide.active .stat,.slide.active .rail-item,.slide.active .step,.slide.active .plan-card,.slide.active .swot .box,.slide.active .smart,.slide.active .flow-step,.slide.active .chip{animation:itemEnter .78s cubic-bezier(.17,.82,.22,1) forwards}
+    .slide.active .stat:nth-child(1),.slide.active .rail-item:nth-child(1),.slide.active .step:nth-child(1),.slide.active .plan-card:nth-child(1),.slide.active .swot .box:nth-child(1),.slide.active .smart:nth-child(1),.slide.active .flow-step:nth-child(1),.slide.active .chip:nth-child(1){animation-delay:.28s}
+    .slide.active .stat:nth-child(2),.slide.active .rail-item:nth-child(2),.slide.active .step:nth-child(2),.slide.active .plan-card:nth-child(2),.slide.active .swot .box:nth-child(2),.slide.active .smart:nth-child(2),.slide.active .flow-step:nth-child(2),.slide.active .chip:nth-child(2){animation-delay:.36s}
+    .slide.active .stat:nth-child(3),.slide.active .rail-item:nth-child(3),.slide.active .step:nth-child(3),.slide.active .plan-card:nth-child(3),.slide.active .swot .box:nth-child(3),.slide.active .smart:nth-child(3),.slide.active .flow-step:nth-child(3),.slide.active .chip:nth-child(3){animation-delay:.44s}
+    .slide.active .stat:nth-child(4),.slide.active .rail-item:nth-child(4),.slide.active .step:nth-child(4),.slide.active .plan-card:nth-child(4),.slide.active .swot .box:nth-child(4),.slide.active .smart:nth-child(4),.slide.active .flow-step:nth-child(4),.slide.active .chip:nth-child(4){animation-delay:.52s}
+    .slide.active .plan-card:nth-child(5),.slide.active .smart:nth-child(5),.slide.active .flow-step:nth-child(5),.slide.active .chip:nth-child(5){animation-delay:.60s}
+    .slide.active .plan-card:nth-child(6),.slide.active .chip:nth-child(6){animation-delay:.68s}
+    .slide.active .plan-card:nth-child(7),.slide.active .chip:nth-child(7){animation-delay:.76s}
+    .slide.active .plan-card:nth-child(8),.slide.active .chip:nth-child(8){animation-delay:.84s}
+    @keyframes enter{0%{opacity:0;transform:translate3d(var(--from-x,0),var(--from-y,30px),0) scale(.985);filter:blur(22px)}42%{opacity:.45;filter:blur(14px)}72%{opacity:.86;filter:blur(5px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+    @keyframes itemEnter{0%{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px)}46%{opacity:.50;filter:blur(10px)}76%{opacity:.88;filter:blur(4px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
+    @media (prefers-reduced-motion:reduce){
+      *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+      .reveal,.stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:1!important;transform:none!important;filter:none!important}
+    }
+    @media (max-width:980px){
+      :root{--pad:clamp(24px,5vw,46px)}
+      .split,.split.equal,.split.wide{grid-template-columns:1fr;gap:24px}
+      .statline,.timeline{grid-template-columns:1fr 1fr}
+      .plan-grid{grid-template-columns:1fr 1fr}
+      .smart-grid,.flow{grid-template-columns:1fr 1fr}
+      .flow-step:not(:last-child)::after{display:none}
+      .stat{min-height:110px}
+      .brand{font-size:10px}.section{font-size:10px}
+      .hint{display:none}
+    }
+    @media (max-width:680px),(max-aspect-ratio:4/3){
+      html,body{overflow:auto}
+      .deck{width:100vw;max-width:100vw;height:100dvh;top:0;transform:none;overflow:hidden}
+      .slide{width:100vw;max-width:100vw;overflow-y:auto;overflow-x:hidden;padding:24px 22px 64px;gap:16px}
+      .slide::before,.slide::after{inset:8px;border-radius:26px}
+      .top{align-items:flex-start}.brand .bar,.brand .school{display:none}
+      .section{display:none}
+      .statline,.timeline{grid-template-columns:1fr}
+      .plan-grid,.smart-grid,.flow,.swot{grid-template-columns:1fr}
+      .statline[style]{grid-template-columns:1fr!important}
+      .funnel-row{grid-template-columns:66px 1fr 48px}
+      .content,.center,.narrow,.split,.rail,.timeline,.statline,.funnel,.plan-grid,.smart-grid,.flow,.swot{width:100%;max-width:calc(100vw - 108px)!important;min-width:0}
+      .rail-item,.rail-text,.step,.stat,.quote,.glass,.plan-card,.smart,.flow-step,.swot .box{width:100%;min-width:0;max-width:100%}
+      h1,h2,.lead,.rail-text,.step p{width:calc(100vw - 108px)!important;max-width:calc(100vw - 108px)!important}
+      h1{font-size:clamp(28px,9.5vw,42px);line-height:1;overflow-wrap:break-word}
+      h2{font-size:clamp(28px,8.8vw,40px);line-height:1.02;overflow-wrap:break-word}
+      .lead{font-size:clamp(17px,4.7vw,22px)}
+      .rail-text,.step p{font-size:clamp(16px,4.25vw,18px);line-height:1.25;overflow-wrap:anywhere;word-break:break-word;hyphens:auto}
+      .chip{font-size:15px;padding:11px 14px}
+      .foot{font-size:10px}.progress-mini{width:92px}
+      .fs-btn{display:none}
+    }
+    @media print{
+      @page{size:16in 9in;margin:0}
+      html,body{width:16in;height:auto;overflow:visible;background:#061a34}
+      .ambient,.rays,.fs-btn,.hint,.note-panel,.deck-frame,.chrome{display:none!important}
+      .deck{position:static;width:16in;height:auto;transform:none;overflow:visible;contain:none}
+      .slide{position:relative;width:16in;height:9in;opacity:1;filter:none;transform:none;page-break-after:always;break-after:page;display:grid;overflow:hidden;background:
+        radial-gradient(900px 620px at 84% 0%,rgba(105,217,255,.18),transparent 62%),
+        radial-gradient(780px 540px at 0% 100%,rgba(15,95,179,.22),transparent 64%),
+        linear-gradient(145deg,#020817,#061a34 48%,#071d3b 100%)}
+      .split{grid-template-columns:minmax(0,1.08fr) minmax(280px,.72fr)!important}
+      .split.equal{grid-template-columns:1fr 1fr!important}
+      .split.wide{grid-template-columns:minmax(0,1.28fr) minmax(300px,.72fr)!important}
+      .statline{grid-template-columns:repeat(4,1fr)!important}
+      .timeline{grid-template-columns:repeat(3,1fr)!important}
+      .plan-grid{grid-template-columns:repeat(4,1fr)!important}
+      .smart-grid{grid-template-columns:repeat(5,1fr)!important}
+      .flow{grid-template-columns:repeat(5,1fr)!important}
+      .swot{grid-template-columns:1fr 1fr!important}
+      .slide .reveal{animation:none!important;opacity:1!important;filter:none!important;transform:none!important}
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient" aria-hidden="true"></div>
+  <div class="rays" aria-hidden="true"></div>
+  <button id="fullscreenBtn" class="fs-btn" type="button" aria-label="Mettre la présentation en plein écran">Mettre en plein écran</button>
+  <aside id="notePanel" class="note-panel"><h4>Notes orales</h4><p id="noteText"></p></aside>
+  <div class="hint">← → naviguer · F plein écran · N notes</div>
+
+  <main id="deck" class="deck" aria-live="polite">
+    <div class="deck-frame" aria-hidden="true"></div>
+    <div class="chrome" aria-hidden="true">
+      <div class="chrome-top">
+        <div class="chrome-brand">
+          <div class="digitair">digit<span>air</span></div>
+          <div class="bar"></div>
+          <div>Rocket School</div>
+        </div>
+        <div id="chromeSection" class="chrome-section"></div>
+      </div>
+      <div></div>
+      <div class="chrome-bottom">
+        <div id="chromeFootLabel" class="chrome-foot-label"></div>
+        <div id="chromePage" class="chrome-page"></div>
+      </div>
+      <div class="chrome-progress"><i></i></div>
+    </div>
+    <section class="slide active" data-palette="#69d9ff,#0f5fb3,#061a34" data-notes="Ouverture courte. Dire qui je suis, le terrain, et annoncer l'idée centrale : passer d'une production digitale dispersée à un système d'acquisition B2B mesurable.">
+      <div class="top reveal">
+        <div class="title-logos">
+          <div class="rocket">Rocket<br>School</div>
+          <div class="digitair">digit<span>air</span></div>
+        </div>
+        <div class="section">Rapport de mission</div>
+      </div>
+      <div class="content center reveal delay1">
+        <div class="eyebrow">Soutenance · S66 Growth Hacker</div>
+        <h1>De la dispersion digitale à <span class="grad">l'acquisition B2B structurée</span></h1>
+        <p class="lead" style="margin-left:auto;margin-right:auto">Comment recentrer un écosystème multi-projets pour créer une acquisition lisible, crédible et mesurable.</p>
+        <div class="chips" style="justify-content:center"><span class="chip">Matthieu Antunez</span><span class="chip">Digitair</span><span class="chip">Oral · 20 min</span></div>
+      </div>
+      <div class="foot reveal delay2"><span>Introduction</span><div class="progress-mini"><i></i></div><span>01</span></div>
+    </section>
+
+    <section class="slide" data-palette="#7ce8ff,#0d4f9a,#061a34" data-notes="Accroche. Ne pas rester sur Meta Ads trop longtemps : le chiffre sert seulement à montrer le symptôme. La vraie question est : pourquoi une visibilité massive ne devient pas une opportunité commerciale ?">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Accroche</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Le symptôme le plus visible</div>
+          <h2>Plus d'un million d'impressions. <span class="grad">Aucun client signé.</span></h2>
+          <p class="lead">Ce chiffre ne résume pas toute la mission, mais il révèle le problème : la visibilité ne suffit pas si l'offre, la preuve et le suivi ne sont pas alignés.</p>
+        </div>
+        <div class="statline reveal delay1" style="grid-template-columns:1fr 1fr;margin-top:0">
+          <div class="stat glass"><small>Impressions</small><b class="compact">1,2 M</b></div>
+          <div class="stat glass"><small>Clics</small><b>192</b></div>
+          <div class="stat glass"><small>Formulaires</small><b>0</b></div>
+          <div class="stat glass"><small>Clients</small><b>0</b></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Visibilité ≠ acquisition</span><div class="progress-mini"><i></i></div><span>02</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0f5fb3,#061a34" data-notes="Storytelling court. Expliquer que je pensais surtout devoir produire, mais que la mission m'a amené à analyser le système derrière les productions.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Storytelling</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Ce que j'ai découvert</div>
+          <h2>Le sujet n'était pas de faire plus. <span class="grad">C'était de mieux relier.</span></h2>
+          <p class="lead">Pendant l'alternance, j'ai produit beaucoup de supports. Mais le vrai enjeu est apparu progressivement : sans priorité commerciale, même un bon support reste isolé.</p>
+        </div>
+        <div class="rail reveal delay1">
+          <div class="rail-item"><div class="rail-num">01</div><div class="rail-text">Beaucoup de marques, sites et pistes en parallèle</div></div>
+          <div class="rail-item"><div class="rail-num">02</div><div class="rail-text">Beaucoup de production, peu de validation marché</div></div>
+          <div class="rail-item"><div class="rail-num">03</div><div class="rail-text">Des prospects ou signaux difficiles à suivre</div></div>
+          <div class="rail-item"><div class="rail-num">04</div><div class="rail-text">Une nécessité : prioriser, prouver, relancer</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Fil rouge</span><div class="progress-mini"><i></i></div><span>03</span></div>
+    </section>
+
+    <section class="slide" data-palette="#7ce8ff,#0b5ba7,#082346" data-notes="Plan de l'oral. Ne pas le lire trop longtemps. Dire que je pars du terrain, puis du diagnostic, puis je montre les recommandations et les chiffres.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Déroulé</div></div>
+      <div class="content reveal">
+        <div class="eyebrow">Plan de soutenance</div>
+        <h2>Un raisonnement en <span class="grad">huit étapes</span></h2>
+        <div class="plan-grid">
+          <div class="plan-card glass"><small>01</small><b>Présentation</b></div>
+          <div class="plan-card glass"><small>02</small><b>Marché & cibles</b></div>
+          <div class="plan-card glass"><small>03</small><b>Actions réalisées</b></div>
+          <div class="plan-card glass"><small>04</small><b>Diagnostic & SWOT</b></div>
+          <div class="plan-card glass"><small>05</small><b>Cas terrain</b></div>
+          <div class="plan-card glass"><small>06</small><b>Problématique</b></div>
+          <div class="plan-card glass"><small>07</small><b>Recommandations</b></div>
+          <div class="plan-card glass"><small>08</small><b>Objectifs & bilan</b></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Structure</span><div class="progress-mini"><i></i></div><span>04</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0f5fb3,#061a34" data-notes="Présentation de Digitair. Rester clair : ne pas lister tous les projets un par un, mais montrer l'écosystème et la dispersion.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Entreprise</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Terrain d'alternance</div>
+          <h2>Digitair : une petite structure avec <span class="grad">beaucoup de directions</span></h2>
+          <p class="lead">Digitair existe depuis 2017 et s'inscrit dans un écosystème plus large de marques, de concepts et de projets portés par le dirigeant.</p>
+        </div>
+        <div class="rail reveal delay1">
+          <div class="rail-item"><div class="rail-num">01</div><div class="rail-text">Un dirigeant issu de l'industrie et de l'aéronautique</div></div>
+          <div class="rail-item"><div class="rail-num">02</div><div class="rail-text">Un seul salarié observé pendant l'alternance</div></div>
+          <div class="rail-item"><div class="rail-num">03</div><div class="rail-text">Des projets digitaux, commerciaux et sectoriels très variés</div></div>
+          <div class="rail-item"><div class="rail-num">04</div><div class="rail-text">Un enjeu central : choisir ce qui mérite vraiment d'être lancé</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Contexte entreprise</span><div class="progress-mini"><i></i></div><span>05</span></div>
+    </section>
+
+    <section class="slide" data-palette="#8cecff,#0d61b6,#061a34" data-notes="Slide ajoutée pour renforcer le côté marketing. Expliquer pourquoi la cible industrielle/aéronautique est pertinente : cohérence avec l'expérience du dirigeant, besoin de digitalisation et confiance B2B.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Marché & cibles</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">ICP recommandé</div>
+          <h2>Une cible plus lisible : <span class="grad">TPE/PME industrielles et aéronautiques</span></h2>
+          <p class="lead">Je ne recommande pas une agence digitale généraliste. Je recommande un positionnement où l'expérience terrain du dirigeant devient une preuve de compréhension métier.</p>
+        </div>
+        <div class="rail reveal delay1">
+          <div class="rail-item"><div class="rail-num">Qui</div><div class="rail-text">Dirigeants, responsables qualité, opérations, méthodes</div></div>
+          <div class="rail-item"><div class="rail-num">Besoin</div><div class="rail-text">Process encore manuels, données dispersées, outils mal reliés</div></div>
+          <div class="rail-item"><div class="rail-num">Preuve</div><div class="rail-text">Cas concrets, démonstrations, références autorisées</div></div>
+          <div class="rail-item"><div class="rail-num">Canal</div><div class="rail-text">LinkedIn personnel, réseau, contenus métier, SEO ciblé</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>ICP & positionnement</span><div class="progress-mini"><i></i></div><span>06</span></div>
+    </section>
+
+    <section class="slide" data-palette="#7ce8ff,#0b5ba7,#061a34" data-notes="Montrer l'implication. Dire que ces productions prouvent une capacité d'exécution, mais qu'elles ne suffisent pas sans stratégie commerciale.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Mes actions</div></div>
+      <div class="content split wide">
+        <div class="quote glass reveal">Plus de <span class="grad">240 fichiers</span> produits ou préparés pendant l'alternance.</div>
+        <div class="reveal delay1">
+          <div class="rail">
+            <div class="rail-item"><div class="rail-num">Web</div><div class="rail-text">Sites, pages, contenus, articles</div></div>
+            <div class="rail-item"><div class="rail-num">Créa</div><div class="rail-text">Visuels, photomontages, vidéos, supports social media</div></div>
+            <div class="rail-item"><div class="rail-num">Étude</div><div class="rail-text">Audits, analyses de marché, comparaisons concurrentielles</div></div>
+            <div class="rail-item"><div class="rail-num">Proto</div><div class="rail-text">Maquettes, interfaces, HTML, CSS, JavaScript</div></div>
+          </div>
+          <p class="sub">Le volume n'était donc pas le problème. Le problème était le lien entre production, offre, preuve et relance.</p>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Production réelle</span><div class="progress-mini"><i></i></div><span>07</span></div>
+    </section>
+
+    <section class="slide" data-palette="#8cecff,#0f5fb3,#061a34" data-notes="Ne pas réciter PESTEL/Porter/SWOT. Dire à quoi ils ont servi : comprendre l'environnement, la concurrence, puis synthétiser les priorités.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Diagnostic</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Synthèse d'analyse</div>
+          <h2>Le blocage vient d'un manque de <span class="grad">système commercial</span></h2>
+          <p class="sub">PESTEL pour l'environnement, les cinq forces de Porter pour la pression concurrentielle, SWOT pour hiérarchiser la décision.</p>
+        </div>
+        <div class="rail reveal delay1">
+          <div class="rail-item"><div class="rail-num">01</div><div class="rail-text">Trop de directions en parallèle</div></div>
+          <div class="rail-item"><div class="rail-num">02</div><div class="rail-text">Pas de CRM ni pipeline stable</div></div>
+          <div class="rail-item"><div class="rail-num">03</div><div class="rail-text">Pas de preuve sociale vérifiée</div></div>
+          <div class="rail-item"><div class="rail-num">04</div><div class="rail-text">Peu de critères pour arrêter, continuer ou prioriser</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Causes racines</span><div class="progress-mini"><i></i></div><span>08</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0d61b6,#061a34" data-notes="SWOT court. Insister sur la lecture croisée : les forces ne compensent pas les faiblesses si elles ne sont pas transformées en preuves commerciales.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">SWOT</div></div>
+      <div class="content reveal">
+        <div class="eyebrow">Lecture stratégique</div>
+        <h2>Le SWOT confirme une priorité : <span class="grad">recentrer avant d'accélérer</span></h2>
+        <div class="swot">
+          <div class="box glass"><small>Forces</small><p>Expérience industrielle du dirigeant, capacité de production interne, réactivité d'une petite structure.</p></div>
+          <div class="box glass"><small>Faiblesses</small><p>Dispersion des marques, absence de CRM, peu de preuves clients, mémoire projet fragile.</p></div>
+          <div class="box glass"><small>Opportunités</small><p>Digitalisation des TPE/PME, besoin de prestataires compréhensibles, potentiel LinkedIn en B2B.</p></div>
+          <div class="box glass"><small>Menaces</small><p>Concurrence forte, cycles B2B longs, défiance envers les contenus trop génériques ou trop IA.</p></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Bilan des analyses</span><div class="progress-mini"><i></i></div><span>09</span></div>
+    </section>
+
+    <section class="slide" data-palette="#79e4ff,#0f5fb3,#061a34" data-notes="Cas Amexsen. Expliquer que la campagne cherchait à s'inspirer d'un concurrent, mais que l'incarnation, la preuve et le parcours n'étaient pas assez solides. Ne pas dire que Meta est mauvais.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Cas Meta Ads · Amexsen</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Donnée terrain</div>
+          <h2>Une campagne très visible, <span class="grad">sans signal commercial</span></h2>
+          <p class="lead">La campagne montre une rupture avant la conversion : visibilité forte, mais promesse, preuve, page et ciblage insuffisamment transformés en intention.</p>
+        </div>
+        <div class="statline reveal delay1" style="grid-template-columns:1fr 1fr;margin-top:0">
+          <div class="stat glass"><small>Budget théorique</small><b>540€</b></div>
+          <div class="stat glass"><small>Impressions</small><b class="compact">1&nbsp;218&nbsp;430</b></div>
+          <div class="stat glass"><small>CTR</small><b class="compact">0,016%</b></div>
+          <div class="stat glass"><small>Clients</small><b>0</b></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Visibilité sans conversion</span><div class="progress-mini"><i></i></div><span>10</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0b549e,#061a34" data-notes="Cas suivi commercial. Rester factuel. Le cas sert à démontrer pourquoi un CRM et une responsabilité de relance sont indispensables.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Cas terrain</div></div>
+      <div class="content center reveal">
+        <div class="eyebrow">Suivi commercial</div>
+        <h2>Une opportunité peut disparaître <span class="grad">sans prochaine action</span></h2>
+        <div class="timeline">
+          <div class="step"><small>Intérêt</small><p>Un échange positif crée une opportunité, pas encore un client.</p></div>
+          <div class="step"><small>Relance</small><p>Devis, responsabilités et délais doivent être tracés.</p></div>
+          <div class="step"><small>Process</small><p>Sans suivi, l'opportunité sort du système.</p></div>
+        </div>
+        <p class="sub" style="margin-left:auto;margin-right:auto">Le problème n'est pas une personne à blâmer, mais un fonctionnement qui laisse les pistes commerciales sans protection.</p>
+      </div>
+      <div class="foot reveal delay2"><span>Conséquence concrète</span><div class="progress-mini"><i></i></div><span>11</span></div>
+    </section>
+
+    <section class="slide" data-palette="#8cecff,#0f5fb3,#061a34" data-notes="Lire la problématique calmement. Elle doit faire le pont vers les recommandations.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Problématique</div></div>
+      <div class="content center reveal">
+        <div class="quote glass">Comment Digitair peut-elle, en six mois, <span class="grad">recentrer son portefeuille</span> afin de construire une acquisition B2B lisible, crédible et mesurable ?</div>
+      </div>
+      <div class="foot reveal delay2"><span>Question directrice</span><div class="progress-mini"><i></i></div><span>12</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0f5fb3,#061a34" data-notes="Justifier les trois activités. Dire que trois est un compromis : assez de variété pour le dirigeant, mais assez peu pour pouvoir tester et mesurer.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Recommandation 1</div></div>
+      <div class="content reveal">
+        <div class="eyebrow">Recentrage stratégique</div>
+        <h2>Recentrer sur <span class="grad">trois activités maximum</span></h2>
+        <div class="timeline">
+          <div class="step"><small>01 · Existant</small><p>Missions personnelles de contrôle et qualité aéronautiques.</p></div>
+          <div class="step"><small>02 · Digitair</small><p>Digitalisation des petites entreprises industrielles et aéronautiques.</p></div>
+          <div class="step"><small>03 · Projet motivant</small><p>Un projet choisi pour sa viabilité, après business plan.</p></div>
+        </div>
+        <p class="lead">Le but n'est pas de supprimer l'énergie entrepreneuriale, mais de la concentrer sur des offres testables.</p>
+      </div>
+      <div class="foot reveal delay2"><span>Choisir pour mieux vendre</span><div class="progress-mini"><i></i></div><span>13</span></div>
+    </section>
+
+    <section class="slide" data-palette="#7ce8ff,#0b5ba7,#061a34" data-notes="Justifier LinkedIn : B2B, confiance, dirigeant, preuve humaine. La publicité vient après l'organique, uniquement sur ce qui montre déjà un signal.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Recommandation 2</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Crédibilité B2B</div>
+          <h2>Construire la <span class="grad">preuve humaine</span> avant d'acheter de la visibilité</h2>
+          <p class="lead">En B2B industriel, le dirigeant doit devenir plus visible que les pages de marques. La publicité amplifie une preuve, elle ne la remplace pas.</p>
+        </div>
+        <div class="rail reveal delay1">
+          <div class="rail-item"><div class="rail-num">01</div><div class="rail-text">Posts LinkedIn en nom propre du dirigeant</div></div>
+          <div class="rail-item"><div class="rail-num">02</div><div class="rail-text">Interactions régulières avec les comptes utiles</div></div>
+          <div class="rail-item"><div class="rail-num">03</div><div class="rail-text">Avis authentiques, cas concrets, références autorisées</div></div>
+          <div class="rail-item"><div class="rail-num">04</div><div class="rail-text">LinkedIn Ads seulement sur les contenus déjà prometteurs</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Preuve avant média</span><div class="progress-mini"><i></i></div><span>14</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0f5fb3,#061a34" data-notes="HubSpot Free pour prospects. Notion pour mémoire projet. Odoo seulement si ERP/process métier. Bien dire que l'outil est une conséquence du problème, pas le point de départ.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Recommandation 3</div></div>
+      <div class="content center reveal">
+        <div class="eyebrow">Outils justifiés par le besoin</div>
+        <h2>Installer un système simple : <span class="grad">tracer, relancer, mesurer</span></h2>
+        <div class="timeline">
+          <div class="step"><small>HubSpot Free</small><p>Contacts, pipeline, relances.</p><div class="desc">Pour le suivi commercial interne.</div></div>
+          <div class="step"><small>Notion</small><p>Mémoire projet.</p><div class="desc">Versions, décisions, livrables.</div></div>
+          <div class="step"><small>Odoo</small><p>Seulement si besoin métier.</p><div class="desc">ERP/process client, pas CRM par défaut.</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>L'outil vient après le problème</span><div class="progress-mini"><i></i></div><span>15</span></div>
+    </section>
+
+    <section class="slide" data-palette="#8cecff,#0d61b6,#061a34" data-notes="Slide Objectifs SMART. Expliquer que ce ne sont pas des promesses, mais des critères pour savoir si le recentrage fonctionne.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Objectifs SMART</div></div>
+      <div class="content reveal">
+        <div class="eyebrow">Pilote sur six mois</div>
+        <h2>Tester sans surpromettre : <span class="grad">un cadre mesurable</span></h2>
+        <div class="smart-grid">
+          <div class="smart glass"><small>S</small><p>Une offre centrée digitalisation industrielle/aéronautique.</p></div>
+          <div class="smart glass"><small>M</small><p>90 cibles, 18 conversations, 8 RDV, 4 propositions, 1 client.</p></div>
+          <div class="smart glass"><small>A</small><p>Outils gratuits au départ et budget pub limité.</p></div>
+          <div class="smart glass"><small>R</small><p>Objectif prudent : passer de zéro client à un signal réel.</p></div>
+          <div class="smart glass"><small>T</small><p>Contrôle aux mois 2, 4 et 6.</p></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Objectifs SMART</span><div class="progress-mini"><i></i></div><span>16</span></div>
+    </section>
+
+    <section class="slide" data-palette="#8cecff,#0b5ba7,#061a34" data-notes="Expliquer le tunnel lentement. La question probable est : pourquoi ces ratios ? Réponse : ce sont des hypothèses basses de pilotage, pas une promesse.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Tunnel d'acquisition</div></div>
+      <div class="content reveal">
+        <div class="eyebrow">Scénario central</div>
+        <h2>Passer de zéro acquisition suivie à <span class="grad">un premier client mesurable</span></h2>
+        <div class="flow">
+          <div class="flow-step glass"><b>180</b><span>entreprises identifiées</span><small>base</small></div>
+          <div class="flow-step glass"><b>90</b><span>entreprises ciblées</span><small>tri</small></div>
+          <div class="flow-step glass"><b>18</b><span>conversations qualifiées</span><small>20%</small></div>
+          <div class="flow-step glass"><b>4</b><span>propositions envoyées</span><small>après RDV</small></div>
+          <div class="flow-step glass"><b>1</b><span>client signé</span><small>central</small></div>
+        </div>
+        <p class="sub">Scénario favorable : deux clients signés. Dans les deux cas, l'intérêt est d'obtenir une lecture réelle du marché.</p>
+      </div>
+      <div class="foot reveal delay2"><span>Hypothèse prudente</span><div class="progress-mini"><i></i></div><span>17</span></div>
+    </section>
+
+    <section class="slide" data-palette="#7ce8ff,#0f5fb3,#061a34" data-notes="Distinguer CAC média et CAC complet minimal. 48h x 45 euros = 2160 euros. 2160 + 600 = 2760. Avec 2 clients : 1380 euros par client.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Budget & CAC</div></div>
+      <div class="content split wide">
+        <div class="reveal">
+          <div class="eyebrow">Hypothèse de pilotage</div>
+          <h2>Du CAC non calculable au <span class="grad">coût piloté</span></h2>
+          <p class="lead">Comme Digitair part de zéro client suivi, le CAC historique n'est pas calculable. Le pilote sert à créer une base de mesure.</p>
+        </div>
+        <div class="statline reveal delay1" style="grid-template-columns:1fr 1fr;margin-top:0">
+          <div class="stat glass"><small>LinkedIn Ads</small><b>600€</b></div>
+          <div class="stat glass"><small>Temps minimal</small><b>48h</b></div>
+          <div class="stat glass"><small>Coût complet</small><b class="compact">2&nbsp;760€</b></div>
+          <div class="stat glass"><small>Si 2 clients</small><b class="compact">1&nbsp;380€</b></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>CAC média vs CAC complet</span><div class="progress-mini"><i></i></div><span>18</span></div>
+    </section>
+
+    <section class="slide" data-palette="#69d9ff,#0b5ba7,#061a34" data-notes="Bilan personnel puis conclusion. Mentionner que mon expérience antérieure dans l'aéronautique m'aide à comprendre ces exigences, sans la présenter comme une mission Digitair.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Bilan & conclusion</div></div>
+      <div class="content split">
+        <div class="reveal">
+          <div class="eyebrow">Ce que je retiens</div>
+          <h2>Une bonne production ne suffit pas. <span class="grad">Il faut un système.</span></h2>
+          <p class="lead">Cette mission m'a fait progresser sur la stratégie, l'acquisition, le pilotage de chiffres et la capacité à relier création, business et suivi commercial.</p>
+        </div>
+        <div class="rail reveal delay1">
+          <div class="rail-item"><div class="rail-num">01</div><div class="rail-text">Choisir moins de projets, mais mieux les tester</div></div>
+          <div class="rail-item"><div class="rail-num">02</div><div class="rail-text">Créer de la preuve humaine avant d'amplifier</div></div>
+          <div class="rail-item"><div class="rail-num">03</div><div class="rail-text">Mettre en place CRM, relance et tableau de bord</div></div>
+          <div class="rail-item"><div class="rail-num">04</div><div class="rail-text">Mesurer les pertes aussi sérieusement que les résultats</div></div>
+        </div>
+      </div>
+      <div class="foot reveal delay2"><span>Conclusion</span><div class="progress-mini"><i></i></div><span>19</span></div>
+    </section>
+
+    <section class="slide" data-palette="#8cecff,#0f5fb3,#061a34" data-notes="Slide affichée pendant les questions. Remercier oralement en arrivant dessus, puis laisser la slide 'Questions' pendant l'échange.">
+      <div class="top reveal"><div class="brand"><div class="digitair">digit<span>air</span></div><div class="bar"></div><div class="school">Rocket School</div></div><div class="section">Questions-réponses</div></div>
+      <div class="content center reveal">
+        <div class="bigmark">?</div>
+        <h2>Merci. <span class="grad">Questions ?</span></h2>
+        <p class="lead" style="margin-left:auto;margin-right:auto">Je suis à votre écoute.</p>
+      </div>
+      <div class="foot reveal delay2"><span>Questions-réponses</span><div class="progress-mini"><i></i></div><span>20</span></div>
+    </section>
+  </main>
+
+  <script>
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    const total = slides.length;
+    const btnFull = document.getElementById('fullscreenBtn');
+    const noteText = document.getElementById('noteText');
+    const chromeSection = document.getElementById('chromeSection');
+    const chromeFootLabel = document.getElementById('chromeFootLabel');
+    const chromePage = document.getElementById('chromePage');
+    let index = 0;
+    function clamp(n){ return Math.max(0, Math.min(total - 1, n)); }
+    function setSlide(n, push = true){
+      index = clamp(n);
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === index));
+      const palette = (slides[index].dataset.palette || '').split(',');
+      if(palette.length >= 3){
+        document.documentElement.style.setProperty('--a', palette[0].trim());
+        document.documentElement.style.setProperty('--b', palette[1].trim());
+        document.documentElement.style.setProperty('--c', palette[2].trim());
+      }
+      document.documentElement.style.setProperty('--slide', String(index + 1));
+      document.documentElement.style.setProperty('--progress', `${((index + 1) / total) * 100}%`);
+      document.body.classList.toggle('is-first-slide', index === 0);
+      const activeSlide = slides[index];
+      chromeSection.textContent = activeSlide.querySelector('.top .section')?.textContent?.trim() || '';
+      chromeFootLabel.textContent = activeSlide.querySelector('.foot span:first-child')?.textContent?.trim() || '';
+      chromePage.textContent = activeSlide.querySelector('.foot span:last-child')?.textContent?.trim() || String(index + 1).padStart(2, '0');
+      noteText.textContent = slides[index].dataset.notes || '';
+      if(push) history.replaceState(null, '', `#${index + 1}`);
+    }
+    function next(){ setSlide(index + 1); }
+    function prev(){ setSlide(index - 1); }
+    btnFull.addEventListener('click', async () => {
+      if(!document.fullscreenElement && document.documentElement.requestFullscreen){
+        await document.documentElement.requestFullscreen();
+      }
+    });
+    document.addEventListener('fullscreenchange', () => {
+      document.body.classList.toggle('is-fullscreen', Boolean(document.fullscreenElement));
+    });
+    window.addEventListener('keydown', (e) => {
+      if(['ArrowRight','PageDown',' '].includes(e.key)){ e.preventDefault(); next(); }
+      if(['ArrowLeft','PageUp','Backspace'].includes(e.key)){ e.preventDefault(); prev(); }
+      if(e.key.toLowerCase() === 'f'){ e.preventDefault(); btnFull.click(); }
+      if(e.key.toLowerCase() === 'n'){ e.preventDefault(); document.body.classList.toggle('show-notes'); }
+      if(e.key === 'Home'){ e.preventDefault(); setSlide(0); }
+      if(e.key === 'End'){ e.preventDefault(); setSlide(total - 1); }
+    });
+    let pointerX = 0;
+    document.addEventListener('pointerup', (e) => {
+      if(e.target.closest('button') || document.body.classList.contains('show-notes')) return;
+      const w = window.innerWidth || 1;
+      if(Math.abs(e.clientX - pointerX) > 16) return;
+      e.clientX > w * .54 ? next() : prev();
+    });
+    document.addEventListener('pointerdown', (e) => { pointerX = e.clientX; });
+    const initial = Number((location.hash || '').replace('#','')) || Number(new URLSearchParams(location.search).get('slide')) || 1;
+    setSlide(initial - 1, false);
+  </script>
+</body>
+</html>

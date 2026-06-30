@@ -102,20 +102,20 @@
 * **La transition** : 
   > *« Ce succès repose sur un argument de vente imparable : le ROI financier immédiat généré par nos outils et notre centrale d'achats. »*
 
-#### **Slide 16 (ROI) ➔ Slide 17 (Canaux Relationnels)**
+#### **Slide 16 (ROI) ➔ Slide 17 (Canal Afterwork)**
 * **Le message de la Slide 16** : ROI de 32.6x (économies et commissions évitées).
 * **La transition** : 
-  > *« Pour diffuser ce ROI sans passer par la prospection téléphonique, nous avons structuré deux canaux relationnels alternatifs axés sur l'engagement. »*
+  > *« Pour diffuser ce ROI et recruter de nouveaux membres sans repasser par l’impasse du téléphone, nous avons conçu l’Afterwork Régional, un levier d'acquisition fondé sur la recommandation locale. »*
 
-#### **Slide 17 (Canaux Relationnels) ➔ Slide 18 (Budget Relationnel)**
-* **Le message de la Slide 17** : Afterworks de parrainage et Webinaires mensuels de formation.
+#### **Slide 17 (Canal Afterwork) ➔ Slide 18 (Canal Webinaire)**
+* **Le message de la Slide 17** : Chiffrage de l'Afterwork mensuel sur 5 régions (coût de 66 960 € / an, signatures ARR cible de 172 800 € / an).
 * **La transition** : 
-  > *« Ce pivot relationnel n'est pas seulement plus humain, il est aussi mathématiquement beaucoup plus rentable, comme le montre notre modélisation budgétaire. »*
+  > *« Ce recrutement physique régional n'est que la première étape de notre stratégie relationnelle ; une fois les membres signés, nous sécurisons leur engagement via le Webinaire d'Onboarding mensuel. »*
 
-#### **Slide 18 (Budget Relationnel) ➔ Slide 19 (Gantt & Veto)**
-* **Le message de la Slide 18** : Budget Afterwork de 1116 € amorti à plus de 2x (CAC à 140 €).
+#### **Slide 18 (Canal Webinaire) ➔ Slide 19 (Gantt & Veto)**
+* **Le message de la Slide 18** : Webinaire mensuel d'activation (coût d'activation de 9 € / membre, réduction du churn cible de 80% à 15%).
 * **La transition** : 
-  > *« Cependant, la mise en œuvre de ce plan s'est heurtée à des arbitrages internes et à des résistances de la direction que j'ai dû piloter. »*
+  > *« Cependant, malgré l'efficacité démontrée de ces deux canaux physiques et digitaux, leur mise en œuvre s'est heurtée à des résistances internes de la direction. »*
 
 ---
 

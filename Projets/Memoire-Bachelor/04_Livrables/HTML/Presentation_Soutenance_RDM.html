@@ -1245,7 +1245,7 @@
     </section>
 
     <!-- SLIDE 18 : COÛTS & OPEX DES CANAUX RELATIONNELS -->
-    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Modélisation budgétaire des canaux alternatifs. Un afterwork de prestige coûte 785 € tout compris. Avec 2 signatures attendues grâce à l'effet de parrainage et preuve sociale, le CAC descend à 393 € (vs 1823 € en Cold Calling). Le webinaire d'onboarding coûte 261 € par mois (temps et outils), soit 9 € par membre activé pour diviser le churn par 5.">
+    <section class="slide" data-palette="#D4AF37,#C5A059,#07090E" data-notes="Modélisation budgétaire des canaux alternatifs. Un afterwork de prestige coûte 1 116 € tout compris (500 € de logistique et nourriture, 616 € de temps de sélection et présence). Avec 2 signatures attendues grâce à l'effet de parrainage et preuve sociale, le CAC descend à 558 € (vs 1823 € en Cold Calling). Le webinaire d'onboarding coûte 261 € par mois (temps et outils), soit 9 € par membre activé pour diviser le churn par 5.">
       <div class="top reveal"><div class="brand"><div class="digitair" style="font-family: 'Cinzel'; font-size: 1.2rem; text-transform: uppercase;">Happy<span>House</span></div><div class="bar"></div><div class="school">Julien Florence</div></div><div class="section">Budget Relationnel</div></div>
       <div class="content split">
         <div class="reveal">
@@ -1261,14 +1261,19 @@
               </thead>
               <tbody>
                   <tr>
-                      <td style="padding: 8px; font-weight: 600;">Afterwork Régional</td>
-                      <td style="padding: 8px;">Privatisation & Cocktail (400€) + Temps : 5h (385€)</td>
-                      <td style="padding: 8px; font-weight: 600; color: var(--cyan);">785 € / event</td>
+                      <td style="padding: 8px; font-weight: 600;">Afterwork (Logistique)</td>
+                      <td style="padding: 8px;">Espace (200€) + Nourriture & Boissons (300€)</td>
+                      <td style="padding: 8px; font-weight: 600; color: var(--cyan);">500 € / event</td>
+                  </tr>
+                  <tr>
+                      <td style="padding: 8px; font-weight: 600;">Afterwork (Temps B2B)</td>
+                      <td style="padding: 8px;">Sélection amont (3h : 231€) + Événement (5h : 385€)</td>
+                      <td style="padding: 8px; font-weight: 600; color: var(--cyan);">616 € / event</td>
                   </tr>
                   <tr>
                       <td style="padding: 8px; font-weight: 600;">CAC Relationnel Cible</td>
-                      <td style="padding: 8px;">Budget (785€) / 2 signatures attendues</td>
-                      <td class="highlight-accent" style="padding: 8px; font-family: 'Cinzel'; font-size: 0.9rem;">393 € (vs 1823€)</td>
+                      <td style="padding: 8px;">Total (1 116€) / 2 signatures attendues</td>
+                      <td class="highlight-accent" style="padding: 8px; font-family: 'Cinzel'; font-size: 0.9rem;">558 € (vs 1823€)</td>
                   </tr>
                   <tr>
                       <td style="padding: 8px; font-weight: 600;">Webinaire Mensuel</td>
@@ -1293,12 +1298,12 @@
                         <div style="font-size: 0.8rem; color: #FFFFFF; margin-top: 8px; text-transform: uppercase; text-align: center; font-weight: 600; line-height: 1.1;">CAC Téléphone</div>
                     </div>
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 42%; height: 100%; justify-content: flex-end;">
-                        <div style="font-family: 'Cinzel'; font-size: 1.1rem; color: var(--cyan); font-weight: 700; margin-bottom: 6px;">393 €</div>
+                        <div style="font-family: 'Cinzel'; font-size: 1.1rem; color: var(--cyan); font-weight: 700; margin-bottom: 6px;">558 €</div>
                         <div class="bar-graphic" id="barCacRel" style="width: 100%; height: 0px; background: var(--cyan); border-radius: 6px 6px 0 0; box-shadow: 0 0 10px rgba(197, 160, 89, 0.2);"></div>
                         <div style="font-size: 0.8rem; color: #FFFFFF; margin-top: 8px; text-transform: uppercase; text-align: center; font-weight: 600; line-height: 1.1;">CAC Afterwork</div>
                     </div>
                 </div>
-                <div style="font-size: 0.85rem; color: var(--cyan); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 6px;">Facteur d'économie : CAC divisé par 4.6</div>
+                <div style="font-size: 0.85rem; color: var(--cyan); font-weight: 700; text-align: center; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 6px;">Facteur d'économie : CAC divisé par 3.2</div>
             </div>
         </div>
       </div>
@@ -1630,7 +1635,7 @@
           barCacRel.style.height = '0px';
           setTimeout(() => {
             barCacTel.style.height = '160px'; // 1823 (max)
-            barCacRel.style.height = '34px'; // 393 (proportionnel);
+            barCacRel.style.height = '49px'; // 558 (proportionnel)
           }, 50);
         }
       }

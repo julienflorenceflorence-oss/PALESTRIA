@@ -21,7 +21,7 @@
   > *« Pour comprendre comment nous avons transformé ce modèle d'acquisition, je vous propose de suivre une démonstration en quatre étapes logiques. »*
 
 #### **Slide 2 (Sommaire) ➔ Slide 3 (Parcours & Légitimité)**
-* **Le message de la Slide 2** : Le plan de la soutenance.
+* **Le message de la Slide 2** : Le plan de la soutenance structuré en 4 parties en chiffres romains (I à IV).
 * **La transition** : 
   > *« Cette démarche s'appuie directement sur mon parcours, où j'ai appris à conjuguer la discipline du sport de haut niveau et les exigences de l'hôtellerie haut de gamme. »*
 

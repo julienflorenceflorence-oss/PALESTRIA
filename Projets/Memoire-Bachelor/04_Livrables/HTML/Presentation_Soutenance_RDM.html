@@ -1274,44 +1274,34 @@
         <div class="reveal">
           <div class="eyebrow">Démonstration des coûts</div>
           <h2>Optimisation budgétaire et <span class="grad">comparatif de CAC</span></h2>
-          <table class="calc-table" style="font-size: 0.82rem; line-height: 1.5; width: 100%; margin-top: 15px;">
+          <table class="calc-table" style="font-size: 0.82rem; line-height: 1.4; width: 100%; margin-top: 10px;">
               <thead>
                   <tr>
-                      <th style="padding: 8px; font-size: 0.85rem;">Indicateur</th>
-                      <th style="padding: 8px; font-size: 0.85rem;">Calcul / Composants</th>
-                      <th style="padding: 8px; font-size: 0.85rem;">Budget</th>
+                      <th style="padding: 6px; font-size: 0.82rem;">Indicateur</th>
+                      <th style="padding: 6px; font-size: 0.82rem;">Calcul / Composants</th>
+                      <th style="padding: 6px; font-size: 0.82rem;">Budget</th>
                   </tr>
               </thead>
               <tbody>
                   <tr>
-                      <td style="padding: 8px; font-weight: 600;">Afterwork (Logistique)</td>
-                      <td style="padding: 8px;">Espace (200€) + Nourriture & Boissons (300€)</td>
-                      <td style="padding: 8px; font-weight: 600; color: var(--cyan);">500 € / event</td>
+                      <td style="padding: 6px; font-weight: 600; color: #FFFFFF;">Afterwork (Coût Total)</td>
+                      <td style="padding: 6px; color: #FFFFFF;">Logistique (500€) + Salaires chargés (616€)</td>
+                      <td style="padding: 6px; font-weight: 700; color: #FFFFFF;">1 116 € / event</td>
                   </tr>
                   <tr>
-                      <td style="padding: 8px; font-weight: 600;">Afterwork (Temps B2B)</td>
-                      <td style="padding: 8px;">Sélection amont (3h : 231€) + Événement (5h : 385€)</td>
-                      <td style="padding: 8px; font-weight: 600; color: var(--cyan);">616 € / event</td>
+                      <td style="padding: 6px; font-weight: 600;">CAC Relationnel Cible</td>
+                      <td style="padding: 6px;">Total (1 116€) / 8 signatures attendues</td>
+                      <td class="highlight-accent" style="padding: 6px; font-family: 'Cinzel'; font-size: 0.88rem;">140 € (vs 1823€)</td>
                   </tr>
                   <tr>
-                      <td style="padding: 8px; font-weight: 600; color: #FFFFFF;">Afterwork (Coût Total)</td>
-                      <td style="padding: 8px; color: #FFFFFF;">Logistique (500€) + Salaires chargés (616€)</td>
-                      <td style="padding: 8px; font-weight: 700; color: #FFFFFF;">1 116 € / event</td>
+                      <td style="padding: 6px; font-weight: 600;">Webinaire Mensuel</td>
+                      <td style="padding: 6px;">Licence pro (30€) + Temps chargé : 3h (231€)</td>
+                      <td style="padding: 6px; font-weight: 600; color: var(--cyan2);">261 € / mois</td>
                   </tr>
                   <tr>
-                      <td style="padding: 8px; font-weight: 600;">CAC Relationnel Cible</td>
-                      <td style="padding: 8px;">Total (1 116€) / 8 signatures attendues</td>
-                      <td class="highlight-accent" style="padding: 8px; font-family: 'Cinzel'; font-size: 0.9rem;">140 € (vs 1823€)</td>
-                  </tr>
-                  <tr>
-                      <td style="padding: 8px; font-weight: 600;">Webinaire Mensuel</td>
-                      <td style="padding: 8px;">Licence pro (30€) + Temps : 3h (231€)</td>
-                      <td style="padding: 8px; font-weight: 600; color: var(--cyan2);">261 € / mois</td>
-                  </tr>
-                  <tr>
-                      <td style="padding: 8px; font-weight: 600;">Coût d'Activation</td>
-                      <td style="padding: 8px;">Budget (261€) / 30 membres onboardés</td>
-                      <td class="highlight-accent" style="padding: 8px; font-family: 'Cinzel'; font-size: 0.9rem;">9 € / membre</td>
+                      <td style="padding: 6px; font-weight: 600;">Coût d'Activation</td>
+                      <td style="padding: 6px;">Budget (261€) / 30 membres onboardés</td>
+                      <td class="highlight-accent" style="padding: 6px; font-family: 'Cinzel'; font-size: 0.88rem;">9 € / membre</td>
                   </tr>
               </tbody>
           </table>
@@ -1319,7 +1309,7 @@
         <div class="visual-panel reveal delay1">
             <div style="width: 100%; display: flex; flex-direction: column; gap: 12px; margin: auto; height: 100%; justify-content: center;">
                 <div style="font-size: 0.95rem; color: #FFFFFF; text-transform: uppercase; letter-spacing: 1px; text-align: center; font-family: 'Cinzel'; font-weight: 700; margin-bottom: 8px;">Comparatif CAC : Téléphone vs Relationnel</div>
-                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 160px; width: 100%; position: relative; border-bottom: 2px solid var(--line); padding-bottom: 4px;">
+                <div class="bar-chart-container" style="display: flex; justify-content: space-around; align-items: flex-end; height: 110px; width: 100%; position: relative; border-bottom: 2px solid var(--line); padding-bottom: 4px;">
                     <div class="bar-item" style="display: flex; flex-direction: column; align-items: center; width: 42%; height: 100%; justify-content: flex-end;">
                         <div style="font-family: 'Cinzel'; font-size: 1.1rem; color: var(--rose); font-weight: 700; margin-bottom: 6px;">1 823 €</div>
                         <div class="bar-graphic" id="barCacTel" style="width: 100%; height: 0px; background: var(--rose); border-radius: 6px 6px 0 0; box-shadow: 0 0 10px rgba(225, 91, 91, 0.2);"></div>
@@ -1662,8 +1652,8 @@
           barCacTel.style.height = '0px';
           barCacRel.style.height = '0px';
           setTimeout(() => {
-            barCacTel.style.height = '160px'; // 1823 (max)
-            barCacRel.style.height = '12px'; // 140 (proportionnel)
+            barCacTel.style.height = '110px'; // 1823 (max)
+            barCacRel.style.height = '9px'; // 140 (proportionnel)
           }, 50);
         }
       }

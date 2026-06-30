@@ -110,7 +110,7 @@
       transform:translate3d(0,0,0);
       filter:none;
       pointer-events:none;
-      transition:opacity .42s cubic-bezier(.16,.84,.28,1);
+      transition:opacity .22s cubic-bezier(.16,.84,.28,1);
       isolation:isolate;
       user-select:none;
       -webkit-user-select:none;
@@ -258,16 +258,16 @@
     .reveal{opacity:0;transform:translate3d(var(--from-x,0),var(--from-y,30px),0) scale(.985);filter:blur(22px);will-change:opacity,transform,filter}
     .split > .reveal:first-child{--from-x:-34px;--from-y:18px}
     .split > .reveal:nth-child(2){--from-x:34px;--from-y:18px}
-    .slide.active .reveal{animation:enter .90s cubic-bezier(.17,.82,.22,1) .06s forwards}
-    .slide.active .reveal.delay1{animation-delay:.18s}
-    .slide.active .reveal.delay2{animation-delay:.30s}
-    .slide.active .reveal.delay3{animation-delay:.42s}
-    .stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px);will-change:opacity,transform,filter}
-    .slide.active .stat,.slide.active .rail-item,.slide.active .step,.slide.active .plan-card,.slide.active .swot .box,.slide.active .smart,.slide.active .flow-step,.chip{animation:itemEnter .78s cubic-bezier(.17,.82,.22,1) forwards}
-    .slide.active .stat:nth-child(1),.slide.active .rail-item:nth-child(1),.slide.active .step:nth-child(1),.slide.active .plan-card:nth-child(1),.slide.active .swot .box:nth-child(1),.slide.active .smart:nth-child(1),.slide.active .flow-step:nth-child(1),.slide.active .chip:nth-child(1){animation-delay:.28s}
-    .slide.active .stat:nth-child(2),.slide.active .rail-item:nth-child(2),.slide.active .step:nth-child(2),.slide.active .plan-card:nth-child(2),.slide.active .swot .box:nth-child(2),.slide.active .smart:nth-child(2),.slide.active .flow-step:nth-child(2),.slide.active .chip:nth-child(2){animation-delay:.36s}
-    .slide.active .stat:nth-child(3),.slide.active .rail-item:nth-child(3),.slide.active .step:nth-child(3),.slide.active .plan-card:nth-child(3),.slide.active .swot .box:nth-child(3),.slide.active .smart:nth-child(3),.slide.active .flow-step:nth-child(3),.slide.active .chip:nth-child(3){animation-delay:.44s}
-    .slide.active .stat:nth-child(4),.slide.active .rail-item:nth-child(4),.slide.active .step:nth-child(4),.slide.active .plan-card:nth-child(4),.slide.active .swot .box:nth-child(4),.slide.active .smart:nth-child(4),.slide.active .flow-step:nth-child(4),.slide.active .chip:nth-child(4){animation-delay:.52s}
+    .slide.active .reveal{animation:enter .40s cubic-bezier(.17,.82,.22,1) .03s forwards}
+    .slide.active .reveal.delay1{animation-delay:.08s}
+    .slide.active .reveal.delay2{animation-delay:.14s}
+    .slide.active .reveal.delay3{animation-delay:.20s}
+    .stat,.rail-item,.step,.plan-card,.swot .box,.smart,.flow-step,.chip{opacity:0;transform:translate3d(0,18px,0) scale(.99);filter:blur(10px);will-change:opacity,transform,filter}
+    .slide.active .stat,.slide.active .rail-item,.slide.active .step,.slide.active .plan-card,.slide.active .swot .box,.slide.active .smart,.slide.active .flow-step,.slide.active .chip{animation:itemEnter .32s cubic-bezier(.17,.82,.22,1) forwards}
+    .slide.active .stat:nth-child(1),.slide.active .rail-item:nth-child(1),.slide.active .step:nth-child(1),.slide.active .plan-card:nth-child(1),.slide.active .swot .box:nth-child(1),.slide.active .smart:nth-child(1),.slide.active .flow-step:nth-child(1),.slide.active .chip:nth-child(1){animation-delay:.10s}
+    .slide.active .stat:nth-child(2),.slide.active .rail-item:nth-child(2),.slide.active .step:nth-child(2),.slide.active .plan-card:nth-child(2),.slide.active .swot .box:nth-child(2),.slide.active .smart:nth-child(2),.slide.active .flow-step:nth-child(2),.slide.active .chip:nth-child(2){animation-delay:.15s}
+    .slide.active .stat:nth-child(3),.slide.active .rail-item:nth-child(3),.slide.active .step:nth-child(3),.slide.active .plan-card:nth-child(3),.slide.active .swot .box:nth-child(3),.slide.active .smart:nth-child(3),.slide.active .flow-step:nth-child(3),.slide.active .chip:nth-child(3){animation-delay:.20s}
+    .slide.active .stat:nth-child(4),.slide.active .rail-item:nth-child(4),.slide.active .step:nth-child(4),.slide.active .plan-card:nth-child(4),.slide.active .swot .box:nth-child(4),.slide.active .smart:nth-child(4),.slide.active .flow-step:nth-child(4),.slide.active .chip:nth-child(4){animation-delay:.25s}
     
     @keyframes enter{0%{opacity:0;transform:translate3d(var(--from-x,0),var(--from-y,30px),0) scale(.985);filter:blur(22px)}42%{opacity:.45;filter:blur(14px)}72%{opacity:.86;filter:blur(5px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
     @keyframes itemEnter{0%{opacity:0;transform:translate3d(0,24px,0) scale(.985);filter:blur(16px)}46%{opacity:.50;filter:blur(10px)}76%{opacity:.88;filter:blur(4px)}100%{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}

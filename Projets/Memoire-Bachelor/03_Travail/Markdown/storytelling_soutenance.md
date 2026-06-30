@@ -34,25 +34,25 @@
 
 ### 🔍 PARTIE 2 : Diagnostic & Analyse Stratégique (Slides 5 à 10)
 
-#### **Slide 4 (Posture) ➔ Slide 5 (PESTEL / Porter)**
+#### **Slide 4 (Posture) ➔ Slide 5 (Fondations & Offre / Happy House)**
 * **Le message de la Slide 4** : Profil ENTJ-A, communication en Position Adulte.
 * **La transition** : 
-  > *« C’est avec cette rigueur analytique que j’ai cartographié notre environnement externe, marqué par une forte pression législative et une dépendance aux intermédiaires. »*
+  > *« C’est avec cette posture et cette rigueur d'analyse que j’ai d’abord cartographié notre structure d’accueil, l’écosystème Happy House, et ses quatre piliers de valeur. »*
 
-#### **Slide 5 (PESTEL/Porter) ➔ Slide 6 (SWOT)**
-* **Le message de la Slide 5** : Loi Le Meur et domination des OTAs (25% de commissions).
+#### **Slide 5 (Fondations & Offre) ➔ Slide 6 (PESTEL / Porter)**
+* **Le message de la Slide 5** : L'écosystème Happy House (label, app, visibilité, centrale Entegra).
 * **La transition** : 
-  > *« Ce contexte externe met en lumière nos forces et faiblesses internes, que j’ai synthétisées dans un diagnostic SWOT pour identifier nos leviers de croissance. »*
+  > *« Pour évaluer l’adéquation de cette offre avec le marché, il nous fallait confronter Happy House à son environnement externe législatif et concurrentiel. »*
 
-#### **Slide 6 (SWOT) ➔ Slide 7 (Fondations & Offre)**
-* **Le message de la Slide 6** : Forces (Entegra), faiblesses (churn 80%), opportunités (afterworks).
+#### **Slide 6 (PESTEL/Porter) ➔ Slide 7 (SWOT)**
+* **Le message de la Slide 6** : Loi Le Meur régulant les meublés et domination des OTAs (25% de commissions).
 * **La transition** : 
-  > *« Pour exploiter ces opportunités, il nous fallait d’abord consolider les fondations de l'offre Happy House et le parcours de nos membres. »*
+  > *« Ce diagnostic externe met en lumière les forces et faiblesses internes d’Happy House, que j’ai consolidées dans un diagnostic SWOT d'alignement. »*
 
-#### **Slide 7 (Fondations) ➔ Slide 8 (Écarts Marché)**
-* **Le message de la Slide 7** : Label, CRM applicatif, direct.
+#### **Slide 7 (SWOT) ➔ Slide 8 (Écarts Marché)**
+* **Le message de la Slide 7** : Diagnostic SWOT (forces de la centrale, faiblesses d'adoption, menace de dépendance).
 * **La transition** : 
-  > *« Cependant, la théorie du modèle se heurtait à des écarts majeurs sur le terrain, révélés par notre audit opérationnel. »*
+  > *« Cependant, la théorie de cette matrice SWOT se heurtait sur le terrain à des écarts critiques de scalabilité du réseau. »*
 
 #### **Slide 8 (Écarts) ➔ Slide 9 (Souveraineté des Canaux)**
 * **Le message de la Slide 8** : L'équipe de 4 collaborateurs face au volume d'acquisition.

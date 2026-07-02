@@ -163,7 +163,7 @@
             transition: 0.3s;
             border-radius: var(--border-radius);
             letter-spacing: 2px;
-            background-color: var(--card);
+            background-color: #121826;
         }
 
         .btn-v:hover {
@@ -227,10 +227,22 @@
             text-align: center;
             transition: 0.3s;
             border-radius: var(--border-radius);
+            background-color: #121826;
         }
 
-        .btn-g { background: var(--gold); color: var(--bg); }
-        .btn-g:hover { background: transparent; color: var(--gold); }
+        .btn-d:hover {
+            background-color: var(--gold);
+            color: var(--bg);
+        }
+
+        .btn-g { 
+            background: linear-gradient(135deg, #F7EF8A 0%, #D4AF37 50%, #8A6426 100%) !important; 
+            color: #000 !important; 
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            font-weight: 700;
+        }
+        .btn-g:hover { background: #fff !important; color: #000 !important; }
 
         /* --- MOBILE SPACER (MANDATORY) --- */
         .mobile-spacer { height: 350px; }

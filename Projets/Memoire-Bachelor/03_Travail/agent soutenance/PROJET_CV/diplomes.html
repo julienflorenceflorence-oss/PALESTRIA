@@ -8,8 +8,8 @@
     <style>
         :root { 
             --gold: #D4AF37;
-            --bg: #0F1115;
-            --card: #161a23;
+            --bg: #07090E;
+            --card: rgba(18, 24, 38, 0.5);
             --text: #F4F4F4;
             --border-radius: 10px;
         }
@@ -75,8 +75,10 @@
         }
 
         .card {
-            background: var(--card);
-            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.04), rgba(18, 24, 38, 0.3));
+            border: 1px solid rgba(197, 160, 89, 0.15);
+            backdrop-filter: blur(12px) saturate(1.25);
+            -webkit-backdrop-filter: blur(12px) saturate(1.25);
             padding: 35px;
             display: flex;
             flex-direction: column;
@@ -85,6 +87,7 @@
             border-radius: var(--border-radius);
             position: relative;
             overflow: hidden;
+            z-index: 2;
         }
 
         .card::before {
@@ -243,11 +246,30 @@
             h1 { font-size: 1.8rem; letter-spacing: 3px; }
             .content-wrapper { padding-top: 40px; }
         }
+
+        /* AMBIENT & RAYS DESIGN PRESTIGE SLIDES */
+        .ambient {
+            position: fixed; inset: -18%; z-index: 0; pointer-events: none;
+            background:
+              radial-gradient(48vw 38vw at 8% 17%, rgba(212, 175, 55, 0.15), transparent 70%),
+              radial-gradient(46vw 42vw at 92% 7%, rgba(146, 117, 63, 0.25), transparent 64%),
+              radial-gradient(58vw 42vw at 70% 96%, rgba(212, 175, 55, 0.12), transparent 68%),
+              linear-gradient(145deg, #07090E 0%, #16120b 47%, #1f180e 100%);
+            filter: saturate(1.12);
+        }
+        .rays {
+            position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.36; mix-blend-mode: screen;
+            background:
+              linear-gradient(118deg, transparent 23%, rgba(255, 255, 255, 0.045) 34%, transparent 47%),
+              linear-gradient(65deg, transparent 54%, rgba(197, 160, 89, 0.06) 61%, transparent 72%);
+        }
     </style>
 </head>
 <body>
+    <div class="ambient" aria-hidden="true"></div>
+    <div class="rays" aria-hidden="true"></div>
 
-<div class="content-wrapper">
+<div class="content-wrapper" style="z-index: 2; position: relative;">
     <header>
         <h1>Dossier de Compétences</h1>
         <div class="subtitle">Excellence Commerciale & Expertise Tech</div>

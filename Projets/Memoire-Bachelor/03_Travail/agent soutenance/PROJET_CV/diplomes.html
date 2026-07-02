@@ -144,7 +144,7 @@
 
         .card p {
             font-size: 0.9rem;
-            color: #C0C0C0;
+            color: #FFFFFF;
             margin-bottom: 30px;
             text-align: left;
             font-weight: 300;
@@ -153,22 +153,23 @@
         .btn-v {
             display: block;
             padding: 14px;
-            border: 1px solid var(--gold);
-            color: var(--gold);
+            border: none;
+            color: #07090E; /* Texte noir profond pour visibilité maximale */
             text-decoration: none;
             font-family: 'Cinzel';
             font-size: 0.75rem;
             text-transform: uppercase;
             text-align: center;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             border-radius: var(--border-radius);
             letter-spacing: 2px;
-            background-color: var(--card);
+            background: var(--cyan); /* Doré prestige permanent */
+            font-weight: 700;
         }
 
         .btn-v:hover {
-            background-color: var(--gold);
-            color: var(--bg);
+            background: var(--cyan2);
+            color: #07090E;
         }
 
         /* État consulté : Le bouton reste Or plein */
@@ -217,20 +218,32 @@
         .btn-d {
             flex: 1;
             padding: 15px;
-            border: 2px solid var(--gold);
-            color: var(--gold);
+            border: none;
+            color: #07090E;
             text-decoration: none;
             font-family: 'Cinzel';
             font-weight: 700;
             font-size: 0.8rem;
             text-transform: uppercase;
             text-align: center;
-            transition: 0.3s;
+            transition: all 0.3s ease;
             border-radius: var(--border-radius);
+            background: var(--cyan);
         }
 
-        .btn-g { background: var(--gold); color: var(--bg); }
-        .btn-g:hover { background: transparent; color: var(--gold); }
+        .btn-d:hover {
+            background: var(--cyan2);
+            color: #07090E;
+        }
+
+        .btn-g { 
+            background: linear-gradient(135deg, var(--cyan2) 0%, var(--cyan) 50%, var(--blue2) 100%) !important; 
+            color: #000 !important; 
+            border: none !important;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            font-weight: 700;
+        }
+        .btn-g:hover { background: #fff !important; color: #000 !important; }
 
         /* --- MOBILE SPACER (MANDATORY) --- */
         .mobile-spacer { height: 350px; }
@@ -251,18 +264,41 @@
         .ambient {
             position: fixed; inset: -18%; z-index: 0; pointer-events: none;
             background:
-              radial-gradient(48vw 38vw at 8% 17%, rgba(212, 175, 55, 0.15), transparent 70%),
-              radial-gradient(46vw 42vw at 92% 7%, rgba(146, 117, 63, 0.25), transparent 64%),
-              radial-gradient(58vw 42vw at 70% 96%, rgba(212, 175, 55, 0.12), transparent 68%),
-              linear-gradient(145deg, #07090E 0%, #16120b 47%, #1f180e 100%);
+              radial-gradient(48vw 38vw at calc(8% + var(--slide)*2.4%) 17%, rgba(212, 175, 55, 0.15), transparent 70%),
+              radial-gradient(46vw 42vw at calc(92% - var(--slide)*1.6%) 7%, rgba(197, 160, 89, 0.25), transparent 64%),
+              radial-gradient(58vw 42vw at 70% calc(96% - var(--slide)*1.2%), rgba(212, 175, 55, 0.12), transparent 68%),
+              linear-gradient(145deg, #07090E 0%, #07090E 47%, #07090E 100%);
             filter: saturate(1.12);
+            transition: background 820ms cubic-bezier(.2,.8,.2,1), filter 820ms ease;
+        }
+        .ambient::before, .ambient::after {
+            content: ""; position: absolute; pointer-events: none; opacity: 0.62; mix-blend-mode: screen;
+            transform: translateZ(0); will-change: transform, opacity;
+        }
+        .ambient::before {
+            width: 58vw; height: 22vh; left: 9%; top: 15%;
+            background: linear-gradient(100deg, transparent 0%, rgba(243, 208, 130, 0.18) 43%, rgba(255, 255, 255, 0.24) 50%, rgba(197, 160, 89, 0.13) 58%, transparent 100%);
+            filter: blur(14px);
+            transform: translateX(calc(var(--slide)*1.4vw)) rotate(-10deg);
+            animation: glide 12s ease-in-out infinite alternate;
+        }
+        .ambient::after {
+            width: 50vw; height: 50vw; right: -10vw; bottom: -15vw; border-radius: 50%;
+            background: radial-gradient(circle at 36% 33%, rgba(255, 255, 255, 0.16), rgba(243, 208, 130, 0.10) 31%, rgba(146, 117, 63, 0.13) 48%, transparent 70%);
+            filter: blur(34px);
+            transform: translate(calc(var(--slide)*-0.8vw), calc(var(--slide)*-.35vw));
+            animation: orb 15s ease-in-out infinite alternate;
         }
         .rays {
             position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.36; mix-blend-mode: screen;
             background:
               linear-gradient(118deg, transparent 23%, rgba(255, 255, 255, 0.045) 34%, transparent 47%),
               linear-gradient(65deg, transparent 54%, rgba(197, 160, 89, 0.06) 61%, transparent 72%);
+            transform: translateX(calc(var(--slide)*-.55vw));
+            transition: transform 850ms cubic-bezier(.2,.8,.2,1), opacity 850ms ease;
         }
+        @keyframes glide { from { translate: -4vw 0; } to { translate: 5vw 1.8vh; } }
+        @keyframes orb { from { scale: 1; opacity: 0.48; } to { scale: 1.08; opacity: 0.7; } }
     </style>
 </head>
 <body>

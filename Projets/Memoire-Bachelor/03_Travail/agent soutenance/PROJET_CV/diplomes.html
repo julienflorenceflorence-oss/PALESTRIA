@@ -218,8 +218,8 @@
         .btn-d {
             flex: 1;
             padding: 15px;
-            border: none;
-            color: #07090E;
+            border: none !important;
+            color: #000 !important; /* Texte noir profond permanent */
             text-decoration: none;
             font-family: 'Cinzel';
             font-weight: 700;
@@ -228,12 +228,14 @@
             text-align: center;
             transition: all 0.3s ease;
             border-radius: var(--border-radius);
-            background: var(--cyan);
+            background: linear-gradient(135deg, var(--cyan2) 0%, var(--cyan) 50%, var(--blue2) 100%) !important; /* Dégradé or prestige permanent */
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
         }
 
         .btn-d:hover {
-            background: var(--cyan2);
-            color: #07090E;
+            background: #FFFFFF !important;
+            color: #000 !important;
+            box-shadow: 0 6px 20px rgba(255, 255, 255, 0.4);
         }
 
         .btn-g { 

@@ -122,27 +122,16 @@
             font-weight: 700;
         }
 
-        .card-icon {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 24px;
-            height: 24px;
-        }
-
         .card-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: #D4AF37 !important;
-            opacity: 0.85;
+            fill: var(--gold);
+            opacity: 0.6;
             transition: all 0.3s ease;
         }
 
         .card:hover .card-icon svg {
             transform: scale(1.2);
-            fill: #F3D082 !important;
             opacity: 1;
-            filter: drop-shadow(0 0 8px #D4AF37);
+            filter: drop-shadow(0 0 5px var(--gold));
         }
 
         .card h3 {

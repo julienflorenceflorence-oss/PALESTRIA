@@ -259,15 +259,10 @@
         
         .psych-progress {
             height: 100%;
-            background: linear-gradient(90deg, var(--blue2), var(--cyan));
+            background: linear-gradient(90deg, #92753F, #D4AF37) !important; /* Dégradé or prestige soutenance en dur */
             border-radius: 10px;
             box-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
-            width: 0;
-            animation: loadProgress 1.5s cubic-bezier(0.1, 1, 0.1, 1) forwards;
-        }
-
-        @keyframes loadProgress {
-            to { width: var(--target-width); }
+            transition: width 1s ease-in-out;
         }
 
         /* AMBIENT & RAYS DESIGN PRESTIGE SLIDES */
@@ -337,15 +332,15 @@
                 <div class="info-item" style="color: var(--primary-gold); font-family: 'Cinzel'; font-weight: 700; margin-bottom:15px; letter-spacing: 1px;">ENTJ-A (Commandant)</div>
                 <div style="margin-bottom:15px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;"><span>Rationnel</span><span>94%</span></div>
-                    <div class="psych-bar"><div class="psych-progress" style="--target-width: 94%;"></div></div>
+                    <div class="psych-bar"><div class="psych-progress" style="width: 94%;"></div></div>
                 </div>
                 <div style="margin-bottom:15px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;"><span>Organisé</span><span>94%</span></div>
-                    <div class="psych-bar"><div class="psych-progress" style="--target-width: 94%;"></div></div>
+                    <div class="psych-bar"><div class="psych-progress" style="width: 94%;"></div></div>
                 </div>
                 <div style="margin-bottom:15px;">
                     <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin-bottom:6px;"><span>Extraverti</span><span>88%</span></div>
-                    <div class="psych-bar"><div class="psych-progress" style="--target-width: 88%;"></div></div>
+                    <div class="psych-bar"><div class="psych-progress" style="width: 88%;"></div></div>
                 </div>
             </section>
 
